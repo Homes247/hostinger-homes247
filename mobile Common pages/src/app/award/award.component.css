@@ -1,0 +1,50 @@
+.awards_section_main  {
+    font-size: 27px;
+    font-weight: 500;
+    color: #02181e;
+    text-align: center;
+     /* background-color:aliceblue;  */
+    padding:6px 0 0 0;
+  }
+  .testimonial_head{
+    font-size: 27px;
+    font-weight: 500;
+    color: #02181e;
+    text-align: center;
+    margin-top: 70px;
+  }
+  .card_awardsheight{
+     /* border-radius: 20px !important;  */
+     /* margin-top: 20px; */
+     border: 0px solid rgba(0,0,0,.125) !important;
+  }
+  .award_img{
+    border-radius: 20px; 
+    height: 100%;
+    width: 85%;
+  }
+  /* .card-body-text{
+    color: white;
+    position: absolute;
+    bottom: 1px;
+} */
+.award-head{
+    /* display:inline-block; */
+    /* border-bottom:2px solid black; */
+    padding-bottom:10px;
+    color: black;
+  }
+  .card-text{
+    font-size:12px;
+    padding: 0px 18px;
+  }
+ 
+  .card-body-text h4{
+   text-align: center;
+   margin: -74px 0 0 0;
+   /* width: 105%; */
+   font-size: 14px;
+  }
+  #blog_section{
+    margin-top: 50px;
+  }

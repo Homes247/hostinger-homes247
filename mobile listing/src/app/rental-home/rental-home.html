@@ -1,0 +1,489 @@
+<app-rentheader></app-rentheader>
+
+
+<div style="background: #f6f7f9;">
+
+  <div class="container pt-3 con1">
+    <h4 class="sqrt-titletext">Homes You Can Rent Today</h4>
+    @if (!ImmediatComingSoon) {
+      <p class="newHeadingSubTitle">Curated & Handpicked Properties</p>
+    }
+    @if (ImmediatComingSoon) {
+      <p class="newHeadingSubTitle mb-0">Curated & Handpicked Properties</p>
+    }
+    <div class="scroll-container">
+      @for (locProp of ImmediateAvailLists | slice : 0: 20; track locProp) {
+        <div class="property-card">
+          @if (locProp.PropertyType !== 'Plot' && locProp.PropertyName === '') {
+            <a class="imageAnchorTag" target="_blank" href="https://www.homes247.in/rentals/{{ locProp.BHK | cleanUrl }}-{{ locProp.PropertyType | cleanUrl }}-for-rent-in-{{ locProp.Locality | cleanUrl }}-{{ locProp.City | cleanUrl }}-{{ locProp.PropertyID }}">
+              @if (locProp.Coverimage !== null) {
+                <img src="{{propertyimage}}{{locProp.Coverimage}}" alt="Property Image" class="card-img-top">
+              }
+              @if (locProp.Coverimage === null) {
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/noimage/Updated_No_Image.jpg" alt="Property Image" class="card-img-top">
+              }
+            </a>
+          }
+          @if (locProp.PropertyType !== 'Plot' && locProp.PropertyName !== '') {
+            <a class="imageAnchorTag" target="_blank" href="https://www.homes247.in/rentals/{{ locProp.BHK | cleanUrl }}-{{ locProp.PropertyType | cleanUrl }}-for-rent-in-{{ locProp.Locality | cleanUrl }}-{{ locProp.City | cleanUrl }}-at-{{ locProp.PropertyName | cleanUrl }}-{{ locProp.PropertyID }}">
+              @if (locProp.Coverimage !== null) {
+                <img src="{{propertyimage}}{{locProp.Coverimage}}" alt="Property Image" class="card-img-top">
+              }
+              @if (locProp.Coverimage === null) {
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/noimage/Updated_No_Image.jpg" alt="Property Image" class="card-img-top">
+              }
+            </a>
+          }
+          @if (locProp.PropertyType === 'Plot' && locProp.PropertyName === '') {
+            <a class="imageAnchorTag" target="_blank" href="https://www.homes247.in/rentals/{{ locProp.PropertyArea }}-{{ locProp.Areatype }}-{{ locProp.PropertyType | cleanUrl }}-for-rent-in-{{ locProp.Locality | cleanUrl }}-{{ locProp.City | cleanUrl }}-{{ locProp.PropertyID }}">
+              @if (locProp.Coverimage !== null) {
+                <img src="{{propertyimage}}{{locProp.Coverimage}}" alt="Property Image" class="card-img-top">
+              }
+              @if (locProp.Coverimage === null) {
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/noimage/Updated_No_Image.jpg" alt="Property Image" class="card-img-top">
+              }
+            </a>
+          }
+          @if (locProp.PropertyType === 'Plot' && locProp.PropertyName !== '') {
+            <a class="imageAnchorTag" target="_blank" href="https://www.homes247.in/rentals/{{ locProp.PropertyArea }}-{{ locProp.Areatype }}-{{ locProp.PropertyType | cleanUrl }}-for-rent-in-{{ locProp.Locality | cleanUrl }}-{{ locProp.City | cleanUrl }}-at-{{ locProp.PropertyName | cleanUrl }}-{{ locProp.PropertyID }}">
+              @if (locProp.Coverimage !== null) {
+                <img src="{{propertyimage}}{{locProp.Coverimage}}" alt="Property Image" class="card-img-top">
+              }
+              @if (locProp.Coverimage === null) {
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/noimage/Updated_No_Image.jpg" alt="Property Image" class="card-img-top">
+              }
+            </a>
+          }
+          <div class="card-body">
+            <p class="property-price mb-0">₹ {{ locProp.Rent }}</p>
+            @if (locProp.PropertyType !== 'Plot') {
+              <p class="property-description">{{locProp.BHK}} {{locProp.Furnish}} {{locProp.PropertyType}}</p>
+            }
+            @if (locProp.PropertyType === 'Plot') {
+              <p class="property-description">{{locProp.PropertyArea}} {{locProp.Areatype}} {{locProp.PropertyType}}</p>
+            }
+            <p class="property-location"><img width="12" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/rentalDetailsLocationPin.png" alt="..rentalDetailsLocationPin.png"> {{ locProp.Locality }}</p>
+          </div>
+          <div class="col-12 px-2 borderDivOuter">
+            <span class="borderDiv"></span>
+          </div>
+          <div class=" text-center card-footer-icons">
+            @if (locProp.PropertyType !== 'Plot' && locProp.PropertyName === '') {
+              <button class="btn btn-view-details btn-block mr-2">
+                <a href="https://www.homes247.in/rentals/{{ locProp.BHK | cleanUrl }}-{{ locProp.PropertyType | cleanUrl }}-for-rent-in-{{ locProp.Locality | cleanUrl }}-{{ locProp.City | cleanUrl }}-{{ locProp.PropertyID }}">
+                  View Details <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Rental _External_link.png" alt="..Rental _External_link.png">
+                </a>
+              </button>
+            }
+            @if (locProp.PropertyType !== 'Plot' && locProp.PropertyName !== '') {
+              <button class="btn btn-view-details btn-block mr-2">
+                <a href="https://www.homes247.in/rentals/{{ locProp.BHK | cleanUrl }}-{{ locProp.PropertyType | cleanUrl }}-for-rent-in-{{ locProp.Locality | cleanUrl }}-{{ locProp.City | cleanUrl }}-at-{{ locProp.PropertyName | cleanUrl }}-{{ locProp.PropertyID }}">
+                  View Details <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Rental _External_link.png" alt="..Rental _External_link.png">
+                </a>
+              </button>
+            }
+            @if (locProp.PropertyType === 'Plot' && locProp.PropertyName === '') {
+              <button class="btn btn-view-details btn-block mr-2">
+                <a href="https://www.homes247.in/rentals/{{ locProp.PropertyArea }}-{{ locProp.Areatype }}-{{ locProp.PropertyType | cleanUrl }}-for-rent-in-{{ locProp.Locality | cleanUrl }}-{{ locProp.City | cleanUrl }}-{{ locProp.PropertyID }}">
+                  View Details <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Rental _External_link.png" alt="..Rental _External_link.png">
+                </a>
+              </button>
+            }
+            @if (locProp.PropertyType === 'Plot' && locProp.PropertyName !== '') {
+              <button class="btn btn-view-details btn-block mr-2">
+                <a href="https://www.homes247.in/rentals/{{ locProp.PropertyArea }}-{{ locProp.Areatype }}-{{ locProp.PropertyType | cleanUrl }}-for-rent-in-{{ locProp.Locality | cleanUrl }}-{{ locProp.City | cleanUrl }}-at-{{ locProp.PropertyName | cleanUrl }}-{{ locProp.PropertyID }}">
+                  View Details <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Rental _External_link.png" alt="..Rental _External_link.png">
+                </a>
+              </button>
+            }
+            <div [ngClass]="{'Rental_icons_Heart3_Active': isInWishlist1(locProp.PropertyID), 'Rental_icons_Heart3 mr-2': !isInWishlist1(locProp.PropertyID)}" (click)="Heart_Transtion1(locProp.PropertyID)"></div>
+            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Rental_share.png" alt="..Rental_share.png" class="sharecss" (click)=" (locProp)">
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  @if (ImmediatComingSoon) {
+    <div class="container pr-0 noPropDivRental">
+      <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/noRentalPropFoundMob.png" alt="..noRentalPropFoundMob.png" width="100%">
+      <div class="noPropTxt1">
+        <p class="mb-0">Sorry, we couldn't find any properties</p>
+      </div>
+    </div>
+  }
+
+
+  <div class="section section1">
+    <div class="col-12 title-subhead">
+      <h4 class="sqrt-titletext">Choose Your Ideal Type</h4>
+      <p class="newHeadingSubTitle">Find what you are looking for</p>
+    </div>
+    <div class="col-12 con1">
+      <div class="scrollmenu idealRental">
+        <a routerLink="/rent/independent-house-for-rent-in-{{currentCity | cleanUrl}}">
+          <div class="">
+            <img height="134" width="116" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/independentRent.png" class="" alt="independentRent.png">
+          </div>
+        </a>
+        <a routerLink="/rent/flats-for-rent-in-{{currentCity | cleanUrl}}">
+          <div class="">
+            <img height="134" width="116" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/apartmentRent.png" class="" alt="apartmentRent.png">
+          </div>
+        </a>
+        <a routerLink="/rent/villas-for-rent-in-{{currentCity | cleanUrl}}">
+          <div class="">
+            <img height="134" width="116" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/villasRent.png" class="" alt="villasRent.png">
+          </div>
+        </a>
+        <a routerLink="/rent/plots-for-rent-in-{{currentCity | cleanUrl}}">
+          <div class="">
+            <img height="134" width="116" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/plotRentMob.png" class="" alt="plotRentMob.png">
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container mt-4 con1">
+    <h4 class="sqrt-titletext">Properties From Owner</h4>
+    @if (!owneshipComingSoon) {
+      <p class="newHeadingSubTitle">Directly connect to the Source</p>
+    }
+    @if (owneshipComingSoon) {
+      <p class="newHeadingSubTitle mb-0">Directly connect to the Source</p>
+
+    }
+    <div class="scroll-container">
+      @for (locProp of propertylistsbyowner | slice : 0: 20; track locProp) {
+        <div class="property-card">
+          @if (locProp.PropertyType !== 'Plot' && locProp.PropertyName === '') {
+            <a class="imageAnchorTag" target="_blank" href="https://www.homes247.in/rentals/{{ locProp.BHK | cleanUrl }}-{{ locProp.PropertyType | cleanUrl }}-for-rent-in-{{ locProp.Locality | cleanUrl }}-{{ locProp.City | cleanUrl }}-{{ locProp.PropertyID }}">
+              @if (locProp.Coverimage !== null) {
+                <img src="{{propertyimage}}{{locProp.Coverimage}}" alt="Property Image" class="card-img-top">
+              }
+              @if (locProp.Coverimage === null) {
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/noimage/Updated_No_Image.jpg" alt="Property Image" class="card-img-top">
+              }
+            </a>
+          }
+          @if (locProp.PropertyType !== 'Plot' && locProp.PropertyName !== '') {
+            <a class="imageAnchorTag" target="_blank" href="https://www.homes247.in/rentals/{{ locProp.BHK | cleanUrl }}-{{ locProp.PropertyType | cleanUrl }}-for-rent-in-{{ locProp.Locality | cleanUrl }}-{{ locProp.City | cleanUrl }}-at-{{ locProp.PropertyName | cleanUrl }}-{{ locProp.PropertyID }}">
+              @if (locProp.Coverimage !== null) {
+                <img src="{{propertyimage}}{{locProp.Coverimage}}" alt="Property Image" class="card-img-top">
+              }
+              @if (locProp.Coverimage === null) {
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/noimage/Updated_No_Image.jpg" alt="Property Image" class="card-img-top">
+              }
+            </a>
+          }
+          @if (locProp.PropertyType === 'Plot' && locProp.PropertyName === '') {
+            <a class="imageAnchorTag" target="_blank" href="https://www.homes247.in/rentals/{{ locProp.PropertyArea }}-{{ locProp.Areatype }}-{{ locProp.PropertyType | cleanUrl }}-for-rent-in-{{ locProp.Locality | cleanUrl }}-{{ locProp.City | cleanUrl }}-{{ locProp.PropertyID }}">
+              @if (locProp.Coverimage !== null) {
+                <img src="{{propertyimage}}{{locProp.Coverimage}}" alt="Property Image" class="card-img-top">
+              }
+              @if (locProp.Coverimage === null) {
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/noimage/Updated_No_Image.jpg" alt="Property Image" class="card-img-top">
+              }
+            </a>
+          }
+          @if (locProp.PropertyType === 'Plot' && locProp.PropertyName !== '') {
+            <a class="imageAnchorTag" target="_blank" href="https://www.homes247.in/rentals/{{ locProp.PropertyArea }}-{{ locProp.Areatype }}-{{ locProp.PropertyType | cleanUrl }}-for-rent-in-{{ locProp.Locality | cleanUrl }}-{{ locProp.City | cleanUrl }}-at-{{ locProp.PropertyName | cleanUrl }}-{{ locProp.PropertyID }}">
+              @if (locProp.Coverimage !== null) {
+                <img src="{{propertyimage}}{{locProp.Coverimage}}" alt="Property Image" class="card-img-top">
+              }
+              @if (locProp.Coverimage === null) {
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/noimage/Updated_No_Image.jpg" alt="Property Image" class="card-img-top">
+              }
+            </a>
+          }
+          <div class="card-body">
+            <p class="property-price mb-0">₹ {{ locProp.Rent }}</p>
+            @if (locProp.PropertyType !== 'Plot') {
+              <p class="property-description">{{locProp.BHK}} {{locProp.Furnish}} {{locProp.PropertyType}}</p>
+            }
+            @if (locProp.PropertyType === 'Plot') {
+              <p class="property-description">{{locProp.PropertyArea}} {{locProp.Areatype}} {{locProp.PropertyType}}</p>
+            }
+            <p class="property-location"><img width="12" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/rentalDetailsLocationPin.png" alt="..rentalDetailsLocationPin.png"> {{ locProp.Locality }}</p>
+          </div>
+          <div class="col-12 px-2 borderDivOuter">
+            <span class="borderDiv"></span>
+          </div>
+          <div class=" text-center card-footer-icons">
+            @if (locProp.PropertyType !== 'Plot' && locProp.PropertyName === '') {
+              <button class="btn btn-view-details btn-block mr-2">
+                <a href="https://www.homes247.in/rentals/{{ locProp.BHK | cleanUrl }}-{{ locProp.PropertyType | cleanUrl }}-for-rent-in-{{ locProp.Locality | cleanUrl }}-{{ locProp.City | cleanUrl }}-{{ locProp.PropertyID }}">
+                  View Details <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Rental _External_link.png" alt="..Rental _External_link.png">
+                </a>
+              </button>
+            }
+            @if (locProp.PropertyType !== 'Plot' && locProp.PropertyName !== '') {
+              <button class="btn btn-view-details btn-block mr-2">
+                <a href="https://www.homes247.in/rentals/{{ locProp.BHK | cleanUrl }}-{{ locProp.PropertyType | cleanUrl }}-for-rent-in-{{ locProp.Locality | cleanUrl }}-{{ locProp.City | cleanUrl }}-at-{{ locProp.PropertyName | cleanUrl }}-{{ locProp.PropertyID }}">
+                  View Details <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Rental _External_link.png" alt="..Rental _External_link.png">
+                </a>
+              </button>
+            }
+            @if (locProp.PropertyType === 'Plot' && locProp.PropertyName === '') {
+              <button class="btn btn-view-details btn-block mr-2">
+                <a href="https://www.homes247.in/rentals/{{ locProp.PropertyArea }}-{{ locProp.Areatype }}-{{ locProp.PropertyType | cleanUrl }}-for-rent-in-{{ locProp.Locality | cleanUrl }}-{{ locProp.City | cleanUrl }}-{{ locProp.PropertyID }}">
+                  View Details <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Rental _External_link.png" alt="..Rental _External_link.png">
+                </a>
+              </button>
+            }
+            @if (locProp.PropertyType === 'Plot' && locProp.PropertyName !== '') {
+              <button class="btn btn-view-details btn-block mr-2">
+                <a href="https://www.homes247.in/rentals/{{ locProp.PropertyArea }}-{{ locProp.Areatype }}-{{ locProp.PropertyType | cleanUrl }}-for-rent-in-{{ locProp.Locality | cleanUrl }}-{{ locProp.City | cleanUrl }}-at-{{ locProp.PropertyName | cleanUrl }}-{{ locProp.PropertyID }}">
+                  View Details <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Rental _External_link.png" alt="..Rental _External_link.png">
+                </a>
+              </button>
+            }
+            <div [ngClass]="{'Rental_icons_Heart3_Active': isInWishlist1(locProp.PropertyID), 'Rental_icons_Heart3 mr-2': !isInWishlist1(locProp.PropertyID)}" (click)="Heart_Transtion1(locProp.PropertyID)"></div>
+            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Rental_share.png" alt="..Rental_share.png" class="sharecss" (click)=" (locProp)">
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  @if (owneshipComingSoon) {
+    <div class="container pr-0 noPropDivRental">
+      <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/noRentalPropFoundMob.png" alt="..noRentalPropFoundMob.png" width="100%">
+      <div class="noPropTxt1">
+        <p class="mb-0">Sorry, we couldn't find any properties</p>
+      </div>
+    </div>
+  }
+
+
+  <div class="section section1">
+    <div class="col-12 title-subhead ">
+      <h4 class="sqrt-titletext">Rentals for Every Lifestyle</h4>
+      <p class="newHeadingSubTitle">Unmatched choices for Everyone</p>
+    </div>
+    <div class="col-12 con1">
+      @if (showShortImages) {
+        <div class=" scrollmenu idealRental">
+          <a [routerLink]="['/rent/house-for-rent-in-' + currentCity]" [queryParams]="{ tenants: '2'}">
+            <div class=""><img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/renthome/familyrent.png" class="furniturestatus-img" alt="familyrent.png"></div>
+          </a>
+          <a [routerLink]="['/rent/house-for-rent-in-' + currentCity]" [queryParams]="{ tenants: '1'}">
+            <div class=""><img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/renthome/bachelorerent.png" class="furniturestatus-img" alt="bachelorerent.png"></div>
+          </a>
+          <a [routerLink]="['/rent/house-for-rent-in-' + currentCity]" [queryParams]="{ tenants: '3'}">
+            <div class=""><img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/renthome/bothrent.png" class="furniturestatus-img" alt="bothrent.png"></div>
+          </a>
+        </div>
+      }
+      @if (!showShortImages) {
+        <div class=" scrollmenu idealRental">
+          <a [routerLink]="['/rent/house-for-rent-in-' + currentCity]" [queryParams]="{ tenants: '2'}">
+            <div class=""><img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/familyRentBig.png" class="furniturestatus-img" alt="familyRentBig.png"></div>
+          </a>
+          <a [routerLink]="['/rent/house-for-rent-in-' + currentCity]" [queryParams]="{ tenants: '1'}">
+            <div class=""><img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/bachelorsRentBig.png" class="furniturestatus-img" alt="bachelorsRentBig.png"></div>
+          </a>
+          <a [routerLink]="['/rent/house-for-rent-in-' + currentCity]" [queryParams]="{ tenants: '3'}">
+            <div class=""><img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/bothTenantsRentBig.png" class="furniturestatus-img" alt="bothTenantsRentBig.png"></div>
+          </a>
+        </div>
+      }
+    </div>
+  </div>
+
+
+  <div class="container mt-4 con1">
+    <h4 class="sqrt-titletext">Newly Added Properties</h4>
+    @if (!newlyAddedComingSoon) {
+      <p class="newHeadingSubTitle">Latest and Best</p>
+    }
+    @if (newlyAddedComingSoon) {
+      <p class="newHeadingSubTitle mb-0">Latest and Best</p>
+    }
+    <div class="scroll-container">
+      @for (locProp of newlyAdded | slice : 0: 20; track locProp) {
+        <div class="property-card">
+          @if (locProp.PropertyType !== 'Plot' && locProp.PropertyName === '') {
+            <a class="imageAnchorTag" target="_blank" href="https://www.homes247.in/rentals/{{ locProp.BHK | cleanUrl }}-{{ locProp.PropertyType | cleanUrl }}-for-rent-in-{{ locProp.Locality | cleanUrl }}-{{ locProp.City | cleanUrl }}-{{ locProp.PropertyID }}">
+              @if (locProp.Coverimage !== null) {
+                <img src="{{propertyimage}}{{locProp.Coverimage}}" alt="Property Image" class="card-img-top">
+              }
+              @if (locProp.Coverimage === null) {
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/noimage/Updated_No_Image.jpg" alt="Property Image" class="card-img-top">
+              }
+            </a>
+          }
+          @if (locProp.PropertyType !== 'Plot' && locProp.PropertyName !== '') {
+            <a class="imageAnchorTag" target="_blank" href="https://www.homes247.in/rentals/{{ locProp.BHK | cleanUrl }}-{{ locProp.PropertyType | cleanUrl }}-for-rent-in-{{ locProp.Locality | cleanUrl }}-{{ locProp.City | cleanUrl }}-at-{{ locProp.PropertyName | cleanUrl }}-{{ locProp.PropertyID }}">
+              @if (locProp.Coverimage !== null) {
+                <img src="{{propertyimage}}{{locProp.Coverimage}}" alt="Property Image" class="card-img-top">
+              }
+              @if (locProp.Coverimage === null) {
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/noimage/Updated_No_Image.jpg" alt="Property Image" class="card-img-top">
+              }
+            </a>
+          }
+          @if (locProp.PropertyType === 'Plot' && locProp.PropertyName === '') {
+            <a class="imageAnchorTag" target="_blank" href="https://www.homes247.in/rentals/{{ locProp.PropertyArea }}-{{ locProp.Areatype }}-{{ locProp.PropertyType | cleanUrl }}-for-rent-in-{{ locProp.Locality | cleanUrl }}-{{ locProp.City | cleanUrl }}-{{ locProp.PropertyID }}">
+              @if (locProp.Coverimage !== null) {
+                <img src="{{propertyimage}}{{locProp.Coverimage}}" alt="Property Image" class="card-img-top">
+              }
+              @if (locProp.Coverimage === null) {
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/noimage/Updated_No_Image.jpg" alt="Property Image" class="card-img-top">
+              }
+            </a>
+          }
+          @if (locProp.PropertyType === 'Plot' && locProp.PropertyName !== '') {
+            <a class="imageAnchorTag" target="_blank" href="https://www.homes247.in/rentals/{{ locProp.PropertyArea }}-{{ locProp.Areatype }}-{{ locProp.PropertyType | cleanUrl }}-for-rent-in-{{ locProp.Locality | cleanUrl }}-{{ locProp.City | cleanUrl }}-at-{{ locProp.PropertyName | cleanUrl }}-{{ locProp.PropertyID }}">
+              @if (locProp.Coverimage !== null) {
+                <img src="{{propertyimage}}{{locProp.Coverimage}}" alt="Property Image" class="card-img-top">
+              }
+              @if (locProp.Coverimage === null) {
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/noimage/Updated_No_Image.jpg" alt="Property Image" class="card-img-top">
+              }
+            </a>
+          }
+          <div class="card-body">
+            <p class="property-price mb-0">₹ {{ locProp.Rent }}</p>
+            @if (locProp.PropertyType !== 'Plot') {
+              <p class="property-description">{{locProp.BHK}} {{locProp.Furnish}} {{locProp.PropertyType}}</p>
+            }
+            @if (locProp.PropertyType === 'Plot') {
+              <p class="property-description">{{locProp.PropertyArea}} {{locProp.Areatype}} {{locProp.PropertyType}}</p>
+            }
+            <p class="property-location"><img width="12" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/rentalDetailsLocationPin.png" alt="..rentalDetailsLocationPin.png"> {{ locProp.Locality }}</p>
+          </div>
+          <div class="col-12 px-2 borderDivOuter">
+            <span class="borderDiv"></span>
+          </div>
+          <div class="text-center card-footer-icons">
+            @if (locProp.PropertyType !== 'Plot' && locProp.PropertyName === '') {
+              <button class="btn btn-view-details btn-block mr-2">
+                <a href="https://www.homes247.in/rentals/{{ locProp.BHK | cleanUrl }}-{{ locProp.PropertyType | cleanUrl }}-for-rent-in-{{ locProp.Locality | cleanUrl }}-{{ locProp.City | cleanUrl }}-{{ locProp.PropertyID }}">
+                  View Details <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Rental _External_link.png" alt="..Rental _External_link.png">
+                </a>
+              </button>
+            }
+            @if (locProp.PropertyType !== 'Plot' && locProp.PropertyName !== '') {
+              <button class="btn btn-view-details btn-block mr-2">
+                <a href="https://www.homes247.in/rentals/{{ locProp.BHK | cleanUrl }}-{{ locProp.PropertyType | cleanUrl }}-for-rent-in-{{ locProp.Locality | cleanUrl }}-{{ locProp.City | cleanUrl }}-at-{{ locProp.PropertyName | cleanUrl }}-{{ locProp.PropertyID }}">
+                  View Details <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Rental _External_link.png" alt="..Rental _External_link.png">
+                </a>
+              </button>
+            }
+            @if (locProp.PropertyType === 'Plot' && locProp.PropertyName === '') {
+              <button class="btn btn-view-details btn-block mr-2">
+                <a href="https://www.homes247.in/rentals/{{ locProp.PropertyArea }}-{{ locProp.Areatype }}-{{ locProp.PropertyType | cleanUrl }}-for-rent-in-{{ locProp.Locality | cleanUrl }}-{{ locProp.City | cleanUrl }}-{{ locProp.PropertyID }}">
+                  View Details <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Rental _External_link.png" alt="..Rental _External_link.png">
+                </a>
+              </button>
+            }
+            @if (locProp.PropertyType === 'Plot' && locProp.PropertyName !== '') {
+              <button class="btn btn-view-details btn-block mr-2">
+                <a href="https://www.homes247.in/rentals/{{ locProp.PropertyArea }}-{{ locProp.Areatype }}-{{ locProp.PropertyType | cleanUrl }}-for-rent-in-{{ locProp.Locality | cleanUrl }}-{{ locProp.City | cleanUrl }}-at-{{ locProp.PropertyName | cleanUrl }}-{{ locProp.PropertyID }}">
+                  View Details <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Rental _External_link.png" alt="..Rental _External_link.png">
+                </a>
+              </button>
+            }
+            <div [ngClass]="{'Rental_icons_Heart3_Active': isInWishlist1(locProp.PropertyID), 'Rental_icons_Heart3 mr-2': !isInWishlist1(locProp.PropertyID)}" (click)="Heart_Transtion1(locProp.PropertyID)"></div>
+            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Rental_share.png" alt="..Rental_share.png" class="sharecss" (click)=" (locProp)">
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+
+  <div class="section section1 ">
+    <div class="col-12 title-subhead ">
+      <h4 class="sqrt-titletext">Our Services</h4>
+      <p class="newHeadingSubTitle">Curated & Handpicked Properties</p>
+    </div>
+    <div class="col-12 con1">
+      <div class="scrollmenu idealRental">
+        <a href="https://www.homes247.in/expertservices/property-manage-experts-6">
+          <div class="col-4 p-0">
+            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/renthome/realestate.svg" class="Our_services_img1" alt="realestate.svg">
+          </div>
+        </a>
+        <a href="https://www.homes247.in/expertservices/legal-services-4">
+          <div class="col-4 p-0">
+            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/renthome/legal.svg" class="Our_services_img2" alt="legal.svg">
+          </div>
+        </a>
+        <a href="https://www.homes247.in/expertservices/interior-services-7">
+          <div class="col-4 p-0">
+            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/renthome/interior.svg" class="Our_services_img3" alt="interior.svg">
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  @if (newlyAddedComingSoon) {
+    <div class="container pr-0 noPropDivRental">
+      <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/noRentalPropFoundMob.png" alt="..noRentalPropFoundMob.png" width="100%">
+      <div class="noPropTxt1">
+        <p class="mb-0">Sorry, we couldn't find any properties</p>
+      </div>
+    </div>
+  }
+
+
+  <div class="section section3">
+    <div class="col-12 title-subhead ">
+      <h4 class="sqrt-titletext">Rental Insights</h4>
+      <p class="newHeadingSubTitle">Read the Latest Update</p>
+    </div>
+    <div class="col-12 con1">
+      <div class="blogsSection">
+        @for (blog of blogs | slice:0:6; track blog) {
+          <a>
+            <div class="card sqrtcard-size">
+              <a href="https://www.homes247.in/blogs/{{blog.urlstruture | cleanUrl }}-{{blog.id | cleanUrl}}" style="text-decoration: none;">
+                <img src="{{blogimagePath}}{{blog.imgPath}}" class="sqrtimg-size" alt="blog.alttag" />
+                <div class="card-body custom-card-body">
+                  <h5 class="sqrt-text sqrt-blog">{{blog.title}}</h5>
+                  <div class="col-12">
+                    <div class="row">
+                      <div class="col-7 px-0 sqrt1-text">
+                        <p class="mb-0">By {{blog.addedby}}</p>
+                      </div>
+                      <div class="col-5 text-right sqrt1-text">
+                        <p class="mb-0">{{blog.date | date:'MMM dd, yyyy'}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </a>
+        }
+      </div>
+    </div>
+  </div>
+
+  @if (blogsloader) {
+    <div>
+      <div class="col-12">
+        <div class="item">
+          <ngx-skeleton-loader [theme]="{ width: '60%','border-radius': '9', height: '170px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ width: '30%','border-radius': '9',height: '15px'}"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{width: '20%', 'border-radius': '9',height: '15px'}"></ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+  }
+
+  <div class="footerDiv">
+    <ng-container *ngComponentOutlet="FooterComponent"></ng-container>
+  </div>
+</div>
+
+<div class="Header_parts box_shadow">
+  <div class="innerheader_position">
+    <!-- <app-innerheader></app-innerheader> -->
+  </div>
+</div>

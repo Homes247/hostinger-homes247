@@ -1,0 +1,1675 @@
+<div class="col-12 fixedHeaderInitial">
+  <div class="row">
+    <a href="https://www.homes247.in/userauth/profile/{{this.UserId}}" class="col-1 px-0 text-center backArrowDiv">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i>
+    </a>
+    <div class="col-11 px-0 text-center backArrowDiv">
+      <p id="myProfile">My Listing</p>
+    </div>
+  </div>
+</div>
+
+<div class="wishlist_main_div">
+  <div class="propertyTypeBtns col-12">
+    <button class="btnApproved" (click)="onlyApproved()">Approved</button>
+    <button class="btnReview" (click)="onlyUnderReview()">Under Review</button>
+    <button class="btnReject" (click)="onlyRejected()">Rejected</button>
+  </div>
+
+  <div class="tabGap"></div>
+  <mat-tab-group (selectedTabChange)="onTabClick($event)">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Sell ({{userListSale.length}})
+      </ng-template>
+      <div class="col-sm-12" style="margin-top: 45px;">
+        <div *ngIf="userListSale.length === 0" class="emptyListdiv">
+          <div style="margin-top: 50px;">
+            <img width="100%" height="100%"
+              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/noProperty.png"
+              alt="..noProperty.png">
+            <div class="noPropTxt">
+              <p id="activityTxtHead">Your Activity Feed is Empty</p>
+              <p id="activityTxt">Your recent actions will show up here. <br>
+                Begin exploring properties to see your activity.</p>
+              <div class="addPropBtn">
+                <a routerLink="/postproperty" class="btn">Add Property</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="" *ngIf="userListSale.length !== 0">
+
+          <div *ngFor="let data of userListSale;let i = index" class="wishlist_main_div1">
+            <div class="col-sm-12 col-lg-12 col-md-12 mt-2 mb-2 cardListing " *ngIf="data.Deletion !== '1'">
+
+              <div class="row">
+                <a class="col-12 image city_list_imgs">
+                  <a class="imgDiv">
+
+                    <a *ngIf="data.Type !== 'Plot' && data.Verification == '0' && !data.commerical_type"
+                      href="https://www.homes247.in/listings/{{data.BHK | cleanUrl}}-{{data.Type | cleanUrl}}-for-sale-in-{{data.Locality | cleanUrl}}-{{data.City | cleanUrl}}-at-{{data.Propertyname | cleanUrl}}-{{data.PropertyID | cleanUrl}}">
+                      <img *ngIf="data.Coverimage" class="propListImages" src="{{coverImageUrl}}{{data.Coverimage}}"
+                        alt="Coverimage" />
+                      <img *ngIf="!data.Coverimage" class="propListImages"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image.jpg"
+                        alt="Updated_No_Image.jpg" />
+                    </a>
+                    <a *ngIf="data.Type === 'Plot' && data.Verification == '0' && !data.commerical_type"
+                      href="https://www.homes247.in/listings/{{data.Area}}-{{data.Areatype}}-{{data.Type | cleanUrl}}-for-sale-in-{{data.Locality | cleanUrl}}-{{data.City | cleanUrl}}-at-{{data.Propertyname | cleanUrl}}-{{data.PropertyID | cleanUrl}}">
+                      <img *ngIf="data.Coverimage" class="propListImages" src="{{coverImageUrl}}{{data.Coverimage}}"
+                        alt="Coverimage" />
+                      <img *ngIf="!data.Coverimage" class="propListImages"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image.jpg"
+                        alt="Updated_No_Image.jpg" />
+                    </a>
+
+
+                    <!-- ========================commerical_type=========================== -->
+                    <a *ngIf="data.Verification == '0' && data.commerical_type"
+                      routerLink="/cld/commercial-properties-for-sale-in-{{ data.City | cleanUrl }}-{{data.commerical_id}}-{{ data.PropertyID }}">
+                      <img *ngIf="data.pg_coverimage" class="propListImages"
+                        src="{{commericalImgUrl}}{{data.pg_coverimage}}" alt="Coverimage" />
+                      <img *ngIf="!data.pg_coverimage" class="propListImages"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image.jpg"
+                        alt="Updated_No_Image.jpg" />
+                    </a>
+                    <!-- =================================================== -->
+
+
+                    <a *ngIf="(data.Verification == '1' || data.Verification == '2') && !data.commerical_type">
+                      <img *ngIf="data.Coverimage" class="propListImages" src="{{coverImageUrl}}{{data.Coverimage}}"
+                        alt="Coverimage" />
+                      <img *ngIf="!data.Coverimage" class="propListImages"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image.jpg"
+                        alt="Updated_No_Image.jpg" />
+                    </a>
+
+
+                    <!-- ========================commerical_type=========================== -->
+                    <a *ngIf="(data.Verification == '1' || data.Verification == '2') && data.commerical_type">
+                      <img *ngIf="data.pg_coverimage" class="propListImages"
+                        src="{{commericalImgUrl}}{{data.pg_coverimage}}" alt="Coverimage" />
+                      <img *ngIf="!data.pg_coverimage" class="propListImages"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image.jpg"
+                        alt="Updated_No_Image.jpg" />
+                    </a>
+                    <!-- =================================================== -->
+                  </a>
+                  <div class="badgeBtns" *ngIf="data.Deletion === '0'">
+                    <a class="badge badge-approve apporvedBadge" *ngIf="data.Verification === '0'">Approved <img
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/approvedProp.png"
+                        alt="..approvedProp.png"></a>
+                    <a class="badge badge-underReview apporvedBadge" *ngIf="data.Verification === '1'">Under Review
+                      <img
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/underReview.png"
+                        alt="..underReview.png"></a>
+                    <a class="badge badge-rejected apporvedBadge" *ngIf="data.Verification === '2'">Rejected <img
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/rejectedProp.png"
+                        alt="..rejectedProp.png"></a>
+                  </div>
+
+                  <button (click)="onclickshare(data)" class=" shareBtn"
+                    *ngIf="data.Verification === '0' && !data.commerical_type"><img
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/approvedShareImg.png"
+                      alt="..approvedShareImg.png">
+                  </button>
+
+                  <button (click)="commericalSaleShare(data)" class=" shareBtn"
+                    *ngIf="data.Verification === '0' && data.commerical_type"><img
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/approvedShareImg.png"
+                      alt="..approvedShareImg.png">
+                  </button>
+                </a>
+                <div class="col-12">
+                  <div class="row mt-2">
+                    <div class="col-sm-12">
+                      <a class="col-12"
+                        *ngIf="data.Type !== 'Plot' && data.Verification == '0' && !data.commerical_type"
+                        href="https://www.homes247.in/listings/{{data.BHK | cleanUrl}}-{{data.Type | cleanUrl}}-for-sale-in-{{data.Locality | cleanUrl}}-{{data.City | cleanUrl}}-at-{{data.Propertyname | cleanUrl}}-{{data.PropertyID | cleanUrl}}">
+                        <div class="row">
+                          <div class="col-7 pl-0">
+                            <p class="titleFont" title="{{data.Propertyname}}">{{data.Propertyname}}</p>
+
+                            <p class="localitytitleFont" *ngIf="!data.Locality || data.Locality == 'undefined'">
+                              {{data.Locality_requsted}}, {{data.City}}</p>
+                            <p class="localitytitleFont" *ngIf="data.Locality && data.Locality !== 'undefined'">
+                              {{data.Locality}}, {{data.City}}</p>
+                          </div>
+                          <div class="col-5 text-right pr-0" *ngIf="data.Price && data.Price !== '0'">
+                            <p class="titleFont1">&#8377; {{data.Price | priceFormatter}}</p>
+                          </div>
+                          <div class="col-5 text-right pr-0" *ngIf="!data.Price || data.Price == '0'">
+                            <p class="titleFontRequest">Price On Request</p>
+                          </div>
+                        </div>
+                      </a>
+
+
+                      <!-- ========================commerical_type=========================== -->
+                      <div class="col-12" *ngIf="data.Verification === '0' && data.commerical_type "
+                        routerLink="/cld/commercial-properties-for-rent-in-{{ data.City | cleanUrl }}-{{data.commerical_id}}-{{ data.PropertyID }}">
+                        <div class="row">
+                          <div class="col-7 pl-0">
+                            <p class="titleFont" title="{{data.Propertyname}}">{{data.Propertyname}}</p>
+                            <p class="localitytitleFont" *ngIf="!data.Locality || data.Locality == 'undefined'">
+                              {{data.Locality_requsted}}, {{data.City}}</p>
+                            <p class="localitytitleFont" *ngIf="data.Locality && data.Locality !== 'undefined'">
+                              {{data.Locality}}, {{data.City}}</p>
+                          </div>
+                          <div class="col-5 text-right pr-0" *ngIf="data.Price && data.Price !== '0'">
+                            <p class="mb-0 titleFont1">&#8377; {{data.Price | priceFormatter}}</p>
+
+                          </div>
+                          <div class="col-5 text-right pr-0" *ngIf="!data.Price || data.Price == '0'">
+                            <p class="mb-0 titleFontRequest">Price On Request</p>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- =================================================== -->
+
+                      <a class="col-12"
+                        *ngIf="data.Type === 'Plot' && data.Verification == '0' && !data.commerical_type"
+                        href="https://www.homes247.in/listings/{{data.Area}}-{{data.Areatype}}-{{data.Type | cleanUrl}}-for-sale-in-{{data.Locality | cleanUrl}}-{{data.City | cleanUrl}}-at-{{data.Propertyname | cleanUrl}}-{{data.PropertyID | cleanUrl}}">
+                        <div class="row">
+                          <div class="col-7 pl-0">
+                            <p class="titleFont" title="{{data.Propertyname}}">{{data.Propertyname}}</p>
+                            <p class="localitytitleFont" *ngIf="!data.Locality || data.Locality == 'undefined'">
+                              {{data.Locality_requsted}}, {{data.City}}</p>
+                            <p class="localitytitleFont" *ngIf="data.Locality && data.Locality !== 'undefined'">
+                              {{data.Locality}}, {{data.City}}</p>
+                          </div>
+                          <div class="col-5 text-right pr-0" *ngIf="data.Price && data.Price !== '0'">
+                            <p class="titleFont1">&#8377; {{data.Price | priceFormatter}}</p>
+                          </div>
+                          <div class="col-5 text-right pr-0" *ngIf="!data.Price || data.Price == '0'">
+                            <p class="titleFontRequest">Price On Request</p>
+                          </div>
+                        </div>
+                      </a>
+
+                      <div class="col-12"
+                        *ngIf="(data.Verification == '1' || data.Verification == '2') && !data.commerical_type">
+                        <div class="row">
+                          <div class="col-7 pl-0">
+                            <p class="titleFont" title="{{data.Propertyname}}">{{data.Propertyname}}</p>
+
+
+                            <p class="localitytitleFont" *ngIf="!data.Locality || data.Locality == 'undefined'">
+                              {{data.Locality_requsted}}, {{data.City}}</p>
+                            <p class="localitytitleFont" *ngIf="data.Locality && data.Locality !== 'undefined'">
+                              {{data.Locality}}, {{data.City}}</p>
+                          </div>
+                          <div class="col-5 text-right pr-0" *ngIf="data.Price && data.Price !== '0'">
+                            <p class="titleFont1">&#8377; {{data.Price | priceFormatter}}</p>
+                          </div>
+                          <div class="col-5 text-right pr-0" *ngIf="!data.Price || data.Price == '0'">
+                            <p class="titleFontRequest">Price On Request</p>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- =============commerical_type============= -->
+                      <div class="col-12"
+                        *ngIf="(data.Verification == '1' || data.Verification == '2') && data.commerical_type">
+                        <div class="row">
+                          <div class="col-7 pl-0">
+                            <p class="titleFont" title="{{data.Propertyname}}">{{data.Propertyname}}</p>
+                            <p class="localitytitleFont" *ngIf="!data.Locality || data.Locality == 'undefined'">
+                              {{data.Locality_requsted}}, {{data.City}}</p>
+                            <p class="localitytitleFont" *ngIf="data.Locality && data.Locality !== 'undefined'">
+                              {{data.Locality}}, {{data.City}}</p>
+                          </div>
+                          <div class="col-5 text-right pr-0" *ngIf="data.Price && data.Price !== '0'">
+                            <p class="mb-0 titleFont1">&#8377; {{data.Price | priceFormatter}}</p>
+
+                          </div>
+                          <div class="col-5 text-right pr-0" *ngIf="!data.Price || data.Price == '0'">
+                            <p class="mb-0 titleFontRequest">Price On Request</p>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- ========================== -->
+
+                      <div class="col-12 mt-3" *ngIf="!data.commerical_type">
+                        <div class="row">
+                          <div class="col-6 pl-0">
+                            <p class="dataHeading">Property Type</p>
+                            <p class="dataSubHeading" *ngIf="data.Type">{{data.Type}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.Type">NA</p>
+                          </div>
+                          <div class="col-6 pl-0">
+                            <p class="dataHeading" *ngIf="data.Type !== 'Plot'">BHK Details</p>
+                            <p class="dataHeading" *ngIf="data.Type === 'Plot'">Plot Type</p>
+                            <p class="dataSubHeading" *ngIf="data.Type !== 'Plot'">{{data.BHK}}</p>
+                            <p class="dataSubHeading" *ngIf="data.Type === 'Plot'">{{data.Plottype_Name}}</p>
+                          </div>
+                          <div class="col-6 pl-0">
+                            <p class="dataHeading" *ngIf="data.Type !== 'Plot'">Property Dimensions</p>
+                            <p class="dataHeading" *ngIf="data.Type == 'Plot'">Plot Dimensions</p>
+                            <p class="dataSubHeading" *ngIf="data.Area && data.Areatype">{{data.Area}}
+                              {{data.Areatype}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.Area && !data.Areatype">NA</p>
+                          </div>
+                          <div class="col-6 pl-0" *ngIf="data.Type !== 'Plot'">
+                            <p class="dataHeading">Property Status</p>
+                            <p class="dataSubHeading" *ngIf="data.Status">{{data.Status}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.Status">NA</p>
+                          </div>
+                          <div class="col-6 pl-0" *ngIf="data.Type === 'Plot'">
+                            <p class="dataHeading">Plot Area Type</p>
+                            <p class="dataSubHeading" *ngIf="data.Building_typeName">{{data.Building_typeName}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.Building_typeName">NA</p>
+                          </div>
+
+                          <div class="col-6 pl-0"
+                            *ngIf="data.Type !== 'Plot' && data.Status !== 'Under Construction' && (data.Propertyage_year != null || data.Propertyage_month != null)">
+                            <p class="dataHeading">Property Age</p>
+                            <p class="dataSubHeading">
+                              <ng-container *ngIf="data.Propertyage_year != null">
+                                {{data.Propertyage_year}} {{data.Propertyage_year == 1 ? 'Yr' : 'Yrs'}}
+                              </ng-container>
+                              <ng-container *ngIf="data.Propertyage_month != null">
+                                <span *ngIf="data.Propertyage_year != null">, </span>
+                                {{data.Propertyage_month}} {{data.Propertyage_month == 1 ? 'Month' : 'Months'}}
+                              </ng-container>
+                            </p>
+                          </div>
+
+
+                          <div class="col-6 pl-0" *ngIf="data.Type !== 'Plot' && data.Posession_date">
+                            <p class="dataHeading">Possession Date</p>
+                            <p class="dataSubHeading">{{data.Posession_date}}</p>
+                          </div>
+
+                          <div class="col-6 pl-0" *ngIf="data.Type == 'Plot'">
+                            <p class="dataHeading">Plot Age</p>
+                            <p class="dataSubHeading" *ngIf="data.Plotage">{{data.Plotage}} Yr</p>
+                            <p class="dataSubHeading" *ngIf="!data.Plotage">NA</p>
+                          </div>
+                          <div class="col-6 pl-0" *ngIf="data.Type !== 'Plot'">
+                            <p class="dataHeading">Furnish Status</p>
+                            <p class="dataSubHeading" *ngIf="data.Furnish_status">{{data.Furnish_status}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.Furnish_status">NA</p>
+                          </div>
+                          <div class="col-6 pl-0" *ngIf="data.Type === 'Plot'">
+                            <p class="dataHeading">Maintanence</p>
+                            <p class="dataSubHeading" *ngIf="data.Maintanencecharge">&#8377;
+                              {{data.Maintanencecharge}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.Maintanencecharge">NA</p>
+                          </div>
+                          <div class="col-6 pl-0">
+                            <p class="dataHeading" *ngIf="data.Type === 'Plot'">Road Facing</p>
+                            <p class="dataHeading" *ngIf="data.Type !== 'Plot'">Door Facing</p>
+                            <p class="dataSubHeading" *ngIf="data.Doorfacing_Names">{{data.Doorfacing_Names}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.Doorfacing_Names">NA</p>
+                          </div>
+                          <div class="col-6 pl-0">
+                            <p class="dataHeading">Posted By</p>
+                            <p class="dataSubHeading" *ngIf="data.Ownership">{{data.Ownership}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.Ownership">NA</p>
+                          </div>
+                          <div class="col-6 pl-0" *ngIf="data.Verification === '0'">
+                            <p class="dataHeading">Posted On</p>
+                            <p class="dataSubHeading" *ngIf="data.property_posted">{{data.property_posted}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.property_posted">NA</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- =============commerical_type============= -->
+                      <div class="col-12 mt-3" *ngIf="data.commerical_type">
+                        <div class="row">
+                          <div class="col-6 pl-0">
+                            <p class="dataHeading">Property Type</p>
+                            <p class="dataSubHeading">Commercial</p>
+                          </div>
+                          <div class="col-6 pl-0">
+                            <p class="dataHeading">Negotiable</p>
+                            <p class="dataSubHeading" *ngIf="data.negotiable == '1'">Yes</p>
+                            <p class="dataSubHeading" *ngIf="data.negotiable == '2'">No</p>
+                            <!-- <p class="dataSubHeading" *ngIf="!data.negotiable">No</p> -->
+                          </div>
+                          <div class="col-6 pl-0" *ngIf="data.commerical_type">
+                            <p class="dataHeading">Commercial Type</p>
+                            <p class="dataSubHeading" *ngIf="data.commerical_type">{{data.commerical_type}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.commerical_type">NA</p>
+                          </div>
+
+                          <div class="col-6 pl-0" *ngIf="data.commerical_type !== 'Plot'  && !data.possession_date">
+                            <p class="dataHeading">Property Age</p>
+                            <p class="dataSubHeading" *ngIf="data.property_age">{{data.property_age}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.property_age">NA</p>
+                          </div>
+                          <div class="col-6 pl-0" *ngIf="data.commerical_type !== 'Plot'">
+                            <p class="dataHeading">Suited For</p>
+                            <p class="dataSubHeading" *ngIf="data.best_suited">{{data.best_suited}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.best_suited">NA</p>
+                          </div>
+                          <div class="col-6 pl-0" *ngIf="data.commerical_type === 'Plot'">
+                            <p class="dataHeading">Plot Facing</p>
+                            <p class="dataSubHeading" *ngIf="data.Facing">{{data.Facing}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.Facing">NA</p>
+                          </div>
+                          <div class="col-6 pl-0" *ngIf="data.commerical_type === 'Plot'">
+                            <p class="dataHeading">Floor Allowed</p>
+                            <p class="dataSubHeading" *ngIf="data.floor_allowed">{{data.floor_allowed}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.floor_allowed">NA</p>
+                          </div>
+
+                          <div class="col-6 pl-0">
+                            <p class="dataHeading" *ngIf="data.commerical_type !== 'Plot'">Carpet Area</p>
+                            <p class="dataHeading" *ngIf="data.commerical_type === 'Plot'">Plot Dimension</p>
+                            <p class="dataSubHeading" *ngIf="data.carpet_area">{{data.carpet_area}}
+                              {{data.carpet_area_type}}
+                            </p>
+                            <p class="dataSubHeading" *ngIf="!data.carpet_area">NA</p>
+                          </div>
+                          <div class="col-6 pl-0" *ngIf="!data.property_age">
+                            <p class="dataHeading">Possession Date</p>
+                            <p class="dataSubHeading" *ngIf="data.possession_date">
+                              {{data.possession_date}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.possession_date">NA</p>
+                          </div>
+
+                          <div class="col-6 pl-0" *ngIf="data.commerical_type !== 'Plot'">
+                            <p class="dataHeading">Furnish Status</p>
+                            <p class="dataSubHeading" *ngIf="data.Furnish_status">{{data.Furnish_status}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.Furnish_status">NA</p>
+                          </div>
+
+                          <div class="col-6 pl-0" *ngIf="data.commerical_type !== 'Plot'">
+                            <p class="dataHeading">Building Type</p>
+                            <p class="dataSubHeading" *ngIf="data.building_type">
+                              {{data.building_type}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.building_type">NA</p>
+                          </div>
+                          <div class="col-6 pl-0">
+                            <p class="dataHeading">Posted By</p>
+                            <p class="dataSubHeading" *ngIf="data.Ownership">{{data.Ownership}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.Ownership">NA</p>
+                          </div>
+                          <div class="col-6 pl-0" *ngIf="data.Verification === '0'">
+                            <p class="dataHeading">Posted On</p>
+                            <p class="dataSubHeading" *ngIf="data.property_posted">{{data.property_posted}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.property_posted">NA</p>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- ========================== -->
+
+                    </div>
+                  </div>
+
+                  <!-- =============commerical_type============= -->
+
+                  <div class="badgeBtns d-flex justify-content-center"
+                    *ngIf="data.Verification === '0' && data.commerical_type">
+
+                    <button (click)="enquiriesCommercial(data,'sale')" data-toggle="modal" data-target="#enquiryModal"
+                      class="enquiry" *ngIf="data.Verification === '0' && data.commericalpropertycount != '0'">Enquiries
+                      ({{data.commericalpropertycount}})
+                    </button>
+                    <button class="noEnquiry"
+                      *ngIf="data.Verification === '0' && data.commericalpropertycount == '0'">No
+                      Enquiries
+                    </button>
+                  </div>
+                  <!-- ================== -->
+
+                  <div class="badgeBtns d-flex justify-content-center"
+                    *ngIf="data.Verification === '0' && !data.commerical_type">
+
+                    <button (click)="enquiries(data,'sale')" data-toggle="modal" data-target="#enquiryModal"
+                      class="enquiry" *ngIf="data.Verification === '0' && data.propertycount != '0'">Enquiries
+                      ({{data.propertycount}})
+                    </button>
+                    <button class="noEnquiry" *ngIf="data.Verification === '0' && data.propertycount == '0'">No
+                      Enquiries
+                    </button>
+                  </div>
+                  <div class="row mt-2">
+                    <div class="col-sm-12">
+                      <div class="rejectedTxtBG p-2" *ngIf="data.Verification === '2'">
+                        <p class="reasonRejectTitle p-0 mb-0">Reason For Reject :</p>
+                        <p class="rejectedTxt" *ngIf="data.Rejectreason !== null">{{data.Rejectreason}}</p>
+                        <p class="rejectedTxt" *ngIf="data.Rejectreason == null">No Reason Listed</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-2">
+                    <div class="col-sm-12 btnDivMain d-flex justify-content-center">
+
+                      <button class=" editBgColor" *ngIf="data.Deletion === '0' && !data.commerical_type"
+                        target="_blank" routerLink="/userauth/sellingprojectsedit/{{data.PropertyID | cleanUrl}}">Edit
+                        <img
+                          src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/editSellRentBtn.png"
+                          alt="..editSellRentBtn.png" style="max-width: 16px; height: 16px;">
+                      </button>
+
+                      <button class=" deletBtn" *ngIf="data.Deletion == '0' && !data.commerical_type"
+                        (click)="deleteProperty(data,'Sale')" data-toggle="modal" data-target="#delPropModal">Delete
+                        <img
+                          src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/deleteSellRent.png"
+                          alt="..deleteSellRent.png" style="max-width: 16px; height: 16px;">
+                      </button>
+
+                      <!-- =============commerical_type============= -->
+                      <a class=" editBgColor" *ngIf="data.Deletion === '0' && data.commerical_type" target="_blank"
+                        routerLink="/userauth/postpropertynewedit/{{data.commerical_id}}/{{data.PropertyID | cleanUrl}}">Edit
+                        <img
+                          src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/editSellRentBtn.png"
+                          alt="..editSellRentBtn.png" style="max-width: 16px; height: 16px;">
+                      </a>
+                      <button class=" deletBtn" *ngIf="data.Deletion == '0' && data.commerical_type"
+                        (click)="deleteProperty(data, 'Commercial')" data-toggle="modal"
+                        data-target="#delPropModal">Delete <img
+                          src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/deleteSellRent.png"
+                          alt="..deleteSellRent.png" style="max-width: 16px; height: 16px;">
+                      </button>
+                      <!-- ================== -->
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Rent ({{userListRent.length}})
+      </ng-template>
+
+      <div class="col-sm-12" style="margin-top: 45px;">
+        <!-- <div class="mb-4 wishlist_main_div1"> -->
+        <div *ngIf="userListRent.length === 0" class="emptyListdiv">
+          <div style="margin-top: 50px;">
+            <img width="100%" height="100%"
+              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/noProperty.png"
+              alt="..noProperty.png">
+            <div class="noPropTxt">
+              <p id="activityTxtHead">Your Activity Feed is Empty</p>
+              <p id="activityTxt">Your recent actions will show up here. <br>
+                Begin exploring properties to see your activity.</p>
+              <div class="addPropBtn">
+                <a routerLink="/postproperty" class="btn">Add Property</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mb-4 wishlist_main_div1" *ngIf="userListRent.length !== 0">
+
+          <div *ngFor="let data of userListRent;let i = index">
+            <div class="col-sm-12 col-lg-12 col-md-12 mt-2 mb-2 cardListing" *ngIf="data.Deletion !== '1'">
+              <div class="row">
+                <a class="col-12 image city_list_imgs">
+                  <a class="imgDiv">
+
+                    <!-- <img class="propListImages" src="{{coverImageUrlRent}}{{data.Coverimage}}"/> -->
+
+                    <a *ngIf=" data.Type !== 'Plot' && data.Verification === '0' && !data.commerical_type "
+                      routerLink="/rentals/{{ data.BHK | cleanUrl }}-{{ data.Type | cleanUrl }}-for-rent-in-{{ data.Locality | cleanUrl }}-{{ data.City | cleanUrl }}-at-{{ data.Propertyname | cleanUrl }}-{{ data.PropertyID }}">
+
+                      <img *ngIf="data.Coverimage" class="propListImages" src="{{coverImageUrlRent}}{{data.Coverimage}}"
+                        alt="Coverimage" />
+                      <img *ngIf="!data.Coverimage" class="propListImages"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image.jpg"
+                        alt="Updated_No_Image.jpg" />
+                    </a>
+                    <!-- =============commerical_type============= -->
+                    <a *ngIf="data.commerical_type && data.Verification === '0'"
+                      routerLink="/cld/commercial-properties-for-rent-in-{{ data.City | cleanUrl }}-{{data.commerical_id}}-{{ data.PropertyID }}">
+                      <img *ngIf="data.pg_coverimage" class="propListImages"
+                        src="{{commericalImgUrl}}{{data.pg_coverimage}}" alt="Coverimage" />
+                      <img *ngIf="!data.pg_coverimage" class="propListImages"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image.jpg"
+                        alt="Updated_No_Image.jpg" />
+                    </a>
+
+                    <!-- ============ -->
+
+                    <a *ngIf=" data.Type === 'Plot' && data.Verification === '0' && !data.commerical_type "
+                      routerLink="/rentals/{{ data.Area }}-{{ data.Areatype }}-{{ data.Type | cleanUrl }}-for-rent-in-{{ data.Locality | cleanUrl }}-{{ data.City | cleanUrl }}-at-{{ data.Propertyname | cleanUrl }}-{{ data.PropertyID }}">
+
+                      <img *ngIf="data.Coverimage" class="propListImages" src="{{coverImageUrlRent}}{{data.Coverimage}}"
+                        alt="Coverimage" />
+                      <img *ngIf="!data.Coverimage" class="propListImages"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image.jpg"
+                        alt="Updated_No_Image.jpg" />
+                    </a>
+
+                    <a *ngIf="(data.Verification == '1' || data.Verification == '2') && !data.commerical_type">
+                      <img *ngIf="data.Coverimage" class="propListImages" src="{{coverImageUrlRent}}{{data.Coverimage}}"
+                        alt="Coverimage" />
+                      <img *ngIf="!data.Coverimage" class="propListImages"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image.jpg"
+                        alt="Updated_No_Image.jpg" />
+                    </a>
+                    <!-- =============commerical_type============= -->
+                    <a *ngIf="(data.Verification == '1' || data.Verification == '2') && data.commerical_type">
+                      <img *ngIf="data.pg_coverimage" class="propListImages"
+                        src="{{commericalImgUrl}}{{data.pg_coverimage}}" alt="Coverimage" />
+                      <img *ngIf="!data.pg_coverimage" class="propListImages"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image.jpg"
+                        alt="Updated_No_Image.jpg" />
+                    </a>
+                    <!-- ========================== -->
+                  </a>
+                  <div class="badgeBtns" *ngIf="data.Deletion === '0'">
+                    <a class="badge badge-approve apporvedBadge" *ngIf="data.Verification === '0'">Approved <img
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/approvedProp.png"
+                        alt="..approvedProp.png"></a>
+                    <a class="badge badge-underReview apporvedBadge" *ngIf="data.Verification === '1'">Under Review
+                      <img
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/underReview.png"
+                        alt="..underReview.png"></a>
+                    <a class="badge badge-rejected apporvedBadge" *ngIf="data.Verification === '2'">Rejected <img
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/rejectedProp.png"
+                        alt="..rejectedProp.png"></a>
+                  </div>
+
+                  <button (click)="onclickRentShare(data)" class=" shareBtn"
+                    *ngIf="data.Verification === '0' && !data.commerical_type"><img
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/approvedShareImg.png"
+                      alt="..approvedShareImg.png">
+                  </button>
+                  <button (click)="commericalRentShare(data)" class=" shareBtn"
+                    *ngIf="data.Verification === '0' && data.commerical_type"><img
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/approvedShareImg.png"
+                      alt="..approvedShareImg.png">
+                  </button>
+                </a>
+                <div class="col-12">
+                  <div class="row mt-2">
+                    <div class="col-sm-12">
+                      <div class="col-12"
+                        *ngIf=" data.Type !== 'Plot' && data.Verification === '0' && !data.commerical_type "
+                        routerLink="/rentals/{{ data.BHK | cleanUrl }}-{{ data.Type | cleanUrl }}-for-rent-in-{{ data.Locality | cleanUrl }}-{{ data.City | cleanUrl }}-at-{{ data.Propertyname | cleanUrl }}-{{ data.PropertyID }}">
+                        <div class="row">
+                          <div class="col-7 pl-0">
+                            <p class="titleFont" title="{{data.Propertyname}}">{{data.Propertyname}}</p>
+                            <p class="localitytitleFont" *ngIf="!data.Locality || data.Locality == 'undefined'">
+                              {{data.Locality_requsted}}, {{data.City}}</p>
+                            <p class="localitytitleFont" *ngIf="data.Locality && data.Locality !== 'undefined'">
+                              {{data.Locality}}, {{data.City}}</p>
+                          </div>
+                          <div class="col-5 text-right pr-0">
+                            <p class="mb-0 titleFont1">&#8377; {{data.Rent | priceFormatter}}/<span
+                                id="monthTxt">month</span></p>
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-12"
+                        *ngIf=" data.Type === 'Plot' && data.Verification === '0' && !data.commerical_type"
+                        routerLink="/rentals/{{ data.Area }}-{{ data.Areatype }}-{{ data.Type | cleanUrl }}-for-rent-in-{{ data.Locality | cleanUrl }}-{{ data.City | cleanUrl }}-at-{{ data.Propertyname | cleanUrl }}-{{ data.PropertyID }}">
+                        <div class="row">
+                          <div class="col-7 pl-0">
+                            <p class="titleFont" title="{{data.Propertyname}}">{{data.Propertyname}}</p>
+                            <p class="localitytitleFont" *ngIf="!data.Locality || data.Locality == 'undefined'">
+                              {{data.Locality_requsted}}, {{data.City}}</p>
+                            <p class="localitytitleFont" *ngIf="data.Locality && data.Locality !== 'undefined'">
+                              {{data.Locality}}, {{data.City}}</p>
+                          </div>
+                          <div class="col-5 text-right pr-0" *ngIf="data.Rent && data.Rent !== '0'">
+                            <p class="mb-0 titleFont1">&#8377; {{data.Rent | priceFormatter}}/<span
+                                id="monthTxt">month</span></p>
+                          </div>
+                          <div class="col-5 text-right pr-0" *ngIf="!data.Rent || data.Rent == '0'">
+                            <p class="mb-0 titleFontRequest">Price On Request</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- =============commerical_type============= -->
+                      <div class="col-12" *ngIf="data.Verification === '0' && data.commerical_type "
+                        routerLink="/cld/commercial-properties-for-rent-in-{{ data.City | cleanUrl }}-{{data.commerical_id}}-{{ data.PropertyID }}">
+                        <div class="row">
+                          <div class="col-7 pl-0">
+                            <p class="titleFont" title="{{data.Propertyname}}">{{data.Propertyname}}</p>
+                            <p class="localitytitleFont" *ngIf="!data.Locality || data.Locality == 'undefined'">
+                              {{data.Locality_requsted}}, {{data.City}}</p>
+                            <p class="localitytitleFont" *ngIf="data.Locality && data.Locality !== 'undefined'">
+                              {{data.Locality}}, {{data.City}}</p>
+                          </div>
+                          <div class="col-5 text-right pr-0">
+                            <p class="mb-0 titleFont1" *ngIf="(data.Rent && data.Rent !== '0') && !data.Lease">&#8377;
+                              {{data.Rent | priceFormatter}}/<span id="monthTxt">month</span></p>
+                            <p class="mb-0 titleFontRequest"
+                              *ngIf="(!data.Rent || data.Rent == '0') && (!data.Lease || data.Lease == '0')">Price On
+                              Request</p>
+                            <p class="mb-0 titleFont1" *ngIf="!data.Rent && (data.Lease && data.Lease !== '0')">&#8377;
+                              {{data.Lease | priceFormatter}}/<span id="monthTxt">lease</span></p>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- ========================== -->
+
+
+                      <div class="col-12"
+                        *ngIf="(data.Verification == '1' || data.Verification == '2') && !data.commerical_type">
+                        <div class="row">
+                          <div class="col-7 pl-0">
+                            <p class="titleFont" title="{{data.Propertyname}}">{{data.Propertyname}}</p>
+                            <p class="localitytitleFont" *ngIf="!data.Locality || data.Locality == 'undefined'">
+                              {{data.Locality_requsted}}, {{data.City}}</p>
+                            <p class="localitytitleFont" *ngIf="data.Locality && data.Locality !== 'undefined'">
+                              {{data.Locality}}, {{data.City}}</p>
+                          </div>
+                          <div class="col-5 text-right pr-0">
+                            <p class="mb-0 titleFont1" *ngIf="data.Rent && data.Rent !== '0'">&#8377; {{data.Rent |
+                              priceFormatter}}/<span id="monthTxt">month</span></p>
+                          </div>
+                          <div class="col-5 text-right pr-0" *ngIf="!data.Rent || data.Rent == '0'">
+                            <p class="mb-0 titleFontRequest">Price On Request</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- =============commerical_type============= -->
+                      <div class="col-12"
+                        *ngIf="(data.Verification == '1' || data.Verification == '2') && data.commerical_type">
+                        <div class="row">
+                          <div class="col-7 pl-0">
+                            <p class="titleFont" title="{{data.Propertyname}}">{{data.Propertyname}}</p>
+                            <p class="localitytitleFont" *ngIf="!data.Locality || data.Locality == 'undefined'">
+                              {{data.Locality_requsted}}, {{data.City}}</p>
+                            <p class="localitytitleFont" *ngIf="data.Locality && data.Locality !== 'undefined'">
+                              {{data.Locality}}, {{data.City}}</p>
+                          </div>
+
+                          <div class="col-5 text-right pr-0">
+                            <p class="mb-0 titleFont1" *ngIf="(data.Rent && data.Rent !== '0') && !data.Lease">&#8377;
+                              {{data.Rent | priceFormatter}}/<span id="monthTxt">month</span></p>
+                            <p class="mb-0 titleFontRequest"
+                              *ngIf="(!data.Rent || data.Rent == '0') && (!data.Lease || data.Lease == '0')">Price On
+                              Request</p>
+                            <p class="mb-0 titleFont1" *ngIf="!data.Rent && (data.Lease && data.Lease !== '0')">&#8377;
+                              {{data.Lease | priceFormatter}}/<span id="monthTxt">lease</span></p>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- ========================== -->
+
+
+                      <div class="col-12 mt-3" *ngIf="!data.commerical_type">
+                        <div class="row">
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Property Type</p>
+                            <p class="dataSubHeading">{{data.Type}}</p>
+                          </div>
+                          <div class="col-6 px-0">
+                            <p class="dataHeading" *ngIf="data.Type !== 'Plot'">BHK Details</p>
+                            <p class="dataHeading" *ngIf="data.Type === 'Plot'">Plot Type</p>
+                            <p class="dataSubHeading" *ngIf="data.Type !== 'Plot'">{{data.BHK}}</p>
+                            <p class="dataSubHeading" *ngIf="data.Type === 'Plot'">{{data.Plottype_Name}}</p>
+                          </div>
+                          <div class="col-6 px-0" *ngIf="data.Type !== 'Plot'">
+                            <p class="dataHeading">Tenants</p>
+                            <p class="dataSubHeading" *ngIf="data.tenant_type">{{data.tenant_type}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.tenant_type">NA</p>
+                          </div>
+                          <div class="col-6 px-0" *ngIf="data.Type === 'Plot'">
+                            <p class="dataHeading">Plot Size</p>
+                            <p class="dataSubHeading" *ngIf="data.Plot_sizes">{{data.Plot_sizes}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.Plot_sizes">NA</p>
+                          </div>
+
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Security Deposite</p>
+                            <p class="dataSubHeading" *ngIf="data.property_deposit">&#8377; {{data.property_deposit}}
+                            </p>
+                            <p class="dataSubHeading" *ngIf="!data.property_deposit">NA</p>
+                          </div>
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Available From</p>
+                            <p class="dataSubHeading" *ngIf="data.property_availablefrom">
+                              {{data.property_availablefrom}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.property_availablefrom">NA</p>
+                          </div>
+
+                          <div class="col-6 px-0" *ngIf="data.Type !== 'Plot'">
+                            <p class="dataHeading">Furnish Status</p>
+                            <p class="dataSubHeading" *ngIf="data.Furnish_status">{{data.Furnish_status}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.Furnish_status">NA</p>
+                          </div>
+                          <div class="col-6 px-0" *ngIf="data.Type === 'Plot'">
+                            <p class="dataHeading">Plot Area Type</p>
+                            <p class="dataSubHeading" *ngIf="data.Building_typeName">{{data.Building_typeName}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.Building_typeName">NA</p>
+                          </div>
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Maintanence</p>
+                            <p class="dataSubHeading" *ngIf="data.Maintanencecharge">&#8377;
+                              {{data.Maintanencecharge}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.Maintanencecharge">NA</p>
+                          </div>
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Posted By</p>
+                            <p class="dataSubHeading" *ngIf="data.Ownership">{{data.Ownership}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.Ownership">NA</p>
+                          </div>
+                          <div class="col-6 px-0" *ngIf="data.Verification === '0'">
+                            <p class="dataHeading">Posted On</p>
+                            <p class="dataSubHeading" *ngIf="data.property_posted">{{data.property_posted}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.property_posted">NA</p>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <!-- =============commerical_type============= -->
+                      <div class="col-12 mt-3" *ngIf="data.commerical_type">
+                        <div class="row">
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Property Type</p>
+                            <p class="dataSubHeading">Commercial</p>
+                          </div>
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Negotiable</p>
+                            <p class="dataSubHeading" *ngIf="data.negotiable == '1'">Yes</p>
+                            <p class="dataSubHeading" *ngIf="data.negotiable == '2'">No</p>
+                            <!-- <p class="dataSubHeading" *ngIf="!data.negotiable">No</p> -->
+                          </div>
+                          <div class="col-6 px-0" *ngIf="data.commerical_type">
+                            <p class="dataHeading">Commercial Type</p>
+                            <p class="dataSubHeading" *ngIf="data.commerical_type">{{data.commerical_type}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.commerical_type">NA</p>
+                          </div>
+
+                          <div class="col-6 px-0" *ngIf="data.commerical_type !== 'Plot'  && !data.possession_date">
+                            <p class="dataHeading">Property Age</p>
+                            <p class="dataSubHeading" *ngIf="data.property_age">{{data.property_age}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.property_age">NA</p>
+                          </div>
+                          <div class="col-6 px-0" *ngIf="data.commerical_type !== 'Plot'">
+                            <p class="dataHeading">Suited For</p>
+                            <p class="dataSubHeading" *ngIf="data.best_suited">{{data.best_suited}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.best_suited">NA</p>
+                          </div>
+                          <div class="col-6 px-0" *ngIf="data.commerical_type === 'Plot'">
+                            <p class="dataHeading">Plot Facing</p>
+                            <p class="dataSubHeading" *ngIf="data.Facing">{{data.Facing}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.Facing">NA</p>
+                          </div>
+                          <div class="col-6 px-0" *ngIf="data.commerical_type === 'Plot'">
+                            <p class="dataHeading">Floor Allowed</p>
+                            <p class="dataSubHeading" *ngIf="data.floor_allowed">{{data.floor_allowed}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.floor_allowed">NA</p>
+                          </div>
+
+                          <div class="col-6 px-0">
+                            <p class="dataHeading" *ngIf="data.commerical_type !== 'Plot'">Carpet Area</p>
+                            <p class="dataHeading" *ngIf="data.commerical_type === 'Plot'">Plot Dimension</p>
+                            <p class="dataSubHeading" *ngIf="data.carpet_area">{{data.carpet_area}}
+                              {{data.carpet_area_type}}
+                            </p>
+                            <p class="dataSubHeading" *ngIf="!data.carpet_area">NA</p>
+                          </div>
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Available From</p>
+                            <p class="dataSubHeading" *ngIf="data.available_from">
+                              {{data.available_from}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.available_from">NA</p>
+                          </div>
+
+                          <div class="col-6 px-0" *ngIf="data.commerical_type !== 'Plot'">
+                            <p class="dataHeading">Furnish Status</p>
+                            <p class="dataSubHeading" *ngIf="data.Furnish_status">{{data.Furnish_status}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.Furnish_status">NA</p>
+                          </div>
+
+                          <div class="col-6 px-0" *ngIf="data.commerical_type !== 'Plot'">
+                            <p class="dataHeading">Building Type</p>
+                            <p class="dataSubHeading" *ngIf="data.building_type">
+                              {{data.building_type}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.building_type">NA</p>
+                          </div>
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Posted By</p>
+                            <p class="dataSubHeading" *ngIf="data.Ownership">{{data.Ownership}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.Ownership">NA</p>
+                          </div>
+                          <div class="col-6 px-0" *ngIf="data.Verification === '0'">
+                            <p class="dataHeading">Posted On</p>
+                            <p class="dataSubHeading" *ngIf="data.property_posted">{{data.property_posted}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.property_posted">NA</p>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- ========================== -->
+                    </div>
+                  </div>
+
+                  <!-- =============commerical_type============= -->
+                  <div class="badgeBtns d-flex justify-content-center"
+                    *ngIf="data.Verification === '0' && data.commerical_type">
+
+                    <button (click)="enquiriesCommercial(data,'rent')" data-toggle="modal" data-target="#enquiryModal"
+                      class="enquiry" *ngIf="data.Verification === '0' && data.commericalpropertycount != '0'">Enquiries
+                      ({{data.commericalpropertycount}})
+                    </button>
+                    <button class="noEnquiry"
+                      *ngIf="data.Verification === '0' && data.commericalpropertycount == '0'">No
+                      Enquiries
+                    </button>
+                  </div>
+                  <!-- ================== -->
+
+                  <div class="badgeBtns d-flex justify-content-center"
+                    *ngIf="data.Verification === '0' && !data.commerical_type">
+
+                    <button (click)="enquiries(data,'rent')" data-toggle="modal" data-target="#enquiryModal"
+                      class="enquiry" *ngIf="data.Verification === '0' && data.propertycount != '0'">Enquiries
+                      ({{data.propertycount}})
+                    </button>
+                    <button class="noEnquiry" *ngIf="data.Verification === '0' && data.propertycount == '0'">No
+                      Enquiries
+                    </button>
+                  </div>
+
+                  <div class="row mt-2">
+                    <div class="col-sm-12">
+                      <div class="rejectedTxtBG p-2" *ngIf="data.Verification === '2'">
+                        <p class="reasonRejectTitle p-0 mb-0">Reason For Reject :</p>
+                        <p class="rejectedTxt" *ngIf="data.Rejectreason !== null">{{data.Rejectreason}}</p>
+                        <p class="rejectedTxt" *ngIf="data.Rejectreason == null">No Reason Listed</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-2">
+                    <div class="col-sm-12 btnDivMain d-flex justify-content-center">
+                      <div class="d-flex  align-items-center">
+                        <!-- <div class="rejectedTxtBG p-3" *ngIf="data.Verification === '2'">
+                              <p class="reasonRejectTitle p-0 mb-0">Reason For Reject :</p>
+                              <p class="rejectedTxt" *ngIf="data.Rejectreason !== null">{{data.Rejectreason}}</p>
+                              <p class="rejectedTxt" *ngIf="data.Rejectreason == null">No Reason Listed</p>
+                            </div> -->
+                        <div>
+
+                          <a class=" editBgColor" target="_blank" *ngIf="data.Deletion === '0' && !data.commerical_type"
+                            routerLink="/userauth/rentalsprojectsedit/{{data.PropertyID | cleanUrl}}">Edit <img
+                              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/editSellRentBtn.png"
+                              alt="..editSellRentBtn.png" style="max-width: 16px; height: 16px;">
+                          </a>
+
+
+                          <button class=" deletBtn" *ngIf="data.Deletion == '0' && !data.commerical_type"
+                            (click)="deleteProperty(data, 'Rent')" data-toggle="modal"
+                            data-target="#delPropModal">Delete <img
+                              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/deleteSellRent.png"
+                              alt="..deleteSellRent.png" style="max-width: 16px; height: 16px;">
+                          </button>
+
+                          <!-- =============commerical_type============= -->
+                          <a class=" editBgColor" target="_blank" *ngIf="data.Deletion === '0' && data.commerical_type"
+                            routerLink="/userauth/postpropertynewedit/{{data.commerical_id}}/{{data.PropertyID | cleanUrl}}">Edit
+                            <img
+                              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/editSellRentBtn.png"
+                              alt="..editSellRentBtn.png" style="max-width: 16px; height: 16px;">
+                          </a>
+                          <button class=" deletBtn" *ngIf="data.Deletion == '0' && data.commerical_type"
+                            (click)="deleteProperty(data, 'Commercial')" data-toggle="modal"
+                            data-target="#delPropModal">Delete <img
+                              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/deleteSellRent.png"
+                              alt="..deleteSellRent.png" style="max-width: 16px; height: 16px;">
+                          </button>
+                          <!-- ================== -->
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </mat-tab>
+    <!-- ==============================PG/Hostel=============================================== -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        PG/Hostel ({{userListPG.length}})
+      </ng-template>
+
+      <div class="col-sm-12" style="margin-top: 45px;">
+        <!-- <div class="mb-4 wishlist_main_div1"> -->
+        <div *ngIf="userListPG.length === 0" class="emptyListdiv">
+          <div style="margin-top: 50px;">
+            <img width="100%" height="100%"
+              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/noProperty.png"
+              alt="..noProperty.png">
+            <div class="noPropTxt">
+              <p id="activityTxtHead">Your Activity Feed is Empty</p>
+              <p id="activityTxt">Your recent actions will show up here. <br>
+                Begin exploring properties to see your activity.</p>
+              <div class="addPropBtn">
+                <a routerLink="/postproperty" class="btn">Add Property</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mb-4 wishlist_main_div1" *ngIf="userListPG.length !== 0">
+
+          <div *ngFor="let data of userListPG;let i = index">
+            <div class="col-sm-12 col-lg-12 col-md-12 mt-2 mb-2 cardListing" *ngIf="data.Deletion !== '1'">
+              <div class="row">
+                <a class="col-12 image city_list_imgs">
+                  <a class="imgDiv">
+
+                    <!-- <img class="propListImages" src="{{coverImageUrlRent}}{{data.Coverimage}}"/> -->
+
+                    <a *ngIf="data.Verification === '0'"
+                      routerLink="/pgd/pg-for-rent-in-{{ data.city_name | cleanUrl }}{{ data.pg_ID }}">
+
+                      <img *ngIf="data.Coverimage" class="propListImages" src="{{pgCoverImgUrl}}{{data.Coverimage}}"
+                        alt="Coverimage" />
+                      <img *ngIf="!data.Coverimage" class="propListImages"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image.jpg"
+                        alt="Updated_No_Image.jpg" />
+                    </a>
+
+
+                    <a *ngIf="data.Verification == '1' || data.Verification == '2'">
+                      <img *ngIf="data.Coverimage" class="propListImages" src="{{pgCoverImgUrl}}{{data.Coverimage}}"
+                        alt="Coverimage" />
+                      <img *ngIf="!data.Coverimage" class="propListImages"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image.jpg"
+                        alt="Updated_No_Image.jpg" />
+                    </a>
+
+                  </a>
+                  <div class="badgeBtns" *ngIf="data.Deletion === '0'">
+                    <a class="badge badge-approve apporvedBadge" *ngIf="data.Verification === '0'">Approved <img
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/approvedProp.png"
+                        alt="..approvedProp.png"></a>
+                    <a class="badge badge-underReview apporvedBadge" *ngIf="data.Verification === '1'">Under Review
+                      <img
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/underReview.png"
+                        alt="..underReview.png"></a>
+                    <a class="badge badge-rejected apporvedBadge" *ngIf="data.Verification === '2'">Rejected <img
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/rejectedProp.png"
+                        alt="..rejectedProp.png"></a>
+                  </div>
+                  <!-- ==========want================================== -->
+                  <button (click)="onclickPGShare(data)" class=" shareBtn" *ngIf="data.Verification === '0'"><img
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/approvedShareImg.png"
+                      alt="..approvedShareImg.png">
+                  </button>
+                  <!-- ==========want================================== -->
+                </a>
+                <div class="col-12">
+                  <div class="row mt-2">
+                    <div class="col-sm-12">
+
+                      <div *ngIf="data.Verification === '0'" class="col-12"
+                        routerLink="/pgd/pg-for-rent-in-{{ data.city_name | cleanUrl }}{{ data.pg_ID }}">
+                        <div class="row">
+                          <div class="col-7 pl-0">
+                            <p class="titleFont" title="{{data.pg_name}}">{{data.pg_name}}</p>
+                            <p class="localitytitleFont"
+                              *ngIf="!data.locality_name || data.locality_name == 'undefined'">
+                              {{data.locality_requsted}}, {{data.city_name}}</p>
+                            <p class="localitytitleFont"
+                              *ngIf="data.locality_name && data.locality_name !== 'undefined'">
+                              {{data.locality_name}}, {{data.city_name}}</p>
+                          </div>
+                          <div class="col-5 text-right pr-0">
+                            <p class="mb-0 titleFont1">&#8377; {{data.amount | priceFormatter}}/<span
+                                id="monthTxt">month</span></p>
+                            <p class="mb-0 titleFont1"><span id="monthTxt">Onwards</span></p>
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- <div class="col-12" *ngIf=" data.Type === 'Plot' && data.Verification === '0' " routerLink="/rentals/{{ data.Area }}-{{ data.Areatype }}-{{ data.Type | cleanUrl }}-for-rent-in-{{ data.locality_name | cleanUrl }}-{{ data.City | cleanUrl }}-at-{{ data.pg_name | cleanUrl }}-{{ data.pg_ID }}">
+                          <div class="row">
+                            <div class="col-7 pl-0">
+                              <p class="titleFont" title="{{data.pg_name}}">{{data.pg_name}}</p>
+                              <p class="localitytitleFont" *ngIf="!data.locality_name || data.locality_name == 'undefined'">
+                                {{data.Locality_requsted}}, {{data.City}}</p>
+                              <p class="localitytitleFont" *ngIf="data.locality_name && data.locality_name !== 'undefined'">
+                                {{data.locality_name}}, {{data.City}}</p>
+                            </div>
+                            <div class="col-5 text-right pr-0">
+                              <p class="mb-0 titleFont1">&#8377; {{data.amount | priceFormatter}}/<span id="monthTxt">month</span></p>
+                              <p class="mb-0 titleFont1"><span id="monthTxt">Onwards</span></p>
+                            </div>
+                          </div>
+                        </div> -->
+
+                      <div class="col-12" *ngIf="data.Verification == '1' || data.Verification == '2'">
+                        <div class="row">
+                          <div class="col-7 pl-0">
+                            <p class="titleFont" title="{{data.pg_name}}">{{data.pg_name}}</p>
+                            <p class="localitytitleFont"
+                              *ngIf="!data.locality_name || data.locality_name == 'undefined'">
+                              {{data.Locality_requsted}}, {{data.city_name}}</p>
+                            <p class="localitytitleFont"
+                              *ngIf="data.locality_name && data.locality_name !== 'undefined'">
+                              {{data.locality_name}}, {{data.city_name}}</p>
+                          </div>
+                          <div class="col-5 text-right pr-0">
+                            <p class="mb-0 titleFont1">&#8377; {{data.amount | priceFormatter}}/<span
+                                id="monthTxt">month</span></p>
+                            <p class="mb-0 titleFont1"><span id="monthTxt">Onwards</span></p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 mt-3">
+                        <div class="row">
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">PG Type</p>
+                            <p class="dataSubHeading">{{data.pg_for}}</p>
+                          </div>
+                          <!-- <div class="col-6 px-0">
+                              <p class="dataHeading">Room Sharing</p>
+                              <p class="dataSubHeading" *ngIf="data.room_type">{{data.room_type}}</p>
+                              <p class="dataSubHeading" *ngIf="!data.room_type">NA</p>
+                            </div> -->
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Room Sharing</p>
+                            <p class="dataSubHeading" *ngIf="data.room_type">
+                              <span *ngFor="let room of data.room_type | sortNumbers; let last = last">
+                                {{ room }}<span *ngIf="!last">, </span>
+                              </span>
+                            </p>
+                            <p class="dataSubHeading" *ngIf="!data.room_type">NA</p>
+                          </div>
+
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Landmark</p>
+                            <p class="dataSubHeading" *ngIf="data.landmarks">
+                              {{data.landmarks}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.landmarks">NA</p>
+                          </div>
+
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Parking Available</p>
+                            <p class="dataSubHeading" *ngIf="data.parking_id == '2'">No</p>
+                            <p class="dataSubHeading" *ngIf="data.parking_id == '1'">Yes</p>
+                          </div>
+
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Food Provided</p>
+                            <p class="dataSubHeading" *ngIf="data.food_included == '1'">Yes</p>
+                            <p class="dataSubHeading" *ngIf="data.food_included == '2'">No</p>
+                            <p class="dataSubHeading" *ngIf="!data.food_included">NA</p>
+                          </div>
+
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Suitable For</p>
+                            <p class="dataSubHeading" *ngIf="data.best_suited">
+                              {{data.best_suited}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.best_suited">NA</p>
+                          </div>
+                          <!-- <div class="col-6 px-0">
+                              <p class="dataHeading">Gate Closes By</p>
+                              <p class="dataSubHeading" *ngIf="data.Maintanencecharge">&#8377;
+                                {{data.Maintanencecharge}}</p>
+                              <p class="dataSubHeading" *ngIf="!data.Maintanencecharge">NA</p>
+                            </div> -->
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Posted By</p>
+                            <p class="dataSubHeading" *ngIf="data.posted_by">{{data.posted_by}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.posted_by">NA</p>
+                          </div>
+                          <div class="col-6 px-0" *ngIf="data.Verification === '0'">
+                            <p class="dataHeading">Posted On</p>
+                            <p class="dataSubHeading" *ngIf="data.posted_date">{{data.posted_date | date:'dd MMM,yyyy'}}
+                            </p>
+                            <p class="dataSubHeading" *ngIf="!data.posted_date">NA</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- =============want==================== -->
+                  <div class="badgeBtns d-flex justify-content-center" *ngIf="data.Verification === '0'">
+
+                    <button (click)="enquiriesPG(data)" data-toggle="modal" data-target="#enquiryModal" class="enquiry"
+                      *ngIf="data.Verification === '0' && data.propertycount != '0'">Enquiries
+                      ({{data.propertycount}})
+                    </button>
+                    <button class="noEnquiry" *ngIf="data.Verification === '0' && data.propertycount == '0'">No
+                      Enquiries
+                    </button>
+                  </div>
+
+                  <div class="row mt-2">
+                    <div class="col-sm-12">
+                      <div class="rejectedTxtBG p-2" *ngIf="data.Verification === '2'">
+                        <p class="reasonRejectTitle p-0 mb-0">Reason For Reject :</p>
+                        <p class="rejectedTxt" *ngIf="data.Rejectreason !== null">{{data.Rejectreason}}</p>
+                        <p class="rejectedTxt" *ngIf="data.Rejectreason == null">No Reason Listed</p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- ====================================== -->
+                  <div class="row mt-2">
+                    <div class="col-sm-12 btnDivMain d-flex justify-content-center">
+                      <div class="d-flex  align-items-center">
+
+                        <div>
+
+                          <button class=" editBgColor" *ngIf="data.Deletion === '0'" target="_blank"
+                            routerLink="/userauth/postpropertynewedit/pg/{{data.pg_ID}}">Edit <img
+                              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/editSellRentBtn.png"
+                              alt="..editSellRentBtn.png" style="max-width: 16px; height: 16px;">
+                          </button>
+                          <!-- ===============want======================= -->
+                          <button class=" deletBtn" *ngIf="data.Deletion == '0'" (click)="deleteProperty(data, 'PG')"
+                            data-toggle="modal" data-target="#delPropModal">Delete <img
+                              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/deleteSellRent.png"
+                              alt="..deleteSellRent.png" style="max-width: 16px; height: 16px;">
+                          </button>
+                          <!-- =================want===================== -->
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- </div> -->
+      </div>
+    </mat-tab>
+
+    <!-- ==============================Inactive Properties=============================================== -->
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Inactive ({{mergedSellRent.length}})
+      </ng-template>
+
+      <div class="col-sm-12">
+        <!-- <h2 class="mainTitles underline1">Properties For Sell</h2> -->
+        <div *ngIf="mergedSellRent.length === 0" class="emptyListdiv">
+          <div style="margin-top: 50px;">
+            <img width="100%" height="100%"
+              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/noProperty.png"
+              alt="..noProperty.png">
+            <div class="noPropTxt">
+              <p id="activityTxtHead">Your Activity Feed is Empty</p>
+              <p id="activityTxt">Your recent actions will show up here. <br>
+                Begin exploring properties to see your activity.</p>
+              <!-- <div class="addPropBtn">
+                    <a routerLink="/bangalore/property-sale" class="btn">Add Property</a>
+                  </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="mb-4 wishlist_main_div1" *ngIf="mergedSellRent.length !== 0">
+
+          <div *ngFor="let data of mergedSellRent;let i = index">
+            <div class="col-sm-12 col-lg-12 col-md-12 mt-2 mb-2 cardListing" *ngIf="data.Deletion === '1'">
+
+              <div class="row">
+                <a class="col-12 image city_list_imgs">
+                  <a class="imgDiv">
+
+                    <!-- <img class="propListImages" [src]="data.Coverimage ? (data.Rent ? coverImageUrlRent + data.Coverimage : coverImageUrl + data.Coverimage) : 'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image.jpg'" /> -->
+
+                    <img class="propListImages"
+                      [src]="data.Coverimage ? (data.amount ? pgCoverImgUrl + data.Coverimage : (data.Rent ? coverImageUrlRent + data.Coverimage : coverImageUrl + data.Coverimage)) : (data.pg_coverimage ? commericalImgUrl + data.pg_coverimage : 'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image.jpg')"
+                      alt="Coverimage" />
+
+
+                  </a>
+                  <div class="inactiveBadgeDiv">
+                    <a class="badge badge-inactive apporvedBadge">Inactive</a>
+
+                  </div>
+                </a>
+                <div class="col-12">
+                  <div class="row mt-2">
+                    <div class="col-sm-12">
+                      <div class="col-12" *ngIf="!data.amount">
+                        <div class="row">
+                          <div class="col-7 pl-0">
+                            <p class="titleFont" title="{{data.Propertyname}}">{{data.Propertyname}}</p>
+                            <p class="localitytitleFont" *ngIf="!data.Locality || data.Locality == 'undefined'">
+                              {{data.Locality_requsted}}, {{data.City}}</p>
+                            <p class="localitytitleFont" *ngIf="data.Locality && data.Locality !== 'undefined'">
+                              {{data.Locality}}, {{data.City}}</p>
+                          </div>
+                          <div class="col-5 text-right pr-0">
+                            <p class="titleFont1" *ngIf="data.Price && data.Price !== '0'">&#8377; {{data.Price |
+                              priceFormatter}}</p>
+                            <p class="titleFont1" *ngIf="!data.Price && data.Rent">&#8377; {{data.Rent |
+                              priceFormatter}}/month</p>
+                            <p class="titleFont1" *ngIf="!data.Price && !data.Rent && data.Lease">&#8377; {{data.Lease |
+                              priceFormatter}}/Lease</p>
+                            <p class="titleFontRequest"
+                              *ngIf="(!data.Price || data.Price == '0') && (!data.Rent || data.Rent == '0') && (!data.Lease || data.Lease == '0')">
+                              Price On Request</p>
+                          </div>
+
+                        </div>
+                      </div>
+
+                      <!-- ==================PG/Hostel========================= -->
+                      <div class="col-12" *ngIf="data.amount && !data.commerical_type">
+                        <div class="row">
+                          <div class="col-7 pl-0">
+                            <p class="titleFont" title="{{data.pg_name}}">{{data.pg_name}}</p>
+                            <p class="localitytitleFont"
+                              *ngIf="!data.locality_name || data.locality_name == 'undefined'">
+                              {{data.locality_requsted}}, {{data.city_name}}</p>
+                            <p class="localitytitleFont"
+                              *ngIf="data.locality_name && data.locality_name !== 'undefined'">
+                              {{data.locality_name}}, {{data.city_name}}</p>
+                          </div>
+                          <div class="col-5 text-right pr-0">
+                            <p class="mb-0 titleFont1" *ngIf="data.amount && data.amount !== '0'">&#8377; {{data.amount
+                              | priceFormatter}}/<span id="monthTxt">month</span></p>
+                            <p class="mb-0 titleFont1" *ngIf="data.amount && data.amount !== '0'"><span
+                                id="monthTxt">Onwards</span></p>
+                            <p class="mb-0 titleFontRequest" *ngIf="!data.amount || data.amount == '0'">Price On Request
+                            </p>
+
+                          </div>
+                        </div>
+                      </div>
+                      <!-- ========================= -->
+
+                      <div class="col-12 mt-3" *ngIf="!data.amount && !data.commerical_type">
+                        <div class="row">
+                          <div class="col-6 pl-0">
+                            <p class="dataHeading">Property Type</p>
+                            <p class="dataSubHeading">{{data.Type}}</p>
+                          </div>
+                          <div class="col-6 pl-0">
+                            <p class="dataHeading" *ngIf="data.Type !== 'Plot'">BHK Details</p>
+                            <p class="dataHeading" *ngIf="data.Type === 'Plot'">Plot Type</p>
+                            <p class="dataSubHeading" *ngIf="data.Type !== 'Plot'">{{data.BHK}} {{data.Type}}</p>
+                            <p class="dataSubHeading" *ngIf="data.Type === 'Plot'">{{data.Plottype_Name}}</p>
+                          </div>
+
+                          <div class="col-6 pl-0" *ngIf="data.Areatype">
+                            <p class="dataHeading">Area Type</p>
+                            <p class="dataSubHeading">{{data.Areatype}}</p>
+                          </div>
+                          <div class="col-6 pl-0" *ngIf="data.Area">
+                            <p class="dataHeading" *ngIf="data.Type !== 'Plot'">Property Dimensions</p>
+                            <p class="dataHeading" *ngIf="data.Type == 'Plot'">Plot Dimensions</p>
+                            <p class="dataSubHeading">{{data.Area}}{{data.Areatype}}</p>
+                          </div>
+                          <div class="col-6 pl-0" *ngIf="data.Status">
+                            <p class="dataHeading">Property Status</p>
+                            <p class="dataSubHeading">{{data.Status}}</p>
+                          </div>
+                          <div class="col-6 p-0"
+                            *ngIf="data.Type !== 'Plot' && data.Status !== 'Under Construction' && (data.Propertyage_year != null || data.Propertyage_month != null)">
+                            <p class="dataHeading">Property Age</p>
+                            <p class="dataSubHeading">
+                              <ng-container *ngIf="data.Propertyage_year != null">
+                                {{data.Propertyage_year}} {{data.Propertyage_year == 1 ? 'Yr' : 'Yrs'}}
+                              </ng-container>
+                              <ng-container *ngIf="data.Propertyage_month != null">
+                                <span *ngIf="data.Propertyage_year != null">, </span>
+                                {{data.Propertyage_month}} {{data.Propertyage_month == 1 ? 'Month' : 'Months'}}
+                              </ng-container>
+                            </p>
+                          </div>
+
+                          <div class="col-6 pl-0" *ngIf="data.Type == 'Plot'">
+                            <p class="dataHeading">Plot Age</p>
+                            <p class="dataSubHeading" *ngIf="data.Plotage">{{data.Plotage}} Yr</p>
+                            <p class="dataSubHeading" *ngIf="!data.Plotage">NA</p>
+                          </div>
+                          <!-- <div class="col-6 pl-0" *ngIf="data.Plotage">
+                         <p class="dataHeading">Property Age</p>
+                         <p class="dataSubHeading">{{data.Plotage}} Yr</p>
+                       </div> -->
+                          <div class="col-6 pl-0" *ngIf="data.Furnish_status">
+                            <p class="dataHeading">Furnishing Status</p>
+                            <p class="dataSubHeading">{{data.Furnish_status}}</p>
+                          </div>
+                          <div class="col-6 pl-0" *ngIf="data.Ownership">
+                            <p class="dataHeading">Posted By</p>
+                            <p class="dataSubHeading">{{data.Ownership}}</p>
+                          </div>
+                          <div class="col-6 pl-0" *ngIf="data.Verification === '0'">
+                            <p class="dataHeading">Posted On</p>
+                            <p class="dataSubHeading" *ngIf="data.property_posted">{{data.property_posted}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.property_posted">NA</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- ==================PG/Hostel========================= -->
+                      <div class="col-12 mt-3" *ngIf="data.amount && !data.commerical_type">
+                        <div class="row">
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">PG Type</p>
+                            <p class="dataSubHeading">{{data.pg_for}}</p>
+                          </div>
+                          <!-- <div class="col-6 px-0">
+                              <p class="dataHeading">Room Sharing</p>
+                              <p class="dataSubHeading" *ngIf="data.room_type">{{data.room_type}}</p>
+                              <p class="dataSubHeading" *ngIf="!data.room_type">NA</p>
+                            </div> -->
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Room Sharing</p>
+                            <p class="dataSubHeading" *ngIf="data.room_type">
+                              <span *ngFor="let room of data.room_type | sortNumbers; let last = last">
+                                {{ room }}<span *ngIf="!last">, </span>
+                              </span>
+                            </p>
+                            <p class="dataSubHeading" *ngIf="!data.room_type">NA</p>
+                          </div>
+
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Landmark</p>
+                            <p class="dataSubHeading" *ngIf="data.landmarks">
+                              {{data.landmarks}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.landmarks">NA</p>
+                          </div>
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Parking Available</p>
+                            <p class="dataSubHeading" *ngIf="data.parking_id == '2'">No</p>
+                            <p class="dataSubHeading" *ngIf="data.parking_id == '1'">Yes</p>
+                          </div>
+
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Food Provided</p>
+                            <p class="dataSubHeading" *ngIf="data.food_included">{{data.food_included}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.food_included">NA</p>
+                          </div>
+
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Suitable For</p>
+                            <p class="dataSubHeading" *ngIf="data.best_suited">
+                              {{data.best_suited}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.best_suited">NA</p>
+                          </div>
+
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Posted By</p>
+                            <p class="dataSubHeading" *ngIf="data.posted_by">{{data.posted_by}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.posted_by">NA</p>
+                          </div>
+                          <div class="col-6 px-0" *ngIf="data.Verification === '0'">
+                            <p class="dataHeading">Posted On</p>
+                            <p class="dataSubHeading" *ngIf="data.posted_date">{{data.posted_date | date:'dd MMM,
+                              yyyy'}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.posted_date">NA</p>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- ========================= -->
+
+                      <!-- =============commerical_type============= -->
+                      <div class="col-12 mt-3" *ngIf="!data.amount && data.commerical_type">
+                        <div class="row">
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Property Type</p>
+                            <p class="dataSubHeading">Commercial</p>
+                          </div>
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Negotiable</p>
+                            <p class="dataSubHeading" *ngIf="data.negotiable == '1'">Yes</p>
+                            <p class="dataSubHeading" *ngIf="data.negotiable == '2'">No</p>
+                            <!-- <p class="dataSubHeading" *ngIf="!data.negotiable">No</p> -->
+                          </div>
+                          <div class="col-6 px-0" *ngIf="data.commerical_type">
+                            <p class="dataHeading">Commercial Type</p>
+                            <p class="dataSubHeading" *ngIf="data.commerical_type">{{data.commerical_type}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.commerical_type">NA</p>
+                          </div>
+
+                          <div class="col-6 px-0" *ngIf="data.commerical_type !== 'Plot'  && !data.possession_date">
+                            <p class="dataHeading">Property Age</p>
+                            <p class="dataSubHeading" *ngIf="data.property_age">{{data.property_age}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.property_age">NA</p>
+                          </div>
+                          <div class="col-6 px-0" *ngIf="data.commerical_type !== 'Plot'">
+                            <p class="dataHeading">Suited For</p>
+                            <p class="dataSubHeading" *ngIf="data.best_suited">{{data.best_suited}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.best_suited">NA</p>
+                          </div>
+                          <div class="col-6 px-0" *ngIf="data.commerical_type === 'Plot'">
+                            <p class="dataHeading">Plot Facing</p>
+                            <p class="dataSubHeading" *ngIf="data.Facing">{{data.Facing}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.Facing">NA</p>
+                          </div>
+                          <div class="col-6 px-0" *ngIf="data.commerical_type === 'Plot'">
+                            <p class="dataHeading">Floor Allowed</p>
+                            <p class="dataSubHeading" *ngIf="data.floor_allowed">{{data.floor_allowed}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.floor_allowed">NA</p>
+                          </div>
+
+                          <div class="col-6 px-0">
+                            <p class="dataHeading" *ngIf="data.commerical_type !== 'Plot'">Carpet Area</p>
+                            <p class="dataHeading" *ngIf="data.commerical_type === 'Plot'">Plot Dimension</p>
+                            <p class="dataSubHeading" *ngIf="data.carpet_area">{{data.carpet_area}}
+                              {{data.carpet_area_type}}
+                            </p>
+                            <p class="dataSubHeading" *ngIf="!data.carpet_area">NA</p>
+                          </div>
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Available From</p>
+                            <p class="dataSubHeading" *ngIf="data.available_from">
+                              {{data.available_from}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.available_from">NA</p>
+                          </div>
+
+                          <div class="col-6 px-0" *ngIf="data.commerical_type !== 'Plot'">
+                            <p class="dataHeading">Furnish Status</p>
+                            <p class="dataSubHeading" *ngIf="data.Furnish_status">{{data.Furnish_status}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.Furnish_status">NA</p>
+                          </div>
+
+                          <div class="col-6 px-0" *ngIf="data.commerical_type !== 'Plot'">
+                            <p class="dataHeading">Building Type</p>
+                            <p class="dataSubHeading" *ngIf="data.building_type">
+                              {{data.building_type}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.building_type">NA</p>
+                          </div>
+                          <div class="col-6 px-0">
+                            <p class="dataHeading">Posted By</p>
+                            <p class="dataSubHeading" *ngIf="data.Ownership">{{data.Ownership}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.Ownership">NA</p>
+                          </div>
+                          <div class="col-6 px-0" *ngIf="data.Verification === '0'">
+                            <p class="dataHeading">Posted On</p>
+                            <p class="dataSubHeading" *ngIf="data.property_posted">{{data.property_posted}}</p>
+                            <p class="dataSubHeading" *ngIf="!data.property_posted">NA</p>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- ================== -->
+
+                    </div>
+
+
+                  </div>
+
+                  <div class="row mt-2">
+                    <div class="col-sm-12 btnDivMain d-flex justify-content-center">
+
+                      <div *ngIf="data.Price && !data.commerical_type">
+                        <a class="btn deletedBtn"
+                          routerLink="/userauth/sellingprojectsedit/{{data.PropertyID | cleanUrl}}" target="_blank"
+                          *ngIf="data.Deletion == '1'">Reactivate</a>
+                      </div>
+                      <div *ngIf="data.Rent && !data.commerical_type">
+                        <a class="btn deletedBtn"
+                          routerLink="/userauth/rentalsprojectsedit/{{data.PropertyID | cleanUrl}}" target="_blank"
+                          *ngIf="data.Deletion == '1'">Reactivate</a>
+                      </div>
+                      <div *ngIf="data.commerical_type">
+                        <a class="btn deletedBtn"
+                          routerLink="/userauth/postpropertynewedit/{{data.commerical_id}}/{{data.PropertyID | cleanUrl}}"
+                          target="_blank" *ngIf="data.Deletion == '1'">Reactivate</a>
+                      </div>
+                      <div *ngIf="data.amount">
+                        <a class="btn deletedBtn" routerLink="/userauth/postpropertynewedit/pg/{{data.pg_ID}}"
+                          target="_blank" *ngIf="data.Deletion == '1'">Reactivate</a>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="enquiryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf="rentSalePG !== 'PG'">Enquiries for <span
+            class="modalColoredTxt">{{enquiredBhkOrPlot}} {{enquiredPropType}} in {{enqLocality}}
+            ({{rentSalePG}})</span></h5>
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf="rentSalePG === 'PG'">Enquiries for <span
+            class="modalColoredTxt">{{enquiredBhkOrPlot}} {{enquiredPropType}} in {{enqLocality}}
+            ({{rentSalePG}})</span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-0">
+        <div class="col-12 px-1 pt-3" style="background: #f7f7f7fa;">
+          <div class="card mb-3" *ngFor="let data of allEnquiries;let i = index">
+            <div class="p-2">
+              <div class="row" style="display: flex; align-items: center;">
+                <div class="col-3 p-0">
+                  <div class="userIconDiv d-flex justify-content-center">
+                    <img height="80" width="80%"
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/usericon.svg"
+                      alt="..usericon.svg">
+                  </div>
+                </div>
+                <div class="col-9 pl-1 userDataDiv">
+
+                  <p class="mb-2 enquiryAbtTxt"><b style="font-size: 14px; font-weight: 500;">{{data.customer_name}}</b>
+                    has made an enquiry about
+                    your property.
+                  </p>
+                  <!-- <div class="col-12">
+                      <div class="">
+                        <div class="col pl-0">
+                          <p class="enqHeading mb-0">Mobile Number</p>
+                          <p class="enqSubHeading mb-0" id="enqSubHeading" (click)="copyContent()">
+                            {{data.customer_number}} <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/copyIcon.png" alt="..copyIcon.png" ></p>
+                        </div>
+                        <div class="col pl-0">
+                          <p class="enqHeading mb-0">Email ID</p>
+                          <span class="d-flex">
+                            <p class="enqSubHeading mb-0" id="enqSubHeading2">{{data.customer_mail}}</p><span> <img (click)="copyContent1()" class="enqSubHeadingCopyTag" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/copyIcon.png" alt="..copyIcon.png" ></span>
+                          </span>
+                        </div>
+                      </div>
+                    </div> -->
+                  <div class="col-12">
+                    <div class="">
+                      <!-- Mobile Number -->
+                      <div class="col pl-0">
+                        <p class="enqHeading mb-0">Mobile Number</p>
+                        <p class="enqSubHeading mb-1">
+                          {{ data.customer_number }}
+                          <img
+                            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/copyIcon.png"
+                            alt="copy" (click)="copyContent(data.customer_number)" style="cursor: pointer;" />
+                        </p>
+                      </div>
+
+                      <!-- Email ID -->
+                      <div class="col pl-0">
+                        <p class="enqHeading mb-0 pt-1">Email ID</p>
+                        <span class="d-flex align-items-center">
+                          <p class="enqSubHeading mb-1">{{ data.customer_mail }}</p>
+                          <img
+                            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/accountProfile/copyIcon.png"
+                            alt="copy" (click)="copyContentEmail(data.customer_mail)"
+                            style="margin-left: 10px; cursor: pointer;" />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- deleteModal -->
+
+<div class="modal fade" id="delPropModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="display: block; border-bottom: none;">
+        <h5 class="modal-title delPropTitle" id="exampleModalLabel">Why are you deleting this property listing</h5>
+        <p class="delPropSubTitle">Please provide the reason to delete</p>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body px-3">
+
+        <form (ngSubmit)="submitForm()">
+          <div *ngFor="let option of deleteReasons" class="radioStyle">
+            <input class="radioStyleOther" type="radio" name="myRadioGroup" [value]="option.reason_list"
+              [(ngModel)]="selectedOption" required (change)="onSelectionChange()" />
+            <p class="deleteReasonsText">{{ option.reason_list }}</p>
+          </div>
+
+          <div class="radioStyleOther">
+            <input type="radio" name="myRadioGroup" [value]="'Other'" [(ngModel)]="selectedOption"
+              (change)="onSelectionOther()" />
+            <p class="deleteReasonsText">Others</p>
+          </div>
+
+          <textarea *ngIf="selectedOthers" class="form-control" name="otherReason" id="selectOtherReasonTxt"
+            (input)="onInputChangeReason()" [(ngModel)]="selectedOptionOther"
+            placeholder="Type Your Reason Here.. (minimum 10 letters required)">
+          </textarea>
+
+
+          <div class="col-12 px-0 mt-4">
+            <button type="submit" class="btn_style1" [disabled]="!selectedReasonBtn">
+              Delete
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- deleteModal end -->

@@ -1,0 +1,540 @@
+
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin-bottom: 13px;
+  margin-top: 13px;
+  margin-left: 0;
+  list-style: none;
+}
+li.breadcrumb-item {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 111px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 15px;
+  color: #000000;
+  opacity: 0.5;
+}
+li.breadcrumb-item a{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 15px;
+  color: #000000;
+  opacity: 0.5;
+}
+.loginModelImg {
+  width: 170px;
+}
+.outerDivBg{
+    /* margin-top: 80px; */
+    background: #f8f8f8!important;
+    height: 100%;
+    margin: 70px 0 0;
+
+}
+
+.borderBottomOverview{
+    padding-top: 36px;
+}
+
+.borderBottomOverview a{
+    place-self: center;
+    margin-right: 8px;
+    opacity: 0.56;
+}
+.overViewColour{
+    color: #4A061E;
+
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding-top: 10px;
+}
+
+.input-field {
+    position: relative;
+    width: 100%;
+  }
+
+  .form_input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    padding: 8px;
+    box-shadow: none;
+    color: #111;
+    font-family: 'Poppins';
+    font-display: swap;
+    border-radius: 8px;
+    border: 1px solid #ECECEC;
+    background: #f8f8f8;
+  }
+  
+  .form_input:invalid {
+    outline: 0;
+  }
+  
+  .form_input:focus,
+  .form_input:valid {
+    /* border-color: #000; */
+    margin-top: 0px;
+    height: 115px;
+  }
+  
+  .form_input:focus~.label_div,
+  .form_input:valid~.label_div {
+    font-size: 14px;
+    top: -24px;
+    display: none;
+  }
+
+  .submitQuestion{
+    position: fixed;
+    bottom: 15px;
+    background: #971b47;
+    color: #fff;
+    border-radius: 12px;
+    width: 92%;
+    padding: 8px;
+    border: none;
+  }
+
+  .category_div button {
+    background: white;
+    padding: 4px;
+    margin: 6px 6px;
+    border-radius: 4px;
+    border: 1px solid #D9D9D9;
+    font-family: 'Poppins';
+    font-display: swap;
+    outline: none;
+    opacity: 0.75;
+    font-size: 14px;
+    font-weight: 600;
+    color: #971B47;
+    background: #f8f8f8;
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  #otherquestion{
+    color: #111;
+    font-family: 'Poppins';
+    font-display: swap;
+    border-radius: 8px;
+    border: 1px solid #ECECEC;
+    background: #f8f8f8;
+    outline: none;
+    padding: 8px;
+  }
+  
+  .category_div button:focus {
+    background: #971B47;
+    color: white;
+    opacity: 1;
+  }
+
+  .category_div{
+    margin-top: 38px;
+  }
+
+  .custom-title {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+
+  .card {
+    margin: 0 0 10px 0;
+    border: none;
+    transition: box-shadow 0.35s;
+  }
+
+  .loginModelText {
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    margin-top: 10px !important;
+    margin-bottom: 37px !important;
+    line-height: 20px !important;
+  }
+  .loginModelText1 {
+    font-size: 16px !important;
+    font-family: 'Poppins';
+    /* font-weight: 400 !important;
+    margin-top: 10px !important;
+    margin-bottom: 37px !important;
+    line-height: 20px !important; */
+  }
+
+
+  .loginPostionPage {
+    position: fixed;
+    top: 0px;
+    height: 100%;
+    background: white;
+    z-index: 999999;
+    width: 100%;
+  }
+
+  .modal-fullscreen-xl .modal-body {
+    overflow-y: auto;
+  }
+
+  .underline-1 {
+    text-align: center;
+    margin: 0px 0px 30px 0;
+    font-size: 18px;
+  }
+
+  .maindiv button {
+    display: block;
+    margin: 25px auto 20px;
+    border: 2px solid transparent;
+    padding: 3px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    color: white;
+    background: #971b47;
+    border-radius: 25px;
+    outline: none;
+    width: 80%;
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    -o-transition: .5s;
+    transition: .5s;
+  }
+
+
+
+  .log {
+    background-color: #FFF;
+    padding: 10px 0;
+  }
+  
+  .log .input-cont {
+    position: relative;
+    margin: 0 0px 15px;
+  }
+  
+  .log .input-cont:last-of-type {
+    margin-bottom: 30px;
+  }
+  
+  .log .input-cont input {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 40px;
+    outline: none;
+    color: #212121;
+    font-size: 18px;
+    font-weight: 400;
+    background: none;
+    border: none;
+  }
+  
+  .log .input-cont input:focus {
+    outline: none;
+  }
+
+  .log .input-cont input:focus~.border1::after,
+.log .input-cont input:focus~.border1::before,
+.log .input-cont input:focus~.border2::after,
+.log .input-cont input:focus~.border2::before {
+  width: 50%;
+}
+
+.log .input-cont input:focus~.border1::after,
+.log .input-cont input:focus~.border1::before,
+.log .input-cont input:focus~.border2::after,
+.log .input-cont input:focus~.border2::before {
+  width: 50%;
+}
+
+
+.log .input-cont {
+    position: relative;
+    margin: 0 0px 15px;
+  }
+  
+  .log .input-cont:last-of-type {
+    margin-bottom: 30px;
+  }
+  
+  .log .input-cont input {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 40px;
+    outline: none;
+    color: #212121;
+    font-size: 18px;
+    font-weight: 400;
+    background: none;
+    border: none;
+  }
+  
+  .log .input-cont input:focus {
+    outline: none;
+  }
+
+
+  .log .border1,
+.log .border2 {
+  position: absolute;
+  height: 1px;
+  background-color: #9E9E9E;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.log .border1::after,
+.log .border1::before,
+.log .border2::after,
+.log .border2::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  -webkit-transition: .5s;
+  -moz-transition: .5s;
+  -o-transition: .5s;
+  transition: .5s;
+}
+
+.log .border1::after,
+.log .border2::after {
+  right: 50%;
+  background-color: #971b47;
+}
+
+.log .border1::before,
+.log .border2::before {
+  left: 50%;
+  background-color: #971b47;
+}
+
+.log .input-cont input:focus~.border1::after,
+.log .input-cont input:focus~.border1::before,
+.log .input-cont input:focus~.border2::after,
+.log .input-cont input:focus~.border2::before {
+  width: 50%;
+}
+
+
+
+#modal-container,
+#modal-container2,
+#modal-container3,
+#modal-container4,
+#brochure-modal-container,
+#modal-container6 {
+  position: fixed;
+  display: table;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transform: scale(0);
+  z-index: 123456;
+}
+
+#modal-container.one,
+#modal-container2.one,
+#modal-container3.one,
+#modal-container4.one,
+#brochure-modal-container.one,
+#modal-container6.one {
+  transform: scaleY(0.01) scaleX(0);
+  animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+#modal-container.one .modal-background .modal,
+#modal-container2.one .modal-background .modal,
+#modal-container3.one .modal-background .modal,
+#modal-container4.one .modal-background .modal,
+#brochure-modal-container .modal-background .modal,
+#modal-container6 .modal-background .modal {
+  transform: scale(0);
+  animation: zoomIn 0.5s 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+#modal-container.one.out,
+#modal-container2.one.out,
+#modal-container3.one.out,
+#modal-container4.one.out,
+#brochure-modal-container.one.out,
+#modal-container6.one.out {
+  transform: scale(1);
+  animation: unfoldOut 1s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+#modal-container.one.out .modal-background .modal,
+#modal-container2.one.out .modal-background .modal,
+#modal-container3.one.out .modal-background .modal,
+#modal-container4.one.out .modal-background .modal,
+#brochure-modal-container.one.out .modal-background .modal,
+#modal-container6.one.out .modal-background .modal {
+  animation: zoomOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+#modal-container .modal-background,
+#modal-container2 .modal-background,
+#modal-container3 .modal-background,
+#modal-container4 .modal-background,
+#brochure-modal-container .modal-background,
+#modal-container6 .modal-background {
+  display: table-cell;
+  background: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  vertical-align: middle;
+}
+
+#modal-container .modal-background .modal,
+#modal-container2 .modal-background .modal,
+#modal-container3 .modal-background .modal,
+#modal-container4 .modal-background .modal,
+#brochure-modal-container .modal-background .modal,
+#modal-container6 .modal-background .modal {
+  background: white;
+  padding: 15px;
+  display: inline-block;
+  border-radius: 3px;
+  font-weight: 400;
+  position: relative;
+  width: 90%;
+  height: 400px;
+}
+
+#modal-container .modal-background .modal button,
+#modal-container2 .modal-background .modal button,
+#modal-container3 .modal-background .modal button,
+#modal-container4 .modal-background .modal button,
+#brochure-modal-container .modal-background .modal button,
+#modal-container6 .modal-background .modal button {
+  background: #971b47;
+  color: #fff;
+  border: 0;
+  padding: 12px;
+  margin: 30px 0 0 0;
+  width: 140px;
+  border-radius: 5px;
+}
+
+#modal-container .modal-background .modal .modal-svg,
+#modal-container2 .modal-background .modal .modal-svg,
+#modal-container3 .modal-background .modal .modal-svg,
+#modal-container4 .modal-background .modal .modal-svg,
+#brochure-modal-container .modal-background .modal .modal-svg,
+#modal-container6 .modal-background .modal .modal-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 3px;
+}
+
+#modal-container .modal-background .modal .modal-svg rect,
+#modal-container2 .modal-background .modal .modal-svg rect,
+#modal-container3 .modal-background .modal .modal-svg rect,
+#modal-container4 .modal-background .modal .modal-svg rect,
+#brochure-modal-container .modal-background .modal .modal-svg rect,
+#modal-container6 .modal-background .modal .modal-svg rect {
+  stroke: #fff;
+  stroke-width: 2px;
+  stroke-dasharray: 778;
+  stroke-dashoffset: 778;
+}
+
+#modal-container .modal-background .modal h2,
+#modal-container2 .modal-background .modal h2,
+#modal-container3 .modal-background .modal h2,
+#modal-container4 .modal-background .modal h2,
+#brochure-modal-container .modal-background .modal h2,
+#modal-container6 .modal-background .modal h2 {
+  font-size: 25px;
+  line-height: 25px;
+  margin-bottom: 15px;
+}
+
+#modal-container .modal-background .modal p,
+#modal-container2 .modal-background .modal p,
+#modal-container3 .modal-background .modal p,
+#modal-container4 .modal-background .modal p,
+#brochure-modal-container .modal-background .modal p,
+#modal-container6 .modal-background .modal p {
+  font-size: 14px;
+  line-height: 50px;
+  margin: auto;
+  padding: 0;
+  width: auto;
+  background: transparent;
+  color: #000;
+}
+
+@keyframes unfoldIn {
+  0% {
+    transform: scaleY(0.005) scaleX(0);
+  }
+
+  50% {
+    transform: scaleY(0.005) scaleX(1);
+  }
+
+  100% {
+    transform: scaleY(1) scaleX(1);
+  }
+}
+
+@keyframes unfoldOut {
+  0% {
+    transform: scaleY(1) scaleX(1);
+  }
+
+  50% {
+    transform: scaleY(0.005) scaleX(1);
+  }
+
+  100% {
+    transform: scaleY(0.005) scaleX(0);
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomOut {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+
+/* OTP-DESIGN */

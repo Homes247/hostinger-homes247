@@ -1,0 +1,427 @@
+
+<div class="maindivbackground">
+    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/background.png" alt="banner">
+</div>
+<div class="col-sm-12 text-center">
+    <h1 class="cityNameText">{{city | uppercase}}</h1>
+</div>
+<div class="container-fluid">
+    <div class="col-sm-12 mt-5">
+            <div class="row">
+                <div class="scrollmenu overview_firstdiv">
+                    <a href="https://www.homes247.in/{{city| cleanUrl}}/property-sale" title="Properties for Sale in {{city}} | Properties in {{city}}">
+                        <div class="card subCards">
+                            <p class="subcardCount">{{allpropertycount}}</p>
+                            <p class="subcardTitle">Properties in {{city}}</p>
+                        </div>
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/ready-To-Move-In.png" alt="ready-To-Move-In.png">
+                    </a>
+                    <a routerLink="/new-launch-projects/new-projects-in-{{city| cleanUrl}}" title="New Projects in {{city}} | Latest Projects in {{city}} | Upcoming Projects in {{city}}">
+                        <div class="card subCards">
+                            <p class="subcardCount">{{allNewProperties}}</p>
+                            <p class="subcardTitle">New Projects in {{city}}</p>
+                        </div>
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/new-Launches.png" alt="new-Launches.png">
+                    </a>
+                    <a routerLink="/ready-to-move-apartments/ready-to-move-flats-in-{{city| cleanUrl}}" title="Ready to Move Flats / Apartments in {{city}}">
+                        <div class="card subCards">
+                            <p class="subcardCount">{{readyToMoveDetails}}</p>
+                            <p class="subcardTitle">Ready To Move Flats in {{city}}</p>
+                        </div>
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/ready-To-Move-In.png" alt="ready-To-Move-In.png">
+                    </a>
+                    <a href="https://www.homes247.in/residential-flats-in-{{city| cleanUrl}}-for-sale" title="Flats for sale in {{city}} | Flats in {{city}} | Apartments for sale in {{city}} | Apartments in {{city}}">
+                        <div class="card subCards">
+                            <p class="subcardCount">{{flatsincitycount}}</p>
+                            <p class="subcardTitle">Flats for Sale in {{city}}</p>
+                        </div>
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/on-going.png" alt="on-going.png">
+                    </a>
+                    <a href="https://www.homes247.in/villas-for-sale-in-{{city| cleanUrl}}" title="Villas for Sale in {{city}} | Villas in {{city}}">
+                        <div class="card subCards">
+                            <p class="subcardCount">{{villasincitycount}}</p>
+                            <p class="subcardTitle">Villas for Sale in {{city}}</p>
+                        </div>
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/offers-projects.png" alt="offers-projects.png">
+                    </a>
+                </div>
+            </div>
+
+        <div class="manualTab">
+            <div class="row">
+                <p class="tabHeadings" [ngStyle]="{'color': '#109D1E', 'border-bottom': '2px solid #109D1E'}">Top Featured Projects</p>
+            </div>
+        </div>
+
+        <div class="scrollmenu overview_scnddiv">
+            <a class="mainanchor" *ngFor="let data of topProperties">
+                <div class="card widthOfSlideCard sliderCardHeight">
+                    <div *ngFor="let imageData of data.images">
+                        <a class="titleFontPropName" href="https://www.homes247.in/property/{{city | cleanUrl}}/{{data.locality_name | cleanUrl}}/{{data.propertyName | cleanUrl}}-{{data.property_info_IDPK | cleanUrl}}"
+                                target="_blank" title="{{data.propertyName}} in {{data.locality_name}}, {{city}}">
+                                <img class="listImages" src="{{propertyimage}}{{imageData.name}}" alt="{{data.propertyName}} in {{data.locality_name}}, {{city}}">
+                        </a>
+                    </div>
+                    <div class="listingSubDive">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a class="titleFontPropName" href="https://www.homes247.in/property/{{city | cleanUrl}}/{{data.locality_name | cleanUrl}}/{{data.propertyName | cleanUrl}}-{{data.property_info_IDPK | cleanUrl}}"
+                                target="_blank" title="{{data.propertyName}} in {{data.locality_name}}, {{city}}">{{data.propertyName}}</a>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="propPrice">₹ {{data.price_max}}</label>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <a class="localitypropList" routerLink="/{{city | cleanUrl}}/property-sale-in-{{data.locality_name | cleanUrl}}-{{data.locality_IDPK}}" 
+                                title="Properties in {{data.locality_name}} | Properties for sale in {{data.locality_name}}">Properties in {{data.locality_name}}</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 proptype_section">
+                                <p class="propTypeList">Type</p>
+                                <p class="propTypeListData">{{data.propertyType}}</p>
+                            </div>
+                            <div class="col-md-6 propstatus_section">
+                                <p class="propTypeList">Status</p>
+                                <p class="propTypeListData statusOverFlow">{{data.Status}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+                    
+
+        <div class="row mt-5">
+            <div class="col-md-3">
+                    <div class="col-md-12 navClickDesignsec2 navSectiontwosec">
+                        <a href="https://www.homes247.in/plots-in-{{city| cleanUrl}}" title="Plots For Sale in {{city}}">Plots For Sale in {{city}}</a>
+                    </div>
+            </div>
+    
+            <div class="col-md-3">
+                    <div class="col-md-12 navClickDesignsec2 navSectiontwosec">
+                        <a routerLink="/agricultural-land-for-sale-in-{{city| cleanUrl}}" title="Agricultural Land for Sale in {{city}}">Agricultural Land for Sale in {{city}} </a>
+                    </div>
+            </div>
+    
+            <div class="col-md-3">
+                    <div class="col-md-12 navClickDesignsec2 navSectiontwosec">
+                        <a href="https://www.homes247.in/home-for-sale-in-{{city| cleanUrl}}" title="Home for Sale in {{city}}">Home for Sale in {{city}}</a>
+                    </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="col-md-12 navClickDesignsec2 navSectiontwosec">
+                    <a href="https://www.homes247.in/fbc/flats-in-{{city | cleanUrl}}-for-sale-30-lakhs-to-40-lakhs" title="Flats in {{city}} for sale 30 Lakhs to 40 Lakhs">Flats in {{city}} for 30 Lakhs to 40 Lakhs</a>
+                </div>
+        </div>
+        </div>
+
+            <div class="scrollmenu overview3rdsection">
+                    <a class="galleryTwoDiv" routerLink="/btc/1-bhk-flats-in-{{city| cleanUrl}}" title="1 BHK Flats in {{city}} | 1 BHK Apartments in {{city}}">
+                        <p class="galleryTwoText">1 BHK Flats in {{city}} ({{btccount}})</p>
+                        <img class="galleryTwoImages" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/leuxery.png" alt="leuxery.png">
+                    </a>
+                    <a class="galleryTwoDiv" href="https://www.homes247.in/fbc/flats-for-30-lakhs-in-{{city| cleanUrl}}" title="Flats for 30 Lakhs in {{city}} | Flats Under 30 Lakhs in {{city}}">
+                        <p class="galleryTwoText">Flats for 30Lakhs in {{city}} ({{flats30lakhscounts}})</p>
+                        <img class="galleryTwoImages" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/offerdeable.png" alt="offerdeable.png">
+                    </a>
+                    <a class="galleryTwoDiv" routerLink="/bstc/1-bhk-ready-to-move-flats-apartments-in-{{city| cleanUrl}}" title="1 BHK Ready to Move Flats in {{city}} | 1 BHK Ready to Move Apartments in {{city}}">
+                        <p class="galleryTwoText">1 BHK Ready to Move Flats in {{city}} ({{bstccount}})</p>
+                        <img class="galleryTwoImages" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/greenHome.png" alt="greenHome.png">
+                    </a>
+            </div>
+
+                <div class="row mt-5 manualTab">
+                    <div class="col-sm-4">
+                        <a class="tabHeadings" routerLink="/new-launch-projects/new-projects-in-{{city| cleanUrl}}" title="New Projects in {{city}} | Latest Projects in {{city}} | Upcoming Projects in {{city}}" 
+                        [ngStyle]="{'color': '#109D1E', 'border-bottom': '2px solid #109D1E'}">New Projects in {{city}}</a>
+                    </div>
+                </div>
+    
+            <div class="scrollmenu overview_scnddiv">
+                    <a class="mainanchor" *ngFor="let data of alloffersList">
+                            <div class="card widthOfSlideCard sliderCardHeight">
+                                <div *ngFor="let imageData of data.images">
+                                    <a class="titleFontPropName" href="https://www.homes247.in/property/{{city | cleanUrl}}/{{data.locality_name | cleanUrl}}/{{data.propertyName | cleanUrl}}-{{data.property_info_IDPK | cleanUrl}}"
+                                            target="_blank" title="{{data.propertyName}} in {{data.locality_name}}, {{city}}">
+                                            <img class="listImages" src="{{propertyimage}}{{imageData.name}}" alt="{{data.propertyName}} in {{data.locality_name}}, {{city}}">
+                                    </a>
+                                </div>
+                                <div class="listingSubDive">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <a class="titleFontPropName" href="https://www.homes247.in/property/{{city | cleanUrl}}/{{data.locality_name | cleanUrl}}/{{data.propertyName | cleanUrl}}-{{data.property_info_IDPK | cleanUrl}}"
+                                            target="_blank" title="{{data.propertyName}} in {{data.locality_name}}, {{city}}">{{data.propertyName}}</a>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label class="propPrice">₹ {{data.price_max}}</label>
+                                        </div>
+                                        
+                                        <div class="col-md-12">
+                                            <a class="localitypropList" routerLink="/{{city | cleanUrl}}/property-sale-in-{{data.locality_name | cleanUrl}}-{{data.locality_IDPK}}" 
+                                            title="Properties in {{data.locality_name}} | Properties for sale in {{data.locality_name}}">Properties in {{data.locality_name}}</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 proptype_section">
+                                            <p class="propTypeList">Type</p>
+                                            <p class="propTypeListData">{{data.propertyType}}</p>
+                                        </div>
+                                        <div class="col-md-6 propstatus_section">
+                                            <p class="propTypeList">Status</p>
+                                            <p class="propTypeListData statusOverFlow">{{data.Status}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-md-3">
+                        <div class="col-md-12 navClickDesignsec2 navSectiontwosec">
+                            <a routerLink="/btc/2-bhk-flats-in-{{city| cleanUrl}}" title="2 BHK Flats in {{city}}">2 BHK Flats in {{city}}</a>
+                        </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="col-md-12 navClickDesignsec2 navSectiontwosec">
+                        <a href="https://www.homes247.in/fbc/flats-in-{{city | cleanUrl}}-for-sale-40-lakhs-to-50-lakhs" title="Flats in {{city}} for 40 Lakhs to 50 Lakhs">Flats in {{city}} for 40 Lakhs to 50 Lakhs</a>
+                    </div>
+                </div>
+        
+                <div class="col-md-3">
+                        <div class="col-md-12 navClickDesignsec2 navSectiontwosec">
+                            <a routerLink="/bstc/2-bhk-ready-to-move-flats-apartments-in-{{city| cleanUrl}}" title="2 BHK Ready to Move Flats in {{city}}">2 BHK Ready to Move Flats in {{city}}</a>
+                        </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="col-md-12 navClickDesignsec2 navSectiontwosec">
+                        <a href="https://www.homes247.in/fbc/flats-in-{{city | cleanUrl}}-for-sale-70-lakhs-to-80-lakhs" title="Flats in {{city}} for sale 70 Lakhs to 80 Lakhs">Flats in {{city}} for 70 Lakhs to 80 Lakhs</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scrollmenu overview3rdsection">
+                    <a class="galleryTwoDiv" routerLink="/bstc/3-bhk-ready-to-move-flats-apartments-in-{{city| cleanUrl}}" title="3 BHK Ready to Move Flats in {{city}}">
+                        <p class="galleryTwoText">3 BHK Ready to Move Flats in {{city}} ({{bstccount3}})</p>
+                        <img class="galleryTwoImages" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/urbunProp.png" alt="urbunProp.png">
+                    </a>
+                
+                    <a class="galleryTwoDiv" href="https://www.homes247.in/fbc/flats-in-{{city | cleanUrl}}-for-sale-50-lakhs-to-60-lakhs" title="Flats in {{city}} for 50 Lakhs to 60 Lakhs">
+                        <p class="galleryTwoText">Flats in {{city}} for 50 Lakhs to 60 Lakhs ({{flats50to60lakhscounts}})</p>
+                        <img class="galleryTwoImages" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/bestInvestments.png" alt="bestInvestments.png">
+                    </a>
+
+                    <a class="galleryTwoDiv" routerLink="/btc/3-bhk-flats-in-{{city| cleanUrl}}" title="3 BHK Flats in {{city}}">
+                        <p class="galleryTwoText">3 BHK Flats in {{city}} ({{btccount3}})</p>
+                        <img class="galleryTwoImages" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/underConstruction.png" alt="underConstruction.png">
+                    </a>
+            </div>
+
+        
+
+        
+
+        <div class="mt-5 manualTab">
+            <div class="row">
+                    <p class="tabHeadings" [ngStyle]="{'color': '#109D1E', 'border-bottom': '2px solid #109D1E'}">Trending Projects</p>
+            </div>
+        </div>
+
+        <div class="scrollmenu overview_scnddiv">
+            <a class="mainanchor" *ngFor="let data of newProperties">
+                        <div class="card widthOfSlideCard sliderCardHeight">
+                            <div *ngFor="let imageData of data.images">
+                                <a class="titleFontPropName" href="https://www.homes247.in/property/{{city | cleanUrl}}/{{data.locality_name | cleanUrl}}/{{data.propertyName | cleanUrl}}-{{data.property_info_IDPK | cleanUrl}}"
+                                        target="_blank" title="{{data.propertyName}} in {{data.locality_name}}, {{city}}">
+                                        <img class="listImages" src="{{propertyimage}}{{imageData.name}}" alt="{{data.propertyName}} in {{data.locality_name}}, {{city}}">
+                                </a>
+                            </div>
+                            <div class="listingSubDive">
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <a class="titleFontPropName" href="https://www.homes247.in/property/{{city | cleanUrl}}/{{data.locality_name | cleanUrl}}/{{data.propertyName | cleanUrl}}-{{data.property_info_IDPK | cleanUrl}}"
+                                        target="_blank" title="{{data.propertyName}} in {{data.locality_name}}, {{city}}">{{data.propertyName}}</a>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label class="propPrice">₹ {{data.price_max}}</label>
+                                    </div>
+                                    
+                                    <div class="col-sm-12">
+                                        <a class="localitypropList" routerLink="/{{city | cleanUrl}}/property-sale-in-{{data.locality_name | cleanUrl}}-{{data.localityid}}" 
+                                        title="Properties in {{data.locality_name}} | Properties for sale in {{data.locality_name}}">Properties in {{data.locality_name}}</a>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 proptype_section">
+                                        <p class="propTypeList">Type</p>
+                                        <p class="propTypeListData">{{data.propertyType}}</p>
+                                    </div>
+                                    <div class="col-md-6 propstatus_section">
+                                        <p class="propTypeList">Status</p>
+                                        <p class="propTypeListData statusOverFlow">{{data.Status}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+        </div>
+
+        <div class="mt-5">
+            <div class="row">
+                <div class="scrollmenu overview_firstdiv">
+                    <a routerLink="/btc/4-bhk-flats-in-{{city| cleanUrl}}" title="4 BHK Flats in {{city}} | 4 BHK Apartments in {{city}}">
+                        <div class="card subCards">
+                            <p class="subcardCount">{{btccount4}}</p>
+                            <p class="subcardTitle">4 BHK Flats in {{city}}</p>
+                        </div>
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/ready-To-Move-In.png" alt="ready-To-Move-In.png">
+                    </a>
+                    <a routerLink="/bstc/4-bhk-ready-to-move-flats-apartments-in-{{city| cleanUrl}}" title="4 BHK Ready to Move Flats in {{city}} | 4 BHK Ready to Move Apartments in {{city}}">
+                        <div class="card subCards">
+                            <p class="subcardCount">{{bstccount4}}</p>
+                            <p class="subcardTitle">4 BHK Ready to Move Flats in {{city}}</p>
+                        </div>
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/new-Launches.png" alt="new-Launches.png">
+                    </a>
+                    <a href="https://www.homes247.in/fbc/flats-in-{{city | cleanUrl}}-for-sale-60-lakhs-to-70-lakhs" title="Flats in {{city}} for 60 Lakhs to 70 Lakhs">
+                        <div class="card subCards">
+                            <p class="subcardCount">{{flats60to70lakhscounts}}</p>
+                            <p class="subcardTitle">Flats in {{city}} for 60 Lakhs to 70 Lakhs </p>
+                        </div>
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/ready-To-Move-In.png" alt="ready-To-Move-In.png">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-5">
+            <div class="col-md-3">
+                    <div class="col-md-12 navClickDesignsec2 navSectiontwosec">
+                        <a routerLink="/btc/5-bhk-flats-in-{{city| cleanUrl}}" title="5 BHK Flats in {{city}}">5 BHK Flats in {{city}}</a>
+                    </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="col-md-12 navClickDesignsec2 navSectiontwosec">
+                    <a href="https://www.homes247.in/fbc/flats-in-{{city | cleanUrl}}-for-sale-80-lakhs-to-90-lakhs" title="Flats in {{city}} for 80 Lakhs to 90 Lakhs">Flats in {{city}} for 80 Lakhs to 90 Lakhs</a>
+                </div>
+            </div>
+    
+            <div class="col-md-3">
+                    <div class="col-md-12 navClickDesignsec2 navSectiontwosec">
+                        <a routerLink="/bstc/5-bhk-ready-to-move-flats-apartments-in-{{city| cleanUrl}}" title="5 BHK Ready to Move Flats in {{city}}">5 BHK Ready to Move Flats in {{city}}</a>
+                    </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="col-md-12 navClickDesignsec2 navSectiontwosec">
+                    <a href="https://www.homes247.in/fbc/flats-in-{{city | cleanUrl}}-for-sale-90-lakhs-to-1-crore" title="Flats in {{city}} for 90 Lakhs to 1 Crore">Flats in {{city}} for 90 Lakhs to 1 Crore</a>
+                </div>
+            </div>            
+        </div>
+
+            <div class="row mt-3 mb-3">
+                <div class="col-md-12">
+                    <p class="OurwritesText mb-4 ">Top Search Localities in {{city}} &nbsp; <a routerLink="/all-localities-by-city/{{city | cleanUrl}}/{{cityId | cleanUrl}}" 
+                        title="View All Localities in {{city}}" >
+                        <i class="fa fa-external-link" aria-hidden="true"></i></a></p>
+                </div>
+                <div class="col-md-3" *ngFor="let data of autoCompleteData | myfilter: 'type' : 'locality_name' | slice: 0:20">
+                    <div class="col-md-12 sectionTwo">
+                        <a class="localityName" routerLink="/{{city | cleanUrl}}/property-sale-in-{{data.name | cleanUrl}}-{{data.id | cleanUrl}}"
+                         title="Properties in {{data.name}} | Properties for sale in {{data.name}}">{{data.name}}&nbsp;&nbsp;
+                         <a routerLink="/locality-overview/{{data.name | cleanUrl}}-in-{{city | cleanUrl}}-overview-{{data.id | cleanUrl}}-{{cityId | cleanUrl}}" title="An Overview of {{data.name}}" >
+                            <i class="fa fa-external-link" aria-hidden="true"></i></a></a>
+                         <div class="row">
+                            <div class="col-md-6">
+                                <a class="avgRatSqft" href="https://www.homes247.in/upcoming-new-launch-properties/new-projects-in-{{data.name | cleanUrl}}-{{city | cleanUrl}}-{{data.id | cleanUrl}}"
+                                title="New Projects in {{data.name}} {{city}} | Latest / Upcoming Projects in {{data.name}} {{city}}">New Projects in {{data.name}}</a>
+                             </div>
+                             <div class="col-md-6">
+                                <a class="avgRatSqft" href="https://www.homes247.in/stlc/ready-to-move-flats-apartments-in-{{data.name | cleanUrl}}-{{city | cleanUrl}}-{{data.id | cleanUrl}}" 
+                                title="Ready to Move Flats in {{data.name}} | Ready to Move Apartments in {{data.name}}">Ready to Move Flats in {{data.name}}</a>
+                             </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- <div class="col-sm-12 mt-5 mb-5 card">
+            <p class="OurwritesText pt-3">Search properties in {{city}}</p>
+            <div class="col-sm-12 pb-4 pl-0">
+                <button class="btn btn-dark RentAndBuyBtn" [ngStyle]="{'color': buyShow ? '#109D1E' : '#0B3544', 'border': buyShow ? '1px solid #109D1E' : '1px solid #080808'}" (click)="buyClick()">Buy</button>&nbsp;&nbsp;
+                <button class="btn btn-dark RentAndBuyBtn" [ngStyle]="{'color': rentShow ? '#109D1E' : '#0B3544', 'border': rentShow ? '1px solid #109D1E' : '1px solid #080808'}" (click)="rentClick()">Rent</button>
+            </div>
+
+            <div class="row pb-4 pl-0">
+                <div class="col-sm-3">
+                    <p>Configuration</p>
+                    <button class="btn btn-dark filterBtn" [ngStyle]="{'color': onebhk ? '#109D1E' : '#0B3544', 'border': onebhk ? '1px solid #109D1E' : '1px solid #080808'}" (click)="onebhkClick()">1 BHK</button>&nbsp;
+                    <button class="btn btn-dark filterBtn" [ngStyle]="{'color': twobhk ? '#109D1E' : '#0B3544', 'border': twobhk ? '1px solid #109D1E' : '1px solid #080808'}" (click)="twobhkClick()">2 BHK</button>&nbsp;
+                    <button class="btn btn-dark filterBtn" [ngStyle]="{'color': threebhk ? '#109D1E' : '#0B3544', 'border': threebhk ? '1px solid #109D1E' : '1px solid #080808'}" (click)="threebhkClick()">3 BHK</button>&nbsp;
+                    <button class="btn btn-dark filterBtn" [ngStyle]="{'color': fourbhk ? '#109D1E' : '#0B3544', 'border': fourbhk ? '1px solid #109D1E' : '1px solid #080808'}" (click)="fourbhkClick()">4 BHK</button>&nbsp;
+                </div>
+                <div class="col-sm-6">
+                    <p *ngIf="buyShow">Budget</p>
+                    <button *ngIf="buyShow" class="btn btn-dark filterBtn" (click)="lessBudget()" [ngStyle]="{'color': lessThnThirty ? '#109D1E' : '#0B3544', 'border': lessThnThirty ? '1px solid #109D1E' : '1px solid #080808'}">
+                        < 30L </button>&nbsp;
+                    <button *ngIf="buyShow" class="btn btn-dark filterBtn" (click)="fourtyToFiftyLac()" [ngStyle]="{'color': fourtyToFifty ? '#109D1E' : '#0B3544', 'border': fourtyToFifty ? '1px solid #109D1E' : '1px solid #080808'}">40-60L</button>&nbsp;
+                    <button *ngIf="buyShow" class="btn btn-dark filterBtn" (click)="sixtyToSeventLac()" [ngStyle]="{'color': sixtyToSevent ? '#109D1E' : '#0B3544', 'border': sixtyToSevent ? '1px solid #109D1E' : '1px solid #080808'}">60-70L</button>&nbsp;
+                    <button *ngIf="buyShow" class="btn btn-dark filterBtn" (click)="eightyToNintyLac()" [ngStyle]="{'color': eightyToNinty ? '#109D1E' : '#0B3544', 'border': eightyToNinty ? '1px solid #109D1E' : '1px solid #080808'}">80-90L</button>&nbsp;
+                    <button *ngIf="buyShow" class="btn btn-dark filterBtn" (click)="oneToTwoCr()" [ngStyle]="{'color': oneToTwo ? '#109D1E' : '#0B3544', 'border': oneToTwo ? '1px solid #109D1E' : '1px solid #080808'}">1-2Cr</button>&nbsp;
+                    <button *ngIf="buyShow" class="btn btn-dark filterBtn" (click)="twoCrPlus()" [ngStyle]="{'color': twoCr ? '#109D1E' : '#0B3544', 'border': twoCr ? '1px solid #109D1E' : '1px solid #080808'}">2
+                                +Cr</button>&nbsp;
+                </div>
+                <div class="col-sm-3 text-right">
+                    <button class="btn btn-outline-dark submiteSearch" *ngIf="buyShow" [routerLink]="['/' + city + '/property-sale']" [queryParams]="{bed: noOfBedrooms,min: minPrice,max: maxPrice }">Search Properties</button>
+                    <button class="btn btn-outline-dark submiteSearch" *ngIf="rentShow" [routerLink]="['/rent/house-for-rent-in-' + city]" [queryParams]="{bed: noOfBedrooms,min: minPrice,max: maxPrice }">Search Properties</button>
+                </div>
+            </div>
+        </div> -->
+
+
+
+        <div class="col-sm-12 mt-5 mb-3">
+            <p class="OurwritesText mb-4 ">Our Latest Writings</p>
+        </div>
+        <div class="col-sm-12 mt-3 mb-3">
+            <div class="">
+                <div class="row">
+                    <div class="col-sm-3" *ngFor="let data of allBlogs | slice:0:8">
+                        <div class="card blogsCard">
+                            <a href="https://www.homes247.in/blogs/{{data.urlstruture | cleanUrl}}-{{data.id | cleanUrl}}" title="{{data.title}}">
+                                <img src="{{ImageUrlstories}}{{data.imgPath}}" class="blogImageSize" alt="your image">
+                            <p class="text-left blogsHeading mb-3">{{data.title}}</p>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <p class="blogsdate">Date: {{data.date | date:'dd/MM/yyyy'}}</p>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <p class="blogsdate">Read: 5 mins</p>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 text-center mb-4 mt-4">
+            <a class="btn btn-outline-info moreBlogsButton" title="" href="/blogs" target="_blank">
+                Read more blogs
+            </a>
+        </div>
+    </div>
+</div>
+<app-footer2></app-footer2>
+<div class="innerheader_position">
+    <app-innerheader></app-innerheader>
+</div>

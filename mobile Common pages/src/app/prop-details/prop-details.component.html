@@ -1,0 +1,2871 @@
+<!-- <app-my-json-ld *ngIf="ratingreviews" [innerHTML]="productLD"></app-my-json-ld> -->
+<div *ngIf="showmainpage">
+<!-- <app-innerheader id="HeaderId" class="HeaderShow"></app-innerheader> -->
+
+<div class="scrollnavDiv" id="scrollnavDiv" *ngFor="let data of propertiesDetails;">
+  <div class="prop-head">
+    <span class="proptopname">{{propName}}</span>
+   <a href="https://api.whatsapp.com/send?phone=919008029014&text=%20https://www.homes247.in{{currenturl}}%0A%0AHi!%20I%27m%20interested%20in%20{{data.propertyName}}%20in%20{{data.locality_name}},%20{{data.city_name}}.Can%20i%20have%20some%20more%20info%20please." target="_blank">
+      <i class="fa fa-whatsapp whatsup_icon" aria-hidden="true"></i></a>
+   <a  (click)="oncompareshowimgclick(data.property_info_IDPK,data.propertyType)" class="compare-btn-top">
+    <i class="fa fa-long-arrow-left left-icon" aria-hidden="true"></i><i class="fa fa-long-arrow-right right-icon" aria-hidden="true"></i> Compare</a>
+  </div>
+   <div class="scrollmenu" id="content">
+    <div class="scrollnavsubDiv" [ngClass]="{'navactive': currentActive === 1}">
+      <div class="navtext" (click)="scrollTo('section1');">OVERVIEW</div>
+    </div>
+    <div class="scrollnavsubDiv" [ngClass]="{'navactive': currentActive === 2}">
+      <div class="navtext" (click)="scrollTo('section2');">GALLERY</div>
+    </div>
+    <div class="scrollnavsubDiv" [ngClass]="{'navactive': currentActive === 7}">
+      <div class="navtext" (click)="scrollTo('section7');">MASTER PLAN</div>
+    </div>
+    <div class="scrollnavsubDiv" [ngClass]="{'navactive': currentActive === 3}">
+      <div class="navtext" (click)="scrollTo('section3');">PRICE & FLOOR PLANS</div>
+    </div>
+    <div class="scrollnavsubDiv" [ngClass]="{'navactive': currentActive === 4}">
+      <div class="navtext" (click)="scrollTo('section4');">AMENITIES</div>
+    </div>
+    <div class="scrollnavsubDiv" [ngClass]="{'navactive': currentActive === 5}">
+      <div class="navtext" (click)="scrollTo('section5');">LOCATION</div>
+    </div>
+    <div class="scrollnavsubDiv" [ngClass]="{'navactive': currentActive === 11}">
+      <div class="navtext" (click)="scrollTo('section11');">DISCUSSION FORUM</div>
+    </div>
+    <div class="scrollnavsubDiv" [ngClass]="{'navactive': currentActive === 6}">
+      <div class="navtext" (click)="scrollTo('section6');">HOMELOAN</div>
+    </div>
+    <div class="scrollnavsubDiv" [ngClass]="{'navactive': currentActive === 8}">
+      <div class="navtext" (click)="scrollTo('section8');">FAQ</div>
+    </div>
+    <div class="scrollnavsubDiv" [ngClass]="{'navactive': currentActive === 9}">
+      <div class="navtext" (click)="scrollTo('section9');">REVIEWS</div>
+    </div>
+    <div class="scrollnavsubDiv" [ngClass]="{'navactive': currentActive === 10}">
+      <div class="navtext" (click)="scrollTo('section10');">OTHER PROJECTS</div>
+    </div>
+  </div>
+</div>
+<!-- <div class="color_div"></div> -->
+
+<!-- new start -->
+<div class="parent_div">
+  <div class="container-fluid">
+    <div  *ngFor="let data of propertiesDetails;let i = index">
+
+      <ul class="breadcrumbs breadcrumbs_prop marginTopBreadcrums" itemscope
+          itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="breadcrumbs__item">
+          <a itemprop="item" target="_blank" href="/" class="breadcrumbs__element">
+            <span itemprop="name">Home</span>
+          </a>
+          <meta itemprop="position" content="1"/>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="breadcrumbs__item">
+          <a itemprop="item" target="_blank" href="/{{data.city_name | lowercase}}/property-sale"
+             class="breadcrumbs__element">
+            <span itemprop="name">Properties in {{data.city_name}}</span>
+          </a>
+          <meta itemprop="position" content="2"/>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="breadcrumbs__item">
+          <a itemprop="item" target="_blank"
+             href="/{{data.city_name | lowercase}}/property-sale-in-{{data.locality_name | cleanUrl}}-{{data.LoaclityId}}"
+             class="breadcrumbs__element">
+            <span itemprop="name">{{data.locality_name}}</span>
+          </a>
+          <meta itemprop="position" content="3"/>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"
+            class="breadcrumbs__item_active">
+          <span itemprop="name" class="activeTextColour">{{data.propertyName}}</span>
+          <meta itemprop="position" content="4"/>
+        </li>
+      </ul>
+      <div  *ngFor="let data of propertiesDetails;let i = index">
+      <div itemscope itemtype="http://schema.org/ApartmentComplex">
+        <span hidden itemprop="photo" itemscope itemtype="http://schema.org/CreativeWork">
+          <img class="main_banner" *ngIf="image" itemprop="name" src="{{imageforstructuredata}}{{image}}"
+               alt="alttag"/>
+        </span>
+
+          <div class="col-12 p-0 marginTopImage">
+            <div class="verified_1" *ngIf="data.property_info_verify == 0">
+              <p>Verified</p>
+              <!-- <img class="approvedImage"
+                   [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/verify.svg'"
+                   alt="Homes247 Verified"> -->
+            </div>
+            <div class="main_banner_div">
+              <img class="main_banner" *ngIf="image" itemprop="name" src="{{imageforstructuredata}}{{image}}"
+                   alt="alttag"/>
+            </div>
+                 <!-- brochure -->
+            <div class="brocher-maindiv">
+            <a  (click)="oncompareshowimgclick(data.property_info_IDPK,data.propertyType)" class="compare-btn">
+              <i class="fa fa-long-arrow-left left-icon" aria-hidden="true"></i><i class="fa fa-long-arrow-right right-icon" aria-hidden="true"></i>  Add to Compare</a>
+            <!-- <a (click)="brochuredownload()" class="brocher-btn  active" role="button" aria-pressed="true">
+              Add to Compare&nbsp;|&nbsp;<i class="fa fa-download download-icon" aria-hidden="true"></i></a> -->
+            </div>
+
+              <!-- wishlisting -->
+                <div class='control-group'>
+                  <div *ngIf="localstorediv">
+                    <div *ngFor="let id of storagearr;let i=index">
+                      <input *ngIf="!data.user_fav && data.property_info_IDPK == id" class='red-heart-checkbox' (click)="wishlistaddstorage(data.property_info_IDPK)"
+                      id='red-check2' type='checkbox' checked>
+                    </div>
+                    <input *ngIf="!data.user_fav && storagearr.indexOf(data.property_info_IDPK) == -1" class='red-heart-checkbox' (click)="wishlistaddstorage(data.property_info_IDPK)"
+                    id='red-check2' type='checkbox'>
+                  </div>
+
+                  <input *ngIf="userfav == false" class='red-heart-checkbox' (click)="addwishlist(data.property_info_IDPK)"
+                  id='red-check2' type='checkbox'>
+                  <input *ngIf="userfav == true" class='red-heart-checkbox' (click)="addwishlist(data.property_info_IDPK)"
+                  id='red-check2' type='checkbox' checked>
+                  <label for='red-check2'></label>
+                </div>
+              <!-- wishlisting -->
+            <!-- review -->
+
+              <div *ngIf="averagerating >= 1" class="ratingText">
+                <span class="overall_rating">{{averagerating}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+                <!-- <span class="reviewcount" (click)="scrollTo('section9')">{{this.reviewcount}}&nbsp;Ratings & Reviews</span> -->
+                <span class="reviewcount" data-toggle="modal" data-target="#modal-fullscreen-xl2">{{this.reviewcount}}&nbsp;Ratings & Reviews</span>
+              </div>
+              <div *ngIf="numbernan" class="ratingText">No Ratings Yet</div>
+            <!-- <div class="reviewtop" (click)="scrollTo('section10')">Write a Review</div> -->
+            <div class="reviewtop" data-toggle="modal" (click)="ratingreviewmodal();">Write a Review</div>
+            <!-- <div *ngIf="loginbutton" class="reviewtop" data-toggle="modal" (click)="ratingreviewmodal();">Write a Review</div> -->
+
+
+            <div class="titleMargin">
+              <div class="row">
+                <div class="col-12">
+                  <h1 itemprop="name" class="titleFont">
+                    {{data.propertyName}}
+                  </h1>
+                  <a hidden itemprop="url"
+                     href="https://www.homes247.in/property/{{data.city_name | lowercase}}/{{data.locality_name | cleanUrl}}/{{data.propertyName | cleanUrl}}-{{data.property_info_IDPK | cleanUrl}}">LINK
+                    CLICK</a>
+                  <h3 class="builderText">by <span class="builderDetails">{{data.BuliderName}}</span></h3>
+                </div>
+                <div class="col-12  status_classname">
+                  <h6><b class="statusText">STATUS</b><span
+                    class="statusDetail">&nbsp;&nbsp;{{data.Status}}</span></h6>
+                </div>
+              </div>
+            </div>
+            <div class="mt-1 mb-1 locality_section">
+              <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="localityText">
+                <i class="fa fa-map-marker iconFontSize" aria-hidden="true"></i>
+                <span itemprop="addressLocality">{{data.locality_name}},</span>&nbsp;
+                <span itemprop="addressRegion" class="localityDetailText">{{data.city_name}}</span>
+              </p>
+              <p class="lastupdate-text">Updated On:&nbsp;{{data.lastupdated}}</p>
+            </div>
+            <span hidden itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+            <span itemprop="latitude">{{data.latitude}}</span>
+            <span itemprop="longitude">{{data.longitude}}</span>
+          </span>
+<!--
+            <div class="col-12 p-0 marginTopBhkAndDetails">
+              <div class="row borderBottom">
+              </div>
+            </div> -->
+
+            <div *ngIf="data.offerPrice" class="row borderBottom">
+              <!-- <div class="col-sm-1 col-2">
+                <img class="offerImage"
+                     [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/property/offer.svg'"
+                     alt="Offer Image">
+              </div> -->
+              <div class="col-2">
+              <span class="offersSubText">OFFER</span>
+                <!-- <p *ngIf="!data.offerPrice" class="offersText">BOOK NOW & Avail Big Discounts !</p>
+                <p class="subTextOffers">Attractive discount, All incl. Prices and Assured Best Prices for Exclusive
+                  customer</p> -->
+              </div>
+              <div class="col-10 mt-1">
+                <p  class="offersText">{{data.offerPrice}}</p>
+                <!-- <p *ngIf="!data.offerPrice" class="offersText">BOOK NOW & Avail Big Discounts !</p>
+                <p class="subTextOffers">Attractive discount, All incl. Prices and Assured Best Prices for Exclusive
+                  customer</p> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- overview section -->
+       <div  id="section1" class="sectionheight"></div>
+        <div class="marginRight">
+          <div class="hideshow-not-table">
+          <div class="row borderBottomOverview">
+            <div class="col-12">
+              <h2 class="overViewColour">{{data.propertyName}} Overview</h2>
+            </div>
+          </div>
+          <div class="row borderBottomOverview">
+            <div class="col-6 borderRight textSizeBhks margineForTextArea">
+              <span *ngFor="let BHK_Deatils of data.BHK_Deatils | unique : 'BHK' |orderBy: 'BHK'; let isLast=last">
+              <span *ngIf="bhkvalue">
+                <span  class="textSizeBhks" *ngIf="BHK_Deatils.BHK.indexOf('PLOTS')">
+              {{BHK_Deatils.BHK.replace('BHK', '')}}{{isLast ? 'BHK' : ','}}
+              </span>
+               <span  class="textSizeBhks" *ngIf="!BHK_Deatils.BHK.indexOf('PLOTS')">
+                {{BHK_Deatils.BHK}}
+              </span></span>
+              </span>
+              <h3 *ngIf="zerobhkval" class="textSizeBhks">On Request</h3>
+              <span *ngFor="let BHK_Deatils of data.BHK_Deatils | slice:0:1">
+                <span *ngIf="BHK_Deatils.BHK.indexOf('PLOTS')">
+                  {{data.propertyType}}
+                </span>
+              </span>
+              <div class="typesText mt-2">Configurations</div>
+            </div>
+
+            <div class="col-6 ">
+              <h3 *ngIf="valueareafield" class="textSizeBhks margineForTextArea">
+                {{data.area_min}}-{{data.area_max}}
+                <span class="sqtText">sq.ft </span>
+              </h3>
+              <h3 *ngIf="zeroareafield" class="textSizeBhks margineForTextArea">
+                On Request
+              </h3>
+              <div class="typesText"
+                   *ngIf="data.propertyType == 'Villas' || data.propertyType == 'Apartments' || data.propertyType == 'Row house'">
+                Area <span class="superBuiltupText">(Super Built-up)</span></div>
+              <div class="typesText" *ngIf="data.propertyType == 'Plots'">Area</div>
+            </div>
+
+            <div class="col-6 mt-3 borderRight">
+              <h3 *ngIf="pricefield" class="textSizeBhks margineForTextPrice">
+                ₹ {{data.price_min}}-{{data.price_max}}
+              </h3>
+              <h3 *ngIf="zeropricefield" class="textSizeBhks margineForTextPrice">
+                On Request
+              </h3>
+              <div class="typesText">Price</div>
+            </div>
+
+            <div class="col-6 mt-3">
+              <h3 *ngIf="valuedimension" class="textSizeBhks margineForTextPrice">{{data.dimension}} Acres </h3>
+              <h3 *ngIf="zerodimension" class="textSizeBhks margineForTextPrice">On Request </h3>
+              <div class="typesText">Total Area</div>
+            </div>
+
+            <div #scrollapiloader class="col-6 mt-3 borderRight">
+              <h3 *ngIf="nozeroval" class="textSizeBhks margineForTextPrice"> {{data.total_apartments}} Units</h3>
+              <h3 *ngIf="zeroval" class="textSizeBhks margineForTextPrice">On Request</h3>
+              <div class="typesText"> Total Units</div>
+            </div>
+            <div class="col-6 mt-3">
+              <h3 *ngIf="possesionval" class="textSizeBhks margineForTextPrice">{{data.PossessionDate | date:'MMMM-yyyy'}}</h3>
+              <h3 *ngIf="possesionzeroval" class="textSizeBhks margineForTextPrice">On Request</h3>
+              <div class="typesText"> Possession Date</div>
+            </div>
+            <!-- <div  class="col-6 mt-3 pb-2 borderBottomOverview">
+              <h4 *ngIf="approvalvalue" class="textSizeBhks margineForTextPrice">
+                <span class="textSizeBhks margineForTextPrice" *ngFor="let apprve of data.Approvals_Deatils; let isLast=last">
+                {{apprve.Name}}{{isLast ? '' : ','}}
+              </span></h4>
+              <h4 *ngIf="zeroapprovalvalue" class="textSizeBhks margineForTextPrice">On Request</h4>
+              <div class="typesText">
+             Approving Authority
+              </div>
+            </div> -->
+            <div class="col-6 mt-3 pb-2" *ngIf="data.RERA_ID !== ''">
+              <!-- <h3 class="textSizeBhks margineForTextPrice" *ngIf="data.RERA_ID !== ''">PROJECT RERA ID</h3>
+              <div class="typesText" style="overflow-x:scroll;" *ngIf="data.RERA_ID !== ''">{{data.RERA_ID}}</div>
+              <h3 class="textSizeBhks margineForTextPrice" *ngIf="data.RERA_ID == ''">PROJECT RERA ID</h3>
+              <div class="typesText" *ngIf="data.RERA_ID == ''">On Request</div> -->
+              <div class="textSizeBhks margineForTextPrice" style="overflow-x:scroll;" *ngIf="data.RERA_ID !== ''">{{data.RERA_ID}}</div>
+              <h3 class="typesText" *ngIf="data.RERA_ID !== ''">PROJECT RERA ID</h3>
+              <div class="textSizeBhks margineForTextPrice" *ngIf="data.RERA_ID == ''">On Request</div>
+              <h3 class="typesText" *ngIf="data.RERA_ID == ''">PROJECT RERA ID</h3>
+            </div>
+          </div>
+          <p class="viewtabletab" (click)="showtableformat()">View in Detail</p>
+          </div>
+
+
+          <!-- new table structure -->
+          <div class="hideshow-table">
+          <div class="row borderBottomOverview">
+            <div class="col-12">
+              <h2 class="overViewColour">{{data.propertyName}} Configuration</h2>
+            </div>
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Configuration</th>
+                <th scope="col">Values</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Project Location</td>
+                <td>{{data.locality_name}}</td>
+              </tr>
+              <tr>
+                <td>Property Type</td>
+                <td>{{data.propertyType}}</td>
+              </tr>
+              <tr>
+                <td>Total Area</td>
+                <td *ngIf="valuedimension">{{data.dimension}} Acres</td>
+                <td *ngIf="zerodimension">On Request</td>
+              </tr>
+              <tr>
+                <td>Total Units</td>
+                <td *ngIf="nozeroval">{{data.total_apartments}} Units</td>
+                <td *ngIf="zeroval">On Request</td>
+              </tr>
+              <tr>
+                <td>Dimension</td>
+                <td *ngIf="valueareafield">{{data.area_min}}-{{data.area_max}} sq.ft</td>
+                <td *ngIf="zeroareafield">On Request</td>
+              </tr>
+              <tr>
+                <td>Possession Date</td>
+                <td *ngIf="possesionval">{{data.PossessionDate | date:'MMMM-yyyy'}}</td>
+                <td *ngIf="possesionzeroval">On Request</td>
+              </tr>
+              <tr>
+                <td>Price</td>
+                <td *ngIf="pricefield"> ₹ {{data.price_min}}-{{data.price_max}}</td>
+                <td *ngIf="zeropricefield"> On Request</td>
+              </tr>
+
+              <tr>
+                <td>Units</td>
+                <td *ngIf="bhkvalue">
+                <span
+                  *ngFor="let BHK_Deatils of data.BHK_Deatils | unique : 'BHK' |orderBy: 'BHK'; let isLast=last">
+                <span class="" *ngIf="BHK_Deatils.BHK.indexOf('PLOTS')">
+                  {{BHK_Deatils.BHK.replace('BHK', '')}}{{isLast ? 'BHK' : ','}}
+                </span>
+                <span class="" *ngIf="!BHK_Deatils.BHK.indexOf('PLOTS')">
+                  {{BHK_Deatils.BHK}}
+                </span>
+                </span>
+                </td>
+                <td *ngIf="zerobhkval">On Request</td>
+              </tr>
+
+            </tbody>
+          </table>
+          <p class="viewtabletab" (click)="hidetableformat()">Show Orginal</p>
+          </div>
+           <!-- new table structure -->
+
+          <!-- share buttons -->
+          <!-- <div class="Sharedivmain">
+            <a class="sharebutton" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              <i class="fa fa-share-alt" aria-hidden="true"><span>Share property</span></i>
+            </a>
+          </div> -->
+          <div class="Sharemargin">
+            <a  class="shareicon"><i class="fa fa-share" aria-hidden="true"></i>&nbsp;Share</a>
+            <a (click)="fbshare()" class="iconpadding pl-4"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+            <a (click)="pintrestshare()" class="iconpadding"><i class="fa fa-pinterest-square" aria-hidden="true"></i></a>
+            <a (click)="linkedinshare()" class="iconpadding"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+            <a (click)="mailshare()" class="iconpadding"><i class="fa fa-envelope-square" aria-hidden="true"></i></a>
+            <a (click)="whatsupshare()" class="iconpadding"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
+            <!-- share buttons -->
+          <div class="marginAboutPropertyText">
+              <h2 class="overViewColour" id="about-section">About {{data.propertyName}}</h2>
+              <p class="banner_description"  id="scrollable"
+              [innerHTML]="data.discription | sanitizeHtml">
+              </p>
+              <div class="arrow bounce down_arrow" (click)="readmore()">
+                <a>Read More</a>
+              </div>
+              <div class="arrow bounce up_arrow" (click)="readless()">
+                <a>Read Less</a>
+              </div>
+          </div>
+        </div>
+
+        <!-- gallery section -->
+<div id="section2" class="sectionheight"></div>
+<div class="col-sm-12 col-12">
+    <div class="row">
+      <div class="col-sm-12 col-12 p-0 borderBottomOverview">
+        <div class="">
+          <h2 class="overViewColour">{{data.propertyName}} Gallery</h2>
+        </div>
+      </div>
+      <div *ngIf="galleryload" class="gallery_slider_box">
+        <div class="left" id="slideshow-main" photoGalleryGroup>
+          <owl-carousel-o [options]="customOptionsGallery">
+            <ng-template carouselSlide *ngFor="let imgs of data.images;let i = index">
+              <div photoGallery="{{ImageUrl}}{{imgs.name}}">
+                <img lazyLoad="{{ImageUrl}}{{imgs.name}}" alt="imgs.alttag">
+              </div>
+            </ng-template>
+          </owl-carousel-o>
+        </div>
+      </div>
+      <div *ngIf="showLoader" class="loader_city row">
+        <div class="col-12">
+          <div class="item">
+            <ngx-skeleton-loader
+              [theme]="{ width: '300px','border-radius': '9', height: '200px'}">
+            </ngx-skeleton-loader>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- video gallery -->
+<div class="col-sm-12 col-12" *ngIf="data.video_URL != null">
+  <div id="video-section" class="sectionheight"></div>
+    <div class="row">
+      <div class="col-sm-12 col-12 p-0 borderBottomOverview">
+        <div class="">
+          <h2 class="overViewColour">{{data.propertyName}} Walkthrough</h2>
+        </div>
+      </div>
+      <div class="vedio_gallery_slider_box">
+        <div class="video_section"></div>
+       <img *ngIf="hideImage" (click)="youtube(data['video_URL']);" width="100%"
+       lazyLoad="{{videoimgUrl}}{{data.video_thumbnail}}" async>
+      </div>
+      <div class="col-sm-8" *ngIf="Videoloader">
+        <div class="item">
+          <ngx-skeleton-loader
+            [theme]="{ 'border-radius': '0', height: '400px' }">
+          </ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- <app-my-json-ld *ngIf="data.video_URL != null" [innerHTML]="videoLD"></app-my-json-ld> -->
+<!-- mater plane -->
+<div  id="section7" class="sectionheight"></div>
+<div class="marginRight">
+  <div class="row">
+    <div class="col-12 borderBottomOverview">
+        <h2 class="overViewColour">{{data.propertyName}} Master Plan</h2>
+    </div>
+    <div *ngIf="galleryload">
+      <div class="master_plansImge" photoGalleryGroup>
+        <a photoGallery="{{masterimages}}{{data.masterImgPath}}">
+          <img class="master_plans" lazyLoad="{{masterimages}}{{data.masterImgPath}}"
+               alt="data.masterImgAlttag"/>
+        </a>
+      </div>
+    </div>
+    <div *ngIf="showLoader" class="loader_city row">
+      <div class="col-12">
+        <div class="item">
+          <ngx-skeleton-loader
+            [theme]="{ width: '300px','border-radius': '9', height: '200px'}">
+          </ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- floor plane -->
+<div id="section3" class="sectionheight"></div>
+<div  class="marginRight">
+
+    <div class="showhideprice-nontable">
+    <div class="col-12 borderBottomOverview">
+      <div class="">
+        <h2 class="overViewColour">{{data.propertyName}} Price & Floor plans</h2>
+      </div>
+    </div>
+    <div *ngIf="showfloorplane" class="price_floor_plans">
+      <div id="horizontalTab">
+        <!-- <ul class="resp-tabs-list nav nav-tabs">
+          <li *ngIf=onebhk><a class="active tabletextFloor" data-toggle="tab" data-target="#BHK1">1
+            BHK</a></li>
+          <li *ngIf=twobhk><a class="tabletextFloor" [ngClass]="{ 'active': !onebhk }" data-toggle="tab"
+                              data-target="#BHK2">2 BHK</a></li>
+          <li *ngIf=threebhk><a class="tabletextFloor" [ngClass]="{ 'active': !onebhk && !twobhk }"
+                                data-toggle="tab" data-target="#BHK3">3 BHK</a></li>
+          <li *ngIf=fourbhk><a class="tabletextFloor"
+                               [ngClass]="{ 'active': !onebhk && !twobhk && !threebhk }"
+                               data-toggle="tab" data-target="#BHK4">4 BHK</a></li>
+          <li *ngIf=fivebhk><a class="tabletextFloor"
+                               [ngClass]="{ 'active': !onebhk && !twobhk && !threebhk && !fourbhk }"
+                               data-toggle="tab" data-target="#BHK5">5 BHK</a></li>
+          <li *ngIf=plots><a class="tabletextFloor"
+                             [ngClass]="{ 'active': !onebhk && !twobhk && !threebhk && !fourbhk && !fivebhk }"
+                             data-toggle="tab" data-target="#PLOTS">PLOTS</a></li>
+        </ul> -->
+
+        <ul class="nav nav-tabs tabs-marker tabs-dark" id="myTab" role="tablist">
+          <li class="nav-item" *ngIf=onebhk>
+           <a class="nav-link active" data-toggle="tab" data-target="#BHK1">1 BHK<span class="marker"></span></a>
+          </li>
+          <li class="nav-item" *ngIf=twobhk>
+           <a class="nav-link" [ngClass]="{ 'active': !onebhk }" data-toggle="tab" href="#BHK2">2 BHK<span class="marker"></span></a>
+          </li>
+          <li class="nav-item" *ngIf=threebhk>
+           <a class="nav-link" [ngClass]="{ 'active': !onebhk && !twobhk }"  data-toggle="tab" href="#BHK3">3 BHK<span class="marker"></span></a>
+          </li>
+          <li class="nav-item" *ngIf=fourbhk>
+            <a class="nav-link"  [ngClass]="{ 'active': !onebhk && !twobhk && !threebhk }"data-toggle="tab" href="#BHK4">4 BHK<span class="marker"></span></a>
+           </li>
+           <li class="nav-item" *ngIf=fivebhk>
+            <a class="nav-link" [ngClass]="{ 'active': !onebhk && !twobhk && !threebhk && !fourbhk }"data-toggle="tab" href="#BHK5">5 BHK<span class="marker"></span></a>
+           </li>
+           <li class="nav-item" *ngIf=plots>
+            <a class="nav-link"  [ngClass]="{ 'active': !onebhk && !twobhk && !threebhk && !fourbhk && !fivebhk }" data-toggle="tab" href="#PLOTS">PLOTS<span class="marker"></span></a>
+           </li>
+        </ul>
+
+        <div class="tab-content">
+          <div id="BHK1" *ngIf=onebhk class="tab-pane fade show active">
+            <div class="floor_plan_main">
+              <div class="prce_floor">
+                <table class="floor_tble_main" photoGalleryGroup>
+                  <thead>
+                  <tr class="floorPlanHeading">
+                    <th class="floorPlanHeadingPadding">Floor Plan</th>
+                    <th class="floorPlanHeadingPadding">Dimensions</th>
+                    <th class="floorPlanHeadingPadding">Price
+                      <i class="fa fa-info-circle" aria-hidden="true"  data-toggle="popover" data-placement="bottom"
+                      data-content="Price exclude GST,registration & other charges" (click)="popshow()"></i>
+                    </th>
+                    <th></th>
+                  </tr>
+                  </thead>
+                  <tbody class="floor_tble_body"
+                         *ngFor="let bhk of data.BHK_Deatils | myfilter: 'BHK' : '1 BHK' | slice:start:endone;let i = index">
+                  <tr>
+                    <td>
+                      <a class="example-image-link"
+                         photoGallery="{{uploadBHKImages}}{{bhk.FloorImage}}">
+                        <img class="example-image" lazyLoad="{{uploadBHKImages}}{{bhk.FloorImage}}"
+                             alt="bhk.alttag"/>
+                      </a>
+                    </td>
+                    <td class="paddingAreaFloorPlan">
+                      <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="floor_dimension">
+                        <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                          sq ft</span><br>
+                        (Carpet Area)</p>
+                        <div *ngIf="data.propertyType != 'Villas'">
+                          <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                            <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft</span><br>
+                            (Super Builtup Area)</p>
+                          <p class="table_bhk_in_area">( {{bhk.BHK}} +{{bhk.bathroom}}T )</p>
+                        </div>
+                        <div *ngIf="data.propertyType == 'Villas'">
+                          <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                            <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft</span><br>
+                            (Builtup Area)</p>
+                          <p class="table_bhk_in_area">( {{bhk.BHK}} +{{bhk.bathroom}}T )</p>
+                        </div>
+                    </td>
+                    <td><h5 class="bhk_price"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}} </h5></td>
+                    <td>
+                      <!-- <a id="desktop_bar" data-toggle="modal" data-target="#FloorModal"
+                         (click)="onOneBhk(bhk.BHK)"
+                         class="enqr_btn" *ngIf="hidemobile === true">Contact Seller</a> -->
+                      <a id="mobile_bar"
+                         (click)="ShowHide();onOneBhk(bhk.BHK)" class="enqr_btn">Contact Seller</a>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div  *ngIf="hideOneBhkSeeMore" class="show_hide">
+                <a class="prce_clk" (click)="floorseemore1()" *ngIf="endone == 3">See More <i
+                  class="fa fa-angle-down arrows" aria-hidden="true"></i></a>
+                <a class="prce_clk" (click)="floorseeless1()" *ngIf="endone > 3">See Less <i
+                  class="fa fa-angle-up arrows" aria-hidden="true"></i></a>
+              </div>
+
+            </div>
+          </div>
+          <div id="BHK2" *ngIf=twobhk [ngClass]="{ 'active && show': !onebhk }" class="tab-pane fade">
+            <div class="floor_plan_main">
+              <div class="prce_floor">
+                <table class="floor_tble_main" photoGalleryGroup>
+                  <thead>
+                  <tr class="floorPlanHeading">
+                    <th class="floorPlanHeadingPadding">Floor Plan</th>
+                    <th class="floorPlanHeadingPadding">Dimensions</th>
+                    <th class="floorPlanHeadingPadding">Price
+                      <i class="fa fa-info-circle" aria-hidden="true"  data-toggle="popover" data-placement="bottom"
+                      data-content="Price exclude GST,registration & other charges" (click)="popshow()"></i>
+                    </th>
+                    <th></th>
+                  </tr>
+                  </thead>
+                  <tbody class="floor_tble_body"
+                         *ngFor="let bhk of data.BHK_Deatils | myfilter: 'BHK' : '2 BHK' | slice:start:endtwo;let i = index">
+
+                  <tr>
+                    <td>
+                      <a class="example-image-link"
+                         photoGallery="{{uploadBHKImages}}{{bhk.FloorImage}}">
+                        <img class="example-image" lazyLoad="{{uploadBHKImages}}{{bhk.FloorImage}}"
+                             alt="bhk.alttag"/>
+                      </a>
+                    </td>
+                    <td class="paddingAreaFloorPlan">
+                      <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="floor_dimension">
+                        <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                          sq ft</span><br>
+                        (Carpet Area)</p>
+                        <div *ngIf="data.propertyType != 'Villas'">
+                          <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                            <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft</span><br>
+                            (Super Builtup Area)</p>
+                          <p class="table_bhk_in_area">( {{bhk.BHK}} +{{bhk.bathroom}}T )</p>
+                        </div>
+                        <div *ngIf="data.propertyType == 'Villas'">
+                          <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                            <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft</span><br>
+                            (Builtup Area)</p>
+                          <p class="table_bhk_in_area">( {{bhk.BHK}} +{{bhk.bathroom}}T )</p>
+                        </div>
+                    </td>
+                    <td><h5 class="bhk_price"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}} </h5></td>
+                    <td>
+                      <!-- <a id="desktop_bar" data-toggle="modal" data-target="#FloorModal"
+                         (click)="onOneBhk(bhk.BHK)"
+                         class="enqr_btn" *ngIf="hidemobile === true">Contact Seller</a> -->
+                      <a id="mobile_bar"
+                         (click)="ShowHide();onOneBhk(bhk.BHK)" class="enqr_btn">Contact Seller</a>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div *ngIf="hideTwoBhkSeeMore" class="show_hide">
+                <a class="prce_clk" (click)="floorseemore2()" *ngIf="endtwo == 3">See More <i
+                  class="fa fa-angle-down arrows" aria-hidden="true"></i></a>
+                <a class="prce_clk" (click)="floorseeless2()" *ngIf="endtwo > 3">See Less <i
+                  class="fa fa-angle-up arrows" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+          <div id="BHK3" *ngIf=threebhk [ngClass]="{ 'active && show': !onebhk && !twobhk }"
+               class="tab-pane fade">
+            <div class="floor_plan_main">
+              <div class="prce_floor">
+                <table class="floor_tble_main" photoGalleryGroup>
+                  <thead>
+                  <tr class="floorPlanHeading">
+                    <th>Floor Plan</th>
+                    <th>Dimensions</th>
+                    <th>Price
+                      <i class="fa fa-info-circle" aria-hidden="true"  data-toggle="popover" data-placement="bottom"
+                      data-content="Price exclude GST,registration & other charges" (click)="popshow()"></i>
+                    </th>
+                    <th></th>
+                  </tr>
+                  </thead>
+                  <tbody class="floor_tble_body"
+                         *ngFor="let bhk of data.BHK_Deatils | myfilter: 'BHK' : '3 BHK' | slice:start:endthree;let i = index">
+
+                  <tr>
+                    <td>
+                      <a class="example-image-link"
+                         photoGallery="{{uploadBHKImages}}{{bhk.FloorImage}}">
+                        <img class="example-image" lazyLoad="{{uploadBHKImages}}{{bhk.FloorImage}}"
+                             alt="bhk.alttag"/>
+                      </a>
+                    </td>
+                    <td class="paddingAreaFloorPlan">
+                      <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="floor_dimension">
+                        <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                          sq ft</span><br>
+                        (Carpet Area)</p>
+                        <div *ngIf="data.propertyType != 'Villas'">
+                          <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                            <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft</span><br>
+                            (Super Builtup Area)</p>
+                          <p class="table_bhk_in_area">( {{bhk.BHK}} +{{bhk.bathroom}}T )</p>
+                        </div>
+                        <div *ngIf="data.propertyType == 'Villas'">
+                          <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                            <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft</span><br>
+                            (Builtup Area)</p>
+                          <p class="table_bhk_in_area">( {{bhk.BHK}} +{{bhk.bathroom}}T )</p>
+                        </div>
+                    </td>
+                    <td><h5 class="bhk_price"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}}</h5></td>
+                    <td>
+                      <!-- <a id="desktop_bar" data-toggle="modal" data-target="#FloorModal"
+                         (click)="onOneBhk(bhk.BHK)"
+                         class="enqr_btn" *ngIf="hidemobile === true">Contact Seller</a> -->
+                      <a id="mobile_bar"
+                         (click)="ShowHide();onOneBhk(bhk.BHK)" class="enqr_btn">Contact Seller</a>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div *ngIf="hideThreeBhkSeeMore" class="show_hide">
+                <a class="prce_clk" (click)="floorseemore3()" *ngIf="endthree == 3">See More <i
+                  class="fa fa-angle-down arrows" aria-hidden="true"></i></a>
+                <a class="prce_clk" (click)="floorseeless3()" *ngIf="endthree > 3">See Less <i
+                  class="fa fa-angle-up arrows" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+          <div id="BHK4" *ngIf=fourbhk [ngClass]="{ 'active && show': !onebhk && !twobhk && !threebhk }"
+               class="tab-pane fade">
+            <div class="floor_plan_main">
+              <div class="prce_floor">
+                <table class="floor_tble_main" photoGalleryGroup>
+                  <thead>
+                  <tr class="floorPlanHeading">
+                    <th>Floor Plan</th>
+                    <th>Dimensions</th>
+                    <th>Price
+                      <i class="fa fa-info-circle" aria-hidden="true"  data-toggle="popover" data-placement="bottom"
+                      data-content="Price exclude GST,registration & other charges" (click)="popshow()"></i>
+                    </th>
+                    <th></th>
+                  </tr>
+                  </thead>
+                  <tbody class="floor_tble_body"
+                         *ngFor="let bhk of data.BHK_Deatils | myfilter: 'BHK' : '4 BHK' | slice:start:endfour;let i = index">
+
+                  <tr>
+                    <td>
+                      <a class="example-image-link"
+                         photoGallery="{{uploadBHKImages}}{{bhk.FloorImage}}">
+                        <img class="example-image" lazyLoad="{{uploadBHKImages}}{{bhk.FloorImage}}"
+                             alt="bhk.alttag"/>
+                      </a>
+                    </td>
+                    <td class="paddingAreaFloorPlan">
+                      <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="floor_dimension">
+                        <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                          sq ft</span><br>
+                        (Carpet Area)</p>
+                        <div *ngIf="data.propertyType != 'Villas'">
+                          <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                            <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft</span><br>
+                            (Super Builtup Area)</p>
+                          <p class="table_bhk_in_area">( {{bhk.BHK}} +{{bhk.bathroom}}T )</p>
+                        </div>
+                        <div *ngIf="data.propertyType == 'Villas'">
+                          <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                            <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft</span><br>
+                            (Builtup Area)</p>
+                          <p class="table_bhk_in_area">( {{bhk.BHK}} +{{bhk.bathroom}}T )</p>
+                        </div>
+                    </td>
+                    <td><h5 class="bhk_price"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}} </h5></td>
+                    <td>
+                      <!-- <a id="desktop_bar" data-toggle="modal" data-target="#FloorModal"
+                         (click)="onOneBhk(bhk.BHK)"
+                         class="enqr_btn" *ngIf="hidemobile === true">Contact Seller</a> -->
+                      <a id="mobile_bar"
+                         (click)="ShowHide();onOneBhk(bhk.BHK)" class="enqr_btn">Contact Seller</a>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div *ngIf="hideFourBhkSeeMore" class="show_hide">
+                <a class="prce_clk" (click)="floorseemore4()" *ngIf="endfour == 3">See More <i
+                  class="fa fa-angle-down arrows" aria-hidden="true"></i></a>
+                <a class="prce_clk" (click)="floorseeless4()" *ngIf="endfour > 3">See Less <i
+                  class="fa fa-angle-up arrows" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+          <div id="BHK5" *ngIf=fivebhk
+               [ngClass]="{ 'active && show': !onebhk && !twobhk && !threebhk && !fourbhk }"
+               class="tab-pane fade">
+            <div class="floor_plan_main">
+              <div class="prce_floor">
+                <table class="floor_tble_main" photoGalleryGroup>
+                  <thead>
+                  <tr class="floorPlanHeading">
+                    <th>Floor Plan</th>
+                    <th>Dimensions</th>
+                    <th>Price
+                      <i class="fa fa-info-circle" aria-hidden="true"  data-toggle="popover" data-placement="bottom"
+                      data-content="Price exclude GST,registration & other charges" (click)="popshow()"></i>
+                    </th>
+                    <th></th>
+                  </tr>
+                  </thead>
+                  <tbody class="floor_tble_body"
+                         *ngFor="let bhk of data.BHK_Deatils | myfilter: 'BHK' : '5 BHK' | slice:start:endfive;let i = index">
+
+                  <tr>
+                    <td>
+                      <a class="example-image-link"
+                         photoGallery="{{uploadBHKImages}}{{bhk.FloorImage}}">
+                        <img class="example-image" lazyLoad="{{uploadBHKImages}}{{bhk.FloorImage}}"
+                             alt="bhk.alttag"/>
+
+                      </a>
+                    </td>
+                    <td class="paddingAreaFloorPlan">
+                      <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="floor_dimension">
+                        <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                          sq ft</span><br>
+                        (Carpet Area)</p>
+                        <div *ngIf="data.propertyType != 'Villas'">
+                          <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                            <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft</span><br>
+                            (Super Builtup Area)</p>
+                          <p class="table_bhk_in_area">( {{bhk.BHK}} +{{bhk.bathroom}}T )</p>
+                        </div>
+                        <div *ngIf="data.propertyType == 'Villas'">
+                          <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                            <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft</span><br>
+                            (Builtup Area)</p>
+                          <p class="table_bhk_in_area">( {{bhk.BHK}} +{{bhk.bathroom}}T )</p>
+                        </div>
+                    </td>
+                    <td><h5 class="bhk_price"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}} </h5></td>
+                    <td>
+                      <!-- <a id="desktop_bar" data-toggle="modal" data-target="#FloorModal"
+                         (click)="onOneBhk(bhk.BHK)"
+                         class="enqr_btn" *ngIf="hidemobile === true">Contact Seller</a> -->
+                      <a id="mobile_bar"
+                         (click)="ShowHide();onOneBhk(bhk.BHK)" class="enqr_btn">Contact Seller</a>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div *ngIf="hideFiveBhkSeeMore" class="show_hide">
+                <a class="prce_clk" (click)="floorseemore5()" *ngIf="endfive == 3">See More <i
+                  class="fa fa-angle-down arrows" aria-hidden="true"></i></a>
+                <a class="prce_clk" (click)="floorseeless5()" *ngIf="endfive > 3">See Less <i
+                  class="fa fa-angle-up arrows" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+          <div id="PLOTS" *ngIf=plots
+               [ngClass]="{ 'active && show': !onebhk && !twobhk && !threebhk && !fourbhk && !fivebhk }"
+               class="tab-pane fade">
+            <div class="floor_plan_main">
+              <div class="prce_floor">
+                <table class="floor_tble_main">
+                  <thead>
+                  <tr class="floorPlanHeading">
+                    <th>Dimensions</th>
+                    <th>Price
+                      <i class="fa fa-info-circle" aria-hidden="true"  data-toggle="popover" data-placement="bottom"
+                      data-content="Price exclude GST,registration & other charges" (click)="popshow()"></i>
+                    </th>
+                    <th></th>
+                  </tr>
+                  </thead>
+                  <tbody class="plot_tble_body"
+                         *ngFor="let bhk of data.BHK_Deatils | myfilter: 'BHK' : 'PLOTS' | slice:start:endplots;">
+                  <tr>
+                    <td class="paddingAreaplotPlan">
+                      <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="floor_dimension">
+                        Plot Area - {{bhk.Area.replace('-Carpet_Area', '')}} sq ft
+                      </p>
+                      <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                        Plot Area - {{bhk.Area.replace('-Area', '')}} sq ft
+                      </p>
+                    </td>
+                    <td class="paddingAreaplotPlan">
+                      <h5 class="bhk_price"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}} </h5></td>
+                    <td>
+                      <!-- <a id="desktop_bar" data-toggle="modal" data-target="#FloorModal"
+                         (click)="onOneBhk(bhk.BHK)"
+                         class="enqr_btn" *ngIf="hidemobile === true">Contact Seller</a> -->
+                      <a id="mobile_bar"
+                         (click)="ShowHide();onOneBhk(bhk.BHK)" class="enqr_btn">Contact Seller</a>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div *ngIf="hidePLOTSValSeeMore" class="show_hide plot_show">
+                <a class="prce_clk" (click)="floorseemoreplots()" *ngIf="endplots == 3">See More <i
+                  class="fa fa-angle-down arrows" aria-hidden="true"></i></a>
+                <a class="prce_clk" (click)="floorseelessplots()" *ngIf="endplots > 3">See Less <i
+                  class="fa fa-angle-up arrows" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="viewtabletab" (click)="showpricetableformat()">View in Detail</p>
+    </div>
+
+      <!-- table price structure -->
+  <div class="showhideprice-table">
+  <div class="col-12 borderBottomOverview">
+    <div class="">
+      <h2 class="overViewColour">{{data.propertyName}} Price </h2>
+    </div>
+  </div>
+
+  <table *ngIf="showfloorplane" class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Dimensions</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody  *ngFor="let bhk of data.BHK_Deatils | myfilter: 'BHK' : '1 BHK' | slice:start:endone;let i = index">
+      <tr>
+        <td>{{bhk.BHK}}</td>
+        <td *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1">{{bhk.Area.replace('-Carpet_Area', '')}} <b>sq ft</b></td>
+        <td *ngIf="bhk.Area.indexOf('-Area') > -1">{{bhk.Area.replace('-Area', '')}} <b>sq ft</b></td>
+        <td><i class="fa fa-inr" aria-hidden="true"></i>&nbsp;{{bhk.Price}}</td>
+      </tr>
+    </tbody>
+    <tbody  *ngFor="let bhk of data.BHK_Deatils | myfilter: 'BHK' : '2 BHK' | slice:start:endone;let i = index">
+      <tr>
+        <td>{{bhk.BHK}}</td>
+        <td *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1">{{bhk.Area.replace('-Carpet_Area', '')}} <b>sq ft</b></td>
+        <td *ngIf="bhk.Area.indexOf('-Area') > -1">{{bhk.Area.replace('-Area', '')}} <b>sq ft</b></td>
+        <td><i class="fa fa-inr" aria-hidden="true"></i>&nbsp;{{bhk.Price}}</td>
+      </tr>
+    </tbody>
+    <tbody  *ngFor="let bhk of data.BHK_Deatils | myfilter: 'BHK' : '3 BHK' | slice:start:endone;let i = index">
+      <tr>
+        <td>{{bhk.BHK}}</td>
+        <td *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1">{{bhk.Area.replace('-Carpet_Area', '')}}<b>sq ft</b></td>
+        <td *ngIf="bhk.Area.indexOf('-Area') > -1">{{bhk.Area.replace('-Area', '')}} <b>sq ft</b></td>
+        <td><i class="fa fa-inr" aria-hidden="true"></i>&nbsp;{{bhk.Price}}</td>
+      </tr>
+    </tbody>
+    <tbody  *ngFor="let bhk of data.BHK_Deatils | myfilter: 'BHK' : '4 BHK' | slice:start:endone;let i = index">
+      <tr>
+        <td>{{bhk.BHK}}</td>
+        <td *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1">{{bhk.Area.replace('-Carpet_Area', '')}} <b>sq ft</b></td>
+        <td *ngIf="bhk.Area.indexOf('-Area') > -1">{{bhk.Area.replace('-Area', '')}} <b>sq ft</b></td>
+        <td><i class="fa fa-inr" aria-hidden="true"></i>&nbsp;{{bhk.Price}}</td>
+      </tr>
+    </tbody>
+    <tbody  *ngFor="let bhk of data.BHK_Deatils | myfilter: 'BHK' : '5 BHK' | slice:start:endone;let i = index">
+      <tr>
+        <td>{{bhk.BHK}}</td>
+        <td *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1">{{bhk.Area.replace('-Carpet_Area', '')}} <b>sq ft</b></td>
+        <td *ngIf="bhk.Area.indexOf('-Area') > -1">{{bhk.Area.replace('-Area', '')}} <b>sq ft</b></td>
+        <td><i class="fa fa-inr" aria-hidden="true"></i>&nbsp;{{bhk.Price}}</td>
+      </tr>
+    </tbody>
+    <tbody  *ngFor="let bhk of data.BHK_Deatils | myfilter: 'BHK' : 'PLOTS' | slice:start:endone;let i = index">
+      <tr>
+        <td>PLOT</td>
+        <td *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1">{{bhk.Area.replace('-Carpet_Area', '')}} <b>sq ft</b></td>
+        <td *ngIf="bhk.Area.indexOf('-Area') > -1">{{bhk.Area.replace('-Area', '')}} <b>sq ft</b></td>
+        <td><i class="fa fa-inr" aria-hidden="true"></i>&nbsp;{{bhk.Price}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="viewtabletab" (click)="hidepricetableformat()">Show Orginal</p>
+  </div>
+    <!-- table price structure -->
+
+    <div *ngIf="hidefloorplane">
+      <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+        <p class="demension-text">Details on dimensions & price will be updated soon.</p>
+        </div>
+      </div>
+      </div>
+    </div>
+
+</div>
+
+<!-- amenities -->
+<div  id="section4" class="sectionheight"></div>
+  <div class="marginRight">
+    <div class="showhideAmenities-nontable">
+      <div class="borderBottomOverview margineHeadingAmenities">
+        <h2 class="overViewColour">{{data.propertyName}} Amenities</h2>
+      </div>
+      <div class="paddingAmenities Amenitiesheight">
+        <div class="row">
+          <div class="amenitiesMobileImage" *ngFor="let amenities of data.Amenities_Deatils">
+            <img lazyLoad="{{amenitesImages}}{{amenities.ImgPath}}" class="" alt="amenities.Name">
+            <h4 class="amenitiesText">{{amenities.Name}}</h4>
+          </div>
+        </div>
+      </div>
+      <div class="read-moreame" *ngIf="readmoreamenities" (click)="readmoreamenitie()">See More
+        <i class="fa fa-angle-down arrows" aria-hidden="true"></i>
+      </div>
+      <div class="read-moreame" *ngIf="readlessamenities" (click)="readlessamenitie()">See Less
+        <i class="fa fa-angle-up arrows" aria-hidden="true"></i>
+      </div>
+      <p class="viewtabletab" (click)="showamenitiestableformat()">View in Detail</p>
+    </div>
+      <!-- amenities table structure -->
+    <div class="col-12 showhideAmenities-table">
+      <div class="borderBottomOverview margineHeadingAmenities">
+        <h2 class="overViewColour">{{data.propertyName}} - Amenities</h2>
+      </div>
+      <table class="table">
+        <tbody class="row">
+          <tr class="amenitiesMobiletableImage" *ngFor="let amenities of data.Amenities_Deatils">
+           <td> <img lazyLoad="{{amenitesImages}}{{amenities.ImgPath}}"  alt="amenities.Name">
+            <h4 class="amenitiesText">{{amenities.Name}}</h4></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="viewtabletab" (click)="hideamenitiestableformat()">Show Orginal</p>
+    </div>
+      <!-- amenities table structure -->
+  </div>
+
+    <!-- map section -->
+    <div  id="section5" class="sectionheight"> </div>
+    <div class="marginRight">
+      <div class="row">
+        <div class="col-12 borderBottomOverview">
+          <h2 class="overViewColour">{{data.propertyName}} Neighbourhood</h2>
+        </div>
+        <div class="col-12 tab-content">
+          <div id="iFrameBlog"></div>
+        </div>
+      </div>
+    </div>
+        <!-- explore location -->
+        <div id="section13"></div>
+        <!-- about location -->
+    <div id="location-section" class="sectionheight"></div>
+      <div class="location-main" *ngIf="data.propertylocalitydescription != null">
+        <h5>About {{data.locality_name}}</h5>
+        <p [ngClass]="{'show-less': showlocationShortDesciption}"
+        [innerHTML]="data.propertylocalitydescription | sanitizeHtml">
+        </p>
+        <div  class="show-text" (click)="locationDescriptionText();">
+          <p id="locationbutton">Read More</p></div>
+     </div>
+
+    <!-- about location -->
+        <!-- <div class="col-12 locationmaindiv">
+          <h5 class="location_head">
+            <span class="loctext2">Explore more properties in</span><br>
+             <span class="loctext3">&nbsp;{{data.locality_name}}</span></h5>
+          <a type="button" class="location_btn mt-2" (click)="Explorelocation()">Click Here</a>
+        </div> -->
+      <!-- explore location -->
+
+         <!-- quation and answer section -->
+         <div  id="section11" class="sectionheight"></div>
+         <h5 class="question_head">Discussion Forum <i class="fa fa-comments-o" aria-hidden="true"></i></h5>
+    <div class="quationmain_div">
+           <p class="customquestion-head">Get answers for all queries about {{data.propertyName}}</p>
+           <button  data-toggle="modal" (click)="OnAskquestion()">Have a Question? Ask Here</button>
+     <div class="question_ansdiv_height" *ngIf="showanswer">
+      <div class="quationsub_div" *ngFor="let questionlist of question | slice:0:3;let i=index">
+          <h4>Q:&nbsp;{{questionlist.user_question}}</h4>
+          <span class="question-username">|&nbsp;By {{questionlist.user_name}}</span>
+          <span class="question-username" style="float: right;">|&nbsp;About {{questionlist.question_category}}</span>
+          <div *ngFor="let anslist of questionlist.Answer_Deatils | slice:0:3">
+          <p class="Anstext">A:&nbsp;{{anslist.user_answer}}</p>
+          <!-- <p *ngIf="zeroanswer" class="Anstext">Be the first person to give answer </p> -->
+          </div>
+          <div class="container">
+          <div class="row">
+            <div class="col-6" data-toggle="modal" data-target="#modal-fullscreen-xl1" >
+              <p (click)="getquestionlistbyid(questionlist.discussion_question_IDPK)" class="ReadAnstext">Read All Answers</p>
+            </div>
+            <div class="col-6">
+              <a class="giveAnstext" data-toggle="collapse" href="#collapseExample{{questionlist.discussion_question_IDPK}}" role="button" aria-expanded="false">
+                Write Your Answer&nbsp;>></a>
+            </div>
+          </div>
+          </div>
+          <div class="collapse collapsepadding" id="collapseExample{{questionlist.discussion_question_IDPK}}">
+            <form [formGroup]="AnswerForm">
+            <div class="card">
+              <textarea  rows="4" formControlName="useranswer" cols="40" id="Uanswer" name="Uanswer"  placeholder="Write your answer" required> </textarea>
+              <!-- <small [hidden]="AnswerForm.controls['useranswer'].valid || (AnswerForm.controls['subject'].untouched && !submitted)">
+                Please enter a Message
+             </small> -->
+            </div>
+            <div class="ans_btn" (click)="SubmitAnswer(questionlist.discussion_question_IDPK)">Submit</div>
+            </form>
+          </div>
+          <!-- <p *ngIf="showfillanswer" class="fillanswer_text">give your answer</p> -->
+      </div>
+         <div *ngIf="readallqestionanstextshow" class="col-12 text-center mt-2">
+          <a class="readmorequestionans" data-toggle="modal" data-target="#modal-fullscreen-xl">Read All Questions & Answers</a>
+        </div>
+      </div>
+         <div *ngIf="zeroanswer">
+           <p class="zeroanswer_text">Any queries about this project? Ask away, we'll answer right away</p>
+         </div>
+    </div>
+       <!-- quation and answer section -->
+
+    <div  id="section6" class="sectionheight"></div>
+    <div class="col-12">
+      <div class="marginRight">
+        <div class="row">
+          <div class="borderBottomOverview ">
+            <h3 class="overViewColour">Home Loan & EMI Calculator</h3>
+            <h4 class="BanksOffersLoan">Banks offering Homes Loans</h4>
+          </div>
+
+          <div class="col-12 bankLogoImagespadding">
+            <!--         <div class="col-sm-2 col-xs-2 bank_span" *ngFor="let banks of data.Bank_Deatils">-->
+            <!--           <img class="bangimages" lazyLoad={{bankImages}}{{banks.ImgPath}} alt="banks.Name" />-->
+            <!--         </div>-->
+            <owl-carousel-o [options]="customOptionsBanks">
+              <ng-template carouselSlide *ngFor="let banks of data.Bank_Deatils">
+                <div class="bank_span">
+                  <img class="bangimages" lazyLoad={{bankImages}}{{banks.ImgPath}} alt="banks.Name"/>
+                </div>
+              </ng-template>
+            </owl-carousel-o>
+          </div>
+
+          <div class="col-12 col-sm-12">
+            <h4 class="emiCalText">EMI Calculator</h4>
+          </div>
+
+          <!-- EMI-CALCULATOR_STARTS -->
+          <div class="col-12 col-sm-12 bankLogoImagespadding">
+            <div class="eniCalRow">
+              <form class="row" name="emiform" novalidate>
+                <div class="col-12 col-sm-5 calWidthIpad">
+                  <div class="loan_emi_calculator">
+                    <div class="loan_emi_calculator_box">
+                      <div class="row">
+                        <div class="col-6">
+                          <p class="emi_calc_text">LOAN AMOUNT</p>
+                        </div>
+                        <div class="col-6 intrst_rate">
+                          <i class="fa fa-inr" aria-hidden="true"></i>{{emi.amount}}</div>
+                      </div>
+                      <div class="loan_emi_scale">
+                        <input type="range" (ngModelChange)="onchangeSlider()" name="amount"
+                               class="range_slider" min="1000000" max="10000000" step="100000"
+                               [(ngModel)]="emi.amount"/>
+                      </div>
+                    </div>
+
+                    <div class="loan_emi_calculator_box">
+
+                      <div class="row">
+                        <div class="col-6">
+                          <p class="emi_calc_text">TENURE</p>
+                        </div>
+                        <div class="col-6 intrst_rate">
+                          {{emi.years}}&nbsp;Yrs
+                        </div>
+                      </div>
+                      <div class="loan_emi_scale">
+                        <input type="range" (ngModelChange)="onchangeSlider()" name="years"
+                               class="range_slider" min="5" max="35" step="1" [(ngModel)]="emi.years"/>
+                      </div>
+                    </div>
+
+                    <div class="loan_emi_calculator_box">
+                      <div class="row">
+                        <div class="col-6">
+                          <p class="emi_calc_text">INTEREST RATE</p>
+                        </div>
+                        <div class="col-6 intrst_rate">
+                          {{emi.interest}}&nbsp;%
+                        </div>
+                      </div>
+                      <div class="loan_emi_scale">
+                        <input type="range" (ngModelChange)="onchangeSlider()" id="range"
+                               class="range_slider" name="interest" min="5" max="15" step="0.1"
+                               [(ngModel)]="emi.interest">
+                      </div>
+                    </div>
+                    <div class="loanStartingBox">
+                      <h3 class="homeLoansStartsText">Home Loans Starting From <span class="colorOfPersent">7.9%*</span>
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-7 calWidthIpad">
+                  <div class="row">
+                    <div class="col-5 amtBoxText marginLeftEmiAmount">
+                      <p class="monthlyAmount">{{monthlyAmount|currency:"INR"}}</p>
+                      <p class="month_emi">MONTHLY HOME LOAN EMI</p>
+                    </div>
+                    <div class="col-5 amtBoxText">
+                      <p class="totalAmount">{{totalAmount|currency:'INR'}}</p>
+                      <p class="month_emi">Total Payable Amount</p>
+                    </div>
+                  </div>
+
+
+                  <div class="principal_amount">
+                    <div class="">
+                      <p class="amount_class_yellow"><strong>{{emi.amount|currency:'INR'}}</strong></p>
+                      <img class="yellowLine" alt="emi-yellow"
+                           [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/property/emi-yellow.svg'">
+                      <p class="amount_class_yellow_Text">Principal Amount</p>
+                    </div>
+                    <div class="">
+                      <p class="amount_class_oraeng"><strong> {{interestpayable |currency:"INR"}}</strong>
+                      </p>
+                      <img class="orengeLine" alt="emi-orange"
+                           [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/property/emi-orange.svg'">
+                      <p class="amount_class_oraeng_Text">Interest</p>
+                    </div>
+                    <div style="display: block">
+                      <canvas baseChart class="marginLeftChart"
+                              [data]="doughnutChartData"
+                              [labels]="doughnutChartLabels"
+                              [chartType]="pieChartType"
+                              [colors]="chartColors"
+                              (chartHover)="chartHovered($event)"
+                              (chartClick)="chartClicked($event)"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+              <!-- <div class="col-sm-12 col-xs-12 text-center">
+                <button class="btn btn-default ApplyButton">APPLY HOME LOAN</button>
+              </div> -->
+            </div>
+          </div>
+          <!-- EMI-CALCULATOR_ENDS -->
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- form section -->
+
+     <!-- <div class="col-12 col-sm-12">
+      <div class="marginRight">
+        <div class="row talkSectionImage">
+          <div class="col-sm-12 col-12  margineHeadingAmenities">
+            <div class="row">
+              <div class="col-sm-5 col-5 callBackImageDispalyIpad" *ngIf="hidemobile">
+                <img class="talkImage" alt="Talk-Image"
+                     [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/property/talk.svg'">
+              </div>
+              <div class="col-sm-7 col-12 callBackWidthDispalyIpad">
+                <p class="notQuite">Not Quite the Address You're looking for?</p>
+                <p class="talkToexpert">TALK TO OUR EXPERT!</p>  -->
+
+                <!--                            <form name="cityForm" method="POST">-->
+                <!--                              <input type="text" name="origin" name="propertyname"-->
+                <!--                                     [(ngModel)]="user.propertyname" hidden>-->
+                <!--                              <input autocomplete="off" type="text" placeholder="Name" class="dash_enqr_name inputArea"-->
+                <!--                                     name="name" id="name"-->
+                <!--                                     [(ngModel)]="user.name" required/>-->
+
+                <!--                              <input autocomplete="off" type="text" placeholder="Mobile Number"-->
+                <!--                                     class="abt_enqr_number inputArea"-->
+                <!--                                     name="number" id="mobile" [(ngModel)]="user.number"-->
+                <!--                                     required/>-->
+                <!--                              <div class="clearfix"></div>-->
+                <!--                              <div class="text-center">-->
+                <!--                                <button class="GetCallBAckButton" (click)="getintouch();">Get a Callback</button>-->
+                <!--                              </div>-->
+                <!--                            </form>-->
+
+                 <!-- <form name="cityForm" method="POST">
+                  <input type="text" name="origin" name="propertyname"
+                         [(ngModel)]="user.propertyname" hidden>
+                  <input autocomplete="off" type="text" placeholder="Name" class="dash_enqr_name inputArea"
+                         name="name" id="name"
+                         [(ngModel)]="user.name" required/>
+
+                  <input autocomplete="off" type="text" placeholder="Email"
+                         class="abt_enqr_number inputArea"
+                         name="email" id="email" [(ngModel)]="user.mail"
+                         required/>
+
+                  <input autocomplete="off" type="text" placeholder="Mobile Number"
+                         class="abt_enqr_number inputArea"
+                         name="number" id="mobile" [(ngModel)]="user.number"
+                         required/>
+
+                  <div class="clearfix"></div>
+                  <div class="text-center">
+                    <button class="GetCallBAckButton" id="one" (click)="otpsend3()">Get a Callback</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  -->
+
+            <div class="sectionheight" id="section8"></div>
+            <div class="row marginTopOverview">
+              <div class="col-12 borderBottomOverview ">
+                <h2 class="overViewColour">Frequently Asked Questions About {{data.propertyName}}</h2>
+              </div>
+              <div class="col-sm-12 col-12 paddingfaq">
+                <div class="row paddingOffaqs" *ngFor="let faq of faqs">
+                  <div class="col-sm-11 col-10" (click)="onIconOne()">
+                    <p class="text_colour">
+                      {{faq.question}}
+                  </p>
+                    <div [hidden]="!iconOne===true">
+                      <!-- <span class="faq_answerspan">Ans:</span> -->
+                      <p class="contentColor">
+                        <span class="faq_answerspan">Ans:</span>
+                        {{faq.answer}}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col-sm-1 col-2" [hidden]="!iconOne===false" (click)="onIconOne()"><i class="fa fa-angle-down arrowFAQ" aria-hidden="true"></i></div>
+                  <div class="col-sm-1 col-2" [hidden]="!iconOne===true" (click)="onIconOne()"><i class="fa fa-angle-up arrowFAQ" aria-hidden="true"></i></div>
+                </div>
+              </div>
+              <!-- <app-my-json-ld [innerHTML]="faqLD"></app-my-json-ld> -->
+            </div>
+
+        <!-- about builder  -->
+         <div id="section12" *ngIf="data.Builder_details.length > 0" class="sectionheight"></div>
+        <div class="col-12 p-0" *ngIf="data.Builder_details.length > 0">
+          <div class="buildermain" *ngFor="let builderdesc of data.Builder_details">
+          <div class="row">
+            <div class="col-12 text-center">
+              <h5  routerLink="/{{data.city_name | lowercase}}/builder/{{data.BuliderName | cleanUrl}}-{{data.BuliderId}}"
+              class="builder_title">About {{data.BuliderName}}</h5>
+              <a  routerLink="/{{data.city_name | lowercase}}/builder/{{data.BuliderName | cleanUrl}}-{{data.BuliderId}}">
+                <img class="builder_img" lazyLoad="{{builderlogo}}{{builderdesc.logo}}"   alt="builderdesc.logo"></a>
+            </div>
+
+           <div class="col-12 text-center mt-2">
+            <span class="builder-sub-text">Established in <b>{{builderdesc.foundyear}}</b></span>
+            <span class="builder-sub-text">&nbsp;|&nbsp;Total projects <b>{{builderdesc.totalprojects}}</b></span>
+           </div>
+          </div>
+             <p [ngClass]="{'show-less': showShortDesciption}" [innerHTML]="builderdesc.builderdesc | sanitizeHtml"></p>
+                <div  class="show-text" (click)="alterDescriptionText()">
+                <p id="readbutton">Read More</p></div>
+          </div>
+        </div>
+           <!-- about builder  -->
+           <a id="topbutton" class="go-top" (click)="scrolltotop()">
+             <i class="fa fa-chevron-circle-up top-icon" aria-hidden="true"></i></a>
+           <!-- review section -->
+           <div  id="section9" class="sectionheight"></div>
+           <div  class="reviewSection">
+             <div class="mb-2">
+                 <h3 class="overViewColour">Ratings and Reviews</h3>
+             </div>
+
+
+               <!-- <div class="col-6">
+                 <select class="badge-success">
+                   <option class="review-select" selected>Sort by</option>
+                   <option class="review-select" value="Recent review">Recent review</option>
+                   <option class="review-select" value="Highest rating">Highest rating</option>
+                   <option class="review-select" value="Lowest rating">Lowest rating</option>
+                 </select>
+               </div> -->
+
+
+             <!-- <div class="col-12 mt-4">
+               <p class="">
+                 <span *ngIf="averagerating >= 1" class="ratingText">{{averagerating}}</span>&nbsp;
+                 <span *ngIf="numbernan" class="ratingText">No Rating</span>&nbsp;&nbsp;
+                 <i [ngClass]="{'starColour': averagerating >= 1}" class="fa fa-star"></i>&nbsp;&nbsp;
+                 <i [ngClass]="{'starColour': averagerating >= 2}" class="fa fa-star"></i>&nbsp;&nbsp;
+                 <i [ngClass]="{'starColour': averagerating >= 3}" class="fa fa-star"></i>&nbsp;&nbsp;
+                 <i [ngClass]="{'starColour': averagerating >= 4}" class="fa fa-star"></i>&nbsp;&nbsp;
+                 <i [ngClass]="{'starColour': averagerating >= 5}" class="fa fa-star"></i>&nbsp;&nbsp;
+                  <span class="counttext">(50)</span>
+               </p>
+             </div> -->
+             <div *ngIf="averagerating >= 1" class="ratingText">
+              <span class="overall_rating">{{averagerating}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+              <span class="reviewcount">{{this.reviewcount}}&nbsp;Ratings & Reviews</span>
+            </div>
+            <div *ngIf="numbernan" class="ratingText1">No Ratings Yet</div>
+             <div class="col-12 mt-4">
+               <button  class="btn WriteReviewBtn" data-toggle="modal"(click)="ratingreviewmodal();">Write a Review</button>
+               <!-- <button *ngIf="loginbutton" class="btn WriteReviewBtn" data-toggle="modal" data-target="#loginwithotpModel">Write a Review</button> -->
+             </div>
+
+             <div class="col-12 reviewBorder" *ngFor="let review of reviews | slice:0:3">
+                   <div class="user_text">
+                     <div class="text-center">
+                       <i class="fa fa-user-o userIcon" aria-hidden="true"></i>
+                       <span class="reviewerNAme">{{review.User}}&nbsp;{{review.lastname}} </span>
+                     </div>
+                     <div class="reviewDate">
+                       <p>{{review.Revieweddate}}</p>
+                     </div>
+                   </div>
+                 <div class="text-left">
+                   <p class="mt-4"><span class="ratingText">{{review.Rating}}.0</span>&nbsp;&nbsp;
+                     <i [ngClass]="{'starColour': review.Rating >= 1}" class="fa fa-star"></i>&nbsp;&nbsp;
+                     <i [ngClass]="{'starColour': review.Rating >= 2}" class="fa fa-star"></i>&nbsp;&nbsp;
+                     <i [ngClass]="{'starColour': review.Rating >= 3}" class="fa fa-star"></i>&nbsp;&nbsp;
+                     <i [ngClass]="{'starColour': review.Rating >= 4}" class="fa fa-star"></i>&nbsp;&nbsp;
+                     <i [ngClass]="{'starColour': review.Rating >= 5}" class="fa fa-star"></i>&nbsp;&nbsp;
+                   </p>
+                   <p class="reviewDescp">{{review.Review}}</p>
+                 </div>
+             </div>
+             <p *ngIf="showmorerating" class="viewallrating_text" data-toggle="modal" data-target="#modal-fullscreen-xl2">View All {{this.reviewcount}} Ratings & Reviews</p>
+             <!-- <div *ngIf="showallratings">
+             <div  class="col-12 reviewBorder" *ngFor="let review of reviews">
+              <div class="user_text">
+                <div class="text-center">
+                  <i class="fa fa-user-o userIcon" aria-hidden="true"></i>
+                  <span class="reviewerNAme">{{review.User}}&nbsp;{{review.lastname}} </span>
+                </div>
+                <div class="reviewDate">
+                  <p>{{review.Revieweddate}}</p>
+                </div>
+              </div>
+            <div class="text-left">
+              <p class="mt-4"><span class="ratingText">{{review.Rating}}.0</span>&nbsp;&nbsp;
+                <i [ngClass]="{'starColour': review.Rating >= 1}" class="fa fa-star"></i>&nbsp;&nbsp;
+                <i [ngClass]="{'starColour': review.Rating >= 2}" class="fa fa-star"></i>&nbsp;&nbsp;
+                <i [ngClass]="{'starColour': review.Rating >= 3}" class="fa fa-star"></i>&nbsp;&nbsp;
+                <i [ngClass]="{'starColour': review.Rating >= 4}" class="fa fa-star"></i>&nbsp;&nbsp;
+                <i [ngClass]="{'starColour': review.Rating >= 5}" class="fa fa-star"></i>&nbsp;&nbsp;
+              </p>
+              <p class="reviewDescp">{{review.Review}}</p>
+            </div>
+           </div>
+           <p class="viewallrating_text" (click)="showlessRatings()">Show less Ratings & Reviews</p>
+           </div> -->
+           </div>
+           <!-- review section -->
+   <!-- form section -->
+
+   <div id="formsection"></div>
+   <div class="backgrountContactForm innercontactformbackground" *ngFor="let data of propertiesDetails;let i = index">
+     <div class="contactForm1">
+       <!-- <p class="iamIntrestText">I'm Interested In {{propName}}</p> -->
+       <p class="enquery-main-head">Con't Find what you are looking for?</p>
+       <p class="enquery-sub-title">Let Us help you find it!</p>
+       <form name="enquiryForm2" novalidate>
+            <div class="row">
+              <div class="col-12">
+                <p class="bhk-text">Property Type</p>
+                <div class="mb-2">
+                    <button class="bhk-btn" (click)="aprtmentselectclick()"
+                    [ngStyle]="{'background-color': apartmentselect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                    'color': apartmentselect ? '#fff' : 'rgb(135 156 163)'}">Apartment</button>
+                    <button class="bhk-btn" (click)="villaselectclick()"
+                    [ngStyle]="{'background-color': villaselect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                    'color': villaselect ? '#fff' : 'rgb(135 156 163)'}">Villa</button>
+                    <button class="bhk-btn" (click)="plotselectclick()"
+                    [ngStyle]="{'background-color': plotselect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                    'color': plotselect ? '#fff' : 'rgb(135 156 163)'}">Plot</button>
+                </div>
+              </div>
+              <div class="col-12">
+                <p class="bhk-text">BHK Preference</p>
+                <div *ngIf="this.apartmentbhkoptions" class="mb-2">
+                    <button class="bhk-btn" (click)="onebhkclick()"
+                    [ngStyle]="{'background-color': onebhkselect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                    'color': onebhkselect ? '#fff' : 'rgb(135 156 163)'}">1 BHK</button>
+                    <button class="bhk-btn" (click)="twobhkclick()"
+                    [ngStyle]="{'background-color': twobhkselect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                    'color': twobhkselect ? '#fff' : 'rgb(135 156 163)'}">2 BHK</button>
+                    <button class="bhk-btn" (click)="threebhkclick()"
+                    [ngStyle]="{'background-color': threebhkselect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                    'color': threebhkselect ? '#fff' : 'rgb(135 156 163)'}">3 BHK</button>
+                    <button class="bhk-btn" (click)="fourbhkclick()"
+                    [ngStyle]="{'background-color': fourbhkselect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                    'color': fourbhkselect ? '#fff' : 'rgb(135 156 163)'}">4 BHK</button>
+                </div>
+                <div *ngIf="this.villabhkoptions" class="mb-2">
+                  <button class="bhk-btn" (click)="threebhkclick()"
+                  [ngStyle]="{'background-color': threebhkselect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                  'color': threebhkselect ? '#fff' : 'rgb(135 156 163)'}">3 BHK</button>
+                  <button class="bhk-btn" (click)="fourbhkclick()"
+                  [ngStyle]="{'background-color': fourbhkselect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                  'color': fourbhkselect ? '#fff' : 'rgb(135 156 163)'}">4 BHK</button>
+                  <button class="bhk-btn" (click)="fivebhkclick()"
+                  [ngStyle]="{'background-color': fivebhkselect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                  'color': fivebhkselect ? '#fff' : 'rgb(135 156 163)'}">5 BHK</button>
+                </div>
+                <div *ngIf="this.plotareaoptions" class="mb-2">
+                  <button class="bhk-btn" (click)="thirtytofourtyclick()"
+                  [ngStyle]="{'background-color': thirtytofourtyselect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                  'color': thirtytofourtyselect ? '#fff' : 'rgb(135 156 163)'}">30*40</button>
+                  <button class="bhk-btn" (click)="thirtytofiftyclick()"
+                  [ngStyle]="{'background-color': thirtytofiftyselect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                  'color': thirtytofiftyselect ? '#fff' : 'rgb(135 156 163)'}">30*50</button>
+                  <button class="bhk-btn" (click)="thirtytosixtyclick()"
+                  [ngStyle]="{'background-color': thirtytosixtyselect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                  'color': thirtytosixtyselect ? '#fff' : 'rgb(135 156 163)'}">30*60</button>
+                  <button class="bhk-btn" (click)="fourtytosixtyclick()"
+                  [ngStyle]="{'background-color': fourtytosixtyselect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                  'color': fourtytosixtyselect ? '#fff' : 'rgb(135 156 163)'}">40*60</button>
+                </div>
+              </div>
+              <div class="col-12">
+                <p class="bhk-text">Budget Range</p>
+                <div class="mb-2">
+                    <button class="bhk-btn" (click)="Lessthanfiftylacclick()"
+                    [ngStyle]="{'background-color': Lessthanfiftylac ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                    'color': Lessthanfiftylac ? '#fff' : 'rgb(135 156 163)'}"> < 50L</button>
+                    <button class="bhk-btn" (click)="FiftytoEightylacclick()"
+                    [ngStyle]="{'background-color': FiftytoEightylac ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                    'color': FiftytoEightylac ? '#fff' : 'rgb(135 156 163)'}">50L-80L</button>
+                    <button class="bhk-btn" (click)="EightytoOnecrclick()"
+                    [ngStyle]="{'background-color': EightytoOnecr ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                    'color': EightytoOnecr ? '#fff' : 'rgb(135 156 163)'}">80L-1Cr</button>
+                    <button class="bhk-btn" (click)="Onecrclick()"
+                    [ngStyle]="{'background-color': Onecr ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                    'color': Onecr ? '#fff' : 'rgb(135 156 163)'}">1Cr + </button>
+                </div>
+              </div>
+              <div class="col-sm">
+                <i class="fa fa-map-marker user_icon" aria-hidden="true"></i>
+                <div class="form-field">
+                  <div class="form-field__control">
+                    <input  type="text" class="form-field__input floor_nameinput" name="location" id="location" [(ngModel)]="userlocation" placeholder="Location" />
+                    <div class="form-field__bar"></div>
+                  </div>
+                </div>
+              </div>
+               <div class="col-sm">
+                 <i class="fa fa-user user_icon" aria-hidden="true"></i>
+                 <div class="form-field">
+                   <div class="form-field__control">
+                     <input  type="text" class="form-field__input floor_nameinput" name="name" id="name" [(ngModel)]="user.name" placeholder="Username" />
+                     <div class="form-field__bar"></div>
+                   </div>
+                 </div>
+               </div>
+               <div class="col-sm">
+                 <i class="fa fa-envelope user_icon" aria-hidden="true"></i>
+                 <div class="form-field">
+                   <div class="form-field__control">
+                     <input  type="text" class="form-field__input floor_emailinput" name="email" id="email" [(ngModel)]="user.mail" placeholder="Email" />
+                     <div class="form-field__bar"></div>
+                   </div>
+                 </div>
+               </div>
+               <div class="col-sm">
+                 <i class="fa fa-phone user_icon" aria-hidden="true"></i>
+                 <div class="form-field">
+                   <div class="form-field__control">
+                     <input  type="text" class="form-field__input floor_numinput" maxlength="10" minlength="10" name="number" id="mobile" [(ngModel)]="user.number" placeholder="+91" />
+                     <div class="form-field__bar"></div>
+                   </div>
+                 </div>
+               </div>
+
+                <div class="form-check mt-4 form-check custom-form-check">
+                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked>
+                 <label class="form-check-label custom-lable" for="defaultCheck1">
+                  I agree to be contacted by Homes247 and other agents via WhatsApp,SMS,Phone,Email etc
+                 </label>
+               </div>
+               <div class="form-group col-12 text-center">
+                 <button type="submit" class="btn contactButton" id="one" (click)="otpsend3()">SUBMIT</button>
+                 <button #cancel hidden type="button" data-dismiss="modal" style="display: none;"></button>
+               </div>
+             </div>
+       </form>
+     </div>
+   </div>
+
+             <!-- faq section -->
+    <div class="col-12"  id="section10" class="sectionheight"> </div>
+    <div class="col-12 marginRight">
+      <div *ngIf="listOfPropertiesFromBuilders.length > 0" class="row">
+        <div class="col-12  borderBottomOverview">
+          <h3 class="overViewColour">Other Projects By {{data.BuliderName}}</h3>
+        </div>
+          <div class="scrollmenu">
+            <a *ngFor="let slide of listOfPropertiesFromBuilders">
+              <span hidden itemprop="name">{{slide.propertyName}}</span>
+              <a itemprop="url" target="_blank"
+                   href="https://www.homes247.in/property/{{slide.city_name | lowercase}}/{{slide.locality_name | cleanUrl}}/{{slide.propertyName | cleanUrl}}-{{slide.property_info_IDPK}}">
+                <div class="borderFormsimilarProp">
+                  <div *ngFor="let imageData of slide.images| slice:0:1">
+                    <img class="similarBuilderspropImg" lazyLoad="{{ImageUrl}}{{imageData.name}}"
+                         [alt]="imageData.alttag" [title]="slide.title">
+                  </div>
+                  <div class="similarPropTextPadding text-left">
+                    <h4 class="similarPropHeading">{{slide.propertyName}}</h4>
+                    <p class="similarPropSubText">By {{slide.BuliderName}}</p>
+                    <p class="similarPropSubTextLocation"><i class="fa fa-map-marker locationiconFontSize"
+                                                             aria-hidden="true"></i> {{slide.locality_name}}
+                      ,{{slide.city_name}}</p>
+                    <p class="similarPropSubText">
+     <span class="similarPropSubText"
+           *ngFor="let BHK_Deatils of slide.BHK_Deatils | unique : 'BHK' |orderBy: 'BHK'; let isLast=last">
+    {{BHK_Deatils.BHK.replace('BHK', '')}}{{isLast ? 'BHK' : ','}}
+  </span><span class="badgeText similarPropSubText" *ngIf="plots === true">{{data.propertyType}}</span>
+                    </p>
+                    <p class="similarPropSubTextCost">
+                      ₹ {{slide.price_min}} - {{slide.price_max}}
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </a>
+          </div>
+      </div>
+    </div>
+
+    <div class="col-12 marginRight similarProjectsMargineBottom">
+      <div *ngIf="listOfSimilarProperties.length > 0" class="row">
+        <div class="col-12 borderBottomOverview ">
+          <h2 class="overViewColour">Similar Projects To {{data.propertyName}}</h2>
+        </div>
+          <div class="scrollmenu">
+            <a *ngFor="let slide of listOfSimilarProperties">
+              <span hidden itemprop="name">{{slide.propertyName}}</span>
+              <a itemprop="url" target="_blank"
+                   href="https://www.homes247.in/property/{{slide.city_name | lowercase}}/{{slide.locality_name | cleanUrl}}/{{slide.propertyName | cleanUrl}}-{{slide.property_info_IDPK}}">
+                <div class="borderFormsimilarProp">
+                  <div *ngFor="let imageData of slide.images| slice:0:1">
+                    <img class="similarBuilderspropImg" lazyLoad="{{ImageUrl}}{{imageData.name}}"
+                         [alt]="imageData.alttag" [title]="slide.title">
+                  </div>
+                  <div class="similarPropTextPadding text-left">
+                    <h4 class="similarPropHeading">{{slide.propertyName}}</h4>
+                    <p class="similarPropSubText">By {{slide.BuliderName}}</p>
+                    <p class="similarPropSubTextLocation"><i class="fa fa-map-marker locationiconFontSize"
+                                                             aria-hidden="true"></i> {{slide.locality_name}}
+                      ,{{slide.city_name}}</p>
+                    <p class="similarPropSubText">
+     <span class="similarPropSubText"
+           *ngFor="let BHK_Deatils of slide.BHK_Deatils | unique : 'BHK' |orderBy: 'BHK'; let isLast=last">
+    {{BHK_Deatils.BHK.replace('BHK', '')}}{{isLast ? 'BHK' : ','}}
+  </span><span class="badgeText similarPropSubText" *ngIf="plots === true">{{data.propertyType}}</span>
+                    </p>
+                    <p class="similarPropSubTextCost">
+                      ₹ {{slide.price_min}} - {{slide.price_max}}
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </a>
+          </div>
+      </div>
+    </div>
+
+    <!-- near by localities -->
+     <div  id="section14" class="sectionheight" *ngIf="this.nearbylocationlenght != 0"> </div>
+     <div class="marginRight" *ngIf="this.nearbylocationlenght != 0">
+       <div  class="row">
+         <div class="col-12">
+           <h2 class="overViewColour">{{data.locality_name}} NearBy Localities</h2>
+         </div>
+         <div class="col-12">
+         <div class="scrollmenu card-div-height">
+           <a *ngFor="let localities of Nearbylocalities">
+            <div class="card main-card-height" *ngFor="let localityval of localities.locality">
+              <div class="custom-card-body">
+                <h5 class="nearbylocationname">{{localityval.locality_name}} {{data.city_name}} </h5>
+                <p><span class="badge badge-light">{{localityval.counts}}<b>+</b></span><span class="nearlocalityproptext">projects</span></p>
+                <button type="button" class="btn btn-location" (click)="ExploreNearBylocation(localityval.LocalityId)">
+                  Explore Locality
+                </button>
+              </div>
+            </div>
+           </a>
+         </div>
+         </div>
+       </div>
+     </div>
+     <!-- near by localities -->
+
+    <div class="col-md-12 relevant_searches">
+      <h4>Relevant and Related Searches for {{data.propertyName}},{{data.locality_name}},{{data.city_name}}</h4>
+      <div class="scrollmenu">
+      <a href="https://www.homes247.in/property/{{data.city_name | lowercase}}/{{data.locality_name | cleanUrl}}/{{data.propertyName | cleanUrl}}-{{data.property_info_IDPK | cleanUrl}}">{{data.propertyName}}</a>
+      <a href="https://www.homes247.in/property/{{data.city_name | lowercase}}/{{data.locality_name | cleanUrl}}/{{data.propertyName | cleanUrl}}-{{data.property_info_IDPK | cleanUrl}}">{{data.propertyName}} Price</a>
+      <a href="https://www.homes247.in/property/{{data.city_name | lowercase}}/{{data.locality_name | cleanUrl}}/{{data.propertyName | cleanUrl}}-{{data.property_info_IDPK | cleanUrl}}">{{data.propertyName}} review</a>
+      <a href="https://www.homes247.in/property/{{data.city_name | lowercase}}/{{data.locality_name | cleanUrl}}/{{data.propertyName | cleanUrl}}-{{data.property_info_IDPK | cleanUrl}}">{{data.propertyName}} Floorplan</a>
+      <a href="https://www.homes247.in/property/{{data.city_name | lowercase}}/{{data.locality_name | cleanUrl}}/{{data.propertyName | cleanUrl}}-{{data.property_info_IDPK | cleanUrl}}">{{data.propertyName}} {{data.locality_name}}</a>
+      <a href="https://www.homes247.in/property/{{data.city_name | lowercase}}/{{data.locality_name | cleanUrl}}/{{data.propertyName | cleanUrl}}-{{data.property_info_IDPK | cleanUrl}}">{{data.propertyName}} {{data.city_name}}</a>
+      <a href="https://www.homes247.in/property/{{data.city_name | lowercase}}/{{data.locality_name | cleanUrl}}/{{data.propertyName | cleanUrl}}-{{data.property_info_IDPK | cleanUrl}}">{{data.propertyName}} {{data.propertyType}}</a>
+      <a href="https://www.homes247.in/property/{{data.city_name | lowercase}}/{{data.locality_name | cleanUrl}}/{{data.propertyName | cleanUrl}}-{{data.property_info_IDPK | cleanUrl}}">{{data.propertyName}} Specifications</a>
+      <a href="https://www.homes247.in/property/{{data.city_name | lowercase}}/{{data.locality_name | cleanUrl}}/{{data.propertyName | cleanUrl}}-{{data.property_info_IDPK | cleanUrl}}">{{data.propertyName}} Overview</a>
+     </div>
+    </div>
+
+
+    <div id="contact_div">
+     <div class="col-12">
+     <div class="row">
+       <div class="col-6">
+        <h5 (click)="brochuredownload()" class="brochure-div"  role="button" aria-pressed="true">
+          <i class="fa fa-download brochure-icon_color" aria-hidden="true"></i>&nbsp; Brochure</h5>
+        <!-- <h5  (click)="oncompareshowimgclick(data.property_info_IDPK,data.propertyType)">
+          <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/compare/icon.svg" class="comapreimg_size" alt="icon.svg"> &nbsp;Add to Compare</h5> -->
+       </div>
+       <div class="col-6">
+        <h5  (click)="ShowHidecontact()" class="contact-div">
+          <i class="fa fa-phone icon_color" aria-hidden="true"></i> &nbsp;Contact Seller</h5>
+      </div>
+     </div>
+     </div>
+    </div>
+</div>
+</div>
+</div>
+<!-- new start -->
+
+
+<div class="bottom_desclaimer">
+  <!-- <span>Disclaimer - </span> -->
+  <p class="disclaimer_text" [ngClass]="{'show-less': showShortDesciption}">
+    <b>Disclaimer</b> -Homes247.in's online portal is only to provide information about various residential projects in different locales of India's major cities. The information provided does
+    not act as a solicitation nor advertisement. The company does not examine the RERA Registration status of
+    the residential realty projects, and the company is not responsible for any complaints or complaints
+    have done against these representations or the projects. Please keep yourself aware and updated about
+    the RERA registration of these as per the Real Estate( Regulation & Development) Act of 2016, and as this
+    is an open platform, the public content like - project reviews and discussion forums are all the personal
+    opinions of individuals. The company is not liable for any independent reviews or perspectives shared by the users.
+  </p>
+   <!-- <p  class="show-text" (click)="alterDescriptionText()">
+   <a id="readbutton">Read More</a>
+   </p>  -->
+</div>
+
+
+<!-- <div *ngIf="floatbar" id="floating_bar">
+  <h3 (click)="ShowHide()">Contact Seller</h3>
+</div> -->
+
+<!-- compare section -->
+<div *ngIf="hideshowcompare" class="add_compare_div">
+  <div class="container" style="margin-top: 10px;">
+    <div class="row">
+      <div class="col-6">
+        <div *ngIf="compareprop1" class="">
+          <i class="fa fa-times-circle-o closeprop" (click)="closeprop1(propid1)" aria-hidden="true"></i>
+       <img lazyLoad="{{ImageUrl}}{{propimag1}}"  alt="propimag1" class="compare_pro_img_size">
+       <p class="propert_nametext">{{propertyname1}}</p>
+        </div>
+       <div *ngIf="compareloader1" class="col">
+        <div class="item">
+          <ngx-skeleton-loader
+            [theme]="{'border-radius': '5', height: '50px' }">
+          </ngx-skeleton-loader>
+        </div>
+        <div class="item">
+          <ngx-skeleton-loader
+            [theme]="{'border-radius': '5', height: '5px' }">
+          </ngx-skeleton-loader>
+        </div>
+      </div>
+      </div>
+      <div class="col-6">
+        <div *ngIf="compareprop2" class="">
+          <i class="fa fa-times-circle-o closeprop" (click)="closeprop2(propid2)" aria-hidden="true"></i>
+        <img lazyLoad="{{ImageUrl}}{{propimag2}}"  alt="propimag2" class="compare_pro_img_size">
+        <p class="propert_nametext">{{propertyname2}}</p>
+        </div>
+        <div  *ngIf="compareloader2" class="col">
+          <div class="item">
+            <ngx-skeleton-loader
+              [theme]="{'border-radius': '5', height: '50px' }">
+            </ngx-skeleton-loader>
+          </div>
+          <div class="item">
+            <ngx-skeleton-loader
+              [theme]="{'border-radius': '5', height: '5px' }">
+            </ngx-skeleton-loader>
+          </div>
+        </div>
+       </div>
+    </div>
+  </div>
+    <div  class="compare-now-btn" (click)="CompareNow()">Compare Now</div>
+</div>
+
+
+
+<div *ngIf="IsVisible">
+  <div class="get_call_back">
+    <div class="head" (click)="ShowHidecontact()">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i>
+      <div class="contactFormHeading">
+        <h3 class="marginBottomForm">Request a Callback</h3>
+      </div>
+    </div>
+    <div class="mobile_res mod">
+      <div class="backgrountContactForm" *ngFor="let data of propertiesDetails;let i = index">
+        <!-- <div class="contactFormHeading" *ngIf="data.offerPrice">
+          <h3 class="marginBottomForm">BOOK & AVAIL</h3>
+          <h3 class="marginBottomForm">PRE-EMI HOLIDAY scheme</h3>
+        </div> -->
+        <!-- <div class="contactFormHeading" *ngIf="!data.offerPrice">
+          <h3 class="marginBottomForm">BOOK NOW</h3>
+          <h3 class="marginBottomForm">Avail Big Discounts !</h3>
+        </div> -->
+        <div class="contactFormMargine">
+          <p class="iamIntrestText">I'm Interested In {{propName}}</p>
+          <!-- <h2 class="BookFreeText">BOOK FREE SITE VISIT NOW</h2> -->
+
+          <!--          <form [formGroup]="ContactForm">-->
+          <!--            <div class="row">-->
+          <!--              <div class="form-group col-sm-12">-->
+          <!--                <input type="text" class="form-control floor_nameinput" formControlName="firstName"-->
+          <!--                       placeholder="First Name">-->
+          <!--              </div>-->
+
+          <!--              <div class="form-group col-sm-12">-->
+          <!--                <input type="text" maxlength="10" minlength="10" class="form-control inputPadding floor_numinput"-->
+          <!--                       placeholder="+91" formControlName="phone">-->
+          <!--              </div>-->
+          <!--              <div class="form-group col-sm-12 text-center">-->
+          <!--                <button type="submit" class="btn contactButton" (click)="SubmitFormByBhk()">CONTACT SELLER</button>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </form>-->
+          <form name="enquiryForm2" novalidate>
+            <!-- <div class="row">
+              <div class="form-group col-sm-12">
+                <input type="text" class="form-control floor_nameinput" placeholder="First Name"
+                       name="name" [(ngModel)]="user.name">
+              </div>
+              <div class="form-group col-sm-12">
+                <input type="text" maxlength="10" minlength="10"
+                       class="floor_numinput form-control inputPadding" placeholder="+91"
+                       name="number" [(ngModel)]="user.number">
+              </div>
+              <div class="form-group col-sm-12 text-center">
+                <button type="submit" class="btn contactButton" id="one" (click)="otpsend2()">CONTACT SELLER</button>
+                <button #cancel hidden type="button" data-dismiss="modal" style="display: none;"></button>
+              </div>
+            </div> -->
+               <div class="row">
+                  <div class="col-sm">
+                    <i class="fa fa-user user_icon" aria-hidden="true"></i>
+                    <div class="form-field">
+                      <div class="form-field__control">
+                        <input  type="text" class="form-field__input" id="prop_nameinput"  name="name" [(ngModel)]="user.name" placeholder="Username" />
+                        <!-- <label for="firstname" class="form-field__label">First name</label> -->
+                        <div class="form-field__bar"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm">
+                    <i class="fa fa-envelope user_icon" aria-hidden="true"></i>
+                    <div class="form-field">
+                      <div class="form-field__control">
+                        <input  type="text" class="form-field__input" id="prop_emailinput"   name="email" [(ngModel)]="user.mail" placeholder="Email" />
+                        <div class="form-field__bar"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm">
+                    <i class="fa fa-phone user_icon" aria-hidden="true"></i>
+                    <div class="form-field">
+                      <div class="form-field__control">
+                        <input  type="text" class="form-field__input" id="prop_numinput" maxlength="10" minlength="10"  name="number" [(ngModel)]="user.number" placeholder="+91" />
+                        <!-- <label for="lastname"class="form-field__label">+91</label> -->
+                        <div class="form-field__bar"></div>
+                      </div>
+                    </div>
+                  </div>
+                   <div class="form-check custom-form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked>
+                    <label class="form-check-label custom-lable" for="defaultCheck1">
+                     I agree to be contacted by Homes247 and other agents via WhatsApp,SMS,Phone,Email etc
+                    </label>
+                  </div>
+                  <div class="form-group col-12 text-center">
+                    <button type="submit" class="btn contactButton" id="one" (click)="propenqueryotpsend()">CONTACT SELLER</button>
+                    <button #cancel hidden type="button" data-dismiss="modal" style="display: none;"></button>
+                  </div>
+                </div>
+          </form>
+           <!-- <div class="paddingTenPx col-sm-12 col-12">
+            <div class="row">
+              <div class="col-lg-2 col-2 assured_left">
+                <img class="timeIcon" alt="time-icon"
+                     [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/property/time.svg'">
+              </div>
+              <div class="col-lg-10 col-10  paddingZeroPx assured_right">
+                <p class="headingTime">Assured Call-Back & Confirmation with-in <span class="textColourYellow">30
+                      MINS</span></p>
+                <p class="textTime">Receive a call-back from our Authorised Relationship Manager and visit
+                  confirmation within 30mins</p>
+              </div>
+            </div>
+          </div>
+          <div class="paddingTenPx col-sm-12 col-12 margineFormBottom">
+            <div class="row">
+              <div class="col-lg-2 col-2 assured_left">
+                <img class="bestIcon" alt="best-icon"
+                     [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/property/best.svg'">
+              </div>
+              <div class="col-lg-10 col-10 paddingZeroPx assured_right">
+                <p class="headingTime"><span class="textColourYellow">Assured Best-Prices</span> on every Apartment
+                </p>
+                <p class="textTime">Attractive discounts, All Incl. Prices and Assured Best Prices for Exclusive
+                  customers</p>
+              </div>
+            </div>
+          </div>  -->
+        </div>
+      </div>
+    </div>
+<!--
+
+    <div class="get_down">
+      <div class="imp-points-wrap row">
+        <div class="col-4 text-center">
+                                         <span class="wrap-icon">
+                                                <img
+                                                  [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/property/callicon1.png'"
+                                                  alt="zero-brokerage">
+                                        </span>
+          <div class="txt">Zero <br>Brokerage</div>
+          <div class="clear"></div>
+        </div>
+        <div class="col-4 text-center">
+                                              <span class="wrap-icon">
+                                                    <img
+                                                      [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/property/callicon2.png'"
+                                                      alt="best-price">
+                                                  </span>
+          <div class="txt">Best Price <br>Guaranteed</div>
+          <div class="clear"></div>
+        </div>
+        <div class="col-4 text-center">
+                                                  <span class="wrap-icon">
+                                                        <img
+                                                          [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/property/callicon3.png'"
+                                                          alt="assistance">
+                                    </span>
+          <div class="txt">End To End <br>Assistance</div>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div> -->
+  </div>
+</div>
+
+
+<div *ngIf="IsVisibleBHKcontact">
+  <div class="get_call_back">
+    <div class="head" (click)="ShowHide()">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i>
+      <div class="contactFormHeading">
+        <h3 class="marginBottomForm">Request a Callback</h3>
+      </div>
+    </div>
+    <div class="mobile_res mod">
+      <div class="backgrountContactForm" *ngFor="let data of propertiesDetails;let i = index">
+
+        <div class="contactFormMargine">
+          <p class="iamIntrestText">I'm Interested In {{propName}}</p>
+
+          <form name="BHKEnqueryForm" novalidate>
+
+               <div class="row">
+                  <div class="col-sm">
+                    <i class="fa fa-user user_icon" aria-hidden="true"></i>
+                    <div class="form-field">
+                      <div class="form-field__control">
+                        <input  type="text" class="form-field__input" id="floor_nameinput" name="name" [(ngModel)]="user.name" placeholder="Username" />
+                        <!-- <label for="firstname" class="form-field__label">First name</label> -->
+                        <div class="form-field__bar"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm">
+                    <i class="fa fa-envelope user_icon" aria-hidden="true"></i>
+                    <div class="form-field">
+                      <div class="form-field__control">
+                        <input  type="text" class="form-field__input" id="floor_emailinput"  name="email" [(ngModel)]="user.mail" placeholder="Email" />
+                        <div class="form-field__bar"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm">
+                    <i class="fa fa-phone user_icon" aria-hidden="true"></i>
+                    <div class="form-field">
+                      <div class="form-field__control">
+                        <input  type="text" class="form-field__input" id="floor_numinput" maxlength="10" minlength="10"  name="number" [(ngModel)]="user.number" placeholder="+91" />
+                        <!-- <label for="lastname"class="form-field__label">+91</label> -->
+                        <div class="form-field__bar"></div>
+                      </div>
+                    </div>
+                  </div>
+                   <div class="form-check custom-form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked>
+                    <label class="form-check-label custom-lable" for="defaultCheck1">
+                     I agree to be contacted by Homes247 and other agents via WhatsApp,SMS,Phone,Email etc
+                    </label>
+                  </div>
+                  <div class="form-group col-12 text-center">
+                    <button type="submit" class="btn contactButton" id="one" (click)="otpsend2()">CONTACT SELLER</button>
+                    <button #cancel hidden type="button" data-dismiss="modal" style="display: none;"></button>
+                  </div>
+                </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div *ngIf="Visiblebrochure">
+  <div class="get_call_back">
+    <div class="head" (click)="InVisiblebrochure()">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i>
+      <div class="contactFormHeading">
+        <h3 class="marginBottomForm">Download Brochure</h3>
+      </div>
+    </div>
+    <div class="mobile_res mod">
+      <div class="backgrountContactForm" *ngFor="let data of propertiesDetails;let i = index">
+
+        <div class="contactFormMargine">
+          <p class="iamIntrestText">Download Exclusive Brochure For {{propName}}</p>
+          <form name="brochureForm" novalidate>
+               <div class="row">
+                  <div class="col-sm">
+                    <i class="fa fa-user user_icon" aria-hidden="true"></i>
+                    <div class="form-field">
+                      <div class="form-field__control">
+                        <input  type="text" class="form-field__input brochure_nameinput"  name="name" [(ngModel)]="user.name" placeholder="Username" />
+                        <div class="form-field__bar"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm">
+                    <i class="fa fa-envelope user_icon" aria-hidden="true"></i>
+                    <div class="form-field">
+                      <div class="form-field__control">
+                        <input  type="text" class="form-field__input brochure_emailinput"   name="email" [(ngModel)]="user.mail" placeholder="Email" />
+                        <div class="form-field__bar"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm">
+                    <i class="fa fa-phone user_icon" aria-hidden="true"></i>
+                    <div class="form-field">
+                      <div class="form-field__control">
+                        <input  type="text" class="form-field__input brochure_numinput" maxlength="10" minlength="10"  name="number" [(ngModel)]="user.number" placeholder="+91" />
+                        <div class="form-field__bar"></div>
+                      </div>
+                    </div>
+                  </div>
+                   <div class="form-check custom-form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked>
+                    <label class="form-check-label custom-lable" for="defaultCheck1">
+                     I agree to be contacted by Homes247 and other agents via WhatsApp,SMS,Phone,Email etc
+                    </label>
+                  </div>
+                  <div class="form-group col-12 text-center">
+                    <button type="submit" class="btn contactButton" id="one" (click)="brochureotpsend()">Download Brochure</button>
+                    <button #cancel hidden type="button" data-dismiss="modal" style="display: none;"></button>
+                  </div>
+                </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODAL-FROM-FLOOR-PLAN-SECTION -->
+<!--
+<div class="modal fade" id="FloorModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content modal_enqury_cntnt">
+      <button type="button" class="close modal_close" data-dismiss="modal">&times;</button>
+      <div class="modal-body prop_modal">
+        <div class="backgrountContactForm" *ngFor="let data of propertiesDetails;let i = index">
+          <div class="contactFormHeading">
+            <h3 class="marginBottomForm">Request a Callback</h3>
+          </div>
+          <div class="contactFormMargine">
+            <p class="iamIntrestText">I'm Interested In {{propName}}</p>
+
+            <form [formGroup]="ContactForm">
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <input type="text" class="form-control floor_nameinput" formControlName="firstName"
+                         placeholder="First Name">
+                </div>
+                <div class="form-group col-sm-12">
+                  <input type="text" maxlength="10" minlength="10" class="floor_numinput form-control inputPadding"
+                         placeholder="+91" formControlName="phone">
+                </div>
+                <div class="form-group col-sm-12 text-center">
+                  <button type="submit" class="btn contactButton" (click)="SubmitFormByBhk()">CONTACT SELLER</button>
+                  <button #cancel hidden type="button" data-dismiss="modal" style="display: none;"></button>
+                </div>
+              </div>
+            </form>
+            <div class="paddingTenPx col-sm-12 col-12">
+              <div class="row">
+                <div class="col-lg-2 col-2 assured_left">
+                  <img class="timeIcon" alt="time-icon"
+                       [src]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/property/time.svg'">
+                </div>
+                <div class="col-lg-10 col-xs-10  paddingZeroPx assured_right">
+                  <p class="headingTime">Assured Call-Back & Confirmation with-in <span class="textColourYellow">30
+                        MINS</span></p>
+                  <p class="textTime">Receive a call-back from our Authorised Relationship Manager and visit
+                    confirmation within 30mins</p>
+                </div>
+              </div>
+            </div>
+            <div class="paddingTenPx col-sm-12 col-12 margineFormBottom">
+              <div class="row">
+                <div class="col-lg-2 col-2 assured_left">
+                  <img class="bestIcon" alt="best-icon"
+                       [src]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/property/best.svg'">
+                </div>
+                <div class="col-lg-10 col-10 paddingZeroPx assured_right">
+                  <p class="headingTime"><span class="textColourYellow">Assured Best-Prices</span> on every Apartment
+                  </p>
+                  <p class="textTime">Attractive discounts, All Incl. Prices and Assured Best Prices for Exclusive
+                    customers</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+<!-- login modal -->
+
+  <!-- <div class="modal fade LoginDiv" id="LoginModel" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button #cancelreviewmodel type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="backarrow" (click)="backfromsignin()">
+          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        </div>
+    <div class="modal-body">
+    <div class="container log">
+    <div class="home_logo">
+    <h5 class="underline-1">Sign In</h5>
+    </div>
+    <form class="siginformdiv maindiv">
+        <div class="input-cont">
+            <input autocomplete="on" type="text" id="loginemail" name="mail" placeholder="Email" [(ngModel)]="email">
+            <div class="border1"></div>
+        </div>
+        <div class="input-cont">
+          <input autocomplete="on"  type="password" id="loginpass" name="pass" placeholder="Password" [(ngModel)]="pass">
+          <div class="border2"></div>
+        </div>
+        <div class="clear"></div>
+        <button class="submit_btn" (click)="SignIn()">Sign In</button>
+    </form>
+     <div class="forgetpass_div" (click)="showrestpassmodel()">Forgot Password</div>
+    <div class="Signupmain">
+        <p>Don’t have an account?<span (click)="showsignup()">Sign Up</span></p>
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+</div> -->
+
+<!-- login modal -->
+
+<!-- singup modal -->
+  <!-- <div class="modal fade LoginDiv" id="singupModel" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button #cancelreviewmodel type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+    <div class="modal-body">
+    <div class="container log">
+      <div class="home_logo">
+          <h5 class="underline-1">Sign Up</h5>
+      </div>
+      <form  method="POST"  class="mt-4 maindiv">
+          <div class="input-cont">
+            <input autocomplete="on" type="text" id="user" name="username" placeholder="First Name" [(ngModel)]="username">
+            <div class="border1"></div>
+          </div>
+          <div class="input-cont">
+            <input autocomplete="on" type="text"  name="lastName" id="lastname"  placeholder="Last Name" [(ngModel)]="lastname">
+            <div class="border1"></div>
+          </div>
+          <div class="input-cont">
+              <input autocomplete="on" type="text" id="mail" name="mail" placeholder="Email" [(ngModel)]="useremail">
+              <div class="border1"></div>
+          </div>
+          <div class="input-cont">
+              <input autocomplete="on" type="number" id="rmobile" name="mobile" placeholder="Mobile Number" [(ngModel)]="usernumber">
+              <div class="border1"></div>
+          </div>
+          <div class="input-cont">
+              <input autocomplete="on" type="password" id="password" name="password" placeholder="Password" [(ngModel)]="userpass">
+            <div class="border2"></div>
+          </div>
+          <div class="input-cont">
+              <input autocomplete="on" type="password" id="repassword" name="repassword" placeholder="Confirm Password" [(ngModel)]="reuserpass">
+            <div class="border2"></div>
+          </div>
+          <div class="showpassdiv">
+              <input type="checkbox" (click)="showpass()"><label>&nbsp;Show Password</label></div>
+          <div><p *ngIf="showalert" class="alertshow">Please enter valid Password must contain number,character,special character</p></div>
+          <button (click)="SingUp()">Sign Up</button>
+      </form>
+      <div class="Signupmain">
+          <p>Have an account already?<span (click)="showsignin()">Sign In</span></p>
+      </div>
+    </div>
+    </div>
+    </div>
+  </div>
+</div> -->
+<!-- singup modal -->
+
+    <!-- reset password model -->
+    <!-- <div class="modal fade LoginDiv" id="resetpasswordmodel" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button #cancelreviewmodel type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="backarrow" (click)="backfromresetpass()">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+          </div>
+        <div class="modal-body">
+            <div class="container log">
+            <div class="home_logo">
+                <p class="formtext">Please enter a email address to reset your password</p>
+            </div>
+            <div class="formdiv maindiv">
+            <form>
+                <div class="input-cont">
+                    <input type="text" placeholder="Email" id="remail" name="remail" [(ngModel)]="resetemail">
+                    <div class="border1"></div>
+                </div>
+                <div class="clear"></div>
+                <button  (click)="ResetPass()" value="Reset Password">Reset Password</button>
+            </form>
+            </div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- reset password model -->
+
+<!-- MODAL-FROM-FLOOR-PLAN-SECTION -->
+<div class="footerDiv">
+  <div *ngIf="loaded">
+    <ng-container *ngComponentOutlet="FooterComponent"></ng-container>
+  </div>
+</div>
+<!-- <app-fixedfooter></app-fixedfooter> -->
+</div>
+
+</div>
+
+<!-- <div *ngIf="ShowAnswerDiv">
+ <div class="top_head" (click)="ShowMainpage()">
+  <i class="fa fa-long-arrow-left" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;All answers</div>
+<div class="quationsub_div">
+<div class="container">
+  <div *ngFor="let questiondata of questionlist">
+    <h4>Q:&nbsp;{{questiondata.user_question}}</h4>
+    <span class="question-username">|&nbsp;By {{questiondata.user_name}}</span>
+    <div *ngFor="let answerdata of questiondata.Answer_Deatils">
+    <p *ngIf="readallans" class="Anstext">A:&nbsp;{{answerdata.user_answer}}</p>
+    </div>
+    <p *ngIf="giveanswer" class="noanstext">Sorry, no answers yet. Be the first person to answer</p>
+    <a class="giveAnstext" data-toggle="collapse" href="#collapseExample{{questiondata.discussion_question_IDPK}}" role="button" aria-expanded="false">
+      Write Your Answer&nbsp;>></a>
+        <div class="collapse collapsepadding" id="collapseExample{{questiondata.discussion_question_IDPK}}">
+          <form [formGroup]="AnswerForm">
+          <div class="card">
+            <textarea  rows="4" formControlName="useranswer" cols="40" id="Uanswer" name="Uanswer"  placeholder="Write your answer" required> </textarea>
+          </div>
+          <div class="ans_btn" (click)="SubmitAnswer(questiondata.discussion_question_IDPK)">Submit</div>
+          </form>
+        </div>
+  </div>
+</div>
+</div>
+</div> -->
+
+<div class="modal modal-fullscreen-xl" id="modal-fullscreen-xl1" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header top_head">
+        <div class="modal-title" data-dismiss="modal" aria-label="Close">
+          <i class="fa fa-long-arrow-left"  aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;All answers</div>
+      </div>
+      <div class="modal-body quationsub_div">
+        <div *ngFor="let questiondata of questionlist">
+          <h4>Q:&nbsp;{{questiondata.user_question}}</h4>
+          <span class="question-username">|&nbsp;By {{questiondata.user_name}}</span>
+          <span class="question-username" style="float: right;">|&nbsp;About {{questiondata.question_category}}</span>
+          <div *ngFor="let answerdata of questiondata.Answer_Deatils">
+          <p *ngIf="readallans" class="Anstext">A:&nbsp;{{answerdata.user_answer}}</p>
+          </div>
+          <p *ngIf="giveanswer" class="noanstext">Sorry, no answers yet. Be the first person to answer</p>
+          <a class="giveAnstext" data-toggle="collapse" href="#collapseExample{{questiondata.discussion_question_IDPK}}" role="button" aria-expanded="false">
+            Write Your Answer&nbsp;>></a>
+              <div class="collapse collapsepadding" id="collapseExample{{questiondata.discussion_question_IDPK}}">
+                <form [formGroup]="AnswerForm">
+                <div class="card">
+                  <textarea  rows="4" formControlName="useranswer" cols="40" id="Uanswer" name="Uanswer"  placeholder="Write your answer" required> </textarea>
+                </div>
+                <div class="ans_btn" (click)="SubmitAnswer(questiondata.discussion_question_IDPK)">Submit</div>
+                </form>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- rating and review div-->
+ <!-- <div *ngIf="showratingandreview">
+  <div class="rating_top_head" (click)="ShowMainpage()">
+    <i class="fa fa-long-arrow-left back-arrow-icon" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;All Ratings and Reviews</div>
+  <div  class="ratingreviewSection">
+    <div class="col-12">
+      <h5 class="rating_prop_name">{{this.propName}}</h5>
+    <div *ngIf="averagerating >= 1" class="ratingText">
+      <span class="overall_rating">{{averagerating}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+      <span class="reviewcount">{{this.reviewcount}}&nbsp;Ratings & Reviews</span>
+    </div>
+    </div>
+      <button  class="btn WriteReviewBtn1" data-toggle="modal" (click)="ratingreviewmodal()">Write a Review</button>
+    <div class="col-12 reviewBorder" *ngFor="let review of reviews">
+          <div class="user_text">
+            <div class="text-center">
+              <i class="fa fa-user-o userIcon" aria-hidden="true"></i>
+              <span class="reviewerNAme">{{review.User}}&nbsp;{{review.lastname}} </span>
+            </div>
+            <div class="reviewDate">
+              <p>{{review.Revieweddate}}</p>
+            </div>
+          </div>
+        <div class="text-left">
+          <p class="mt-4"><span class="ratingText">{{review.Rating}}.0</span>&nbsp;&nbsp;
+            <i [ngClass]="{'starColour': review.Rating >= 1}" class="fa fa-star"></i>&nbsp;&nbsp;
+            <i [ngClass]="{'starColour': review.Rating >= 2}" class="fa fa-star"></i>&nbsp;&nbsp;
+            <i [ngClass]="{'starColour': review.Rating >= 3}" class="fa fa-star"></i>&nbsp;&nbsp;
+            <i [ngClass]="{'starColour': review.Rating >= 4}" class="fa fa-star"></i>&nbsp;&nbsp;
+            <i [ngClass]="{'starColour': review.Rating >= 5}" class="fa fa-star"></i>&nbsp;&nbsp;
+          </p>
+          <p class="reviewDescp">{{review.Review}}</p>
+        </div>
+    </div>
+  </div>
+</div>  -->
+
+<div class="modal modal-fullscreen-xl" id="modal-fullscreen-xl2" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header rating_top_head">
+        <div class="modal-title" data-dismiss="modal" aria-label="Close">
+          <i class="fa fa-long-arrow-left back-arrow-icon"  aria-hidden="true">
+          </i>&nbsp;&nbsp;&nbsp;All Ratings and Reviews</div>
+      </div>
+      <button  class="btn WriteReviewBtn1" data-toggle="modal" (click)="ratingreviewmodal()">Write a Review</button>
+      <div class="modal-body answer-custom-body">
+          <div class="col-12">
+            <h5 class="rating_prop_name">{{this.propName}}</h5>
+          <div *ngIf="averagerating >= 1" class="ratingText">
+            <span class="overall_rating">{{averagerating}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+            <span class="reviewcount">{{this.reviewcount}}&nbsp;Ratings & Reviews</span>
+          </div>
+          </div>
+          <div class="col-12 reviewBorder" *ngFor="let review of reviews">
+                <div class="user_text">
+                  <div class="text-center">
+                    <i class="fa fa-user-o userIcon" aria-hidden="true"></i>
+                    <span class="reviewerNAme">{{review.User}}&nbsp;{{review.lastname}} </span>
+                  </div>
+                  <div class="reviewDate">
+                    <p>{{review.Revieweddate}}</p>
+                  </div>
+                </div>
+              <div class="text-left">
+                <p class="mt-4"><span class="ratingText">{{review.Rating}}.0</span>&nbsp;&nbsp;
+                  <i [ngClass]="{'starColour': review.Rating >= 1}" class="fa fa-star"></i>&nbsp;&nbsp;
+                  <i [ngClass]="{'starColour': review.Rating >= 2}" class="fa fa-star"></i>&nbsp;&nbsp;
+                  <i [ngClass]="{'starColour': review.Rating >= 3}" class="fa fa-star"></i>&nbsp;&nbsp;
+                  <i [ngClass]="{'starColour': review.Rating >= 4}" class="fa fa-star"></i>&nbsp;&nbsp;
+                  <i [ngClass]="{'starColour': review.Rating >= 5}" class="fa fa-star"></i>&nbsp;&nbsp;
+                </p>
+                <p class="reviewDescp">{{review.Review}}</p>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- all question and answers -->
+<!-- <div *ngIf="showallquestionansdiv">
+  <div class="rating_top_head" (click)="backquestionansdiv()">
+    <i class="fa fa-long-arrow-left" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;All questions & answers</div>
+    <button  class="btn WritequestionBtn" data-toggle="modal" (click)="OnAskquestion()">Write a question</button>
+  <div  class="ratingreviewSection">
+    <div class="col-12">
+      <h5 class="rating_prop_name">{{this.propName}}</h5>
+    </div>
+  </div>
+  <div class="container">
+ <div class="question_ansdiv_height" *ngIf="showanswer">
+  <div class="quationsub_div" *ngFor="let questionlist of question;let i=index">
+   <h4>Q:&nbsp;{{questionlist.user_question}}</h4>
+   <span class="question-username">|&nbsp;By {{questionlist.user_name}}</span>
+   <div *ngFor="let anslist of questionlist.Answer_Deatils | slice:0:3">
+   <p class="Anstext">A:&nbsp;{{anslist.user_answer}}</p>
+   </div>
+   <div class="container">
+   <div class="row">
+     <div class="col-6">
+       <p (click)="getquestionlistbyid(questionlist.discussion_question_IDPK)" class="ReadAnstext">Read All Answers</p>
+     </div>
+     <div class="col-6">
+       <a class="giveAnstext" data-toggle="collapse" href="#collapseExample{{questionlist.discussion_question_IDPK}}" role="button" aria-expanded="false">
+         Write Your Answer&nbsp;>></a>
+     </div>
+   </div>
+   </div>
+   <div class="collapse collapsepadding" id="collapseExample{{questionlist.discussion_question_IDPK}}">
+     <form [formGroup]="AnswerForm">
+     <div class="card">
+       <textarea  rows="4" formControlName="useranswer" cols="40" id="Uanswer" name="Uanswer"  placeholder="Write your answer" required> </textarea>
+     </div>
+     <div class="ans_btn" (click)="SubmitAnswer(questionlist.discussion_question_IDPK)">Submit</div>
+     </form>
+   </div>
+  </div>
+ </div>
+  <div *ngIf="zeroanswer">
+    <p class="zeroanswer_text">Any queries about this project? Ask away, we'll answer right away</p>
+  </div>
+  </div>
+</div> -->
+<div class="modal modal-fullscreen-xl" id="modal-fullscreen-xl" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header rating_top_head">
+        <div class="modal-title" data-dismiss="modal" aria-label="Close">
+          <i class="fa fa-long-arrow-left" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;All questions & answers</div>
+          <button  class="btn WritequestionBtn" data-toggle="modal" (click)="OnAskquestion()">Write a question</button>
+        <!-- <h5 class="modal-title">Modal title</h5> -->
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+      </div>
+      <div class="modal-body">
+        <div class="col-12 mb-3">
+          <h5 class="rating_prop_name">{{this.propName}}</h5>
+        </div>
+          <div class="question_ansdiv_height" *ngIf="showanswer">
+           <div class="quationsub_div" *ngFor="let questionlist of question;let i=index">
+            <h4>Q:&nbsp;{{questionlist.user_question}}</h4>
+            <span class="question-username">|&nbsp;By {{questionlist.user_name}}</span>
+            <span class="question-username" style="float: right;">|&nbsp;About {{questionlist.question_category}}</span>
+            <div *ngFor="let anslist of questionlist.Answer_Deatils | slice:0:3">
+            <p class="Anstext">A:&nbsp;{{anslist.user_answer}}</p>
+            </div>
+            <div class="container">
+            <div class="row">
+              <div class="col-6" data-toggle="modal" data-target="#modal-fullscreen-xl1">
+                <p (click)="getquestionlistbyid(questionlist.discussion_question_IDPK)" class="ReadAnstext">Read All Answers</p>
+              </div>
+              <div class="col-6">
+                <a class="giveAnstext" data-toggle="collapse" href="#collapseExample{{questionlist.discussion_question_IDPK}}" role="button" aria-expanded="false">
+                  Write Your Answer&nbsp;>></a>
+              </div>
+            </div>
+            </div>
+            <div class="collapse collapsepadding" id="collapseExample{{questionlist.discussion_question_IDPK}}">
+              <form [formGroup]="AnswerForm">
+              <div class="card">
+                <textarea  rows="4" formControlName="useranswer" cols="40" id="Uanswer" name="Uanswer"  placeholder="Write your answer" required> </textarea>
+              </div>
+              <div class="ans_btn" (click)="SubmitAnswer(questionlist.discussion_question_IDPK)">Submit</div>
+              </form>
+            </div>
+           </div>
+          </div>
+           <div *ngIf="zeroanswer">
+             <p class="zeroanswer_text">Any queries about this project? Ask away, we'll answer right away</p>
+           </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+<!-- login with otp modal -->
+<div class="modal fade LoginDiv" id="loginwithotpModel" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" (click)="closemodal()">
+        <button #cancelreviewmodel type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+        <div class="modal-body">
+          <div class="container log">
+          <div class="home_logo">
+              <h5 class="underline-1">Login with OTP</h5>
+          </div>
+          <div class="formdiv maindiv">
+          <form>
+              <div class="input-cont">
+                <input autocomplete="off" type="text" id="cname" name="cname" placeholder="Name(optional)"  [(ngModel)]="user.name">
+                <div class="border1"></div>
+             </div>
+             <div class="input-cont">
+              <input autocomplete="off" type="number" id="loginmobile" name="mobile" placeholder="Mobile Number"  [(ngModel)]="user.number">
+              <div class="border1"></div>
+             </div>
+              <div class="clear"></div>
+              <button  id="one" (click)="loginotpsend()">Send OTP</button>
+              <button #cancel hidden type="button" data-dismiss="modal" style="display: none;"></button>
+              <!-- <div  class="signin_btn" (click)="loginwithuser()">Sign In</div>  -->
+              <!-- <p class="googlesigntext">or Signin With</p>  -->
+               <div class="googleloginbutton" (click)="signInWithGoogle()">
+               Login with &nbsp;&nbsp; <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/login/google.png" alt="google.png">
+              </div>
+          </form>
+          </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- login with otp modal -->
+    <!--OTP-MODAL-->
+    <div id="modal-container4">
+      <div class="modal-background">
+        <div class="modal">
+          <form name="otpForm" novalidate>
+            <p class="verify_num">Please Verify your Number</p>
+            <p>Enter the 4 digit Verification Code sent on {{this.user.number}}<a (click)="goback4()">(Edit)</a></p>
+            <div class="col-12 countdown_maindiv">
+              <countdown #cd4 [config]="countdownconfig" (event)="handleEvent($event)"></countdown>
+            </div>
+            <input hidden autocomplete="off" type="text" placeholder="OTP" name="otp" id="loginotp"
+                   [(ngModel)]="user.otp" required/>
+            <ng-otp-input class="otpinput" #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config">
+            </ng-otp-input>
+            <button (click)="otpvalidatelogin()">Validate OTP</button>
+            <p class="otpexpireclass" *ngIf="otpexpired">OTP Expired - <a (click)="loginotpsend()">Resend</a></p>
+            <button type="reset" id="btn_reset4" style="display: none;"></button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!--OTP-MODAL-->
+    <!--OTP-MODAL-->
+<!-- <div id="modal-container">
+  <div class="modal-background">
+    <div class="modal">
+      <form name="otpForm" novalidate>
+        <p class="verify_num">Please Verify your Number</p>
+        <p>Enter the 4 digit Verification Code sent on {{user.number}}<a (click)="goback()">(Edit)</a></p>
+        <div class="col-12 countdown_maindiv">
+          <countdown #cd [config]="countdownconfig" (event)="handleEvent($event)"></countdown>
+        </div>
+        <input hidden autocomplete="off" type="text" placeholder="OTP" name="otp" id="otp"
+               [(ngModel)]="user.otp" required/>
+        <ng-otp-input class="otpinput" #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config">
+        </ng-otp-input>
+        <button (click)="otpvalidate()">Validate OTP</button>
+        <p class="otpexpireclass" *ngIf="otpexpired">OTP Expired - <a (click)="otpsend()">Resend</a></p>
+        <button type="reset" id="btn_reset" style="display: none;"></button>
+      </form>
+    </div>
+  </div>
+</div> -->
+<!--OTP-MODAL-->
+
+<!--OTP-MODAL-->
+<!-- <div id="brochure-modal-container">
+  <div class="modal-background">
+    <div class="modal">
+      <form name="otpForm5" novalidate>
+        <p class="verify_num">Please Verify your Number</p>
+        <p>Enter the 4 digit Verification Code sent on {{user.number}}<a (click)="brochuregoback()">(Edit)</a></p>
+        <div class="col-12 countdown_maindiv">
+          <countdown #cd5 [config]="countdownconfig" (event)="handleEvent($event)"></countdown>
+        </div>
+        <input hidden autocomplete="off" type="text" placeholder="OTP" name="otp" id="otp5"
+               [(ngModel)]="user.otp" required/>
+        <ng-otp-input class="otpinput" #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config">
+        </ng-otp-input>
+        <button (click)="brochureotpvalidate()">Validate OTP</button>
+        <p class="otpexpireclass" *ngIf="otpexpired">OTP Expired - <a (click)="brochureotpsend()">Resend</a></p>
+        <button type="reset" id="btn_reset5" style="display: none;"></button>
+      </form>
+    </div>
+  </div>
+</div> -->
+<!--OTP-MODAL-->
+<!--OTP-MODAL-->
+<!-- <div id="modal-container6">
+  <div class="modal-background">
+    <div class="modal">
+      <form name="propenqForm" novalidate>
+        <p class="verify_num">Please Verify your Number</p>
+        <p>Enter the 4 digit Verification Code sent on {{user.number}}<a (click)="goback6()">(Edit)</a></p>
+        <div class="col-12 countdown_maindiv">
+          <countdown #cd6 [config]="countdownconfig" (event)="handleEvent($event)"></countdown>
+        </div>
+        <input hidden autocomplete="off" type="text" placeholder="OTP" name="otp" id="otp6"
+               [(ngModel)]="user.otp" required/>
+        <ng-otp-input class="otpinput" #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config">
+        </ng-otp-input>
+        <button (click)="otpvalidate6()">Validate OTP</button>
+        <p class="otpexpireclass" *ngIf="otpexpired">OTP Expired - <a (click)="propenqueryotpsend()">Resend</a></p>
+        <button type="reset" id="btn_reset2" style="display: none;"></button>
+      </form>
+    </div>
+  </div>
+</div> -->
+<!--OTP-MODAL-->
+<!--OTP-MODAL-->
+<!-- <div id="modal-container2">
+  <div class="modal-background">
+    <div class="modal">
+      <form name="otpForm2" novalidate>
+        <p class="verify_num">Please Verify your Number</p>
+        <p>Enter the 4 digit Verification Code sent on {{user.number}}<a (click)="goback2()">(Edit)</a></p>
+        <div class="col-12 countdown_maindiv">
+          <countdown #cd2 [config]="countdownconfig" (event)="handleEvent($event)"></countdown>
+        </div>
+        <input hidden autocomplete="off" type="text" placeholder="OTP" name="otp" id="otp2"
+               [(ngModel)]="user.otp" required/>
+        <ng-otp-input class="otpinput" #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config">
+        </ng-otp-input>
+        <button (click)="otpvalidate2()">Validate OTP</button>
+        <p class="otpexpireclass" *ngIf="otpexpired">OTP Expired - <a (click)=" otpsend2()">Resend</a></p>
+        <button type="reset" id="btn_reset2" style="display: none;"></button>
+      </form>
+    </div>
+  </div>
+</div> -->
+<!--OTP-MODAL-->
+
+<!--OTP-MODAL-->
+<!-- <div id="modal-container3">
+  <div class="modal-background">
+    <div class="modal">
+      <form name="otpForm3" novalidate>
+        <p class="verify_num">Please Verify your Number</p>
+        <p>Enter the 4 digit Verification Code sent on {{user.number}}<a (click)="goback3()">(Edit)</a></p>
+        <div class="col-12 countdown_maindiv">
+          <countdown #cd3 [config]="countdownconfig" (event)="handleEvent($event)"></countdown>
+        </div>
+        <input hidden autocomplete="off" type="text" placeholder="OTP" name="otp" id="otp3"
+               [(ngModel)]="user.otp" required/>
+        <ng-otp-input class="otpinput" #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config">
+        </ng-otp-input>
+        <button (click)="otpvalidate3()">Validate OTP</button>
+        <p class="otpexpireclass" *ngIf="otpexpired">OTP Expired - <a (click)="otpsend3()">Resend</a></p>
+        <button type="reset" id="btn_reset3" style="display: none;"></button>
+      </form>
+    </div>
+  </div>
+</div> -->
+<!--OTP-MODAL-->
+        <!-- Review Modal Start -->
+<div class="modal fade" id="reviewModel" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Review Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" (click)="closemodal()">
+        <button #cancelreviewmodel type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <form action="/action_page.php">
+            <div class="row">
+              <div class="col-12 mb-3 text-center review-heading">
+                <h3 class="mb-1 underline">Write Your Review For {{this.propName}}</h3>
+              </div>
+              <div class="col-sm-12">
+                <!-- <input type="text" autocomplete="off" name="username" [(ngModel)]="userName" placeholder="Name"
+                       required>
+                <input type="email" autocomplete="off" name="email" placeholder="Email" [(ngModel)]="userEmail"
+                       required> -->
+                <div class="row mt-2 mb-2">
+                  <div class="col-6 mt-2">
+                    <h5>Rating</h5>
+                  </div>
+                  <div class="col-6">
+                    <div class="rating" id="ratingSection">
+                      <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                      <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
+                      <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                      <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+                      <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                    </div>
+                  </div>
+                </div>
+                <textarea class="postTextArea" placeholder="Write review" name="review" rows="4" cols="50"
+                          [(ngModel)]="reviewDetails"></textarea>
+                <div class="col-12 mb-2 mt-2 text-center">
+                  <button  class="col-6 btn review-btn" (click)="OnCommentUpdate()">Submit Review</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Review Modal End -->
+    <!-- ask a quation model -->
+    <div class="modal fade quationDiv" id="askquationmodel" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header" (click)="closemodal()">
+            <h5 class="modal-title custom-title">What's Your Question?About {{this.propName}}</h5>
+            <button #cancelreviewmodel type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+        <div class="modal-body">
+          <form>
+            <div class="input-field">
+              <textarea class="form_input" type="text" id="quation" name="quation" [(ngModel)]="userquestion"
+              placeholder="Type your Question here.."></textarea>
+              <!-- <div class="label_div" for="name">Type your Questions here..</div> -->
+            </div>
+            <div class="category_div">
+              <h5 class="custom-title">Your Question is About?</h5>
+               <button (click)="onConfiguration();"
+              [ngStyle]="{'background-color': propConfiguration ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                    'color': propConfiguration ? '#fff' : 'rgb(76, 73, 73)'}">Configuration</button>
+              <button (click)="onpropStatus();"
+              [ngStyle]="{'background-color': propStatus ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                    'color': propStatus ? '#fff' : 'rgb(76, 73, 73)'}">Status</button>
+              <button (click)="onPrice();"
+              [ngStyle]="{'background-color': propPrice ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                    'color': propPrice ? '#fff' : 'rgb(76, 73, 73)'}">Price</button>
+              <button (click)="onLocation();"
+              [ngStyle]="{'background-color': propLocation ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                    'color': propLocation ? '#fff' : 'rgb(76, 73, 73)'}">Location</button>
+              <button (click)="onHomeLoans();"
+              [ngStyle]="{'background-color': propHomeLoans ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                    'color': propHomeLoans ? '#fff' : 'rgb(76, 73, 73)'}">Home loans</button>
+              <button (click)="onPossession();"
+              [ngStyle]="{'background-color': propPossession ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                    'color': propPossession ? '#fff' : 'rgb(76, 73, 73)'}">Possession</button>
+              <button data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Other</button>
+                <div class="collapse collapsepadding" id="collapseExample">
+                  <div class="card">
+                    <textarea  rows="4" cols="40" id="otherquestion" name="otherquestion" placeholder="Write your question" [(ngModel)]="otherquestion"> </textarea>
+                  </div>
+                </div>
+            </div>
+            </form>
+            <input type="submit" (click)="SubmitQuation();" value="SUBMIT">
+        </div>
+        </div>
+      </div>
+    </div>
+    <!-- ask a quation model -->
+    <!-- CSS-Loader -->
+    <div *ngIf="otploader" class="loaderbody">
+      <div class="box">
+        <div class="loader-20"></div>
+      </div>
+    </div>
+     <!-- CSS-Loader -->
+
+
+<!-- Crawl-purpose -->
+<div class="review_section_bottom">
+  <p>Review Section</p>
+  <div *ngFor="let review of reviews">
+    <div>
+      <div>
+        <i class="fa fa-user-o userIcon" aria-hidden="true"></i>
+        <span>{{review.User}}&nbsp;{{review.lastname}} </span>
+      </div>
+      <div>
+        <p>{{review.Revieweddate}}</p>
+      </div>
+    </div>
+  <div>
+    <p><span>{{review.Rating}}.0</span>&nbsp;&nbsp;
+      <i [ngClass]="{'starColour': review.Rating >= 1}" class="fa fa-star"></i>&nbsp;&nbsp;
+      <i [ngClass]="{'starColour': review.Rating >= 2}" class="fa fa-star"></i>&nbsp;&nbsp;
+      <i [ngClass]="{'starColour': review.Rating >= 3}" class="fa fa-star"></i>&nbsp;&nbsp;
+      <i [ngClass]="{'starColour': review.Rating >= 4}" class="fa fa-star"></i>&nbsp;&nbsp;
+      <i [ngClass]="{'starColour': review.Rating >= 5}" class="fa fa-star"></i>&nbsp;&nbsp;
+    </p>
+    <p>{{review.Review}}</p>
+  </div>
+  </div>
+</div>
+
+<div class="discussion_forum_section">
+  <p>Discussion forum Section</p>
+  <div class="quationsub_div" *ngFor="let questionlist of question;let i=index">
+    <h4>Q:&nbsp;{{questionlist.user_question}}</h4>
+    <span class="question-username">|&nbsp;By {{questionlist.user_name}}</span>
+    <span class="question-username" style="float: right;">|&nbsp;About {{questionlist.question_category}}</span>
+    <div *ngFor="let anslist of questionlist.Answer_Deatils">
+    <p class="Anstext">A:&nbsp;{{anslist.user_answer}}</p>
+    </div>
+    <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <p class="ReadAnstext">Read All Answers</p>
+      </div>
+      <div class="col-6">
+        <a class="giveAnstext">
+          Write Your Answer</a>
+      </div>
+    </div>
+    </div>
+    <div class="collapse collapsepadding">
+      <form>
+      <div class="card">
+        <textarea rows="4" formControlName="useranswer" cols="40" id="Uanswer" name="Uanswer"  placeholder="Write your answer" required> </textarea>
+      </div>
+      <div class="ans_btn">Submit</div>
+      </form>
+    </div>
+   </div>
+</div>
+<!-- <app-my-json-ld [innerHTML]="articleLD"></app-my-json-ld> -->
+
+<div class="innerheader_position">
+  <app-innerheader></app-innerheader>
+</div>

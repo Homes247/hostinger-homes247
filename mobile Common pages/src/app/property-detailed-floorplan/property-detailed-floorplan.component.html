@@ -1,0 +1,614 @@
+<!-- <app-innerheader class="navHide"></app-innerheader> -->
+
+<div class="outerDivBg" *ngFor="let data of propertiesDetailsnew; let i = index">
+  <div class="col-12">
+    <div class="col-12 borderBottomOverview pl-0 mb-4">
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumbs mb-0">
+          <li class="breadcrumb-item"><a href="https://www.homes247.in/" title="India's Favourite Property Portal !">Home</a></li>
+          <li class="breadcrumb-item" aria-current="page">
+            <a rel="bookmark" class="relatedSearchButton" title="All Project Reviews in India | Homes247.in" href="https://www.homes247.in/property/{{data.city_name|cleanUrl}}/{{data.locality_name|cleanUrl}}/{{data.propertyName|cleanUrl}}-{{propID | cleanUrl}}">{{data.propertyName}}</a>
+          </li>
+          <li class="breadcrumb-item" aria-current="page">
+            <a href="/fpl/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-floorplans-{{propID | cleanUrl}}" target="_blank" class="breadcrumbs__element" title="Locality Reviews {{data.city_name}} | Homes247.in">
+              {{data.propertyName}} Floor Plan
+            </a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            <a target="_blank" class="breadcrumbs__element">
+            Details
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="row">
+        <div class="col-sm-12 d-flex">
+          <!-- <a><img (click)="location.back()" style="cursor: pointer;" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/propImage/Vector.png" alt="..Vector.png" >&nbsp;&nbsp;</a> -->
+          <a><i (click)="location.back()" class="fa fa-long-arrow-left left-icon topheadbackbtn" aria-hidden="true"></i>&nbsp;&nbsp;</a>
+
+          <h1 class="overViewColour">
+            {{ data.propertyName }} Floor Plans & Price Details
+          </h1>
+        </div>
+      </div>
+    </div>
+
+    <div class=" col-12 px-0 previewSectionDiv" *ngFor="let floorPlan of floorPlanDetails;">
+      <div class="floorPlanBanner text-center" photoGalleryGroup>
+          <img photoGallery="{{uploadBHKImages}}{{floorPlan.bhkImage}}" width="100%" height="100%" src="{{uploadBHKImages}}{{floorPlan.bhkImage}}" alt="floorPlan.bhkImage">
+      </div>
+      <div class="floorplanDetails col-12 px-0 mt-3">
+          <div class="topDetails col-12">
+              <div class="row">
+                  <div class="topLeftDetails col-12 px-0">
+                      <!-- <h2 class="propTitleFont">{{data.propertyName}}</h2> -->
+                      <span class="textSizeBhksHead" *ngIf="floorPlan.bhk.indexOf('Plots')">
+                        {{floorPlan.bhk}} BHK, {{floorPlanArea}} sq.ft {{data.propertyType}} in {{data.propertyName}}
+                      </span>
+                      <span class="textSizeBhksHead" *ngIf="!floorPlan.bhk.indexOf('Plots')">
+                        {{floorPlan.bhk}}&nbsp; {{floorPlanArea}} sq.ft &nbsp; {{data.propertyType}} in {{data.propertyName}}
+                      </span>
+                     
+
+                      <span id="locationTag">
+                        <img loading="lazy" style="width: 15px" height="15" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/rentalDetailsLocationPin.png" alt="..rentalDetailsLocationPin.png"  />&nbsp;{{data.locality_name}}, {{ data.city_name }}</span>
+                          <p class="mb-0 mt-2 p-0">
+                            <span  routerLink="/prd/rating-and-reviews-of-{{data.propertyName | cleanUrl}}-{{propID | cleanUrl}}" *ngIf="averagerating >= 1" class="ratingText"><i class="fa fa-star starColour"></i>&nbsp;<b>{{averagerating}}</b>&nbsp;({{reviwcount}} Ratings)</span>
+                            <span *ngIf="numbernan" class="ratingText1">No Rating</span>&nbsp;&nbsp;
+                        </p>
+                      <!-- <div class="propAddress">
+                          <a itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="localityText" routerLink="/{{data.city_name | cleanUrl}}/property-sale-in-{{data.locality_name | cleanUrl}}-{{data.LoaclityId}}" title="Properties in {{data.locality_name}} | Property in {{data.locality_name}}">
+                          <i class="fa fa-map-marker iconFontSize" aria-hidden="true"></i>
+                          <span itemprop="addressLocality">{{data.locality_name}}, </span>
+                          <span itemprop="addressRegion" class="localityDetailText">{{data.city_name}}</span>
+                      </a>
+                      </div> -->
+                     
+                  </div>
+                  <div class="col-12 px-0">
+                      <P *ngIf="floorPlan.price" class="margineForTextPrice">
+                          ₹ {{floorPlan.price}}
+                      </P>
+                      <P *ngIf="!floorPlan.price" class="margineForTextPrice">
+                          On Request
+                      </P>
+
+                      <p class="textUpdatedOn">Updated on: <b>{{data.lastupdated}}</b></p>
+
+                      <p>
+                        <span class="statusDetail" *ngIf="data.Status != 'Ready to Move' && data.Status != 'Up Coming' && data.Status != 'New Launch' && data.Status == 'Ready to Register' || data.Status == 'Under Construction'">Status: {{data.Status}}</span>
+                        <a class="statusDetail" href="https://www.homes247.in/stlc/ready-to-move-flats-apartments-in-whitefield-bangalore-1" *ngIf="data.Status == 'Ready to Move'">Status: {{data.Status}}</a>
+                        <a class="statusDetail" href="https://www.homes247.in/upcoming-new-launch-properties/new-projects-in-whitefield-bangalore-1" *ngIf="data.Status == 'Up Coming'">Status: {{data.Status}}</a>
+                        <a class="statusDetail" href="https://www.homes247.in/upcoming-new-launch-properties/new-projects-in-whitefield-bangalore-1" *ngIf="data.Status == 'New Launch'">Status: {{data.Status}}</a>
+                    </p>
+                      
+                  </div>
+              </div>
+          </div>
+          <div class="bottomDetails">
+              <div class="propFeaturesDiv">
+         
+                  <div class="d-flex col-12 px-0 mb-3 featureBoxGroup">
+                    <div class="featureBox">
+                      <div class="featureImg">
+                        <img height="20" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/propImage/bed-queen-outline.png" alt="..bed-queen-outline.png" >
+                      </div>
+                      <div class="featureTxt" >
+                        <div class="textSizeBhksHead" *ngIf="floorPlan.bhk.indexOf('Plots')">
+                          {{floorPlan.bhk}} BHK
+                        </div>
+                        <div class="textSizeBhksHead" *ngIf="!floorPlan.bhk.indexOf('Plots')">
+                          {{floorPlan.bhk}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="featureBox">
+                      <div class="featureImg">
+                        <img height="20" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/propImage/set-square.png" alt="..set-square.png" >
+                      </div>
+                      <div class="textSizeBhksHead">
+                        <p class="mb-0">{{floorPlanArea}} sq.ft</p>
+                      </div>
+                    </div>
+                    <div class="featureBox" *ngIf="data.total_apartments">
+                      <div class="featureImg">
+                        <img height="20" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/propImage/buildingUnits.png" alt="..buildingUnits.png" >
+                      </div>
+                      <div class="textSizeBhksHead">
+                        <p class="mb-0">Units - {{data.total_apartments}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+
+<!-- FLOOR PLAN NORMAL -->
+<div class="showhideprice-nontable">
+
+  <div class="d-flex mb-4">
+    <h4 class="col-4 px-0 overViewColourHeader">
+      {{selectedBhk}} Floor Plans
+    </h4>
+    <h4 class="col-8 px-0 text-right overViewColourHeader" (click)="brochuredownload();DownladBrochureHash()">
+      <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/propImage/tray-arrow-downBrochure.png" alt="..tray-arrow-downBrochure.png" > &nbsp;Download Brochure
+    </h4>
+  </div>
+
+  <div *ngIf="showfloorplane" class="price_floor_plans">
+    <div id="horizontalTab">
+      <ul class="nav nav-tabs tabs-marker tabs-dark" id="myTab" role="tablist">
+        <li class="nav-item" role="tab"  *ngIf="onebhk">
+          <span class="nav-link" [ngClass]="{ 'active': currentTab === 'BHK1' }" (click)="onebhkClicked()" data-toggle="tab" data-target="#BHK1">1 BHK</span>
+        </li>
+        <li class="nav-item" role="tab"  *ngIf="twobhk">
+          <span class="nav-link" [ngClass]="{ 'active': currentTab === 'BHK2' }" (click)="twobhkClicked()" data-toggle="tab" data-target="#BHK2">2 BHK</span>
+        </li>
+        <li class="nav-item" role="tab"  *ngIf="threebhk">
+          <span class="nav-link" [ngClass]="{ 'active': currentTab === 'BHK3' }" (click)="threebhkClicked()" data-toggle="tab" data-target="#BHK3">3 BHK</span>
+        </li>
+        <li class="nav-item" role="tab"  *ngIf="fourbhk">
+          <span class="nav-link" [ngClass]="{ 'active': currentTab === 'BHK4' }" (click)="fourbhkClicked()" data-toggle="tab" data-target="#BHK4">4 BHK</span>
+        </li>
+        <li class="nav-item" role="tab"  *ngIf="fivebhk">
+          <span class="nav-link" [ngClass]="{ 'active': currentTab === 'BHK5' }" (click)="fivebhkClicked()" data-toggle="tab" data-target="#BHK5">5 BHK</span>
+        </li>
+        <li class="nav-item" role="tab"  *ngIf="sixbhk">
+          <span class="nav-link" [ngClass]="{ 'active': currentTab === 'BHK6' }" (click)="sixbhkClicked()" data-toggle="tab" data-target="#BHK6">6 BHK</span>
+        </li>
+        <li class="nav-item" role="tab"  *ngIf="sevenbhk">
+          <span class="nav-link" [ngClass]="{ 'active': currentTab === 'BHK7' }" (click)="sevenbhkClicked()" data-toggle="tab" data-target="#BHK7">7 BHK</span>
+        </li>
+        <li class="nav-item" role="tab"  *ngIf="eightbhk">
+          <span class="nav-link" [ngClass]="{ 'active': currentTab === 'BHK8' }" (click)="eightbhkClicked()" data-toggle="tab" data-target="#BHK8">8 BHK</span>
+        </li>
+        <li class="nav-item" role="tab"  *ngIf="plots">
+          <span class="nav-link" [ngClass]="{ 'active': currentTab === 'PLOTS' }" (click)="eightbhkClicked()" data-toggle="tab" data-target="#PLOTS">PLOTS</span>
+        </li>
+
+      </ul>
+
+      <div class="tab-content">
+        <div id="BHK1" *ngIf="onebhk" [ngClass]="{ 'active && show': currentTab === 'BHK1'}" class="tab-pane fade show active">
+          <div class="floor_plan_main">
+            <div class="prce_floor">
+              <div class="floor_tble_main" [photoGalleryGroup]>
+                <div class="floor_tble_body" *ngFor="let bhk of floorplans | myfilter: 'BHK' : '1 BHK' | slice:start:endone; let i = index">
+                    <div class="col-12 floorBox p-1 mb-2">
+                      <div class="floorBoxImg col-2">
+                        <span class="example-image-link" photoGallery="{{uploadBHKImages}}{{bhk.FloorImage}}">
+                          <img loading="lazy"  height="100%" width="100%" class="example-image" src="{{uploadBHKImages}}{{bhk.FloorImage}}" alt="bhk.alttag" />
+                        </span>
+                      </div>
+                      <a routerLink="/fpd/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-floorplan-overview-{{bhk.bhk_details_IDPK}}-{{propID | cleanUrl}}" [queryParams]="updateQueryParams('tab', 'BHK1')" class="paddingAreaFloorPlan text-start col-9">
+                        <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="floor_dimension">
+                          <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                            sq ft </span> (Carpet Area)
+                        </p>
+                        <div *ngIf="data.propertyType != 'Villas'">
+                          <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                            <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft </span> (Super
+                            Builtup Area)
+                          </p>
+                        </div>
+                        <div *ngIf="data.propertyType == 'Villas'">
+                          <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                            <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft </span> (Builtup
+                            Area)
+                          </p>
+                        </div>
+                        <div>
+                          <h3 class="bhk_price"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}} </h3>
+                        </div>
+                      </a>
+                      <div class="mt-2 col-1 p-0">
+                        <a routerLink="/fpd/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-floorplan-overview-{{bhk.bhk_details_IDPK}}-{{propID | cleanUrl}}" [queryParams]="updateQueryParams('tab', 'BHK1')" id="mobile_bar" (click)="ShowHide();onOneBhk(bhk.BHK)" class="enqr_btn"><img loading="lazy"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/propImage/open-in-new.png" alt="..open-in-new.png" ></a>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="hideOneBhkSeeMore" class="show_hide text-center">
+              <span class="prce_clk" (click)="floorseemore1()" *ngIf="endone == 3">See More <i class="fa fa-angle-down arrows" aria-hidden="true"></i></span>
+              <span class="prce_clk" (click)="floorseeless1()" *ngIf="endone > 3">See Less <i class="fa fa-angle-up arrows" aria-hidden="true"></i></span>
+            </div>
+
+          </div>
+        </div>
+        <div id="BHK2" *ngIf="twobhk" [ngClass]="{ 'active && show': currentTab === 'BHK2'}" class="tab-pane fade">
+          <div class="floor_plan_main">
+            <div class="prce_floor">
+              <div class="floor_tble_main" [photoGalleryGroup]>
+                <div class="floor_tble_body" *ngFor="let bhk of floorplans | myfilter: 'BHK' : '2 BHK' | slice:start:endtwo;let i = index">
+                    <div class="col-12 floorBox p-1 mb-2">
+                      <div class="floorBoxImg col-2">
+                        <span class="example-image-link" photoGallery="{{uploadBHKImages}}{{bhk.FloorImage}}">
+                          <img loading="lazy"  height="100%" width="100%" class="example-image" src="{{uploadBHKImages}}{{bhk.FloorImage}}" alt="bhk.alttag" />
+                        </span>
+                      </div>
+                      <a routerLink="/fpd/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-floorplan-overview-{{bhk.bhk_details_IDPK}}-{{propID | cleanUrl}}" [queryParams]="updateQueryParams('tab', 'BHK2')" class="paddingAreaFloorPlan text-start col-9">
+                        <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="floor_dimension">
+                          <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                            sq ft </span> (Carpet Area)
+                        </p>
+                        <div *ngIf="data.propertyType != 'Villas'">
+                          <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                            <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft </span> (Super
+                            Builtup Area)
+                          </p>
+                        </div>
+                        <div *ngIf="data.propertyType == 'Villas'">
+                          <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                            <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft </span> (Builtup
+                            Area)
+                          </p>
+                        </div>
+                        <div>
+                          <h3 class="bhk_price"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}} </h3>
+                        </div>
+                      </a>
+                      <div class="mt-2 col-1 p-0">
+                        <a routerLink="/fpd/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-floorplan-overview-{{bhk.bhk_details_IDPK}}-{{propID | cleanUrl}}" [queryParams]="updateQueryParams('tab', 'BHK2')" id="mobile_bar" (click)="ShowHide();onOneBhk(bhk.BHK)" class="enqr_btn"><img loading="lazy"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/propImage/open-in-new.png" alt="..open-in-new.png" ></a>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="hideTwoBhkSeeMore" class="show_hide text-center">
+              <span class="prce_clk" (click)="floorseemore2()" *ngIf="endtwo == 3">See More <i class="fa fa-angle-down arrows" aria-hidden="true"></i></span>
+              <span class="prce_clk" (click)="floorseeless2()" *ngIf="endtwo > 3">See Less <i class="fa fa-angle-up arrows" aria-hidden="true"></i></span>
+            </div>
+          </div>
+        </div>
+        <div id="BHK3" *ngIf="threebhk" [ngClass]="{ 'active && show': currentTab === 'BHK3'}"class="tab-pane fade">
+          <div class="floor_plan_main">
+            <div class="prce_floor">
+              <div class="floor_tble_main" [photoGalleryGroup]>
+                <div class="floor_tble_body" *ngFor="let bhk of floorplans | myfilter: 'BHK' : '3 BHK' | slice:start:endthree;let i = index">
+                  <div class="col-12 floorBox p-1 mb-2">
+                    <div class="floorBoxImg col-2">
+                      <span class="example-image-link" photoGallery="{{uploadBHKImages}}{{bhk.FloorImage}}">
+                        <img loading="lazy"  height="100%" width="100%" class="example-image" src="{{uploadBHKImages}}{{bhk.FloorImage}}" alt="bhk.alttag" />
+                      </span>
+                    </div>
+                    <a routerLink="/fpd/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-floorplan-overview-{{bhk.bhk_details_IDPK}}-{{propID | cleanUrl}}" [queryParams]="updateQueryParams('tab', 'BHK3')" class="paddingAreaFloorPlan text-start col-9">
+                      <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="floor_dimension">
+                        <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                          sq ft </span> (Carpet Area)
+                      </p>
+                      <div *ngIf="data.propertyType != 'Villas'">
+                        <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                          <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft </span> (Super
+                          Builtup Area)
+                        </p>
+                      </div>
+                      <div *ngIf="data.propertyType == 'Villas'">
+                        <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                          <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft </span> (Builtup
+                          Area)
+                        </p>
+                      </div>
+                      <div>
+                        <h3 class="bhk_price"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}}</h3>
+                      </div>
+                    </a>
+                    <div class="mt-2 col-1 p-0">
+                      <a routerLink="/fpd/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-floorplan-overview-{{bhk.bhk_details_IDPK}}-{{propID | cleanUrl}}" [queryParams]="updateQueryParams('tab', 'BHK3')" id="mobile_bar" (click)="ShowHide();onOneBhk(bhk.BHK)" class="enqr_btn"><img loading="lazy"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/propImage/open-in-new.png" alt="..open-in-new.png" ></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="hideThreeBhkSeeMore" class="show_hide text-center">
+              <span class="prce_clk" (click)="floorseemore3()" *ngIf="endthree == 3">See More <i class="fa fa-angle-down arrows" aria-hidden="true"></i></span>
+              <span class="prce_clk" (click)="floorseeless3()" *ngIf="endthree > 3">See Less <i class="fa fa-angle-up arrows" aria-hidden="true"></i></span>
+            </div>
+          </div>
+        </div>
+        <div id="BHK4" *ngIf="fourbhk" [ngClass]="{ 'active && show': currentTab === 'BHK4'}" class="tab-pane fade">
+          <div class="floor_plan_main">
+            <div class="prce_floor">
+              <div class="floor_tble_main" [photoGalleryGroup]>
+                <div class="floor_tble_body" *ngFor="let bhk of floorplans | myfilter: 'BHK' : '4 BHK' | slice:start:endfour;let i = index">
+                    <div class="col-12 floorBox p-1 mb-2">
+                      <div class="floorBoxImg col-2">
+                        <span class="example-image-link" photoGallery="{{uploadBHKImages}}{{bhk.FloorImage}}">
+                          <img loading="lazy"  height="100%" width="100%" class="example-image" src="{{uploadBHKImages}}{{bhk.FloorImage}}" alt="bhk.alttag" />
+                        </span>
+                      </div>
+                      <a routerLink="/fpd/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-floorplan-overview-{{bhk.bhk_details_IDPK}}-{{propID | cleanUrl}}" [queryParams]="updateQueryParams('tab', 'BHK4')" class="paddingAreaFloorPlan text-start col-9">
+                        <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="floor_dimension">
+                          <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                            sq ft </span> (Carpet Area)
+                        </p>
+                        <div *ngIf="data.propertyType != 'Villas'">
+                          <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                            <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft </span> (Super
+                            Builtup Area)
+                          </p>
+                        </div>
+                        <div *ngIf="data.propertyType == 'Villas'">
+                          <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                            <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft </span> (Builtup
+                            Area)
+                          </p>
+                        </div>
+                        <div>
+                          <h3 class="bhk_price"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}} </h3>
+                        </div>
+                      </a>
+                      <div class="mt-2 col-1 p-0">
+                        <a routerLink="/fpd/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-floorplan-overview-{{bhk.bhk_details_IDPK}}-{{propID | cleanUrl}}" [queryParams]="updateQueryParams('tab', 'BHK4')" id="mobile_bar" (click)="ShowHide();onOneBhk(bhk.BHK)" class="enqr_btn"><img loading="lazy"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/propImage/open-in-new.png" alt="..open-in-new.png" ></a>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="hideFourBhkSeeMore" class="show_hide text-center">
+              <span class="prce_clk" (click)="floorseemore4()" *ngIf="endfour == 3">See More <i class="fa fa-angle-down arrows" aria-hidden="true"></i></span>
+              <span class="prce_clk" (click)="floorseeless4()" *ngIf="endfour > 3">See Less <i class="fa fa-angle-up arrows" aria-hidden="true"></i></span>
+            </div>
+          </div>
+        </div>
+        <div id="BHK5" *ngIf="fivebhk" [ngClass]="{ 'active && show': currentTab === 'BHK5'}" class="tab-pane fade">
+          <div class="floor_plan_main">
+            <div class="prce_floor">
+              <div class="floor_tble_main" [photoGalleryGroup]>
+                <div class="floor_tble_body" *ngFor="let bhk of floorplans | myfilter: 'BHK' : '5 BHK' | slice:start:endfive;let i = index">
+                    <div class="col-12 floorBox p-1 mb-2">
+                      <div class="floorBoxImg col-2">
+                        <span class="example-image-link" photoGallery="{{uploadBHKImages}}{{bhk.FloorImage}}">
+                          <img loading="lazy"  height="100%" width="100%" class="example-image" src="{{uploadBHKImages}}{{bhk.FloorImage}}" alt="bhk.alttag" />
+  
+                        </span>
+                      </div>
+                      <a routerLink="/fpd/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-floorplan-overview-{{bhk.bhk_details_IDPK}}-{{propID | cleanUrl}}" [queryParams]="updateQueryParams('tab', 'BHK5')" class="paddingAreaFloorPlan text-start col-9">
+                        <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="floor_dimension">
+                          <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                            sq ft </span> (Carpet Area)
+                        </p>
+                        <div *ngIf="data.propertyType != 'Villas'">
+                          <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                            <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft </span> (Super
+                            Builtup Area)
+                          </p>
+                        </div>
+                        <div *ngIf="data.propertyType == 'Villas'">
+                          <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                            <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft </span> (Builtup
+                            Area)
+                          </p>
+                        </div>
+                        <div>
+                          <h3 class="bhk_price"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}} </h3>
+                        </div>
+                      </a>
+                      <div class="mt-2 col-1 p-0">
+                        <a routerLink="/fpd/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-floorplan-overview-{{bhk.bhk_details_IDPK}}-{{propID | cleanUrl}}" [queryParams]="updateQueryParams('tab', 'BHK5')" id="mobile_bar" (click)="ShowHide();onOneBhk(bhk.BHK)" class="enqr_btn"><img loading="lazy"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/propImage/open-in-new.png" alt="..open-in-new.png" ></a>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="hideFiveBhkSeeMore" class="show_hide text-center">
+              <span class="prce_clk" (click)="floorseemore5()" *ngIf="endfive == 3">See More <i class="fa fa-angle-down arrows" aria-hidden="true"></i></span>
+              <span class="prce_clk" (click)="floorseeless5()" *ngIf="endfive > 3">See Less <i class="fa fa-angle-up arrows" aria-hidden="true"></i></span>
+            </div>
+          </div>
+        </div>
+        <div id="BHK6" *ngIf="sixbhk" [ngClass]="{ 'active && show': currentTab === 'BHK6'}" class="tab-pane fade">
+          <div class="floor_plan_main">
+            <div class="prce_floor">
+              <div class="floor_tble_main" [photoGalleryGroup]>
+                <div class="floor_tble_body" *ngFor="let bhk of floorplans | myfilter: 'BHK' : '6 BHK' | slice:start:endsix;let i = index">
+                    <div class="col-12 floorBox p-1 mb-2">
+                      <div class="floorBoxImg col-2">
+                        <span class="example-image-link" photoGallery="{{uploadBHKImages}}{{bhk.FloorImage}}">
+                          <img loading="lazy"  height="100%" width="100%" class="example-image" src="{{uploadBHKImages}}{{bhk.FloorImage}}" alt="bhk.alttag" />
+  
+                        </span>
+                      </div>
+                      <a routerLink="/fpd/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-floorplan-overview-{{bhk.bhk_details_IDPK}}-{{propID | cleanUrl}}" [queryParams]="updateQueryParams('tab', 'BHK6')" class="paddingAreaFloorPlan text-start col-9">
+                        <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="floor_dimension">
+                          <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                            sq ft </span> (Carpet Area)
+                        </p>
+                        <div *ngIf="data.propertyType != 'Villas'">
+                          <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                            <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft </span> (Super
+                            Builtup Area)
+                          </p>
+                        </div>
+                        <div *ngIf="data.propertyType == 'Villas'">
+                          <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                            <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft </span> (Builtup
+                            Area)
+                          </p>
+                        </div>
+                        <div>
+                          <h3 class="bhk_price"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}} </h3>
+                        </div>
+                      </a>
+                      <div class="mt-2 col-1 p-0">
+                        <a routerLink="/fpd/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-floorplan-overview-{{bhk.bhk_details_IDPK}}-{{propID | cleanUrl}}" [queryParams]="updateQueryParams('tab', 'BHK6')" id="mobile_bar" (click)="ShowHide();onOneBhk(bhk.BHK)" class="enqr_btn"><img loading="lazy"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/propImage/open-in-new.png" alt="..open-in-new.png" ></a>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="hidesixBhkSeeMore" class="show_hide text-center">
+              <span class="prce_clk" (click)="floorseemore6()" *ngIf="endsix == 3">See More <i class="fa fa-angle-down arrows" aria-hidden="true"></i></span>
+              <span class="prce_clk" (click)="floorseeless6()" *ngIf="endsix > 3">See Less <i class="fa fa-angle-up arrows" aria-hidden="true"></i></span>
+            </div>
+          </div>
+        </div>
+        <div id="BHK7" *ngIf="sevenbhk" [ngClass]="{ 'active && show': currentTab === 'BHK7'}" class="tab-pane fade">
+          <div class="floor_plan_main">
+            <div class="prce_floor">
+              <div class="floor_tble_main" [photoGalleryGroup]>
+                <div class="floor_tble_body" *ngFor="let bhk of floorplans | myfilter: 'BHK' : '7 BHK' | slice:start:endseven;let i = index">
+                    <div class="col-12 floorBox p-1 mb-2">
+                      <div class="floorBoxImg col-2">
+                        <span class="example-image-link" photoGallery="{{uploadBHKImages}}{{bhk.FloorImage}}">
+                          <img loading="lazy"  height="100%" width="100%" class="example-image" src="{{uploadBHKImages}}{{bhk.FloorImage}}" alt="bhk.alttag" />
+  
+                        </span>
+                      </div>
+                      <a routerLink="/fpd/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-floorplan-overview-{{bhk.bhk_details_IDPK}}-{{propID | cleanUrl}}" [queryParams]="updateQueryParams('tab', 'BHK7')" class="paddingAreaFloorPlan text-start col-9">
+                        <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="floor_dimension">
+                          <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                            sq ft </span> (Carpet Area)
+                        </p>
+                        <div *ngIf="data.propertyType != 'Villas'">
+                          <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                            <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft </span> (Super
+                            Builtup Area)
+                          </p>
+                        </div>
+                        <div *ngIf="data.propertyType == 'Villas'">
+                          <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                            <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft </span> (Builtup
+                            Area)
+                          </p>
+                        </div>
+                        <div>
+                          <h3 class="bhk_price"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}} </h3>
+                        </div>
+                      </a>
+                      <div class="mt-2 col-1 p-0">
+                        <a routerLink="/fpd/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-floorplan-overview-{{bhk.bhk_details_IDPK}}-{{propID | cleanUrl}}" [queryParams]="updateQueryParams('tab', 'BHK7')" id="mobile_bar" (click)="ShowHide();onOneBhk(bhk.BHK)" class="enqr_btn"><img loading="lazy"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/propImage/open-in-new.png" alt="..open-in-new.png" ></a>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="hidesevenBhkSeeMore" class="show_hide text-center">
+              <span class="prce_clk" (click)="floorseemore7()" *ngIf="endseven == 3">See More <i class="fa fa-angle-down arrows" aria-hidden="true"></i></span>
+              <span class="prce_clk" (click)="floorseeless7()" *ngIf="endseven > 3">See Less <i class="fa fa-angle-up arrows" aria-hidden="true"></i></span>
+            </div>
+          </div>
+        </div>
+        <div id="BHK8" *ngIf="eightbhk" [ngClass]="{ 'active && show': currentTab === 'BHK8'}" class="tab-pane fade">
+          <div class="floor_plan_main">
+            <div class="prce_floor">
+              <div class="floor_tble_main" [photoGalleryGroup]>
+                <div class="floor_tble_body" *ngFor="let bhk of floorplans | myfilter: 'BHK' : '8 BHK' | slice:start:endeight;let i = index">
+                  <div class="col-12 floorBox p-1 mb-2">
+                    <div class="floorBoxImg col-2">
+                      <span class="example-image-link" photoGallery="{{uploadBHKImages}}{{bhk.FloorImage}}">
+                        <img loading="lazy"  height="100%" width="100%" class="example-image" src="{{uploadBHKImages}}{{bhk.FloorImage}}" alt="bhk.alttag" />
+
+                      </span>
+                    </div>
+                    <a routerLink="/fpd/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-floorplan-overview-{{bhk.bhk_details_IDPK}}-{{propID | cleanUrl}}" [queryParams]="updateQueryParams('tab', 'BHK8')" class="paddingAreaFloorPlan text-start col-9">
+                      <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="floor_dimension">
+                        <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                          sq ft </span> (Carpet Area)
+                      </p>
+                      <div *ngIf="data.propertyType != 'Villas'">
+                        <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                          <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft </span> (Super
+                          Builtup Area)
+                        </p>
+                      </div>
+                      <div *ngIf="data.propertyType == 'Villas'">
+                        <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                          <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft </span> (Builtup
+                          Area)
+                        </p>
+                      </div>
+                      <div>
+                        <h3 class="bhk_price"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}} </h3>
+                      </div>
+                    </a>
+                    <div class="mt-2 col-1 p-0">
+                      <a routerLink="/fpd/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-floorplan-overview-{{bhk.bhk_details_IDPK}}-{{propID | cleanUrl}}" [queryParams]="updateQueryParams('tab', 'BHK8')" id="mobile_bar" (click)="ShowHide();onOneBhk(bhk.BHK)" class="enqr_btn"><img loading="lazy"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/propImage/open-in-new.png" alt="..open-in-new.png" ></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="hideeightBhkSeeMore" class="show_hide text-center">
+              <span class="prce_clk" (click)="floorseemore8()" *ngIf="endeight == 3">See More <i class="fa fa-angle-down arrows" aria-hidden="true"></i></span>
+              <span class="prce_clk" (click)="floorseeless8()" *ngIf="endeight > 3">See Less <i class="fa fa-angle-up arrows" aria-hidden="true"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <div id="PLOTS" *ngIf="plots" [ngClass]="{ 'active && show': currentTab === 'PLOTS'}" class="tab-pane fade">
+          <div class="floor_plan_main">
+            <div class="prce_floor">
+              <div class="floor_tble_main">
+                <div class="mb-3 plot_tble_body floorBox" *ngFor="let bhk of floorplans | myfilter: 'BHK' : 'PLOTS' | slice:start:endplots;">
+                    <div class="d-flex col-12 pt-4 px-0">
+                      <div class="paddingAreaplotPlan col-6">
+                        <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="floor_dimension">
+                          Plot Area - {{bhk.Area.replace('-Carpet_Area', '')}} sq ft
+                        </p>
+                        <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="floor_dimension">
+                          Plot Area - {{bhk.Area.replace('-Area', '')}} sq ft
+                        </p>
+                      </div>
+                      <a routerLink="/fpd/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-floorplan-overview-{{bhk.bhk_details_IDPK}}-{{propID | cleanUrl}}" [queryParams]="updateQueryParams('tab', 'PLOTS')" class="paddingAreaplotPlan col-4">
+                        <h5 class="bhk_price"><i class="fa fa-inr" aria-hidden="true"></i> {{bhk.Price}} </h5>
+                      </a>
+                      <div class="col-2 text-right">
+                        <a routerLink="/fpd/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-floorplan-overview-{{bhk.bhk_details_IDPK}}-{{propID | cleanUrl}}" [queryParams]="updateQueryParams('tab', 'PLOTS')" id="mobile_bar" (click)="ShowHide();onOneBhk(bhk.BHK)" class="enqr_btn"><img loading="lazy"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/propImage/open-in-new.png" alt="..open-in-new.png" ></a>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="hidePLOTSValSeeMore" class="show_hide text-center plot_show">
+              <span class="prce_clk" (click)="floorseemoreplots()" *ngIf="endplots == 3">See More <i class="fa fa-angle-down arrows" aria-hidden="true"></i></span>
+              <span class="prce_clk" (click)="floorseelessplots()" *ngIf="endplots > 3">See Less <i class="fa fa-angle-up arrows" aria-hidden="true"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div *ngIf="hidefloorplane" class="col-12 text-center">
+    <h2 class="overViewColour">No Floor Plans To Show</h2>
+  </div>
+</div>
+<!-- FLOOR PLAN NORMAL -->
+
+ <!-- Brochure Download Section -->
+ <div *ngIf="Visiblebrochure">
+  <ng-container *ngComponentOutlet="PropertybrochureformComponent"></ng-container>
+</div>
+<!-- Brochure Download Section -->
+
+  </div>
+<ng-container *ngComponentOutlet="enquiryFormComponent"></ng-container>
+
+
+  <div class="issuePropDiv col-12 px-0">
+    <div class="mb-2">
+        <div class="col-sm-12">
+            <h2 class="overViewColour2">{{propName}} Quick Links</h2>
+        </div>
+    </div>
+    <div class="quickLinksDiv col-12">
+      <ul class="pl-0">
+        <a href="/pbd/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-brochure-download-{{propID | cleanUrl}}"><li>{{data.propertyName}} Brochure&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a>
+        <a href="/plm/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-location-map-{{propID | cleanUrl}}"><li>{{data.propertyName}} Location Map&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a>
+        <a href="/pas/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-amenities-{{propID | cleanUrl}}"><li>{{data.propertyName}} Amenities&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a>
+        <a href="/pgv/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-photo-gallery-{{propID | cleanUrl}}"><li>{{data.propertyName}} Photos & Videos&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a>
+        <a href="/dfl/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-disscussion-forum-list-{{propID | cleanUrl}}"><li>{{data.propertyName}} Questions Answers&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a>
+        <a href="/prd/rating-and-reviews-of-{{data.propertyName | cleanUrl}}-{{propID | cleanUrl}}"><li>{{data.propertyName}} Reviews&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a>
+        <a href="/fpl/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-floorplans-{{propID | cleanUrl}}"><li>{{data.propertyName}} Floor Plans & Prices&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a> 
+      </ul>
+    </div>
+</div>
+</div>
+<div class="innerheader_position">
+  <app-innerheader></app-innerheader>
+</div>
+
+

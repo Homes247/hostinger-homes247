@@ -1,0 +1,152 @@
+<div class="container" >
+  <div class="row">
+    <div class="col-md-12 pageBackground">
+      <div class="col-md-12 headingBox">
+        <div class="reviews-section mb-2">
+          <h2 class="sqrt-titletext m-0">{{currentLocalityName}} Reviews & Ratings</h2>
+          <!-- <a class="show-all"
+          href="https://www.homes247.in/lrd/rating-and-reviews-of-{{currentLocalityName| cleanUrl}}-{{localityId | cleanUrl}}-{{cityId | cleanUrl}}"  target="_blank">Show
+          All &raquo;</a> -->
+        </div>
+          <div class="col-12 px-0">
+              <div class="row" *ngIf="!numbernan">
+                <div class="col-11 px-0">
+                  <div class=" col-md-12 p-0 ratingLeftSection text-center">
+                      <span class="avRating">{{averagerating}}</span><span  class="slash5">/5</span>
+                      <p class="my-2" >
+                        <i [ngClass]="{'starColour': averagerating >= 1}" class="fa fa-star"></i>&nbsp;&nbsp;&nbsp;
+                        <i [ngClass]="{'starColour': averagerating >= 2}" class="fa fa-star"></i>&nbsp;&nbsp;&nbsp;
+                        <i [ngClass]="{'starColour': averagerating >= 3}" class="fa fa-star"></i>&nbsp;&nbsp;&nbsp;
+                        <i [ngClass]="{'starColour': averagerating >= 4}" class="fa fa-star"></i>&nbsp;&nbsp;&nbsp;
+                        <i [ngClass]="{'starColour': averagerating >= 5}" class="fa fa-star "></i>&nbsp;&nbsp;&nbsp;
+                      </p>
+                      <p  class="reviewTxt">Based On {{reviwcount}} Reviews</p>
+                    </div>
+                    <div class="col-md-12 px-0 ratingRightSection">
+                      <ul class="col-12">
+                        <li class="row mb-2">
+                          <div class="col-2 pr-0 ratingValue5">5 <i class="starColour1 fa fa-star"></i>
+                          </div>
+                          <div class="col-10 p-0 align-self-center">
+                            <div class="progress" style="height: 5px;">
+                              <mat-progress-bar mode="determinate" [value]="fivestarcounts"
+                                class="progressBar5"></mat-progress-bar>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="row mb-2">
+                          <div class="col-2 pr-0 ratingValue4">4 <i class="starColour2 fa fa-star"></i></div>
+                          <div class="col-10 p-0 align-self-center">
+                            <div class="progress" style="height: 5px;">
+                              <mat-progress-bar mode="determinate"  class="progressBar4" [value]="fourstarcounts"></mat-progress-bar>
+                            </div>
+                          </div>
+                          
+                        </li>
+                        <li class="row mb-2">
+                          <div class="col-2 pr-0 ratingValue3">3 <i class="starColour3 fa fa-star"></i></div>
+                          <div class="col-10 p-0 align-self-center">
+                            <div class="progress" style="height: 5px;">
+                              <mat-progress-bar mode="determinate"  class="progressBar3" [value]="threestarcounts"></mat-progress-bar>
+                            </div>
+                          </div>
+                          
+                        </li>
+                        <li class="row mb-2">
+                          <div class="col-2 pr-0 ratingValue2">2 <i class="starColour4 fa fa-star"></i></div>
+                          <div class="col-10 p-0 align-self-center">
+                            <div class="progress" style="height: 5px;">
+                              <mat-progress-bar mode="determinate"  class="progressBar2" [value]="twostarcounts"></mat-progress-bar>
+                            </div>
+                          </div>
+                          
+                        </li>
+                        <li class="row mb-2">
+                          <div class="col-2 pr-0 ratingValue1">1 <i class="starColour5 fa fa-star"></i></div>
+                          <div class="col-10 p-0 align-self-center">
+                            <div class="progress" style="height: 5px;">
+                              <mat-progress-bar mode="determinate"  class="progressBar1" [value]="onestarcounts"></mat-progress-bar>
+                            </div>
+                          </div>
+                        </li>
+
+                      </ul>
+                    </div>
+              </div>
+              <div class="dividerLocality text-right col-1 p-0"></div>
+              </div>
+              </div>
+          <div class="col-12 px-0 mt-2" *ngIf="!numbernan">
+              <h3 class="sqrt-titletext2">Neighborhood Insight {{numbernan}}</h3>
+              <div class="d-flex col-12 justify-content-center"   >
+                  <div id="card col-4">
+                      <div id="chart" (click)="radialChart1($event)">
+                        <apx-chart
+                          *ngIf="chartOptions1"
+                          [series]="chartOptions1.series"
+                          [chart]="chartOptions1.chart"
+                          [plotOptions]="chartOptions1.plotOptions"
+                          [labels]="chartOptions1.labels"
+                          [stroke]="chartOptions1.stroke"
+                          [fill]="chartOptions1.fill"
+                        ></apx-chart>
+                      </div>
+                      <h3 class="faqSeeFont2 mt-0 text-center">Safety</h3>
+                    </div>
+                  <div id="card col-4">
+                      <div id="chart" (click)="radialChart2($event)">
+                        <apx-chart
+                          *ngIf="chartOptions2"
+                          [series]="chartOptions2.series"
+                          [chart]="chartOptions2.chart"
+                          [plotOptions]="chartOptions2.plotOptions"
+                          [labels]="chartOptions2.labels"
+                          [stroke]="chartOptions2.stroke"
+                          [fill]="chartOptions2.fill"
+                        ></apx-chart>
+                      </div>
+                      <h3 class="faqSeeFont2 mt-0 text-center">Lifestyle</h3>
+                    </div>
+                  <div id="card col-4">
+                      <div id="chart" (click)="radialChart3($event)">
+                        <apx-chart
+                          *ngIf="chartOptions3"
+                          [series]="chartOptions3.series"
+                          [chart]="chartOptions3.chart"
+                          [plotOptions]="chartOptions3.plotOptions"
+                          [labels]="chartOptions3.labels"
+                          [stroke]="chartOptions3.stroke"
+                          [fill]="chartOptions3.fill"
+                        ></apx-chart>
+                      </div>
+                      <h3 class="faqSeeFont2 mt-0 text-center">Community</h3>
+                    </div>
+              </div>
+              
+              <div class="col-12 mt-2 px-0 section-arrow" *ngIf="!numbernan"
+              style="box-shadow: 0px 0px 8px 0px #00000014;">
+                  <ul class="locConclude">
+                      <li> <span class="possitive"> Positive (90%):&nbsp;&nbsp;</span>Residents feel secure and mention a strong sense of safety. Low crime rates and friendly neighbors contribute to the positive safety perception.</li>
+                      <li> <span class="negative"> Negative (10%):&nbsp;&nbsp;</span>A few residents have expressed minor concerns about occasional noise during late hours.</li>
+                  </ul>
+              </div>
+          </div>
+          <div *ngIf="numbernan" class="noRatingTxt mt-5">
+            <h3>No Rating and Reviews for this Locality</h3>
+          </div>
+          <div class="locOverview text-center my-3">
+            <a id="Property_Locality_overview_Mobile" class="locOverviewTxt"
+              href="https://www.homes247.in/locality-overview/{{currentLocalityName| cleanUrl}}-in-{{currentPropCity| cleanUrl}}-overview-{{localityId | cleanUrl}}-{{cityId | cleanUrl}}"  target="_blank">{{currentLocalityName}}
+              Overview &nbsp; <i class="fa fa-angle-right"></i></a>
+          </div>
+    
+          <div class="writeReviewBtn col-12 pb-3">
+            <button><a style="color: #7A7A7A;font-size: 14px;" id="Property_Locality_reviews_Mobile"
+                href="https://www.homes247.in/lrd/rating-and-reviews-of-{{currentLocalityName| cleanUrl}}-{{localityId | cleanUrl}}-{{cityId | cleanUrl}}"  target="_blank">Show
+                All {{currentLocalityName}}
+                Reviews</a></button>
+          </div>
+    </div>
+    </div>
+  </div>
+</div>

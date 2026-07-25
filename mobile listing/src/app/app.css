@@ -1,0 +1,44 @@
+.start_posting_now {
+  bottom: 55px;
+  position: fixed;
+  right: 0px;
+  z-index: 1050;
+}
+
+.homiModal {
+  align-content: center;
+
+}
+
+.modalContentFrame {
+  border-radius: 6px;
+  height: 100vh;
+  margin: 0 !important;
+}
+
+.iFrameCloseButton {
+  position: absolute;
+  top: 2.5%;
+  right: 5%;
+  z-index: 99;
+}
+
+.modalIframe {
+  border-radius: 6px;
+  width: 100%;
+  height: 100vh;
+}
+
+#homiCloseButton {
+  z-index: 999;
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  border-width: 0.4px;
+  background: #fff;
+  border: 0.4px solid #971B47;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  text-align: center;
+  cursor: pointer;
+}

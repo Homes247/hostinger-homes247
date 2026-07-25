@@ -1,0 +1,127 @@
+<div class="main_div">
+    <div class="container-fluid">
+        <!-- <div class="col-md-12 logomaindiv">
+            <a class="sitemap_logo" href="https://www.homes247.in/">
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/logo/Homes247_NewBlack_Logo.png" alt="Homes247_logo" />
+            </a>
+        </div> -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <h1 style="font-size: 18px;" class="OurwritesText mb-1">All Builders by City</h1>
+            </div>
+            <div class="col-md-12 mb-3">
+                <nav class="AlphabetNav">
+                    <a routerLink="/all-builders-by-city">All</a>
+                    <a routerLink="/all-builders-by-city/a">A</a>
+                    <a routerLink="/all-builders-by-city/b">B</a>
+                    <a routerLink="/all-builders-by-city/c">C</a>
+                    <a routerLink="/all-builders-by-city/d">D</a>
+                    <a routerLink="/all-builders-by-city/e">E</a>
+                    <a routerLink="/all-builders-by-city/f">F</a>
+                    <a routerLink="/all-builders-by-city/g">G</a>
+                    <a routerLink="/all-builders-by-city/h">H</a>
+                    <a routerLink="/all-builders-by-city/i">I</a>
+                    <a routerLink="/all-builders-by-city/j">J</a>
+                    <a routerLink="/all-builders-by-city/k">K</a>
+                    <a routerLink="/all-builders-by-city/l">L</a>
+                    <a routerLink="/all-builders-by-city/m">M</a>
+                    <a routerLink="/all-builders-by-city/n">N</a>
+                    <a routerLink="/all-builders-by-city/o">O</a>
+                    <a routerLink="/all-builders-by-city/p">P</a>
+                    <a routerLink="/all-builders-by-city/q">Q</a>
+                    <a routerLink="/all-builders-by-city/r">R</a>
+                    <a routerLink="/all-builders-by-city/s">S</a>
+                    <a routerLink="/all-builders-by-city/t">T</a>
+                    <a routerLink="/all-builders-by-city/u">U</a>
+                    <a routerLink="/all-builders-by-city/v">V</a>
+                    <a routerLink="/all-builders-by-city/w">W</a>
+                    <a routerLink="/all-builders-by-city/x">X</a>
+                    <a routerLink="/all-builders-by-city/y">Y</a>
+                    <a routerLink="/all-builders-by-city/z">Z</a>
+                </nav>
+            </div>
+            <div class="col-md-4" *ngFor="let cityname of citiess | startsWithLettercity : activeLetter">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName"
+                        href="https://www.homes247.in/{{cityname.city | cleanUrl}}/property-sale"
+                        title="Properties for sale in {{cityname.city}} | Properties in {{cityname.city}}"
+                        target="_blank">
+                        &nbsp;&nbsp;Properties in {{cityname.city}}&nbsp;&nbsp;
+                        <a routerLink="/all-builders-by-city/{{cityname.city | cleanUrl}}/{{cityname.id}}"
+                            title="All Builders by {{cityname.city}}" target="_blank"><i class="fa fa-external-link"
+                                aria-hidden="true"></i></a>
+                    </a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a class="avgRatSqft"
+                                href="https://www.homes247.in/residential-flats-in-{{cityname.city | cleanUrl}}-for-sale"
+                                title="Flats for sale in {{cityname.city}} | Flats in {{cityname.city}}">Flats for Sale
+                                in {{cityname.city}}</a>
+                        </div>
+                        <div class="col-md-6">
+                            <a class="avgRatSqft"
+                                href="https://www.homes247.in/new-launch-projects/new-projects-in-{{cityname.city | cleanUrl}}"
+                                title="Pre launch projects in {{cityname.city}} | New projects in {{cityname.city}}">Pre
+                                launch Projects in {{cityname.city}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-12">
+            <div class="priority_page">
+                <h2>Common Links</h2>
+                <div class="citylist row">
+                    <p class="col-md-4">
+                        <a routerLink="/aboutus">About us</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/careers">Careers</a>
+                    </p>
+                    <!-- <p class="col-md-4">
+                        <a routerLink="/calculator">Emi Calculator</a>
+                    </p> -->
+                    <p class="col-md-4">
+                        <a routerLink="/policy">Privacy Policy</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a routerLink="/faq">Faq</a>
+                    </p>
+                    <!-- <p class="col-md-4">
+                        <a routerLink="/homeloan">Home Loan</a>
+                    </p> -->
+                    <!-- <p class="col-md-4">
+                        <a routerLink="/vaastu">Vastu Tips</a>
+                    </p> -->
+                    <!-- <p class="col-md-4">
+                        <a routerLink="/interior">Interiors</a>
+                    </p> -->
+                    <p class="col-md-4">
+                        <a routerLink="/contactus">Contact Us</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a routerLink="/blogsitemap">Real Estate Blogs</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a routerLink="/rentalsitemap">Rental Sitemap</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a routerLink="/commercialsitemap">Commercial Sitemap</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a routerLink="/pgsitemap">PG Sitemap</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer2></app-footer2>
+
+<div class="innerheader_position">
+    <app-innerheader></app-innerheader>
+</div>

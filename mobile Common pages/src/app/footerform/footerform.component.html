@@ -1,0 +1,67 @@
+<div class="clarify_query_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h4>Let us clarify your Query</h4>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <form name="moreForm" class="row">
+                <div class="col-lg-12 col-md-12 col-sm-4">
+                    <div class="clarify_query_form">
+                        <div class="input_div">
+                            <input placeholder="Name" type="text" id="namee" [(ngModel)]="user.name" name="name" />
+                        </div>
+                        <div class="input_div">
+                            <!-- <input class="country_code_blogs" id="blogsphno"/> -->
+                            <input class="inhalf" placeholder="Mobile Number" type="text" name="number"
+                                id="mobilenoo" [(ngModel)]="user.number" required />
+                        </div>
+                        <div class="input_div">
+                            <input placeholder="Email Id" is="email" type="emaill" name="email" id="emaill"
+                                [(ngModel)]="user.email" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-8">
+                    <div class="clarify_query_form">
+                        <div class="input_div">
+                            <textarea placeholder="Your message" name="msg" [(ngModel)]="user.msg"></textarea>
+                            <!-- <span class="text_err policy_cmnerror" ng-show="moreForm.msg.$invalid && moreForm.msg.$error.required && submit_blogquery">This is a required field</span> -->
+                        </div>
+                        <div class="input_div">
+                            <p>All email enquiries will be taken care in one business day</p>
+                            <button id="one" (click)="otpsend2()">Submit</button>
+                        </div>
+                    </div>
+                </div>
+                 <!--OTP-MODAL-->
+              <!-- <div id="modal-container2">
+                <div class="modal-background">
+                  <div class="modal">
+                    <h2>Please Verify your Number</h2>
+                    <p>Enter the 6 digit Verification Code sent on {{user.number}}<a (click)="goback()">(Edit)</a></p>
+                    <div class="col-12 countdown_maindiv">
+                      <countdown #cd2 [config]="countdownconfig" (event)="handleEvent($event)"></countdown>
+                    </div>
+                    <input hidden autocomplete="off" type="text" placeholder="OTP"
+                   name="otp" id="otp2" [(ngModel)]="user.otp" required/>
+                    <ng-otp-input class="otpinput" #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config"></ng-otp-input>
+                    <button (click)="otpvalidate2()">Validate OTP</button>
+                    <p class="otpexpireclass" *ngIf="otpexpired">OTP Expired - <a (click)="otpsend2()">Resend</a></p>
+                    <button type="reset" id="btn_reset" style="display: none;"></button>
+                  </div>
+                </div>
+              </div> -->
+            <!--OTP-MODAL-->
+            </form>
+        </div>
+    </div>
+</div>
+     <!-- CSS-Loader -->
+     <div *ngIf="otploader" class="loaderbody">
+        <div class="box">
+          <div class="loader-20"></div>
+        </div>
+      </div>
+      <!-- CSS-Loader -->

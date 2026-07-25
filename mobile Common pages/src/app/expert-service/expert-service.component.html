@@ -1,0 +1,113 @@
+<div class="wrapper body_color ">
+  <!-- Navbar content -->
+  <!-- <nav class="navbar navbar-expand-md navbar-dark mb-4 bg-blue fixed-top">
+    <h1 class="header-title" *ngIf="selectedService">{{selectedService | titlecase}}</h1>
+    <h1 class="header-title" *ngIf="!selectedService">Experts Services</h1>
+  </nav> -->
+  <h1 hidden>Experts Services</h1>
+  <ol class="breadcrumb mt-5 ">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item "><a routerLink="/expertservices"></a>Experts Services</li>
+    <li class="breadcrumb-item " *ngIf="selectedService">{{selectedService | titlecase}}</li>
+  </ol>
+
+  <div class="container-fluid text-center" *ngIf="allExpertsData?.length == 0">
+    <p id="noRecords">No Records Found...</p>
+  </div>
+
+
+  <div class="container-fluid mb-3 cardMainDiv" *ngIf="allExpertsData?.length !==0">
+    <div class="col-sm-12 card expert-card p-2 mb-2" *ngFor="let exp of allExpertsData; let i = index">
+      <div class="row" routerLink="/expertservices/{{exp.ExpertIn | cleanUrl}}-services/{{exp.ExpertIn | cleanUrl}}-details-{{exp.ExpertID}}">
+        <div class="col-3 align-self-center">
+
+          <div class="previewImg1" id="testing" *ngIf="exp.profileImg">
+            <img class="rounded-circle " src="{{ProfileImage}}{{exp.profileImg}}" alt="Generic placeholder image" width="80" height="80">
+          </div>
+          <div class="previewImg1" *ngIf="exp.profileImg == null">
+            <img class="rounded-circle" src="{{ProfileImage}}{{imageUrl}}" alt="Generic placeholder image" width="80" height="80">
+          </div>
+        </div>
+        <div class="col-9" *ngFor="let MainRating of exp.experts_review">
+          <h2 class="expert-name"><a>{{exp.Name}}</a>
+            <p class="expert-about1">{{exp.ExpertIn}}</p>
+
+            <!-- <span class="expert-star m-0 float-right" *ngIf="!MainRating.rating"><p>No Ratings</p></span> -->
+          </h2>
+
+          <p class="expert-about" [innerHTML]="exp.Description | sanitizeHtml"></p>
+
+          <div *ngIf="exp.Description">
+            <a class="readMoreDescp" href="/expertservices/{{exp.ExpertIn | cleanUrl}}-services/{{exp.ExpertIn | cleanUrl}}-details-{{exp.ExpertID}}" target="_blank">...View more
+            </a>
+          </div>
+
+          <span class="expert-star m-0" *ngIf="MainRating.rating">
+            <i [ngClass]="{'starColour': MainRating.rating >= 1}" class="fa fa-star-o"></i>
+            <i [ngClass]="{'starColour': MainRating.rating >= 2}" class="fa fa-star-o"></i>
+            <i [ngClass]="{'starColour': MainRating.rating >= 3}" class="fa fa-star-o"></i>
+            <i [ngClass]="{'starColour': MainRating.rating >= 4}" class="fa fa-star-o"></i>
+            <i [ngClass]="{'starColour': MainRating.rating >= 5}" class="fa fa-star-o "></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="more-expert-services">More Expert Services</p>
+  <div class="mt-2 col-md-12 places">
+    <div class="col-md-12 d-flex">
+
+      <div class="pr-5 text-center selectedPlace" tabindex="0" routerLink="/expertservices" (click)="routerActive()">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Flooplan.svg" alt="..Flooplan.svg" >
+        <p id="placeName" [ngStyle]="{'opacity': allExperts ? '1' : '0.5', 'border-bottom': allExperts ? '2px solid rgba(151,27,71,.8117647058823529)' : 'none'}" [routerLinkActive]="['active']">All Experts</p>
+      </div>
+
+      <div class="pr-5 text-center selectedPlace" tabindex="0" routerLink="/expertservices/floor-plan-experts-1" (click)="routerActive()">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Flooplan.svg" alt="..Flooplan.svg" >
+        <p id="placeName" [ngStyle]="{'opacity': Floorplan ? '1' : '0.5', 'border-bottom': Floorplan ? '2px solid rgba(151,27,71,.8117647058823529)' : 'none'}" [routerLinkActive]="['active']">Floorplan</p>
+      </div>
+
+      <div class="pr-5 text-center selectedPlace" tabindex="0" routerLink="/expertservices/market-experts-2" (click)="routerActive()">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Market.svg" alt="..Market.svg" >
+        <p id="placeName" [ngStyle]="{'opacity': Market ? '1' : '0.5', 'border-bottom': Market ? '2px solid rgba(151,27,71,.8117647058823529)' : 'none'}" [routerLinkActive]="['active']">Market</p>
+      </div>
+
+      <div class="pr-5 text-center selectedPlace" tabindex="0" routerLink="/expertservices/vastu-experts-3" (click)="routerActive()">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Vastu.svg" alt="..Vastu.svg" >
+        <p id="placeName" [ngStyle]="{'opacity': Vastu ? '1' : '0.5', 'border-bottom': Vastu ? '2px solid rgba(151,27,71,.8117647058823529)' : 'none'}" [routerLinkActive]="['active']">Vastu</p>
+      </div>
+
+      <div class="pr-5 text-center selectedPlace" tabindex="0" routerLink="/expertservices/legal-services-4" (click)="routerActive()">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Legal.svg" alt="..Legal.svg" >
+        <p id="placeName" [ngStyle]="{'opacity': Legal ? '1' : '0.5', 'border-bottom': Legal ? '2px solid rgba(151,27,71,.8117647058823529)' : 'none'}" [routerLinkActive]="['active']">Legal</p>
+      </div>
+
+      <div class="pr-5 text-center selectedPlace" tabindex="0" routerLink="/expertservices/home-inspection-services-5" (click)="routerActive()">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Inspection.svg" alt="..Inspection.svg" >
+        <p id="placeName" [ngStyle]="{'opacity': Inspection ? '1' : '0.5', 'border-bottom': Inspection ? '2px solid rgba(151,27,71,.8117647058823529)' : 'none'}" [routerLinkActive]="['active']">Inspection</p>
+      </div>
+
+      <div class="pr-5 text-center selectedPlace" tabindex="0" routerLink="/expertservices/property-manage-experts-6" (click)="routerActive()">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Manage.svg" alt="..Manage.svg" >
+        <p id="placeName" [ngStyle]="{'opacity': Manage ? '1' : '0.5', 'border-bottom': Manage ? '2px solid rgba(151,27,71,.8117647058823529)' : 'none'}" [routerLinkActive]="['active']">Property Manage</p>
+      </div>
+
+      <div class="pr-5 text-center selectedPlace" tabindex="0" routerLink="/expertservices/interior-services-7" (click)="routerActive()">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Interior.svg" alt="..Interior.svg" >
+        <p id="placeName" [ngStyle]="{'opacity': Interior ? '1' : '0.5', 'border-bottom': Interior ? '2px solid rgba(151,27,71,.8117647058823529)' : 'none'}" [routerLinkActive]="['active']">Interior</p>
+      </div>
+
+      <div class="pr-5 text-center selectedPlace" tabindex="0" routerLink="/expertservices/loan-services-8" (click)="routerActive()">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Loans.svg" alt="..Loans.svg" >
+        <p id="placeName" [ngStyle]="{'opacity': Loans ? '1' : '0.5', 'border-bottom': Loans ? '2px solid rgba(151,27,71,.8117647058823529)' : 'none'}" [routerLinkActive]="['active']">Loans</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngComponentOutlet="FooterComponent"></ng-container>
+
+<div class="innerheader_position">
+  <app-innerheader></app-innerheader>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />

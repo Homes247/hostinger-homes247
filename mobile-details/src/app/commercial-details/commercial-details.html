@@ -1,0 +1,1992 @@
+<!-- <nav class="navbar navbar-light bg-color fixed-top">
+    <a class="navbar-brand">
+      <img  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/dots-white.svg" alt="..dots-white.svg"  class="d-inline-block align-top imgsqrt-dots" >
+      <a><img  src="https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/logo2.svg"  class="log-margin" alt="logo2.svg"></a>
+    </a>
+    <button class="btn-sm custom-login-btn">Login</button>
+</nav> -->
+
+<!-- <app-rentinnerheader></app-rentinnerheader> -->
+<div class="innerheader_position">
+    <app-inner-header ngSkipHydration></app-inner-header>
+</div>
+<div class="topMarginBreadCrumb1"></div>
+<div class="breadcrumbsection">
+    <ul class="breadcrumb mb-0">
+        <li><a href="https://www.homes247.in">Home</a></li>
+        @if (sale_rent == '1') {
+        <li><a href="https://www.homes247.in/cll/commercial-properties-for-sale-in-{{cityname | cleanUrl}}"
+                target="_blank">Commercial
+                Properties
+                {{cityname}}</a></li>
+        }
+        @if (sale_rent == '2') {
+        <li><a itemprop="item"
+                href="https://www.homes247.in/cll/commercial-properties-for-sale-in-{{cityname | cleanUrl}}"
+                target="_blank">Commercial
+                Properties
+                {{cityname}}</a></li>
+        }
+        <li><a href="javascript:void(0)">Commercial Properties in {{localityname}}</a></li>
+
+        <!-- <li><a href="javascript:void(0)">Property Details</a></li> -->
+    </ul>
+</div>
+@for (data of propcommercialdetails; let i = $index; track data) {
+<div id="Headerrentel" class="main_banner_div col-12 p-0">
+    <h1 hidden>{{ data.property_title }} in {{ data.locality_name }}, {{ data.city_name }} | Commercial Space for
+        ₹{{data.Price }}</h1>
+    <div class="favAndShare d-flex pr-1">
+        <div class="favShare text-center">
+            <div [ngClass]="{'Rental_icons_Heart_Active': isInWishlist(data.Property_ID), 'Rental_icons_Heart': !isInWishlist(data.Property_ID)}"
+                class="Rental_icons_Heart mb-2" (click)="Heart_Transtion(data.Property_ID,data.commercial_type)">
+            </div>
+            <div class="Rental_icons_Share mb-2" (click)="shareContent()"></div>
+            <div class="Rental_icons_Report" data-toggle="modal" data-target="#propReportModal" data-backdrop="static"
+                data-keyboard="false"></div>
+        </div>
+    </div>
+    <!-- 
+    <button class="btn requestImageBtn" data-toggle="modal" data-target="#myModal" *ngIf="data.property_coverimage === null" (click)="ShowHideEnquery()">
+        <i class="fa fa-picture-o" aria-hidden="true"></i>&nbsp;Request
+        Images</button> -->
+    @if (data.Images.length !== 0) {
+    <div class="btnImgDiv" (click)="gallerySection()">
+        <div class="imgDiv" style="cursor: pointer;">
+            <span>
+                <img loading="lazy"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/rentalImagesIcon.png"
+                    height="16px" width="16px" alt="rentalImagesIcon.png">
+                {{data.Images.length}} Photos</span>
+        </div>
+
+        <!-- 
+        <div class="imgDiv" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">
+            <span>
+                <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/commercial details/video icon.svg" height="16px" width="16px" alt="video icon.svg"> videos</span>
+        </div>
+
+
+        <div class="imgDiv" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">
+            <span>
+                <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/rentalMapsIcon.png" height="16px" width="16px" alt="rentalMapsIcon.png"> Map</span>
+        </div> -->
+
+    </div>
+    }
+
+
+    @if (data.cover_img !== null) {
+    <img class="main_banner" (click)="gallerySection()" src="{{coverimage}}{{data.cover_img}}?width=288&height=153"
+        fetchpriority="high" loading="eager" width="288" height="153" alt="data.cover_img" />
+    } @else {
+    <img class="main_banner" fetchpriority="high" loading="eager"
+        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image.jpg" width="288"
+        height="153" alt="No image" />
+    }
+
+
+    <div class="sqrt-details">
+
+        @if (data.proparty_Type != 'Others') {
+        <h2 class="sqrt-maintitle">{{data.carpet_area}} {{data.carpet_area_type}}
+            {{data.dimension}}
+            {{data.dimensiontype}} {{data.proparty_Type}} in {{data.locality_name}}</h2>
+        }
+
+
+        @if (data.proparty_Type == 'Others') {
+        <h2 class="sqrt-maintitle">{{data.carpet_area}} {{data.carpet_area_type}}
+            {{data.dimension}}
+            {{data.dimensiontype}} Commercial Property in {{data.locality_name}}</h2>
+        }
+
+
+
+
+
+
+        <p class="sqrt-loctext mb-2">Near {{data.landmarks}}
+            &nbsp;&nbsp;<b></b></p>
+
+        <!-- <h5 class="listsqrt-text_Price" *ngIf="sale_rent == '1'">
+
+        
+
+            <span class="price_style" *ngIf="data.Price !== null  && data.Price != undefined  && data.Price != 0  && data.Price != ''">
+                {{ data.Price | customPriceFormat }}
+            </span>
+
+            <span (click)="ShowHideEnquery2()" class="price_style_lock" *ngIf="data.Price === null  || data.Price == undefined  || data.Price == 0  || data.Price == ''">
+                Unlock Price Info
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg" alt="..padlock (1) 1.svg"  class="ms-2 lock-icon" />
+            </span>
+
+
+
+        </h5>
+
+        <h5 class="listsqrt-text_Price" *ngIf="sale_rent == '2' && data.Total_lease_amount == null">
+            <span *ngIf="data.Rent_per_month && data.Rent_per_month != null && data.Rent_per_month != undefined && data.Rent_per_month != 0" (click)="showPopup(i)" class="material-symbols-outlined" style="font-size: 23px;"> info
+            </span>
+          
+            <span class="price_style" *ngIf="data.Rent_per_month !== null  && data.Rent_per_month != undefined  && data.Rent_per_month != 0  && data.Rent_per_month != ''">
+                {{ data.Rent_per_month | customPriceFormat }}
+            </span>
+
+          
+            <span (click)="ShowHideEnquery2()" class="price_style_lock" *ngIf="data.Rent_per_month === null  || data.Rent_per_month == undefined  || data.Rent_per_month == 0  || data.Rent_per_month == ''">
+                Unlock Price Info
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg" alt="..padlock (1) 1.svg"  class="ms-2 lock-icon" />
+            </span>
+
+
+
+        </h5>
+
+        <h5 class="listsqrt-text_Price" *ngIf="sale_rent == '2' && data.Rent_per_month == null">
+            <span *ngIf="data.Total_lease_amount && (data.Total_lease_amount != null || data.Total_lease_amount != '') && data.Total_lease_amount != undefined && data.Total_lease_amount != 0" (click)="showPopup(i)" class="material-symbols-outlined" style="font-size: 23px;"> info
+            </span>
+        
+
+
+            
+            <span class="price_style" *ngIf="(data.Total_lease_amount != null || data.Total_lease_amount != '')  && data.Total_lease_amount != undefined  && data.Total_lease_amount != 0  && data.Total_lease_amount != ''">
+                {{ data.Total_lease_amount | customPriceFormat }}
+            </span>
+
+          
+            <span (click)="ShowHideEnquery2()" class="price_style_lock" *ngIf="data.Total_lease_amount === null  || data.Total_lease_amount == undefined  || data.Total_lease_amount == 0  || data.Total_lease_amount == ''">
+                Unlock Price Info
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg" alt="..padlock (1) 1.svg"  class="ms-2 lock-icon" />
+            </span>
+
+
+        </h5> -->
+
+
+
+        @if (sale_rent == '1' && ( data.Total_lease_amount == null || data.Total_lease_amount == '') &&
+        data.Rent_per_month == null && data.Price !== null && data.Price !== undefined && data.Price != 0) {
+        <h3 class="price_style listsqrt-text_Price">
+            {{ data.Price | customPriceFormat }}
+            <span class="monthTxt"></span>
+        </h3>
+        }
+
+
+        @if (sale_rent == '1' && data.Total_lease_amount == null && data.Rent_per_month == null && (data.Price == null
+        || data.Price == undefined || data.Price == 0)) {
+        <p data-toggle="modal" data-target="#myModal_city" data-backdrop="static" data-keyboard="false"
+            (click)="ShowHideEnquery2()" class="price_style_lock">
+            Unlock Price Info <img style="height: 17px;width: 17px;"
+                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg"
+                alt="..padlock (1) 1.svg">
+        </p>
+        }
+
+
+
+
+
+
+
+        <!-- @if (sale_rent == '2' && ( data.Total_lease_amount == null || data.Total_lease_amount == '') &&
+        (data.Rent_per_month == null || data.Rent_per_month == undefined || data.Rent_per_month == 0)) {
+        <p data-toggle="modal" data-target="#myModal_city" data-backdrop="static" data-keyboard="false"
+            (click)="ShowHideEnquery2()" class="price_style_lock">
+            Unlock Price Info <img style="height: 17px;width: 17px;"
+                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg"
+                alt="..padlock (1) 1.svg">
+        </p>
+        } -->
+
+
+        @if (sale_rent == '2' && ( data.Total_lease_amount == null || data.Total_lease_amount == '') &&
+        data.Rent_per_month != null && data.Rent_per_month != undefined && data.Rent_per_month != 0) {
+        <h3 class="price_style listsqrt-text_Price">
+            {{ data.Rent_per_month | customPriceFormat }}
+            <span class="monthTxt"></span>
+        </h3>
+        }
+
+
+
+
+        @if (sale_rent == '2' && data.Rent_per_month == null && (data.Total_lease_amount == null ||
+        data.Total_lease_amount == undefined || data.Total_lease_amount == 0)) {
+        <p data-toggle="modal" data-target="#myModal_city" data-backdrop="static" data-keyboard="false"
+            (click)="ShowHideEnquery2()" class="price_style_lock">
+            Unlock Price Info <img style="height: 17px;width: 17px;"
+                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg"
+                alt="..padlock (1) 1.svg">
+        </p>
+        }
+
+
+        @if (sale_rent == '2' && data.Rent_per_month == null && data.Total_lease_amount != null &&
+        data.Total_lease_amount != undefined && data.Total_lease_amount != 0) {
+        <h3 class="price_style listsqrt-text_Price">
+            {{ data.Total_lease_amount | customPriceFormat }}
+            <span class="monthTxt"></span>
+        </h3>
+        }
+
+        @if (sale_rent == '2') {
+        <div [ngClass]="{ agreementPopup: i === selectedIndex }">
+
+            @if (i === selectedIndex) {
+            <div class="col-12 p-3">
+                <div class="d-flex" style="gap: 42px;">
+                    <div class="">
+                        @if (data.Total_lease_amount == null) {
+                        <div>
+                            <p class="popupHeading">Monthly Rent</p>
+                            <p class="popupSubHeading mb-2">
+                                ₹ {{ data.Rent_per_month }}
+                            </p>
+                        </div>
+                        }
+
+                        @if (data.Rent_per_month == null) {
+                        <div>
+                            <p class="popupHeading">Lease Amount</p>
+                            <p class="popupSubHeading mb-2">
+                                ₹ {{ data.Total_lease_amount }}
+                            </p>
+                        </div>
+                        }
+
+                        <div>
+                            <p class="popupHeading">Maintenance</p>
+                            @if (data.Maintenace_charge) {
+                            <p class="popupSubHeading">
+                                ₹ {{ data.Maintenace_charge }}
+                            </p>
+                            }
+                            @if (!data.Maintenace_charge) {
+                            <p class="popupSubHeading">
+                                NA
+                            </p>
+                            }
+                        </div>
+                    </div>
+                    <div class="">
+                        @if (data.Total_lease_amount == null) {
+                        <div>
+                            <p class="popupHeading">
+                                Security Deposit
+                            </p>
+                            @if (data.Security_deposit) {
+                            <p class="popupSubHeading mb-2">
+                                ₹ {{ data.Security_deposit }}
+                            </p>
+                            }
+                            @if (!data.Security_deposit) {
+                            <p class="popupSubHeading mb-2">
+                                NA
+                            </p>
+                            }
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            }
+            @if (i === selectedIndex) {
+            <div class="closePopup" (click)="closePopup(i)">
+                &times;
+            </div>
+            }
+        </div>
+        }
+        <div class="row ml-0">
+            <h2 class="sqrt-loctext"><img width="16" height="16"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/rentalDetailsLocationPin.png"
+                    alt="..rentalDetailsLocationPin.png" class="sqrt-loctextimg">
+                {{data.locality_name}}, {{data.city_name}} <span id="exploreNearbyTxt"> <a
+                        href="https://www.homes247.in/locality-overview/{{data.locality_name| cleanUrl}}-in-{{data.city_name| cleanUrl}}-overview-{{data.localityid}}-{{data.cityid}}"
+                        target="_blank">
+                        Explore nearby</a></span></h2>
+        </div>
+
+
+
+    </div>
+
+    <div class="">
+        <div class="row">
+            <div class="col-12 sticky-stuff">
+                <div id="sticky-anchor1"></div>
+                <div class="property_details_menu single-page-nav" id="sublinks_sticky">
+                    <ul class="nav nav-tabs">
+                        <li [ngClass]="{ 'actives': section === 'section1'}" class="subMenu" id="">
+                            <span (click)="scrollTo('section1')">Overview</span>
+                        </li>
+
+                        @if (data.Description) {
+                        <li [ngClass]="{ 'actives': section === 'section2'}" class="subMenu">
+                            <span id="Property_Nav_Gallery" (click)="scrollTo('section2')">Description</span>
+                        </li>
+                        }
+
+                        @if (FacilitiesHide) {
+                        <li [ngClass]="{ 'actives': section === 'section3'}" class="subMenu">
+                            <span id="Property_Nav_Masterplan" (click)="scrollTo('section3')">Facilities</span>
+                        </li>
+                        }
+
+                        @if (amenitiesHide) {
+                        <li [ngClass]="{ 'actives': section === 'section4'}" class="subMenu">
+                            <span id="Property_Nav_Price_&_Floorplans" (click)="scrollTo('section4')">Amenities</span>
+                        </li>
+                        }
+
+                        @if (About_Description) {
+                        <li [ngClass]="{ 'actives': section === 'section5'}" class="subMenu">
+                            <span id="Property_Nav_Amenities" (click)="scrollTo('section5')">About Locality</span>
+                        </li>
+                        }
+
+                        <!-- <li [ngClass]="{ 'actives': section === 'section6'}" class="subMenu">
+                            <span id="Property_Nav_Builder" (click)="scrollTo('section6')">Reviews</span>
+                        </li> -->
+                        @if (nearByLocalityLen) {
+                        <li [ngClass]="{ 'actives': section === 'section7'}"
+                            class="subMenu scrollDivHide sublinks_sticky_item1">
+                            <span id="Property_Nav_Reviews" (click)="scrollTo('section7')">Nearby Localities
+                            </span>
+                        </li>
+                        }
+                        @if (showSimilarProp) {
+                        <li [ngClass]="{ 'actives': section === 'section8'}"
+                            class="subMenu scrollDivHide sublinks_sticky_item">
+                            <span id="Property_Nav_Location_Map" (click)="scrollTo('section8')">Similar
+                                Properties</span>
+                        </li>
+                        }
+                        @if (showNearbyLocProp) {
+                        <li [ngClass]="{ 'actives': section === 'section9'}"
+                            class="subMenu scrollDivHide sublinks_sticky_item">
+                            <span id="Property_Nav_Location_Map" (click)="scrollTo('section9')">Nearby
+                                Properties</span>
+                        </li>
+                        }
+                        <!-- <li [ngClass]="{ 'actives': section === 'section10'}" class="subMenu scrollDivHide sublinks_sticky_item">
+                            <span id="Property_Nav_Location_Map" (click)="scrollTo('section10')">Similar Properties
+                            </span>
+                        </li> -->
+                        <!-- <li [ngClass]="{ 'actives': section === 'section11'}" class="subMenu scrollDivHide sublinks_sticky_item">
+                            <span id="Property_Nav_Location_Map" (click)="scrollTo('section11')">Nearby Properties
+                            </span>
+                        </li> -->
+                        <li [ngClass]="{ 'actives': section === 'section10'}"
+                            class="subMenu scrollDivHide sublinks_sticky_item">
+                            <span id="Property_Nav_Location_Map" (click)="scrollTo('section10')">Trending Blogs
+                            </span>
+                        </li>
+
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ScrollSpy [spiedTags]="['DIV']" (sectionChange)="onSectionChange($event)">
+
+        <div id="section1"></div>
+        <div class="col-12">
+            <div
+                style="background: #FFFFFF; padding: 1px 10px 0px 10px; margin: 16px 0px 0px 0px; border-radius: 4px; box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.06);">
+                <h2 class="sqrt-titletext">Overview</h2>
+
+                <!-- <div class="row">
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">commmercial Type</h5>
+                        <p class="sqrt-renttext">{{data.Building_Type ? data.Building_Type : 'NA'}}</p>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Furnish Status</h5>
+                        <p class="sqrt-renttext">{{data.Furnish_Status ? data.Furnish_Status : 'NA'}}</p>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Property Status</h5>
+                        <p class="sqrt-renttext">{{data.Property_Status ? data.Property_Status : 'NA'}}</p>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Suited For</h5>
+                        <p class="sqrt-renttext">{{data.Best_Suited ? data.Best_Suited : 'NA'}}</p>
+
+                    </div>
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Building Type</h5>
+                        <p class="sqrt-renttext">{{data.Building_Type ? data.Building_Type : 'NA'}}</p>
+
+                    </div>
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Property Age
+                        </h5>
+                        <p class="sqrt-renttext">{{data.Property_Age ? data.Property_Age : 'NA'}}</p>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Customizable</h5>
+                        <p class="sqrt-renttext">{{data.Customizable ? data.Customizable : 'NA'}}</p>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Carpet Area</h5>
+                        <p class="sqrt-renttext">{{data.Square_Feet ? data.Square_Feet : 'NA'}}</p>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Build Up Area</h5>
+                        <p class="sqrt-renttext">{{data.Buildup_Area ? data.Buildup_Area : 'NA'}}</p>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Total Floors</h5>
+                        <p class="sqrt-renttext">{{data.Total_Floors ? data.Total_Floors : 'NA'}}</p>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Property Floor</h5>
+                        <p class="sqrt-renttext">{{data.Property_Floor ? data.Property_Floor : 'NA'}}</p>
+
+                    </div>
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">covered Parking</h5>
+                        <p class="sqrt-renttext">{{data.Covered_Parking ? data.Covered_Parking : 'NA'}}</p>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Open parking</h5>
+                        <p class="sqrt-renttext">{{data.Open_Parking ? data.Open_Parking : 'NA'}}</p>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Max No.of Seats</h5>
+                        <p class="sqrt-renttext">{{data.Max_No_Of_Seats ? data.Max_No_Of_Seats : 'NA'}}</p>
+
+                    </div>
+
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">No.of Cabins</h5>
+                        <p class="sqrt-renttext">{{data.No_Of_Cabins ? data.No_Of_Cabins : 'NA'}}</p>
+
+                    </div>
+
+
+                </div> -->
+
+
+
+
+                @if (data.proparty_Type !== 'Plot') {
+
+                <div class="row">
+
+                    @if (data.proparty_Type == 'Others') {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Commercial Type</h5>
+                        <p class="sqrt-renttext">{{ data.proparty_Type ? data.proparty_Type : 'NA' }}</p>
+                    </div>
+                    }
+
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Furnishing</h5>
+                        <p class="sqrt-renttext">{{ data.furnished ? data.furnished : 'NA' }}</p>
+                    </div>
+                    @if (sale_rent == '1') {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Property Status</h5>
+                        <p class="sqrt-renttext">{{data.Property_Status ? data.Property_Status : 'NA'}}</p>
+                    </div>
+                    }
+
+                    @if (sale_rent == '1' && data.Property_Status == 'Under construction') {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Possesion Date</h5>
+                        <p class="sqrt-renttext">{{data.possession_date ? data.possession_date : 'NA'}}</p>
+                    </div>
+                    }
+
+                    @if (data.Property_Status !== 'Under construction' && data.possession_date == null) {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Age of Property</h5>
+                        <p class="sqrt-renttext">{{data.Property_Age ? data.Property_Age : 'NA'}}</p>
+                    </div>
+                    }
+                    @if (data.Best_Suited) {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Suited For</h5>
+                        <p class="sqrt-renttext">{{data.Best_Suited ? data.Best_Suited : 'NA'}}</p>
+                    </div>
+                    }
+                    @if (data.Best_Suited == null) {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Suited For</h5>
+                        <p class="sqrt-renttext">{{data.suited_for ? data.suited_for : 'NA'}}</p>
+                    </div>
+                    }
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Building Type</h5>
+                        <p class="sqrt-renttext">{{data.building_type ? data.building_type : 'NA'}}</p>
+                    </div>
+                    @if (data.Customizable == '1') {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Customizable</h5>
+                        <p class="sqrt-renttext">Yes</p>
+                    </div>
+                    }
+                    @if (data.Customizable == '2') {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Customizable</h5>
+                        <p class="sqrt-renttext">No</p>
+                    </div>
+                    }
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Carpet Area</h5>
+                        <p class="sqrt-renttext">{{data.carpet_area ? data.carpet_area : 'NA'}}
+                            {{data.carpet_area_type}}</p>
+                    </div>
+                    @if (data.proparty_Type !== 'Office Space' && data.proparty_Type !== 'Co-working space' &&
+                    data.proparty_Type !== 'Warehouse' && data.proparty_Type !== 'Others') {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Build Up Area</h5>
+                        <p class="sqrt-renttext">{{data.Buildup_Area ? data.Buildup_Area : 'NA'}}</p>
+                    </div>
+                    }
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Total Floors</h5>
+                        <p class="sqrt-renttext">{{data.Total_Floors ? data.Total_Floors : 'NA'}}</p>
+                    </div>
+
+                    @if (data.proparty_Type !== 'Plot') {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Floor No</h5>
+                        <p class="sqrt-renttext">{{data.Property_Floor ? data.Property_Floor : 'NA'}}</p>
+                    </div>
+                    }
+                    @if (data.Property_Floor == '0') {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Floor No</h5>
+                        <p class="sqrt-renttext">Ground Floor</p>
+                    </div>
+                    }
+
+                    <!-- <div class="col-6">
+                        <h5 class="sqrt-renthead">Property Floor</h5>
+                        <p class="sqrt-renttext">{{data.Property_Floor ? data.Property_Floor : 'NA'}}</p>
+                    </div> -->
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">No.of Covered Parking</h5>
+                        <p class="sqrt-renttext">{{data.coverd_parking ? data.coverd_parking : 'NA'}}</p>
+                    </div>
+                    @if (data.proparty_Type !== 'Warehouse' && data.proparty_Type !== 'Others') {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">No.of Open Parking</h5>
+                        <p class="sqrt-renttext">{{data.Open_Parking ? data.Open_Parking : 'NA'}}</p>
+                    </div>
+                    }
+                    @if (data.proparty_Type == 'Office Space' && data.proparty_Type == 'Co-working space') {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Max no.of Seats</h5>
+                        <p class="sqrt-renttext">{{data.Max_No_Of_Seats ? data.Max_No_Of_Seats : 'NA'}}</p>
+                    </div>
+                    }
+                    @if (data.proparty_Type == 'Office Space' && data.proparty_Type == 'Co-working space') {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">No.of Cabins</h5>
+                        <p class="sqrt-renttext">{{data.No_Of_Cabins ? data.No_Of_Cabins : 'NA'}}</p>
+                    </div>
+                    }
+
+                    @if (sale_rent == '2') {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Available From</h5>
+                        <p class="sqrt-renttext">{{data.available_from ? data.available_from : 'NA'}}</p>
+                    </div>
+                    }
+
+                    @if (data.proparty_Type !== 'Office Space' && data.proparty_Type !== 'Co-working space' &&
+                    data.Corner_shop == '1') {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Corner Shop</h5>
+                        <p class="sqrt-renttext">Yes</p>
+                    </div>
+                    }
+
+                    @if (data.proparty_Type !== 'Office Space' && data.proparty_Type !== 'Co-working space' &&
+                    data.Corner_shop == '2') {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Corner Shop</h5>
+                        <p class="sqrt-renttext">No</p>
+                    </div>
+                    }
+
+                    @if (data.proparty_Type == 'Warehouse' || data.proparty_Type == 'Others') {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">No of Washrooms</h5>
+                        <p class="sqrt-renttext">{{data.Private_washroom}}</p>
+                    </div>
+                    }
+
+                    @if (data.proparty_Type !== 'Office Space' && data.proparty_Type !== 'Co-working space') {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Rera Number</h5>
+                        <p class="sqrt-renttext_rera">{{data.rera_number ? data.rera_number : 'NA'}}</p>
+                    </div>
+                    }
+
+                </div>
+
+                }
+
+
+                @if (data.proparty_Type == 'Plot') {
+                <div class="row">
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Plot Type</h5>
+                        <p class="sqrt-renttext">{{ data.plot_type ? data.plot_type : 'NA' }}</p>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Plot Dimension</h5>
+                        <p class="sqrt-renttext">{{ data.dimension ? data.dimension : 'NA' }} {{data.dimensiontype}}</p>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Plot Length</h5>
+                        <p class="sqrt-renttext">{{data.plot_length ? data.plot_length : 'NA'}}</p>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Plot Breadth</h5>
+                        <p class="sqrt-renttext">{{data.plot_breadth ? data.plot_breadth : 'NA'}}</p>
+                    </div>
+                    @if (data.Boundary_wall == '1') {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Boundary Wall</h5>
+                        <p class="sqrt-renttext">Yes</p>
+                    </div>
+                    }
+                    @if (data.Boundary_wall == '2') {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Boundary Wall</h5>
+                        <p class="sqrt-renttext">No</p>
+                    </div>
+                    }
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Property Facing</h5>
+                        <p class="sqrt-renttext">
+                            {{data.Property_facing ? data.Property_facing : 'NA'}}</p>
+
+                    </div>
+
+                    @if (data.Construction_Done == '1') {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Construction done</h5>
+                        <p class="sqrt-renttext">Yes</p>
+                    </div>
+                    }
+                    @if (data.Construction_Done == '2') {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Construction done</h5>
+                        <p class="sqrt-renttext">No</p>
+                    </div>
+                    }
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Open sides</h5>
+                        <p class="sqrt-renttext">{{data.Open_Sides ? data.Open_Sides : 'NA'}}</p>
+                    </div>
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Floor Allowed</h5>
+                        <p class="sqrt-renttext">{{data.floor_allowed ? data.floor_allowed : 'NA'}}</p>
+                    </div>
+                    @if (data.Corner_plot == '1') {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Corner Plot</h5>
+                        <p class="sqrt-renttext">Yes</p>
+                    </div>
+                    }
+                    @if (data.Corner_plot == '2') {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Corner Plot</h5>
+                        <p class="sqrt-renttext">No</p>
+                    </div>
+                    }
+                    @if (sale_rent == '2') {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Available From</h5>
+                        <p class="sqrt-renttext">{{data.available_from ? data.available_from : 'NA'}}</p>
+                    </div>
+                    }
+                    @if (sale_rent == 1) {
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Token Amount</h5>
+                        <p class="sqrt-renttext">{{data.sale_token ? data.sale_token : 'NA'}}</p>
+                    </div>
+                    }
+
+                    <div class="col-6">
+                        <h5 class="sqrt-renthead">Age of Property</h5>
+                        <p class="sqrt-renttext">{{data.Property_Age ? data.Property_Age : 'NA'}}</p>
+                    </div>
+
+                </div>
+
+                }
+
+
+
+
+            </div>
+
+        </div>
+
+        <div id="section2"></div>
+        @if (data.Description.length !== 0) {
+        <div class="col-12">
+            <div
+                style="background: #FFFFFF; padding: 1px 10px 1px 10px; margin: 16px 0px 16px 0px; border-radius: 4px; box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.06);">
+                <h2 class="sqrt-titletext">Description</h2>
+                <!-- <p class="sqrt-desctext" [innerHTML]="data.Description | sanitizeHtml">
+                </p> -->
+                <div class="propDesc2" id="scrollable2">
+                    <p class="sqrt-desctext" [innerHTML]="data.Description | sanitizeHtml">
+                    </p>
+                </div>
+                @if (data.Description.length >= 180) {
+                <div class="arrow1 bounce down_arrow2 pb-4" (click)="readmore1()">
+                    <span class="showMoreLessTxt2" id="Property_Locality_Readmore_Mobile">Show More</span>
+                </div>
+                }
+                <div class="arrow1 bounce up_arrow2 pb-4" (click)="readless1()">
+                    <span class="showMoreLessTxt2">Show Less</span>
+                </div>
+            </div>
+        </div>
+        }
+        @defer (on idle) {
+
+        <div id="section3"></div>
+        @if (FacilitiesHide) {
+        <div class="col-12">
+            <div
+                style="background: #FFFFFF; padding: 1px 0px 1px 10px; margin: 16px 0px 16px 0px; border-radius: 4px; box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.06);">
+                <h2 class="sqrt-titletext">Facilities</h2>
+                <div class="row scrolldiv">
+                    @for (fac of data.facilities; track fac) {
+                    <div class="col-sm-4 textAligncss pl-0">
+                        <img loading="lazy" src="{{imagepath}}{{fac.activeIcon}}" class="amenitiesIcon" height="44"
+                            width="44" alt="fac.label">
+                        <p class="Facilities_icon">{{fac.label}}</p>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+        }
+
+        <div id="section4"></div>
+        @if (data.Amenities && data.proparty_Type !== 'Plot') {
+        <div class="col-12">
+            <div
+                style="background: #FFFFFF; padding: 1px 0px 1px 10px; margin: 16px 0px 16px 0px; border-radius: 4px; box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.06);">
+                <h2 class="sqrt-titletext">Amenities</h2>
+                <div class="row scrolldiv">
+                    @for (amen of data.Amenities; track amen) {
+                    <div class="col-sm-4 textAligncss pl-0">
+                        <img loading="lazy" src="{{imagepath}}{{amen.activeIcon}}" height="44" width="44"
+                            class="amenitiesIcon" alt="amen.label">
+                        <p class="Facilities_icon">{{amen.label}}</p>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+        }
+
+
+
+
+
+
+        <div id="section5"></div>
+        @if (About_Description) {
+        <div class="col-12">
+            <div
+                style="background: #FFFFFF; padding: 1px 10px 1px 10px; margin: 16px 0px 16px 0px; border-radius: 4px; box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.06);">
+                <h2 class="sqrt-titletext">About {{data.locality_name}}, {{data.city_name}}</h2>
+                <div class="propDesc1" id="scrollable1">
+                    <p class="sqrt-desctext" [innerHTML]="aboutdiscription| sanitizeHtml">
+                    </p>
+                </div>
+                @if (aboutdiscription.length >= 180) {
+                <div class="arrow1 bounce down_arrow pb-4" (click)="readmore()">
+                    <span class="showMoreLessTxt2" id="Property_Locality_Readmore_Mobile">Show More</span>
+                </div>
+                }
+                <div class="arrow1 bounce up_arrow pb-4" (click)="readless()">
+                    <span class="showMoreLessTxt2">Show Less</span>
+                </div>
+            </div>
+        </div>
+        }
+
+        <div id="section6"></div>
+        @if (mousemovement) {
+        <ng-container *ngComponentOutlet="Apex"></ng-container>
+        }
+
+        <div id="section7"></div>
+        @if (nearByLocalityLen && mousemovement) {
+        <div class="col-12">
+            <div
+                style="background: #FFFFFF; padding: 1px 0px 1px 10px; margin: 16px 0px 16px 0px; border-radius: 4px; box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.06);">
+                <h2 class="sqrt-titletext">Nearby localities of {{data.locality_name}}</h2>
+                <div class="row scrolldiv1">
+                    @for (loclity of newNearByLocalityArry; track loclity) {
+                    <a class="col-sm-4 textAligncss1 pl-0"
+                        href="https://www.homes247.in/cml/commercial-properties-in-{{loclity.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-{{loclity.locality_ID}}"
+                        target="_blank">
+                        <div class="bgDivLoc">
+                            <img loading="lazy" width="100%" height="100%"
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/locBackGroungImg.png"
+                                alt="..locBackGroungImg.png">
+                        </div>
+                        <div class="locOverlay"></div>
+                        <div class="borderLocality">
+                            <h4 class="localitySecName">{{loclity.locality_name}}</h4>
+                            <p class="localityListCount">Total Projects - {{loclity.commercial_count}}
+                            </p>
+                        </div>
+                    </a>
+                    }
+                </div>
+            </div>
+        </div>
+        }
+
+        <div id="section8"></div>
+        @if (showSimilarProp && mousemovement) {
+        <div class="container mt-4">
+            <h4 class="sqrt-titletext">Similar Properties</h4>
+            <div class="scroll-container">
+                @for (locProp of similarRentalProp | slice : 0: 20; track locProp) {
+                <div class="property-card">
+                    @if (sale_rent == 1) {
+                    <a target="_blank"
+                        routerLink="/cld/commercial-properties-for-sale-in-{{locProp.city_name | cleanUrl}}-{{locProp.commercial_ID}}-{{locProp.prope_id}}">
+                        @if (locProp.coverimage != null) {
+                        <img src="{{propertyimage}}{{locProp.coverimage}}" alt="Property Image" class="card-img-top">
+                        }
+                        @if (locProp.coverimage == null) {
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/rentalImages/noImgRentals.jpg"
+                            alt="Property Image" class="card-img-top">
+                        }
+                    </a>
+                    }
+
+                    @if (sale_rent == 2) {
+                    <a target="_blank"
+                        routerLink="/cld/commercial-properties-for-rent-in-{{locProp.city_name | cleanUrl}}-{{locProp.commercial_ID}}-{{locProp.prope_id}}">
+                        @if (locProp.coverimage != null) {
+                        <img src="{{propertyimage}}{{locProp.coverimage}}" alt="Property Image" class="card-img-top">
+                        }
+                        @if (locProp.coverimage == null) {
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/rentalImages/noImgRentals.jpg"
+                            alt="Property Image" class="card-img-top">
+                        }
+                    </a>
+                    }
+
+
+
+
+
+                    <div class="card-body">
+                        @if (locProp.price != 0 ) {
+                        <p class="property-price mb-0">{{locProp.price | customPriceFormat }}</p>
+                        }
+
+                        @if (locProp.price == 0 && sale_rent == 1) {
+                        <a target="_blank"
+                            routerLink="/cld/commercial-properties-for-sale-in-{{locProp.city_name | cleanUrl}}-{{locProp.commercial_ID}}-{{locProp.prope_id}}"
+                            class="priceCommercialUnlock mb-0">
+                            Unlock Price Info <img style="height: 17px;width: 17px;"
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg"
+                                alt="..padlock (1) 1.svg">
+                        </a>
+                        }
+
+                        @if (locProp.price == 0 && sale_rent == 2) {
+                        <a target="_blank"
+                            routerLink="/cld/commercial-properties-for-rent-in-{{locProp.city_name | cleanUrl}}-{{locProp.commercial_ID}}-{{locProp.prope_id}}"
+                            class="priceCommercialUnlock mb-0">
+                            Unlock Price Info <img style="height: 17px;width: 17px;"
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg"
+                                alt="..padlock (1) 1.svg">
+                        </a>
+                        }
+
+
+
+
+                        <p class="property-description mb-2 text-truncate">Near
+                            {{locProp.nearby}}
+                        </p>
+                        <p class="property-location m-0"> <img
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/rentalDetailsLocationPin.png"
+                                alt="..rentalDetailsLocationPin.png"> {{
+                            locProp.locality_name }}</p>
+
+                    </div>
+                    <div class="card-footer text-center card-footer-icons">
+
+                        @if (sale_rent == 1) {
+                        <button class="btn btn-view-details btn-block mr-2">
+                            <a target="_blank"
+                                routerLink="/cld/commercial-properties-for-sale-in-{{locProp.city_name | cleanUrl}}-{{locProp.commercial_ID}}-{{locProp.prope_id}}">
+                                View Details <img
+                                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Rental _External_link.png"
+                                    alt="..Rental _External_link.png">
+                            </a>
+                        </button>
+                        }
+
+                        @if (sale_rent == 2) {
+                        <button class="btn btn-view-details btn-block mr-2">
+                            <a target="_blank"
+                                routerLink="/cld/commercial-properties-for-rent-in-{{locProp.city_name | cleanUrl}}-{{locProp.commercial_ID}}-{{locProp.prope_id}}">
+                                View Details <img
+                                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Rental _External_link.png"
+                                    alt="..Rental _External_link.png">
+                            </a>
+                        </button>
+                        }
+
+
+
+
+                        <div [ngClass]="{'Rental_icons_Heart3_Active': isInWishlist(locProp.prope_id), 'Rental_icons_Heart3 mr-2': !isInWishlist(locProp.prope_id)}"
+                            (click)="Heart_Transtion(locProp.prope_id,locProp.commercial_ID)"></div>
+
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Rental_share.png"
+                            alt="..Rental_share.png" class="sharecss" (click)="onClickShareSimilarProp(locProp)">
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+        }
+
+
+
+        <div id="section9"></div>
+        @if (showNearbyLocProp && mousemovement) {
+        <div class="container mt-4">
+            <h4 class="sqrt-titletext">Nearby Properties</h4>
+            <div class="scroll-container">
+                @for (locProp of nearbyLocProp | slice : 0: 20; track locProp) {
+                <div class="property-card">
+                    @if (sale_rent == 1) {
+                    <a target="_blank"
+                        routerLink="/cld/commercial-properties-for-sale-in-{{locProp.city_name | cleanUrl}}-{{locProp.commercial_ID}}-{{locProp.property_id}}">
+                        @if (locProp.coverimage != null) {
+                        <img src="{{propertyimage}}{{locProp.coverimage}}" alt="Property Image" class="card-img-top">
+                        }
+                        @if (locProp.coverimage == null) {
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/rentalImages/noImgRentals.jpg"
+                            alt="Property Image" class="card-img-top">
+                        }
+                    </a>
+                    }
+
+                    @if (sale_rent == 2) {
+                    <a target="_blank"
+                        routerLink="/cld/commercial-properties-for-rent-in-{{locProp.city_name | cleanUrl}}-{{locProp.commercial_ID}}-{{locProp.property_id}}">
+                        @if (locProp.coverimage != null) {
+                        <img src="{{propertyimage}}{{locProp.coverimage}}" alt="Property Image" class="card-img-top">
+                        }
+                        @if (locProp.coverimage == null) {
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/rentalImages/noImgRentals.jpg"
+                            alt="Property Image" class="card-img-top">
+                        }
+                    </a>
+                    }
+
+
+
+
+
+                    <div class="card-body">
+                        @if (locProp.price != 0 ) {
+                        <p class="property-price mb-0">₹ {{locProp.price }}</p>
+                        }
+
+
+
+
+                        @if (locProp.price == 0 && sale_rent == 1) {
+                        <a target="_blank"
+                            routerLink="/cld/commercial-properties-for-sale-in-{{locProp.city_name | cleanUrl}}-{{locProp.commercial_ID}}-{{locProp.property_id}}"
+                            class="priceCommercialUnlock mb-0">
+                            Unlock Price Info <img style="height: 17px;width: 17px;"
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg"
+                                alt="..padlock (1) 1.svg">
+                        </a>
+                        }
+
+                        @if (locProp.price == 0 && sale_rent == 2) {
+                        <a target="_blank"
+                            routerLink="/cld/commercial-properties-for-rent-in-{{locProp.city_name | cleanUrl}}-{{locProp.commercial_ID}}-{{locProp.property_id}}"
+                            class="priceCommercialUnlock mb-0">
+                            Unlock Price Info <img style="height: 17px;width: 17px;"
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg"
+                                alt="..padlock (1) 1.svg">
+                        </a>
+                        }
+
+
+
+
+                        <p class="property-description mb-2 text-truncate">Near
+                            {{locProp.nearby}}
+                        </p>
+                        <p class="property-location m-0"> <img
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/rentalDetailsLocationPin.png"
+                                alt="..rentalDetailsLocationPin.png"> {{
+                            locProp.locality_name }}</p>
+
+                    </div>
+                    <div class="card-footer text-center card-footer-icons">
+
+                        @if (sale_rent == 1) {
+                        <button class="btn btn-view-details btn-block mr-2">
+                            <a target="_blank"
+                                routerLink="/cld/commercial-properties-for-sale-in-{{locProp.city_name | cleanUrl}}-{{locProp.commercial_ID}}-{{locProp.property_id}}">
+                                View Details <img
+                                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Rental _External_link.png"
+                                    alt="..Rental _External_link.png">
+                            </a>
+                        </button>
+                        }
+
+                        @if (sale_rent == 2) {
+                        <button class="btn btn-view-details btn-block mr-2">
+                            <a target="_blank"
+                                routerLink="/cld/commercial-properties-for-rent-in-{{locProp.city_name | cleanUrl}}-{{locProp.commercial_ID}}-{{locProp.property_id}}">
+                                View Details <img
+                                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Rental _External_link.png"
+                                    alt="..Rental _External_link.png">
+                            </a>
+                        </button>
+                        }
+
+
+
+
+                        <div [ngClass]="{'Rental_icons_Heart3_Active': isInWishlist(locProp.property_id), 'Rental_icons_Heart3 mr-2': !isInWishlist(locProp.property_id)}"
+                            (click)="Heart_Transtion(locProp.property_id,locProp.commercial_ID)"></div>
+
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Rental_share.png"
+                            alt="..Rental_share.png" class="sharecss" (click)="onClickShareNearProp(locProp)">
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+        }
+        <!-- <div id="section10">
+            <div class="col-12 pr-0">
+                <div style=" padding: 1px 0px 1px 10px; margin: 16px 0px 16px 0px; border-radius: 4px; ">
+                    <h2 class="sqrt-titletext">Similiar Properties</h2>
+                    <div class="row scrolldiv">
+                        <div class="scroll-container">
+                            <div class="property-card" *ngFor="let property of commercialPropertiesSale">
+                                <div class="propImg2 col-5 text-right px-0">
+                                    <a class="pi_main" target="_blank" *ngIf="property.Coverimage !== null || property.Coverimage !==  undefined" href="https://www.homes247.in/property/{{property.City | lowercase}}/{{ property.Locality | cleanUrl }}/{{property.Propertyname | cleanUrl}}-{{ property.Property_ID }}">
+                                        <img src="{{propertyimage}}{{property.Coverimage}}" alt="property.Propertyname" height="133px" width="232" />
+                                    </a>
+
+
+                                </div>
+
+
+
+                                <div class="top_project_info col-12 pt-0">
+                                    <div class="pi_left col-12 pl-0">
+                                        <div class="row">
+                                            <div class="col-7 pr-0 mt-7">
+                                                <h3 class="propclass">₹ {{ property.Price | priceFormatter }}</h3>
+                                            </div>
+                                  
+                                        </div>
+                                        <div class="col-12 mb-2 pl-0">
+                                            <p class="postedBy">
+                                                By {{property.AddedbyName}}
+                                            </p>
+                                        </div>
+
+
+                                        <div class="areaLoc col-12  commercialAreaImg">
+                                            <div class="row mt-7">
+                                  
+                                                <div class="col-5 px-0 d-flex">
+                                                    <img loading="lazy" width="20" height="20" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/commercial page/map-pin.svg" alt="..map-pin.svg" >&nbsp;
+                                                    <p class="top_project_info1">{{ property.Locality }}</p>
+                                                    <p class="top_project_info1" *ngIf="property.Locality == null">NA
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+
+                                <div class="text-center card-footer-icons">
+                                    <button class="btn btn-view-details btn-block mr-2">
+                                        <a href="https://www.homes247.in/property/{{property.City | lowercase}}/{{property.Locality | cleanUrl}}/{{property.Propertyname | cleanUrl}}-{{ property.Property_ID }}" target="_blank">View Details
+                                            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/commercial page/arrow_icon.svg" alt="..arrow_icon.svg" >
+                                        </a>
+                                    </button>
+
+                                    <div [ngClass]="{'Rental_icons_Heart3_Active': isInWishlist1(property.Property_ID), 'Rental_icons_Heart3 mr-2': !isInWishlist1(property.Property_ID)}" (click)="Heart_Transtion1(property.Property_ID)"></div>
+
+                                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Rental_share.png" alt="..Rental_share.png"  class="sharecss1" (click)="shareContent()">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <div id="section11">
+            <div class="col-12 pr-0">
+                <div style=" padding: 1px 0px 1px 10px; margin: 16px 0px 16px 0px; border-radius: 4px; ">
+                    <h2 class="sqrt-titletext">Nearby Properties</h2>
+                    <div class="row scrolldiv">
+                        <div class="scroll-container">
+                            <div class="property-card" *ngFor="let property of commercialPropertiesSale">
+                                <div class="propImg2 col-5 text-right px-0">
+                                    <a class="pi_main" target="_blank" *ngIf="property.Coverimage !== null || property.Coverimage !==  undefined" href="https://www.homes247.in/property/{{property.City | lowercase}}/{{ property.Locality | cleanUrl }}/{{property.Propertyname | cleanUrl}}-{{ property.Property_ID }}">
+                                        <img src="{{propertyimage}}{{property.Coverimage}}" alt="property.Propertyname" height="133px" width="232" />
+                                    </a>
+
+
+                                </div>
+
+
+
+                                <div class="top_project_info col-12 pt-0">
+                                    <div class="pi_left col-12 pl-0">
+                                        <div class="row">
+                                            <div class="col-7 pr-0 mt-7">
+                                                <h3 class="propclass">₹ {{ property.Price | priceFormatter }}</h3>
+                                            </div>
+                          
+                                        </div>
+                                        <div class="col-12 mb-2 pl-0">
+                                            <p class="postedBy">
+                                                By {{property.AddedbyName}}
+                                            </p>
+                                        </div>
+
+
+                                        <div class="areaLoc col-12  commercialAreaImg">
+                                            <div class="row mt-7">
+                                                <div class="col-5 px-0 d-flex">
+                                                    <img loading="lazy" width="20" height="20" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/commercial page/map-pin.svg" alt="..map-pin.svg" >&nbsp;
+                                                    <p class="top_project_info1">{{ property.Locality }}</p>
+                                                    <p class="top_project_info1" *ngIf="property.Locality == null">NA
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+
+                                <div class="text-center card-footer-icons">
+                                    <button class="btn btn-view-details btn-block mr-2">
+                                        <a href="https://www.homes247.in/property/{{property.City | lowercase}}/{{property.Locality | cleanUrl}}/{{property.Propertyname | cleanUrl}}-{{ property.Property_ID }}" target="_blank">View Details
+                                            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/commercial page/arrow_icon.svg" alt="..arrow_icon.svg" >
+                                        </a>
+                                    </button>
+
+                                    <div [ngClass]="{'Rental_icons_Heart3_Active': isInWishlist1(property.Property_ID), 'Rental_icons_Heart3 mr-2': !isInWishlist1(property.Property_ID)}" (click)="Heart_Transtion1(property.Property_ID)"></div>
+
+                                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Rental_share.png" alt="..Rental_share.png"  class="sharecss1" (click)="shareContent()">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        @if (mousemovement) {
+        <div id="section10"></div>
+        <div>
+            <div class="col-12 pr-0">
+                <div style=" padding: 1px 0px 1px 10px; margin: 16px 0px 16px 0px; border-radius: 4px; ">
+                    <h2 class="sqrt-titletext">Trending Blogs</h2>
+                    <div class="row scrolldiv2">
+                        <div class="blogsSection">
+                            @for (blog of trendingBlogs | slice:0:6; track blog) {
+                            <a href="https://www.homes247.in/blogs/{{ blog.urlstruture | cleanUrl }}-{{ blog.id }}"
+                                style="text-decoration: none;">
+                                <div class="card sqrtcard-size">
+                                    <img src="{{ blogimagePath }}{{ blog.imgPath }}" class="blogImageSize"
+                                        alt="blog.alttag" height="96px" width="100%" />
+                                    <div class="card-body custom-card-body">
+
+                                        <button class="btn lock_button d-flex align-items-center">
+                                            Trending Blogs
+                                        </button>
+
+                                        <h5 class="sqrt-text sqrt-blog">{{ blog.title }}</h5>
+                                        <!-- <div class="sqrt1-text"><p>{{blog.date | date:'MMM dd, yyyy'}}</p></div> -->
+                                        <div class="col-12">
+                                            <div class="row sqrt2">
+                                                <div class="col-6 px-0 sqrt1-text">
+                                                    <p class="mb-0">By {{blog.addedby}}</p>
+                                                </div>
+                                                <div class="col-5 text-right sqrt2-text">
+                                                    <p class="mb-0">{{blog.date | date:'MMM dd, yyyy'}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        }
+        }
+
+
+    </div>
+
+    @if (IsVisibleEnquery) {
+    <div class="container">
+        <div id="" class="modal-login">
+
+            <form class="modal-content-login-modal">
+                <div class="enqiery">
+                    <div class="imgcontainer">
+                        <span class="close-login" (click)="CloseModal()" title="Close Modal">&times;</span>
+                    </div>
+                    <div class="col-sm-12 text-center">
+                        <img class="loginModelImg"
+                            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Homes247_NewBlack_Logo.png"
+                            alt="Homes247_NewBlack_Logo.png" />
+                        <p class="loginModelText">
+                            India's Favourite Property Portal
+                        </p>
+                        @if (resquestCall) {
+                        <img id="loginModelImg1"
+                            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/rental_contact.png"
+                            alt="rental_contact.png">
+                        }
+                        @if (resquestImages) {
+                        <img id="loginModelImg1"
+                            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Image_contact.png"
+                            alt="Image_contact.png">
+                        }
+                    </div>
+                    @if (resquestImages) {
+                    <div class="pageDetailsDiv">
+                        <p class="contact_heading mb-0">
+                            Looking for Property Photos?
+                        </p>
+                        <p class="contact_heading2">
+                            Fill out this form, We’ll request the photos for you!
+                        </p>
+                    </div>
+                    }
+                    @if (resquestCall) {
+                    <div class="pageDetailsDiv">
+                        <p class="contact_heading mb-0">
+                            Find Your Ideal Rental Home!
+                        </p>
+                        <p class="contact_heading2">
+                            Receive the owner's details via email.
+                        </p>
+                    </div>
+                    }
+                    <div class="container mt-3">
+                        <label for="newUserName" class="label_field">Name</label>
+                        <input class="input-loginModel" type="text" [(ngModel)]="enquiry.name" name="name" id="uname"
+                            required />
+                        <label for="emobileLogin" class="label_field">Number</label>
+                        <input type="text" class="input-loginModel emobileLogin" id="unumber" maxlength="10"
+                            minlength="10" [(ngModel)]="enquiry.number" name="number" />
+                        <label for="emobileLogin" class="label_field">Email (Optional)</label>
+                        <input class="input-loginModel emobileLogin" [(ngModel)]="enquiry.mail" type="email"
+                            name="email" id="uemail" required />
+                        @if (resquestCall) {
+                        <button type="button" class="btn col-sm-12 mt-3 mobileLogButton" (click)="otpsend()">Get Contact
+                            Details</button>
+                        }
+                        @if (resquestImages) {
+                        <button type="button" class="btn col-sm-12 mt-3 mobileLogButton" (click)="otpsend()">Request
+                            Images</button>
+                        }
+                        @if (resquestImages) {
+                        <p class="user_content mt-2">
+                            We’ll notify you once the owner shares the images.
+                        </p>
+                        }
+                        @if (resquestCall) {
+                        <p class="user_content mt-2">
+                            All the request are handled in just 5 minutes
+                        </p>
+                        }
+                    </div>
+
+                </div>
+                <div class="OtpDiv">
+                    <form name="otpForm" novalidate>
+                        <div class="imgcontainer">
+                            <span class="close-login" (click)="goBackFromEnq()" title="Close Modal">&times;</span>
+                        </div>
+                        <div class="col-sm-12 text-center mb-4">
+                            <img class="loginModelImg"
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Homes247_NewBlack_Logo.png"
+                                alt="Homes247_NewBlack_Logo.png" />
+                            <p class="loginModelText">
+                                India's Favourite Property Portal
+                            </p>
+
+                        </div>
+                        <div class="col-sm-12 mt-0 mb-4 text-center">
+                            @if (otpValidating) {
+                            <img class="loginModelImg1" height="100%" width="80%"
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/otpsection/otpauth.svg"
+                                alt="otpauth.svg">
+                            }
+
+                            <h3 id="otpVerificationTxt">Enter Verification Code</h3>
+                            <p id="enterOtp">We've sent a code to your WhatsApp<br> <b> +91 {{enquiry.number}}</b>
+                                <a id="editNum" (click)="goback1()"> - Edit</a>
+                            </p>
+                        </div>
+
+
+                        <input hidden autocomplete="off" type="text" placeholder="OTP" name="otp" id="otp"
+                            [(ngModel)]="enquiry.otp" required />
+                        <ng-otp-input class="otpinput text-center" #ngOtpInput (onInputChange)="onOtpChange($event)"
+                            [config]="config">
+                        </ng-otp-input>
+                        <div class="col-12 text-center countdown_maindiv mt-3 mb-3">
+                            <span>Resend the OTP in
+                                <countdown #cd4 [config]="countdownconfig" (event)="handleEvent($event)"></countdown>
+                                Seconds
+                            </span>
+
+
+                        </div>
+                        <p class="otpexpireclass text-center mt-3">
+                            OTP Expired - <a id="editNum" (click)="otpBasedLogin1()">Resend</a>
+                        </p>
+                        <div class="col-sm-12 text-center mb-3">
+                            <button (click)="otpvalidate4()" class="btn mt-2 mobileLogButton1">Verify</button>
+                        </div>
+
+                        <button type="reset" id="btn_reset" style="display: none"></button>
+                    </form>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+    }
+
+    <!-- <div class="bottomContactFooter pb-3 ">
+        <div class="container">
+            <p class="footerBtnTxt">
+
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/Eye_Animation.gif" alt="..Eye_Animation.gif"  height="20px" width="20px">
+                <span style="color: #971b47;">{{numberOfViewers}} People</span> Currently Viewing This Property
+            </p>
+            <div class="footerBtns container">
+                <div class="row">
+                    <div class="col-2">
+                        <div class="footerWhatsAppBtn text-center" *ngFor="let data of propcommercialdetails;let i = index">
+                            <a href="https://api.whatsapp.com/send?phone=919008029014&text=%20https://www.homes247.in{{currenturl}}%0A%0AI'm%20interested%20in%20renting%20at%20{{data.property_title}}%20in%20{{data.locality_name}},%20{{data.city_name}}.%20Could%20you%20please%20provide%20me%20with%20more%20information%20regarding%20the%20available%20units,%20rental%20rates,%20and%20amenities?" aria-label="Whatsapp Chat" target="_blank">
+                                <i class="fa fa-brands fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-2 p-0" *ngFor="let data of propcommercialdetails;">
+                  
+                        <div class="wishLishtDiv1 footerFavBtn">
+                            <div [ngClass]="{'Rental_icons_Heart_Active': isInWishlist(data.Property_ID), 'Rental_icons_Heart': !isInWishlist(data.Property_ID)}" class="Rental_icons_Heart mb-2" (click)="Heart_Transtion(data.Property_ID)">
+                        </div>
+                        </div>
+                  
+                    </div>
+                    <div class="col-8 text-center" (click)="ShowHideEnquery2()">
+                        <button class="footerContactBtn"><i class="fa fa-phone-square phoneButton"></i>&nbsp;&nbsp;&nbsp;Contact Owner</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div> -->
+   
+   @defer (on idle) {
+    @if(verificationDetailStatus != 2) {
+    <div class="bottomContactFooter pb-3 ">
+        <div class="container">
+            <p class="footerBtnTxt">
+
+                @if (mousemovement) {
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/Eye_Animation.gif"
+                    alt="..Eye_Animation.gif" height="20px" width="20px">
+                }
+
+                <span style="color: #971b47;">{{numberOfViewers}} People</span> Currently Viewing This Property
+            </p>
+            <div class="footerBtns container">
+                <div class="row">
+                    <div class="col-2">
+                        @for (data of propcommercialdetails; let i = $index; track data) {
+                        <div class="footerWhatsAppBtn text-center">
+                            <a href="https://api.whatsapp.com/send?phone=919008029014&text=%20https://www.homes247.in{{currenturl}}%0A%0AI'm%20interested%20in%20renting%20at%20{{data.property_title}}%20in%20{{data.locality_name}},%20{{data.city_name}}.%20Could%20you%20please%20provide%20me%20with%20more%20information%20regarding%20the%20available%20units,%20rental%20rates,%20and%20amenities?"
+                                aria-label="Whatsapp Chat" target="_blank">
+                                <i class="fa fa-brands fa-whatsapp"></i>
+                            </a>
+                        </div>
+                        }
+                    </div>
+                    <div class="col-2 p-0">
+                        @for (data of propcommercialdetails; track data) {
+                        <div class="wishLishtDiv1 footerFavBtn">
+                            <div [ngClass]="{'Rental_icons_Heart_Active': isInWishlist(data.Property_ID), 'Rental_icons_Heart': !isInWishlist(data.Property_ID)}"
+                                class="Rental_icons_Heart mb-2"
+                                (click)="Heart_Transtion(data.Property_ID,data.commercial_type)">
+                            </div>
+                        </div>
+                        }
+                        <!-- <input *ngIf="userfav == false" class='red-heart-checkbox' (click)="addwishlist(data.Property_ID)" id='red-check3' type='checkbox' title="Wishlist Check">
+              <input *ngIf="userfav == true" class='red-heart-checkbox' (click)="addwishlist(data.Property_ID)" id='red-check4' type='checkbox' title="Wishlist Check" checked> -->
+                    </div>
+
+
+                    <div class="col-8 text-center">
+                        @if(!login) {
+                        <a class="footerContactBtn" routerLink="/login"><i
+                                class="fa fa-phone-square phoneButton"></i>&nbsp;&nbsp;&nbsp;Contact Owner</a>
+                        }
+                        @if(login) {
+                        <button class="footerContactBtn" (click)="elitePlanView(data.Property_ID)"><i
+                                class="fa fa-phone-square phoneButton"></i>&nbsp;&nbsp;&nbsp;Contact Owner</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    }
+
+
+    <!-- subscription -->
+    @if(verificationDetailStatus == 2) {
+    <div id="customModalBackdropSubscription" class="homiSheetBackdrop"></div>
+    <!-- (click)="toggleSubscriptionSheet()" -->
+    <div id="homiSheet" class="subscriptionMainSheet bottomContactFooter pb-3">
+        <div id="subscriptionMainSheet" class="homiFooterSheet">
+
+            <!-- <div id="subscriptionDetailHeader" class="homiHeadderSheet" (click)="toggleSubscriptionSheet()">
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/HomiAi/homiTimmerIconMobile.svg"
+                    alt="..homiTimmerIconMobile.svg">
+                <p>Verification In Progress...</p>
+            </div> -->
+
+
+            <div id="subscriptionDetailHeader" class="bottomContactFooter pb-3">
+                <div class="container">
+                    <p class="footerBtnTxt">
+
+                        @if (mousemovement) {
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/Eye_Animation.gif"
+                            alt="..Eye_Animation.gif" height="20px" width="20px">
+                        }
+
+                        <span style="color: #971b47;">{{numberOfViewers}} People</span> Currently Viewing This Property
+                    </p>
+                    <div class="footerBtns container">
+                        <div class="row">
+                            <div class="col-2">
+                                @for (data of propcommercialdetails; let i = $index; track data) {
+                                <div class="footerWhatsAppBtn text-center">
+                                    <a href="https://api.whatsapp.com/send?phone=919008029014&text=%20https://www.homes247.in{{currenturl}}%0A%0AI'm%20interested%20in%20renting%20at%20{{data.property_title}}%20in%20{{data.locality_name}},%20{{data.city_name}}.%20Could%20you%20please%20provide%20me%20with%20more%20information%20regarding%20the%20available%20units,%20rental%20rates,%20and%20amenities?"
+                                        aria-label="Whatsapp Chat" target="_blank">
+                                        <i class="fa fa-brands fa-whatsapp"></i>
+                                    </a>
+                                </div>
+                                }
+                            </div>
+                            <div class="col-2 p-0">
+                                @for (data of propcommercialdetails; track data) {
+                                <div class="wishLishtDiv1 footerFavBtn">
+                                    <div [ngClass]="{'Rental_icons_Heart_Active': isInWishlist(data.Property_ID), 'Rental_icons_Heart': !isInWishlist(data.Property_ID)}"
+                                        class="Rental_icons_Heart mb-2"
+                                        (click)="Heart_Transtion(data.Property_ID,data.commercial_type)">
+                                    </div>
+                                </div>
+                                }
+                                <!-- <input *ngIf="userfav == false" class='red-heart-checkbox' (click)="addwishlist(data.Property_ID)" id='red-check3' type='checkbox' title="Wishlist Check">
+              <input *ngIf="userfav == true" class='red-heart-checkbox' (click)="addwishlist(data.Property_ID)" id='red-check4' type='checkbox' title="Wishlist Check" checked> -->
+                            </div>
+                            <div class="col-8 text-center pr-0" style="justify-items: right;"
+                                (click)="toggleSubscriptionSheet()">
+                                <button class="footerSubscriptionContactBtn">View Contact Details</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="subscriptionDetailsBody" class="subscriptionMainSheetContent">
+                <div class="modal-content unlock_content">
+
+                    <div class="unlockheader" data-dismiss="modal" (click)="closeSubscriptionSheet()">
+                        <p class="unlock_close"></p>
+                        <p class="text-center Main_unlockheader mt-3">Contact Details</p>
+                    </div>
+
+                    <div class="container sub_Unlockheader">
+
+                        <div class="mt-2">
+                            <p class="sub_header">Owner Name<br><span
+                                    class="sub_value">{{contactData.owner_name}}</span></p>
+                        </div>
+
+                        <div class="mt-3 text-truncate">
+                            <p class="sub_header">Email ID<br><span class="sub_value"
+                                    title="Gowshik@gmail.com">{{contactData.owner_email || 'NA'}}</span></p>
+                        </div>
+
+                        <div class="mt-3">
+                            <p class="sub_header">Mobile Number<br><span class="sub_value">{{contactData.owner_number ||
+                                    'NA'}}</span></p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+}
+    <!-- subscription -->
+</div>
+}
+<div class="modal fade" id="propReportModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered justify-content-center">
+        <div class="modal-content modal_enqury_cntnt " style="width: 297px;">
+
+            <div class="modal-body prop_modal">
+                <div class="col-12 p-0">
+                    <div class="d-flex" style="justify-content: space-between; align-items: baseline;">
+                        <div class="mb-3">
+                            <p class="reportHeadTxt">Report this property</p>
+                            <p class="reportHeadSubTxt mb-0">Please provide the reason for report</p>
+                        </div>
+                        <button type="button" class="close modal_close" data-dismiss="modal"><i
+                                class="fa fa-times-circle-o" style="color: rgb(114, 114, 114);"></i>
+
+                            <!-- <img loading="lazy" width="70%" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/close.png" alt="..close.png" > -->
+                        </button>
+                    </div>
+                    <form (ngSubmit)="submitFormReport()">
+                        @for (option of propAllIssue; track option) {
+                        <div class="radioStyle mb-2">
+                            <!-- <input type="radio" name="option" [value]="option" [(ngModel)]="selectedOption" required> -->
+
+                            <input type="radio" name="myRadioGroup" class="mr-2" [value]="option"
+                                [(ngModel)]="selectedOption" required (change)="onSelectionChange()" id="radioColor" />
+                            {{ option.report_types }}
+                            <!-- {{report_types.checked}} -->
+                        </div>
+                        }
+
+                        <!-- <br> -->
+                        <div class="col-12 ">
+                            <div class="row">
+                                <!-- <div class="col-6">
+                                    <button type="button" data-dismiss="modal" class="btn btn_style1Cancel">Cancel</button>
+                                </div> -->
+                                <div class="col-12 px-0">
+                                    <!-- <button type="submit" class="btn btn_style1"  >Submit</button> -->
+                                    <button type="submit" class="btn btn_style1" [disabled]="!selectedOption">Submit
+                                        Report</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- <form [formGroup]="myForm">
+                        <input type="radio" formControlName="option" value="option1"> Option 1<br>
+                        <input type="radio" formControlName="option" value="option2"> Option 2<br>
+                        <input type="radio" formControlName="option" value="option3"> Option 3<br>
+                        <button type="submit" [disabled]="!myForm.get('option').value">Submit</button>
+                      </form> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@if (Visiblebrochure) {
+<ng-container *ngComponentOutlet="otpValidationComponent"></ng-container>
+}
+
+@if (gallerySection1) {
+<div class="background_modal modal-fullscreen-xl" id="modal-fullscreen-xl3" tabindex="-1" role="dialog"
+    aria-hidden="true">
+    @for (data of propcommercialdetails; track data) {
+    <div class="modal-dialog" role="document">
+        @if (data.Images.length !== 0) {
+        <div class="modal-content">
+            <div class="modal-header rating_top_head  d-flex">
+                <div>
+
+                    <img (click)="backPageIcon()" class="mt-1"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/arrow_back_ios (1).png"
+                        alt="..arrow_back_ios (1).png">
+
+
+                    <!-- <p class="propName"> {{data.property_title}}</p><br> -->
+
+
+                    @if (data.proparty_Type != 'Others') {
+                    <p class="propName">{{data.proparty_Type}} </p>
+                    }
+
+                    @if (data.proparty_Type == 'Others') {
+                    <p class="propName">Commercial Property</p><br>
+                    }
+                    <br>
+
+
+                    <!-- <p class="propPrice22" *ngIf="sale_rent == '1'">&nbsp;&nbsp;
+
+                        {{ (data.Price != null && data.Price != undefined && data.Price != 0)
+                        ? (data.Price | customPriceFormat)
+                        : 'Price On Request' }}</p> -->
+
+
+                    <!-- Price shown when value exists -->
+                    @if (sale_rent == '1' && data.Price != null && data.Price != undefined && data.Price != 0) {
+                    <p class="propPrice22">
+                        &nbsp;&nbsp;{{ data.Price | customPriceFormat }}
+                    </p>
+                    }
+
+                    <!-- "Price On Request" shown otherwise -->
+                    @if (sale_rent == '1' && (data.Price == null || data.Price == undefined || data.Price == 0)) {
+                    <p (click)="ShowHideEnquery2()" class="propPrice22lock smallPrice">
+                        &nbsp;&nbsp; Unlock Price Info
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg"
+                            alt="..padlock (1) 1.svg" class="ms-2 lock-icon" />
+                    </p>
+                    }
+
+
+
+
+                    <!-- <p class="propPrice22" *ngIf="sale_rent == '2'&& data.Total_lease_amount == null">
+                        &nbsp;&nbsp;
+
+                        {{ (data.Rent_per_month != null && data.Rent_per_month != undefined && data.Rent_per_month !=
+                        0)
+                        ? (data.Rent_per_month | customPriceFormat)
+                        : 'Price On Request' }}
+                    </p> -->
+
+
+                    <!-- Rent price -->
+                    @if (sale_rent == '2' && (data.Total_lease_amount == null || data.Total_lease_amount == '') &&
+                    data.Rent_per_month != null && data.Rent_per_month != undefined && data.Rent_per_month != 0) {
+                    <p class="propPrice22">
+                        &nbsp;&nbsp;{{ data.Rent_per_month | customPriceFormat }}
+                    </p>
+                    }
+
+                    <!-- Price on Request -->
+                    @if (sale_rent == '2' && (data.Total_lease_amount == null || data.Total_lease_amount == '') &&
+                    (data.Rent_per_month == null || data.Rent_per_month == undefined || data.Rent_per_month == 0)) {
+                    <p (click)="ShowHideEnquery2()" class="propPrice22lock smallPrice">
+                        &nbsp;&nbsp; Unlock Price Info
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg"
+                            alt="..padlock (1) 1.svg" class="ms-2 lock-icon" />
+                    </p>
+                    }
+
+
+
+
+                    <!-- <p class="propPrice22" *ngIf="sale_rent == '2' && data.Rent_per_month == null">
+                        &nbsp;&nbsp;
+
+                        {{ ((data.Total_lease_amount != null || data.Total_lease_amount != '') && data.Total_lease_amount != undefined &&
+                        data.Total_lease_amount != 0)
+                        ? (data.Total_lease_amount | customPriceFormat)
+                        : 'Price On Request' }}
+                    </p> -->
+
+
+                    <!-- Lease Amount -->
+                    @if (sale_rent == '2' && data.Rent_per_month == null && (data.Total_lease_amount != null ||
+                    data.Total_lease_amount != '') && data.Total_lease_amount != undefined && data.Total_lease_amount !=
+                    0) {
+                    <p class="propPrice22">
+                        &nbsp;&nbsp;{{ data.Total_lease_amount | customPriceFormat }}
+                    </p>
+                    }
+
+                    <!-- Price On Request -->
+                    @if (sale_rent == '2' && data.Rent_per_month == null && (data.Total_lease_amount == null ||
+                    data.Total_lease_amount == undefined || data.Total_lease_amount == 0)) {
+                    <p (click)="ShowHideEnquery2()" class="propPrice22lock smallPrice">
+                        &nbsp;&nbsp; Unlock Price Info
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg"
+                            alt="..padlock (1) 1.svg" class="ms-2 lock-icon" />
+                    </p>
+                    }
+
+
+                </div>
+
+            </div>
+            <div class="showss">
+                <div [ngClass]="{ 'actives': true}" class="showCenter ml-2" (click)="scrollTo('section1')">Property
+                    Photos</div>
+                <!-- <div [ngClass]="{ 'actives': section === 'section2' }" class="showCenter" (click)="scrollTo('section2')" *ngIf="data.property_masterimage">Master Plan</div>
+                <div [ngClass]="{ 'actives': section === 'section3' }" class="showCenter" (click)="scrollTo('section3')" *ngIf="data.Floorplan">Floor Plan</div> -->
+            </div>
+            @for (data of propcommercialdetails; track data) {
+            <div class="modal-body answer-custom-body">
+                <div class="fixTopGalerry">
+
+                    <div class="gallery" [photoGalleryGroup] ScrollSpy (sectionChange)="onSectionChange($event)">
+
+
+                        <div id="section1">
+                            @for (imgs of data.Images; let i = $index; track imgs) {
+                            <div class="card Property" #masterPlanSection>
+                                <p class="card__captionProperty">Property Photos</p>
+
+                                <div photoGallery="{{ImageUrl}}{{imgs.Images_name}}" class="imageTumb">
+                                    <img class="card__image" loading="lazy" src="{{ImageUrl}}{{imgs.Images_name}}"
+                                        alt="imgs.alttag">
+                                </div>
+                            </div>
+                            }
+                        </div>
+
+                        <!-- <div id="section2">
+                            <div class="card MasterPlan" *ngIf="data.property_masterimage">
+                                <div class="imageTumb" photoGallery="{{masterplan}}{{data.property_masterimage}}">
+                                    <p class="card__captionMP">Master Plan</p>
+                                    <img class="card__image" loading="lazy" src="{{masterplan}}{{data.property_masterimage}}" alt="masterPlan">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="section3">
+                            <div class="card FloorPlan" *ngIf="data.Floorplan">
+                                <p class="card__caption">Floor Plan</p>
+                                <div class="imageTumb" photoGallery="{{Floorplan}}{{data.Floorplan}}">
+                                    <img class="card__image" loading="lazy" src="{{Floorplan}}{{data.Floorplan}}" alt="bhk.alttag">
+                                </div>
+                            </div>
+                        </div> -->
+
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+        }
+    </div>
+    }
+    <!-- <div class="bottomContactFooter pb-3 ">
+        <div class="container">
+            <p class="footerBtnTxt">
+
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/Eye_Animation.gif" alt="..Eye_Animation.gif"  height="20px" width="20px">
+                <span style="color: #971b47;">{{numberOfViewers}} People</span> Currently Viewing This Property
+            </p>
+            <div class="footerBtns container">
+                <div class="row">
+                    <div class="col-2">
+                        <div class="footerWhatsAppBtn text-center" *ngFor="let data of propdetails;let i = index">
+                            <a href="https://api.whatsapp.com/send?phone=919008029014&text=%20https://www.homes247.in{{currenturl}}%0A%0AI'm%20interested%20in%20renting%20at%20{{data.PropertyName}}%20in%20{{data.Locality}},%20{{data.City}}.%20Could%20you%20please%20provide%20me%20with%20more%20information%20regarding%20the%20available%20units,%20rental%20rates,%20and%20amenities?" aria-label="Whatsapp Chat" target="_blank">
+                                <i class="fa fa-brands fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-2 p-0" *ngFor="let data of propdetails;">
+                       
+                        <div class="wishLishtDiv1 footerFavBtn">
+                            <div [ngClass]="{'Rental_icons_Heart_Active': isInWishlist(data.PropertyID), 'Rental_icons_Heart': !isInWishlist(data.PropertyID)}" class="Rental_icons_Heart mb-2" (click)="Heart_Transtion(data.PropertyID)">
+                        </div>
+                        </div>
+                        <input *ngIf="userfav == false" class='red-heart-checkbox' (click)="addwishlist(data.Property_ID)" id='red-check3' type='checkbox' title="Wishlist Check">
+              <input *ngIf="userfav == true" class='red-heart-checkbox' (click)="addwishlist(data.Property_ID)" id='red-check4' type='checkbox' title="Wishlist Check" checked>
+                    </div>
+                    <div class="col-8 text-center" (click)="ShowHideEnquery2()">
+                        <button class="footerContactBtn"><i class="fa fa-phone-square phoneButton"></i>&nbsp;&nbsp;&nbsp;Contact Owner</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div> -->
+</div>
+}
+
+
+<div class="footerDiv">
+    <ng-container *ngComponentOutlet="FooterComponent"></ng-container>
+</div>
+
+
+<!-- CSS-Loader -->
+@if (otploader) {
+<div class="loaderbody">
+    <div class="box">
+        <div class="loader-20"></div>
+    </div>
+</div>
+}
+<!-- CSS-Loader -->
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=info" />
+
+
+<div style="height: 90px;"></div>
+
+
+
+
+<!-- Subcription code  -->
+<div class="modal fade" id="elitePlanModal" tabindex="-1" aria-labelledby="elitePlanModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+
+            <div class="d-flex justify-content-end mt-3 me-3">
+                <img class="elitePlanLogo mr-3" id="elitePlanClose"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/closeIcon.svg" alt="Close" data-dismiss="modal"
+                    style="cursor:pointer;">
+            </div>
+
+
+            <div class="modal-body text-center">
+
+                <div class="d-flex justify-content-center align-items-center mt-3">
+                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/metarIcon.svg" alt="">
+                </div>
+
+                <div class="text-center YourFree mt-3">
+                    <h6>Your free contact limit is over</h6>
+                    <p>Upgrade your plan to keep connecting with property owners.</p>
+                </div>
+
+                <div class="afterSuccessPayment mt-4">
+                    <div class="d-flex justify-content-center align-items-center mb-2">
+                        <a class="btn UnlockMoreBtn" (click)="elitePlanRouter()">
+                            Unlock More Contacts
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+@if(isVisible){
+<div class="visibility-popup__backdrop" (click)="onBackdropClick()"></div>
+
+<div class="visibility-popup" role="dialog" aria-modal="true" aria-label="Your property visibility">
+    <button type="button" class="visibility-popup__close" (click)="closeVsibilityPopup()" aria-label="Close">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/notificationClose.svg"
+            alt="" class="visibility-popup__close-icon" />
+    </button>
+
+    <div class="visibility-popup__top">
+        <div class="visibility-popup__top-text">
+            <h2 class="visibility-popup__heading">Your Property Visibility</h2>
+            <p class="visibility-popup__level"> Low </p>
+        </div>
+
+        <div class="visibility-popup__eye">
+            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/lowVisibilityEye.svg"
+                alt="Visibility indicator" class="visibility-popup__eye-icon" />
+        </div>
+    </div>
+
+    <p class="visibility-popup__description">
+        Boost your listing to improve ranking and reach more interested buyers.
+    </p>
+
+    <div class="visibility-popup__timeline">
+        @for (step of steps; track step.label; let isLast = $last) {
+        <div class="visibility-popup__step visibility-popup__step--{{ step.state }}">
+            <div class="visibility-popup__step-icon">
+                <img [src]="step.icon" [alt]="step.label" class="visibility-popup__step-icon-img" />
+            </div>
+            <span class="visibility-popup__step-label">{{ step.label }}</span>
+            @if (step.subLabel) {
+            <span class="visibility-popup__step-sublabel">{{ step.subLabel }}</span>
+            }
+        </div>
+
+        @if (!isLast) {
+        <div class="visibility-popup__connector"></div>
+        }
+        }
+    </div>
+
+    <div class="visibility-popup__info">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/boostListingIcon.svg"
+            alt="" class="visibility-popup__info-icon" />
+        <p class="visibility-popup__info-text">
+            Boosted Listings get up to
+            <span class="visibility-popup__info-highlight">3x more</span>
+            views &amp; enquiries.
+        </p>
+    </div>
+
+    <button type="button" class="visibility-popup__cta" (click)="increaseVisibility()">
+        <span class="visibility-popup__cta-text">Increase Visibility</span>
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/visibilityEyeIcon.svg"
+            alt="" class="visibility-popup__cta-icon" />
+    </button>
+</div>
+}

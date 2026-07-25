@@ -1,0 +1,120 @@
+<div class="login-wrapper">
+
+    <!-- Hero Image: full width, rounded bottom corners -->
+    <div class="hero-image-container">
+        <!-- <img src="https://img-db.homes247.in/images/individuallistings/cover/1769836658-1.jpg"
+            alt="Property Illustration" class="hero-image" /> -->
+       <a href="https://hostinger.homes247.in/"> <img width="176" height="33" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Homes247_NewBlack_Logo.png"
+            alt="Homes247 Logo" class="mt-4"></a>
+    </div>
+
+    <!-- Content Card -->
+    <div class="content-card">
+
+        <!-- Heading -->
+        <h1 class="welcome-heading">Welcome to Homes247</h1>
+
+        <!-- Subtitle -->
+        <p class="welcome-subtitle">
+            Sign in with your mobile number to access properties and personalized recommendations.
+        </p>
+
+        <!-- Phone Input -->
+        <div class="phone-input-wrapper">
+            <input type="tel" class="phone-input" id="emobile" name="mobile" placeholder="Enter your mobile number"
+                maxlength="10" [(ngModel)]="user.number" (input)="onPhoneInput($event)" inputmode="numeric"
+                pattern="[0-9]*" />
+        </div>
+
+        <!-- Terms -->
+        <p class="terms-text">
+            By continuing, you agree to our <a class="terms-link" href="https://www.homes247.in/policy"
+                target="_blank">Terms &amp; Privacy Policy</a>
+        </p>
+
+        <!-- Continue Button -->
+        <!-- <button class="continue-btn" [disabled]="user.number.length < 10" [class.disabled]="user.number.length < 10"
+            (click)="openOtpSheet()">
+            Continue
+        </button> -->
+
+
+        <button class="continue-btn" [disabled]="user.number?.length < 10" [class.disabled]="user.number?.length < 10"
+            (click)="otpsend()">
+            Continue
+        </button>
+
+    </div>
+
+    <!-- OTP Bottom Sheet Overlay -->
+    <div class="overlay" [class.active]="showOtpSheet" (click)="closeOtpSheet()"></div>
+
+    <!-- OTP Bottom Sheet -->
+    <div class="otp-sheet" [class.open]="showOtpSheet">
+
+        <!-- Drag Handle -->
+        <!-- <div class="sheet-handle"></div> -->
+
+        <!-- OTP Heading -->
+        <h2 class="otp-heading">
+            We'll send you a one time code to verify your account
+        </h2>
+
+        <!-- Phone Number Row -->
+        <div class="otp-phone-row">
+            <span class="otp-phone-number">+91 {{ user.number }}</span>
+            <button class="edit-btn" (click)="closeOtpSheet()" aria-label="Edit number">
+                <!-- <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125"
+                        stroke="#971B47" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg> -->
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newHomesNavBar/loginNumberEditNew.svg" alt="loginNumberEditNew" width="12" height="12">
+            </button>
+        </div>
+
+        <!-- OTP Input Boxes -->
+        <div class="otp-inputs">
+            <input hidden autocomplete="off" type="text" placeholder="OTP" name="otp" id="otp" [(ngModel)]="user.otp"
+                required />
+            <div class="custom-otp-wrapper">
+                <ng-otp-input class="otp-box" #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config">
+                </ng-otp-input>
+            </div>
+            <!-- <input *ngFor="let box of otpBoxes; let i = index" #otpInput type="text" inputmode="numeric" maxlength="1" name="otp" id="otp" [(ngModel)]="user.otp"
+                class="otp-box" [class.filled]="otp[i]" [value]="otp[i]" (keydown)="onOtpKeyDown($event, i)"
+                (input)="onOtpInput($event, i)" (paste)="onOtpPaste($event)" /> -->
+        </div>
+
+        <!-- Resend Row -->
+        <div class="resend-row">
+            <p class="didnt-receive m-0">Didn't receive code?</p>
+
+            <div class="countdown_maindiv">
+                <span class="resendCode">Resend Code in
+                    <countdown #cd4 [config]="countdownconfig" (event)="handleEvent($event)"></countdown>
+                </span>
+            </div>
+            <p class="otpexpireclass" style="display:none">
+                <a (click)="otpsend()">Resend Code</a>
+            </p>
+
+        </div>
+
+        <!-- Verify Button -->
+        <!-- <button class="continue-btn verify-btn" [disabled]="user.otp?.length < 4"
+            [class.disabled]="user.otp?.length < 4" (click)="otpvalidate()">
+            Verify OTP
+        </button> -->
+        <!-- <button
+      class="continue-btn verify-btn"
+      [disabled]="otp.join('').length < 4"
+      [class.disabled]="otp.join('').length < 4"
+      (click)="verifyOtp()"
+    >
+      Verify OTP
+    </button> -->
+
+    </div>
+
+</div>

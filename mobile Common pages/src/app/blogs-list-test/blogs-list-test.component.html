@@ -1,0 +1,1190 @@
+<!-- <div class="innerheader_position">
+    <app-innerheader></app-innerheader>
+</div> -->
+<!-- <div #scrollapiloader class="about_us_banner">
+  <img  loading="lazy" lazyLoad="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/blogs/cover-image.jpg" alt="blogs-header">
+  <ul class="breadcrumbs breadcrumbs_type" itemscope itemtype="http://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="breadcrumbs__item">
+          <a itemprop="item" target="_blank" href="/" class="breadcrumbs__element">
+            <span itemprop="name">Home</span>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+      <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="breadcrumbs__item_active">
+        <span itemprop="name">Home Guide</span>
+        <link itemprop="item" href="/blogs">
+        <meta itemprop="position" content="2" />
+        </li>
+  </ul>
+</div> -->
+<app-my-json-ld [innerHTML]="eventsLD"></app-my-json-ld>
+<div class="backGroundColor">
+
+  <h1 hidden>Blogs</h1>
+
+  <div #scrollapiloader class="container banner-section">
+    <div class="row col-12" style="padding: 10px 0;">
+      <div class="col-2" (click)="clickNavopen()">
+        <img  loading="lazy" lazyLoad="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Hamburger Menu.png" alt="Homes247" style="width: 32px;height: 28px;">
+      </div>
+
+      <div class="col-8 p-0 Search_Box">
+        <img  loading="lazy" lazyLoad="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/logo/Homes247_NewWhite_Logo.svg" alt="Homes247" style="width: 110px;height: 100%;" href="https://www.homes247.in/">
+      </div>
+      <div class="col-2  pl-0">
+        <div class="headerUserLogo" style="display: flex;" *ngIf="loginDropDownOpen">
+          <img  loading="lazy" (click)="openValidationFrm()" lazyLoad="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/start-write.png" alt="start-write" class="start_icon dropbtn mr-3">
+          <img  loading="lazy" (click)="openValidationFrm1()" lazyLoad="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/user-icon.png" alt="user-icon" class="user_icon dropbtn">
+        </div>
+        <div class=" headerUserLogo" style="display: flex;" *ngIf="profileDropDownOpen">
+          <img  loading="lazy" (click)="openValidationFrm()" lazyLoad="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/start-write.png" routerLink="/writeblogs/authors/{{blogger_name_html | cleanUrl}}/{{bloggerId}}" alt="start-write" class="start_icon dropbtn mr-3">
+          <img  loading="lazy" *ngIf="imageUrls == null" lazyLoad="{{ProfileImageNull}}{{imageUrl}}" alt="imageUrl" class="user_icon dropbtn">
+          <img  loading="lazy" *ngIf="imageUrls" height="30" width="30px" lazyLoad="{{ProfileImage}}{{imageUrls}}" alt="imageUrls" class="user_icon dropbtn">
+          <div id="myDropdown" class="dropdown-content">
+            <p class="mb-0" routerLink="/userblogs/profile/{{blogger_name_html | cleanUrl}}-1-{{bloggerId}}" (click)="openValidationFrm1()">My Profile</p>
+            <p class="mb-0 mt-1" (click)="onLogOut()">Logout</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div id="mySidenavs" class="sidenav" style="width: 0px;">
+    <div class="nav_logo">
+      <a class="logo_nav" href="https://www.homes247.in/">
+        <img  loading="lazy" lazyLoad="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Homes247 New Logo.png" alt="Homes247" style="margin: 5px 24px;">
+      </a>
+      <!-- <span class="closebtn" (click)="clickNavclose()">
+        <svg id="fi_6583137" enable-background="new 0 0 48 48" height="40" viewBox="0 0 48 48" width="40" xmlns="http://www.w3.org/2000/svg">
+          <path d="m32.5 33c.4.4.4 1 0 1.4-.2.2-.5.3-.7.3s-.5-.1-.7-.3l-8.4-8.4-8.4 8.4c-.2.2-.5.3-.7.3s-.5-.1-.7-.3c-.4-.4-.4-1 0-1.4l8.4-8.4-8.4-8.4c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l8.4 8.4 8.4-8.4c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-8.4 8.4z">
+          </path>
+        </svg> lazyLoad="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/burger_menu_close.png" alt="Homes247_close">
+      </span> -->
+
+        <span class="closebtn" (click)="clickNavclose()">
+        <svg id="fi_6583137" enable-background="new 0 0 48 48" height="40" viewBox="0 0 48 48" width="40" xmlns="http://www.w3.org/2000/svg">
+          <path d="m32.5 33c.4.4.4 1 0 1.4-.2.2-.5.3-.7.3s-.5-.1-.7-.3l-8.4-8.4-8.4 8.4c-.2.2-.5.3-.7.3s-.5-.1-.7-.3c-.4-.4-.4-1 0-1.4l8.4-8.4-8.4-8.4c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l8.4 8.4 8.4-8.4c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-8.4 8.4z">
+          </path>
+        </svg>
+      </span>
+      
+    </div>
+
+    <div>
+      <p class="pl-2 navTextWipe"><a href="https://www.homes247.in/">Home</a></p>
+      <p class="pl-2 navTextWipe"><a routerLink="/aboutus">About Us</a></p>
+      <p class="pl-2 navTextWipe"><a href="https://www.homes247.in/careers">Careers</a></p>
+
+      <p class="pl-2 navTextWipe"><a routerLink="/blogs">Home Guide<span class="blogmark">Blogs</span></a> </p>
+      <!-- <p class="pl-2 navTextWipe"><a routerLink="/calculator">EMI Calculator</a></p> -->
+      <ul class="nav_links pl-2 navTextWipe m-0" (click)="ShowHide_More()">
+        <li class=""><span data-toggle="" href="">More <span class="caret"></span></span>
+          <ul class="drop_style p-0 m-0" *ngIf="IsVisiblee">
+            <li><a routerLink="/find-ifsc-code">Find IFSC Codes</a></li>
+            <li><a routerLink="/find-pincode">Find Pincode Codes</a></li>
+            <li><a routerLink="/all-project-reviews-in-india">All Property Reviews</a></li>
+            <li><a routerLink="/all-project-walkthrough-videos-in-india">All Property
+                Walkthrough Videos</a></li>
+            <li><a routerLink="/expertservices">Expert Services</a></li>
+            <!-- <li><a routerLink="/buyers-guide">Home Buyers Guide</a></li> -->
+            <!-- <li><a routerLink="/latest-trends">Latest Real Estate Updates</a></li> -->
+
+            <li><a routerLink="/price-trends">Price Trends</a></li>
+            <li><a routerLink="/homeloan">Home Loan</a></li>
+            <li><a routerLink="/vaastu">Vaastu Tips</a></li>
+            <li><a routerLink="/interior">Interiors</a></li>
+            <li> <a routerLink="/faq">FAQ</a></li>
+            <li> <a routerLink="/policy">Privacy Policy</a></li>
+          </ul>
+        </li>
+      </ul>
+
+
+      <!-- <div class="nav_social_icon">
+        <ul>
+          <li>
+            <span class="nav_fb" target="_blank" href="https://www.facebook.com/Homes247.in/"></span>
+          </li>
+          <li>
+            <span class="nav_insta" target="_blank" href="https://www.instagram.com/homes247.in"></span>
+          </li>
+          <li>
+            <span class="nav_twitter" target="_blank" href="https://x.com/homes247_in"></span>
+          </li>
+          <li>
+            <span class="nav_in" target="_blank" href="https://www.linkedin.com/company/homes247/"></span>
+          </li>
+        </ul>
+      </div> -->
+
+
+          <div class="nav_social_icon">
+                <ul>
+                    <li>
+                        <a class="nav_fb" target="_blank" href="https://www.facebook.com/Homes247.in/"></a>
+                    </li>
+                    <li>
+                        <a class="nav_insta" target="_blank" href="https://www.instagram.com/homes247.in"></a>
+                    </li>
+                    <li>
+                        <a class="nav_twitter" target="_blank" href="https://x.com/homes247_in"></a>
+                    </li>
+                    <li>
+                        <a class="nav_in" target="_blank" href="https://www.linkedin.com/company/homes247/"></a>
+                    </li>
+                </ul>
+            </div>
+
+
+    </div>
+  </div>
+  <!-- <div #scrollapiloader class="banner-section">
+    <img  loading="lazy" lazyLoad="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/mobile_header.png" class="img-fluid" alt="Responsive image">
+  </div> -->
+
+  <div class="main-blog" id="main-blog">
+    <div class="scrollmenu" id="content">
+      <span class="" itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <a itemprop="url" routerLink="/blogs">
+          <i class="fa fa-home blog-category-home" aria-hidden="true"></i></a>
+        <meta itemprop="name" content="All Blogs">
+      </span>
+      <span class="" itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <a itemprop="url" href="https://www.homes247.in/articles/our-trending-blogs-1" class="blog-category-text">Trending
+          Now</a>
+        <meta itemprop="name" content="Trending Now">
+      </span>
+      <span class="" itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <a itemprop="url" href="https://www.homes247.in/articles/video-blogs" class="blog-category-text video-scroll">Videos</a>
+        <meta itemprop="name" content="Videos">
+      </span>
+      <span class="" itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <a itemprop="url" href="https://www.homes247.in/articles/our-latest-updates-2" class="blog-category-text latest-scroll">Latest</a>
+        <meta itemprop="name" content="Latest">
+      </span>
+      <span class="" itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <a itemprop="url" href="https://www.homes247.in/articles/top-real-estate-news-7" class="blog-category-text real-estate-scroll">Real Estate News</a>
+        <meta itemprop="name" content="Real Estate News">
+      </span>
+      <span class="" itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <a itemprop="url" href="https://www.homes247.in/articles/interior-design-ideas-5" class="blog-category-text interior-scroll">Interiors</a>
+        <meta itemprop="name" content="Interiors">
+      </span>
+      <span class="" itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <a itemprop="url" href="https://www.homes247.in/articles/expert-opinions-on-indian-realestate-16" class="blog-category-text expert-scroll">Experts' Voices</a>
+        <meta itemprop="name" content="Experts' Voices">
+      </span>
+      <span class="" itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <a itemprop="url" href="https://www.homes247.in/articles/technology-blogs-6" class="blog-category-text technology-scroll">Technology</a>
+        <meta itemprop="name" content="Technology">
+      </span>
+      <span class="" itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <a itemprop="url" href="https://www.homes247.in/articles/vastu-shastra-tips-8" class="blog-category-text technology-scroll">Vastu</a>
+        <meta itemprop="name" content="Vastu">
+      </span>
+      <span class="" itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <a itemprop="url" href="https://www.homes247.in/articles/healthy-lifestyle-blogs-9" class="blog-category-text technology-scroll">Lifestyle</a>
+        <meta itemprop="name" content="Lifestyle">
+      </span>
+      <span class="" itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <a itemprop="url" href="https://www.homes247.in/articles/modern-construction-techniques-10" class="blog-category-text construction-scroll">Construction</a>
+        <meta itemprop="name" content="Construction">
+      </span>
+      <span class="" itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <a itemprop="url" href="https://www.homes247.in/articles/health-fitness-blogs-11" class="blog-category-text construction-scroll">Health & Fitness</a>
+        <meta itemprop="name" content="Health & Fitness">
+      </span>
+      <span class="" itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <a itemprop="url" href="https://www.homes247.in/articles/diy-decor-ideas-12" class="blog-category-text diy-scroll">DIY</a>
+        <meta itemprop="name" content="DIY">
+      </span>
+      <span class="" itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <a itemprop="url" href="https://www.homes247.in/articles/popular-indian-festivals-15" class="blog-category-text diy-scroll">Festivals</a>
+        <meta itemprop="name" content="Festivals">
+      </span>
+      <span class="" itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <a itemprop="url" href="https://www.homes247.in/articles/web-stories" class="blog-category-text diy-scroll">Web Stories</a>
+        <meta itemprop="name" content="Festivals">
+      </span>
+      <span class="" itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <a itemprop="url" href="https://www.homes247.in/articles/indian-realestate-articles-17" class="blog-category-text indian-scroll">Indian Real Estate</a>
+        <meta itemprop="name" content="Indian Real Estate">
+      </span>
+      <span class="" itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <a itemprop="url" href="https://www.homes247.in/articles/finance-loan-taxes-13" class="blog-category-text indian-scroll">Loan & Taxes</a>
+        <meta itemprop="name" content="Loan & Taxes">
+      </span>
+      <span class="" itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <a itemprop="url" href="https://www.homes247.in/articles/most-popular-news-14" class="blog-category-text indian-scroll">News</a>
+        <meta itemprop="name" content="News">
+      </span>
+      <span class="" itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <a itemprop="url" href="https://www.homes247.in/articles/tips-for-buying-a-house-4" class="blog-category-text indian-scroll">Home Buying</a>
+        <meta itemprop="name" content="Home Buying">
+      </span>
+    </div>
+  </div>
+
+  <div class="scrollreach"></div>
+  <div *ngIf="searchshow">
+    <div>
+      <ng-container *ngComponentOutlet="BlogautocompleteComponent"></ng-container>
+    </div>
+  </div>
+
+  <!-- search section -->
+  <div class="search">
+
+  </div>
+  <!-- search section -->
+
+  <!-- most recent now section -->
+
+  <div class="container blogs_main" id="most-recent">
+    <div class="Trending-updatesTop">
+      <h5>Latest Blogs</h5>
+      <div style="height: 190px;"*ngIf="Mousemovement">
+        <owl-carousel-o [options]="bestoffersOptions1" >
+          <ng-container>
+            <ng-template carouselSlide *ngFor="let recents of recentStories">
+              <div class="propBox col-12 px-0 mr-2">
+                <div class="propImg">
+                  <div *ngIf="recents.webStoryCode !== null" (click)="callWebStoryApiID(recents.id,recents.webStoryCode)" class="webStoryIcon1" data-toggle="modal" data-target="#exampleModalCenter">
+                    <img  loading="lazy" style="height: 20px; width: 20px;" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/blogsListing/webstoryIcon.svg" alt="..webstoryIcon.svg" >
+                  </div>
+                  <a href="https://www.homes247.in/blogs/{{recents.urlstruture | cleanUrl }}-{{recents.id}}">
+                    <img  loading="lazy"  width="100%" src="{{imagepath}}{{recents.imgPath}}" alt="recents.imgPath">
+                  </a>
+                </div>
+              </div>
+              <div class="col-sm-12 blogsMainSliderDetails">
+                <div class="blogCategoryDiv1 mt-0">
+                  <p class="blogCategory1 mb-0">{{recents.stories_type}}</p>
+                </div>
+                <p class="text-left blogsHeading" itemprop="headline"><a href="https://www.homes247.in/blogs/{{recents.urlstruture | cleanUrl }}-{{recents.id}}">{{recents.title}}</a>
+                </p>
+                <div class="col-sm-12 d-flex p-0 mt-0" style="gap: 30px; align-items: center;">
+                  <a href="https://www.homes247.in/insights/authors/{{recents.addedby | cleanUrl}}-{{recents.authtype}}-{{recents.addedbyId}}" class="authorname">By: {{recents.addedby}}</a>
+                  <div class="">
+                    <p class="blogsdate">{{recents.updatedate | date:'dd-MMMM-yyyy'}}</p>
+                  </div>
+                </div>
+                <p hidden itemprop="datePublished">{{recents.publisheddate}}</p>
+                <p hidden itemprop="dateModified">{{recents.updatedate}}</p>
+                <p hidden itemprop="author">Homes247 Editorial</p>
+                <div hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                  <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+                    <img  loading="lazy" [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/Homes247_NewBlack_Logo.png'" alt="Homes247_NewBlack_Logo.png'" />
+                    <meta itemprop="url" content="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/Homes247_NewBlack_Logo.png">
+                    <meta itemprop="width" content="400">
+                    <meta itemprop="height" content="60">
+                  </div>
+                  <meta itemprop="name" content="{{recents.addedby}}">
+                </div>
+                <meta itemprop="mainEntityOfPage" itemscope itemtype="http://schema.org/WebPage">
+              </div>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+      </div>
+      <div style="height: 190px;"*ngIf="ReverseMovement">
+            <div  *ngFor="let recents of recentStories |slice:0:1">
+              <div class="propBox col-12 px-0 mr-2">
+                <div class="propImg">
+                  <div *ngIf="recents.webStoryCode !== null" (click)="callWebStoryApiID(recents.id,recents.webStoryCode)" class="webStoryIcon1" data-toggle="modal" data-target="#exampleModalCenter">
+                    <img  loading="lazy" style="height: 20px; width: 20px;" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/blogsListing/webstoryIcon.svg" alt="..webstoryIcon.svg" >
+                  </div>
+                  <a>
+                    <img  loading="lazy"  width="100%" src="{{imagepath}}{{recents.imgPath}}" alt="recents.imgPath">
+                  </a>
+                </div>
+              </div>
+              <div class="col-sm-12 blogsMainSliderDetails">
+                <div class="blogCategoryDiv1 mt-0">
+                  <p class="blogCategory1 mb-0">{{recents.stories_type}}</p>
+                </div>
+                <p class="text-left blogsHeading" itemprop="headline"><a href="https://www.homes247.in/blogs/{{recents.urlstruture | cleanUrl }}-{{recents.id}}">{{recents.title}}</a>
+                </p>
+                <div class="col-sm-12 d-flex p-0 mt-0" style="gap: 30px; align-items: center;">
+                  <a href="https://www.homes247.in/insights/authors/{{recents.addedby | cleanUrl}}-{{recents.authtype}}-{{recents.addedbyId}}" class="authorname">By: {{recents.addedby}}</a>
+                  <div class="">
+                    <p class="blogsdate">{{recents.updatedate | date:'dd-MMMM-yyyy'}}</p>
+                  </div>
+                </div>
+                <p hidden itemprop="datePublished">{{recents.publisheddate}}</p>
+                <p hidden itemprop="dateModified">{{recents.updatedate}}</p>
+                <p hidden itemprop="author">Homes247 Editorial</p>
+                <div hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                  <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+                    <img  loading="lazy" [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/Homes247_NewBlack_Logo.png'" alt="Homes247_NewBlack_Logo.png'" />
+                    <meta itemprop="url" content="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/Homes247_NewBlack_Logo.png">
+                    <meta itemprop="width" content="400">
+                    <meta itemprop="height" content="60">
+                  </div>
+                  <meta itemprop="name" content="{{recents.addedby}}">
+                </div>
+                <meta itemprop="mainEntityOfPage" itemscope itemtype="http://schema.org/WebPage">
+              </div>
+            </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="container px-0 mt-4" style="background: #fff; padding-top: 8px;">
+    <h5 style="font-size: 14px; color: #000; font-weight: 500; padding-left: 15px; margin-bottom: -4px;">Web Story</h5>
+    <div >
+      <div class="container owlWebStory">
+      <owl-carousel-o #webStoryCarousel [options]="customOptionsWebStory" (changed)="onCarouselChanged($event)">
+        <ng-container *ngFor="let slideGroup of webstories">
+          <ng-template carouselSlide>
+            <div class="webstory-container">
+              <div class="progress-bar-container">
+                <div class="progress-bar" *ngFor="let img of slideGroup; let i = index">
+                  <div class="progress-bar-inner" [ngClass]="{ active: i === currentSlide }"></div>
+                </div>
+              </div>
+              <div class="story-image-container">
+                <img  loading="lazy"   src="{{webStoryPath}}{{slideGroup[currentSlide].storyimg}}" alt="Slide Image" />
+              </div>
+              <div class="clickable-overlay">
+                <div class="left-half" (click)="prevSlide()"></div>
+                <div class="right-half" (click)="nextSlide()"></div>
+              </div>
+            </div>
+            <div class="home-button">
+              <a href="https://www.homes247.in/blogs/{{slideGroup[currentSlide].url_structure}}-{{slideGroup[currentSlide].blog_ID}}" target="_blank">{{slideGroup[currentSlide].top_stories_title}}</a>
+              <div class="addedByDatas mt-1">
+                <div class="d-flex" style="align-items: center; justify-content: center; gap: 20px;">
+                  <div class="">
+                    <p class="addedByTag">By {{slideGroup[currentSlide].top_stories_addedBy}}</p>
+                  </div>
+                  <div class="">
+                    <p class="addedByCreated">{{slideGroup[currentSlide].top_stories_created}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+    </div>
+
+    <!-- <div class="container px-0 owlWebStoryNoImage" *ngIf="!showWebStory">
+      <img  loading="lazy"  height="394" width="100%" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/blogsListing/noWebStoryImage.svg" alt="..noWebStoryImage.svg" >
+    </div> -->
+    
+  </div>
+
+
+
+
+
+
+
+
+  <div class="popup" *ngIf="showPopup">
+    <div class="blurred-background" [ngStyle]="{ 'background-image': 'url(' + webStoryPath + webStoriesById[currentSlideById]?.storyimg + ')' }"></div>
+    <div class="popup-content animate-in">
+      <span class="close-btn" (click)="closePopup()">×</span>
+
+      <div class="owlWebStoryList">
+        <div class="webstory-container1">
+          <div class="progress-bar-containerHome">
+            <div class="progress-bar" *ngFor="let img of webStoriesById; let i = index">
+              <div class="progress-bar-inner" [ngClass]="{ active: i === currentSlideById }"></div>
+            </div>
+          </div>
+          <div class="story-image-container1">
+            <img  loading="lazy" [ngClass]="zoomState" src="{{webStoryPath}}{{webStoriesById[currentSlideById].storyimg}}" alt="Slide Image" />
+          </div>
+          <div class="clickable-overlay1">
+            <div class="left-half" (click)="prevSlide1()"></div>
+            <div class="right-half" (click)="nextSlide1()"></div>
+          </div>
+        </div>
+        <div class="home-button1">
+          <a class="titleAnchorTag" href="https://www.homes247.in/blogs/{{webStoriesById[currentSlideById].url_structure}}-{{webStoriesById[currentSlideById].blog_ID}}" target="_blank" style="justify-self: left;">{{webStoriesById[currentSlideById].top_stories_title}}</a>
+          <div class="row">
+            <div class="addedByDatasPopup mt-1 col-6">
+              <p class="addedByCreatedPopup mb-1">{{webStoriesById[currentSlideById].top_stories_created}}</p>
+              <p class="addedByTagPopup">By {{webStoriesById[currentSlideById].top_stories_addedBy}}</p>
+            </div>
+            <div class="col-6 text-right" style="justify-items: right;">
+              <a class="viewBlogBtn" href="https://www.homes247.in/blogs/{{webStoriesById[currentSlideById].url_structure}}-{{webStoriesById[currentSlideById].blog_ID}}" target="_blank">
+                View Blog
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <!-- most recent section end  -->
+
+  <!-- trending  blog section -->
+  <div class="container blogs_main" id="most-recent">
+    <div class="Trending-updates">
+      <div class="row">
+        <div class="col-6">
+          <h5>Trending Blogs</h5>
+        </div>
+        <div class="col-6">
+          <div class="video_explore_btn">
+            <a href="https://www.homes247.in/articles/our-trending-blogs-1" class="trendingBlogsReadMore">
+              Explore More
+              <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- <h5>Trending BLogs</h5> -->
+      <!-- <div class="trending-blog2" *ngFor="let recents of trendingblogs | slice:0:6">
+      <div class="row row-padding" itemscope itemtype="http://schema.org/Article">
+        <div class="col-4">
+          <div itemprop="url">
+            <a href="https://www.homes247.in/blogs/{{recents.urlstruture | cleanUrl }}-{{recents.id}}">
+              <span itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+                <img  loading="lazy" lazyLoad="{{imagepath}}{{recents.imgPath}}" alt="recents.alttag" class="card-img">
+                <meta itemprop="url" content="{{imagepath}}{{recents.imgPath}}">
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="col-8">
+          <meta itemprop="url" content="https://www.homes247.in/blogs/{{recents.urlstruture | cleanUrl }}-{{recents.id}}">
+          <div>
+            <a href="https://www.homes247.in/blogs/{{recents.urlstruture | cleanUrl }}-{{recents.id}}">
+              <p itemprop="headline" class="card-text trend-blog-title">{{recents.title}}</p>
+              <p hidden itemprop="datePublished">{{recents.publisheddate}}</p>
+              <p hidden itemprop="dateModified">{{recents.updatedate}}</p>
+              <p hidden itemprop="author">Homes247 Editorial</p>
+              <div hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+                  <img  loading="lazy"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Logo.png" alt="Logo.png" />
+                  <meta itemprop="url" content="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/logo/logo-blue-orange.png">
+                  <meta itemprop="width" content="400">
+                  <meta itemprop="height" content="60">
+                </div>
+                <meta itemprop="name" content="{{recents.addedby}}">
+              </div>
+              <meta itemprop="mainEntityOfPage" itemscope itemtype="http://schema.org/WebPage">
+              <p class="latest_ptag">Author Name : <span class="addedby">{{recents.addedby}}</span></p>
+              <span class=" shortdescRecent">Date : {{recents.updatedate | date:'dd-MMMM-yyyy'}}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+
+
+
+      <div *ngIf="!trendingblogs" class="row blogsLoader mt-1">
+        <div class="col-7 pr-0">
+          <div class="item">
+            <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '122px' }">
+            </ngx-skeleton-loader>
+            <ngx-skeleton-loader [theme]="{ width: '100%','border-radius': '4',height: '30px'}">
+            </ngx-skeleton-loader>
+            <div class="row">
+              <div class="col-6 pr-0">
+                <ngx-skeleton-loader [theme]="{'border-radius': '9',height: '15px'}">
+                </ngx-skeleton-loader>
+              </div>
+              <div class="col-6">
+                <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                </ngx-skeleton-loader>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-5">
+          <div class="item">
+            <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '122px' }">
+            </ngx-skeleton-loader>
+            <ngx-skeleton-loader [theme]="{ width: '100%','border-radius': '4',height: '30px'}">
+            </ngx-skeleton-loader>
+            <div class="row">
+              <div class="col-6 pr-0">
+                <ngx-skeleton-loader [theme]="{'border-radius': '9',height: '15px'}">
+                </ngx-skeleton-loader>
+              </div>
+              <div class="col-6">
+                <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                </ngx-skeleton-loader>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex" style="gap: 8px; overflow: scroll;" *ngIf="trendingblogs">
+        <div class="" *ngFor="let blog of trendingblogs | slice:0:6">
+          <div class="blogListMain">
+            <div *ngIf="blog.webStoryCode !== null" (click)="callWebStoryApiID(blog.id,blog.webStoryCode)" class="webStoryIcon" data-toggle="modal" data-target="#exampleModalCenter">
+              <img  loading="lazy"  height="20" width="20" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/blogsListing/webstoryIcon.svg" alt="..webstoryIcon.svg" >
+            </div>
+            <a href="https://www.homes247.in/blogs/{{blog.urlstruture | cleanUrl }}-{{blog.id}}">
+              <img  loading="lazy"  src="{{imagepath}}{{blog.imgPath}}" class="trendingblogImageSize" alt="your image">
+              <!-- <div class="blogCategoryDiv">
+                <p class="blogCategory mb-0">{{blog.storytype}}</p>
+              </div> -->
+              <p class="text-left trendingblogsHeadingMain">{{blog.title}}</p>
+              <div class="addedByDatas">
+                <div class="row">
+                  <div class="col-6 pr-0">
+                    <p class="addedByTagList mb-0">By {{blog.addedby}}</p>
+                  </div>
+                  <div class="col-6 text-right">
+                    <p class="addedByCreatedList mb-0">{{blog.date}}</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </div>
+
+
+  <!-- trending blog section end-->
+
+
+
+
+   <div class="container mt-4 pt-0" style="padding-left: 15px; padding-right: 15px;">
+    <div class="addBanner1" data-toggle="modal" data-target="#myModal_services" data-backdrop="static" data-keyboard="false" *ngFor="let data of shuffledArray1 | slice:0:1;" (click)="clickedService(data.expert_IDFK)">
+      <img  loading="lazy"  width="100%"  src="{{addRoot}}{{data.mobile_image}}" alt="data.mobile_image">
+    </div>
+  </div>
+
+
+
+  <div class="container blogs_main" id="most-recent">
+    <div class="Trending-updates">
+      <div class="row">
+        <div class="col-6">
+          <h5>Real Estate News</h5>
+        </div>
+        <div class="col-6">
+          <div class="video_explore_btn">
+            <a href="https://www.homes247.in/articles/indian-realestate-articles-17" class="trendingBlogsReadMore">
+              Explore More
+              <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- <h5>Real Estate News</h5> -->
+
+      <div *ngIf="!realEstateNewsBlogs" class="row blogsLoader mt-1">
+         <div class="col-7 pr-0">
+          <div class="item">
+            <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '122px' }">
+            </ngx-skeleton-loader>
+            <ngx-skeleton-loader [theme]="{ width: '100%','border-radius': '4',height: '30px'}">
+            </ngx-skeleton-loader>
+            <div class="row">
+              <div class="col-6 pr-0">
+                <ngx-skeleton-loader [theme]="{'border-radius': '9',height: '15px'}">
+                </ngx-skeleton-loader>
+              </div>
+              <div class="col-6">
+                <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                </ngx-skeleton-loader>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-5">
+          <div class="item">
+            <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '122px' }">
+            </ngx-skeleton-loader>
+            <ngx-skeleton-loader [theme]="{ width: '100%','border-radius': '4',height: '30px'}">
+            </ngx-skeleton-loader>
+            <div class="row">
+              <div class="col-6 pr-0">
+                <ngx-skeleton-loader [theme]="{'border-radius': '9',height: '15px'}">
+                </ngx-skeleton-loader>
+              </div>
+              <div class="col-6">
+                <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                </ngx-skeleton-loader>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex" style="gap: 8px; overflow: scroll;" *ngIf="realEstateNewsBlogs">
+        <div class="" *ngFor="let blog of realEstateNewsBlogs | slice:0:6">
+          <div class="blogListMain">
+            <div *ngIf="blog.webStoryCode !== null" (click)="callWebStoryApiID(blog.id,blog.webStoryCode)" class="webStoryIcon" data-toggle="modal" data-target="#exampleModalCenter">
+              <img  loading="lazy"  height="20" width="20" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/blogsListing/webstoryIcon.svg" alt="..webstoryIcon.svg" >
+            </div>
+            <a href="https://www.homes247.in/blogs/{{blog.urlstruture | cleanUrl }}-{{blog.id}}">
+              <img  loading="lazy"  src="{{imagepath}}{{blog.imgPath}}" class="trendingblogImageSize" alt="your image">
+              <!-- <div class="blogCategoryDiv">
+              <p class="blogCategory mb-0">{{blog.storytype}}</p>
+            </div> -->
+              <p class="text-left trendingblogsHeadingMain mt-2">{{blog.title}}</p>
+              <div class="addedByDatas">
+                <div class="row">
+                  <div class="col-6 pr-0">
+                    <p class="addedByTagList mb-0">By {{blog.addedby}}</p>
+                  </div>
+                  <div class="col-6 text-right">
+                    <p class="addedByCreatedList mb-0">{{blog.date}}</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </div>
+
+  <div class="container blogs_main" id="most-recent">
+    <div class="Trending-updates">
+      <div class="row">
+        <div class="col-6">
+          <h5>Home Buying</h5>
+        </div>
+        <div class="col-6">
+          <div class="video_explore_btn">
+            <a href="https://www.homes247.in/articles/tips-for-buying-a-house-4" class="trendingBlogsReadMore">
+              Explore More
+              <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- <h5>Home Buying</h5> -->
+
+      <div *ngIf="!homeBuyingBlogs" class="row blogsLoader mt-1">
+         <div class="col-7 pr-0">
+          <div class="item">
+            <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '122px' }">
+            </ngx-skeleton-loader>
+            <ngx-skeleton-loader [theme]="{ width: '100%','border-radius': '4',height: '30px'}">
+            </ngx-skeleton-loader>
+            <div class="row">
+              <div class="col-6 pr-0">
+                <ngx-skeleton-loader [theme]="{'border-radius': '9',height: '15px'}">
+                </ngx-skeleton-loader>
+              </div>
+              <div class="col-6">
+                <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                </ngx-skeleton-loader>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-5">
+          <div class="item">
+            <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '122px' }">
+            </ngx-skeleton-loader>
+            <ngx-skeleton-loader [theme]="{ width: '100%','border-radius': '4',height: '30px'}">
+            </ngx-skeleton-loader>
+            <div class="row">
+              <div class="col-6 pr-0">
+                <ngx-skeleton-loader [theme]="{'border-radius': '9',height: '15px'}">
+                </ngx-skeleton-loader>
+              </div>
+              <div class="col-6">
+                <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                </ngx-skeleton-loader>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex" style="gap: 8px; overflow: scroll;" *ngIf="homeBuyingBlogs">
+        <div class="" *ngFor="let blog of homeBuyingBlogs | slice:0:6">
+          <div class="blogListMain">
+            <div *ngIf="blog.webStoryCode !== null" (click)="callWebStoryApiID(blog.id,blog.webStoryCode)" class="webStoryIcon" data-toggle="modal" data-target="#exampleModalCenter">
+              <img  loading="lazy" height="20" width="20" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/blogsListing/webstoryIcon.svg" alt="..webstoryIcon.svg" >
+            </div>
+            <a href="https://www.homes247.in/blogs/{{blog.urlstruture | cleanUrl }}-{{blog.id}}">
+              <img  loading="lazy" src="{{imagepath}}{{blog.imgPath}}" class="trendingblogImageSize" alt="your image">
+              <!-- <div class="blogCategoryDiv">
+              <p class="blogCategory mb-0">{{blog.storytype}}</p>
+            </div> -->
+              <p class="text-left trendingblogsHeadingMain mt-2">{{blog.title}}</p>
+              <div class="addedByDatas">
+                <div class="row">
+                  <div class="col-6 pr-0">
+                    <p class="addedByTagList mb-0">By {{blog.addedby}}</p>
+                  </div>
+                  <div class="col-6 text-right">
+                    <p class="addedByCreatedList mb-0">{{blog.date}}</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </div>
+
+  <div class="container blogs_main" id="most-recent">
+    <div class="Trending-updates">
+      <div class="row">
+        <div class="col-6">
+          <h5>Interiors</h5>
+        </div>
+        <div class="col-6">
+          <div class="video_explore_btn">
+            <a href="https://www.homes247.in/articles/interior-design-ideas-5" class="trendingBlogsReadMore">
+              Explore More
+              <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- <h5>Interiors</h5> -->
+
+      <div *ngIf="!InteriorsBlogs" class="row blogsLoader mt-1">
+         <div class="col-7 pr-0">
+          <div class="item">
+            <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '122px' }">
+            </ngx-skeleton-loader>
+            <ngx-skeleton-loader [theme]="{ width: '100%','border-radius': '4',height: '30px'}">
+            </ngx-skeleton-loader>
+            <div class="row">
+              <div class="col-6 pr-0">
+                <ngx-skeleton-loader [theme]="{'border-radius': '9',height: '15px'}">
+                </ngx-skeleton-loader>
+              </div>
+              <div class="col-6">
+                <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                </ngx-skeleton-loader>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-5">
+          <div class="item">
+            <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '122px' }">
+            </ngx-skeleton-loader>
+            <ngx-skeleton-loader [theme]="{ width: '100%','border-radius': '4',height: '30px'}">
+            </ngx-skeleton-loader>
+            <div class="row">
+              <div class="col-6 pr-0">
+                <ngx-skeleton-loader [theme]="{'border-radius': '9',height: '15px'}">
+                </ngx-skeleton-loader>
+              </div>
+              <div class="col-6">
+                <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                </ngx-skeleton-loader>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex" style="gap: 8px; overflow: scroll;" *ngIf="InteriorsBlogs">
+        <div class="" *ngFor="let blog of InteriorsBlogs | slice:0:6">
+          <div class="blogListMain">
+            <div *ngIf="blog.webStoryCode !== null" (click)="callWebStoryApiID(blog.id,blog.webStoryCode)" class="webStoryIcon" data-toggle="modal" data-target="#exampleModalCenter">
+              <img  loading="lazy" height="20" width="20" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/blogsListing/webstoryIcon.svg" alt="..webstoryIcon.svg" >
+            </div>
+            <a href="https://www.homes247.in/blogs/{{blog.urlstruture | cleanUrl }}-{{blog.id}}">
+              <img  loading="lazy" src="{{imagepath}}{{blog.imgPath}}" class="trendingblogImageSize" alt="your image">
+              <!-- <div class="blogCategoryDiv">
+              <p class="blogCategory mb-0">{{blog.storytype}}</p>
+            </div> -->
+              <p class="text-left trendingblogsHeadingMain mt-2">{{blog.title}}</p>
+              <div class="addedByDatas">
+                <div class="row">
+                  <div class="col-6 pr-0">
+                    <p class="addedByTagList mb-0">By {{blog.addedby}}</p>
+                  </div>
+                  <div class="col-6 text-right">
+                    <p class="addedByCreatedList mb-0">{{blog.date}}</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </div>
+
+  <div class="container blogs_main" id="most-recent">
+    <div class="Trending-updates">
+      <div class="row">
+        <div class="col-6">
+          <h5>Technology</h5>
+        </div>
+        <div class="col-6">
+          <div class="video_explore_btn">
+            <a href="https://www.homes247.in/articles/technology-blogs-6" class="trendingBlogsReadMore">
+              Explore More
+              <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- <h5>Technology</h5> -->
+      <div *ngIf="!TechnologyBlogs" class="row blogsLoader mt-1">
+         <div class="col-7 pr-0">
+          <div class="item">
+            <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '122px' }">
+            </ngx-skeleton-loader>
+            <ngx-skeleton-loader [theme]="{ width: '100%','border-radius': '4',height: '30px'}">
+            </ngx-skeleton-loader>
+            <div class="row">
+              <div class="col-6 pr-0">
+                <ngx-skeleton-loader [theme]="{'border-radius': '9',height: '15px'}">
+                </ngx-skeleton-loader>
+              </div>
+              <div class="col-6">
+                <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                </ngx-skeleton-loader>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-5">
+          <div class="item">
+            <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '122px' }">
+            </ngx-skeleton-loader>
+            <ngx-skeleton-loader [theme]="{ width: '100%','border-radius': '4',height: '30px'}">
+            </ngx-skeleton-loader>
+            <div class="row">
+              <div class="col-6 pr-0">
+                <ngx-skeleton-loader [theme]="{'border-radius': '9',height: '15px'}">
+                </ngx-skeleton-loader>
+              </div>
+              <div class="col-6">
+                <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                </ngx-skeleton-loader>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex" style="gap: 8px; overflow: scroll;" *ngIf="TechnologyBlogs">
+        <div class="" *ngFor="let blog of TechnologyBlogs | slice:0:6">
+          <div class="blogListMain">
+            <div *ngIf="blog.webStoryCode !== null" (click)="callWebStoryApiID(blog.id,blog.webStoryCode)" class="webStoryIcon" data-toggle="modal" data-target="#exampleModalCenter">
+              <img  loading="lazy" height="20" width="20" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/blogsListing/webstoryIcon.svg" alt="..webstoryIcon.svg" >
+            </div>
+            <a href="https://www.homes247.in/blogs/{{blog.urlstruture | cleanUrl }}-{{blog.id}}">
+              <img  loading="lazy" src="{{imagepath}}{{blog.imgPath}}" class="trendingblogImageSize" alt="your image">
+              <!-- <div class="blogCategoryDiv">
+              <p class="blogCategory mb-0">{{blog.storytype}}</p>
+            </div> -->
+              <p class="text-left trendingblogsHeadingMain mt-2">{{blog.title}}</p>
+              <div class="addedByDatas">
+                <div class="row">
+                  <div class="col-6 pr-0">
+                    <p class="addedByTagList mb-0">By {{blog.addedby}}</p>
+                  </div>
+                  <div class="col-6 text-right">
+                    <p class="addedByCreatedList mb-0">{{blog.date}}</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </div>
+
+
+   <div class="container mt-4 pt-0" style="padding-left: 15px; padding-right: 15px;">
+    <div class="addBanner1"  data-toggle="modal" data-target="#myModal_services" data-backdrop="static" data-keyboard="false" *ngFor="let data of shuffledArray2 | slice:0:1;" (click)="clickedService(data.expert_IDFK)">
+      <img  loading="lazy"  width="100%"  src="{{addRoot}}{{data.mobile_image}}" alt="data.mobile_image">
+    </div>
+  </div>
+
+<ng-container *ngComponentOutlet="serviceFormComponent"></ng-container>
+
+
+
+
+  <div class="container mt-4" *ngIf="Mousemovement">
+    <div class="row">
+      <div class="col-6">
+        <h5>Multimedia</h5>
+      </div>
+      <div class="col-6">
+        <div class="video_explore_btn">
+          <a href="https://www.homes247.in/articles/video-blogs" class="trendingBlogsReadMore">
+            Explore More
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="videoSectionloader">
+      <div class="col-sm-4">
+        <div class="item">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }">
+          </ngx-skeleton-loader>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="item">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }">
+          </ngx-skeleton-loader>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="item">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }">
+          </ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="row">
+    <div class="col-6" *ngFor="let blog of vedioblogs | slice:0:6">
+      <a href="https://www.homes247.in/blogs/{{blog.urlstruture | cleanUrl }}-{{blog.id}}">
+        <img  loading="lazy" class="play-youtube-video blogsVideoImages" width="100%" lazyLoad="{{youtubethumbnailimagepath}}{{blog.youtubethumbnail}}" async>
+        <a class="blogsVideoTitle" href="https://www.homes247.in/blogs/{{blog.urlstruture | cleanUrl }}-{{blog.id}}">{{blog.title}}</a>
+      </a>
+    </div>
+  </div> -->
+
+    <div class="d-flex" style="gap: 16px; overflow:scroll">
+      <div class="" *ngFor="let blog of vedioblogs | slice:0:3">
+        <div class="blogVideoListMain">
+          <a href="https://www.homes247.in/blogs/{{blog.urlstruture | cleanUrl }}-{{blog.id}}">
+            <img  loading="lazy" src="{{youtubethumbnailimagepath}}{{blog.youtubethumbnail}}" class="trendingblogImageSize" alt="your image">
+            <p class="text-left mt-3 trendingblogsHeadingMain mb-2">{{blog.title}}</p>
+            <div class="addedByDatas">
+              <div>
+                <a class="viewBlogVideo" href="https://www.homes247.in/blogs/{{blog.urlstruture | cleanUrl }}-{{blog.id}}" target="_blank">
+                  Read Article
+                </a>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!-- <div class="col-sm-12 video_explore_btn">
+    <a href="https://www.homes247.in/articles/video-blogs" class="trendingBlogsReadMore">
+      Explore More
+      <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+    </a>
+  </div> -->
+  </div>
+
+  <!-- video section   -->
+
+  <!-- blog content section -->
+  <div class="blog_content_main" *ngIf="Mousemovement">
+    <div class="container">
+      <h3>Why Read Real Estate Blogs?</h3>
+      <p>Well, we are aware that real estate has never exactly been one of those binge-worthy blog categories. It has
+        neither been the kind of topic you could not get enough of, nor is it half as juicy as celebrity gossip. </p>
+      <p>However, in India, real estate blogs are starting to get clicks and likes, and it has become one of the
+        trending
+        topics. People worldwide are beginning to realize how real estate as an industry affects the economy and how
+        important it is to understand housing trends to enhance their lifestyle.!</p>
+      <p>
+        The relevance of informative Indian blogs on real estate and finance are at an all-time high now. The youngsters
+        are bidding big on investment options, and brackets such as realty have proved to be highly dependable compared
+        to
+        others.
+      </p>
+      <p>
+        The Millennials are flooding in to invest in apartments, plots, and villas, and the earliest members
+        of the Gen-Zs' entering the workforce and looking forward to having their own homes. This has only
+        fuelled the growth of digital real estate blogs to keep up with the tech-savvy generations.
+      </p>
+      <p>
+        Also, the real estate sector has been proving time and again,
+        how reliable an investment choice it is. So, learning about the sector is the
+        smart way to climb up the ranks, and where else can you learn so much except from real estate Blogs!
+        Real estate is the second-largest contributor to the country's GDP; hence there is no doubt
+        that it affects every one of us, whether we see a future in the Real Estate Industry or not.
+        After all, we all live in our homes, and housing is a significant part of the industry.
+      </p>
+      <h3>What sets India's favorite Homes247.in Blog Posts apart?</h3>
+      <p>We know exactly what you need to know and what you like. We know you want to feel engaged
+        and entertained, and at the same time, hot housing news should be fed to you!
+        We have turned the tables, grab a spoon, and start digging!</p>
+      <p>And Voilà! We present to you the most Interesting and Informative blogs!</p>
+      <p>As our name implies, we are not limited to realty alone,
+        granted we do Specialize in it. We are all about Homes, and we are in
+        love with Tech and Innovation! Naturally, our blogs cover a myriad of topics
+        related to real estate and housing from Luxury, Lifestyle, Home Decor, Vastu, Real Estate News,
+        Reviews, Tech & much more!</p>
+      <p>We make every one of our real estate blogs as interesting as it can get and attach with
+        absolutely unique and accurate images, to provide you a better understanding. Not only do we
+        cover a wide range of topics, but we also cover them at the right time. We update you on our
+        socials such as Facebook, Instagram, Linkedin, Pinterest, and Twitter on every trending topic,
+        so you are never miss anything and worry about being left behind! </p>
+      <p>However, we never go out of hand with our Indian real estate blogs that our beloved Readers have
+        come to love over the years.</p>
+
+      <h3>What is the Importance of Real Estate Blogs?</h3>
+
+      <p>Everything in India is a state of constant flux; maybe that's why we Indians became
+        one of the most adaptable and cosmopolitan people in the world!</p>
+      <p>If the nation's elements are shifting its focus, how can real estate be any different? Indian
+        Real Estate Sector is perhaps one of the most dynamic ones in the entire world. Since the
+        Real Estate in India is yet to be organized entirely, the variations in one segment affect
+        another in ways difficult to comprehend.</p>
+      <p>The complexity and nuances can be understood only by reading about what is going on in the sector.
+        Like we mentioned above, it affects every one of us. Hence it is essential to keep up to date.</p>
+      <p>With its ever-changing shifts and tides, it's virtually impossible to keep track of the sector's
+        latest trends and sink our anchor deep. That's where we come in! We are just one google search away!</p>
+      <p>
+        We also try to solve every home-related query through our Indian real estate blogs.
+        And that's not all. We provide you insights on technologies that make the modern taste and
+        rate of development possible, detailed analysis on real estate projects, insights on loans
+        and taxes, advice on the home buying process, and articles on health and fitness.
+        We provide you information about the trending topics in the Indian real estate industry.
+      </p>
+      <p>
+        We also host video podcasts named Expert's Voices, where we discuss with the leading players
+        in the industry about market scenarios, offers, anything and everything related to real estate.
+      </p>
+      <p>
+        In addition, we host Real Estate News so you can stay updated on the sporadic events that
+        happen around the country concerning Indian Real Estate. We also make short and easy to
+        understand real estate video blogs.
+      </p>
+      <p>
+        We have got so many topics to read about that even if you have years of experience or are just curious and
+        googling to get some ideas about Indian real estate blogs, you will find the best ones here.
+      </p>
+      <p>
+        At Homes247.in, we strive to provide you only the best real estate blogs. Our blogs are always entertaining;
+        even
+        the dullest subject we touch upon, we try to make it engaging. We make sure the best of the best is are the only
+        standard we keep ourselves at when it comes to our service or our Indian real estate blogs.
+      </p>
+      <p>
+        Our team is made of a dynamic group of keen hands-on expert researchers who work tirelessly along with
+        passionate
+        and knowledgeable content writers to bring to your fingertips the world of real estate.
+      </p>
+      <p>
+        On every one of our real estate blogs, we research vigorously, write creatively, carefully compile, and
+        thoughtfully curate the best real estate blogs, especially for you, from India's best content writers and
+        contributors.
+      </p>
+    </div>
+  </div>
+  <!-- blog content section -->
+
+
+
+  <!-- top blog section  -->
+  <!-- <div class="container mt-4">
+  <div class="Trending-updates">
+  <h5>TOP BLOG</h5>
+  <div class="row">
+    <div class="col-6" *ngFor = "let recents of blogs | slice:0:4">
+      <div class="card recent-blog-height">
+        <div class="recent-img-div">
+          <div itemprop="url" href="https://www.homes247.in/blogs/{{recents.urlstruture | cleanUrl }}-{{recents.id}}">
+            <span itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+            <img  loading="lazy" lazyLoad="{{imagepath}}{{recents.imgPath}}" alt="recents.alttag">
+            <meta itemprop="url" content="{{imagepath}}{{recents.imgPath}}">
+            </span>
+          </div>
+        </div>
+        <div class="recent-blog-padding">
+  
+          <div itemprop="url" href="https://www.homes247.in/blogs/{{recents.urlstruture | cleanUrl }}-{{recents.id}}">
+            <h3 itemprop="headline" class="trend-blog-title">{{recents.title}}</h3>
+            <p hidden itemprop="author">Homes247 Editorial</p>
+            <div hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+                  <img  loading="lazy"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Logo.png" alt="Logo.png">
+                  <meta itemprop="url" content="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Logo.png">
+                  <meta itemprop="width" content="400">
+                  <meta itemprop="height" content="60">
+                </div>
+                <meta itemprop="name" content="{{recents.addedby}}">
+              </div>
+            <meta itemprop="mainEntityOfPage" itemscope itemtype="http://schema.org/WebPage">
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div> -->
+  <!-- top blog section end -->
+
+
+  <div style="padding-bottom: 40px;" *ngIf="Mousemovement">
+    <ng-container *ngComponentOutlet="FooterComponent"></ng-container>
+  </div>
+
+
+  <!-- fixed footer -->
+  <nav class="mobile-bottom-nav" id="footer" *ngIf="Mousemovement">
+    <a href="https://www.homes247.in/" class="mobile-bottom-nav__item">
+      <div class="mobile-bottom-nav__item-content">
+        <i class="fa fa-home iconColor"></i>
+        Home
+      </div>
+    </a>
+    <a href="https://www.homes247.in/articles/our-trending-blogs-1" class="mobile-bottom-nav__item">
+      <div class="mobile-bottom-nav__item-content">
+        <i class="fa fa-trello iconColor"></i>
+        Trending
+      </div>
+    </a>
+    <a href="https://www.homes247.in/articles/our-latest-updates-2" class="mobile-bottom-nav__item">
+      <div class="mobile-bottom-nav__item-content">
+        <i class="fa fa-book iconColor"></i>
+        Latest
+      </div>
+    </a>
+    <div (click)="Onclicksearch()" class="mobile-bottom-nav__item">
+      <div class="mobile-bottom-nav__item-content">
+        <i class="fa fa-search-plus iconColor"></i>
+        Search
+      </div>
+    </div>
+  </nav>
+  <!-- fixed footer -->
+
+</div>

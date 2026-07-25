@@ -1,0 +1,892 @@
+
+
+<div class="city_search_filter">
+  <div class="container">
+    <div class="col-12 mb-2" #scrollapiloader>
+      <div class="row">
+          <nav class="breadcrumb">
+              <li class="breadcrumb-item"><a href="https://www.homes247.in/" title="India's Favourite Property Portal !" rel="bookmark">Home</a></li>
+              <li class="breadcrumb-item"><a target="_blank" href="https://www.homes247.in/new-launch-projects/new-projects-in-{{city_name | cleanUrl}}" class="breadcrumbs__element" title="New projects in {{city_name}} | Upcoming Projects in {{city_name}} | Homes247.in">
+                New Projects in {{city_name}}
+            </a></li>
+              <li class="breadcrumb-item"><a href="https://www.homes247.in/{{city_name | cleanUrl}}/property-sale" class="breadcrumbs__element">
+                Properties in {{city_name}}
+            </a></li>
+              <li class="breadcrumb-item active" aria-current="page" ><a>Flat for Sale in {{propertyName}} {{locality_name}}
+                {{city_name}}</a></li>
+          </nav>
+          <div class="header_offers">
+              <a routerLink="/postproperty">Post Property</a>
+          </div>
+      </div>
+  </div>
+  <hr class="row hr_bottom">
+
+  <!-- </nav> -->
+
+  <div class="row">
+      <div class="col-12">
+        <h1><a>{{floorplansCounts}}</a> Flat for Sale in
+          <a>{{propertyName}}</a>
+        </h1>
+      </div>
+      <span class="col-12 last_update" *ngFor="let format of formatsDateTest">last update : {{ dateNow | date: format }}</span>
+  </div>
+
+    <div class="row search-results">
+      <div class="col-12  resp_div_main" *ngFor="let propertydemo of floorplans; let i=index">
+        <div class="city_property_detail_box">
+          
+          <div class="property_important_img" photoGalleryGroup>
+            <a class="city_list_imgs">
+              <div class="mr-2" *ngFor="let img of galleryimages | randomOrder | slice: 0:1">
+                <div *ngFor="let  view of galleryimages" style="display: none">
+                  <a photoGallery="{{ImageUrl}}{{view.name}}"></a>
+                  <a photoGallery="{{uploadBHKImages}}{{propertydemo.FloorImage}}"></a>
+                  <a photoGallery="{{masterimages}}{{masterImgPath}}"></a>
+                </div>
+                <a photoGallery="{{ImageUrl}}{{img.name}}">
+                  <img class="propListImages" lazyLoad="{{ImageUrl}}{{img.name}}" alt="img.alttag">
+                </a>
+              </div>
+              <p class="imageCount"><i class="fa fa-picture-o"
+                  aria-hidden="true"></i>&nbsp;&nbsp;{{galleryimagesLength}}+</p>
+            </a>
+            <!-- <small class="propSize">Size: </small><br> -->
+            <small class="builder_name">Posted: {{updateddate | date: 'dd MMM,yy'}}</small>
+          </div>
+          <div class="property_important_info">
+            <a routerLink="/bhkdetails/{{propertydemo.BHK | cleanUrl}}-{{propertydemo.Areaconverted | lowercase}}-Sq-ft-{{pertyTypeH2 | lowercase}}-{{locality_name | cleanUrl}}-{{city_name | lowercase}}"
+              target="_blank" [queryParams]="{ property: property_info_IDPK,bhk: propertydemo.bhk_details_IDPK}">
+              <h2 class="prop_name">
+                {{propertydemo.BHK}} {{pertyTypeH2}} in {{locality_name}}</h2>
+            </a>
+            <!-- <small>
+              <img [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/city/search-location.png'"
+                alt="search-icon" /> {{locality_name}},{{city_name}}</small> -->
+            <p class="builder_name">{{BuliderName}}</p>
+
+            <div class="property_bhk">
+              <div class="min_max_price" *ngIf="propertydemo.Price !== '0 '">
+                <i class="fa fa-inr" aria-hidden="true"></i> {{propertydemo.Price}}
+              </div>
+              <div class="min_max_price" *ngIf="propertydemo.Price === '0 '">
+                On Request</div>
+                <span class="ready_to_move">{{Status}}</span>
+              </div>
+            <div class="col-12 scrollImgsDiv">
+              <div class="row">
+                <div class="col-2 amenitiesMobileImage" *ngFor="let amenities of Amenities | randomOrder">
+                  <img lazyLoad="{{amenitesImages}}{{amenities.ImgPath}}" class="amenitiesIcon"
+                    alt="amenities.Name">
+                  <!--                  <h4 class="amenitiesText">{{amenities.Name}}</h4>-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a class="enquiryBtn"
+        href="https://api.whatsapp.com/send?phone=919008029014&text=%20https://www.homes247.in{{currenturl}}%0A%0AHi!%20I%27m%20interested%20in%20{{propertydemo.propertyName}}%20in%20{{propertydemo.locality_name}},%20{{propertydemo.city_name}}.Can%20i%20have%20some%20more%20info%20please."  target="_blank"><i class="fa fa-whatsapp whatsup_icon" aria-hidden="true"></i></a>
+        <a class="view_btn"
+        (click)="propertyNameClick(propertydemo.propertyName,propertydemo.RegionID,propertydemo.localityid,propertydemo.property_info_IDPK)"
+            target="_blank">Contact</a>
+
+        <!-- compare section -->
+        <div *ngIf="hideshowcompare" class="add_compare_div" id="add_compare_div">
+          <div class="container" style="margin-top: 10px;">
+            <div class="row">
+              <div class="col-6">
+                <div *ngIf="compareprop1" class="">
+                  <i class="fa fa-times-circle-o closeprop" (click)="closeprop1(propid1)" aria-hidden="true"></i>
+                  <img src="{{propertyimage}}{{propimag1}}"   alt="propimag1" class="compare_pro_img_size">
+                  <p class="propert_nametext">{{propertyname1}}</p>
+                </div>
+                <div *ngIf="compareloader1" class="col">
+                  <div class="item">
+                    <ngx-skeleton-loader [theme]="{'border-radius': '5', height: '50px'  }">
+                    </ngx-skeleton-loader>
+                  </div>
+                  <div class="item">
+                    <ngx-skeleton-loader [theme]="{'border-radius': '5', height: '5px' }">
+                    </ngx-skeleton-loader>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div *ngIf="compareprop2" class="">
+                  <i class="fa fa-times-circle-o closeprop" (click)="closeprop2(propid2)" aria-hidden="true"></i>
+                  <img src="{{propertyimage}}{{propimag2}}"   alt="propimag2" class="compare_pro_img_size">
+                  <p class="propert_nametext">{{propertyname2}}</p>
+                </div>
+                <div *ngIf="compareloader2" class="col">
+                  <div class="item">
+                    <ngx-skeleton-loader [theme]="{'border-radius': '5', height: '50px' }">
+                    </ngx-skeleton-loader>
+                  </div>
+                  <div class="item">
+                    <ngx-skeleton-loader [theme]="{'border-radius': '5', height: '5px' }">
+                    </ngx-skeleton-loader>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="compare-now-btn" (click)="CompareNow()">Compare Now</div>
+        </div>
+      </div>
+
+<ng-container *ngComponentOutlet="enquiryFormComponent"></ng-container>
+
+      <div *ngIf="zeroprojects">
+        <p class="noprojects">Sorry, No Projects Found<span>.</span><span>.</span><span>.</span></p>
+      </div>
+    </div>
+  </div>
+  <!-- Loader -->
+  <div *ngIf="showLoader" class="loader_city row">
+    <div class="col-4">
+      <div class="item">
+        <ngx-skeleton-loader [theme]="{'border-radius': '9', height: '130px' , background: 'gray' }">
+        </ngx-skeleton-loader>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="item">
+        <ngx-skeleton-loader [theme]="{'border-radius': '9', height: '130px' , background: 'gray' }">
+        </ngx-skeleton-loader>
+        <ngx-skeleton-loader
+          [theme]="{ width: '170px','border-radius': '9',height: '15px',float: 'right' , background: 'gray'}">
+        </ngx-skeleton-loader>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="item">
+        <ngx-skeleton-loader [theme]="{'border-radius': '9', height: '130px' }">
+        </ngx-skeleton-loader>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="item">
+        <ngx-skeleton-loader [theme]="{'border-radius': '9', height: '130px' }">
+        </ngx-skeleton-loader>
+        <ngx-skeleton-loader [theme]="{ width: '170px','border-radius': '9',height: '15px',float: 'right'}">
+        </ngx-skeleton-loader>
+      </div>
+    </div>
+  </div>
+  <!-- Loader -->
+</div>
+
+
+
+<!--START-MODAL-->
+
+<!-- radha-new-Update -->
+
+<!-- <div>
+  <div class="container">
+    <div class="row compare_sort_filter_div">
+      <div class="col border_div border-left" (click)="Oncompareclick()">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/compare/icon.svg" class="comapreimg_size" alt="icon.svg"> &nbsp;<span>Compare</span>
+      </div>
+      <div class="col border_div border-left" (click)="ShowHideSort()">
+        <i class="fa fa-sort icon_color" aria-hidden="true"></i> &nbsp;Sort
+      </div>
+      <div class="col border_div" (click)="ShowHideFilter()">
+        <i class="fa fa-filter icon_color" aria-hidden="true"></i> &nbsp;Filters
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- <div *ngIf="sortShowHide" id="sortmain_div">
+  <div >
+    <p class="sortBydiv">Sort By</p>
+  </div>
+  <div class="custom-control custom-radio radiodiv" >
+    <input type="radio" id="customRadio1" [(ngModel)]="Relevance" value="0" name="Relevance"
+      class="custom-control-input">
+    <label class="custom-control-label" for="customRadio1">Relevance</label>
+  </div>
+  <div class="custom-control custom-radio radiodiv" >
+    <input type="radio" id="customRadio2" [(ngModel)]="LowtoHigh" value="1" name="LowtoHigh"
+      class="custom-control-input">
+    <label class="custom-control-label" for="customRadio2">Low to High</label>
+  </div>
+  <div class="custom-control custom-radio radiodiv" >
+    <input type="radio" id="customRadio3" [(ngModel)]="HightoLow" value="2" name="HightoLow"
+      class="custom-control-input">
+    <label class="custom-control-label" for="customRadio3">High to Low</label>
+  </div>
+  <div class="custom-control custom-radio  radiodiv" >
+    <input type="radio" id="customRadio4" [(ngModel)]="Recent" value="3" name="Recent" class="custom-control-input">
+    <label class="custom-control-label" for="customRadio4">Recent</label>
+  </div>
+</div> -->
+
+<!-- radha-new-Update -->
+
+<!-- abijith-new-Update -->
+<div [hidden]="!IsVisibleFilter" class="container">
+  <div class="get_call_back" [ngClass]="{'filterClass': filterLoader == true}">
+    <div class="filterHead">
+      <div (click)="ShowHideFilter()"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;<span>Back</span>
+        <!--            <span class="filterHeadSpan">{{this.projectcount}} projects found</span>-->
+      </div>
+      <button type="button" class="btn btn-success resetFilter" (click)="onReset()">Reset</button>
+    </div>
+    <form [formGroup]="registerForm" class="formStyle">
+      <div class="marginTop" [hidden]="!projectTypeHide">
+        <label>Project Type</label><br>
+        <div class="project_type">
+          <button type="button" class="btn btn-default" (click)="apartmentclick();getCityMobileView()" [ngStyle]="{'background-color': apartmentSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                        'color': apartmentSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;
+            Apartments&nbsp;&nbsp;
+          </button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-default" (click)="villaclick();getCityMobileView()" [ngStyle]="{'background-color': villaSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                        'color': villaSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;
+            Villas&nbsp;&nbsp;
+          </button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-default" (click)="plotclick();getCityMobileView()" [ngStyle]="{'background-color': plotSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                        'color': plotSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;
+            Plots&nbsp;&nbsp;
+          </button>
+        </div>
+      </div>
+      <div class="marginTop">
+        <label>Bedroom</label><br>
+        <div>
+          <button type="button" class="btn btn-secondary" (click)="oneBedroom();getCityMobileView()" [ngStyle]="{'background-color': oneBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                'color': oneBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">1
+          </button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-secondary" (click)="twoBedroom();getCityMobileView()" [ngStyle]="{'background-color': twoBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                'color': twoBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">2
+          </button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-secondary" (click)="threeBedroom();getCityMobileView()" [ngStyle]="{'background-color': threeBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                'color': threeBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">3
+          </button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-secondary" (click)="fourBedroom();getCityMobileView()" [ngStyle]="{'background-color': fourBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                'color': fourBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">4
+          </button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-secondary" (click)="fiveBedroom();getCityMobileView()" [ngStyle]="{'background-color': fiveBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                'color': fiveBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">5+
+          </button>
+        </div>
+      </div>
+      <div class="marginTop" [hidden]="!statusHide">
+        <label>Project Status</label><br>
+        <div class="project_status">
+          <button type="button" class="btn btn-default" (click)="readyToMove();getCityMobileView()" [ngStyle]="{'background-color': readyToMoveSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': readyToMoveSelect ? '#fff' : 'rgb(76, 73, 73)'}">
+            Ready to move
+          </button>&nbsp;
+          <button type="button" class="btn btn-default" (click)="underConstruction();getCityMobileView()" [ngStyle]="{'background-color': underConstructionSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': underConstructionSelect ? '#fff' : 'rgb(76, 73, 73)'}">Under
+            Construction
+          </button>
+        </div>
+        <div class="btnMargin status_resp_second">
+          <button type="button" class="btn btn-default" (click)="newLaunch();getCityMobileView()" [ngStyle]="{'background-color': newLaunchSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': newLaunchSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;New
+            Launch&nbsp;&nbsp;
+          </button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-default" (click)="upcoming();getCityMobileView()" [ngStyle]="{'background-color': preLaunchSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': preLaunchSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;UP
+            Coming&nbsp;&nbsp;
+          </button>
+        </div>
+      </div>
+      <div class="marginTop">
+        <label>Budget</label><br>
+        <div class="col-12 p-0">
+          <button type="button" class="btn btn-default budgetMobileViewButton"
+            (click)="lessThntweentylaks();getCityMobileView()" [ngStyle]="{'background-color': tweentylaksSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': tweentylaksSelect ? '#fff' : 'rgb(76, 73, 73)'}">
+            < 20L </button>&nbsp;&nbsp;
+              <button type="button" class="btn btn-default budgetMobileViewButton"
+                (click)="tweentylaksTosixtylakhs();getCityMobileView()" [ngStyle]="{'background-color': tweentylaksTosixtylakhsSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': tweentylaksTosixtylakhsSelect ? '#fff' : 'rgb(76, 73, 73)'}"> 20L-60L
+              </button>&nbsp;&nbsp;
+              <button type="button" class="btn btn-default budgetMobileViewButton"
+                (click)="sixtylakhsToEhightylakhs();getCityMobileView()" [ngStyle]="{'background-color': sixtylakhsToEhightylakhsSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': sixtylakhsToEhightylakhsSelect ? '#fff' : 'rgb(76, 73, 73)'}"> 60L-80L
+              </button>&nbsp;&nbsp;
+        </div>
+        <div class="col-12 mt-2 p-0">
+          <button type="button" class="btn btn-default budgetMobileViewButton"
+            (click)="EhightylakhsTooneCr();getCityMobileView()" [ngStyle]="{'background-color': EhightylakhsTooneCrSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': EhightylakhsTooneCrSelect ? '#fff' : 'rgb(76, 73, 73)'}"> 80L-1Cr
+          </button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-default budgetMobileViewButton"
+            (click)="oneCrAbove();getCityMobileView()" [ngStyle]="{'background-color': oneCrAboveCrSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': oneCrAboveCrSelect ? '#fff' : 'rgb(76, 73, 73)'}"> 1Cr+
+          </button>&nbsp;&nbsp;
+        </div>
+      </div>
+
+      <div class="marginTop">
+        <label>Possession Within</label><br>
+        <button type="button" class="btn btn-default budgetMobileViewButton"
+          (click)="PosessionImmediate();getCityMobileView()" [ngStyle]="{'background-color': ImmediateSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': ImmediateSelect ? '#fff' : 'rgb(76, 73, 73)'}">Immediate
+        </button>&nbsp;&nbsp;
+        <button type="button" class="btn btn-default budgetMobileViewButton"
+          (click)="PosessionSixMonths();getCityMobileView()" [ngStyle]="{'background-color': SixMonthsSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': SixMonthsSelect ? '#fff' : 'rgb(76, 73, 73)'}">6 months
+        </button>&nbsp;&nbsp;
+        <button type="button" class="btn btn-default budgetMobileViewButton"
+          (click)="PosessionOneYear();getCityMobileView()" [ngStyle]="{'background-color': OneYearSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': OneYearSelect ? '#fff' : 'rgb(76, 73, 73)'}">1 year
+        </button>&nbsp;&nbsp;
+        <div class="col-12 p-0 mt-2">
+          <button type="button" class="btn btn-default budgetMobileViewButton"
+            (click)="PosessionTwoYearAbove();getCityMobileView()" [ngStyle]="{'background-color': twoYearSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': twoYearSelect ? '#fff' : 'rgb(76, 73, 73)'}">2+ years
+          </button>&nbsp;&nbsp;
+        </div>
+      </div>
+      <div class="marginTop">
+        <label>Locality</label><br>
+        <ng-multiselect-dropdown [placeholder]="'Search upto 3 localities'" [data]="localitys" [(ngModel)]="locality"
+          [settings]="dropdownSettingsMobile" (onSelect)="onLocalitySelect($event)"
+          (onDeSelect)="onLocalityDeSelect($event)" formControlName="locality">
+        </ng-multiselect-dropdown>
+      </div>
+      <div class="marginTop">
+        <p *ngIf="filterSelectOne" class="filterSelectAtleastOne">Select atleast one</p>
+        <div class="footer">
+          <h4>Call us for instant assistance</h4>
+          <p>091-64-247-247</p>
+          <span>Trust us we can save you quite a lot of time</span>
+        </div>
+
+      </div>
+
+      <div class="filterApplyBtn">
+        <div class="" (click)="ShowHideFilter()">
+          <button class="btn btn-light">View Properties <span class="badge countBackground">{{this.projectcount}}</span>
+          </button>
+        </div>
+      </div>
+    </form>
+    <div *ngIf="filterLoader" class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</div>
+<!-- update by veera end-->
+
+<!-- ExternalLinks Code Started -->
+<!-- <div id="linkSidenavs" class="sidenav" style="width: 0px;">
+  <div class="nav_logo">
+    <a class="logo_nav" href="https://www.homes247.in/">
+      <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/logo/Homes247_NewBlack_Logo.png" alt="Homes247">
+    </a>
+    <span class="closebtn" (click)="closeNavclose()">
+      <svg id="fi_6583137" enable-background="new 0 0 48 48" height="40" viewBox="0 0 48 48" width="40" xmlns="http://www.w3.org/2000/svg"><path d="m32.5 33c.4.4.4 1 0 1.4-.2.2-.5.3-.7.3s-.5-.1-.7-.3l-8.4-8.4-8.4 8.4c-.2.2-.5.3-.7.3s-.5-.1-.7-.3c-.4-.4-.4-1 0-1.4l8.4-8.4-8.4-8.4c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l8.4 8.4 8.4-8.4c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-8.4 8.4z"></path></svg> src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/burger_menu_close.png"
+        alt="Homes247_close">
+    </span>
+  </div>
+
+  <div data-page="1" class="wipe open" id="red">
+    <p class="pl-2 navTextWipe"><a href="https://www.homes247.in/">Home</a></p>
+    <h2 class="pl-2 navTextWipe">
+      <p (click)="tran(30)" rel="bookmark"
+        title="{{propertyName}} Sale, Resale Price, Properties & Flats for sale in {{propertyName}} {{city_name}}"
+        class="sidebar_dropbtn">{{propertyName}} For Sale in {{city_name}}<span class="rightWipeArrow"><i
+            class="fa fa-angle-right" aria-hidden="true"></i></span>
+      </p>
+    </h2>
+    <p class="pl-2 navTextWipe" (click)="tran(40)">
+      <span>Frequently Searched in
+        {{city_name}}</span> <span class="rightWipeArrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+    </p>
+  </div>
+  <div data-page="30" class="wipe closed" id="green">
+    <p class="backBtnWipe" (click)="tran(1)">
+      <i class="fa fa-angle-left" aria-hidden="true"></i>&nbsp;&nbsp;<span>Back</span>
+    </p>
+
+    <div>
+      <div class="flex flex-column faq-section">
+        <div id="accordion">
+          <div class="card-header" id="heading">
+            <h2 class="mb-0">
+              <a role="button" data-toggle="collapse" href="#topcollapse" [attr.aria-expanded]="false">Properties in
+                {{city_name}}</a>
+
+            </h2>
+          </div>
+          <div id="topcollapse" class="collapse" data-parent="#accordion">
+            <div class="p-2" class="localities_list">
+              <span *ngFor="let data of localityproperties | slice: 200:400">
+                <h3 class="submenulist navTextWipe">
+                  <a href="https://www.homes247.in/property/{{data.city | cleanUrl}}/{{data.locality | cleanUrl}}/{{data.name | cleanUrl}}-{{data.id | cleanUrl}}"
+                    rel="bookmark" title="{{data.name}} in {{data.locality}}, {{data.city}} | Reviews">{{data.name}}
+                    in {{data.locality}}, {{data.city}}
+                  </a>
+                </h3>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-column faq-section">
+        <div id="accordion">
+          <div class="card-header" id="heading">
+            <p class="mb-0">
+              <a role="button" data-toggle="collapse" href="#budgetcollapse" [attr.aria-expanded]="false">Frequently
+                Searched</a>
+            </p>
+          </div>
+          <div id="budgetcollapse" class="collapse" data-parent="#accordion">
+            <div class="p-2" class="localities_list">
+              <h3 class="submenulist navTextWipe"><a
+                  href="/bstc/1-bhk-ready-to-move-flats-apartments-in-{{city_name | cleanUrl}}"
+                  title="1 BHK Ready to Move Flats in {{city_name}}" rel="bookmark">1 BHK Ready to
+                  Move Flats in
+                  {{city_name}}</a></h3>
+              <h3 class="submenulist navTextWipe"><a
+                  href="/bstc/2-bhk-ready-to-move-flats-apartments-in-{{city_name | cleanUrl}}"
+                  title="2 BHK Ready to Move Flats in {{city_name}}" rel="bookmark">2 BHK Ready to
+                  Move Flats in
+                  {{city_name}}</a></h3>
+              <h3 class="submenulist navTextWipe"><a
+                  href="/bstc/3-bhk-ready-to-move-flats-apartments-in-{{city_name | cleanUrl}}"
+                  title="3 BHK Ready to Move Flats in {{city_name}}" rel="bookmark">3 BHK Ready to
+                  Move Flats in
+                  {{city_name}}</a></h3>
+              <h3 class="submenulist navTextWipe"><a
+                  href="/bstc/4-bhk-ready-to-move-flats-apartments-in-{{city_name | cleanUrl}}"
+                  title="4 BHK Ready to Move Flats in {{city_name}}" rel="bookmark">4 BHK Ready to
+                  Move Flats in
+                  {{city_name}}</a></h3>
+              <h3 class="submenulist navTextWipe"><a
+                  href="/btc/1-bhk-flats-in-{{city_name | cleanUrl}}"
+                  title="1 BHK Flats in {{city_name}}" rel="bookmark">1
+                  BHK Flats in {{city_name}}</a></h3>
+              <h3 class="submenulist navTextWipe"><a
+                  href="/btc/2-bhk-flats-in-{{city_name | cleanUrl}}"
+                  title="2 BHK Flats in {{city_name}}" rel="bookmark">2
+                  BHK Flats in {{city_name}}</a></h3>
+              <h3 class="submenulist navTextWipe"><a
+                  href="/btc/3-bhk-flats-in-{{city_name | cleanUrl}}"
+                  title="3 BHK Flats in {{city_name}}" rel="bookmark">3
+                  BHK Flats in {{city_name}}</a></h3>
+              <h3 class="submenulist navTextWipe"><a
+                  href="/btc/4-bhk-flats-in-{{city_name | cleanUrl}}"
+                  title="4 BHK Flats in {{city_name}}" rel="bookmark">4
+                  BHK Flats in {{city_name}}</a></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-column faq-section">
+        <div id="accordion">
+          <div class="card-header" id="heading">
+            <p class="mb-0">
+              <a role="button" data-toggle="collapse" href="#budgetcollaps" [attr.aria-expanded]="false">Budget Searches
+                in {{city_name}}</a>
+            </p>
+          </div>
+          <div id="budgetcollaps" class="collapse" data-parent="#accordion">
+            <div class="p-2" class="localities_list">
+              <h3 class="newspecified"><a href="/fbc/flats-for-30-lakhs-in-{{city_name | cleanUrl}}"
+                  title="Flats Under 30 Lakhs in {{city_name}}" rel="bookmark">Flats
+                  Under 30 Lakhs in {{city_name}}</a></h3>
+              <h3 class="newspecified"><a
+                  href="/fbc/flats-in-{{city_name | cleanUrl}}-for-sale-30-lakhs-to-40-lakhs"
+                  title="Flats in {{city_name}} for sale 30 Lakhs to 40 Lakhs" rel="bookmark">Flats in
+                  {{city_name}} for sale 30 Lakhs to 40
+                  Lakhs</a></h3>
+              <h3 class="newspecified"><a
+                  href="/fbc/flats-in-{{city_name | cleanUrl}}-for-sale-40-lakhs-to-50-lakhs"
+                  title="Flats in {{city_name}} for sale 40 Lakhs to 50 Lakhs" rel="bookmark">Flats in
+                  {{city_name}} for sale 40 Lakhs to 50
+                  Lakhs</a></h3>
+              <h3 class="newspecified"><a
+                  href="/fbc/flats-in-{{city_name | cleanUrl}}-for-sale-50-lakhs-to-60-lakhs"
+                  title="Flats in {{city_name}} for sale 50 Lakhs to 60 Lakhs" rel="bookmark">Flats in
+                  {{city_name}} for sale 50 Lakhs to 60
+                  Lakhs</a></h3>
+              <h3 class="newspecified"><a
+                  href="/fbc/flats-in-{{city_name | cleanUrl}}-for-sale-60-lakhs-to-70-lakhs"
+                  title="Flats in {{city_name}} for sale 60 Lakhs to 70 Lakhs" rel="bookmark">Flats in
+                  {{city_name}} for sale 60 Lakhs to 70
+                  Lakhs</a></h3>
+              <h3 class="newspecified"><a
+                  href="/fbc/flats-in-{{city_name | cleanUrl}}-for-sale-70-lakhs-to-80-lakhs"
+                  title="Flats in {{city_name}} for sale 70 Lakhs to 80 Lakhs" rel="bookmark">Flats in
+                  {{city_name}} for sale 70 Lakhs to 80
+                  Lakhs</a></h3>
+              <h3 class="newspecified"><a
+                  href="/fbc/flats-in-{{city_name | cleanUrl}}-for-sale-80-lakhs-to-90-lakhs"
+                  title="Flats in {{city_name}} for sale 80 Lakhs to 90 Lakhs" rel="bookmark">Flats in
+                  {{city_name}} for sale 80 Lakhs to 90
+                  Lakhs</a></h3>
+              <h3 class="newspecified"><a
+                  href="/fbc/flats-in-{{city_name | cleanUrl}}-for-sale-90-lakhs-to-1-crore"
+                  title="Flats in {{city_name}} for sale 90 Lakhs to 1 Crore" rel="bookmark">Flats in
+                  {{city_name}} for sale 90 Lakhs to 1 Crore</a>
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-column faq-section">
+        <div id="accordion">
+          <div class="card-header" id="heading">
+            <p class="mb-0">
+              <a role="button" data-toggle="collapse" href="#popularcollaps" [attr.aria-expanded]="false">Top Builders
+                in {{city_name}}</a>
+            </p>
+          </div>
+          <div id="popularcollaps" class="collapse" data-parent="#accordion">
+            <div class="p-2" class="localities_list">
+              <span *ngFor="let autodata of autoCompleteData | myfilter: 'type' : 'builder_name' | slice: 0:50">
+                <h3 class="submenulist navTextWipe">
+                  <a routerLink="/{{autodata.city | cleanUrl}}/builder/{{autodata.name | cleanUrl}}-{{autodata.id | cleanUrl}}"
+                    rel="bookmark" title="{{autodata.name}} {{autodata.city}} | Homes247.in">{{autodata.name}}
+                    {{autodata.city}}
+                  </a>
+                </h3>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div data-page="40" class="wipe closed" id="green">
+    <p class="backBtnWipe" (click)="tran(1)">
+      <i class="fa fa-angle-left" aria-hidden="true"></i>&nbsp;&nbsp;<span>Back</span>
+    </p>
+    <div>
+      <div class="flex flex-column faq-section">
+        <div id="accordion">
+          <div class="card-header" id="heading">
+            <p class="mb-0">
+              <a role="button" data-toggle="collapse" href="#popularcollapse" [attr.aria-expanded]="false">Ready To Move
+                Availability
+                Locations in {{zones}}</a>
+            </p>
+          </div>
+          <div id="popularcollapse" class="collapse" data-parent="#accordion">
+            <div class="p-2" class="localities_list">
+              <span *ngFor="let autodata of autoCompleteData | myfilter: 'type' : 'locality_name' | slice: 0:50">
+                <h3 class="submenulist navTextWipe">
+                  <a href="https://www.homes247.in/stlc/ready-to-move-flats-apartments-in-{{autodata.name | cleanUrl}}-{{autodata.city | cleanUrl}}-{{autodata.id | cleanUrl}}"
+                    rel="bookmark"
+                    title="Ready to Move Flats in {{autodata.name}} {{autodata.city}} - Homes247.in">Ready
+                    to Move Flats in {{autodata.name}} {{autodata.city}}
+                  </a>
+                </h3>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-column faq-section">
+        <div id="accordion">
+          <div class="card-header" id="heading">
+            <p class="mb-0">
+              <a role="button" data-toggle="collapse" href="#popularcollaps" [attr.aria-expanded]="false">Trending
+                Builders in {{city_name}}</a>
+            </p>
+          </div>
+          <div id="popularcollaps" class="collapse" data-parent="#accordion">
+            <div class="p-2" class="localities_list">
+              <span *ngFor="let autodata of autoCompleteData | myfilter: 'type' : 'builder_name' | slice: 300:350">
+                <h3 class="submenulist navTextWipe">
+                  <a routerLink="/{{autodata.city | cleanUrl}}/builder/{{autodata.name | cleanUrl}}-{{autodata.id | cleanUrl}}"
+                    rel="bookmark" title="{{autodata.name}} {{autodata.city}} | Homes247.in">{{autodata.name}}
+                    {{autodata.city}}
+                  </a>
+                </h3>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-column faq-section">
+        <div id="accordion">
+          <div class="card-header" id="heading">
+            <p class="mb-0">
+              <a role="button" data-toggle="collapse" href="#popularcollapses" [attr.aria-expanded]="false">Neighbour
+                Localities in {{city_name}}</a>
+            </p>
+          </div>
+          <div id="popularcollapses" class="collapse" data-parent="#accordion">
+            <div class="p-2" class="localities_list">
+              <span *ngFor="let autodata of autoCompleteData | myfilter: 'type' : 'locality_name' | slice: 50:100">
+                <h3 class="submenulist navTextWipe">
+                  <a routerLink="/{{autodata.city | cleanUrl}}/property-sale-in-{{autodata.name | cleanUrl}}-{{autodata.id | cleanUrl}}"
+                    rel="bookmark"
+                    title="Properties for Sale in {{autodata.name}}, {{autodata.city}} - Homes247.in">Properties
+                    for sale in {{autodata.name}}, {{autodata.city}}
+                  </a>
+                </h3>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div> -->
+<div [hidden]="!IsVisibles">
+  <div class="get_call_back center">
+    <div >
+      <i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;<span>Back</span>
+  </div>
+    <div class="tab-holder">
+      <ul class="tabs style-2">
+        <li>
+          <input type="radio" id="tab1" name="tabs" checked="checked" />
+          <label for="tab1">
+            <h2 class="mainh2">
+              <a rel="bookmark"
+                title="{{propertyName}} Sale, Resale Price, Properties & Flats for sale in {{propertyName}} {{city_name}}"
+                class="sidebar_dropbtn">{{propertyName}} For Sale in {{city_name}}</a>
+            </h2>
+          </label>
+          <div class="tabs-container">
+            <ul class="tabs" style="margin: 0px 0px 0px -40px;">
+              <div class="linksScroll">
+
+                <label for="sub-tab1" id="a1" class="statinghovertab" (click)="internallinkhide1()">
+                  <p class="mainTitlesDropdown">Properties in {{city_name}}</p>
+                </label>
+                <label for="sub-tab2" id="a2" (click)="internallinkhide2()">
+                  <p class="mainTitlesDropdown">Frequently Searched</p>
+                </label>
+                <label for="sub-tab3" id="a3" (click)="internallinkhide3()">
+                  <p class="mainTitlesDropdown">Budget Searches in {{city_name}}</p>
+                </label>
+                <label for="sub-tab4" id="a4" (click)="internallinkhide4()">
+                  <p class="mainTitlesDropdown">Top Builders in {{city_name}}</p>
+                </label>
+              </div>
+              <li class="f0">
+                <input type="radio" id="sub-tab0" name="sub-tabs" checked="checked" />
+                <div class="tabs-container">
+                  <div class="links_maindiv">
+                    <h3 class="submenulist navTextWipe"
+                    *ngFor="let autodata of autoCompleteData | myfilter: 'type' : 'locality_name' | slice: 0:100">
+                    <a routerLink="/{{autodata.city | cleanUrl}}/property-sale-in-{{autodata.name | cleanUrl}}-{{autodata.id | cleanUrl}}"
+                        rel="bookmark"
+                        title="Properties for Sale in {{autodata.name}}, {{autodata.city}} - Homes247.in">Properties
+                        in {{autodata.name}}, {{autodata.city}}
+                    </a>
+                </h3>
+                  </div>
+                </div>
+              </li>
+              <li class="f1">
+                <input type="radio" id="sub-tab1" name="sub-tabs" />
+                <div class="tabs-container">
+                  <div class="links_maindiv">
+                    <span *ngFor="let data of localityproperties | slice: 200:400">
+                      <h3 class="submenulist navTextWipe">
+                        <a href="https://www.homes247.in/property/{{data.city | cleanUrl}}/{{data.locality | cleanUrl}}/{{data.name | cleanUrl}}-{{data.id | cleanUrl}}"
+                          rel="bookmark"
+                          title="{{data.name}} in {{data.locality}}, {{data.city}} | Reviews">{{data.name}}
+                          in {{data.locality}}, {{data.city}}
+                        </a>
+                      </h3>
+                    </span>
+                  </div>
+                </div>
+              </li>
+
+              <li class="f2">
+                <input type="radio" id="sub-tab2" name="sub-tabs" />
+                <div class="tabs-container">
+                  <div class="links_maindiv">
+                    <h3 class="submenulist navTextWipe">
+                      <a href="/bstc/1-bhk-ready-to-move-flats-apartments-in-{{city_name  | cleanUrl}}"
+                        title="1 BHK Ready to Move Flats in {{city_name }}" rel="bookmark">1 BHK Ready to Move
+                        Flats in {{city_name }}</a>
+                    </h3>
+                    <h3 class="submenulist navTextWipe">
+                      <a href="/bstc/2-bhk-ready-to-move-flats-apartments-in-{{city_name  | cleanUrl}}"
+                        title="2 BHK Ready to Move Flats in {{city_name }}" rel="bookmark">2 BHK Ready to Move
+                        Flats in {{city_name }}</a>
+                    </h3>
+                    <h3 class="submenulist navTextWipe">
+                      <a href="/bstc/3-bhk-ready-to-move-flats-apartments-in-{{city_name  | cleanUrl}}"
+                        title="3 BHK Ready to Move Flats in {{city_name }}" rel="bookmark">3 BHK Ready to Move
+                        Flats in {{city_name }}</a>
+                    </h3>
+                    <h3 class="submenulist navTextWipe">
+                      <a href="/bstc/4-bhk-ready-to-move-flats-apartments-in-{{city_name  | cleanUrl}}"
+                        title="4 BHK Ready to Move Flats in {{city_name }}" rel="bookmark">4 BHK Ready to Move
+                        Flats in {{city_name }}</a>
+                    </h3>
+                    <h3 class="submenulist navTextWipe">
+                      <a href="/btc/1-bhk-flats-in-{{city_name  | cleanUrl}}"
+                        title="1 BHK Flats in {{city_name }}" rel="bookmark">1 BHK Flats in {{city_name |titlecase}}</a>
+                    </h3>
+                    <h3 class="submenulist navTextWipe">
+                      <a href="/btc/2-bhk-flats-in-{{city_name  | cleanUrl}}"
+                        title="2 BHK Flats in {{city_name }}" rel="bookmark">2 BHK Flats in {{city_name | titlecase}}</a>
+                    </h3>
+                    <h3 class="submenulist navTextWipe">
+                      <a href="/btc/3-bhk-flats-in-{{city_name  | cleanUrl}}"
+                        title="3 BHK Flats in {{city_name }}" rel="bookmark">3 BHK Flats in {{city_name |titlecase}}</a>
+                    </h3>
+                    <h3 class="submenulist navTextWipe">
+                      <a href="/btc/4-bhk-flats-in-{{city_name  | cleanUrl}}"
+                        title="4 BHK Flats in {{city_name }}" rel="bookmark">4 BHK Flats in {{city_name |titlecase}}</a>
+                    </h3>
+                  </div>
+                </div>
+              </li>
+              <li class="f3">
+                <input type="radio" id="sub-tab3" name="sub-tabs" />
+                <div class="tabs-container">
+                  <div class="links_maindiv">
+                    <h3 class="submenulist navTextWipe">
+                      <a href="/fbc/flats-for-30-lakhs-in-{{city_name  | cleanUrl}}"
+                        title="Flats Under 30 Lakhs in {{city_name }}" rel="bookmark">Flats Under 30 Lakhs in
+                        {{city_name }}</a>
+                    </h3>
+                    <h3 class="submenulist navTextWipe">
+                      <a href="/fbc/flats-in-{{city_name  | cleanUrl}}-for-sale-30-lakhs-to-40-lakhs"
+                        title="Flats in {{city_name }} for sale 30 Lakhs to 40 Lakhs" rel="bookmark">Flats in
+                        {{city_name }} for sale 30 Lakhs to 40 Lakhs</a>
+                    </h3>
+                    <h3 class="submenulist navTextWipe">
+                      <a href="/fbc/flats-in-{{city_name  | cleanUrl}}-for-sale-40-lakhs-to-50-lakhs"
+                        title="Flats in {{city_name }} for sale 40 Lakhs to 50 Lakhs" rel="bookmark">Flats in
+                        {{city_name }} for sale 40 Lakhs to 50 Lakhs</a>
+                    </h3>
+                    <h3 class="submenulist navTextWipe">
+                      <a href="/fbc/flats-in-{{city_name  | cleanUrl}}-for-sale-50-lakhs-to-60-lakhs"
+                        title="Flats in {{city_name }} for sale 50 Lakhs to 60 Lakhs" rel="bookmark">Flats in
+                        {{city_name }} for sale 50 Lakhs to 60 Lakhs</a>
+                    </h3>
+                    <h3 class="submenulist navTextWipe">
+                      <a href="/fbc/flats-in-{{city_name  | cleanUrl}}-for-sale-60-lakhs-to-70-lakhs"
+                        title="Flats in {{city_name }} for sale 60 Lakhs to 70 Lakhs" rel="bookmark">Flats in
+                        {{city_name }} for sale 60 Lakhs to 70 Lakhs</a>
+                    </h3>
+                    <h3 class="submenulist navTextWipe">
+                      <a href="/fbc/flats-in-{{city_name  | cleanUrl}}-for-sale-70-lakhs-to-80-lakhs"
+                        title="Flats in {{city_name }} for sale 70 Lakhs to 80 Lakhs" rel="bookmark">Flats in
+                        {{city_name }} for sale 70 Lakhs to 80 Lakhs</a>
+                    </h3>
+                    <h3 class="submenulist navTextWipe">
+                      <a href="/fbc/flats-in-{{city_name  | cleanUrl}}-for-sale-80-lakhs-to-90-lakhs"
+                        title="Flats in {{city_name }} for sale 80 Lakhs to 90 Lakhs" rel="bookmark">Flats in
+                        {{city_name }} for sale 80 Lakhs to 90 Lakhs</a>
+                    </h3>
+                    <h3 class="submenulist navTextWipe">
+                      <a href="/fbc/flats-in-{{city_name  | cleanUrl}}-for-sale-90-lakhs-to-1-crore"
+                        title="Flats in {{city_name }} for sale 90 Lakhs to 1 Crore" rel="bookmark">Flats in
+                        {{city_name }} for sale 90 Lakhs to 1 Crore</a>
+                    </h3>
+                  </div>
+                </div>
+              </li>
+              <li class="f4">
+                <input type="radio" id="sub-tab4" name="sub-tabs" />
+                <div class="tabs-container">
+                  <div class="links_maindiv">
+                    <span *ngFor="let autodata of autoCompleteData | myfilter: 'type' : 'builder_name' | slice: 0:50">
+                      <h3 class="submenulist navTextWipe">
+                        <a routerLink="/{{autodata.city | cleanUrl}}/builder/{{autodata.name | cleanUrl}}-{{autodata.id | cleanUrl}}"
+                          rel="bookmark" title="{{autodata.name}} {{autodata.city}} | Homes247.in">{{autodata.name}}
+                          {{autodata.city}}
+                        </a>
+                      </h3>
+                    </span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li>
+          <input type="radio" id="tab2" name="tabs" />
+          <label for="tab2">
+            <p>Frequently Searched in {{city_name }}</p>
+          </label>
+
+          <div class="tabs-container">
+            <ul class="tabs" style="margin: 0px 6px 0px -32px;">
+              <div class="linksScroll" style="border-top: 1px solid #d0d0d0;">
+                <label for="sub-tab5" id="a5" class="statinghovertabs" (click)="internallinkhide5()">
+                  <p class="mainTitlesDropdown">Ready To Move Availability Locations
+                    in {{city_name}}</p>
+                </label>
+                <label for="sub-tab6" id="a6" (click)="internallinkhide6()">
+                  <p class="mainTitlesDropdown">Neighbour Localities in
+                    {{city_name}}</p>
+                </label>
+              </div>
+              <li class="f5">
+                <input type="radio" id="sub-tab5" name="sub-tabs2" checked="checked" />
+                <div class="tabs-container">
+                  <div class="links_maindiv">
+                    <span *ngFor="let autodata of autoCompleteData | myfilter: 'type' : 'locality_name' | slice: 0:50">
+                      <h3 class="submenulist navTextWipe">
+                        <a href="https://www.homes247.in/stlc/ready-to-move-flats-apartments-in-{{autodata.name | cleanUrl}}-{{autodata.city | cleanUrl}}-{{autodata.id | cleanUrl}}"
+                          rel="bookmark"
+                          title="Ready to Move Flats in {{autodata.name}} {{autodata.city}} - Homes247.in">Ready
+                          to Move Flats in {{autodata.name}} {{autodata.city}}
+                        </a>
+                      </h3>
+                    </span>
+                  </div>
+                </div>
+              </li>
+              <li class="f6">
+                <input type="radio" id="sub-tab6" name="sub-tabs2" />
+                <div class="tabs-container">
+                  <div class="links_maindiv">
+                    <span
+                      *ngFor="let autodata of autoCompleteData | myfilter: 'type' : 'locality_name' | slice: 50:100">
+                      <h3 class="submenulist navTextWipe">
+                        <a routerLink="/{{autodata.city | cleanUrl}}/property-sale-in-{{autodata.name | cleanUrl}}-{{autodata.id | cleanUrl}}"
+                          rel="bookmark"
+                          title="Properties for Sale in {{autodata.name}}, {{autodata.city}} - Homes247.in">Properties
+                          for sale in {{autodata.name}}, {{autodata.city}}
+                        </a>
+                      </h3>
+                    </span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- ExternalLinks Code Ended -->
+
+<!-- CSS-Loader -->
+<div *ngIf="otploader" class="loaderbody">
+  <div class="box">
+    <div class="loader-20"></div>
+  </div>
+</div>
+<!-- CSS-Loader -->
+<div class="innerheader_position">
+  <app-innerheader></app-innerheader>
+</div>

@@ -1,0 +1,66 @@
+
+
+<div class="main_div">
+    <div class="container-fluid">
+        <!-- <div class="col-md-12 logomaindiv">
+            <a class="sitemap_logo" href="https://www.homes247.in/">
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/logo/Homes247_NewBlack_Logo.png" alt="Homes247_logo" />
+            </a>
+        </div> -->
+        <div class="col-md-12 h1maindiv">
+            <h1>All Builders in {{cityname}}</h1>
+        </div>
+        <div class="col-md-12">
+            <nav class="AlphabetNav">
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/{{cityid | cleanUrl}}">All</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/a/{{cityid | cleanUrl}}">A</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/b/{{cityid | cleanUrl}}">B</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/c/{{cityid | cleanUrl}}">C</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/d/{{cityid | cleanUrl}}">D</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/e/{{cityid | cleanUrl}}">E</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/f/{{cityid | cleanUrl}}">F</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/g/{{cityid | cleanUrl}}">G</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/h/{{cityid | cleanUrl}}">H</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/i/{{cityid | cleanUrl}}">I</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/j/{{cityid | cleanUrl}}">J</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/k/{{cityid | cleanUrl}}">K</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/l/{{cityid | cleanUrl}}">L</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/m/{{cityid | cleanUrl}}">M</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/n/{{cityid | cleanUrl}}">N</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/o/{{cityid | cleanUrl}}">O</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/p/{{cityid | cleanUrl}}">P</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/q/{{cityid | cleanUrl}}">Q</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/r/{{cityid | cleanUrl}}">R</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/s/{{cityid | cleanUrl}}">S</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/t/{{cityid | cleanUrl}}">T</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/u/{{cityid | cleanUrl}}">U</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/v/{{cityid | cleanUrl}}">V</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/w/{{cityid | cleanUrl}}">W</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/x/{{cityid | cleanUrl}}">X</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/y/{{cityid | cleanUrl}}">Y</a>
+                <a routerLink="/all-builders-by-city/{{cityname | cleanUrl}}/z/{{cityid | cleanUrl}}">Z</a>
+              </nav>
+
+            <div class="row mt-5">
+                <div class="col-md-3" *ngFor="let data of completedata | myfilter: 'type' : 'builder_name' | startsWithLetterlocality : activeLetter | slice: 0:150">
+                    <div class="col-md-12 sectionTwo">
+                        <a class="localityName" routerLink="/{{cityname | cleanUrl}}/builder/{{data.name | cleanUrl}}-{{data.id | cleanUrl}}"
+                         title="{{data.name}} in {{cityname}} | Projects by {{data.name}} in {{cityname}}" target="_blank">{{data.name}}&nbsp;&nbsp;
+                         <a href="/builder-overview/{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-overview-{{data.id | cleanUrl}}"> <i class="fa fa-external-link" aria-hidden="true"></i></a></a>
+                         <!-- <div class="row">
+                            <div class="col-md-12">
+                                <a class="avgRatSqft" href="https://www.homes247.in/upcoming-new-launch-properties/new-projects-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-{{data.id | cleanUrl}}"
+                                title="Upcoming Projects in {{data.name}} | New Projects in {{data.name}}">Upcoming Projects in {{data.name}}</a>
+                             </div>
+                         </div> -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<app-footer2></app-footer2>
+<div class="innerheader_position">
+    <app-innerheader></app-innerheader>
+</div>

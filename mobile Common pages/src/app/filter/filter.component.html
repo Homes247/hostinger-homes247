@@ -1,0 +1,523 @@
+<!-- <div class="innerheader_position">
+    <app-innerheader></app-innerheader>
+</div> -->
+<div id="conatctbutton">
+  <!-- <app-float-contact></app-float-contact> -->
+  </div>
+
+<div class="filter_main">
+  <div class="container">
+    <div class="prodetailsmain">
+      <div class="protitle">
+       Search properties:
+      </div>
+      <div class="procount">
+       {{this.projectcount}} Projects
+      </div>
+    </div>
+    <!-- radha update -->
+    <div class="row search-results" infinite-scroll [fromRoot]="true"
+         [infiniteScrollDistance]="0" [infiniteScrollThrottle]="3000"
+         [alwaysCallback]="true" (scrolled)="loadMore()">
+      <div class="col-12 resp_div_main" *ngFor="let propertydemo of propertylists">
+        <div class="city_property_detail_box">
+          <!-- <div class="star_imgs_details" >
+              <a href="https://www.homes247.in/property/{{propertydemo.city_name | lowercase}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+               target="_blank">
+                  <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/img_viewer_img.png" alt="img_viewer_img.png"   />
+              </a>
+          </div> -->
+          <div class="property_important_img">
+            <a *ngFor="let image of propertydemo.images | slice:0:1" class="image city_list_imgs"
+               href="https://www.homes247.in/property/{{propertydemo.city_name | lowercase}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+               target="_blank">
+              <img lazyLoad="{{propertyimage}}{{image.name}}" alt="image.alttag"/>
+            </a>
+
+            <p class="rera_class" *ngIf="propertydemo.RERA_ID">RERA ID : {{propertydemo.RERA_ID}}</p>
+            <p class="rera_class" *ngIf="!propertydemo.RERA_ID"></p>
+            <span class="verified" *ngIf="propertydemo.property_info_verify == 0">
+              <p>Verified</p>
+                    <!-- <img src="https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/verify.svg" alt="Homes247 Verified"> -->
+            </span>
+            <!-- <div (click)="getenquiry(propertydemo.property_info_IDPK,propertydemo.propertyName)">
+              <a class="phone_icon_mob" (click)="ShowHide()">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+              </a>
+            </div> -->
+          </div>
+          <div class="property_important_info">
+            <p>{{propertydemo.propertyName}}
+              <small>
+                <img [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/city/search-location.png'"
+                     alt="search-icon"/> {{propertydemo.locality_name}},{{propertydemo.city_name}}</small>
+            </p>
+
+            <p class="builder_name">{{propertydemo.BuilderName}}</p>
+
+          </div>
+          <div class="property_more_details">
+            <div class="left_details">
+              <div>
+                <p>
+                  <span *ngIf="!propertydemo.BHK">BHK - On Request </span>
+                                <span *ngIf="propertydemo.BHK">{{propertydemo.BHK | replaceLineBreaksany | unique2 | orderBy2 | replaceEightWithSix}} BHK</span>
+                </p>
+
+
+                <p>{{propertydemo.dimension}} Acres</p>
+
+                <p class="min_max_price"><i class="fa fa-inr" aria-hidden="true"></i> {{propertydemo.price_min}}
+                  -{{propertydemo.price_max}}</p>
+              </div>
+              <p class="excit_class" *ngIf="propertydemo.offerPrice"><strong>Exciting
+                Offers</strong>{{propertydemo.offerPrice}}</p>
+              <p class="excit_class" *ngIf="!propertydemo.offerPrice"></p>
+            </div>
+
+            <div class="right_details">
+
+              <div *ngIf="propertydemo.Status != 'Sold Out'" class="ready_move">
+                <p *ngIf="(Date | date:'yyyy-MM') > (propertydemo.PossessionDate | date:'yyyy-MM')">
+                  <span><img
+                    [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/city/status/ready-to-move.png'"
+                    alt="ready-to-move"/></span>
+                  <span *ngIf="(Date | date:'yyyy-MM') > (propertydemo.PossessionDate | date:'yyyy-MM')">Ready to move in</span>
+                </p>
+                <p *ngIf="(Date | date:'yyyy-MM') <= (propertydemo.PossessionDate | date:'yyyy-MM')">
+                  <span><img
+                    [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/city/status/under-construction.png'"
+                    alt="under-construction"/></span>
+                  <span *ngIf="(Date | date:'yyyy-MM') <= (propertydemo.PossessionDate | date:'yyyy-MM')">Under Construction</span>
+                </p>
+              </div>
+              <div *ngIf="propertydemo.Status == 'Sold Out'" class="sold_out">
+                <p>SOLD OUT</p>
+              </div>
+              <ul>
+                <li class="mobact">
+                  <a
+                    href="https://www.homes247.in/property/{{propertydemo.city_name | lowercase}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                    target="_blank">View Details</a>
+                </li>
+                <li class="active">
+                  <a data-toggle="modal" data-target="#myModal_city" data-backdrop="static" data-keyboard="false"
+                     (click)="getenquiry(propertydemo.property_info_IDPK,propertydemo.propertyName)">Enquire Now</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div *ngIf="showLoader">
+          <p class="loading">Loading<span>.</span><span>.</span><span>.</span></p>
+      </div> -->
+      <div *ngIf="zeroprojects">
+        <p class="noprojects">Sorry, No Projects Found<span>.</span><span>.</span><span>.</span></p>
+      </div>
+    </div>
+    <!-- Loader -->
+    <div *ngIf="showLoader" class="loader_city row">
+      <div class="col-12">
+        <div class="item">
+          <ngx-skeleton-loader
+            [theme]="{ 'border-radius': '9', height: '300px' }">
+          </ngx-skeleton-loader>
+          <ngx-skeleton-loader
+            [theme]="{ width: '170px','border-radius': '9',height: '15px'}">
+          </ngx-skeleton-loader>
+          <ngx-skeleton-loader
+            [theme]="{ 'border-radius': '9',height: '15px'}">
+          </ngx-skeleton-loader>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="item">
+          <ngx-skeleton-loader
+            [theme]="{ 'border-radius': '9', height: '300px' }">
+          </ngx-skeleton-loader>
+          <ngx-skeleton-loader
+            [theme]="{ width: '170px','border-radius': '9',height: '15px'}">
+          </ngx-skeleton-loader>
+          <ngx-skeleton-loader
+            [theme]="{ 'border-radius': '9',height: '15px'}">
+          </ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+    <!-- Loader -->
+  </div>
+</div>
+
+<div class="about_contact_us">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-2"></div>
+      <div class="col-lg-8 col-md-8 col-sm-8">
+        <div class="call_back_form">
+          <h3>Quick Way To Save Time!!</h3>
+          <form name="cityForm" method="POST">
+            <input type="hidden" name="origin">
+            <input autocomplete="off" type="text" placeholder="Name" class="dash_enqr_name" name="name" id="name"
+                   [(ngModel)]="enquiry.name" required/>
+            <input autocomplete="off" type="text" placeholder="Mobile Number" class="abt_enqr_number" name="number"
+                   id="mobile" [(ngModel)]="enquiry.number" required/>
+            <div class="clearfix"></div>
+            <button id="one" (click)="otpsend2()" class="btn_style">Connect Now</button>
+          </form>
+          <p style="text-align:center">All the request are handled in just 5 minutes.</p>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2"></div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="IsVisible">
+  <div class="get_call_back">
+    <div class="head" (click)="ShowHide()">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i>
+    </div>
+    <div class="mobile_res mod">
+      <div class="Call_city">
+        <div class="call_us">
+          <span> <p><img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/enquiry/call.png" alt="call-icon">&nbsp; Call Us</p></span>
+        </div>
+        <div class="number_call">
+          <span>  <p> 091-64-247-247 </p> </span>
+        </div>
+        <br>
+        <div class="or"><p> or </p></div>
+      </div>
+      <input type="text" [(ngModel)]="propertyname" name="propertyname" hidden>
+      <form name="aboutForm" method="POST">
+        <input type="hidden" name="origin">
+        <input autocomplete="off" type="text" placeholder="Name" class="dash_enqr_name" name="name"
+               id="name1" [(ngModel)]="user.name" required/>
+        <input autocomplete="off" type="text" placeholder="Mobile Number" class="abt_enqr_number"
+               name="number" id="mobile1" [(ngModel)]="user.number" required/>
+        <div class="clearfix"></div>
+        <button id="one1" (click)="otpsend()" class="btn_style gcb_btn">Get a Callback</button>
+        <div id="modal-container">
+          <div class="modal-background">
+            <div class="modal">
+              <h2>Please Verify your Number</h2>
+              <p>Enter the 6 digit Verification Code sent on {{user.number}}<a (click)="goback()">(Edit)</a></p>
+              <div class="col-12 countdown_maindiv">
+                <countdown #cd [config]="countdownconfig" (event)="handleEvent($event)"></countdown>
+              </div>
+              <input hidden autocomplete="off" type="text" placeholder="OTP"
+                     name="otp" id="otp" [(ngModel)]="user.otp" required/>
+              <ng-otp-input class="otpinput" #ngOtpInput (onInputChange)="onOtpChange($event)"
+                            [config]="config"></ng-otp-input>
+              <button (click)="otpvalidate()">Validate OTP</button>
+              <p class="otpexpireclass" *ngIf="otpexpired">OTP Expired - <a (click)="otpsend()">Resend</a></p>
+              <button type="reset" id="btn_reset" style="display: none;"></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+    <div class="get_down">
+      <div class="imp-points-wrap">
+        <ul class="imp-points clearfix">
+          <li>
+                                             <span class="wrap-icon">
+                                                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/enquiry/callicon1.png" alt="zero-brokerage">
+                                            </span>
+            <div class="txt">Zero <br>Brokerage</div>
+            <div class="clear"></div>
+          </li>
+          <li>
+                                                  <span class="wrap-icon">
+                                                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/enquiry/callicon2.png" alt="best-price">
+                                                      </span>
+            <div class="txt">Best Price <br>Guaranteed</div>
+            <div class="clear"></div>
+          </li>
+          <li>
+                                                      <span class="wrap-icon">
+                                                            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/enquiry/callicon3.png"
+                                                                 alt="assistance">
+                                        </span>
+            <div class="txt">End To End <br>Assistance</div>
+          </li>
+        </ul>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+  <!-- CSS-Loader -->
+  <div *ngIf="otploader" class="loaderbody">
+    <div class="box">
+      <div class="loader-20"></div>
+    </div>
+  </div>
+  <!-- CSS-Loader -->
+</div>
+
+<!--START-MODAL-->
+<div class="modal fade" id="myModal_city" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content modal_enqury_cntnt">
+
+      <button type="button" class="close modal_close" data-dismiss="modal">&times;</button>
+      <div class="modal-body prop_modal">
+
+        <div class="property_details_form modal_prprty_form">
+          <p>To Avail The Best Deal</p>
+          <input type="text" [(ngModel)]="enquiry.propertyname" name="propertyname" hidden>
+          <form name="enquiryForm" novalidate>
+
+            <input type="hidden" name="origin">
+            <input autocomplete="off" type="text" placeholder="Name" class="dash_enqr_name" name="ename" id="ename"
+                   [(ngModel)]="enquiry.ename" required/>
+
+            <input autocomplete="off" type="text" placeholder="Mobile Number"
+                   class="abt_enqr_number"
+                   name="emobile" id="emobile" [(ngModel)]="enquiry.emobile"
+                   required/>
+            <div class="clearfix"></div>
+
+            <button (click)="addenquiry()" class="btn_style gcb_btn">Get a Callback</button>
+            <button #cancel hidden type="button" data-dismiss="modal" style="display: none;"></button>
+            <a class="read_d">All the request are handled in just 5 minutes.</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- abijith-new-Update -->
+<!-- <div *ngIf="filterShowHide" class="filterHide"> 
+  <div class="filter_section" (click)="ShowHideFilter()">
+    <i class="fa fa-filter" aria-hidden="true"></i>
+    <label>Filters</label>
+  </div>
+</div> -->
+<!-- abijith-new-Update -->
+<div [hidden]="IsVisibleFilter" class="container">
+  <div class="get_call_back" [ngClass]="{'filterClass': filterLoader == true}">
+    <div class="filterHead">
+      <div (click)="ShowHideFilter();"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;<span>Back</span>
+        <!--            <span class="filterHeadSpan">{{this.projectcount}} projects found</span>-->
+      </div>
+      <button type="button" class="btn btn-success resetFilter" (click)="onReset()">Reset</button>
+    </div>
+    <form [formGroup]="registerForm" class="formStyle">
+      <div class="marginTop" [hidden]="!projectTypeHide">
+        <label>City</label><br>
+        <select class="citydropdown" [ngStyle]="{'background-color': 'rgba(151,27,71,.8117647058823529)', color:'#fff'}"  #myCity  (change)='onOptionsSelected(myCity.value)'>
+          <option  *ngFor="let cityname of citiess" value="{{cityname.city}}">
+            {{cityname.city}}
+          </option>
+        </select>
+        <label>Project Type</label><br>
+        <div class="project_type">
+          <button type="button" class="btn btn-default" (click)="apartmentclick();getCityMobileView();passurl();"
+                  [ngStyle]="{'background-color': apartmentSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                        'color': apartmentSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;
+            Apartments&nbsp;&nbsp;
+          </button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-default" (click)="villaclick();getCityMobileView();passurl();"
+                  [ngStyle]="{'background-color': villaSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                        'color': villaSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;
+            Villas&nbsp;&nbsp;
+          </button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-default" (click)="plotclick();getCityMobileView();passurl();"
+                  [ngStyle]="{'background-color': plotSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                        'color': plotSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;
+            Plots&nbsp;&nbsp;
+          </button>
+        </div>
+      </div>
+      <div class="marginTop">
+        <label>Bedroom</label><br>
+        <div>
+          <button type="button" class="btn btn-secondary" (click)="oneBedroom();getCityMobileView();"
+                  [ngStyle]="{'background-color': oneBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                'color': oneBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">1
+          </button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-secondary" (click)="twoBedroom();getCityMobileView();"
+                  [ngStyle]="{'background-color': twoBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                'color': twoBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">2
+          </button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-secondary" (click)="threeBedroom();getCityMobileView();"
+                  [ngStyle]="{'background-color': threeBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                'color': threeBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">3
+          </button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-secondary" (click)="fourBedroom();getCityMobileView();"
+                  [ngStyle]="{'background-color': fourBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                'color': fourBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">4
+          </button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-secondary" (click)="fiveBedroom();getCityMobileView();"
+                  [ngStyle]="{'background-color': fiveBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                'color': fiveBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">5+
+          </button>
+        </div>
+      </div>
+      <div class="marginTop" [hidden]="!statusHide">
+        <label>Project Status</label><br>
+        <div class="project_status">
+          <button type="button" class="btn btn-default" (click)="readyToMove();getCityMobileView();"
+                  [ngStyle]="{'background-color': readyToMoveSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': readyToMoveSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;
+            Ready to move&nbsp;&nbsp;
+          </button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-default" (click)="underConstruction();getCityMobileView();"
+                  [ngStyle]="{'background-color': underConstructionSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': underConstructionSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;Under
+            Construction&nbsp;&nbsp;
+          </button>
+        </div>
+        <div class="btnMargin status_resp_second">
+          <button type="button" class="btn btn-default" (click)="newLaunch();getCityMobileView();"
+                  [ngStyle]="{'background-color': newLaunchSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': newLaunchSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;New Launch&nbsp;&nbsp;
+          </button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-default" (click)="upcoming();getCityMobileView();"
+                  [ngStyle]="{'background-color': preLaunchSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': preLaunchSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;UP Coming&nbsp;&nbsp;
+          </button>
+        </div>
+      </div>
+      <div class="marginTop">
+        <label>Budget</label><br>
+        <div class="col-12 p-0">
+          <button type="button" class="btn btn-default budgetMobileViewButton"
+                  (click)="lessThntweentylaks();getCityMobileView();passurl();"
+                  [ngStyle]="{'background-color': tweentylaksSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': tweentylaksSelect ? '#fff' : 'rgb(76, 73, 73)'}">< 20L
+          </button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-default budgetMobileViewButton"
+                  (click)="tweentylaksTosixtylakhs();getCityMobileView();passurl();"
+                  [ngStyle]="{'background-color': tweentylaksTosixtylakhsSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': tweentylaksTosixtylakhsSelect ? '#fff' : 'rgb(76, 73, 73)'}"> 20L-60L
+          </button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-default budgetMobileViewButton"
+                  (click)="sixtylakhsToEhightylakhs();getCityMobileView();"
+                  [ngStyle]="{'background-color': sixtylakhsToEhightylakhsSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': sixtylakhsToEhightylakhsSelect ? '#fff' : 'rgb(76, 73, 73)'}"> 60L-80L
+          </button>&nbsp;&nbsp;
+        </div>
+        <div class="col-12 mt-2 p-0">
+          <button type="button" class="btn btn-default budgetMobileViewButton"
+                  (click)="EhightylakhsTooneCr();getCityMobileView();"
+                  [ngStyle]="{'background-color': EhightylakhsTooneCrSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': EhightylakhsTooneCrSelect ? '#fff' : 'rgb(76, 73, 73)'}"> 80L-1Cr
+          </button>&nbsp;&nbsp;
+          <button type="button" class="btn btn-default budgetMobileViewButton"
+                  (click)="oneCrAbove();getCityMobileView();"
+                  [ngStyle]="{'background-color': oneCrAboveCrSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': oneCrAboveCrSelect ? '#fff' : 'rgb(76, 73, 73)'}"> 1Cr+
+          </button>&nbsp;&nbsp;
+        </div>
+      </div>
+
+      <div class="marginTop">
+        <label>Possession Within</label><br>
+        <button type="button" class="btn btn-default budgetMobileViewButton"
+                (click)="PosessionImmediate();getCityMobileView();"
+                [ngStyle]="{'background-color': ImmediateSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': ImmediateSelect ? '#fff' : 'rgb(76, 73, 73)'}">Immediate
+        </button>&nbsp;&nbsp;
+        <button type="button" class="btn btn-default budgetMobileViewButton"
+                (click)="PosessionSixMonths();getCityMobileView();"
+                [ngStyle]="{'background-color': SixMonthsSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': SixMonthsSelect ? '#fff' : 'rgb(76, 73, 73)'}">6 months
+        </button>&nbsp;&nbsp;
+        <button type="button" class="btn btn-default budgetMobileViewButton"
+                (click)="PosessionOneYear();getCityMobileView();"
+                [ngStyle]="{'background-color': OneYearSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': OneYearSelect ? '#fff' : 'rgb(76, 73, 73)'}">1 year
+        </button>&nbsp;&nbsp;
+        <div class="col-12 p-0 mt-2">
+          <button type="button" class="btn btn-default budgetMobileViewButton"
+                  (click)="PosessionTwoYearAbove();getCityMobileView();"
+                  [ngStyle]="{'background-color': twoYearSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': twoYearSelect ? '#fff' : 'rgb(76, 73, 73)'}">2+ years
+          </button>&nbsp;&nbsp;
+        </div>
+      </div>
+      <div class="marginTop">
+        <label>Locality</label><br>
+        <!--            <select class="ui fluid search dropdown dropdownsUi commonMobileDropdown" multiple=""-->
+        <!--            [(ngModel)]="locality" (change)="getCityMobileView()" formControlName="locality">-->
+        <!--                <option value="" selected="selected">Select</option>-->
+        <!--                <option *ngFor="let locality of localitys" [value]="locality.locality_IDPK">-->
+        <!--                    {{locality.locality_name}}-->
+        <!--                </option>-->
+        <!--            </select>-->
+        <ng-multiselect-dropdown [placeholder]="'Search upto 3 localities'" [data]="localitys"
+                                 [(ngModel)]="locality" [settings]="dropdownSettingsMobile"
+                                 (onSelect)="onLocalitySelect($event)"
+                                 (onDeSelect)="onLocalityDeSelect($event)" formControlName="locality">
+        </ng-multiselect-dropdown>
+      </div>
+      <div class="marginTop">
+        <p *ngIf="filterSelectOne" class="filterSelectAtleastOne">Select atleast one</p>
+        <div class="footer">
+          <h4>Call us for instant assistance</h4>
+          <p>091-64-247-247</p>
+          <span>Trust us we can save you quite a lot of time</span>
+        </div>
+      </div>
+
+      <div  class="filterApplyBtn">
+        <div class="" (click)="ShowHideFilter();">
+          <button class="btn btn-light">View Properties <span class="badge countBackground">{{this.projectcount}}</span>
+          </button>
+        </div>
+      </div>
+    </form>
+    <div *ngIf="filterLoader" class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</div>
+
+
+<!--OTP-MODAL-->
+<div id="modal-container2">
+  <div class="modal-background">
+    <div class="modal">
+      <form name="otpForm2" novalidate>
+        <h2>Please Verify your Number</h2>
+        <p>Enter the 6 digit Verification Code sent on {{user.number}}<a (click)="goback()">(Edit)</a></p>
+        <div class="col-12 countdown_maindiv">
+          <countdown #cd2 [config]="countdownconfig" (event)="handleEvent($event)"></countdown>
+        </div>
+        <input hidden autocomplete="off" type="text" placeholder="OTP"
+               name="otp" id="otp2" [(ngModel)]="enquiry.otp" required/>
+        <ng-otp-input class="otpinput" #ngOtpInput (onInputChange)="onOtpChange2($event)" [config]="config">
+        </ng-otp-input>
+        <button (click)="otpvalidate2()">Validate OTP</button>
+        <p class="otpexpireclass" *ngIf="otpexpired">OTP Expired - <a (click)="otpsend2()">Resend</a></p>
+        <button type="reset" id="btn_reset" style="display: none;"></button>
+      </form>
+    </div>
+  </div>
+</div>
+<!--OTP-MODAL-->
+
+<!-- CSS-Loader -->
+<div *ngIf="otploader" class="loaderbody">
+  <div class="box">
+    <div class="loader-20"></div>
+  </div>
+</div>
+<!-- CSS-Loader -->
+
+<div class="footerDiv">
+  <div *ngIf="loaded">
+    <ng-container *ngComponentOutlet="FooterComponent"></ng-container>
+  </div>
+ </div>
+  
+  <!-- <app-fixedfooter></app-fixedfooter> -->

@@ -1,0 +1,67 @@
+<div id="otpValidateind" class="modal-login">
+  <form class="modal-content-login-modal" [formGroup]="RegistrationForm">
+    <div class="imgcontainer" *ngIf="!otpValidating">
+      <span (click)="loginclose()" class="close-login" title="Close Modal">&times;</span>
+    </div>
+    <div class="col-sm-12 text-center">
+      <img class="loginModelImg" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/logo/Homes247_NewBlack_Logo.png" alt="Homes247_NewBlack_Logo.png"/>
+      <p class="loginModelText">
+        India's Favourite Property Portal
+      </p>
+      <img *ngIf="!otpValidating" class="loginModelImg1"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/otpsection/otpNumberNameImg.svg" alt="otpNumberNameImg.svg">
+    </div>
+    <div class="pageDetailsDiv" *ngIf="!otpValidating">
+      <p class="container">
+        Before we proceed, please provide your details:
+      </p>
+    </div> 
+
+    <div class="container mt-3" *ngIf="numberLogIn">
+      <label for="newUserName"><b>Name</b></label>
+      <input class="input-loginModel" placeholder="Enter Name" type="text" formControlName="newUserName"  [(ngModel)]="enquiry.name" id="newUserName" required/>
+      <label for="emobileLogin"><b>Number</b></label>
+      <input class="input-loginModel InputNumber" placeholder="Enter Number" type="number" formControlName="userNumber" [(ngModel)]="enquiry.number" id="emobileLogin" required/>
+      <button type="button"  class="btn col-sm-12 mt-3 mobileLogButton" (click)="otpBasedLogin()">Contact Now</button>
+    </div>
+
+    <div class="OtpDiv">
+      <form name="otpForm" novalidate>
+        <div class="col-sm-12 mt-0 mb-4 text-center">
+          <img *ngIf="otpValidating" class="loginModelImg2" height="100%" width="80%"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/otpsection/otpauth.svg" alt="otpauth.svg">
+
+          <h3 id="otpVerificationTxt">Enter Verification Code</h3>
+          <p id="enterOtp">We've sent a code to your WhatsApp <br><b> +91 {{enquiry.number}}</b>
+            <a id="editNum" (click)="goback1()"> - Edit</a>
+        </p>
+        </div>
+        
+
+        <input hidden autocomplete="off" type="text" placeholder="OTP" name="otp" id="otp" [(ngModel)]="enquiry.otp" required/>
+        <ng-otp-input class="otpinput text-center" #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config">
+        </ng-otp-input>
+        <div class="col-12 text-center countdown_maindiv mt-3 mb-3">
+          <span>Resend the OTP in <countdown #cd4 [config]="countdownconfig" (event)="handleEvent($event)"></countdown>  Seconds</span>
+        </div>
+              <p class="otpexpireclass text-center mt-3">
+          OTP Expired - <a   id="editNum" (click)="otpBasedLogin1()">Resend</a>
+        </p>
+        <p class="otpexpireclass2 text-center mt-3">
+          Not Yet Recieved.? <a href="https://api.whatsapp.com/send?phone=919008029014&text=Please%20Share%20OTP"
+              target="_blank"  id="editNum">Try Here</a>
+        </p>
+        <div class="col-sm-12 text-center mb-3">
+          <button (click)="otpvalidate4()" class="btn mt-2 mobileLogButton1">Verify</button>
+        </div>
+        
+        <button type="reset" id="btn_reset" style="display: none"></button>
+      </form>
+    </div>
+  </form>
+
+</div>
+
+<div *ngIf="otploader" class="loaderbody">
+  <div class="box">
+      <div class="loader-20"></div>
+  </div>
+</div>

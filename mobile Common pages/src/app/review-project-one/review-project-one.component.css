@@ -1,0 +1,247 @@
+.pageBackground{
+  margin-top: 113px;
+  background: rgba(248, 248, 248, 1);
+  height: 100%;
+  width: 100%;
+}
+
+.reviewProp{
+  flex-shrink: 0;
+  border-radius: 16px;
+  background: #FFF;
+}
+
+.reviewProp:hover{
+box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.08);
+}
+.reviewtop {
+  color: #080808;
+  background-color: #fff;
+  border: 2px solid green;
+  position: absolute;
+  right: 10px;
+  padding: 10px 10px;
+  margin-top: -54px;
+  font-size: 12px;
+  border-radius: 6px;
+}
+.load-more-button {
+  background-color: rgba(151, 27, 71, 0.8117647058823529); /* Background color with transparency */
+  color: white; /* Text color */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Apply border-radius */
+  padding: 5px 10px; /* Add padding for better appearance */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.load-more-button:hover {
+  opacity: 0.9; /* Reduce opacity slightly on hover for visual feedback */
+}
+.leftSectionProp{
+  padding-top: 36px;
+  padding-bottom: 16px;
+  gap: 10px;
+}
+.localityback{
+  font-size: 18px;
+  margin-right: 10px;
+  color: black;
+}
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin-bottom: 13px;
+  margin-top: 13px;
+  margin-left: 0;
+  list-style: none;
+}
+.pageTitle {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #4A061E;
+}
+.headingtag{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 330px;
+}
+li.breadcrumb-item {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 78px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 15px;
+  color: #000000;
+  opacity: 0.5;
+}
+li.breadcrumb-item a{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 15px;
+  color: #000000;
+  opacity: 0.5;
+}
+.propImg1 a img{
+  height: 100px;
+  width: 100px;
+  background-repeat: no-repeat;
+  /* background-image: url('https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/rentalDetails/Prop1.png'); */
+}
+
+.propDetail{
+  line-height: 0px;
+  margin-top: 0px;
+  color: #72727238;
+}
+
+#prop1text {
+  color: #727272;
+  font-size: 14px;
+  font-family: 'Poppins';
+  font-weight: 600;
+  white-space: nowrap;
+  max-width: 223px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  line-height: 15px;
+}
+
+#prop1text a{
+  color: #727272;
+}
+.issuePropDiv{
+  background: #fff;
+  /* margin-top: 32px; */
+  padding: 20px 24px;
+  /* padding-bottom: 60px; */
+  }
+.overViewColour2{
+  color: #000;
+  font-family: poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  }
+  .quickLinksDiv li{
+    list-style: none;
+    margin-bottom: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    }  
+#prop1Loc{
+  color: #727272;
+  font-size: 12px;
+  font-family: 'Poppins';
+  font-weight: 600;
+  opacity: 0.5600000023841858;
+  line-height: 1.5px;
+  
+}
+
+#prop1Loc a{
+  color: #727272;
+}
+
+#starsRating{
+  margin-top: 16px;
+    margin-bottom: 0px;
+}
+
+.fill-star {
+  color: #E4652B;
+  padding: 0px 2px;
+}
+
+.clientReviewTitle h2{
+justify-content: space-between;
+  margin-top: 14px;
+  color: #727272;
+  font-size: 14px;
+  font-family: Poppins;
+  font-weight: 600;
+}
+.clientReviewTitle a{
+  text-decoration: underline;
+}
+
+.starColour {
+  font-weight: 500; /* Use the appropriate font weight for your icon style */
+  color: transparent; /* Set the inner color to transparent */
+  background: linear-gradient(135deg, #FE0 25%, #FFE100 62.85%, #FFA400 166.67%); /* Apply the linear gradient as the background */
+  background-clip: text;
+}
+
+.detailedReviews{
+  flex-shrink: 0;
+  border-radius: 16px;
+  background: #FFF;
+  margin-top: 10px;
+}
+
+.nameRating{
+  justify-content: space-between;
+  padding: 10px;
+  height: 35px;
+}
+.nameRating1{
+  justify-content: space-between;
+  padding: 10px;
+  height: 35px;
+  margin: -16px 0 0 0;
+}
+
+.nameRating p{
+  color: #727272;
+font-size: 14px;
+font-family: Poppins;
+font-weight: 600;
+line-height: 12px;
+}
+.nameRating1 span{
+  color: #727272;
+font-size: 12px;
+font-family: Poppins;
+font-weight: 500;
+}
+
+.detailReviewText{
+  color: #727272;
+  font-size: 10px;
+  font-family: Poppins;
+  font-weight: 400;
+  padding: 10px;
+}
+
+@media (max-width:320px) {
+  #prop1text {
+    color: #727272;
+    font-size: 14px;
+    font-family: 'Poppins';
+    font-weight: 600;
+    white-space: nowrap;
+    max-width: 153px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 15px;
+}
+#prop1Loc {
+  color: #727272;
+  font-size: 12px;
+  font-family: 'Poppins';
+  font-weight: 600;
+  opacity: 0.5600000023841858;
+  line-height: 17px;
+}
+}

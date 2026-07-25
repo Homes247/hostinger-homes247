@@ -1,0 +1,34 @@
+<router-outlet></router-outlet>
+
+
+
+@defer {
+@if (aiChatHomi) {
+<div (click)="aiChatbotOpen()" class="start_posting_now p-3" type="button" id="IframeModalButton" data-toggle="modal"
+    data-target="#exampleModalIframe">
+    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/HomiAi/rocketAi.gif" class="ai_chat_buton"
+        alt="homiAiChatButton" width="70" height="70">
+</div>
+}
+
+
+
+@if (aiKeyFramModal) {
+<div class="modal fade homiModal" id="exampleModalIframe" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered m-0">
+        <div class="modal-content modalContentFrame">
+
+            <p class="iFrameCloseButton" id="homiCloseButton" data-dismiss="modal" aria-label="Close">
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/HomiAi/homiModalClose.svg"
+                    alt="..homiModalClose.svg">
+            </p>
+
+            <div class="modal-body p-0" style="max-height: 100vh;">
+                <iframe class="modalIframe" src="https://aichat.vsnaptechnology.com/" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+}
+}

@@ -1,0 +1,26 @@
+.main_div{
+    margin-top: 100px;
+}
+
+.city_div{
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 1px 0 3px 0 #ccc;
+    padding: 15px;
+    margin-top: 30px;
+}
+
+.priority_page{
+    /* border: 1px solid #ccc; */
+    border-radius: 6px;
+    /* box-shadow: 1px 0 3px 0 #ccc; */
+    padding: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.borderclass{
+    border: 1px solid #E5E5E5;
+    text-align: center;
+    padding: 30px 0px;
+    margin: 0 0 15px 0;
+}

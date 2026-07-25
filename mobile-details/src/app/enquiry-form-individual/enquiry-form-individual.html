@@ -1,0 +1,160 @@
+<div id="otpValidateind" class="modal-login">
+    <form class="modal-content-login-modal">
+
+        @if (!otpValidating) {
+        <div class="imgcontainer">
+            <span (click)="loginclose()" class="close-login" title="Close Modal">&times;</span>
+        </div>
+        } @else {
+        <div class="imgcontainer">
+            <span (click)="goback1()" class="close-login" title="Close Modal">&times;</span>
+        </div>
+        }
+
+        <div class="col-sm-12 text-center">
+            <img class="loginModelImg"
+                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/logo/Homes247_NewBlack_Logo.png" />
+
+            <p class="loginModelText">
+                India's Favourite Property Portal
+            </p>
+
+            @if (!otpValidating) {
+            <img class="loginModelImg1"
+                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/otpsection/otpNumberNameImg.svg">
+            }
+        </div>
+
+        @if (!otpValidating) {
+        <div class="pageDetailsDiv">
+            <p class="container">
+                Before we proceed, please provide your details:
+            </p>
+        </div>
+        }
+
+        @if (numberLogIn) {
+        <div class="container mt-3">
+
+            <label for="newUserName"><b>Name</b></label>
+            <input class="input-loginModel" placeholder="Enter Name" type="text" [(ngModel)]="enquiry.name"
+                name="newUserName" id="newUserName" required />
+
+            <label for="emobileLogin"><b>Number</b></label>
+            <input class="input-loginModel InputNumber" placeholder="Enter Number" type="number"
+                [(ngModel)]="enquiry.number" name="userNumber" id="emobileLogin" required />
+
+            <button type="button" class="btn col-sm-12 mt-3 mobileLogButton" (click)="otpBasedLogin()">
+                Contact Now
+            </button>
+                       
+               
+
+        </div>
+        }
+
+        <div class="OtpDiv">
+
+            <div class="col-sm-12 mt-0 mb-4 text-center">
+
+                @if (otpValidating) {
+                <img class="loginModelImg2"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/otpsection/otpauth.svg">
+                }
+
+                <h3 id="otpVerificationTxt">Enter Verification Code</h3>
+
+                <p id="enterOtp">
+                    We've sent a code to your WhatsApp
+                    <br><b> +91 {{enquiry.number}}</b>
+                    <a id="editNum" (click)="goback1()"> - Edit</a>
+                </p>
+
+            </div>
+
+            <input hidden autocomplete="off" type="text" name="otp" id="otp" [(ngModel)]="enquiry.otp" required />
+
+            <div class="otp-wrapper">
+                <ng-otp-input class="otpinput text-center" #ngOtpInput (onInputChange)="onOtpChange($event)"
+                    [config]="config">
+                </ng-otp-input>
+            </div>
+
+            <div class="col-12 text-center countdown_maindiv mt-3 mb-3">
+                <span>
+                    Resend the OTP in
+                    <countdown #cd4 [config]="countdownconfig" (event)="handleEvent($event)">
+                    </countdown>
+                    Seconds
+                </span>
+            </div>
+
+            <p class="otpexpireclass text-center mt-3">
+                OTP Expired -
+                <a id="editNum" (click)="otpBasedLogin1()">Resend</a>
+            </p>
+
+            <p class="otpexpireclass2 text-center mt-3">
+                Not Yet Recieved.?
+                <a href="https://api.whatsapp.com/send?phone=919008029014&text=Please%20Share%20OTP" target="_blank"
+                    id="editNum">Try Here</a>
+            </p>
+
+            <div class="col-sm-12 text-center mb-3">
+                <button type="button" (click)="otpvalidate4()" class="btn mt-2 mobileLogButton1">
+                    Verify
+                </button>
+            </div>
+
+        </div>
+
+    </form>
+</div>
+
+@if (otploader) {
+<div class="loaderbody">
+    <div class="box">
+        <div class="loader-20"></div>
+    </div>
+</div>
+}
+
+
+
+<!-- Subcription code  -->
+<div class="modal fade" id="elitePlanModal" tabindex="-1" aria-labelledby="elitePlanModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+
+            <div class="d-flex justify-content-end mt-3 me-3">
+                <img class="elitePlanLogo mr-3" id="elitePlanClose"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/closeIcon.svg" alt="Close" data-dismiss="modal"
+                    style="cursor:pointer;">
+            </div>
+
+
+            <div class="modal-body text-center">
+
+                <div class="d-flex justify-content-center align-items-center mt-3">
+                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/metarIcon.svg" alt="">
+                </div>
+
+                <div class="text-center YourFree mt-3">
+                    <h6>Your free contact limit is over</h6>
+                    <p>Upgrade your plan to keep connecting with property owners.</p>
+                </div>
+
+                <div class="afterSuccessPayment mt-4">
+                    <div class="d-flex justify-content-center align-items-center mb-2">
+                        <a class="btn UnlockMoreBtn" (click)="elitePlanRouter()">
+                            Unlock More Contacts
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

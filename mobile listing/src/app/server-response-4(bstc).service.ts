@@ -1,0 +1,23 @@
+import { Inject, Injectable, Optional } from '@angular/core';
+import { Response } from 'express';
+import { RESPONSE } from './token';
+
+@Injectable()
+export class ServerResponseService_bstc {
+  private response: Response;
+
+  constructor(@Optional() @Inject(RESPONSE) response: any) {
+    this.response = response;
+  }
+
+  setStatus(code: number, noOfBedrooms?:number, City_Seo?:string, ): this {
+    if (this.response) {
+      this.response.redirect(code, "https://www.homes247.in/bstc/"+noOfBedrooms+"-bhk-ready-to-move-flats-apartments-in-"+City_Seo);
+    }
+    return this;
+  }
+
+  set301Status(noOfBedrooms,City_Seo): this {
+    return this.setStatus(301,noOfBedrooms,City_Seo);
+  }
+}

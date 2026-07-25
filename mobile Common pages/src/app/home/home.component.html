@@ -1,0 +1,1135 @@
+<div style="background: #ffffff;">
+  <div class="col-12 androidApp blur">
+    <div class="row p-2">
+      <div class="col-1 p-0"></div>
+      <div class="col-8 pl-4 pr-0">
+        <!-- <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/logo_32x32.png" alt="logo"> -->
+        <p class="androidAppTitle">India's Best Realty App</p>
+        <p class="androidAppSubTitle">4.6 <i class="fa fa-star androidAppStar" aria-hidden="true"></i> |
+          Experience
+          Seamless Home Search</p>
+      </div>
+      <div class="col-1 pl-2 pr-2 text-right">
+        <span (click)="applinkClick()">
+          <button class="btn btn-light installBtn">Install</button>
+        </span>
+      </div>
+      <div class="col-2 pl-0 pr-0 text-right">
+        <i class="fa fa-times androidAppIcon" aria-hidden="true" (click)="closeAndroidApp()"></i>
+      </div>
+    </div>
+  </div>
+  <div class="head col-12 pl-1" #scrollapiloader style="height: 41px;align-items: center; z-index: 1;">
+    <!-- <div class="top_section_main">
+      <div class="head_color"> -->
+    <div class="top_row_left1 row">
+      <div class="col-8 d-flex headerLeft" style="align-items: center; height: 40px;">
+        <div class="resp_logo1 ">
+          <!-- <img class="locationIcon animate__heartBeat" lazyLoad="https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/location_header.svg" alt="locationIcon"> -->
+          <img loading="eager" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/images/menu.png" alt="Homes247" (click)="clickNavopen()">
+        </div>
+        <div class=" resp_citydrop1">
+          <div class="inner_search mobileViewSelectDropDown d-flex" tabindex="0" (click)="ShowHidecontact()">
+            <div class="enquiryBtns">{{currentCity}}
+
+            </div>
+            <!-- <span class="dropArrowCity"><i class="fa fa-angle-down arrows"></i></span> -->
+            <img height="5" width="9" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/all_India_buy_rent/homePageDropDownIcon.png" alt="..homePageDropDownIcon.png" >
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+      <div class="col-4 heeaderRight" style="display: flex;align-items: center; height: 40px;justify-content: right;">
+
+
+        <div *ngIf="loginshow" class="text-center">
+          <a href="https://www.homes247.in/postproperty" class="custom-button">
+            Post a Property
+            <span class="tag-free">FREE</span>
+          </a>
+        </div>
+
+
+        <!-- <div *ngIf="loginshow" class="header_offer ">
+              <a href="https://www.homes247.in/postproperty">Post Property</a>
+            </div>
+            <span *ngIf="loginshow" id="free">FREE</span> -->
+
+        <div *ngIf="userlogin" class="dropdown" style="position: relative;">
+          <a id="dropdownMenuLink" (click)="toggleDropdown()" aria-haspopup="true" aria-expanded="false">
+            <span class="usericon">Hi,&nbsp;{{ this.username }}</span>
+          </a>
+
+          <div class="dropdown-menu custom-dropdown" [class.show]="dropdownVisible">
+            <a class="dropdown-item" href="https://www.homes247.in/userauth/profile/{{ UserId }}">Profile</a>
+            <a class="dropdown-item" href="https://www.homes247.in/postproperty">Post Property</a>
+            <a class="dropdown-item" [routerLink]="'/userauth/wishlist/' + UserId">Wishlist</a>
+            <a class="dropdown-item" [routerLink]="'/userauth/seenprojects/' + UserId">Seen Projects</a>
+            <a class="dropdown-item" (click)="Logout()">Logout</a>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <!-- <div *ngIf="userlogin" class="dropdown">
+          <a id="dropdownMenuLink" (click)="toggleDropdown($event)" aria-haspopup="true" aria-expanded="false">
+            <span class="usericon">Hi,&nbsp;{{ username }}</span>
+          </a>
+
+          <div class="dropdown-menu custom-dropdown" [ngClass]="{ 'show': dropdownVisible }">
+            <a class="dropdown-item" [routerLink]="'/userauth/profile/' + UserId">Profile</a>
+            <a class="dropdown-item" href="https://www.homes247.in/postproperty">Post Property</a>
+            <a class="dropdown-item" [routerLink]="'/userauth/wishlist/' + UserId">Wishlist</a>
+            <a class="dropdown-item" [routerLink]="'/userauth/seenprojects/' + UserId">Seen Projects</a>
+            <a class="dropdown-item" (click)="Logout()">Logout</a>
+          </div>
+        </div> -->
+
+
+
+
+    </div>
+    <!-- </div>
+    </div> -->
+  </div>
+  <div class="matAuto">
+    <ng-container *ngComponentOutlet="Matautocomplete"></ng-container>
+  </div>
+
+  <div id="mySidenavsss" class="sidenav" style="width: 0px;">
+    <div class="nav_logo">
+      <a class="logo_nav" href="https://www.homes247.in/">
+        <img lazyLoad="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/logo/Homes247_NewBlack_Logo.png" alt="Homes247">
+      </a>
+      <span class="closebtn" (click)="clickNavclose()">
+        <svg id="fi_6583137" enable-background="new 0 0 48 48" height="40" viewBox="0 0 48 48" width="40" xmlns="http://www.w3.org/2000/svg" class="navcls">
+          <path d="m32.5 33c.4.4.4 1 0 1.4-.2.2-.5.3-.7.3s-.5-.1-.7-.3l-8.4-8.4-8.4 8.4c-.2.2-.5.3-.7.3s-.5-.1-.7-.3c-.4-.4-.4-1 0-1.4l8.4-8.4-8.4-8.4c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l8.4 8.4 8.4-8.4c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-8.4 8.4z">
+          </path>
+        </svg>
+      </span>
+    </div>
+
+    <div data-page="1" class="wipe open" id="red">
+      <p class="pl-2 navTextWipe"><a href="https://www.homes247.in/">Home</a></p>
+      <p *ngIf="loginshow" class="pl-2 navTextWipe"><a routerLink="/login">Login</a></p>
+      <!-- <p class="pl-2 navTextWipe" (click)="tran(2)">
+                    <span>Properties In {{currentCity}}</span> <span class="rightWipeArrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                </p> -->
+      <!-- <p class="pl-2 navTextWipe" (click)="tran(25)">
+      <span>Buy</span> <span class="rightWipeArrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+    </p> -->
+      <p class="pl-2 navTextWipe"><a href="https://www.homes247.in/aboutus">About Us</a></p>
+      <p class="pl-2 navTextWipe"><a href="https://www.homes247.in/careers">Careers</a></p>
+
+      <p class="pl-2 navTextWipe"><a href="https://www.homes247.in/blogs">Home Guide<span class="blogmark">Blogs</span></a>
+      </p>
+      <p class="pl-2 navTextWipe"><a routerLink="/calculator">EMI Calculator</a></p>
+      <ul class="nav_links pl-2 navTextWipe m-0" (click)="ShowHide_More()">
+        <li class=""><span data-toggle="" href="">More <span class="caret"></span></span>
+          <ul class="drop_style p-0 m-0" *ngIf="IsVisiblee">
+            <li><a href="https://www.homes247.in/find-ifsc-code">Find IFSC Codes</a></li>
+            <li><a href="https://www.homes247.in/find-pincode">Find Pincode Codes</a></li>
+            <li><a href="https://www.homes247.in/all-project-reviews-in-india">All Property Reviews</a></li>
+            <li><a href="https://www.homes247.in/all-project-walkthrough-videos-in-india">All Property
+                Walkthrough Videos</a></li>
+            <li><a routerLink="/expertservices">Expert Services</a></li>
+            <li><a routerLink="/buyers-guide">Home Buyers Guide</a></li>
+            <!-- <li><a routerLink="/latest-trends">Latest Real Estate Updates</a></li> -->
+
+            <li><a routerLink="/price-trends">Price Trends</a></li>
+            <li><a routerLink="/homeloan">Home Loan</a></li>
+            <li><a routerLink="/vaastu">Vaastu Tips</a></li>
+            <li><a routerLink="/interior">Interiors</a></li>
+            <li> <a routerLink="/faq">FAQ</a></li>
+            <li> <a routerLink="/policy">Privacy Policy</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="nav_social_icon">
+        <ul>
+          <li>
+            <span class="nav_fb" target="_blank" href="https://www.facebook.com/Homes247.in/"></span>
+          </li>
+          <li>
+            <span class="nav_insta" target="_blank" href="https://www.instagram.com/homes247.in"></span>
+          </li>
+          <li>
+            <span class="nav_twitter" target="_blank" href="https://x.com/homes247_in"></span>
+          </li>
+          <li>
+            <span class="nav_in" target="_blank" href="https://www.linkedin.com/company/homes247/"></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- <div style="border-bottom: 0.5px solid rgba(0, 0, 0, 0.15);"></div> -->
+
+  <div class="col-12 slider_section_main">
+    <div class="slider_search_main">
+      <div class="homes247Logo text-center mt-3 pt-2">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/logo/Homes247_NewBlack_Logo.png" style="width: 140px;" alt="homes247logo">
+      </div>
+      <h1 class="search_label">India’s Favourite Property Portal!</h1>
+
+      <!-- <div class="tab-search-container">
+        <div class="custom-tabs-fade">
+          <div class="custom-tabs" #activeTab>
+            <div class="custom-tab active" href="https://www.homes247.in/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Buy</div>
+            <div class="custom-tab" routerLink="/property-for-rent-in-bangalore" routerLinkActive="active">Rent</div>
+            <div class="custom-tab" href="https://www.homes247.in/commercial" routerLinkActive="active">Commercial</div>
+            <div class="custom-tab" href="https://www.homes247.in/pg-home" routerLinkActive="active">PG/Hostel</div>
+            <div class="custom-tab" data-toggle="modal" data-target="#exampleModalCenter">Sell</div>
+          </div>
+        </div>
+        <div class="inner_header_search all_india_page allIndiaPAge">
+          <div class="search_input_box inner_page">
+
+            <div class="searchIcon">
+              <img height="12" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/all_India_buy_rent/locationIconHomePage.png" alt="..locationIconHomePage.png" >
+            </div>
+            <ng-container *ngComponentOutlet="Autocomplete"></ng-container>
+          </div>
+          <div class="search_btn">
+            <span (click)="nevigateToList()">
+              <img style="    background: #971b47; border-radius: 50%; " src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/Homes New/rentSearchMagnifierWhite.png" alt="Homes247-icon">
+            </span>
+          </div>
+        </div>
+      </div> -->
+      <div class="tab-search-container mt-4">
+        <div class="custom-tabs-fade">
+          <div class="custom-tabs" #activeTab>
+            <div class="custom-tab active" href="https://www.homes247.in/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Buy</div>
+            <div class="custom-tab" routerLink="/property-for-rent-in-bangalore" routerLinkActive="active">Rent</div>
+            <a class="custom-tab" href="https://www.homes247.in/commercial" routerLinkActive="active">Commercial</a>
+            <a class="custom-tab" href="https://www.homes247.in/pg-home" routerLinkActive="active">PG/Hostel</a>
+            <div class="custom-tab" data-toggle="modal" data-target="#exampleModalCenter">Sell</div>
+          </div>
+        </div>
+        <div class="search-bar search_c p-0">
+          <div class="nosubmit"><img src="data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.5 9.5C7.70914 9.5 9.5 7.70914 9.5 5.5C9.5 3.29086 7.70914 1.5 5.5 1.5C3.29086 1.5 1.5 3.29086 1.5 5.5C1.5 7.70914 3.29086 9.5 5.5 9.5Z' stroke='%237E7E7E' stroke-width='0.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M10.5 10.5L8.34998 8.34998' stroke='%237E7E7E' stroke-width='0.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" alt="..svg%3E"  height="12px" width="12px"></div>
+          <input (click)="ShowHidecontact1()" type="text" placeholder="Search Locality, Builder, Project" />
+          <button (click)="getProjectsmain1(currentCity)"><img style="    background: #971b47; border-radius: 50%; " src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/rentSearchMagnifierWhite.png" alt="Homes247-icon"></button>
+        </div>
+
+      </div>
+    </div>
+    <div #scrollapiloader class="" style="margin-top: 44px;">
+      <!-- <div class=""> -->
+      <div class="col-12 d-flex btnSection">
+        <a style="border: none;" class="col-4 btn responsive_searchbar_ShortCuts_textColour"><a href="https://www.homes247.in/residential-flats-in-{{currentCity | cleanUrl}}-for-sale">Apartments</a></a>
+        <a style="border: none;" class="col-4 btn responsive_searchbar_ShortCuts_textColour"><a href="https://www.homes247.in/villas-for-sale-in-{{currentCity | cleanUrl}}">Villas</a></a>
+        <a style="border: none;" class="col-4 btn responsive_searchbar_ShortCuts_textColour"><a href="https://www.homes247.in/plots-in-{{currentCity | cleanUrl}}">Plots</a></a>
+      </div>
+      <!-- </div> -->
+    </div>
+  </div>
+
+
+  <!-- radha update -->
+  <div *ngIf="bangalore" class="cityhome">
+    <!-- <div #scrollapiloader class="props_bang properties_india_main1">
+            <div class="col-12 pt- px-0 bestoffersSectionMobileView">
+                <owl-carousel-o [options]="bestoffersOptions">
+                    <ng-container *ngFor="let offerslist of offers">
+                        <ng-template carouselSlide>
+                            <a target="_blank" href="{{offerslist.offers_prop_name}}">
+                                <img loading="lazy" src="{{offersimages}}{{offerslist.offers_img}}" alt="offerslist.offers_imgalt" class="bestoffersSectionMobileImages" />
+                            </a>
+                        </ng-template>
+                    </ng-container>
+                </owl-carousel-o>
+                <div *ngIf="bestoffesrloader" class="row">
+                    <div class="col-12">
+                        <div class="item">
+                            <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '190px' }">
+                            </ngx-skeleton-loader>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+    <!-- <h1 hidden class="underline">Properties For Sale In {{currentCity}}</h1> -->
+    <!-- <div class="property_type_main">
+            <div class="col-12">
+                <div class="row proptypeborder">
+                    <div class="col-4">
+                        <div class="proptypecard" (click)="apartmentroute()">
+                            <p class="prop_text">Apartments</p>
+                            <div class="imgdiv"><img loading="lazy" class="icon-size" alt="icon-size" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/homepage/apartments.svg" alt="imgdiv">
+                            </div>
+                            <p class="prop_count">{{this.apartmentcount}} Projects</p>
+                        </div>
+                    </div>
+    
+                    <div class="col-4">
+                        <div class="proptypecard" (click)="villasroute()">
+                            <p class="prop_text">Villas</p>
+                            <div class="imgdiv"><img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/homepage/villas.svg" alt="imgdiv">
+                            </div>
+                            <p class="prop_count">{{this.villacount}} Projects</p>
+                        </div>
+                    </div>
+    
+                    <div class="col-4">
+                        <div class="proptypecard" (click)="plotsroute()">
+                            <p class="prop_text">Plots</p>
+                            <div class="imgdiv"><img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/homepage/plots.svg" alt="imgdiv">
+                            </div>
+                            <p class="prop_count">{{this.plotcount}} Projects</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+  </div>
+
+  <div class="new_project_main_new">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="top_projecthead underline">
+            <h2>Curated <b class="newHeadingTitleBold">Projects</b></h2>
+            <p class="newHeadingSubTitle">Handpicked home collection for you</p>
+          </div>
+        </div>
+      </div>
+      <div class="topProjectsSectionMobileView">
+        <div class="scrollmenu">
+          <a href="/ready-to-move-apartments/ready-to-move-flats-in-{{currentCity |cleanUrl}}">
+            <div class="card subCards">
+              <p class="subcardTitle">Ready To Move In</p>
+            </div>
+            <img loading="lazy" class="curated-image-size" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/collections/offers-projects.png" alt="curated-image-size">
+          </a>
+          <a href="/{{currentCity |cleanUrl}}/status/under-construction-50309">
+            <div class="card subCards">
+              <p class="subcardTitle">Under Construction</p>
+            </div>
+            <img loading="lazy" class="curated-image-size" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/collections/on-going.png" alt="curated-image-size">
+          </a>
+          <a href="/{{currentCity |cleanUrl}}/status/new-launch-50310">
+            <div class="card subCards">
+              <p class="subcardTitle">New Launches</p>
+            </div>
+            <img loading="lazy" class="curated-image-size" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/collections/under-construction.png" alt="curated-image-size">
+          </a>
+          <a href="/ready-to-move-apartments/ready-to-move-flats-in-{{currentCity |cleanUrl}}">
+            <div class="card subCards">
+              <p class="subcardTitle">Ongoing projects</p>
+            </div>
+            <img loading="lazy" class="curated-image-size" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/collections/under-construction.png" alt="curated-image-size">
+          </a>
+          <a href="/new-launch-projects/new-projects-in-{{currentCity |cleanUrl}}">
+            <div class="card subCards">
+              <p class="subcardTitle">Upcoming Projects</p>
+            </div>
+            <img loading="lazy" class="curated-image-size" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/collections/ready-To-Move-In.png" alt="curated-image-size">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container pt-0" style="padding-left: 15px; padding-right: 15px;">
+    <div class="addBanner1" *ngFor="let data of interiorAdds | slice:0:1;" (click)="clickedService(data.expert_IDFK)">
+      <img loading="lazy" width="100%" src="{{addRoot}}{{data.mobile_image}}" alt="data.mobile_image">
+    </div>
+  </div>
+
+  <div *ngIf="bangalore" style="background: #fff;">
+    <div class=" pb-0" *ngIf="showSpotLight">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 py-3 px-0">
+            <div class="news_head underline ml-3">
+              <h2 class="">Projects In Spotlight</h2>
+              <p class="newHeadingSubTitle">The most reputed builders in India</p>
+            </div>
+            <owl-carousel-o [options]="bestoffersOptions1">
+              <ng-container>
+                <ng-template carouselSlide *ngFor="let spotProp of allSpotlightProp | slice : 0 : 20">
+                  <!-- <div class="spotLightPropDiv d-flex"> -->
+                  <div class="propBox col-12 px-0 mr-2">
+                    <div class="propImg" *ngFor="let img of spotProp.images">
+                      <a href="https://www.homes247.in/property/{{ spotProp.city_name | cleanUrl }}/{{ spotProp.locality_name | cleanUrl }}/{{ spotProp.propName | cleanUrl }}-{{ spotProp.propId }}">
+                        <img loading="lazy" width="100%" src="{{spotProp.spotimgstatus ? propertyimage1:propertyimage}}{{spotProp.spotimgstatus ? spotProp.spotlightImg:img.name}}" alt="spotProp">
+                      </a>
+                      <!-- <img loading="lazy" *ngIf="spotProp.spotlightImg != null" width="100%" src="{{propertyimage1}}{{spotProp.spotlightImg}}" alt="spotProp"> -->
+                    </div>
+                    <div class="insideCardPropData px-2 col-12">
+                      <div class="row">
+                        <div class="propDataLeft col-6 text-left">
+                          <div class="leftPropTxt">
+                            <h2 id="propName">{{spotProp.builderName}}</h2>
+
+                          </div>
+                        </div>
+                        <div class="col-6 text-right">
+                          <span id="propName">
+                            <i class="fa fa-inr" aria-hidden="true"></i>&nbsp;{{ spotProp.minprice | priceFormatter }}
+                            Onwards
+                          </span>&nbsp;
+                          <!-- <span id="locationTag">Onwards</span> -->
+                        </div>
+                      </div>
+                      <div class="col-12 d-flex pl-0">
+                        <span id="locationTag">
+                          <img loading="lazy" style="width: 15px" height="15" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/Bed.png" alt="..Bed.png"  />&nbsp;
+                          {{
+                          spotProp.bhk
+                          | replaceLineBreaksany
+                          | unique2
+                          | orderBy2
+                          }} BHK</span>&nbsp;&nbsp;
+
+
+                        <span id="locationTag">
+                          <img loading="lazy" style="width: 15px" height="15" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/Map Point.png" alt="..Map Point.png"  />&nbsp;{{spotProp.locality_name}}, {{ spotProp.city_name }}</span>
+                      </div>
+                    </div>
+                    <div [ngClass]="{spotlightOverlay:spotProp.spotimgstatus == false}"></div>
+                  </div>
+                  <!-- </div>  -->
+                </ng-template>
+              </ng-container>
+            </owl-carousel-o>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!bangalore">
+    <div class="cityhome pb-0" *ngIf="showSpotLight">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 py-3 px-0">
+            <div class="news_head underline ml-3">
+              <h2 class="">Projects In Spotlight</h2>
+              <p class="newHeadingSubTitle">The most reputed builders in India</p>
+            </div>
+            <owl-carousel-o [options]="bestoffersOptions1">
+              <ng-container>
+                <ng-template carouselSlide *ngFor="let spotProp of allSpotlightProp | slice : 0 : 20">
+                  <!-- <div class="spotLightPropDiv d-flex"> -->
+                  <div class="propBox col-12 px-0 mr-2">
+                    <div class="propImg" *ngFor="let img of spotProp.images">
+                      <!-- <img loading="lazy" *ngIf="spotProp.spotlightImg != null" width="100%" src="{{propertyimage1}}{{spotProp.spotlightImg}}"  > -->
+                      <a href="https://www.homes247.in/property/{{ spotProp.city_name | cleanUrl }}/{{ spotProp.locality_name | cleanUrl }}/{{ spotProp.propName | cleanUrl }}-{{ spotProp.propId }}">
+                        <img loading="lazy" width="100%" src="{{spotProp.spotimgstatus ? propertyimage1:propertyimage}}{{spotProp.spotimgstatus ? spotProp.spotlightImg:img.name}}" alt="spotlightImg">
+                      </a>
+                    </div>
+                    <div class="insideCardPropData px-2 col-12">
+                      <div class="row">
+                        <div class="propDataLeft col-6 text-left">
+                          <div class="leftPropTxt">
+                            <h2 id="propName">{{spotProp.builderName}}</h2>
+
+                          </div>
+                        </div>
+                        <div class="col-6 text-right">
+                          <span id="propName">
+                            <i class="fa fa-inr" aria-hidden="true"></i>&nbsp;{{ spotProp.minprice | priceFormatter }}
+                            Onwards
+                          </span>&nbsp;
+                          <!-- <span id="locationTag">Onwards</span> -->
+                        </div>
+                      </div>
+                      <div class="col-12 d-flex pl-0">
+                        <span id="locationTag">
+                          <img loading="lazy" style="width: 15px" height="15" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/Bed.png" alt="..Bed.png"  />&nbsp;
+                          {{
+                          spotProp.bhk
+                          | replaceLineBreaksany
+                          | unique2
+                          | orderBy2
+                          }} BHK</span>&nbsp;&nbsp;
+
+
+                        <span id="locationTag">
+                          <img loading="lazy" style="width: 15px" height="15" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/Map Point.png" alt="..Map Point.png"  />&nbsp;{{spotProp.locality_name}}, {{ spotProp.city_name }}</span>
+                      </div>
+                    </div>
+                    <div [ngClass]="{spotlightOverlay:spotProp.spotimgstatus == false}"></div>
+                  </div>
+                  <!-- </div>  -->
+                </ng-template>
+              </ng-container>
+            </owl-carousel-o>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+    <div class="slider_section_main_bangalore" *ngIf="bangalore">
+      <div class="slider_search_main">
+        <label class="search_label">Let's Find Your <strong class="text_home_colour">Home!</strong></label>
+    
+        <div #scrollapiloader class="col-12 responsive_searchbar_ShortCuts" itemscope itemtype="http://schema.org/SiteNavigationElement">
+          <a class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="apartmentroute()"><span itemprop="name">Apartments</span></a>
+          <a class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="villasroute()"><span itemprop="name">Villas</span></a>
+          <a class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="plotsroute()"><span itemprop="name">Plots</span></a>
+        </div>
+      </div>
+    </div> -->
+
+  <!-- <div class="innerheader_top slider_section_main_hyderabad" *ngIf="hyderabad">
+        <div class="slider_search_main">
+            <label class="search_label">Real Estate in <strong class="text_home_colour">hyderabad</strong></label>
+            <div #scrollapiloader class="col-12 responsive_searchbar_ShortCuts" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="apartmentroute()"><span itemprop="name">Apartments</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="villasroute()"><span itemprop="name">Villas</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="plotsroute()"><span itemprop="name">Plots</span></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="innerheader_top slider_section_main_chennai" *ngIf="chennai">
+        <div class="slider_search_main">
+        <label class="search_label">Real Estate in <strong class="text_home_colour">Chennai</strong></label>
+    
+            <div #scrollapiloader class="col-12 responsive_searchbar_ShortCuts" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="apartmentroute()"><span itemprop="name">Apartments</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="villasroute()"><span itemprop="name">Villas</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="plotsroute()"><span itemprop="name">Plots</span></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="innerheader_top slider_section_main_kochi" *ngIf="kochi">
+        <div class="slider_search_main">
+        <label class="search_label">Real Estate in <strong class="text_home_colour">Kochi</strong></label>
+    
+            <div #scrollapiloader class="col-12 responsive_searchbar_ShortCuts" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="apartmentroute()"><span itemprop="name">Apartments</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="villasroute()"><span itemprop="name">Villas</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="plotsroute()"><span itemprop="name">Plots</span></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="innerheader_top slider_section_main_pune" *ngIf="pune">
+        <div class="slider_search_main">
+        <label class="search_label">Real Estate in <strong class="text_home_colour">Pune</strong></label>
+    
+            <div #scrollapiloader class="col-12 responsive_searchbar_ShortCuts" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="apartmentroute()"><span itemprop="name">Apartments</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="villasroute()"><span itemprop="name">Villas</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="plotsroute()"><span itemprop="name">Plots</span></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="innerheader_top slider_section_main_mumbai" *ngIf="mumbai">
+        <div class="slider_search_main">
+        <label class="search_label">Real Estate in <strong class="text_home_colour">Mumbai</strong></label>
+    
+            <div #scrollapiloader class="col-12 responsive_searchbar_ShortCuts" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="apartmentroute()"><span itemprop="name">Apartments</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="villasroute()"><span itemprop="name">Villas</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="plotsroute()"><span itemprop="name">Plots</span></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="innerheader_top slider_section_main_delhi" *ngIf="delhi">
+        <div class="slider_search_main">
+        <label class="search_label">Real Estate in <strong class="text_home_colour">Delhi</strong></label>
+    
+            <div #scrollapiloader class="col-12 responsive_searchbar_ShortCuts" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="apartmentroute()"><span itemprop="name">Apartments</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="villasroute()"><span itemprop="name">Villas</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="plotsroute()"><span itemprop="name">Plots</span></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="innerheader_top slider_section_main_kolkata" *ngIf="kolkata">
+        <div class="slider_search_main">
+        <label class="search_label">Real Estate in <strong class="text_home_colour">Kolkata</strong></label>
+    
+           <div #scrollapiloader class="col-12 responsive_searchbar_ShortCuts" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="apartmentroute()"><span itemprop="name">Apartments</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="villasroute()"><span itemprop="name">Villas</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="plotsroute()"><span itemprop="name">Plots</span></div>
+            </div>
+        </div>
+    </div> -->
+
+  <!--<div class="innerheader_top slider_section_main_amaravati" *ngIf="amaravathi">
+      <div class="slider_search_main">
+        <label class="search_label">Let's Find Your <strong class="text_home_colour">Home!</strong></label>
+    
+        <div #scrollapiloader class="col-12 responsive_searchbar_ShortCuts" itemscope itemtype="http://schema.org/SiteNavigationElement">
+          <a class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="apartmentroute()"><span itemprop="name">Apartments</span></a>
+          <a class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="villasroute()"><span itemprop="name">Villas</span></a>
+          <a class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="plotsroute()"><span itemprop="name">Plots</span></a>
+        </div>
+      </div>
+    </div>-->
+
+  <!-- <div class="innerheader_top slider_section_main_goa" *ngIf="goa">
+        <div class="slider_search_main">
+        <label class="search_label">Real Estate in <strong class="text_home_colour">Goa</strong></label>
+    
+            <div #scrollapiloader class="col-12 responsive_searchbar_ShortCuts" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="apartmentroute()"><span itemprop="name">Apartments</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="villasroute()"><span itemprop="name">Villas</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="plotsroute()"><span itemprop="name">Plots</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="innerheader_top slider_section_main_Gurgaon" *ngIf="gurgaon">
+        <div class="slider_search_main">
+        <label class="search_label">Real Estate in <strong class="text_home_colour">Gurgaon</strong></label>
+    
+            <div #scrollapiloader class="col-12 responsive_searchbar_ShortCuts" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="apartmentroute()"><span itemprop="name">Apartments</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="villasroute()"><span itemprop="name">Villas</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="plotsroute()"><span itemprop="name">Plots</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="innerheader_top slider_section_main_Mysore" *ngIf="mysore">
+        <div class="slider_search_main">
+        <label class="search_label">Real Estate in <strong class="text_home_colour">Mysore</strong></label>
+    
+       <div #scrollapiloader class="col-12 responsive_searchbar_ShortCuts" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="apartmentroute()"><span itemprop="name">Apartments</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="villasroute()"><span itemprop="name">Villas</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="plotsroute()"><span itemprop="name">Plots</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="innerheader_top slider_section_main_Coimbatore" *ngIf="coimbatore">
+        <div class="slider_search_main">
+        <label class="search_label">Real Estate in <strong class="text_home_colour">Coimbatore</strong></label>
+            <div #scrollapiloader class="col-12 responsive_searchbar_ShortCuts" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="apartmentroute()"><span itemprop="name">Apartments</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="villasroute()"><span itemprop="name">Villas</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="plotsroute()"><span itemprop="name">Plots</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="innerheader_top slider_section_main_Ahmedabad" *ngIf="ahmedabad">
+        <div class="slider_search_main">
+        <label class="search_label">Real Estate in <strong class="text_home_colour">Ahmedabad</strong></label>
+    
+            <div #scrollapiloader class="col-12 responsive_searchbar_ShortCuts" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="apartmentroute()"><span itemprop="name">Apartments</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="villasroute()"><span itemprop="name">Villas</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="plotsroute()"><span itemprop="name">Plots</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="innerheader_top slider_section_main_Trivandrum" *ngIf="trivandrum">
+        <div class="slider_search_main">
+        <label class="search_label">Real Estate in <strong class="text_home_colour">Trivandrum</strong></label>
+    
+            <div #scrollapiloader class="col-12 responsive_searchbar_ShortCuts" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="apartmentroute()"><span itemprop="name">Apartments</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="villasroute()"><span itemprop="name">Villas</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="plotsroute()"><span itemprop="name">Plots</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="innerheader_top slider_section_main_NaviMumbai" *ngIf="naviMumbai">
+        <div class="slider_search_main">
+        <label class="search_label">Real Estate in <strong class="text_home_colour">NaviMumbai</strong></label>
+    
+            <div #scrollapiloader class="col-12 responsive_searchbar_ShortCuts" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="apartmentroute()"><span itemprop="name">Apartments</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="villasroute()"><span itemprop="name">Villas</span></div>
+                <div class="responsive_searchbar_ShortCuts_textColour col-4 mr-1" itemprop="url" (click)="plotsroute()"><span itemprop="name">Plots</span></div>
+            </div>
+        </div>
+    </div> -->
+
+  <div class="properties_india_main pb-0">
+    <div class="container">
+      <div class="col-12 px-0">
+        <div class="col-lg-12 col-md-12 col-sm-12 px-0">
+          <div class="news_head underline">
+            <h2>Featured Collection In Top Cities</h2>
+            <p class="newHeadingSubTitle">Curated & Handpicked Properties</p>
+          </div>
+          <div class="spotLightPropDiv1 d-flex">
+
+            <a href="https://www.homes247.in/new-launch-projects/new-projects-in-bangalore" class="propBox2 px-0 mr-2">
+              <div class="propImg2">
+                <img loading="lazy" width="180px" height="180px" lazyLoad="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/one.png" alt="one">
+              </div>
+              <div class="featureCollectTxt">
+                <p id="txtTop">New Launches</p>
+                <p id="txtBtm">{{newLaunchesprojectcount}}+ Properties</p>
+              </div>
+              <div class="featureCollectOverlay"></div>
+            </a>
+
+            <a href="https://www.homes247.in/ready-to-move-apartments/ready-to-move-flats-in-bangalore" class="propBox2 px-0 mr-2">
+              <div class="propImg2">
+                <img loading="lazy" width="180px" height="180px" lazyLoad="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/two.png" alt="two">
+              </div>
+              <div class="featureCollectTxt">
+                <p id="txtTop">Ready To Move In</p>
+                <p id="txtBtm">{{readyToMoveprojectcount}}+ Properties</p>
+              </div>
+              <div class="featureCollectOverlay"></div>
+            </a>
+
+            <a href="https://www.homes247.in/fbc/affordable-flats-in-bangalore" class="propBox2 px-0 mr-2">
+              <div class="propImg2">
+                <img loading="lazy" width="180px" height="180px" lazyLoad="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/three.png" alt="three">
+              </div>
+              <div class="featureCollectTxt">
+                <p id="txtTop">Affordable Flats</p>
+                <p id="txtBtm">{{affordableprojectcount}}+ Properties</p>
+              </div>
+              <div class="featureCollectOverlay"></div>
+            </a>
+
+            <a href="https://www.homes247.in/ltc/luxury-flats-in-bangalore" class="propBox2 px-0 mr-2">
+              <div class="propImg2">
+                <img loading="lazy" width="180px" height="180px" lazyLoad="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/four.png" alt="four">
+              </div>
+              <div class="featureCollectTxt">
+                <p id="txtTop">Luxury Flats</p>
+                <p id="txtBtm">{{luxuryprojectcount}}+ Properties</p>
+              </div>
+              <div class="featureCollectOverlay"></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="addBanner1 mt-3" *ngFor="let data of homeLoanAdds | slice:0:1;" (click)="clickedService(data.expert_IDFK)">
+      <img loading="lazy" width="100%" src="{{addRoot}}{{data.mobile_image}}" alt="data.mobile_image">
+      <!-- <img loading="lazy"  width="100%" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/propImage/addHomePage1.jpg" alt="..addHomePage1.jpg" > -->
+    </div>
+  </div>
+
+
+  <div class="homeGuideMobileView divDivider mt-3 py-1 properties_india_main" *ngIf="showProjectFocus">
+    <div class="container">
+      <div class="col-12">
+        <div class="news_head pb-4 underline">
+          <h2 class="">Project In Focus</h2>
+          <p class="newHeadingSubTitle">Complete 360 degree services & aid</p>
+        </div>
+        <div class="amenitiesScroll">
+          <div *ngFor="let locProp of topProperties">
+
+            <div class="homeGuideMobileView-border ms-2 pb-1">
+              <div class="imgDiv" *ngFor="let image of locProp.images">
+                <a href="https://www.homes247.in/property/{{ locProp.city_name | lowercase }}/{{ locProp.locality_name | replaceLineBreaks | lowercase }}/{{ locProp.propertyName | replaceLineBreaks | lowercase }}-{{ locProp.property_info_IDPK }}">
+                  <img loading="lazy" style="height: 160px; width: 100%; " class="homeGuideMobileViewImage" src="{{propertyimage}}{{image.name}}" alt="image.name"/>
+                </a>
+              </div>
+              <div class="propNameDiv text-center">
+                <p id="headline">{{locProp.propertyName}}</p>
+              </div>
+
+              <!-- wishlisting -->
+
+              <div class='control-group1'>
+                <!-- <div *ngIf="localstorediv">
+                    <div *ngFor="let id of storagearr;let i=index">
+                      <input *ngIf="!locProp.user_fav && locProp.property_info_IDPK == id" class='red-heart-checkbox' (click)="wishlistaddstorage(locProp.property_info_IDPK)" id='red-check1' type='checkbox' title="Wishlist Check" checked>
+                    </div>
+                    <input *ngIf="!locProp.user_fav && storagearr.indexOf(locProp.property_info_IDPK) == -1" class='red-heart-checkbox' (click)="wishlistaddstorage(locProp.property_info_IDPK)" id='red-check2' type='checkbox' title="Wishlist Check">
+                  </div>
+                  <input *ngIf="userfav == false" class='red-heart-checkbox' (click)="addwishlist(locProp.property_info_IDPK)" id='red-check3' type='checkbox' title="Wishlist Check">
+                  <input *ngIf="userfav == true" class='red-heart-checkbox' (click)="addwishlist(locProp.property_info_IDPK)" id='red-check4' type='checkbox' title="Wishlist Check" checked> -->
+
+                <div [ngClass]="{'Rental_icons_Heart_Active': isInWishlist(locProp.property_info_IDPK), 'Rental_icons_Heart': !isInWishlist(locProp.property_info_IDPK)}" class="Rental_icons_Heart mb-2 mx-1" (click)="Heart_Transtion(locProp.property_info_IDPK)"></div>
+              </div>
+
+              <!-- wishlisting -->
+
+              <div class="sharePropDiv" (click)="onclickshare(locProp)">
+                <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/share-variant-outline.png" alt="..share-variant-outline.png" >
+              </div>
+
+              <a href="https://www.homes247.in/property/{{ locProp.city_name | lowercase }}/{{ locProp.locality_name | replaceLineBreaks | lowercase }}/{{ locProp.propertyName | replaceLineBreaks | lowercase }}-{{ locProp.property_info_IDPK }}">
+
+                <div class="propDetailsDiv ps-1">
+                  <h3 *ngIf="locProp.max_price != 0"> <i class="fa fa-inr" aria-hidden="true"></i>&nbsp;{{locProp.price_min }} - {{locProp.price_max}}</h3>
+
+                  <h3 *ngIf="locProp.max_price == 0">Price On Request</h3>
+                  <small *ngIf="locProp.propertyType !== 'Plots'">&nbsp;<img loading="lazy" class="burgundiImgTopProp" width="16" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/bed-queen-outline.png" alt="..bed-queen-outline.png"  /></small>
+                  <small *ngFor=" let allBHK of locProp.BHK_Details | unique : 'BHK' | orderBy : 'BHK'; let isLast = last ">
+                    <span *ngIf="allBHK.topProBhk !== 'PLOTS'" id="bhkFurnishtyp">{{allBHK.BHK.replace("BHK", "")
+                      }}{{ isLast ? "BHK" : "," }}</span>
+                    <span *ngIf="allBHK.topProBhk == 'PLOTS'" id="bhkFurnishtyp">&nbsp;{{allBHK.BHK}}</span>
+                  </small>&nbsp;&nbsp;
+                  <small *ngIf="locProp.dimension != 0" id="bhkFurnishtyp"><img loading="lazy" width="12" height="12" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/set-square.png" alt="..set-square.png" >
+                    {{locProp.dimension}} Acres</small>
+                  <small *ngIf="locProp.dimension == 0" id="bhkFurnishtyp"><img loading="lazy" width="12" height="12" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/set-square.png" alt="..set-square.png" >
+                    Size On Request</small>
+
+                </div>
+              </a>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="col-md-12">
+      <div class="strip_banner_mobile">
+        <a target="_blank" routerLink="/online-property-and-home-buying">
+          <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/book-home-from-home/online-mobile.png" alt="Book a Home From Home">
+        </a>
+      </div>
+    </div>  -->
+  <!-- <div *ngIf="bangalore === false">
+        <div class="col-md-6 main_col_online_book">
+            <div class="strip_banner_mobile strip_banner_left">
+                <a target="_blank" routerLink="/online-property-and-home-buying">
+                    <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/banner/mobile-online-booking.png" alt="Book a Home From Home">
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6 main_col_offline_service">
+            <div class="strip_banner_mobile strip_banner_right">
+                <a target="_blank" routerLink="/homes-on-wheels">
+                    <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/banner/mobile-offline-service.png" alt="Book a Home From Home">
+                </a>
+            </div>
+        </div>
+    </div> -->
+
+  <div class="props_bang properties_india_main" *ngIf="localityOneCount">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="location_header_mobile underline">
+            <h2> Trending <b class="newHeadingTitleBold">Locations</b></h2>
+            <p class="newHeadingSubTitle">Most Desirable & Vibrant Locales of the City</p>
+          </div>
+        </div>
+      </div>
+      <div class="scrollmenu">
+        <span (click)="onLocalityOneClick(localityOneName, localityOneId)" class="loc_mat_card_a col-10">
+          <div class="card loc_mat_card_1 test">
+            <div class="localitie"><span class="locality_text_padding1">{{localityOneName}}</span></div>
+            <div class="localitie"><span class="locality_text_padding">Total Projects - {{localityOneCount}}</span>
+            </div>
+            <!-- <div class="viewproject-btn">Total Projects - {{localityOneCount}}</div> -->
+          </div>
+        </span>
+        <span (click)="onLocalityOneClick(localityTwoName, localityTwoId)" class="loc_mat_card_a col-10">
+          <div class="card loc_mat_card_2 test">
+            <div class="localitie"><span class="locality_text_padding1">{{localityTwoName}}</span></div>
+            <div class="localitie"><span class="locality_text_padding">Total Projects - {{localityTwoCount}}</span>
+            </div>
+            <!-- <div class="viewproject-btn">Total Projects - {{localityTwoCount}}</div> -->
+          </div>
+        </span>
+        <span (click)="onLocalityOneClick(localityThreeName, localityThreeId)" class="loc_mat_card_a col-10">
+          <div class="card loc_mat_card_3 test">
+            <div class="localitie"><span class="locality_text_padding1">{{localityThreeName}}</span></div>
+            <div class="localitie"><span class="locality_text_padding">Total Projects - {{localityThreeCount}}</span>
+            </div>
+            <!-- <div class="viewproject-btn">Total Projects - {{localityThreeCount}}</div> -->
+          </div>
+        </span>
+        <span (click)="onLocalityOneClick(localityFourName, localityFourId)" class="loc_mat_card_a col-10">
+          <div class="card loc_mat_card_4 test">
+            <div class="localitie"><span class="locality_text_padding1">{{localityFourName}}</span></div>
+            <div class="localitie"><span class="locality_text_padding">Total Projects - {{localityFourCount}}</span>
+            </div>
+            <!-- <div class="viewproject-btn">Total Projects - {{localityFourCount}}</div> -->
+          </div>
+        </span>
+        <span (click)="onLocalityOneClick(localityFiveName, localityFiveId)" class="loc_mat_card_a col-10">
+          <div class="card loc_mat_card_5 test">
+            <div class="localitie"><span class="locality_text_padding1">{{localityFiveName}}</span></div>
+            <div class="localitie"><span class="locality_text_padding">Total Projects - {{localityFiveCount}}</span>
+            </div>
+            <!-- <div class="viewproject-btn">Total Projects - {{localityFiveCount}}</div> -->
+          </div>
+        </span>
+        <span (click)="onLocalityOneClick(localitySixName, localitySixId)" class="loc_mat_card_a col-10">
+          <div class="card loc_mat_card_6 test">
+            <div class="localitie"><span class="locality_text_padding1">{{localitySixName}}</span></div>
+            <div class="localitie"><span class="locality_text_padding">Total Projects - {{localitySixCount}}</span>
+            </div>
+            <!-- <div class="viewproject-btn">Total Projects - {{localitySixCount}}</div> -->
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- <div class="top_projects_section" >
+        <div class="col-12">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="top_projecthead underline">
+                        <h2> Top <b class="newHeadingTitleBold">Projects</b></h2>
+                        <p class="newHeadingSubTitle">Choose from the best living spaces</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="topProjectsSectionMobileView">
+                <div class="scrollmenu">
+                    <span *ngFor="let property of topProperties">
+    
+                        <div *ngFor="let image of property.images" target="_blank" itemprop="url" >
+                            <a href="https://www.homes247.in/property/{{property.city_name | replaceLineBreaks | lowercase}}/{{property.locality_name | replaceLineBreaks | lowercase}}/{{property.propertyName | replaceLineBreaks | lowercase}}-{{property.property_info_IDPK}}">
+                                <img loading="lazy" src="{{propertyimage}}{{image.name }}" alt="property.propertyName" class="propclass topProjectsSectionMobileImages" />
+                            </a>
+                        </div>
+                        <span hidden itemprop="name">{{property.propertyName}}</span>
+                        <a *ngIf="property.images.length === 0" class="pi_main" ng-click="getPropertyID(property.property_info_IDPK);">
+                            <img loading="lazy" [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/notfound.png'" alt="not-found">
+                        </a>
+                        <div class="top_project_info">
+                            <div class="pi_left">
+                                <h3 class="propclass">{{property.propertyName}} <small>{{property.locality_name}}
+                      ,{{property.city_name}}</small></h3>
+                                <p class="top_prjct_status"><small>{{property.Status}}</small></p>
+                            </div>
+                            <div class="pi_right">
+                                <p class="price_tag"><i class="fa fa-inr" aria-hidden="true"></i> {{property.price_min}} Onwards
+                                </p>
+                                <div class="clearfix"></div>
+                                <ul>
+                                    <li class="float-right">
+                                        <a href="https://www.homes247.in/property/{{property.city_name | replaceLineBreaks | lowercase}}/{{property.locality_name | replaceLineBreaks | lowercase}}/{{property.propertyName | replaceLineBreaks | lowercase}}-{{property.property_info_IDPK}}" target="_blank">View Details</a>
+                                    </li>
+    
+                                </ul>
+                            </div>
+                        </div>
+    
+                    </span>
+                </div>
+                <div *ngIf="topprojectsloader" class="row">
+                    <div class="col-12">
+                        <div class="item">
+                            <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }">
+                            </ngx-skeleton-loader>
+                            <ngx-skeleton-loader [theme]="{ width: '170px','border-radius': '9',height: '15px'}">
+                            </ngx-skeleton-loader>
+                            <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                            </ngx-skeleton-loader>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+
+
+  <div class="blogs_section_main" id="blog_section">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12" itemscope itemtype="http://schema.org/SiteNavigationElement">
+          <a itemprop="url" routerLink="/blogs">
+            <div class="news_head underline">
+              <h2 class="mt-2">Our Blogs</h2>
+              <p class="newHeadingSubTitle"> Get all the Latest Real Estate Updates</p>
+            </div>
+          </a>
+        </div>
+        <div class="viewAllclient">
+          <a routerLink="/blogs" target="_blank">
+            <p class="view-text"> View All</p>
+          </a>
+        </div>
+      </div>
+      <div class="homeGuideMobileView">
+        <div class="scrollmenu">
+          <a *ngFor="let blog of blogs">
+            <div class="homeGuideMobileView-border">
+              <div class="overlay">
+                <div class="imageInsideTxt">
+                  <p>{{blog.categoryName}}</p>
+                </div>
+              </div>
+              <a class="blogAnchorTag" href="https://www.homes247.in/blogs/{{blog.urlstruture | cleanUrl }}-{{blog.id}}">
+                <img loading="lazy" class="homeGuideMobileViewImage" src="{{blogimagePath}}{{blog.imgPath}}" alt="blog.alttag" title="{{blog.alttag}}" />
+              </a>
+              <h3 itemprop="headline">{{blog.title}}</h3>
+              <div class="row">
+                <div class="col-12 text-left">
+                  <p>&nbsp;<img loading="lazy" class="user_icon" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/newChangeProp/User Rounded.png" alt="..User Rounded.png" >&nbsp;<span class="addby">&nbsp;&nbsp;{{blog.addedby}}&nbsp;&nbsp; - &nbsp;</span> <span class="blog_date">{{blog.date}}</span></p>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- strip section -->
+  <div class="strip_section">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="top_projecthead underline">
+            <h2>End To End <b class="newHeadingTitleBold">Assistance</b></h2>
+            <p class="newHeadingSubTitle">Complete 360 degree services & aid</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="call_back_section">
+        <div class="best_price_box">
+          <ul style="list-style-type: none;">
+            <li class="bst_prce_cmn best_price_icon1 lp best_price_icon_hover">
+              <img loading="lazy" class="image_default" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/strip/meet.svg" alt="meet" />
+              <img loading="lazy" class="image_hover" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/strip/2/meet-onhover.svg" alt="meet" />
+              <p class="strip_Image_Title">Meet</p>
+            </li>
+            <li class="bst_prce_cmn best_price_icon2 lp">
+              <img loading="lazy" class="image_default" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/strip/visit.svg" alt="visit" />
+              <img loading="lazy" class="image_hover" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/strip/2/visit-onhover.svg" alt="visit" />
+              <p class="strip_Image_Title">Site Visit</p>
+            </li>
+            <li class="bst_prce_cmn best_price_icon3 lp">
+              <img loading="lazy" class="image_default" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/strip/bestprice.svg" alt="bestprice" />
+              <img loading="lazy" class="image_hover" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/strip/2/bestprice-onhover.svg" alt="bestprice" />
+              <p class="strip_Image_Title">Best Price</p>
+            </li>
+            <li class="bst_prce_cmn best_price_icon4 lp">
+              <img loading="lazy" class="image_default" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/strip/easyloan.svg" alt="easyloan" />
+              <img loading="lazy" class="image_hover" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/strip/2/easyloan-onhover.svg" alt="easyloan" />
+              <p class="strip_Image_Title">Easy Loan</p>
+            </li>
+            <li class="bst_prce_cmn best_price_icon6 lp">
+              <img loading="lazy" class="image_default" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/strip/decorup.svg" alt="decorup" />
+              <img loading="lazy" class="image_hover" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/strip/2/decorup-onhover.svg" alt="decorup" />
+              <p class="strip_Image_Title">Interiors</p>
+            </li>
+          </ul>
+          <div class="col-12 Consultancy_main">
+            <a href="tel:+91 9164247247">
+              <button class="Consultancy_btn"><span class="Consultancy"><img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/app/images/Homes New/phone-outline.png" alt="..phone-outline.png" >&nbsp;Get Free
+                  Consultancy</span></button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- strip section -->
+
+
+  <div class="blogs_section_main" id="blog_section">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12" itemscope itemtype="http://schema.org/SiteNavigationElement">
+          <a itemprop="url" routerLink="/blogs">
+            <div class="news_head underline">
+              <h2 class="mt-2">Our Trending Blogs</h2>
+              <p class="newHeadingSubTitle"> Get all the Latest Real Estate Updates</p>
+            </div>
+          </a>
+        </div>
+        <div class="viewAllclient">
+          <a routerLink="/blogs" target="_blank">
+            <p class="view-text"> View All</p>
+          </a>
+        </div>
+      </div>
+      <div class="homeGuideMobileView">
+        <div class="scrollmenu">
+          <a *ngFor="let blog of trendingBlogs">
+            <div class="homeGuideMobileView-border">
+              <div class="overlay">
+                <div class="imageInsideTxt">
+                  <p>{{blog.categoryName}}</p>
+                </div>
+              </div>
+              <a class="blogAnchorTag" href="https://www.homes247.in/blogs/{{blog.urlstruture | cleanUrl }}-{{blog.id}}">
+                <img loading="lazy" class="homeGuideMobileViewImage" src="{{blogimagePath}}{{blog.imgPath}}" alt="blog.alttag" title="{{blog.alttag}}" />
+              </a>
+              <h3 itemprop="headline">{{blog.title}}</h3>
+              <div class="row">
+                <div class="col-12 text-left">
+                  <p>&nbsp;<img loading="lazy" class="user_icon" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/newChangeProp/User Rounded.png" alt="..User Rounded.png" >&nbsp;<span class="addby">&nbsp;&nbsp;{{blog.addedby}}&nbsp;&nbsp; - &nbsp;</span> <span class="blog_date">{{blog.date}}</span></p>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mb-3">
+    <div class="addBanner1" *ngFor="let data of globalAddsArray | slice:0:1;" (click)="clickedService(data.expert_IDFK)">
+      <img loading="lazy" width="100%" src="{{addRoot}}{{data.mobile_image}}" alt="data.mobile_image">
+    </div>
+  </div>
+
+  <ng-container *ngComponentOutlet="serviceFormComponent"></ng-container>
+  <div class="matAuto">
+    <ng-container *ngComponentOutlet="Matautocomplete"></ng-container>
+  </div>F
+
+
+  <!--START-MODAL-->
+  <div class="modal fade" id="myModal_dash" role="dialog">
+    <div class="modal-dialog">
+
+      <div class="modal-content modal_enqury_cntnt">
+
+        <button type="button" class="close modal_close" data-dismiss="modal">&times;</button>
+        <div class="modal-body prop_modal">
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <!--END-MODAL-->
+  <!-- <button (click)="loadLazy()">
+      click to load
+    </button> -->
+  <!-- CSS-Loader -->
+  <div *ngIf="otploader" class="loaderbody">
+    <div class="box">
+      <div class="loader-20"></div>
+    </div>
+  </div>
+  <!-- CSS-Loader -->
+  <div class="footerDiv">
+    <div *ngIf="loaded" style="padding-bottom: 40px;">
+      <ng-container *ngComponentOutlet="FooterComponent"></ng-container>
+    </div>
+  </div>
+  <ng-container *ngComponentOutlet="Fixedfooter"></ng-container>
+  <!-- <app-fixedfooter></app-fixedfooter> -->
+  <!-- <app-fixedfooter></app-fixedfooter> -->
+  <div class="Header_parts box_shadow">
+    <div class="innerheader_position">
+      <app-innerheader></app-innerheader>
+    </div>
+  </div>
+</div>

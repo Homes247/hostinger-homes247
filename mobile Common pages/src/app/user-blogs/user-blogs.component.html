@@ -1,0 +1,793 @@
+<div class="mostOuterBlogDiv" *ngIf="userLogined">
+  <div class="mainBlogDiv">
+    <div class="coverImg px-0 col-12">
+      <div class="blurRect">
+        <div class="d-flex">
+          <div class="col-10 pl-0 d-flex">
+            <div class="homes247Logo col-2" href="https://www.homes247.in/">
+              <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/user-blogs/headerHomes247Logo.png" alt="..headerHomes247Logo.png" >
+            </div>
+            <div class="headerSearch col-8">
+              <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/user-blogs/headerSearchMagnify.png" alt="..headerSearchMagnify.png" >
+              <mat-form-field>
+
+                <input type="text" matInput [formControl]="myControl" required [matAutocomplete]="autoGroup">
+                <mat-autocomplete #autoGroup="matAutocomplete" (optionSelected)='onItemSelect($event.option.value)' [displayWith]="displayname">
+                  <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option.name}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+
+            </div>
+          </div>
+
+
+          <div class="col-2 text-right">
+            <div class="dropdown headerUserLogo " *ngIf="loginDropDownOpen">
+              <a class=""><img class="userImg dropbtn" (click)="openValidationFrm()" height="24" width="24" src="{{ProfileImageNull}}{{imageUrl}}" alt="imageUrl"></a>
+              <div id="myDropdown" class="dropdown-content">
+                <span class="mt-5" (click)="openValidationFrm1()">Login</span>
+              </div>
+            </div>
+            <div class="dropDown headerUserLogo" *ngIf="profileDropDownOpen">
+              <div *ngIf="!afterlogin_imageUrls">
+                <img height="24" width="24" alt="userImg dropbtn3" class="dropbtn3" src="{{ProfileImageNull}}{{imageUrl}}" alt="imageUrl">
+              </div>
+
+              <div *ngIf="imageUrls">
+                <img height="24" width="24" alt="userImg dropbtn3" class="dropbtn3" src="{{ProfileImage}}{{imageUrls}}" alt="imageUrl">
+              </div>
+              <div class="previewImg" *ngFor='let url of CoverImage'>
+                <img [src]="url"alt="url" height="24" width="24">
+              </div>
+              <div id="myDropdown" class="dropdown-content">
+                <p class="mb-0" (click)="openValidationFrm1()">My Profile</p>
+                <p class="mb-0 mt-1" (click)="onLogOut()">Logout</p>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+      <!-- <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/user-blogs/coverImg.png" alt="..coverImg.png" > -->
+
+      <form [formGroup]="registrationForm1">
+        <div class="coverImgEdit">
+          <div class="avatar-upload11 ">
+            <!-- <div class="avatar-edit"> -->
+            <input hidden type='file' name="cover1" accept=".png, .jpg, .jpeg" #fileInput1 formControlName="coverImage1" (change)="onCoverSelectFile1($event)" />
+            <!-- </div> -->
+            <div class="previewImg11" id="coverimagehide" *ngIf="!profileCoverImgUrls">
+              <img src="{{ProfileImageNull}}{{coverImageUrl}}"alt="coverImageUrl" height="120" width="100%">
+            </div>
+            <div class="previewImg11" id="coverimagehide" *ngIf="profileCoverImgUrls">
+              <img src="{{ProfileImage}}{{profileCoverImgUrls}}" alt="profileCoverImgUrls" height="120" width="100%">
+            </div>
+            <div class="previewImg11" *ngFor='let url of CoverImage1'>
+              <img [src]="url" alt="CoverImage1" height="120" width="100%">
+            </div>
+          </div>
+          <button *ngIf="showDraftProfile" type="button" class="btn imgUploadBtn1 btn-lg btn-block" (click)="fileInput1.click()"><img height="12" width="12" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/user-blogs/profileImgPen.png" alt="..profileImgPen.png" >
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12 wishlist_main_div">
+      <form [formGroup]="registrationForm">
+        <div class="row">
+          <div class="col-sm-12 text-center profileEdit">
+            <div class="avatar-upload">
+              <div class="avatar-edit">
+                <input hidden type='file' name="cover" accept=".png, .jpg, .jpeg" #fileInput formControlName="coverImage" (change)="onCoverSelectFile($event)" />
+              </div>
+              <div class="profilemain">
+                <div class="previewImg" *ngIf="!CoverImage">
+                  <img src="{{ProfileImageNull}}{{imageUrl}}" alt="imageUrl" height="150" width="150">
+                </div> 
+                <div class="previewImg" *ngFor='let url of CoverImage'>
+                  <img [src]="url"  alt="previewImg" height="150" width="150">
+                </div>
+                <div class="previewImg" *ngIf="imageUrls == null">
+                  <img src="{{ProfileImageNull}}{{imageUrl}}" alt="imageUrl" height="150" width="150">
+                </div>
+                <div class="previewImg" *ngIf="imageUrls">
+                  <img src="{{ProfileImage}}{{imageUrls}}" alt="imageUrl" height="150" width="150">
+                </div>
+
+              </div>
+            </div>
+            <button *ngIf="showDraftProfile" type="button" class="btn imgUploadBtn btn-lg btn-block" (click)="fileInput.click()"><img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/user-blogs/profileImgPen.png" alt="..profileImgPen.png" >
+            </button>
+
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="blogMainSection">
+      <div class="authorDetails text-center">
+        <h1 id="authorName">{{blogger_name_html}}</h1>
+        <h2 id="authorRole">{{designation}}</h2>
+        <div class="d-flex justify-content-center">
+          <h2 id="blogCountMemberSince" *ngIf="projectcount !=='0'">{{projectcount}} Blogs</h2><span class="ml-1 mr-1" style="font-size: 12px;" *ngIf="projectcount !=='0'">&#47;</span>
+          <h2 id="blogCountMemberSince" *ngIf="projectcount == 0">No Blogs </h2><span *ngIf="projectcount == 0">&#47;</span>
+          <h2 id="blogCountMemberSince1" *ngIf="date"> Member Since - {{date | date:'MMM dd, yyyy'}}</h2>
+
+        </div>
+        <h2 id="authorLocation" *ngIf="authLocation"><img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/user-blogs/Map Point.png" alt="..Map Point.png" >&nbsp;&nbsp;{{authLocation}}
+        </h2>
+      </div>
+
+      <div class="writeBlogBtn text-center">
+        <button (click)="openValidationFrm()"><img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/user-blogs/Pen.png" alt="..Pen.png" >&nbsp;&nbsp;&nbsp;&nbsp;Write a New Blog</button>
+      </div>
+
+      <div class="blogHeader">
+        <ul class="nav nav-tabs col-12" id="myTab" role="tablist">
+          <li class="nav-item nav1 col-3 text-center" *ngIf="showAbout">
+            <a class="nav-link active" id="blog-tab" data-toggle="tab" href="#blog" role="tab" aria-controls="blog" aria-selected="true" (click)="setActiveTab('blog')" [ngClass]="{ 'active': activeTab === 'blog' }">Blogs</a>
+          </li>
+          <li class="nav-item nav1 col-3 text-center" *ngIf="showDraftProfile">
+            <a class="nav-link active" id="blog-tab" data-toggle="tab" href="#blog" role="tab" aria-controls="blog" aria-selected="true" (click)="setActiveTab('blog')" [ngClass]="{ 'active': activeTab === 'blog' }">Blogs</a>
+          </li>
+          <li class="nav-item nav2 col-3 text-center" *ngIf="showDraftProfile">
+            <a class="nav-link" id="draft-tab" data-toggle="tab" href="#draft" role="tab" aria-controls="draft" aria-selected="false" (click)="setActiveTab('draft')" [ngClass]="{ 'active': activeTab === 'draft' }">Drafts</a>
+          </li>
+          <li class="nav-item nav2 col-3 text-center" *ngIf="showDraftProfile">
+            <a class="nav-link" id="pending-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="false" style="margin-left: -8px;" (click)="setActiveTab('pending')" [ngClass]="{ 'active': activeTab === 'pending' }">Requests</a>
+          </li>
+          <li class="nav-item nav2 col-3 text-center" *ngIf="showDraftProfile">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" (click)="setActiveTab('profile')" [ngClass]="{ 'active': activeTab === 'profile' }">Profile</a>
+          </li>
+          <li class="nav-item nav2 col-3 text-center" *ngIf="showAbout">
+            <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="false" (click)="setActiveTab('about')" [ngClass]="{ 'active': activeTab === 'about' }">About</a>
+          </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade" [ngClass]="{ 'show active': activeTab === 'blog' }" id="blog" role="tabpanel" aria-labelledby="blog-tab">
+
+            <div class="categoryListSection col-12" *ngIf="showAbout">
+              <div (click)="allCategory()" class="categoryBox  mr-3" *ngIf="!blogDetailslength" [ngClass]="{'blogcatactive':!blogCategoryId}">
+                <p>All Blogs</p>
+              </div>
+              <div (click)="catSelected(category.categoryName,category.categoryId)" class="categoryBox mr-3" id="stateDiv" *ngFor="let category of State_Name" [ngClass]="{'blogcatactive':category.categoryId == blogCategoryId}">
+                <p>{{category.categoryName}}</p>
+              </div>
+            </div>
+
+            <div class="noBlogsWarnTxt col-12 mt-5 text-center" *ngIf="blogDetailslength">
+              <p>Sorry, No More Blogs Found...</p>
+            </div>
+
+            <!-- <a> -->
+            <!-- <div> -->
+            <!-- <div class="allBlogSection  pb-3"  infinite-scroll [fromRoot]="true" [infiniteScrollDistance]="0" [infiniteScrollThrottle]="3000" [alwaysCallback]="true" (scrolled)="loadMore()" *ngFor="let authData of blogDetails | paginate: { itemsPerPage: 10, currentPage: p }">
+              <a class="" href="/blogs/{{authData.urlstructure | replaceLineBreaks | lowercase}}-{{authData.blogId}}"> -->
+            <div class="allBlogSection  pb-3" *ngFor="let authData of blogDetails | paginate: { itemsPerPage: 10, currentPage: p }">
+              <a class="" href="/blogs/{{authData.urlstructure | replaceLineBreaks | lowercase}}-{{authData.blogId}}">
+                <!-- <div class="overlay"></div> -->
+
+                <div class="imageInsideTxt">
+                  <p>{{authData.categoryName}}</p>
+                </div>
+                <div *ngIf="authData.coverimg == '' || null">
+                  <img height="200px" width="100%" src="{{blogCoverImage}}{{noImgUrl}}" alt="noImgUrl">
+                </div>
+                <div *ngIf="authData.coverimg">
+                  <div class="blogCoverImg" *ngIf="showAbout">
+                    <img height="200px" width="100%" src="{{blogCoverImage1}}{{authData.coverimg}}" alt="authData.coverimg">
+                  </div>
+                  <div class="blogCoverImg" *ngIf="showDraftProfile">
+                    <img height="200px" width="100%" src="{{blogCoverImage1}}{{authData.coverimg}}" alt="authData.coverimg">
+                  </div>
+                </div>
+              </a>
+              <div class="blogDetail">
+                <div class="container">
+                  <p id="blogTitle">{{authData.blog_title}}</p>
+                  <div class="authorDetail mb-2 d-flex">
+                    <div class="autherImg pl-0 col-5 d-flex" *ngIf="imageUrls == null">
+                      <img src="{{ProfileImageNull}}{{imageUrl}}" alt="imageUrl">&nbsp;
+                      <p>{{authData.bloggerName}}</p>
+                    </div>
+                    <div class="autherImg pl-0 col-5 d-flex" *ngIf="imageUrls">
+                      <img src="{{ProfileImage}}{{imageUrls}}" alt="imageUrls">&nbsp;
+                      <p>{{authData.bloggerName}}</p>
+                    </div>
+                    <div class="previewImg" *ngFor='let url of CoverImage'>
+                      <img [src]="url" alt="previewImg" height="24" width="24">
+                      <p>{{authData.bloggerName}}</p>
+                    </div>
+                    <!-- <p id="authName">{{authData.authorName}}</p>&nbsp;&nbsp; -->
+                    <div class="nameDashed"></div>&nbsp;&nbsp;
+                    <p id="publishDate">{{authData.date}}</p>
+                  </div>
+                  <div class="blogTxt" *ngIf="authData.short_desc">
+                    <p [innerHTML]="authData.short_desc | sanitizeHtml"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div></div>
+
+
+
+            <div class="mt-3 mb-5 text-center" *ngIf="blogDetails">
+              <pagination-controls (pageChange)="p = $event" (click)="scrollTop();loadMore()"></pagination-controls>
+            </div>
+
+
+
+
+
+            <!--  sam -->
+
+
+
+
+            <!-- <div class="container" *ngIf="showAbout">
+                <div class="row search-results" >
+                  <div class="col-12 px-0 card mt-3 cardListingSkull" *ngIf="showLoader">
+                    <div class="col-12 px-0">
+                      <div class="item">
+                        <ngx-skeleton-loader [theme]="{'border-radius': '9', height: '130px' , background: 'gray' }">
+                        </ngx-skeleton-loader>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="item">
+                        <ngx-skeleton-loader [theme]="{'border-radius': '9', height: '20px' , background: 'gray' }">
+                        </ngx-skeleton-loader>
+                      </div>
+                    </div>
+                    <div class="col-8 text-center">
+                      <div class="item">
+                        <ngx-skeleton-loader [theme]="{'border-radius': '9', height: '20px' , background: 'gray' }">
+                        </ngx-skeleton-loader>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="item">
+                        <ngx-skeleton-loader [theme]="{'border-radius': '9', height: '20px' , background: 'gray' }">
+                        </ngx-skeleton-loader>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+          </div>
+          <div class="tab-pane fade" [ngClass]="{ 'show active': activeTab === 'draft' }" id="draft" role="tabpanel" aria-labelledby="draft-tab">
+
+            <div class="noBlogsWarnTxt col-12 mt-5 text-center" *ngIf="draftBlogDetailslength">
+              <p>No Blogs in Draft</p>
+            </div>
+            <div (click)="openViewBlog(authData.blogId)" class="allBlogSection  pb-3 testing123" *ngFor="let authData of draftBlogDetails">
+              <!-- <div class="overlay"></div> -->
+
+              <div class="imageInsideTxt">
+                <p>{{authData.catName}}</p>
+              </div>
+              <div class="blogCoverImg" *ngIf="authData.coverimg == null">
+                <img height="200px" width="100%" src="{{ProfileImageNull}}{{noImgUrl}}  " alt="noImgUrl">
+              </div>
+              <div class="blogCoverImg" *ngIf="authData.coverimg">
+                <img height="200px" width="100%" src="{{blogCoverImage}}{{authData.coverimg}}" alt="authData.coverimg">
+              </div>
+              <div class="blogDetail">
+                <div class="container">
+                  <p id="blogTitle">{{authData.blog_title}}</p>
+                  <div class="authorDetail mb-2 d-flex">
+                    <div class="autherImg pl-0 col-5 d-flex" *ngIf="imageUrls == null || '' ">
+                      <img src="{{ProfileImageNull}}{{imageUrl}}" alt="imageUrl">&nbsp;
+                      <p>{{authData.bloggerName}}</p>
+                    </div>
+                    <div class="autherImg pl-0 col-5 d-flex" *ngIf="imageUrls">
+                      <img src="{{ProfileImage}}{{imageUrls}}" alt="imageUrl">&nbsp;
+                      <p>{{authData.bloggerName}}</p>
+                    </div>
+                    <div class="previewImg" *ngFor='let url of CoverImage'>
+                      <img [src]="url"  alt="previewImg"  height="24" width="24">
+                      <p>{{authData.bloggerName}}</p>
+                    </div>
+
+                    <!-- <p id="authName">{{authData.authorName}}</p>&nbsp;&nbsp; -->
+                    <!-- <img class="mt-2" height="2" width="24" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/user-blogs/nameDashed.png" alt="..nameDashed.png" >&nbsp;&nbsp; -->
+                    <div class="nameDashed"></div>&nbsp;&nbsp;
+
+                    <p id="publishDate">{{authData.date}}</p>
+                  </div>
+                  <div class="blogTxt">
+                    <p [innerHTML]="authData.short_desc | sanitizeHtml"></p>
+                  </div>
+
+                  <div class="drftPublishBtn mt-2 mb-2 text-center">
+                    <button>Continue Writing</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" [ngClass]="{ 'show active': activeTab === 'pending' }" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+            <mat-tab-group>
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <p id="matTabLabel">Blog List</p>
+                </ng-template>
+
+                <div class="noBlogsWarnTxt col-12 mt-5 text-center" *ngIf="pendingBlogDetailslength">
+                  <p>No Pending Blogs</p>
+                </div>
+
+                <div class="allBlogSection" *ngFor="let authData of pendingBlogDetails">
+                  <div class="overlay">
+                    <div class="imageInsideTxt">
+                      <p>{{authData.catName}}</p>
+                    </div>
+                  </div>
+                  <div (click)="openViewBlog(authData.blogId)" class="blogCoverImg" *ngIf="authData.coverimg == null">
+                    <img height="200px" width="100%" src="{{ProfileImageNull}}{{noImgUrl}}" alt="noImgUrl">
+                  </div>
+                  <div (click)="openViewBlog(authData.blogId)" class="blogCoverImg" *ngIf="authData.coverimg">
+                    <img height="200px" width="100%" src="{{blogCoverImage}}{{authData.coverimg}}" alt="authData.coverimg">
+                  </div>
+                  <div class="blogDetail">
+                    <div class="container">
+                      <p id="blogTitle">{{authData.blog_title}}</p>
+                      <div class="authorDetail mb-2 d-flex">
+                        <!-- <div class="autherImg pl-0 col-5 d-flex" *ngIf="imageUrls ==  null || '' ">
+                          <img src="{{ProfileImageNull}}{{imageUrl}}" >&nbsp;
+                          <p>{{authData.bloggerName}}</p>
+                        </div>
+                        <div class="autherImg pl-0 col-5 d-flex" *ngIf="imageUrls">
+                          <img src="{{ProfileImage}}{{imageUrls}}" >&nbsp;
+                          <p>{{authData.bloggerName}}</p>
+                        </div>
+
+                        <div class="previewImg" *ngFor='let url of CoverImage'>
+                          <img [src]="url" height="24" width="24">
+                          <p>{{authData.bloggerName}}</p>
+                        </div> -->
+                        <div class="autherImg pr-2">
+                          <!-- <img src="{{ProfileImage}}{{imageUrls}}" >&nbsp; -->
+                          <p (click)="openViewBlog(authData.blogId)" id="pendingStatus" *ngIf="authData.status == 4">
+                            Pending</p>
+                          <p id="rejectedStatus" *ngIf="authData.status == 2">Rejected</p>
+                        </div>
+
+                        <!-- <img height="24" width="24" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/user-blogs/Ellipse 162.png" alt="..Ellipse 162.png" >&nbsp;&nbsp; -->
+                        <img class="mt-2" height="2" width="24" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/user-blogs/nameDashed.png" alt="..nameDashed.png" >&nbsp;&nbsp;
+                        <p id="publishDate">{{authData.date}}</p>
+                      </div>
+                      <div (click)="openViewBlog(authData.blogId)" class="blogTxt" *ngIf="authData.status == 4">
+                        <p [innerHTML]="authData.short_desc | sanitizeHtml"></p>
+                      </div>
+                      <div class="blogTxt" *ngIf="authData.status == 2">
+                        <span id="rejectedStatus1">Rejected Reason : </span>
+                        <p [innerHTML]="authData.remarks | sanitizeHtml"></p>
+                        <span id="remarkReadBtn" data-toggle="modal" data-target="#exampleModalCenter1" (click)="removeBackdrop(authData)">...Read Reason</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="authData.status != 2" (click)="openViewBlog(authData.blogId)" class="drftPublishBtn mt-2 mb-2 text-center">
+                    <button>View Post</button>
+                  </div>
+                  <div *ngIf="authData.status == 2" (click)="openViewBlog(authData.blogId)" class="drftPublishBtn mt-2 mb-2 text-center">
+                    <button>Make Changes</button>
+                  </div>
+                </div>
+              </mat-tab>
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <p id="matTabLabel">Topic List</p>
+                </ng-template>
+                <div class="topicMainDiv pb-5">
+                  <div class="noBlogsWarnTxt col-12 mt-5 text-center" *ngIf="topicLength">
+                    <p>No Topic Listed</p>
+                  </div>
+                  <div class="allTopicList d-flex col-12" *ngFor="let topicList of allTopics ">
+                    <div class="topicList col-8 float-left" *ngIf="topicList.status == 2">
+                      <p>{{topicList.topic|titlecase}}</p>
+                    </div>
+                    <div class="topicList col-8 float-left" *ngIf="topicList.status == 3">
+                      <p>{{topicList.topic|titlecase}}</p>
+                    </div>
+                    <div class="topicStatusRejected col-4" *ngIf="topicList.status == 2">
+                      <p>Rejected</p>
+                    </div>
+                    <div class="topicStatusPending col-4" *ngIf="topicList.status == 3">
+                      <p>Pending</p>
+                    </div>
+                  </div>
+                </div>
+              </mat-tab>
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <p id="matTabLabel">Approved Topic List</p>
+                </ng-template>
+                <div class="topicMainDiv pb-5">
+                  <div class="noBlogsWarnTxt col-12 mt-5 text-center" *ngIf="approvedtopicLength">
+                    <p>No Topic Listed</p>
+                  </div>
+                  <div class="allTopicList d-flex col-12" *ngFor="let topicList of allApprovedTopics ">
+                    <div class="topicList col-7 float-left">
+                      <p>{{topicList.topic|titlecase}}</p>
+                    </div>
+                    <div class="topicStatusApproved col-5">
+                      <p class="col-6 mb-2">Approved</p>
+                      <div class="pl-0 col-6 topicBlogWriting" (click)="blogTopicSelectWrite(topicList.category,topicList.topic,topicList.caterogyId,topicList.topicId)">
+                        <button id="blogWriteBtn" *ngIf="topicList.topicStatus == 0 && topicList.blogStatus ==null">Start Writing</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+          <div class="tab-pane fade" [ngClass]="{ 'show active': activeTab === 'profile' }" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="container">
+              <form [formGroup]="bioForm" (ngSubmit)="onSubmit()">
+                <div class="locationDiv">
+                  <p id="bioTitle">Author</p>
+                  <div class="locationAuth">
+                    <input formControlName="authName" type="text" id="priofileNameinputId" [(ngModel)]="authNameInputValue" (input)="onprofileInputChange()">
+                  </div>
+                </div>
+                <div class="locationDiv">
+                  <p id="bioTitle">Designation</p>
+                  <div class="locationAuth">
+                    <input formControlName="authDesignation" type="text" id="talksAboutinputId" [(ngModel)]="authDesignationInputValue" (input)="onprofileInputChange()">
+                  </div>
+                </div>
+                <div class="bioDiv">
+                  <p id="bioTitle">Bio</p>
+                  <div class="authBio">
+                    <textarea formControlName="textAreaBio" id="" cols="30" [(ngModel)]="authBioInputValue" (input)="onprofileInputChange()">
+                  </textarea>
+                  </div>
+                </div>
+                <div class="talkAboutDiv">
+                  <p id="bioTitle">Talks About</p>
+                  <div class="talksAboutinput">
+                    <textarea formControlName="talksAbout" type="text" id="talksAboutinputId" [(ngModel)]="talkAbtInputValue" (input)="onprofileInputChange()"></textarea>
+                  </div>
+                </div>
+                <div class="locationDiv">
+                  <p id="bioTitle">Location</p>
+                  <div class="locationAuth">
+                    <input formControlName="locationAuth" type="text" id="talksAboutinputId" [(ngModel)]="locationInputValue" (input)="onprofileInputChange()">
+                  </div>
+                </div>
+                <div class="socialLinkDiv">
+                  <p id="bioTitle">Social Media Links</p>
+                  <div class="socialLink col-12 d-flex">
+                    <div class="locationAuth1 pl-0 col-2" *ngFor="let icon of mediaImageUrls">
+                      <img height="30" width="30" src="{{socialMediaImage}}{{icon.icon}}" alt="icon.icon" (click)="selectImage(icon.iconId,icon.mediaName)">
+                      <div *ngFor="let checkIcon of allIconList1">
+                        <div *ngIf="checkIcon.iconId == icon.iconId && checkIcon.mediaLink !== ''">
+                          <div class="iconCheck">
+                            <!-- <p>{{icon1.mediaLink}}</p> -->
+                            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/user-blogs/iconCheckmark.png" alt="..iconCheckmark.png" >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="openInputLink">
+                    <form [formGroup]="linkForm">
+                      <div class="linkInputDiv d-flex">
+                        <input placeholder="Enter your {{linkName}} Link" type="text" formControlName="linksAuth" [(ngModel)]="inputValues" required>
+                        <div class="numberCross1" *ngIf="inputValues.length > 0">
+                          <img *ngIf="trueClear" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/user-blogs/X Icon.png" alt="..X Icon.png"  (click)="clearNumInput1()">
+                          <img *ngIf="nonTrueClear" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/user-blogs/X Icon.png" alt="..X Icon.png"  (click)="clearNumInput2()">
+                        </div>
+                        <button (click)="addValue()">Add Link</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+                <div class="submitCancelAuthBio px-0 col-12">
+                  <div class="row">
+                    <div class=" col-6">
+                      <button class="bioSubmit" type="submit" id="profileSubmitBtn" disabled>Save Changes</button>
+                    </div>
+                    <div class="bioCancel col-6">
+                      <button type="button" (click)="cancelBioEdit()">Cancel</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="tab-pane fade" [ngClass]="{ 'show active': activeTab === 'about' }" id="about" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="container pb-5">
+              <div class="bioDiv">
+                <p id="bioTitle">Bio</p>
+                <div class="authBio1">
+                  <p *ngIf="authBioInputValue">{{authBioInputValue}}</p>
+                  <p *ngIf="!authBioInputValue">No Bio Updated</p>
+                </div>
+              </div>
+
+              <div class="talkAboutDiv">
+                <p id="bioTitle">Talks About</p>
+                <div class="talksAboutinput1">
+                  <p *ngIf="talkAbtInputValue">{{talkAbtInputValue}}</p>
+                  <p *ngIf="!talkAbtInputValue">No Talks updated</p>
+                </div>
+              </div>
+              <div class="socialLinkDiv">
+                <p id="bioTitle">Links</p>
+                <div class="socialLink col-12 pl-0">
+                  <!-- <div class="authBio1 text-center">
+                  <p *ngIf="allIconList1.length == 0">No Links Found</p>
+                 </div> -->
+
+                  <div class="blogAboutRow">
+                    <div class="socialMedia d-flex">
+                      <div *ngFor="let checkIcon of allIconList1">
+                        <a *ngIf="checkIcon.mediaLink !== ''" href="{{checkIcon.mediaLink}}" target="_blank"><img src="{{socialMediaImage}}{{checkIcon.icon}}" alt="checkIcon.icon"></a> &nbsp;&nbsp;
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="loginSection" *ngIf="notLogedIn">
+  <div class="headerLogin text-center">
+    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/user-blogs/logo white 1.png" alt="..logo white 1.png" >
+    <div class="blogDropDownBtn d-flex" (click)="openBlogDropDown()">
+      <p>Blogs</p>
+      <!-- <i class="fa-regular fa-angle-down" style="color: #ffffff;"></i> -->
+      <i class="fa fa-angle-down mt-1" aria-hidden="true" style="color: #ffffff;"></i>
+      <i class="fa fa-angle-up mt-1" aria-hidden="true" style="color: #ffffff;"></i>
+    </div>
+    <div class="card blogDropDownCard container" *ngIf="cardDropDown">
+      <p><a href="/blogs">All Blogs</a></p>
+      <p><a href="/articles/vastu-shastra-tips-8">Vastu</a></p>
+      <p><a href="/articles/our-trending-blogs-1">Trending</a></p>
+      <p><a href="/articles/our-latest-updates-2">Latest</a></p>
+      <p><a href="/articles/top-real-estate-news-7">Real Estate News</a></p>
+      <p><a href="/articles/expert-opinions-on-indian-realestate-16">All Expert Voice</a></p>
+      <p><a href="/articles/interior-design-ideas-5">Interiors</a></p>
+      <p><a href="/articles/healthy-lifestyle-blogs-9">Lifestyle</a></p>
+      <p><a href="/articles/diy-decor-ideas-12">DIY</a></p>
+      <p><a href="/articles/popular-indian-festivals-15">Festival</a></p>
+      <p><a href="/articles/technology-blogs-6">Technology</a></p>
+      <p><a href="/articles/indian-realestate-articles-17">Indian Real Estate</a></p>
+      <p><a href="/articles/health-fitness-blogs-11">Health & Fitness</a></p>
+      <p><a href="/articles/finance-loan-taxes-13">Loan & Taxes</a></p>
+      <p><a href="/articles/most-popular-news-14">News</a></p>
+      <p><a href="/articles/tips-for-buying-a-house-4">Home Buying</a></p>
+      <p><a href="/articles/modern-construction-techniques-10">Construction</a></p>
+      <p><a href="/articles/video-blogs">Videos</a></p>
+    </div>
+  </div>
+
+  <div class="logBgCover"></div>
+
+  <div class="loginBlogBg">
+    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/user-blogs/loginBlogBackground.png" alt="..loginBlogBackground.png" >
+  </div>
+  <div class="loginBlogTxt">
+    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/user-blogs/loginBlogText.png" alt="..loginBlogText.png" >
+  </div>
+
+  <div class="loginForm">
+    <div class="container">
+      <form [formGroup]="blogLoginForm">
+        <div class="blogNumForm">
+          <input type="number" formControlName="newUserNumber" name="Number" id="emobileLogin" placeholder="Enter Mobile Number" [(ngModel)]="user.number" required />
+          <div class="numberCross">
+            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/user-blogs/X Icon.png" alt="..X Icon.png"  (click)="clearNumInput()">
+          </div>
+          <br><br>
+          <div class="submitMainDiv text-center">
+            <button type="button" id="one" class="submit btn" (click)="otpBasedLogin()">Send
+              OTP</button>
+          </div>
+        </div>
+        <div id="modal-container">
+          <div class="modal-background">
+            <div class="modal">
+              <form name="otpForm" novalidate>
+                <div class="col-sm-12 text-center">
+                  <img class="loginModelImg" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/logo/Homes247_NewBlack_Logo.png" alt="Homes247_NewBlack_Logo.png">
+                  <p class="loginModelText">Best Innovative Realestate Website of the year and most trusted brand.</p>
+                </div>
+                <h5 class="loginModelText1 mb-4">Enter the 4 digit Verification Code sent on {{user.number}}<a style="color: blue;" (click)="goback()"> -
+                    Edit</a></h5>
+                <div class="col-12 countdown_maindiv">
+                  <countdown #cd1 [config]="countdownconfig" (event)="handleEvent($event)"></countdown>
+                </div>
+                <input hidden autocomplete="off" type="text" placeholder="OTP" name="otp" id="otp" [(ngModel)]="user.otp" required />
+                <ng-otp-input class="otpinput mt-3" #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config">
+                </ng-otp-input>
+                <button (click)="otpvalidate()" class="btn btn-dark mobileLogButton">Validate OTP</button>
+                <p class="otpexpireclass" *ngIf="otpexpired">OTP Expired - <a style="color: blue;" (click)="otpBasedLogin1()">Resend</a></p>
+                <button type="reset" id="btn_reset" style="display: none;"></button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<div class="viewSection" *ngIf="blogViewSection">
+  <div class="headerWriteBlogs col-12 d-flex">
+    <div class="col-1 text-center">
+      <img onclick="history.back()" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/write-Blogs/Alt Arrow Left.png" alt="..Alt Arrow Left.png" >
+    </div>
+    <div class="col-8 text-center pr-0">
+      <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/write-Blogs/homes247Logo.png" alt="..homes247Logo.png" >
+    </div>
+    <div class="viewBlogButtons px-0 col-3">
+      <div class="editBlogBtn" *ngIf="viewBlogDetails[0].status == 4 || 3">
+        <button (click)="viewEditBlog(viewBlogDetails[0].content)">Edit Blog</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 overlapHeader"></div>
+  <div class="container mt-2">
+    <!-- <div class="viewBlogButtons col-12">
+      <div class="editBlogBtn" *ngIf="viewBlogDetails[0].status == 4">
+        <button (click)="viewEditBlog()">Edit Blog</button>
+      </div>
+    </div> -->
+
+    <div class=" col-12" *ngFor="let content of viewBlogDetails">
+
+      <div class="catTopicN text-center">
+        <p>{{content.category}} - {{content.topic}}</p>
+      </div>
+
+      <div class="col-12 editImgCenter pb-3" *ngIf="content.coverimg">
+        <div class="col-12 editBlogImg mt-2 p-2">
+          <img src="{{blogCoverImage}}{{content.coverimg}}" alt="content.coverimg">
+        </div>
+        <div class="col-12 px-0" *ngIf="content.status == 2">
+          <div class="reasonReject p-1 mt-2">
+            <p id="rejectedStatus2">Reason For Rejection :</p>
+            <div id="rejectedText">
+              <p [innerHTML]="content.remarks |sanitizeHtml"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p id="innerHtml" [innerHTML]="content.content | sanitizeHtml"></p>
+    </div>
+  </div>
+
+</div>
+<div class="textareaField text-center" *ngIf="editViewBlog">
+  <div class="headerWriteBlogs col-12 d-flex">
+    <div class="col-1 text-center">
+      <img onclick="history.back()" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/write-Blogs/Alt Arrow Left.png" alt="..Alt Arrow Left.png" >
+    </div>
+    <div class="col-5 pr-0">
+      <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/write-Blogs/homes247Logo.png" alt="..homes247Logo.png" >
+    </div>
+    <div class="viewBlogButtons px-0 d-flex col-6">
+      <button class="" id="draftButton2" (click)="saveBlogDraft()">Save as Draft</button>
+      <div class="editBlogBtn" *ngIf="viewBlogDetails[0].coverimg == null ">
+        <button data-toggle="modal" data-target="#example" (click)="forWordCount()">Proceed</button>
+      </div>
+
+      <div class="editBlogBtn" *ngIf="viewBlogDetails[0].coverimg ">
+        <button (click)="rePostBlog1()">Post Blog</button>
+      </div>
+    </div>
+  </div>
+  <!-- (click)="rePostBlog()" -->
+
+
+
+  <div class="col-12 overlapHeader"></div>
+  <div class="container mt-2">
+
+
+    <div class="catTopicN">
+      <p>{{categoryName}} - {{topicName}}</p>
+    </div>
+
+
+    <textarea id="basic-example" name='expertdesc' [(ngModel)]="textareaValue"></textarea>
+
+  </div>
+</div>
+
+<div class="blogCoverImgUpload" *ngIf="txtAreaLngth">
+
+  <!-- Modal -->
+  <div class="modal fade modal-fullscreen" id="example" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title ml-5 pl-5" id="exampleModalLabel"><img id="homeLogo" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/images/write-Blogs/homes247Logo.png" alt="Homes247" /></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="uploadOuterSection">
+              <h2 id="coverImgHeadText">Upload A Cover Picture for your Blog</h2>
+
+              <!-- <div class="uploadOuterSection col-12 text-center"> -->
+              <form [formGroup]="registrationForm2">
+                <div>
+                  <div class="avatar-upload11 ">
+                    <!-- <div class="avatar-edit"> -->
+
+                  </div>
+                  <div class="uploadCoverImgBox col-12" (click)="fileInput1.click()">
+                    <input hidden type='file' name="cover2" accept=".png, .jpg, .jpeg" #fileInput1 formControlName="coverImage2" (change)="onBlogCoverSelectFile1($event)" />
+                    <div class="previewImg11" *ngFor='let url of CoverImage2'>
+                      <img [src]="url" alt="previewImg"  height="237" width="287">
+                    </div>
+                    <div class="uploadCoverButtonText" *ngIf="notUploaded">
+                      <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/images/write-blogs/coverUpload.png" alt="..coverUpload.png" >
+                      <p>Drag and drop or Browse</p>
+                    </div>
+
+                  </div>
+                </div>
+              </form>
+              <div class="draftPublishButton col-12 d-flex pl-0">
+                <button class="col-6" id="draftButton1" (click)="saveBlogDraft()" data-dismiss="modal">Save as
+                  Draft</button>
+                <button class="publishButton1 col-6" id="publishBtnId" disabled (click)="rePostBlog()" data-dismiss="modal">Re-Publish</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Reason For Rejection</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <span [innerHTML]="showReason |sanitizeHtml"></span>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+<div *ngIf="loader" class="loaderbody">
+  <div class="box">
+    <div class="loader-20"></div>
+  </div>
+</div>

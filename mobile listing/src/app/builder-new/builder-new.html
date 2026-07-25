@@ -1,0 +1,1025 @@
+<app-my-json-ld [innerHTML]="breadcrumbLD" ngSkipHydration></app-my-json-ld>
+<app-my-json-ld [innerHTML]="carouselsLD" ngSkipHydration></app-my-json-ld>
+<app-my-json-ld [innerHTML]="eventsLD" ngSkipHydration></app-my-json-ld>
+<app-my-json-ld [innerHTML]="localbusinessLD" ngSkipHydration></app-my-json-ld>
+<app-my-json-ld [innerHTML]="productmerchantreviewLD" ngSkipHydration></app-my-json-ld>
+
+<div class="topMarginBreadCrumbs"></div>
+
+<main class="city_search_filters">
+    <div class="container">
+        <div class="col-12" #scrollapiloader>
+            <div class="row">
+                <nav class="breadcrumb mt-3">
+                    <li class="breadcrumb-item" title="India's Favourite Property Portal !" rel="bookmark"><a
+                            routerLink="/">Home</a></li>
+                    <li class="breadcrumb-item"><a target="_blank"
+                            href="https://www.homes247.in/new-launch-projects/new-projects-in-{{city | cleanUrl}}"
+                            [aria-label]="'new-launch-projects in '+ city" class="breadcrumbs__element"
+                            title="New projects in {{city}} | Upcoming Projects in {{city}} | Homes247.in"> New Projects
+                            in {{city}} </a></li>
+                    <li class="breadcrumb-item"><a routerLink="/{{citybreadcrump | cleanUrl}}/property-sale"
+                            title="Properties for Sale in {{city}} | Buy Property in {{city}}" rel="bookmark">Properties
+                            in {{city}}</a></li>
+
+                    @if (BuilderMain) {
+                    <li class="breadcrumb-item active" aria-current="page"><a>{{builder}}</a></li>
+                    }
+
+                    @if (!BuilderMain) {
+                    <li class="breadcrumb-item bread">
+                        <a href="https://www.homes247.in/{{currentCity | cleanUrl}}/builder/{{builder | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Projects in ' + currentCity" class="breadcrumbs__element"
+                            title="{{builder}} Projects for Sale in {{currentCity}} | Buy {{builder}} Projects in {{currentCity}}"
+                            rel="bookmark">{{builder}} Projects in {{currentCity}}</a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        <a>{{secondorytitle}}</a>
+                    </li>
+                    }
+                </nav>
+
+            </div>
+        </div>
+
+        @if (componentloads) {
+        <div>
+            <ng-container *ngComponentOutlet="Builder4Component"></ng-container>
+        </div>
+        }
+        <ng-container *ngComponentOutlet="Matautocomplete"></ng-container>
+
+
+        <div class="row builderDiscription">
+            <div class="col-12">
+                @if (BuilderMain) {
+                <h1 class="text-truncate pagePropertyCountNew"> {{builder | titlecase}} in
+                    {{currentCity | titlecase}} <br>
+                    (<span>{{projectcount}}
+                        Projects Found</span>)</h1>
+                }
+                @if (!BuilderMain) {
+                <h1 class="text-truncate pagePropertyCountNew"> {{secondorytitle}} <br>
+                    (<span>{{projectcount}} Projects
+                        Found</span>) </h1>
+                }
+            </div>
+            <div id="hidefilter" class="col-12">
+                @if (BuilderMain) {
+                <div class="filter_scrollmenu scrollBarHide">
+                    <button><a
+                            href="https://www.homes247.in/brtc/{{builder | cleanUrl}}-apartments-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Apartments in ' + currentCity"
+                            title="{{builder}} Apartments in {{currentCity}}" rel="bookmark">{{builder}}
+                            Apartments</a>&nbsp;</button>
+                    <button><a
+                            href="https://www.homes247.in/stbc/ready-to-move-apartments-by-{{builder | cleanUrl}}-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Ready To Move Apartments in ' + currentCity"
+                            title="Ready To Move {{builder}} Apartments  in {{currentCity}}" rel="bookmark">Ready to
+                            Move Flats by {{builder}}</a>&nbsp;</button>
+                    <button><a
+                            href="https://www.homes247.in/spbc/new-launch-properties-by-{{builder | cleanUrl}}-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' New Launch Properties in ' + currentCity"
+                            title="New Launch {{builder}} Properties  in {{currentCity}}" rel="bookmark">{{builder}} New
+                            Launches</a>&nbsp;</button>
+                    <button><a
+                            href="https://www.homes247.in/bbc/{{builder | cleanUrl}}-properties-under-30-lakhs-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Properties Under 30 Lakhs in ' + currentCity"
+                            title="{{builder}} Properties Under 30 Lakhs in {{currentCity}}" rel="bookmark">{{builder}}
+                            Under 30 Lakhs</a>&nbsp;</button>
+                    <button><a
+                            href="https://www.homes247.in/batc/{{builder | cleanUrl}}-affordable-apartments-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Affordable Apartments in ' + currentCity"
+                            title="Affordable {{builder}} Apartments in {{currentCity}}" rel="bookmark">Affordable
+                            Apartments by {{builder}}</a>&nbsp;</button>
+                    <button><a
+                            href="https://www.homes247.in/bltc/{{builder | cleanUrl}}-luxury-apartments-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Luxury Apartments in ' + currentCity"
+                            title="Luxury {{builder}} Apartments in {{currentCity}}" rel="bookmark">Luxury Apartments by
+                            {{builder}}</a>&nbsp;</button>
+                    <button><a
+                            href="https://www.homes247.in/btbc/1-bhk-flats-by-{{builder | cleanUrl}}-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' 1 BHK Flats in ' + currentCity"
+                            title="1 BHK Flats in {{builder}} {{currentCity}}" rel="bookmark">1 BHK Flats by
+                            {{builder}}</a>&nbsp;</button>
+                    <button><a
+                            href="https://www.homes247.in/btbc/3-bhk-villas-by-{{builder | cleanUrl}}-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' 3 BHK Villas in ' + currentCity"
+                            title="3 BHK Villas in {{builder}} {{currentCity}}" rel="bookmark">3 BHK Villas by
+                            {{builder}}</a>&nbsp;</button>
+
+                </div>
+                }
+
+                @if (Builderbudget) {
+                <div class="filter_scrollmenu scrollBarHide">
+                    @if (broadmatch != '30 Lakhs') {
+                    <button><a
+                            href="https://www.homes247.in/bbc/{{builder | cleanUrl}}-properties-under-30-lakhs-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Properties Under 30 Lakhs in ' + currentCity"
+                            title="{{builder}} Properties Under 30 Lakhs in {{currentCity}}" rel="bookmark">{{builder}}
+                            Properties Under 30 Lakhs in {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != '30 Lakhs - 40 Lakhs') {
+                    <button><a
+                            href="https://www.homes247.in/bbc/{{builder | cleanUrl}}-properties-30-lakhs-to-40-lakhs-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Properties for sale 30 Lakhs to 40 Lakhs in ' + currentCity"
+                            title="{{builder}} Properties for sale 30 Lakhs to 40 Lakhs in {{currentCity}}"
+                            rel="bookmark">30 Lakhs to 40 Lakhs {{builder}} Properties in {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != '40 Lakhs - 50 Lakhs') {
+                    <button><a
+                            href="https://www.homes247.in/bbc/{{builder | cleanUrl}}-properties-40-lakhs-to-50-lakhs-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Properties for sale 40 Lakhs to 50 Lakhs in ' + currentCity"
+                            title="{{builder}} Properties for sale 40 Lakhs to 50 Lakhs in {{currentCity}}"
+                            rel="bookmark">40 Lakhs to 50 Lakhs {{builder}} Properties in {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != '50 Lakhs - 60 Lakhs') {
+                    <button><a
+                            href="https://www.homes247.in/bbc/{{builder | cleanUrl}}-properties-50-lakhs-to-60-lakhs-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Properties for sale 50 Lakhs to 60 Lakhs in ' + currentCity"
+                            title="{{builder}} Properties for sale 50 Lakhs to 60 Lakhs in {{currentCity}}"
+                            rel="bookmark">50 Lakhs to 60 Lakhs {{builder}} Properties in {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != '60 Lakhs - 70 Lakhs') {
+                    <button><a
+                            href="https://www.homes247.in/bbc/{{builder | cleanUrl}}-properties-60-lakhs-to-70-lakhs-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Properties for sale 60 Lakhs to 70 Lakhs in ' + currentCity"
+                            title="{{builder}} Properties for sale 60 Lakhs to 70 Lakhs in {{currentCity}}"
+                            rel="bookmark">60 Lakhs to 70 Lakhs {{builder}} Properties in {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != '70 Lakhs - 80 Lakhs') {
+                    <button><a
+                            href="https://www.homes247.in/bbc/{{builder | cleanUrl}}-properties-70-lakhs-to-80-lakhs-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Properties for sale 70 Lakhs to 80 Lakhs in ' + currentCity"
+                            title="{{builder}} Properties for sale 70 Lakhs to 80 Lakhs in {{currentCity}}"
+                            rel="bookmark">70 Lakhs to 80 Lakhs {{builder}} Properties in {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != '80 Lakhs - 90 Lakhs') {
+                    <button><a
+                            href="https://www.homes247.in/bbc/{{builder | cleanUrl}}-properties-80-lakhs-to-90-lakhs-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Properties for sale 80 Lakhs to 90 Lakhs in ' + currentCity"
+                            title="{{builder}} Properties for sale 80 Lakhs to 90 Lakhs in {{currentCity}}"
+                            rel="bookmark">80 Lakhs to 90 Lakhs {{builder}} Properties in {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != '90 Lakhs - 1 Crore') {
+                    <button><a
+                            href="https://www.homes247.in/bbc/{{builder | cleanUrl}}-properties-90-lakhs-to-1-crore-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Properties for sale 90 Lakhs to 1 Crore in ' + currentCity"
+                            title="{{builder}} Properties for sale 90 Lakhs to 1 Crore in {{currentCity}}"
+                            rel="bookmark">90 Lakhs to 1 Crore {{builder}} Properties in {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != 'Above-1-Crore') {
+                    <button><a
+                            href="https://www.homes247.in/bbc/{{builder | cleanUrl}}-properties-above-1-crore-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Properties for sale above 1 Crore in ' + currentCity"
+                            title="{{builder}} Properties for sale above 1 Crore in {{currentCity}}"
+                            rel="bookmark">Above 1 Crore {{builder}} Properties in {{currentCity}}</a></button>
+                    }
+                </div>
+                }
+
+                @if (spbc) {
+                <div class="filter_scrollmenu scrollBarHide">
+                    @if (broadmatch != 'ready-to-move') {
+                    <button><a
+                            href="https://www.homes247.in/spbc/ready-to-move-properties-by-{{builder | cleanUrl}}-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Ready To Move Properties in ' + currentCity"
+                            title="Ready To Move {{builder}} Properties  in {{currentCity}}" rel="bookmark">Ready To
+                            Move {{builder}} Properties in {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != 'new-launch') {
+                    <button><a
+                            href="https://www.homes247.in/spbc/new-launch-properties-by-{{builder | cleanUrl}}-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' New Launch Properties in ' + currentCity"
+                            title="New Launch {{builder}} Properties  in {{currentCity}}" rel="bookmark">New Launch
+                            {{builder}} Properties in {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != 'up-coming') {
+                    <button><a
+                            href="https://www.homes247.in/spbc/up-coming-properties-by-{{builder | cleanUrl}}-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Up Coming Properties in ' + currentCity"
+                            title="Up Coming {{builder}} Properties  in {{currentCity}}" rel="bookmark">Up Coming
+                            {{builder}} Properties in {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != 'under-construction') {
+                    <button><a
+                            href="https://www.homes247.in/spbc/under-construction-properties-by-{{builder | cleanUrl}}-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Under Construction Properties in ' + currentCity"
+                            title="Under Construction {{builder}} Properties  in {{currentCity}}" rel="bookmark">Under
+                            Construction {{builder}} Properties in {{currentCity}}</a></button>
+                    }
+                </div>
+                }
+
+                @if (stbc_apartments) {
+                <div class="filter_scrollmenu scrollBarHide">
+                    @if (broadmatch != 'ready-to-move') {
+                    <button><a
+                            href="https://www.homes247.in/stbc/ready-to-move-apartments-by-{{builder | cleanUrl}}-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Ready To Move Properties in ' + currentCity"
+                            title="Ready To Move {{builder}} Apartments  in {{currentCity}}" rel="bookmark">Ready To
+                            Move {{builder}} Apartments in {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != 'new-launch') {
+                    <button><a
+                            href="https://www.homes247.in/stbc/new-launch-apartments-by-{{builder | cleanUrl}}-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' New Launch Properties in ' + currentCity"
+                            title="New Launch {{builder}} Apartments  in {{currentCity}}" rel="bookmark">New Launch
+                            {{builder}} Apartments in {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != 'up-coming') {
+                    <button><a
+                            href="https://www.homes247.in/stbc/up-coming-apartments-by-{{builder | cleanUrl}}-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Up Coming Properties in ' + currentCity"
+                            title="Up Coming {{builder}} Apartments  in {{currentCity}}" rel="bookmark">Up Coming
+                            {{builder}} Apartments in {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != 'under-construction') {
+                    <button><a
+                            href="https://www.homes247.in/stbc/under-construction-apartments-by-{{builder | cleanUrl}}-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Under Construction Properties in ' + currentCity"
+                            title="Under Construction {{builder}} Apartments  in {{currentCity}}" rel="bookmark">Under
+                            Construction {{builder}} Apartments in {{currentCity}}</a></button>
+                    }
+                </div>
+                }
+
+                @if (stbc_villas) {
+                <div class="filter_scrollmenu scrollBarHide">
+                    @if (broadmatch != 'ready-to-move') {
+                    <button><a
+                            href="https://www.homes247.in/stbc/ready-to-move-villas-by-{{builder | cleanUrl}}-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Ready To Move Villas in ' + currentCity"
+                            title="Ready To Move {{builder}} Villas  in {{currentCity}}" rel="bookmark">Ready To Move
+                            {{builder}} Villas in {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != 'new-launch') {
+                    <button><a
+                            href="https://www.homes247.in/stbc/new-launch-villas-by-{{builder | cleanUrl}}-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' New Launch Villas in ' + currentCity"
+                            title="New Launch {{builder}} Villas  in {{currentCity}}" rel="bookmark">New Launch
+                            {{builder}} Villas in {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != 'up-coming') {
+                    <button><a
+                            href="https://www.homes247.in/stbc/up-coming-villas-by-{{builder | cleanUrl}}-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Up Coming Villas in ' + currentCity"
+                            title="Up Coming {{builder}} Villas  in {{currentCity}}" rel="bookmark">Up Coming
+                            {{builder}} Villas in {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != 'under-construction') {
+                    <button><a
+                            href="https://www.homes247.in/stbc/under-construction-villas-by-{{builder | cleanUrl}}-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Under Construction Villas in ' + currentCity"
+                            title="Under Construction {{builder}} Villas  in {{currentCity}}" rel="bookmark">Under
+                            Construction {{builder}} Villas in {{currentCity}}</a></button>
+                    }
+                </div>
+                }
+
+                @if (btbc_flats) {
+                <div class="filter_scrollmenu scrollBarHide">
+                    @if (broadmatch != 'btbc/1-bhk-flats-by') {
+                    <button><a
+                            href="https://www.homes247.in/btbc/1-bhk-flats-by-{{builder | cleanUrl}}-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' 1 BHK Flats in ' + currentCity"
+                            title="1 BHK Flats in {{builder}} {{currentCity}}" rel="bookmark">1 BHK Flats in {{builder}}
+                            {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != 'btbc/2-bhk-flats-by') {
+                    <button><a
+                            href="https://www.homes247.in/btbc/2-bhk-flats-by-{{builder | cleanUrl}}-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' 2 BHK Flats in ' + currentCity"
+                            title="2 BHK Flats in {{builder}} {{currentCity}}" rel="bookmark">2 BHK Flats in {{builder}}
+                            {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != 'btbc/3-bhk-flats-by') {
+                    <button><a
+                            href="https://www.homes247.in/btbc/3-bhk-flats-by-{{builder | cleanUrl}}-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' 3 BHK Flats in ' + currentCity"
+                            title="3 BHK Flats in {{builder}} {{currentCity}}" rel="bookmark">3 BHK Flats in {{builder}}
+                            {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != 'btbc/4-bhk-flats-by') {
+                    <button><a
+                            href="https://www.homes247.in/btbc/4-bhk-flats-by-{{builder | cleanUrl}}-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' 4 BHK Flats in ' + currentCity"
+                            title="4 BHK Flats in {{builder}} {{currentCity}}" rel="bookmark">4 BHK Flats in {{builder}}
+                            {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != 'btbc/5-bhk-flats-by') {
+                    <button><a
+                            href="https://www.homes247.in/btbc/5-bhk-flats-by-{{builder | cleanUrl}}-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' 5 BHK Flats in ' + currentCity"
+                            title="5 BHK Flats in {{builder}} {{currentCity}}" rel="bookmark">5 BHK Flats in {{builder}}
+                            {{currentCity}}</a></button>
+                    }
+                </div>
+                }
+
+                @if (btbc_villas) {
+                <div class="filter_scrollmenu scrollBarHide">
+                    @if (broadmatch != 'btbc/3-bhk-villas-by') {
+                    <button><a
+                            href="https://www.homes247.in/btbc/3-bhk-villas-by-{{builder | cleanUrl}}-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' 3 BHK Villas in ' + currentCity"
+                            title="3 BHK Villas in {{builder}} {{currentCity}}" rel="bookmark">3 BHK Villas in
+                            {{builder}} {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != 'btbc/4-bhk-villas-by') {
+                    <button><a
+                            href="https://www.homes247.in/btbc/4-bhk-villas-by-{{builder | cleanUrl}}-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' 4 BHK Villas in ' + currentCity"
+                            title="4 BHK Villas in {{builder}} {{currentCity}}" rel="bookmark">4 BHK Villas in
+                            {{builder}} {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != 'btbc/5-bhk-villas-by') {
+                    <button><a
+                            href="https://www.homes247.in/btbc/5-bhk-villas-by-{{builder | cleanUrl}}-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' 5 BHK Villas in ' + currentCity"
+                            title="5 BHK Villas in {{builder}} {{currentCity}}" rel="bookmark">5 BHK Villas in
+                            {{builder}} {{currentCity}}</a></button>
+                    }
+                </div>
+                }
+
+                @if (aff_lux) {
+                <div class="filter_scrollmenu scrollBarHide">
+                    @if (broadmatch != 'luxury') {
+                    <button><a
+                            href="https://www.homes247.in/blpc/{{builder | cleanUrl}}-luxury-properties-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Luxury Properties in ' + currentCity"
+                            title="Luxury {{builder}} Properties in {{currentCity}}" rel="bookmark">Luxury {{builder}}
+                            Properties in {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != 'luxury_ap') {
+                    <button><a
+                            href="https://www.homes247.in/bltc/{{builder | cleanUrl}}-luxury-apartments-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Luxury Apartments in ' + currentCity"
+                            title="Luxury {{builder}} Apartments in {{currentCity}}" rel="bookmark">Luxury {{builder}}
+                            Apartments in {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != 'luxury_vi') {
+                    <button><a
+                            href="https://www.homes247.in/bltc/{{builder | cleanUrl}}-luxury-villas-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Luxury Villas in ' + currentCity"
+                            title="Luxury {{builder}} Villas in {{currentCity}}" rel="bookmark">Luxury {{builder}}
+                            Villas in {{currentCity}}</a></button>
+                    }
+
+                </div>
+                }
+                @if (aff_lux2) {
+                <div class="filter_scrollmenu scrollBarHide">
+                    @if (broadmatch != 'affordable_ap') {
+                    <button><a
+                            href="https://www.homes247.in/batc/{{builder | cleanUrl}}-affordable-apartments-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Affordable Apartments in ' + currentCity"
+                            title="Affordable {{builder}} Apartments in {{currentCity}}" rel="bookmark">Affordable
+                            {{builder}} Apartments in {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != 'affordable_vi') {
+                    <button><a
+                            href="https://www.homes247.in/batc/{{builder | cleanUrl}}-affordable-villas-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Affordable Villas in ' + currentCity"
+                            title="Affordable {{builder}} Villas in {{currentCity}}" rel="bookmark">Affordable
+                            {{builder}} villas in {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != 'affordable_pr') {
+                    <button><a
+                            href="https://www.homes247.in/bapc/{{builder | cleanUrl}}-affordable-properties-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Affordable Properties in ' + currentCity"
+                            title="Affordable {{builder}} properties in {{currentCity}}" rel="bookmark">Affordable
+                            {{builder}} Properties in {{currentCity}}</a></button>
+                    }
+                </div>
+                }
+                @if (aff_lux3) {
+                <div class="filter_scrollmenu scrollBarHide">
+                    @if (broadmatch != 'luxury_ap') {
+                    <button><a
+                            href="https://www.homes247.in/bltc/{{builder | cleanUrl}}-luxury-apartments-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Luxury Apartments in ' + currentCity"
+                            title="Luxury {{builder}} Apartments in {{currentCity}}" rel="bookmark">Luxury {{builder}}
+                            Apartments in {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != 'luxury_vi') {
+                    <button><a
+                            href="https://www.homes247.in/bltc/{{builder | cleanUrl}}-luxury-villas-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Luxury Villas in ' + currentCity"
+                            title="Luxury {{builder}} Villas in {{currentCity}}" rel="bookmark">Luxury {{builder}}
+                            Villas in {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != 'luxury_pr') {
+                    <button><a
+                            href="https://www.homes247.in/bltc/{{builder | cleanUrl}}-luxury-properties-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Luxury Properties in ' + currentCity"
+                            title="Luxury {{builder}} properties in {{currentCity}}" rel="bookmark">Luxury {{builder}}
+                            Properties in {{currentCity}}</a></button>
+                    }
+                </div>
+                }
+
+                @if (brtc) {
+                <div class="filter_scrollmenu scrollBarHide">
+                    @if (broadmatch != 'apartments') {
+                    <button><a
+                            href="https://www.homes247.in/brtc/{{builder | cleanUrl}}-apartments-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Apartments in ' + currentCity"
+                            title="{{builder}} Apartments in {{currentCity}}" rel="bookmark">{{builder}} Apartments in
+                            {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != 'villas') {
+                    <button><a
+                            href="https://www.homes247.in/brtc/{{builder | cleanUrl}}-villas-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Villas in ' + currentCity"
+                            title="{{builder}} Villas in {{currentCity}}" rel="bookmark">{{builder}} Villas in
+                            {{currentCity}}</a></button>
+                    }
+                    @if (broadmatch != 'plots') {
+                    <button><a
+                            href="https://www.homes247.in/brtc/{{builder | cleanUrl}}-plots-in-{{currentCity | cleanUrl}}-{{builderid}}"
+                            [aria-label]="builder + ' Plots in ' + currentCity"
+                            title="{{builder}} Plots in {{currentCity}}" rel="bookmark">{{builder}} Plots in
+                            {{currentCity}}</a></button>
+                    }
+                </div>
+                }
+            </div>
+        </div>
+
+
+        @if (BuilderMain) {
+        <section  class="desc_div">
+            <div class="banner_description" id="scrollable" [innerHTML]="builderdescription | sanitizeHtml ">
+            </div>
+            @for (format of formatsDateTest; track format) {
+            <span class="last_update">last update : {{ dateNow | date: format
+                }}</span>
+            }
+            @if (!isExpanded) {
+            <div class="arrow bounce down_arrow" (click)="readmore()">
+                <span>Read More</span>
+            </div>
+            }
+            @if (isExpanded) {
+            <div class="arrow bounce up_arrow" (click)="readless()">
+                <span>Read Less</span>
+            </div>
+            }
+        </section>
+        }
+
+
+
+
+        <section  class="search-results">
+            @for (propertydemo of propertylists; track propertydemo; let i = $index) {
+            <article  class="newListingCard px-2">
+                <div class="listingCardTop">
+                    <div class="cardTagsTop d-flex justify-content-between">
+
+                        <div class="d-flex">
+                            <div class="d-flex reraIconDiv">
+
+                                <svg width="15" height="15" viewBox="0 0 11 10" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_6905_2596)">
+                                        <path
+                                            d="M10.1875 5C10.1875 5.4 9.69609 5.72969 9.59766 6.09844C9.49609 6.47969 9.75313 7.01094 9.56016 7.34453C9.36406 7.68359 8.77422 7.72422 8.49922 7.99922C8.22422 8.27422 8.18359 8.86406 7.84453 9.06016C7.51094 9.25313 6.97969 8.99609 6.59844 9.09766C6.22969 9.19609 5.9 9.6875 5.5 9.6875C5.1 9.6875 4.77031 9.19609 4.40156 9.09766C4.02031 8.99609 3.48906 9.25313 3.15547 9.06016C2.81641 8.86406 2.77578 8.27422 2.50078 7.99922C2.22578 7.72422 1.63594 7.68359 1.43984 7.34453C1.24687 7.01094 1.50391 6.47969 1.40234 6.09844C1.30391 5.72969 0.8125 5.4 0.8125 5C0.8125 4.6 1.30391 4.27031 1.40234 3.90156C1.50391 3.52031 1.24687 2.98906 1.43984 2.65547C1.63594 2.31641 2.22578 2.27578 2.50078 2.00078C2.77578 1.72578 2.81641 1.13594 3.15547 0.939844C3.48906 0.746875 4.02031 1.00391 4.40156 0.902344C4.77031 0.803906 5.1 0.3125 5.5 0.3125C5.9 0.3125 6.22969 0.803906 6.59844 0.902344C6.97969 1.00391 7.51094 0.746875 7.84453 0.939844C8.18359 1.13594 8.22422 1.72578 8.49922 2.00078C8.77422 2.27578 9.36406 2.31641 9.56016 2.65547C9.75313 2.98906 9.49609 3.52031 9.59766 3.90156C9.69609 4.27031 10.1875 4.6 10.1875 5Z"
+                                            fill="white" />
+                                        <path
+                                            d="M6.8547 3.6031L5.07032 5.38748L4.14532 4.46326C3.94454 4.26248 3.61876 4.26248 3.41798 4.46326C3.2172 4.66404 3.2172 4.98982 3.41798 5.1906L4.71564 6.48826C4.91095 6.68357 5.22814 6.68357 5.42345 6.48826L7.58126 4.33044C7.78204 4.12966 7.78204 3.80388 7.58126 3.6031C7.38048 3.40232 7.05548 3.40232 6.8547 3.6031Z"
+                                            fill="#148922" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_6905_2596">
+                                            <rect width="12" height="12" fill="white" transform="translate(0.5)" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                                <span class="renaText">RERA</span>
+                            </div> &nbsp;
+                            <div class="d-flex">
+
+                                @if (propertydemo?.Averagerating != null) {
+                                <div>
+                                    @if (propertydemo?.Averagerating >= 4) {
+                                    <span class="overallRateingNew green">
+                                        <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo?.Averagerating |
+                                        number :
+                                        '1.1-1'}}
+                                    </span>
+                                    }
+                                    @if (propertydemo?.Averagerating >= 3 && propertydemo?.Averagerating < 4) { <span
+                                        class="overallRateingNew yellow">
+                                        <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo?.Averagerating |
+                                        number :
+                                        '1.1-1'}}
+                                        </span>
+                                        }
+                                        @if (propertydemo?.Averagerating < 3) { <span class="overallRateingNew red">
+                                            <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo?.Averagerating |
+                                            number :
+                                            '1.1-1'}}
+                                            </span>
+                                            }
+                                </div>
+                                }
+
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="newCardHeart mb-2">
+                                <div [ngClass]="{'Rental_icons_Heart_Active_New': isInWishlist(propertydemo?.property_info_IDPK), 'New_wistlist_Heart': !isInWishlist(propertydemo?.property_info_IDPK)}"
+                                    class="Rental_icons_Heart_New mb-2"
+                                    (click)="Heart_Transtion(propertydemo?.property_info_IDPK)">
+                                </div>
+                            </div>
+                            <div class="newCardHeart">
+                                <div class="Rental_icons_Share_new" (click)="shareContent(propertydemo)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                    <!-- propertyInitialImages -->
+                    @if (propertydemo?.images?.length > 1 && MousemovementImage == true &&
+                    !imageErrorMap[propertydemo?.property_info_IDPK]) {
+                    <owl-carousel-o [options]="customOptionsGallery" class="owlCarouselODiv"
+                        (changed)="activeIndexMap[i] = $event.startPosition + 1">
+                        @for (image of (propertydemo?.images | slice:0:5); track image; let j = $index) {
+                        <ng-container>
+                            <ng-template carouselSlide>
+                                <a href="https://www.homes247.in/property/{{propertydemo?.city_name | cleanUrl}}/{{propertydemo?.locality_name | cleanUrl}}/{{propertydemo?.propertyName | cleanUrl}}-{{propertydemo?.property_info_IDPK}}"
+                                    [aria-label]="propertydemo?.propertyName + ' in ' + propertydemo?.locality_name + ', ' + propertydemo?.city_name"
+                                    target="_blank">
+                                    <img class="newListingCardImage"
+                                        [src]="propertyimage + $any(image).name + '?width=250&height=201'"
+                                        (error)="onImgError($event, propertydemo?.property_info_IDPK)" loading="eager"
+                                        fetchpriority="high" decoding="async"
+                                        [alt]="propertydemo?.propertyName + ' in ' + propertydemo?.locality_name + ', ' + propertydemo?.city_name">
+
+
+                                </a>
+                            </ng-template>
+                        </ng-container>
+                        }
+                    </owl-carousel-o>
+                    }
+
+
+                    @for (image of (propertydemo?.images | slice:0:1); track image) {
+                    <div>
+                        @if (propertydemo?.images?.length == 1 && MousemovementImage == true &&
+                        !imageErrorMap[propertydemo?.property_info_IDPK]) {
+                        <a href="https://www.homes247.in/property/{{propertydemo?.city_name | cleanUrl}}/{{propertydemo?.locality_name | cleanUrl}}/{{propertydemo?.propertyName | cleanUrl}}-{{propertydemo?.property_info_IDPK}}"
+                            [aria-label]="propertydemo?.propertyName + ' in ' + propertydemo?.locality_name + ', ' + propertydemo?.city_name"
+                            target="_blank">
+                            <img class="newListingCardImage"
+                                [src]="propertyimage + $any(image).name + '?width=250&height=201'"
+                                (error)="onImgError($event, propertydemo?.property_info_IDPK)" loading="eager"
+                                fetchpriority="high" decoding="async"
+                                [alt]="propertydemo?.propertyName + ' in ' + propertydemo?.locality_name + ', ' + propertydemo?.city_name">
+
+                        </a>
+                        }
+                    </div>
+                    }
+
+                    <div>
+                        @if (propertydemo?.images?.length == 0 || imageErrorMap[propertydemo?.property_info_IDPK]) {
+                        <a href="https://www.homes247.in/property/{{propertydemo?.city_name | cleanUrl}}/{{propertydemo?.locality_name | cleanUrl}}/{{propertydemo?.propertyName | cleanUrl}}-{{propertydemo?.property_info_IDPK}}"
+                            [aria-label]="propertydemo?.propertyName + ' in ' + propertydemo?.locality_name + ', ' + propertydemo?.city_name"
+                            target="_blank">
+                            <img class="newListingCardImage" loading="eager" fetchpriority="high" decoding="async"
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/priceOnRequestListing-new.svg"
+                                loading="eager" fetchpriority="high" decoding="async"
+                                [alt]="propertydemo?.propertyName + ' in ' + propertydemo?.locality_name + ', ' + propertydemo?.city_name">
+                            <button class="noImageRequestButton"><img
+                                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/requestImageButton.svg"
+                                    alt="noImageRequestButton">Request
+                                Image</button>
+
+                        </a>
+                        }
+                    </div>
+
+
+
+
+                    <!-- propertyInitialImages -->
+
+                    @for (image of (propertydemo?.images | slice:0:1); track image) {
+                    <div>
+                        @if (propertydemo?.images?.length == 1 && MousemovementImage == false &&
+                        !imageErrorMap[propertydemo?.property_info_IDPK]) {
+                        <a href="https://www.homes247.in/property/{{propertydemo?.city_name | cleanUrl}}/{{propertydemo?.locality_name | cleanUrl}}/{{propertydemo?.propertyName | cleanUrl}}-{{propertydemo?.property_info_IDPK}}"
+                            [aria-label]="propertydemo?.propertyName + ' in ' + propertydemo?.locality_name + ', ' + propertydemo?.city_name"
+                            target="_blank">
+                            <img class="newListingCardImage"
+                                [src]="propertyInitialImages + $any(image).name + '?width=250&height=201'"
+                                (error)="onImgError($event, propertydemo?.property_info_IDPK)" loading="eager"
+                                fetchpriority="high" decoding="async"
+                                [alt]="propertydemo?.propertyName + ' in ' + propertydemo?.locality_name + ', ' + propertydemo?.city_name">
+
+                        </a>
+                        }
+                    </div>
+                    }
+
+                    @if (propertydemo?.images?.length > 1 && MousemovementImage == false &&
+                    !imageErrorMap[propertydemo?.property_info_IDPK]) {
+                    <div>
+                        @for (image of (propertydemo?.images | slice:0:1); track image; let j = $index ) {
+                        <a href="https://www.homes247.in/property/{{propertydemo?.city_name | cleanUrl}}/{{propertydemo?.locality_name | cleanUrl}}/{{propertydemo?.propertyName | cleanUrl}}-{{propertydemo?.property_info_IDPK}}"
+                            [aria-label]="propertydemo?.propertyName + ' in ' + propertydemo?.locality_name + ', ' + propertydemo?.city_name"
+                            target="_blank">
+                            <img class="newListingCardImage"
+                                [src]="propertyInitialImages + $any(image).name + '?width=250&height=201'"
+                                (error)="onImgError($event, propertydemo?.property_info_IDPK)" loading="eager"
+                                fetchpriority="high" decoding="async"
+                                [alt]="propertydemo?.propertyName + ' in ' + propertydemo?.locality_name + ', ' + propertydemo?.city_name">
+                        </a>
+                        }
+                    </div>
+                    }
+                    <!-- propertyInitialImages -->
+
+
+
+
+
+                    <div class="imgBottomInfo d-flex  justify-content-between">
+                        <div class="d-flex">
+                            @if (propertydemo?.propertyType !== 'Plots') {
+                            <span class="imgBottomContent borderRightRed">{{propertydemo?.BHK |
+                                replaceLineBreaksany
+                                | unique2 | orderBy2}} BHK {{propertydemo?.propertyType}}</span>
+                            }
+
+                            @if (propertydemo?.propertyType == 'Plots') {
+                            <span class="imgBottomContent borderRightRed">{{propertydemo?.propertyType}}</span>
+                            }
+
+                            @if (propertydemo?.area_max == '0') {
+                            <span class="imgBottomContent">{{propertydemo?.dimension}}
+                                Acres</span>
+                            }
+                            @if (propertydemo?.area_max != '0') {
+                            <span class="imgBottomContent">{{propertydemo?.area_min}} -
+                                {{propertydemo?.area_max}}
+                                sq.ft </span>
+                            }
+                        </div>
+                        <div class="cardPhotoCountDiv">
+                            <span class="cardPhotoCount m-0 pr-1">
+                                {{ Mousemovement ? (activeIndexMap[i] || 1) : 1 }} / {{ propertydemo?.images?.length >=
+                                5
+                                ?
+                                5 : propertydemo?.images?.length }}
+                            </span>
+                            <img class="cardPhotoIcon"
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/imgCountNew.svg"
+                                alt="cardPhotoIcon">
+                        </div>
+                    </div>
+                    <div class="imgBottomInfo1"></div>
+
+                </div>
+
+
+
+
+                <div class="ListingCardbottom">
+                    <div class="text-truncate">
+                        <a href="https://www.homes247.in/property/{{propertydemo?.city_name | cleanUrl}}/{{propertydemo?.locality_name | cleanUrl}}/{{propertydemo?.propertyName | cleanUrl}}-{{propertydemo?.property_info_IDPK}}"
+                            target="_blank" class="cardPropertyName m-0"
+                            [aria-label]="propertydemo?.propertyName + ' in ' + propertydemo?.locality_name + ', ' + propertydemo?.city_name">
+                            {{propertydemo?.propertyName}}
+                        </a>
+                    </div>
+                    <div class="cardPropertyLocation  text-truncate"> {{propertydemo?.locality_name}},
+                        {{propertydemo?.city_name}}</div>
+                    @if (propertydemo?.price_max !== '0 ') {
+                    <div class="cardPropPricing mt-1"> ₹
+                        {{propertydemo?.price_min}}
+                        - {{propertydemo?.price_max}}</div>
+                    }
+
+
+                    @if (propertydemo?.price_max == '0 ') {
+                    <div class="cardPropPricingOnRequest mt-1" propertydemo-toggle="modal"
+                        propertydemo-target="#myModal_city" propertydemo-backdrop="static" propertydemo-keyboard="false"
+                        (click)="propertyNameClick(propertydemo?.propertyName,propertydemo?.RegionID,propertydemo?.localityid,propertydemo?.property_info_IDPK)">
+                        Unlock Price Info
+                        <img width="18px" height="18px"
+                            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg"
+                            alt="padlock">
+                    </div>
+                    }
+                    <div class="newCardStatus d-flex my-2">
+                        <span class="propStatus">{{ propertydemo?.Status }}</span>
+                        @if (propertydemo?.Status != 'Ready to Move' ) {
+                        <span class="propStatus ml-2">Completion in {{
+                            propertydemo?.PossessionDate | date :
+                            "MMM-yyyy"}}</span>
+                        }
+
+                        @if (propertydemo?.Status == 'Ready to Move' ) {
+                        <span class="propStatus ml-2">Since {{
+                            propertydemo?.PossessionDate | date :
+                            "MMM-yyyy"}}</span>
+                        }
+
+                    </div>
+                    <div class="d-flex justify-content-between cardBottomContainer">
+                        <div class="d-flex propertyBuilderContainer">
+                            <img class="propertyBuilder mr-1"
+                                src="https://img.homes247.in/images/builder/{{propertydemo?.builder_logo}}?width=34&height=38"
+                                alt="propertyBuilder">
+
+
+                            <div class="propertyBuilderName text-truncate">{{propertydemo?.BuilderName}}</div>
+                        </div>
+                        <div class="pr-2">
+                            <img (click)="propertyNameClick(propertydemo?.propertyName,propertydemo?.RegionID,propertydemo?.localityid,propertydemo?.property_info_IDPK)"
+                                class="cardContactIcons" data-toggle="modal" data-target="#myModal_city"
+                                data-backdrop="static" data-keyboard="false"
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/newCallIcon1.svg"
+                                alt="cardContactIcons">
+                            <img (click)="whatsupshare(propertydemo)" class="cardContactIconsWhatsApp ml-1"
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/newWhatsAppIcon1.svg"
+                                alt="cardContactIconsWhatsApp">
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+
+            }
+
+
+
+
+
+
+            @if (Mousemovement) {
+            <div style="width: 100%;">
+                <ng-container *ngComponentOutlet="BuilderSectionTwoComponent"></ng-container>
+            </div>
+            }
+
+        </section >
+
+    </div>
+
+    <ng-container *ngComponentOutlet="enquiryFormComponent"></ng-container>
+
+    @if(zeroprojects){
+    <div>
+        <p class="noprojects">Sorry, No Projects Found<span>.</span><span>.</span><span>.</span></p>
+    </div>
+    }
+
+
+</main>
+
+<aside  class="about_contact_us">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+            <div class="col-lg-8 col-md-8 col-sm-8">
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+        </div>
+    </div>
+</aside>
+
+@if (showLoader) {
+<!-- @for (item of [1,2,3,4]; track item) { -->
+
+<div class="px-2">
+
+    <!-- Top Image Section -->
+    <div class="listingCardTop">
+
+        <!-- Tags Top -->
+        <div class="cardTagsTop d-flex justify-content-between">
+
+            <div class="d-flex">
+                <ngx-skeleton-loader
+                    [theme]="{ width: '60px', height: '20px', 'border-radius': '15px', background: '#80808030' }">
+                </ngx-skeleton-loader>
+
+                <ngx-skeleton-loader class="ml-2"
+                    [theme]="{ width: '45px', height: '20px', 'border-radius': '15px', background: '#80808030' }">
+                </ngx-skeleton-loader>
+            </div>
+
+            <div class="d-flex flex-column">
+                <ngx-skeleton-loader
+                    [theme]="{ width: '25px', height: '25px', 'border-radius': '50%', background: '#80808030' }">
+                </ngx-skeleton-loader>
+
+                <ngx-skeleton-loader class="mt-2"
+                    [theme]="{ width: '25px', height: '25px', 'border-radius': '50%', background: '#80808030' }">
+                </ngx-skeleton-loader>
+            </div>
+        </div>
+
+        <!-- Main Image -->
+        <ngx-skeleton-loader [theme]="{ height: '220px', 'border-radius': '12px', background: '#80808030' }">
+        </ngx-skeleton-loader>
+
+        <!-- Bottom Image Info -->
+        <!-- <div class="imgBottomInfo d-flex justify-content-between mt-2">
+                    <ngx-skeleton-loader
+                        [theme]="{ width: '140px', height: '18px', 'border-radius': '6px', background: '#80808030' }">
+                    </ngx-skeleton-loader>
+
+                    <ngx-skeleton-loader
+                        [theme]="{ width: '60px', height: '18px', 'border-radius': '6px', background: '#80808030' }">
+                    </ngx-skeleton-loader>
+                </div> -->
+
+    </div>
+
+    <!-- Bottom Content -->
+    <div class="ListingCardbottomskeleton mt-3">
+
+        <!-- Property Name -->
+        <ngx-skeleton-loader
+            [theme]="{ width: '75%', height: '20px', 'border-radius': '6px', background: '#80808030' }">
+        </ngx-skeleton-loader>
+
+        <!-- Location -->
+        <!-- <ngx-skeleton-loader class="mt-2"
+                    [theme]="{ width: '55%', height: '16px', 'border-radius': '6px', background: '#80808030' }">
+                </ngx-skeleton-loader> -->
+
+        <!-- Price -->
+        <ngx-skeleton-loader class="mt-3"
+            [theme]="{ width: '45%', height: '20px', 'border-radius': '6px', background: '#80808030' }">
+        </ngx-skeleton-loader>
+
+        <!-- Status -->
+        <div class="d-flex mt-3">
+            <ngx-skeleton-loader
+                [theme]="{ width: '100px', height: '25px', 'border-radius': '20px', background: '#80808030' }">
+            </ngx-skeleton-loader>
+
+            <ngx-skeleton-loader class="ml-2"
+                [theme]="{ width: '120px', height: '25px', 'border-radius': '20px', background: '#80808030' }">
+            </ngx-skeleton-loader>
+        </div>
+
+        <!-- Bottom Row -->
+        <div class="d-flex justify-content-between mt-3">
+
+            <div class="d-flex align-items-center">
+                <ngx-skeleton-loader
+                    [theme]="{ width: '35px', height: '38px', 'border-radius': '6px', background: '#80808030' }">
+                </ngx-skeleton-loader>
+
+                <ngx-skeleton-loader class="ml-2"
+                    [theme]="{ width: '100px', height: '16px', 'border-radius': '6px', background: '#80808030' }">
+                </ngx-skeleton-loader>
+            </div>
+
+            <div class="d-flex">
+                <ngx-skeleton-loader
+                    [theme]="{ width: '35px', height: '35px', 'border-radius': '50%', background: '#80808030' }">
+                </ngx-skeleton-loader>
+
+                <ngx-skeleton-loader class="ml-2"
+                    [theme]="{ width: '35px', height: '35px', 'border-radius': '50%', background: '#80808030' }">
+                </ngx-skeleton-loader>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- } -->
+}
+
+
+
+
+
+
+<div style="height: 90px;"></div>
+
+
+@defer(hydrate on idle){
+<nav class="mobile-bottom-nav1">
+    <div class="bottom-nav-item mobile-bottom-nav__item col-2">
+        <div class="mobile-bottom-nav__item-content" (click)="ShowHideSort()">
+            <div class="footer_img_1"></div>
+            <p class="navBorder">Sort</p>
+        </div>
+    </div>
+
+    <div class="bottom-nav-item mobile-bottom-nav__item col-2">
+        <div class="mobile-bottom-nav__item-content" (click)="ShowHideFilter()" data-toggle="modal"
+            data-target="#filterModal">
+            <div class="footer_img_3"></div>
+            <p class="navBorder">Filter</p>
+        </div>
+    </div>
+
+    <div class="bottom-nav-item mobile-bottom-nav__item col-4">
+        <a class="mobile-bottom-nav__item-content" href="https://www.homes247.in/postproperty">
+            <div class="footer_img_22"></div>
+            <p id="navBorderPost">Post Property</p>
+        </a>
+    </div>
+    @if (loginidNew == 1) {
+    <div class="bottom-nav-item mobile-bottom-nav__item col-2">
+        <a aria-label="user Wishlist" class="mobile-bottom-nav__item-content"
+            href="https://www.homes247.in/userauth/wishlist/{{UserId}}">
+            <div class="footer_img_4"></div>
+            <p class="navBorder">Wishlist</p>
+        </a>
+    </div>
+
+    <div class="bottom-nav-item mobile-bottom-nav__item col-2">
+        <a aria-label="user Account" class="mobile-bottom-nav__item-content"
+            href="https://www.homes247.in/userauth/profile/{{UserId}}">
+            <div class="footer_img_5"></div>
+            <p class="navBorder">Account</p>
+        </a>
+    </div>
+    } @else {
+
+    <div class="bottom-nav-item mobile-bottom-nav__item col-2">
+        <a aria-label="user Wishlist" class="mobile-bottom-nav__item-content"
+            href="https://www.homes247.in/login?id=Profile">
+            <div class="footer_img_4"></div>
+            <p class="navBorder">Wishlist</p>
+        </a>
+    </div>
+
+    <div class="bottom-nav-item mobile-bottom-nav__item col-2">
+        <a aria-label="user Account" class="mobile-bottom-nav__item-content"
+            href="https://www.homes247.in/seenprojects">
+            <div class="footer_img_5"></div>
+            <p class="navBorder">Account</p>
+        </a>
+    </div>
+
+    }
+</nav>
+}
+
+
+
+@if (sortShowHide) {
+<div id="sortmain_div">
+    <br>
+    <div class="custom-control custom-radio radiodiv1">
+        <label for="customRadio1" class="sort_radio">Relevance</label>
+        <input type="radio" id="customRadio1" name="customRadio">
+    </div>
+    <div class="custom-control custom-radio radiodiv">
+        <label for="customRadio2" class="sort_radio">Low to High</label>
+        <input type="radio" id="customRadio2" name="customRadio">
+    </div>
+    <div class="custom-control custom-radio radiodiv">
+        <label for="customRadio3" class="sort_radio">High to Low</label>
+        <input type="radio" id="customRadio3" name="customRadio">
+    </div>
+    <div class="custom-control custom-radio radiodiv2">
+        <label for="customRadio4" class="sort_radio">Recent</label>
+        <input type="radio" id="customRadio4" name="customRadio">
+    </div>
+</div>
+}
+
+
+
+
+
+
+@if (otploader) {
+<div class="loaderbody">
+    <div class="box">
+        <div class="loader-20"></div>
+    </div>
+</div>
+}
+
+
+
+<div class="innerheader_position"><app-inner-headder-with-sidenav></app-inner-headder-with-sidenav></div>

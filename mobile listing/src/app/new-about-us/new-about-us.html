@@ -1,0 +1,161 @@
+<!-- Mobile Header -->
+<app-home-sidenavbar></app-home-sidenavbar>
+
+<div class="mobile-about-wrapper">
+
+  <!-- Section 1: Mobile Hero Banner -->
+  <div class="m-hero-banner">
+    <div class="m-hero-title-box px-3 pt-4">
+      <h1 class="m-hero-title">
+        <span class="m-about-text">About</span><br />
+        <span class="m-homes-text">Homes247</span>
+      </h1>
+    </div>
+  </div>
+
+  <!-- Section 2: Mobile Our Story Begins Here -->
+  <div class="m-our-story-section py-3 px-2">
+    <div class="m-our-story-card p-3">
+      <h2 class="m-story-title text-center mb-3">Our Story Begins Here</h2>
+
+      <p class="m-story-para">
+        At Homes247, we believe everyone deserves their dream home and our portal will be your guide.
+      </p>
+      <p class="m-story-para">
+        Real estate is one of life's biggest decisions, and finding the right property deserves more than endless
+        scrolling. Since 2017, Homes247 has brought together over 30 lakh property listings on a single real estate
+        portal, making it easier to discover apartments, villas, plots, commercial spaces and rental properties across
+        India's growing markets.
+      </p>
+
+      <div class="m-story-img-box my-3">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newAboutUS/nineYearsOfHomesMobile.svg"
+          alt="9 Years of Building Dreams" class="m-story-img-nine" />
+      </div>
+
+      <p class="m-story-para">
+        So we built Homes247.in as one place that stays with you through all of it. Not just search, but the site visit,
+        the home loan support, right up to getting your keys
+      </p>
+      <p class="m-story-para">
+        We're also one of the trusted real estate portals for renting, reselling, and researching property in India, and
+        it's completely free to post if you're an owner or agent.
+      </p>
+      <p class="m-story-para">
+        Whether you're buying your first home, renting your next one, or listing a property to sell, Homes247 is built
+        to go the distance with you.
+      </p>
+
+      <div class="m-story-img-box mt-3">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newAboutUS/aboutUsProgressMobile.svg"
+          alt="Homes247 Services & Progress" class="m-story-img-progress" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Mobile Founder & CEO -->
+  <div class="m-founder-section py-3 px-2 position-relative">
+    <div class="m-founder-card p-3">
+      <h2 class="m-founder-name mb-1">Priyatham Kumar K</h2>
+      <p class="m-founder-designation mb-3">Founder & CEO, Homes247</p>
+
+      <p class="m-founder-para">
+        The idea behind Homes247 didn't begin with technology. It began with a deep understanding of the challenges
+        people face while buying a home.
+      </p>
+      <p class="m-founder-para">
+        Priyatham Kumar laid the foundation of Homes247 and VSNAP Technology Solutions after 2 decades of experience in
+        banking, insurance and real estate. An alumni of IIM Ahmedabad and engineer by trade, he fell in love with sales
+        and marketing from a very early age. Today, that same instinct shapes every decision at Homes247, build what the
+        industry is missing, a vision that guides us forward even today.
+      </p>
+
+      <!-- Founder Mobile Image -->
+      <div class="text-center my-3">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newAboutUS/priyathamKumarKMobile.svg"
+          alt="Priyatham Kumar K" class="m-founder-img" />
+      </div>
+    </div>
+
+    <!-- Mobile Torn Quote Banner -->
+    <div class="m-quote-card-wrapper">
+      <div class="m-quote-card-bg">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newAboutUS/AboutUsQuoteIcon.svg" alt="Quote"
+          class="m-quote-icon" />
+        <p class="m-quote-text mb-0">
+          "Everyone dreams of owning a home, and mine is to make their dream come true"
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4: Mobile Our Hall of Excellence -->
+  <div class="m-hall-excellence-section py-3 px-2">
+    <h2 class="m-hall-title text-center mb-1">Our Hall of Excellence</h2>
+    <p class="m-hall-subheading text-center mb-4">
+      A showcase of our achievements, recognitions, and stories that define Homes247.
+    </p>
+
+    <!-- Left Box: Industry Recognition (Awards) -->
+    <div class="m-hall-card mb-4 p-3">
+      <div class="m-hall-card-header text-center">
+        <div class="d-flex align-items-center justify-content-center gap-2 position-relative">
+          <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newAboutUS/honourGoldenLeaf.svg" alt="Leaf"
+            class="m-leaf-icon" />
+          <h3 class="m-hall-card-title mb-0">Industry Recognition</h3>
+          <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newAboutUS/honourGoldenLeaf.svg" alt="Leaf"
+            class="m-leaf-icon m-leaf-icon-right" />
+          <div class="stars-box mt-1">
+            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newAboutUS/honourGoldenStars.svg"
+              alt="Stars" class="m-stars-icon" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Awards Carousel -->
+      <div class="m-hall-slider-wrapper mt-3">
+        <owl-carousel-o [options]="awardsOptions">
+          <ng-template carouselSlide *ngFor="let item of awardsList">
+            <div class="m-award-box mx-auto">
+              <img [src]="item.img" [alt]="item.title" class="m-award-trophy-img" />
+            </div>
+          </ng-template>
+        </owl-carousel-o>
+      </div>
+    </div>
+
+    <!-- Right Box: Media Spotlight (In The News) -->
+    <div class="m-hall-card p-3">
+      <div class="m-hall-card-header text-center">
+        <div class="d-flex align-items-center justify-content-center gap-2 position-relative">
+          <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newAboutUS/honourGoldenLeaf.svg" alt="Leaf"
+            class="m-leaf-icon" />
+          <h3 class="m-hall-card-title mb-0">Media Spotlight</h3>
+          <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newAboutUS/honourGoldenLeaf.svg" alt="Leaf"
+            class="m-leaf-icon m-leaf-icon-right" />
+          <div class="stars-box mt-1">
+            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newAboutUS/honourGoldenStars.svg"
+              alt="Stars" class="m-stars-icon" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Media Spotlight Carousel -->
+      <div class="m-hall-slider-wrapper mt-3">
+        <owl-carousel-o [options]="mediaOptions">
+          <ng-template carouselSlide *ngFor="let item of mediaList">
+            <div class="m-media-box mx-auto">
+              <a [href]="item.link" target="_blank" rel="noopener nofollow">
+                <img [src]="item.img" [alt]="item.title" class="m-media-article-img" />
+              </a>
+            </div>
+          </ng-template>
+        </owl-carousel-o>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Mobile Footer -->
+<app-footer-new-mobile></app-footer-new-mobile>

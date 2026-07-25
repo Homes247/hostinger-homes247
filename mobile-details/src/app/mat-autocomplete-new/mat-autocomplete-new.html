@@ -1,0 +1,1872 @@
+<div id="hidefilter">
+  <div class="filter_scrollmenu">
+    <!-- @if (current_min?.length > 0 || current_max?.length > 0) {
+    <button class="active" (click)="clearBudgetChip(); updatecount(); FilterNavigationChip()">
+      {{currentMin}} - {{currentMax}}
+      &nbsp;<i class="fa fa-times androidAppIcon"></i>
+    </button>
+    } -->
+
+    <!-- @if (SelectedType == 'Buy' && currentMin && currentMax) {
+    <button class="active" (click)="clearBudgetChip(); updatecount(); FilterNavigationChip()">
+      {{currentMin}} - {{currentMax}}
+      &nbsp;<i class="fa fa-times androidAppIcon"></i>
+    </button>
+    }
+
+    @if (SelectedType == 'Rent' && currentMin1 && currentMax1) {
+    <button class="active" (click)="clearBudgetChip(); updatecount(); FilterNavigationChip()">
+      {{currentMin1}} - {{currentMax1}}
+      &nbsp;<i class="fa fa-times androidAppIcon"></i>
+    </button>
+    }
+
+    @if (SelectedType == 'Commercial' && currentMin2 && currentMax2) {
+    <button class="active" (click)="clearBudgetChip(); updatecount(); FilterNavigationChip()">
+      {{currentMin2}} - {{currentMax2}}
+      &nbsp;<i class="fa fa-times androidAppIcon"></i>
+    </button>
+    }
+
+
+    @if (SelectedType == 'PG' && currentMin3 && currentMax3) {
+    <button class="active" (click)="clearBudgetChip(); updatecount(); FilterNavigationChip()">
+      {{currentMin3}} - {{currentMax3}}
+      &nbsp;<i class="fa fa-times androidAppIcon"></i>
+    </button>
+    } -->
+
+
+    @if (area_min?.length > 0 || area_max?.length > 0) {
+
+    <button class="active" (click)="clearAreaChip(); updatecount(); FilterNavigationChip()">
+
+      {{area_min[0]}} sqft - {{area_max[0]}} sqft
+
+      &nbsp;
+      <i class="fa fa-times androidAppIcon"></i>
+
+    </button>
+
+    }
+
+
+    @if (SelectedLocalityName?.length > 0) {
+
+    @for (loc of SelectedLocalityName; track loc.LocalityId) {
+
+    <button class="active" (click)="removeLocalityChip(loc); updatecount(); FilterNavigationChip()">
+
+      {{ loc.locality_name }}
+
+      &nbsp;
+      <i class="fa fa-times androidAppIcon"></i>
+
+    </button>
+
+    }
+
+    }
+
+    <!-- <button class="active" (click)="clearAreaChip();updatecount(); FilterNavigationChip()">
+
+      {{SelectedLocalityName}}
+
+      &nbsp;
+      <i class="fa fa-times androidAppIcon"></i>
+
+    </button> -->
+
+    @if (apartmentSelect) {
+    <button [ngClass]="{'active': apartmentSelect}"
+      (click)="apartmentclick();updatecount();FilterNavigationChip()">Apartments&nbsp;<i
+        class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+
+    @if (villaSelect) {
+    <button [ngClass]="{'active': villaSelect}"
+      (click)="villaclick();updatecount();FilterNavigationChip()">Villas&nbsp;<i class="fa fa-times androidAppIcon"
+        aria-hidden="true"></i></button>
+    }
+
+    @if (plotSelect) {
+    <button [ngClass]="{'active': plotSelect}" (click)="plotclick();updatecount();FilterNavigationChip()">Plots&nbsp;<i
+        class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+
+    @if (HouseSelect) {
+    <button [ngClass]="{'active': HouseSelect}" (click)="houseclick();updatecount();FilterNavigationChip()">Independent
+      House&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i> </button>
+    }
+
+    @if (oneRKBedroomSelect) {
+    <button [ngClass]="{'active': oneRKBedroomSelect}" (click)="oneRKBedroom();updatecount();FilterNavigationChip()">1
+      RK&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+
+    @if (oneBedroomSelect) {
+    <button [ngClass]="{'active': oneBedroomSelect}" (click)="oneBedroom();updatecount();FilterNavigationChip()">1
+      BHK&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+
+    @if (twoBedroomSelect) {
+    <button [ngClass]="{'active': twoBedroomSelect}" (click)="twoBedroom();updatecount();FilterNavigationChip()">2
+      BHK&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+
+    @if (threeBedroomSelect) {
+    <button [ngClass]="{'active': threeBedroomSelect}" (click)="threeBedroom();updatecount();FilterNavigationChip()">3
+      BHK&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+
+    @if (fourBedroomSelect) {
+    <button [ngClass]="{'active': fourBedroomSelect}" (click)="fourBedroom();updatecount();FilterNavigationChip()">4
+      BHK&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+
+    @if (fiveBedroomSelect) {
+    <button [ngClass]="{'active': fiveBedroomSelect}" (click)="fiveBedroom();updatecount();FilterNavigationChip()">5
+      BHK&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+
+    @if (sixBedroomSelect) {
+    <button [ngClass]="{'active': sixBedroomSelect}" (click)="sixBedroom();updatecount();FilterNavigationChip()">6
+      BHK&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+
+    @if (sevenBedroomSelect) {
+    <button [ngClass]="{'active': sevenBedroomSelect}" (click)="sevenBedroom();updatecount();FilterNavigationChip()">7
+      BHK&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+
+    @if (oneBathroomSelect) {
+    <button [ngClass]="{'active': oneBathroomSelect}" (click)="oneBathroom();updatecount();FilterNavigationChip()">1
+      Bathroom&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+
+    @if (twoBathroomSelect) {
+    <button [ngClass]="{'active': twoBathroomSelect}" (click)="twoBathroom();updatecount();FilterNavigationChip()">2
+      Bathroom&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+
+    @if (threeBathroomSelect) {
+    <button [ngClass]="{'active': threeBathroomSelect}" (click)="threeBathroom();updatecount();FilterNavigationChip()">3
+      Bathroom&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+
+    @if (fourBathroomSelect) {
+    <button [ngClass]="{'active': fourBathroomSelect}" (click)="fourBathroom();updatecount();FilterNavigationChip()">4
+      Bathroom&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+
+    @if (ImmediateSelect) {
+    <button [ngClass]="{'active': ImmediateSelect}"
+      (click)="PosessionImmediate();updatecount();FilterNavigationChip()">Immediate&nbsp;<i
+        class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+
+    @if (SixMonthsSelect) {
+    <button [ngClass]="{'active': SixMonthsSelect}"
+      (click)="PosessionSixMonths();updatecount();FilterNavigationChip()">6
+      months&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+
+    @if (OneYearSelect) {
+    <button [ngClass]="{'active': OneYearSelect}" (click)="PosessionOneYear();updatecount();FilterNavigationChip()">1
+      year&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+
+    @if (twoYearSelect) {
+    <button [ngClass]="{'active': twoYearSelect}"
+      (click)="PosessionTwoYearAbove();updatecount();FilterNavigationChip()">2+
+      years&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+
+    @if (SelectedType == 'Rent') {
+    <div>
+      @if (ImmediateSelect1) {
+      <button [ngClass]="{'active': ImmediateSelect1}" (click)="Immediateclick()">Immediate&nbsp;<i
+          class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+      }
+      @if (Within15DaysSelect) {
+      <button [ngClass]="{'active': Within15DaysSelect}"
+        (click)="Within15Daysclick();updatecount();FilterNavigationChip()">Within
+        15 Days&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+      }
+      @if (Within30DaysSelect) {
+      <button [ngClass]="{'active': Within30DaysSelect}"
+        (click)="Within30Daysclick();updatecount();FilterNavigationChip()">Within
+        30 Days&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+      }
+      @if (After30DaysSelect) {
+      <button [ngClass]="{'active': After30DaysSelect}"
+        (click)="After30Daysclick();updatecount();FilterNavigationChip()">After 30
+        Days&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+      }
+    </div>
+    }
+
+    @if (readyToMoveSelect) {
+    <button [ngClass]="{'active': readyToMoveSelect}" (click)="readyToMove();updatecount();FilterNavigationChip()">Ready
+      to
+      move&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+
+    @if (underConstructionSelect) {
+    <button [ngClass]="{'active': underConstructionSelect}" (click)="underConstruction()">Under Construction&nbsp;<i
+        class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+
+    @if (newLaunchSelect) {
+    <button [ngClass]="{'active': newLaunchSelect}" (click)="newLaunch();updatecount();FilterNavigationChip()">New
+      Launch&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+
+    @if (preLaunchSelect) {
+    <button [ngClass]="{'active': preLaunchSelect}" (click)="upcoming();updatecount();FilterNavigationChip()">Up
+      Coming&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+    @if (parkingSelect) {
+    <button [ngClass]="{'active': parkingSelect}" (click)="Amenitiesclick(1);FilterNavigationChip()">Car
+      Parking&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+    @if (powerBackupSelect) {
+    <button [ngClass]="{'active': powerBackupSelect}" (click)="Amenitiesclick(2);FilterNavigationChip()">Power
+      Backup&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+    @if (cctvSelect) {
+    <button [ngClass]="{'active': cctvSelect}" (click)="Amenitiesclick(3);FilterNavigationChip()">CCTV&nbsp;<i
+        class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+    @if (elevatorSelect) {
+    <button [ngClass]="{'active': elevatorSelect}" (click)="Amenitiesclick(4);FilterNavigationChip()">Elevator&nbsp;<i
+        class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+    }
+    @if (SelectedType == 'Rent') {
+    <div>
+      @if (Furnish) {
+      <button [ngClass]="{'active': Furnish}"
+        (click)="changeFurnishestype();updatecount();FilterNavigationChip()">Furnished&nbsp;<i
+          class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+      }
+      @if (SemiFurnish) {
+      <button [ngClass]="{'active': SemiFurnish}"
+        (click)="changeSemiFurnishestype();updatecount();FilterNavigationChip()">Semi
+        Furnished&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+      }
+      @if (unFurnish) {
+      <button [ngClass]="{'active': unFurnish}"
+        (click)="changeunFurnishestype();updatecount();FilterNavigationChip()">Unfurnished&nbsp;<i
+          class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+      }
+    </div>
+    }
+
+    @if (SelectedType == 'Rent') {
+    <div>
+      @if (OwnerSelect) {
+      <button [ngClass]="{'active': OwnerSelect}"
+        (click)="changeownership();updatecount();FilterNavigationChip()">Owner&nbsp;<i
+          class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+      }
+      @if (AgentSelect) {
+      <button [ngClass]="{'active': AgentSelect}"
+        (click)="changeagentship();updatecount();FilterNavigationChip()">Agent&nbsp;<i
+          class="fa fa-times androidAppIcon" aria-hidden="true"></i></button>
+      }
+    </div>
+    }
+
+    @for (facing of Doorfacelist; track facing.id) {
+    <div>
+      @if (selectedFacings?.includes(facing.id)) {
+      <button [ngClass]="{'active': selectedFacings?.includes(facing.id)}"
+        (click)="DoorFacing(facing.id);updatecount();FilterNavigationChip()">
+        {{ facing.doorface }}&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i>
+      </button>
+      }
+    </div>
+    }
+
+    @for (option of TenentFilterOptions; track option.id) {
+    <div>
+      @if (selectedTenant === +option.id) {
+      <button [ngClass]="{'active': selectedTenant === +option.id}"
+        (click)="toggleTenantSelection(+option.id);updatecount();FilterNavigationChip()">
+        Tenants: {{ option.tenants }}&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i>
+      </button>
+      }
+    </div>
+    }
+
+    @if (FilterBYFloors != null) {
+    <button class="active" (click)="FilterBYFloorsSelection(FilterBYFloors!);updatecount();FilterNavigationChip()">
+      Floor: {{ FilterBYFloorsFilterOptions[FilterBYFloors - 1]?.label }}&nbsp;<i class="fa fa-times androidAppIcon"
+        aria-hidden="true"></i>
+    </button>
+    }
+
+    <!-- PG Chips -->
+    @if (SelectedType == 'PG') {
+    <div>
+      @for (sharingOpt of roomTypes; track sharingOpt.value) {
+      @if (Sharing_Type.includes(sharingOpt.value)) {
+      <button class="active" (click)="Sharing_TypeSelection(sharingOpt.value);FilterNavigationChip()">
+        Sharing: {{ sharingOpt.label }}&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i>
+      </button>
+      }
+      }
+      @for (pgForOpt of pgAvailableForList; track pgForOpt.key) {
+      @if (PG_For_Type.includes(pgForOpt.key)) {
+      <button class="active" (click)="PG_ForSelection(pgForOpt.key);FilterNavigationChip()">
+        PG For: {{ pgForOpt.label }}&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i>
+      </button>
+      }
+      }
+      @for (suitOpt of pgBestSuitForList; track suitOpt.key) {
+      @if (Suitable_For_Type.includes(suitOpt.key)) {
+      <button class="active" (click)="Suitable_For_TypeSelection(suitOpt.key);FilterNavigationChip()">
+        Suitable: {{ suitOpt.label }}&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i>
+      </button>
+      }
+      }
+      @for (foodOpt of pgFoodList; track foodOpt.key) {
+      @if (Food_Included_Type.includes(foodOpt.key)) {
+      <button class="active" (click)="Food_Included_TypeSelection(foodOpt.key);FilterNavigationChip()">
+        Food: {{ foodOpt.label }}&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i>
+      </button>
+      }
+      }
+    </div>
+    }
+
+    <!-- Commercial Chips -->
+    @if (SelectedType == 'Commercial') {
+    <div>
+      @for (propOpt of commercialPropertyTypeList; track propOpt.key) {
+      @if (commercialPropertyType.includes(propOpt.key)) {
+      <button class="active" (click)="commercialPropertyTypeListing(propOpt.key);FilterNavigationChip()">
+        Category: {{ propOpt.label }}&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i>
+      </button>
+      }
+      }
+      @for (bldgOpt of buildingTypeList; track bldgOpt.key) {
+      @if (buildingTypeListvalue.includes(bldgOpt.key)) {
+      <button class="active" (click)="buildingTypeListing(bldgOpt.key);FilterNavigationChip()">
+        Building: {{ bldgOpt.label }}&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i>
+      </button>
+      }
+      }
+      @for (furnOpt of furnishTypeList; track furnOpt.key) {
+      @if (furnishTypeListvalue.includes(furnOpt.key)) {
+      <button class="active" (click)="furnishTypeListing(furnOpt.key);FilterNavigationChip()">
+        Furnish: {{ furnOpt.label }}&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i>
+      </button>
+      }
+      }
+      @for (ageOpt of propertyAgeList; track ageOpt.key) {
+      @if (propertyAgeListvalue.includes(ageOpt.key)) {
+      <button class="active" (click)="propertyAgeListing(ageOpt.key);FilterNavigationChip()">
+        Age: {{ ageOpt.label }}&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i>
+      </button>
+      }
+      }
+      @if (ImmediateSelect1) {
+      <button class="active" (click)="Immediateclick();updatecount();FilterNavigationChip()">
+        Availability: Immediate&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i>
+      </button>
+      }
+      @if (Within15DaysSelect) {
+      <button class="active" (click)="Within15Daysclick();updatecount();FilterNavigationChip()">
+        Availability: Within 15 Days&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i>
+      </button>
+      }
+      @if (Within30DaysSelect) {
+      <button class="active" (click)="Within30Daysclick();updatecount();FilterNavigationChip()">
+        Availability: Within 30 Days&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i>
+      </button>
+      }
+      @if (After30DaysSelect) {
+      <button class="active" (click)="After30Daysclick();updatecount();FilterNavigationChip()">
+        Availability: After 30 Days&nbsp;<i class="fa fa-times androidAppIcon" aria-hidden="true"></i>
+      </button>
+      }
+    </div>
+    }
+
+
+
+
+
+
+  </div>
+</div>
+<div class="modal fade full-screen-modal" id="FirstCityModal" tabindex="-1" role="dialog"
+  aria-labelledby="selectCityLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body p-0">
+        <div class="header col-12">
+          <button (click)="CloseModal()" class="back-button"><svg id="fi_5436729" height="20" viewBox="0 0 24 24"
+              width="20" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="m17 23a1 1 0 0 1 -.71-.29l-10-10a1 1 0 0 1 0-1.42l10-10a1 1 0 1 1 1.42 1.42l-9.3 9.29 9.3 9.29a1 1 0 0 1 0 1.42 1 1 0 0 1 -.71.29z">
+              </path>
+            </svg></button>
+          <h5>Select City</h5>
+        </div>
+        <div class="city-selection-container">
+          <div class="search-bar">
+            <app-search-dropdown-main-city #componentTrigger [items]="citiesss" [size]="'small'" [label]="'city'"
+              [uid]="'city'" [(ngModel)]="selectedCity" (ngModelChange)="SecondModalOpen(selectedCity);reset2()">
+            </app-search-dropdown-main-city>
+            <input type="hidden" id="City_Name" [(ngModel)]="selectedCity">
+          </div>
+          <div class="top-cities">
+            <h2 style="color: #0B3544;">Top Cities</h2>
+            <div class="city-grid">
+              @for (item of topCitiesMy; track item.item) {
+              <div class="city-card" (click)="SecondModalOpen(item.item);reset2()" [ngStyle]="{
+                'border': clickedCityName === item.item ? '1px solid #971B47' : '1px solid transparent'
+              }">
+                <img
+                  [src]="clickedCityName === item.item
+                  ? 'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/webStory/' + item.item + '_active.svg' 
+                  : 'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/webStory/' + item.item + '.svg'">
+                <span id="City_Name" [ngStyle]="{
+                  'font-weight': clickedCityName === item.item ? '500' : '400',
+                  'color': clickedCityName === item.item ? '#971B47' : '#333'
+                }">{{item.item}}</span>
+              </div>
+              }
+            </div>
+          </div>
+          <div class="popular-cities">
+            <h2 style="color: #0B3544;">Popular Cities</h2>
+            <div class="popular-city-list">
+              <div class="city-container">
+                <div class="row">
+                  @for (cityname of Allcities | orderByy: 'city'; track cityname.city) {
+                  <p class="col-6" style="font-family: 'poppins'; font-size: 14px;" id="City_Name"
+                    (click)="SecondModalOpen(cityname.city);reset2()" [ngStyle]="{
+                      'font-weight': clickedCityName === cityname.city ? '500' : '400',
+                      'color': clickedCityName === cityname.city ? '#333' : '#000000'
+                    }">
+                    {{ cityname.city }}
+                  </p>
+                  }
+
+                  <br>
+                  <br>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade full-screen-modal" id="SecondCityModal" tabindex="-1" role="dialog"
+  aria-labelledby="searchModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header header">
+        <button (click)="FirstModalOpen()" class="back-button"><svg id="fi_5436729" height="16" viewBox="0 0 24 24"
+            width="16" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="m17 23a1 1 0 0 1 -.71-.29l-10-10a1 1 0 0 1 0-1.42l10-10a1 1 0 1 1 1.42 1.42l-9.3 9.29 9.3 9.29a1 1 0 0 1 0 1.42 1 1 0 0 1 -.71.29z">
+            </path>
+          </svg></button>
+        <h4 class="modal-title">You're Searching In <span class="text-primary">{{clickedCityName}}</span></h4>
+        <span class="change_city" (click)="FirstModalOpen()">
+          Change City
+        </span>
+      </div>
+      <div class="modal-body " style="background: #F6F7F9;height: 64px;">
+        <div class="form-group">
+          <!-- Note: Changed *ngComponentOutlet to [ngComponentOutlet] for standard Angular compliance -->
+          <ng-container [ngComponentOutlet]="Ejscomponent"></ng-container>
+        </div>
+
+      </div>
+
+      <div class="modal-body">
+        @if (recentSearches.length != 0) {
+        <div>
+          <h6 class="section-title">Your Recent Searches<svg width="16px" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg" id="fi_18262710">
+              <g id="Icon">
+                <path
+                  d="m12.75 7v4.6l2.67 1.78a.75.75 0 0 1 -.42 1.37.74.74 0 0 1 -.42-.13l-3-2a.76.76 0 0 1 -.33-.62v-5a.75.75 0 0 1 1.5 0zm-.75-4.75a9.68 9.68 0 0 0 -6.75 2.75v-2a.75.75 0 0 0 -1.5 0v4a.76.76 0 0 0 .75.75h4a.75.75 0 0 0 0-1.5h-2.4a8.24 8.24 0 1 1 -2.35 5.75.75.75 0 0 0 -1.5 0 9.75 9.75 0 1 0 9.75-9.75z">
+                </path>
+              </g>
+            </svg></h6>
+          <ul class="list-unstyled">
+            @for (search of recentSearches; track search) {
+            <li><a [routerLink]="getBaseUrl(search)" [queryParams]="getQueryParams(search)">{{search.proptype}} |
+                {{search.city}} | {{search.localityName}} |
+                {{search.bhkType}}</a></li>
+            }
+          </ul>
+        </div>
+        }
+
+        @if (topLocalitiesList.length != 0) {
+        <div>
+          <h6 class="section-title mt-0">Popular Localities
+            <svg id="fi_4120429" enable-background="new 0 0 100 100" viewBox="0 0 100 100" width="16px"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="m48.494 80.746c.847.763 2.151.775 3.012 0 1.119-1.008 27.437-24.898 27.437-43.803-.001-15.96-12.985-28.943-28.943-28.943s-28.942 12.983-28.942 28.942c0 18.906 26.317 42.796 27.436 43.804zm1.506-68.246c13.477 0 24.442 10.964 24.442 24.442 0 14.503-18.905 33.727-24.442 39.044-5.54-5.316-24.442-24.527-24.442-39.044 0-13.478 10.965-24.442 24.442-24.442z">
+              </path>
+              <path
+                d="m61.25 36.942c0-6.204-5.048-11.25-11.25-11.25s-11.25 5.046-11.25 11.25 5.048 11.25 11.25 11.25 11.25-5.046 11.25-11.25zm-18 0c0-3.722 3.029-6.75 6.75-6.75s6.75 3.028 6.75 6.75-3.029 6.75-6.75 6.75-6.75-3.027-6.75-6.75z">
+              </path>
+              <path
+                d="m68.653 69.031c-2.804-1.003-4.318 3.223-1.529 4.233 4.515 1.632 7.318 3.857 7.318 5.808 0 3.519-9.299 8.427-24.442 8.427s-24.442-4.909-24.442-8.427c0-1.951 2.804-4.176 7.318-5.808 2.783-1.008 1.283-5.233-1.529-4.233-6.636 2.399-10.289 5.965-10.289 10.042 0 8.396 14.912 12.927 28.942 12.927s28.942-4.531 28.942-12.927c0-4.077-3.653-7.642-10.289-10.042z">
+              </path>
+            </svg>
+          </h6>
+          <ul class="list-unstyled toggled-list1" id="developer1">
+            @for (topLocalities of topLocalitiesList; track topLocalities.id) {
+            <li> <a (click)="LocalityModalOpen(topLocalities)">
+                {{topLocalities.localityname}}
+              </a> <span class="badges">Locality</span></li>
+            }
+          </ul>
+          <span class="view-more-text" (click)="toggleShowMore(1)"> {{ isExpanded[1] ? 'View Less' : 'View More' }}
+            <i [class]="isExpanded[1] ? 'fa fa-angle-up' : 'fa fa-angle-down'" aria-hidden="true"></i> </span>
+        </div>
+        }
+
+        @if (trendingdiv) {
+        <div>
+          <h6 class="section-title mt-4">Trending Projects
+            <svg id="fi_2550223" enable-background="new 0 0 511.992 511.992" viewBox="0 0 511.992 511.992" width="16px"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="m510.616 196.061c-3.944-12.14-15.729-20.486-32.329-22.898l-131.649-19.131-58.876-119.293c-7.424-15.044-19.003-23.671-31.767-23.671s-24.342 8.628-31.766 23.671l-58.873 119.292-131.65 19.132c-16.602 2.412-28.385 10.757-32.33 22.897-3.944 12.14.683 25.818 12.695 37.526l95.262 92.857-22.489 131.12c-2.957 17.247 2.066 27.561 6.8 33.176 5.538 6.568 13.617 10.186 22.749 10.186 6.905 0 14.257-2.025 21.85-6.019l117.753-61.906 117.752 61.905c7.595 3.994 14.946 6.019 21.853 6.019h.001c9.133 0 17.212-3.618 22.75-10.186 4.734-5.615 9.757-15.929 6.799-33.177l-22.493-131.118 95.263-92.856c12.011-11.709 16.639-25.386 12.695-37.526zm-33.636 16.043-100.91 98.361c-3.536 3.446-5.149 8.411-4.314 13.277l23.826 138.89c.767 4.473.378 7.155.016 8.291-.905-.001-3.479-.254-7.888-2.572l-124.733-65.575c-2.186-1.149-4.583-1.723-6.98-1.723s-4.795.574-6.98 1.723l-124.734 65.576c-4.404 2.316-6.977 2.57-7.883 2.571-.363-1.136-.752-3.818.015-8.291l23.822-138.891c.834-4.866-.779-9.831-4.314-13.277l-100.91-98.362c-3.254-3.172-4.515-5.572-4.887-6.702.965-.695 3.396-1.896 7.895-2.55l139.456-20.266c4.886-.71 9.109-3.779 11.294-8.206l62.364-126.365c2.01-4.074 3.903-6.015 4.863-6.719.96.704 2.854 2.645 4.864 6.72l62.365 126.364c2.186 4.427 6.408 7.496 11.294 8.206l139.454 20.266c4.498.653 6.929 1.854 7.894 2.55-.374 1.131-1.635 3.532-4.889 6.704z">
+              </path>
+            </svg>
+          </h6>
+          <ul class="list-unstyled toggled-list2" id="developer2">
+            @for (trendprop of trending; track trendprop.id) {
+            <li> <a target="_blank"
+                href="https://www.homes247.in/property/{{trendprop.city | lowercase | replaceLineBreaks}}/{{trendprop.localityname | lowercase | replaceLineBreaks}}/{{trendprop.name | lowercase | replaceLineBreaks}}-{{trendprop.id}}"
+                rel="bookmark" title="{{trendprop.name}} {{trendprop.city}} | Homes247.in">{{trendprop.name}}
+                {{trendprop.city}}
+              </a> <span class="badges">Projects</span></li>
+            }
+          </ul>
+          <span class="view-more-text" (click)="toggleShowMore(2)"> {{ isExpanded[2] ? 'View Less' : 'View More' }}
+            <i [class]="isExpanded[2] ? 'fa fa-angle-up' : 'fa fa-angle-down'" aria-hidden="true"></i> </span>
+        </div>
+        }
+
+        @if (autoCompleteData_build.length != 0) {
+        <div>
+          <h6 class="section-title mt-4">Top Developers <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+              viewBox="-30 0 559 559.413" width="16px" id="fi_1084987">
+              <g id="surface1">
+                <path
+                  d="M 491.296875 265.207031 L 469.050781 255.640625 L 469.050781 240.429688 C 469.363281 147.070312 410.457031 63.773438 322.328125 32.964844 L 322.328125 11.527344 C 322.328125 5.164062 317.164062 0 310.804688 0 L 187.476562 0 C 181.117188 0 175.953125 5.164062 175.953125 11.527344 L 175.953125 33.078125 C 87.824219 63.886719 28.917969 147.183594 29.230469 240.542969 L 29.230469 255.871094 L 7.214844 265.207031 C 2.949219 267.007812 0.183594 271.191406 0.183594 275.8125 L 0.183594 336.324219 C 0.183594 342.683594 5.347656 347.847656 11.710938 347.847656 L 26.695312 347.847656 L 26.695312 370.902344 C 26.695312 377.261719 31.855469 382.425781 38.21875 382.425781 L 79.597656 382.425781 C 83.527344 396.855469 89.300781 410.734375 96.769531 423.6875 L 67.496094 452.964844 C 63.023438 457.457031 63.023438 464.71875 67.496094 469.214844 L 116.480469 518.199219 C 120.972656 522.671875 128.234375 522.671875 132.730469 518.199219 L 162.003906 488.925781 C 174.925781 496.394531 188.757812 502.15625 203.152344 506.097656 L 203.152344 547.476562 C 203.152344 553.835938 208.316406 559 214.679688 559 L 283.832031 559 C 290.195312 559 295.359375 553.835938 295.359375 547.476562 L 295.359375 506.097656 C 309.789062 502.167969 323.664062 496.40625 336.621094 488.925781 L 365.898438 518.199219 C 370.390625 522.671875 377.652344 522.671875 382.148438 518.199219 L 431.132812 469.214844 C 435.605469 464.71875 435.605469 457.457031 431.132812 452.964844 L 401.855469 423.6875 C 409.324219 410.734375 415.101562 396.855469 419.03125 382.425781 L 460.40625 382.425781 C 466.769531 382.425781 471.933594 377.261719 471.933594 370.902344 L 471.933594 347.847656 L 486.917969 347.847656 C 493.28125 347.847656 498.441406 342.683594 498.441406 336.324219 L 498.441406 275.8125 C 498.417969 271.15625 495.597656 266.972656 491.296875 265.207031 Z M 198.773438 23.167969 L 299.277344 23.167969 L 299.277344 215.761719 L 199.003906 215.761719 Z M 448.996094 359.375 L 410.617188 359.375 C 405.085938 359.246094 400.253906 363.074219 399.089844 368.476562 C 395.207031 386.527344 388.0625 403.710938 378 419.191406 C 375.035156 423.746094 375.671875 429.75 379.496094 433.597656 L 407.042969 461.144531 L 374.078125 493.878906 L 346.53125 466.332031 C 342.683594 462.507812 336.679688 461.871094 332.125 464.835938 C 316.644531 474.894531 299.460938 482.042969 281.410156 485.925781 C 276.003906 487.089844 272.179688 491.921875 272.304688 497.453125 L 272.304688 536.292969 L 226.203125 536.292969 L 226.203125 497.105469 C 226.332031 491.574219 222.503906 486.746094 217.097656 485.582031 C 199.050781 481.707031 181.863281 474.5625 166.386719 464.488281 C 161.832031 461.527344 155.828125 462.160156 151.976562 465.988281 L 124.429688 493.535156 L 91.8125 460.914062 L 119.359375 433.367188 C 123.1875 429.519531 123.820312 423.515625 120.859375 418.960938 C 110.703125 403.574219 103.441406 386.46875 99.421875 368.476562 C 98.253906 363.074219 93.425781 359.246094 87.894531 359.375 L 49.515625 359.375 L 49.515625 347.847656 L 154.859375 347.847656 C 161.175781 399.921875 208.511719 437.011719 260.585938 430.683594 C 303.96875 425.417969 338.164062 391.230469 343.421875 347.847656 L 448.882812 347.847656 Z M 178.371094 347.847656 L 320.253906 347.847656 C 313.914062 387.058594 276.984375 413.707031 237.777344 407.367188 C 207.1875 402.421875 183.203125 378.4375 178.257812 347.847656 C 178.257812 347.847656 178.371094 347.847656 178.371094 347.847656 Z M 475.507812 324.796875 L 23.121094 324.796875 L 23.121094 283.417969 L 45.363281 273.851562 C 49.628906 272.054688 52.394531 267.871094 52.394531 263.246094 L 52.394531 240.195312 C 52.140625 159.699219 101.148438 87.25 175.953125 57.511719 L 175.953125 227.289062 C 175.953125 233.648438 181.113281 238.8125 187.476562 238.8125 L 311.03125 238.8125 C 317.394531 238.8125 322.558594 233.648438 322.558594 227.289062 L 322.558594 57.511719 C 397.488281 87.238281 446.554688 159.828125 446.230469 240.425781 L 446.230469 263.480469 C 446.230469 268.101562 448.996094 272.285156 453.261719 274.082031 L 475.503906 283.648438 L 475.503906 324.796875 Z M 475.507812 324.796875 "
+                  style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;"></path>
+              </g>
+            </svg></h6>
+          <ul class="list-unstyled toggled-list3" id="developer3">
+            @for (autodata of autoCompleteData_build | myfilter: 'type' : 'builder_name' | slice: 0:20; track
+            autodata.id) {
+            <li> <a
+                href="https://www.homes247.in/{{autodata.city | replaceLineBreaks | lowercase}}/builder/{{autodata.name | replaceLineBreaks | lowercase}}-{{autodata.id}}"
+                rel="bookmark" title="{{autodata.name}} {{autodata.city}} | Homes247.in">{{autodata.name}}
+                {{autodata.city}}
+              </a> <span class="badges">Developer</span></li>
+            }
+          </ul>
+          <span class="view-more-text" (click)="toggleShowMore(3)"> {{ isExpanded[3] ? 'View Less' : 'View More' }}
+            <i [class]="isExpanded[3] ? 'fa fa-angle-up' : 'fa fa-angle-down'" aria-hidden="true"></i> </span>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade full-screen-modal" id="filterModal" tabindex="-1" role="dialog"
+  aria-labelledby="filterModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="filterModalLabel"><button (click)="CloseModal1()" class="back-button"><svg
+              id="fi_5436729" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="m17 23a1 1 0 0 1 -.71-.29l-10-10a1 1 0 0 1 0-1.42l10-10a1 1 0 1 1 1.42 1.42l-9.3 9.29 9.3 9.29a1 1 0 0 1 0 1.42 1 1 0 0 1 -.71.29z">
+              </path>
+            </svg></button> Filters</h5>
+        <span class="change_city" (click)="reset();reset2()">Clear All</span>
+      </div>
+
+      <div class="modal-body" style="background: #F6F7F9;height: 86px;">
+        <div class="form-group">
+          <!-- Note: Changed *ngComponentOutlet to [ngComponentOutlet] for standard Angular compliance -->
+          <ng-container [ngComponentOutlet]="Ejscomponent"></ng-container>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <form [formGroup]="registerForm" class="formStyle">
+
+          <div class="filter-section2">
+            <!-- <h6 class="mt-0">Locality</h6> -->
+            <div class="d-flex" style="align-items: center;">
+              <h6 class="mt-0">Locality
+                <svg width="20" height="20" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"
+                  (click)="showInfo()">
+                  <g clip-path="url(#clip0_5187_1839)">
+                    <path
+                      d="M5.44444 5.44444H6V8.22222M5.44444 8.22222H6.55556M6.27778 4.05556C6.27778 4.20889 6.15333 4.33333 6 4.33333C5.84667 4.33333 5.72222 4.20889 5.72222 4.05556C5.72222 3.90222 5.84667 3.77778 6 3.77778C6.15333 3.77778 6.27778 3.90222 6.27778 4.05556ZM6 11C3.23833 11 1 8.76167 1 6C1 3.23833 3.23833 1 6 1C8.76167 1 11 3.23833 11 6C11 8.76167 8.76167 11 6 11Z"
+                      stroke="#959595" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_5187_1839">
+                      <rect width="12" height="12" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+
+
+              </h6>
+              <!-- <div class="info-icon up-arrow11">i</div> -->
+
+              @if (isDivVisible) {
+              <div class="d-flex " style="align-items: center;position: relative;top: -5px;left: 5px;">
+                <svg width="15" height="15" viewBox="0 0 3 6" fill="none" xmlns="http://www.w3.org/2000/svg"
+                  style="    margin: 0 -4px;">
+                  <path d="M3 5.99997L3.0885e-05 3L3 3.02798e-05L3 5.99997Z" fill="black" fill-opacity="0.6" />
+                </svg>
+
+                <div class="infoBoxFilter">
+                  <span class="selectLocTxtSpan">You can select up to 6 localities.</span>
+                </div>
+              </div>
+              }
+            </div>
+
+
+            <div class="filter-buttonss">
+              <div class="city-grid3">
+                @for (item of newNearByLocalityArry; track $index; let i = $index) {
+                <div class="city-card3" [class.selected]="SelectedLocalityName.includes(item)">
+                  <span
+                    (click)="toggleLocality(item);LocalityIdClick(item.LocalityId);updatecount()">{{item.locality_name}}
+                  </span>
+                  @if (SelectedLocalityName.includes(item)) {
+                  <img
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/webStory/close_icon.svg"
+                    alt="close_icon">
+                  }
+                  @if (!SelectedLocalityName.includes(item)) {
+                  <img
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/webStory/add_icon.svg"
+                    alt="add_icon">
+                  }
+                </div>
+                }
+              </div>
+            </div>
+
+          </div>
+
+          <div class="mt-2 mb-2" style="border: 1.15px solid #E3E3E5"></div>
+
+          <div class="filter-section2">
+            <h6>Property Type</h6>
+            <div class="filter-buttons">
+              <button type="button" class="btn btn-default" (click)="Residentialclick();"
+                [ngStyle]="{'border-color': ResidentialSelect ? '#971B47' : '#455A64', 'color': ResidentialSelect ? '#971B47' : '#455A64','font-weight': ResidentialSelect ? '500' : '400'}">
+                &nbsp;&nbsp;@if (ResidentialSelect) { <span class="tick"><svg width="12" height="12" viewBox="0 0 8 6"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!ResidentialSelect) { <span class="tick2"></span>
+                }&nbsp;&nbsp;Residential&nbsp;&nbsp;
+              </button>
+              <button type="button" class="btn btn-default" (click)="Commercialclick();"
+                [ngStyle]="{'border-color': CommercialSelect ? '#971B47' : '#455A64', 'color': CommercialSelect ? '#971B47' : '#455A64','font-weight': CommercialSelect ? '500' : '400'}">
+                &nbsp;&nbsp;@if (CommercialSelect) { <span class="tick"><svg width="12" height="12" viewBox="0 0 8 6"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!CommercialSelect) { <span class="tick2"></span>
+                }&nbsp;&nbsp;Commercial&nbsp;&nbsp;
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-2 mb-2" style="border: 1.15px solid #E3E3E5"></div>
+
+          @if (SelectedType == 'Residential' || SelectedType == 'Buy' || SelectedType == 'Rent' || SelectedType == 'PG')
+          {
+          <div class="filter-section2 ">
+            <h6>I'm looking to</h6>
+            <div class="filter-buttons">
+              <button type="button" class="btn btn-default" (click)="Buyclick();"
+                [ngStyle]="{'border-color': BuySelect ? '#971B47' : '#455A64', 'color': BuySelect ? '#971B47' : '#455A64','font-weight': BuySelect ? '500' : '400'}">
+                &nbsp;&nbsp;@if (BuySelect) { <span class="tick"><svg width="15" height="15" viewBox="0 0 8 6"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!BuySelect) { <span class="tick2"></span> }&nbsp;&nbsp;Buy&nbsp;&nbsp;
+              </button>
+              <button type="button" class="btn btn-default" (click)="Rentclick();"
+                [ngStyle]="{'border-color': RentSelect ? '#971B47' : '#455A64', 'color': RentSelect ? '#971B47' : '#455A64','font-weight': RentSelect ? '500' : '400'}">
+                &nbsp;&nbsp;@if (RentSelect) { <span class="tick"><svg width="15" height="15" viewBox="0 0 8 6"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!RentSelect) { <span class="tick2"></span> }&nbsp;&nbsp;Rent&nbsp;&nbsp;
+              </button>
+              @if (SelectedType != 'Commercial') {
+              <button type="button" class="btn btn-default" (click)="PGclick();"
+                [ngStyle]="{'border-color': PGSelect ? '#971B47' : '#455A64', 'color': PGSelect ? '#971B47' : '#455A64','font-weight': PGSelect ? '500' : '400'}">
+                &nbsp;&nbsp;@if (PGSelect) { <span class="tick"><svg width="15" height="15" viewBox="0 0 8 6"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!PGSelect) { <span class="tick2"></span> }&nbsp;&nbsp;PG&nbsp;&nbsp;
+              </button>
+              }
+
+              @if (SelectedType == 'Rent') {
+              <div class="d-flex filtersTitlePriceOnRequestDiv mt-1" style="align-items: center;">
+                <span class="filtersTitlePriceOnRequest leaseOnly" [ngClass]="{ 'checked': checkedPrice }">
+                  Only Lease
+                </span>&nbsp;
+                <input type="checkbox" id="priceCheckbox" class="price-checkbox" [checked]="checkedPrice"
+                  (click)="LeasedRequestPropList();updatecount()" />
+                <label for="priceCheckbox" class="custom-checkbox"></label>
+
+              </div>
+              }
+
+            </div>
+          </div>
+          }
+
+          @if (SelectedType == 'Commercial') {
+          <div class="filter-section2">
+            <h6>I'm looking to</h6>
+            <div class="filter-buttons">
+              <button type="button" class="btn btn-default" (click)="BuyCommercialclick();"
+                [ngStyle]="{'border-color': BuyCommercialSelect ? '#971B47' : '#455A64', 'color': BuyCommercialSelect ? '#971B47' : '#455A64','font-weight': BuyCommercialSelect ? '500' : '400'}">
+                &nbsp;&nbsp;@if (BuyCommercialSelect) { <span class="tick"><svg width="15" height="15" viewBox="0 0 8 6"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!BuyCommercialSelect) { <span class="tick2"></span> }&nbsp;&nbsp;Buy&nbsp;&nbsp;
+              </button>
+              <button type="button" class="btn btn-default" (click)="RentCommercialclick();"
+                [ngStyle]="{'border-color': RentCommercialSelect ? '#971B47' : '#455A64', 'color': RentCommercialSelect ? '#971B47' : '#455A64','font-weight': RentCommercialSelect ? '500' : '400'}">
+                &nbsp;&nbsp;@if (RentCommercialSelect) { <span class="tick"><svg width="15" height="15"
+                    viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!RentCommercialSelect) { <span class="tick2"></span>
+                }&nbsp;&nbsp;Rent&nbsp;&nbsp;
+              </button>
+
+              @if (rentCommercial == 'commercialRent') {
+              <div class="d-flex filtersTitlePriceOnRequestDiv mt-1" style="align-items: center;">
+                <span class="filtersTitlePriceOnRequest leaseOnly" [ngClass]="{ 'checked': checkedPrice }">
+                  Only Lease
+                </span>&nbsp;
+                <input type="checkbox" id="priceCheckbox" class="price-checkbox" [checked]="checkedPrice"
+                  (click)="LeasedRequestPropList();updatecount()" />
+                <label for="priceCheckbox" class="custom-checkbox"></label>
+
+              </div>
+              }
+
+            </div>
+          </div>
+          }
+
+          <div class="mt-2 mb-2" style="border: 1.15px solid #E3E3E5"></div>
+
+          @if (SelectedType !== 'Residential') {
+          <div class="filter-section">
+            <div class="d-flex px-0 filter-buttonss mt-4 mb-0" style="justify-content: space-between;">
+              <p class="filtersTitle">Budget</p>
+
+              @if (SelectedType == 'Buy' || SelectedType == 'Rent' || SelectedType == 'Commercial') {
+              <div class="d-flex filtersTitlePriceOnRequestDiv" style="align-items: center;">
+
+                <span class="filtersTitlePriceOnRequest" [ngClass]="{ 'checked': checkedPrice }">
+                  Price on Request
+                </span>&nbsp;
+                <input type="checkbox" id="priceCheckbox" class="price-checkbox" [checked]="checkedPrice"
+                  (click)="priceOnRequestPropList();updatecount()" />
+                <label for="priceCheckbox" class="custom-checkbox"></label>
+
+              </div>
+              }
+
+            </div>
+
+            <div class="slider-container slider-container-disabled">
+              @if (SelectedType == 'Buy') { <div id="price-slider"></div> }
+              @if (SelectedType == 'Rent') { <div id="price-slider1"></div> }
+              @if (SelectedType == 'PG') { <div id="price-slider2"></div> }
+              @if (SelectedType == 'Commercial') { <div id="price-slider3"></div> }
+              <div class="price-values mt-2">
+                @if (SelectedType == 'Buy') { <span id="current-min">{{ currentMin }}</span> }
+                @if (SelectedType == 'Buy') { <span id="current-max">{{ currentMax }}</span> }
+                @if (SelectedType == 'Rent') { <span id="current-min1">{{ currentMin1 }}</span> }
+                @if (SelectedType == 'Rent') { <span id="current-max1">{{ currentMax1 }}</span> }
+                @if (SelectedType == 'Commercial') { <span id="current-min2">{{ currentMin2 }}</span> }
+                @if (SelectedType == 'Commercial') { <span id="current-max2">{{ currentMax2 }}</span> }
+                @if (SelectedType == 'PG') { <span id="current-min3">{{ currentMin3 }}</span> }
+                @if (SelectedType == 'PG') { <span id="current-max3">{{ currentMax3 }}</span> }
+              </div>
+            </div>
+
+          </div>
+          }
+
+          @if (SelectedType == 'Buy' || SelectedType == 'Rent' || SelectedType == 'Commercial') {
+          <div class="mt-2 mb-2" style="border: 1.15px solid #E3E3E5"></div>
+          }
+
+          @if (SelectedType == 'Buy' || SelectedType == 'Rent'|| SelectedType == 'Commercial') {
+          <div class="filter-section">
+            <h6 class="mb-4">Area</h6>
+            <div class="slider-container">
+              @if (SelectedType == 'Buy') { <div id="sqft-slider"></div> }
+              @if (SelectedType == 'Rent') { <div id="sqft-slider1"></div> }
+              @if (SelectedType == 'Commercial') { <div id="sqft-slider2"></div> }
+              <div class="price-values mt-2">
+                @if (SelectedType == 'Buy') { <span id="current-min-Sqft">{{ currentMinSqft }}</span> }
+                @if (SelectedType == 'Buy') { <span id="current-max-Sqft">{{ currentMaxSqft }}</span> }
+                @if (SelectedType == 'Rent') { <span id="current-min-Sqft1">{{ currentMinSqft1 }}</span> }
+                @if (SelectedType == 'Rent') { <span id="current-max-Sqft1">{{ currentMaxSqft1 }}</span> }
+                @if (SelectedType == 'Commercial') { <span id="current-min-Sqft2">{{ currentMinSqft2 }}</span> }
+                @if (SelectedType == 'Commercial') { <span id="current-max-Sqft2">{{ currentMaxSqft2 }}</span> }
+              </div>
+            </div>
+
+          </div>
+          }
+
+          @if (SelectedType == 'Buy' || SelectedType == 'Rent') {
+          <div class="mt-2 mb-2" style="border: 1.15px solid #E3E3E5"></div>
+          }
+
+          @if (SelectedType == 'Buy' || SelectedType == 'Rent') {
+          <div class="filter-section">
+            <h6>Property Type</h6>
+            <div class="filter-buttonss">
+              <div class="city-grid2">
+                <button class="city-card2" (click)="apartmentclick();updatecount()"
+                  [ngStyle]="{'border-color': apartmentSelect ? '#971B47' : '#D9D9D9', 'color': apartmentSelect ? '#971B47' : '#D9D9D9','font-weight': apartmentSelect ? '500' : '400'}">
+                  <svg [ngClass]="apartmentSelect ? 'selected' : 'unselected'" viewBox="0 -32 512.00021 512"
+                    width="38px" height="38px" xmlns="http://www.w3.org/2000/svg" id="fi_1669618">
+                    <!-- SVG Paths Omitted for Brevity (Same as original) -->
+                    <path
+                      d="m79.324219 254.808594h39.910156c5.394531 0 9.769531-4.371094 9.769531-9.757813v-38.105469c0-5.390624-4.375-9.757812-9.769531-9.757812h-39.910156c-5.390625 0-9.765625 4.367188-9.765625 9.757812v38.105469c0 5.386719 4.371094 9.757813 9.765625 9.757813zm9.769531-38.105469h20.375v18.589844h-20.375zm0 0">
+                    </path>
+                    <path
+                      d="m79.324219 331.761719h39.910156c5.394531 0 9.769531-4.367188 9.769531-9.757813v-38.101562c0-5.390625-4.375-9.757813-9.769531-9.757813h-39.910156c-5.390625 0-9.765625 4.367188-9.765625 9.757813v38.101562c0 5.390625 4.371094 9.757813 9.765625 9.757813zm9.769531-38.105469h20.375v18.589844h-20.375zm0 0">
+                    </path>
+                    <path
+                      d="m223.644531 164.191406h41.957031c5.390626 0 9.765626-4.371094 9.765626-9.757812v-40.066406c0-5.390626-4.375-9.757813-9.765626-9.757813h-41.957031c-5.394531 0-9.765625 4.367187-9.765625 9.757813v40.066406c-.003906 5.386718 4.371094 9.757812 9.765625 9.757812zm9.765625-40.066406h22.421875v20.550781h-22.421875zm0 0">
+                    </path>
+                    <path
+                      d="m310.488281 164.191406h41.984375c5.394532 0 9.765625-4.371094 9.765625-9.757812v-40.066406c0-5.390626-4.371093-9.757813-9.765625-9.757813h-41.984375c-5.394531 0-9.765625 4.367187-9.765625 9.757813v40.066406c0 5.386718 4.371094 9.757812 9.765625 9.757812zm9.765625-40.066406h22.449219v20.550781h-22.449219zm0 0">
+                    </path>
+                    <path
+                      d="m266.648438 189.222656h-41.953126c-5.394531 0-9.769531 4.371094-9.769531 9.757813v40.070312c0 5.386719 4.375 9.757813 9.769531 9.757813h41.953126c5.394531 0 9.769531-4.371094 9.769531-9.757813v-40.070312c0-5.386719-4.371094-9.757813-9.769531-9.757813zm-9.765626 40.070313h-22.421874v-20.554688h22.421874zm0 0">
+                    </path>
+                    <path
+                      d="m353.496094 189.222656h-41.957032c-5.394531 0-9.765624 4.371094-9.765624 9.757813v40.070312c0 5.386719 4.371093 9.757813 9.765624 9.757813h41.957032c5.394531 0 9.765625-4.371094 9.765625-9.757813v-40.070312c0-5.386719-4.371094-9.757813-9.765625-9.757813zm-9.769532 40.070313h-22.421874v-20.554688h22.421874zm0 0">
+                    </path>
+                    <path
+                      d="m505.9375 278.273438c-6.691406-22.957032-18.722656-47.109376-32.1875-64.609376-8.546875-11.113281-19.085938-22.476562-32.472656-22.480468-.003906 0-.007813 0-.007813 0-11.34375 0-20.5 7.898437-28.609375 17.550781v-151.835937l2.898438.003906c15.679687 0 28.4375-12.765625 28.4375-28.453125s-12.757813-28.449219-28.4375-28.449219h-256.605469c-15.679687 0-28.4375 12.761719-28.4375 28.449219s12.757813 28.453125 28.4375 28.453125h2.898437v43.667968h-132.585937c-16.136719 0-29.265625 13.121094-29.265625 29.25 0 13.449219 9.128906 24.800782 21.519531 28.207032v269.972656h-4.367187c-5.394532 0-9.765625 4.367188-9.765625 9.757812 0 5.386719 4.371093 9.757813 9.765625 9.757813h435.050781c5.394531 0 9.769531-4.371094 9.769531-9.757813 0-5.210937-4.089844-9.457031-9.238281-9.730468v-47.007813c31.484375-2.679687 45.875-18.296875 52.429687-31.59375 11.175782-22.660156 6.589844-51.199219.773438-71.152343zm-476.671875-158.1875h132.585937v19.472656h-132.585937c-5.367187 0-9.730469-4.367188-9.730469-9.734375 0-5.371094 4.363282-9.738281 9.730469-9.738281zm132.585937 307.914062h-120.800781v-268.925781h120.800781zm112.566407 0h-34.398438v-102.265625h34.398438zm53.933593 0h-34.398437v-102.265625h34.398437zm64.773438 0h-45.238281v-112.023438c0-5.386718-4.375-9.757812-9.769531-9.757812h-107.863282c-5.394531 0-9.769531 4.371094-9.769531 9.757812v112.023438h-39.097656v-371.097656h66.953125c5.394531 0 9.769531-4.371094 9.769531-9.757813 0-5.390625-4.375-9.757812-9.769531-9.757812h-89.386719c-4.824219 0-8.902344-4.09375-8.902344-8.9375 0-4.925781 3.992188-8.933594 8.902344-8.933594h256.605469c4.910156 0 8.902344 4.007813 8.902344 8.933594 0 4.84375-4.078126 8.9375-8.898438 8.9375l-89.417969-.027344s0 0-.003906 0c-5.390625 0-9.765625 4.367187-9.765625 9.753906-.003906 5.390625 4.367188 9.757813 9.761719 9.761719l66.988281.019531v181.292969c-11.730469 22.296875-19.246094 47.023438-20.691406 68.210938-1.785156 26.195312 5.355468 46.679687 20.691406 59.621093zm40.074219 0h-20.539063v-52.8125c4.871094 2.878906 11.40625 4.960938 20.539063 5.8125zm54.445312-87.199219c-5.867187 11.890625-17.601562 18.789063-34.910156 20.605469v-40.886719l14.445313-13.734375c3.910156-3.714844 4.0625-9.890625.34375-13.796875-3.71875-3.902343-9.902344-4.054687-13.808594-.339843l-.980469.929687v-31.191406c0-5.386719-4.371094-9.757813-9.765625-9.757813s-9.765625 4.371094-9.765625 9.757813v17.675781l-.945313-.902344c-3.90625-3.71875-10.089843-3.570312-13.808593.332032-3.722657 3.898437-3.574219 10.074218.328125 13.792968l14.425781 13.738282v12.753906l-7.882813-5.609375c-4.394531-3.125-10.492187-2.101563-13.621093 2.285156-3.128907 4.390625-2.105469 10.484375 2.289062 13.609375l19.214844 13.671875v17.667969c-17.921875-1.878906-30.140625-9.152344-36.347656-21.738282-12.007813-24.347656-1.800781-63.019531 13.324219-91.945312.078124-.152344.15625-.300781.234374-.449219 4.214844-8.003906 8.800782-15.25 13.386719-21.214843 9.769531-12.691407 14.894531-15.355469 17.46875-15.355469h.003907c2.542968 0 7.554687 2.578125 16.992187 14.855469 22.023437 28.628906 44.484375 84.605468 29.378906 115.246093zm0 0">
+                    </path>
+                    <path
+                      d="m287.449219 37.386719h-.195313c-5.394531 0-9.765625 4.367187-9.765625 9.757812 0 5.386719 4.371094 9.757813 9.765625 9.757813h.195313c5.394531 0 9.765625-4.371094 9.765625-9.757813 0-5.390625-4.371094-9.757812-9.765625-9.757812zm0 0">
+                    </path>
+                  </svg>
+                  <span [ngStyle]="{'color': apartmentSelect ? '#971B47' : '#6B6D81'}">Apartment</span>
+                </button>
+                <button class="city-card2" (click)="villaclick();updatecount()"
+                  [ngStyle]="{'border-color': villaSelect ? '#971B47' : '#D9D9D9', 'color': villaSelect ? '#971B47' : '#D9D9D9','font-weight': apartmentSelect ? '500' : '400'}">
+                  <svg [ngClass]="villaSelect ? 'selected' : 'unselected'" id="fi_9090135"
+                    enable-background="new 0 0 511.946 511.946" width="38px" height="38px" viewBox="0 0 511.946 511.946"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <!-- SVG Content Omitted -->
+                    <g>
+                      <path
+                        d="m163.36 185.807c21.264 0 38.563-17.299 38.563-38.563-1.938-51.089-75.195-51.075-77.126 0 0 21.264 17.299 38.563 38.563 38.563zm0-62.126c12.992 0 23.563 10.57 23.563 23.563-1.185 31.216-45.945 31.208-47.125 0-.001-12.993 10.57-23.563 23.562-23.563z">
+                      </path>
+                      <path
+                        d="m209.407 310.056c4.143 0 7.5-3.357 7.5-7.5v-93.187c0-4.143-3.357-7.5-7.5-7.5h-93.187c-4.143 0-7.5 3.357-7.5 7.5v93.187c0 4.143 3.357 7.5 7.5 7.5zm-38.547-15.001v-31.593h31.047v31.593zm31.047-46.593h-31.047v-31.594h31.047zm-46.047-31.594v31.594h-32.14v-31.594zm-32.14 46.594h32.14v31.593h-32.14z">
+                      </path>
+                      <path
+                        d="m147.829 403.775c-4.143 0-7.5 3.357-7.5 7.5v13.49c.344 9.931 14.66 9.924 15 0v-13.49c0-4.143-3.358-7.5-7.5-7.5z">
+                      </path>
+                      <path
+                        d="m287.763 326.118c-4.143 0-7.5 3.357-7.5 7.5v93.187c0 4.143 3.357 7.5 7.5 7.5h154.613c4.143 0 7.5-3.357 7.5-7.5v-93.187c0-4.143-3.357-7.5-7.5-7.5zm7.5 15h62.306v78.187h-62.306zm139.613 78.187h-62.306v-78.187h62.306z">
+                      </path>
+                      <path
+                        d="m504.501 481.431h-8.028v-84.879c0-4.143-3.357-7.5-7.5-7.5s-7.5 3.357-7.5 7.5v84.881h-217.972v-171.377h217.971v53.817c0 4.143 3.357 7.5 7.5 7.5s7.5-3.357 7.5-7.5v-53.817h8.028c6.271-1.124 8.507-4.743 6.708-10.855l-31.063-62.124c-1.271-2.54-3.867-4.146-6.708-4.146h-23.566v-109.251h23.57c6.271-1.125 8.507-4.744 6.708-10.856l-31.071-62.12c-1.271-2.541-3.867-4.146-6.708-4.146h-107.898c-9.905.331-9.947 14.652 0 15h103.266l23.569 47.12h-195.17l-47.121-47.12h82.767c4.143 0 7.5-3.357 7.5-7.5s-3.357-7.5-7.5-7.5h-97.767l-24.287-24.286c-8.982-8.979-23.629-9.016-32.655-.084l-109.844 108.72c-18.731 19.523 1.334 49.023 24.9 37.956v72.126c-24.669-19.559-62.414-1.254-62.128 30.505 0-.001 0 93.187 0 93.187 0 18.696 13.374 34.327 31.058 37.829v78.921h-23.558c-4.143 0-7.5 3.357-7.5 7.5s3.357 7.5 7.5 7.5h497c9.686-.255 10.161-14.559-.001-15.001zm-12.136-186.376-228.864-.004v-47.12h205.302zm-57.492-93.187h-109.247v-47.124h109.247zm0-78.188v16.064h-116.747c-4.143 0-7.5 3.357-7.5 7.5v62.124c0 4.143 3.357 7.5 7.5 7.5h116.747v16.063h-171.372v-64.312c22.124 8.841 42.95-19.62 24.947-37.627l-7.312-7.312zm-387.091 17.889 109.845-108.719c3.177-3.145 8.334-3.131 11.495.03 0 0 108.72 108.719 108.72 108.719 7.935 7.931-2.002 20.882-11.757 11.295l-97.478-97.479c-2.92-2.918-7.647-2.931-10.58-.026l-98.78 97.767c-7.997 6.649-18.997-4.226-11.465-11.587zm-32.781 223.112v-93.187c1.189-31.224 45.948-31.2 47.125 0v93.187c0 12.959-10.517 23.508-23.463 23.562-.068-.002-.137-.002-.205 0-12.944-.057-23.457-10.605-23.457-23.562zm31.058 37.831c5.962-1.179 11.435-3.737 16.07-7.326v86.245h-16.07zm77.661 78.921v-140.311h22.75c9.931-.344 9.924-14.66 0-15h-30.25c-4.143 0-7.5 3.357-7.5 7.5v147.811h-31.59v-324.873l86.145-85.262 85.226 85.227v324.908h-31.59v-147.811c0-4.143-3.357-7.5-7.5-7.5h-30.25c-9.931.344-9.924 14.66 0 15h22.75v140.311z">
+                      </path>
+                    </g>
+                  </svg>
+                  <span [ngStyle]="{'color': villaSelect ? '#971B47' : '#6B6D81'}">Villa</span>
+                </button>
+                <button class="city-card2" (click)="plotclick();updatecount()"
+                  [ngStyle]="{'border-color': plotSelect ? '#971B47' : '#D9D9D9', 'color': plotSelect ? '#971B47' : '#D9D9D9','font-weight': apartmentSelect ? '500' : '400'}">
+                  <svg [ngClass]="plotSelect ? 'selected' : 'unselected'" id="fi_17072437" width="38px" height="38px"
+                    viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1">
+                    <!-- SVG Content Omitted -->
+                    <path
+                      d="m60 60h-56c-1.65 0-3-1.35-3-3v-7.5c0-.55.45-1 1-1h60c.55 0 1 .45 1 1v7.5c0 1.65-1.35 3-3 3zm-57-9.5v6.5c0 .55.45 1 1 1h56c.55 0 1-.45 1-1v-6.5z">
+                    </path>
+                    <path d="m26.42 36h-4.96c-.55 0-1-.45-1-1s.45-1 1-1h4.96c.55 0 1 .45 1 1s-.45 1-1 1z"></path>
+                    <path
+                      d="m62 50.5h-60c-.33 0-.65-.17-.83-.44-.19-.28-.22-.63-.09-.94l4.71-11.38c.21-.51.79-.75 1.31-.54.51.21.75.8.54 1.31l-4.13 9.99h57.01l-4.92-11.88c-.16-.38-.52-.62-.92-.62h-17.12c-.55 0-1-.45-1-1s.45-1 1-1h17.12c1.22 0 2.31.73 2.77 1.85l5.49 13.26c.13.31.09.66-.09.94-.19.28-.5.44-.83.44z">
+                    </path>
+                    <path
+                      d="m34.42 43.25h-4.83c-.55 0-1-.45-1-1v-12.42c0-.55.45-1 1-1h4.83c.55 0 1 .45 1 1v12.42c0 .55-.45 1-1 1zm-3.83-2h2.83v-10.42h-2.83z">
+                    </path>
+                    <path
+                      d="m34.42 9.78h-4.83c-.55 0-1-.45-1-1v-3.78c0-.55.45-1 1-1h4.83c.55 0 1 .45 1 1v3.78c0 .55-.45 1-1 1zm-3.83-2h2.83v-1.78h-2.83z">
+                    </path>
+                    <path
+                      d="m50 30.83h-36c-.55 0-1-.45-1-1v-21.05c0-.55.45-1 1-1h36c.55 0 1 .45 1 1v21.06c0 .55-.45 1-1 1zm-35-2h34v-19.05h-34v19.06z">
+                    </path>
+                    <g>
+                      <path
+                        d="m9.71 36.53c-.92 0-1.99-.18-3.03-.75-2.7-1.49-3-4.57-3.01-4.7-.04-.45.22-.87.64-1.02.36-.14 3.59-1.29 5.85.08 2.28 1.38 2.57 3.62 2.73 4.82.06.45-.19.95-.61 1.12-.07.03-1.14.45-2.56.45zm-3.88-4.85c.23.72.73 1.75 1.81 2.35 1.13.62 2.37.54 3.14.4-.18-.93-.56-1.91-1.66-2.58-.9-.54-2.31-.39-3.28-.16z">
+                      </path>
+                      <path
+                        d="m14.09 42.48c-1.42 0-2.49-.42-2.56-.45-.42-.17-.68-.61-.62-1.06.17-1.27.46-3.51 2.74-4.89 2.25-1.37 5.49-.22 5.85-.08.42.16.68.58.64 1.02-.01.13-.32 3.22-3.01 4.7-1.04.57-2.11.75-3.03.75zm-1.07-2.1c.76.15 2 .23 3.14-.4 1.07-.59 1.58-1.63 1.81-2.35-.97-.23-2.39-.38-3.28.16-1.12.68-1.49 1.68-1.66 2.58z">
+                      </path>
+                      <path d="m11.9 46.59c-.55 0-1-.45-1-1v-10.44c0-.55.45-1 1-1s1 .45 1 1v10.44c0 .55-.45 1-1 1z">
+                      </path>
+                    </g>
+                  </svg>
+                  <span [ngStyle]="{'color': plotSelect ? '#971B47' : '#6B6D81'}">Plot</span>
+                </button>
+                <button class="city-card2" (click)="houseclick();updatecount()"
+                  [ngStyle]="{'border-color': HouseSelect ? '#971B47' : '#D9D9D9', 'color': HouseSelect ? '#971B47' : '#D9D9D9','font-weight': HouseSelect ? '500' : '400'}">
+                  <svg [ngClass]="HouseSelect ? 'selected' : 'unselected'" viewBox="0 -4 512.00045 512" width="38px"
+                    height="38px" xmlns="http://www.w3.org/2000/svg" id="fi_1018573">
+                    <!-- SVG Content Omitted -->
+                    <path
+                      d="m212.882812 111.867188h-75.871093c-6.894531 0-12.5 5.605468-12.5 12.5v123.933593c0 6.890625 5.605469 12.5 12.5 12.5h75.871093c6.894532 0 12.5-5.609375 12.5-12.5v-123.933593c0-6.894532-5.605468-12.5-12.5-12.5zm-45.4375 133.933593h-27.933593v-30.671875h27.933593zm0-45.671875h-27.933593v-27.59375h27.933593zm0-42.59375h-27.933593v-30.667968h27.933593zm42.9375 88.265625h-27.9375v-30.671875h27.9375zm0-45.671875h-27.9375v-27.59375h27.9375zm0-42.59375h-27.9375v-30.667968h27.9375zm0 0">
+                    </path>
+                    <path
+                      d="m313.472656 411.296875c-4.144531 0-7.5 3.359375-7.5 7.5v18.007813c0 4.140624 3.355469 7.5 7.5 7.5 4.144532 0 7.5-3.359376 7.5-7.5v-18.007813c0-4.140625-3.355468-7.5-7.5-7.5zm0 0">
+                    </path>
+                    <path
+                      d="m511.929688 335.554688c-.347657-2.632813-1.695313-4.980469-3.792969-6.605469l-158.894531-122.941407c-3.523438-2.722656-7.734376-4.164062-12.179688-4.164062-4.449219 0-8.660156 1.441406-12.1875 4.167969l-24.03125 18.59375v-21.539063c0-4.144531-3.355469-7.5-7.5-7.5s-7.5 3.355469-7.5 7.5v33.144532l-119.851562 92.734374c-2.085938 1.609376-3.472657 4.035157-3.800782 6.640626-.339844 2.636718.367188 5.253906 1.988282 7.367187l12.160156 15.816406c1.910156 2.472657 4.792968 3.890625 7.914062 3.890625 2.195313 0 4.363282-.738281 6.105469-2.085937l146.703125-113.507813 110.886719 85.796875v156.265625h-60.40625v-14.0625c0-4.144531-3.355469-7.5-7.5-7.5s-7.5 3.355469-7.5 7.5v14.0625h-70.972657v-114.898437h70.972657v65.585937c0 4.144532 3.355469 7.5 7.5 7.5s7.5-3.355468 7.5-7.5v-68.085937c0-6.890625-5.609375-12.5-12.5-12.5h-75.96875c-6.894531 0-12.503907 5.609375-12.503907 12.5v117.398437h-56.992187v-20.457031c0-6.894531-5.605469-12.5-12.5-12.5h-7.179687c.597656-2.984375.921874-6.066406.921874-9.222656 0-25.957031-21.121093-47.074219-47.078124-47.074219-14.089844 0-27.273438 6.464844-36.089844 16.949219-3.335938-1.054688-6.882813-1.628907-10.5625-1.628907-2.703125 0-5.359375.300782-7.941406.902344-8.167969-13.992187-23.410157-22.992187-39.886719-22.992187-1.753907 0-3.488281.109375-5.199219.308593v-251.054687l110.890625-85.804687 110.894531 85.804687v25.703125c0 4.144531 3.355469 7.5 7.5 7.5 4.140625 0 7.5-3.355469 7.5-7.5v-14.097656l20.8125 16.101562c1.738282 1.347656 3.90625 2.085938 6.101563 2.085938 3.128906 0 6.015625-1.421875 7.917969-3.898438.027343-.035156.054687-.074218.082031-.109375l11.648437-15.734375.074219-.09375c.769531-.964844 2.8125-3.523437 2.335937-7.269531-.347656-2.644531-1.699218-4.992187-3.792968-6.605469l-158.890625-122.941406c-3.523438-2.722656-7.734375-4.164062-12.183594-4.164062s-8.660156 1.441406-12.1875 4.167968l-43.625 33.753906v-9.453124c5.898437-1 10.40625-6.132813 10.40625-12.308594v-14.996094c0-6.894531-5.609375-12.5-12.5-12.5h-60.777344c-6.890625 0-12.5 5.605469-12.5 12.5v14.992188c0 6.179687 4.507813 11.308593 10.40625 12.3125v59.71875l-50.28125 38.90625c-2.09375 1.609374-3.480469 4.039062-3.8085935 6.636718-.3437495 2.640625.3593745 5.257813 1.9843745 7.375l12.160157 15.816406c1.90625 2.476563 4.789062 3.894532 7.914062 3.894532 2.195313 0 4.359375-.738282 6.109375-2.085938l20.808594-16.101562v243.859375c-11.90625 5.859375-21.074219 16.71875-24.480469 29.964843-11.308593 4.359376-19.078125 15.34375-19.078125 27.8125 0 1.375.097656 2.726563.277344 4.054688-2.378906 2.277344-3.863281 5.472656-3.863281 9.015625v22.960937c0 6.890626 5.605469 12.5 12.5 12.5h470.269531c4.144531 0 7.5-3.359374 7.5-7.5 0-4.144531-3.355469-7.5-7.5-7.5h-21.738281v-144.664062l20.816406 16.105469c1.738281 1.34375 3.90625 2.085937 6.101563 2.085937 3.128906 0 6.015624-1.421875 7.917968-3.902344.027344-.035156.054688-.070312.082032-.105468l11.652343-15.738282.078125-.097656c.765625-.960937 2.804688-3.519531 2.332032-7.261718zm-348.1875 79.320312c17.6875 0 32.078124 14.390625 32.078124 32.074219 0 3.207031-.484374 6.300781-1.363281 9.222656h-42.78125c.324219-1.90625.503907-3.867187.503907-5.867187 0-10.175782-4.355469-19.347657-11.289063-25.769532 5.929687-6.019531 14.132813-9.660156 22.851563-9.660156zm-104.972657-399.875h55.777344v9.992188h-55.777344zm45.371094 24.992188v20.871093l-34.964844 27.054688v-47.925781zm-81.085937 115.132812-6.050782-7.871094 154.9375-119.886718c.886719-.683594 1.898438-1.03125 3.011719-1.03125s2.125.347656 3.007813 1.027343l154.726562 119.722657-5.90625 7.980468-147.238281-113.925781c-2.703125-2.089844-6.476563-2.089844-9.179688 0zm191.523437 334.007812h-197.660156v-17.960937h69.085937c4.140625 0 7.5-3.355469 7.5-7.5s-3.359375-7.5-7.5-7.5h-65.480468c-.007813-.191406-.019532-.378906-.019532-.570313 0-7.074218 5.027344-13.1875 11.960938-14.53125 3.136718-.609374 5.542968-3.136718 5.996094-6.296874 2.1875-15.199219 15.429687-26.664063 30.800781-26.664063 12.765625 0 24.4375 8.011719 29.042969 19.933594.75 1.945312 2.273437 3.488281 4.210937 4.265625 1.9375.773437 4.105469.703125 5.992187-.1875 2.695313-1.273438 5.585938-1.921875 8.582032-1.921875 11.078125 0 20.089844 9.019531 20.089844 20.109375 0 2.042968-.320313 4.007812-.890626 5.863281h-14.285156c-4.144531 0-7.5 3.359375-7.5 7.5 0 4.144531 3.355469 7.5 7.5 7.5h92.574219zm274.3125-143.558593-147.238281-113.921875c-2.703125-2.09375-6.476563-2.09375-9.179688 0l-147.3125 113.980468-6.050781-7.871093 154.941406-119.882813c.886719-.6875 1.898438-1.035156 3.011719-1.035156 1.109375 0 2.125.347656 3.007812 1.03125l154.726563 119.71875zm0 0">
+                    </path>
+                  </svg>
+                  <span [ngStyle]="{'color': HouseSelect ? '#971B47' : '#6B6D81'}">House</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          }
+
+          @if (SelectedType == 'Buy' || SelectedType == 'Rent') {
+          <div class="mt-2 mb-2" style="border: 1.15px solid #E3E3E5"></div>
+          }
+
+          @if ((SelectedType == 'Buy' || SelectedType == 'Rent') && (!plotSelect || apartmentSelect || villaSelect ||
+          HouseSelect)) {
+          <div class="filter-section"
+            [ngClass]="{ 'blur-effect2': plotSelect && !apartmentSelect && !villaSelect && !HouseSelect }">
+            <h6>No.of Bedroom</h6>
+            <div class="filter-buttonss">
+              <div class="city-grid2">
+                @if (SelectedType == 'Buy' || SelectedType == 'Rent') {
+                <button class="city-card2" (click)="oneRKBedroom();updatecount()"
+                  [ngStyle]="{'border-color': oneRKBedroomSelect ? '#971B47' : '#D9D9D9', 'color': oneRKBedroomSelect ? '#971B47' : '#D9D9D9','font-weight': oneRKBedroomSelect ? '500' : '400'}">
+                  <svg [ngClass]="oneRKBedroomSelect ? 'selected' : 'unselected'" id="fi_3297055" height="512"
+                    viewBox="0 0 64 64" width="512" xmlns="http://www.w3.org/2000/svg">
+                    <!-- SVG Content Omitted -->
+                    <path
+                      d="m3.456 57.139h10.9a1 1 0 0 0 .859-.489l3.1-5.206h27.745l3.1 5.206a1 1 0 0 0 .859.489h10.9a1 1 0 0 0 1-1v-24.339a5.749 5.749 0 0 0 -4.351-5.566v-14.134a3.1 3.1 0 0 0 -3.092-3.09h-2.3a3.1 3.1 0 0 0 -3.09 3.09v.226h-33.795v-.226a3.1 3.1 0 0 0 -3.091-3.09h-2.3a3.1 3.1 0 0 0 -3.094 3.09v14.136a5.748 5.748 0 0 0 -4.35 5.564v24.339a1 1 0 0 0 1 1zm56.465-7.695h-55.465v-11.338h55.465zm-46.134 5.7h-9.331v-3.7h11.532zm46.134 0h-9.331l-2.2-3.695h11.531zm-51.115-43.044a1.1 1.1 0 0 1 1.094-1.09h2.3a1.1 1.1 0 0 1 1.1 1.094v1.226a1 1 0 0 0 1 1h35.8a1 1 0 0 0 1-1v-1.23a1.1 1.1 0 0 1 1.095-1.094h2.3a1.1 1.1 0 0 1 1.075 1.094v13.959h-6.137a2.78 2.78 0 0 0 .132-.809v-3.62a2.811 2.811 0 0 0 -2.808-2.809h-8.857a2.812 2.812 0 0 0 -2.808 2.809v3.62a2.747 2.747 0 0 0 .133.809h-6.072a2.78 2.78 0 0 0 .133-.809v-3.62a2.812 2.812 0 0 0 -2.809-2.809h-8.857a2.812 2.812 0 0 0 -2.809 2.809v3.62a2.78 2.78 0 0 0 .133.809h-6.138zm28.285 13.15v-3.62a.809.809 0 0 1 .808-.809h8.858a.809.809 0 0 1 .808.809v3.62a.809.809 0 0 1 -.808.809h-8.857a.809.809 0 0 1 -.809-.809zm-20.28 0v-3.62a.81.81 0 0 1 .809-.809h8.857a.81.81 0 0 1 .809.809v3.62a.81.81 0 0 1 -.809.809h-8.857a.81.81 0 0 1 -.809-.809zm-12.355 6.55a3.746 3.746 0 0 1 3.744-3.741h47.978a3.746 3.746 0 0 1 3.743 3.741v4.3h-55.465z">
+                    </path>
+                    <path d="m17.798 44.137h28.78v2h-28.78z"></path>
+                  </svg>
+                  <span [ngStyle]="{'color': oneRKBedroomSelect ? '#971B47' : '#6B6D81'}">1 RK</span>
+                </button>
+                }
+                @if (SelectedType == 'Buy' || SelectedType == 'Rent') {
+                <button class="city-card2" (click)="oneBedroom();updatecount()"
+                  [ngStyle]="{'border-color': oneBedroomSelect ? '#971B47' : '#D9D9D9', 'color': oneBedroomSelect ? '#971B47' : '#D9D9D9','font-weight': oneBedroomSelect ? '500' : '400'}">
+                  <svg [ngClass]="oneBedroomSelect ? 'selected' : 'unselected'" id="fi_3297055" height="512"
+                    viewBox="0 0 64 64" width="512" xmlns="http://www.w3.org/2000/svg">
+                    <!-- SVG Content Omitted -->
+                    <path
+                      d="m3.456 57.139h10.9a1 1 0 0 0 .859-.489l3.1-5.206h27.745l3.1 5.206a1 1 0 0 0 .859.489h10.9a1 1 0 0 0 1-1v-24.339a5.749 5.749 0 0 0 -4.351-5.566v-14.134a3.1 3.1 0 0 0 -3.092-3.09h-2.3a3.1 3.1 0 0 0 -3.09 3.09v.226h-33.795v-.226a3.1 3.1 0 0 0 -3.091-3.09h-2.3a3.1 3.1 0 0 0 -3.094 3.09v14.136a5.748 5.748 0 0 0 -4.35 5.564v24.339a1 1 0 0 0 1 1zm56.465-7.695h-55.465v-11.338h55.465zm-46.134 5.7h-9.331v-3.7h11.532zm46.134 0h-9.331l-2.2-3.695h11.531zm-51.115-43.044a1.1 1.1 0 0 1 1.094-1.09h2.3a1.1 1.1 0 0 1 1.1 1.094v1.226a1 1 0 0 0 1 1h35.8a1 1 0 0 0 1-1v-1.23a1.1 1.1 0 0 1 1.095-1.094h2.3a1.1 1.1 0 0 1 1.075 1.094v13.959h-6.137a2.78 2.78 0 0 0 .132-.809v-3.62a2.811 2.811 0 0 0 -2.808-2.809h-8.857a2.812 2.812 0 0 0 -2.808 2.809v3.62a2.747 2.747 0 0 0 .133.809h-6.072a2.78 2.78 0 0 0 .133-.809v-3.62a2.812 2.812 0 0 0 -2.809-2.809h-8.857a2.812 2.812 0 0 0 -2.809 2.809v3.62a2.78 2.78 0 0 0 .133.809h-6.138zm28.285 13.15v-3.62a.809.809 0 0 1 .808-.809h8.858a.809.809 0 0 1 .808.809v3.62a.809.809 0 0 1 -.808.809h-8.857a.809.809 0 0 1 -.809-.809zm-20.28 0v-3.62a.81.81 0 0 1 .809-.809h8.857a.81.81 0 0 1 .809.809v3.62a.81.81 0 0 1 -.809.809h-8.857a.81.81 0 0 1 -.809-.809zm-12.355 6.55a3.746 3.746 0 0 1 3.744-3.741h47.978a3.746 3.746 0 0 1 3.743 3.741v4.3h-55.465z">
+                    </path>
+                    <path d="m17.798 44.137h28.78v2h-28.78z"></path>
+                  </svg>
+                  <span [ngStyle]="{'color': oneBedroomSelect ? '#971B47' : '#6B6D81'}">1 BHK</span>
+                </button>
+                }
+                @if (SelectedType == 'Buy' || SelectedType == 'Rent') {
+                <button class="city-card2" (click)="twoBedroom();updatecount()"
+                  [ngStyle]="{'border-color': twoBedroomSelect ? '#971B47' : '#D9D9D9', 'color': twoBedroomSelect ? '#971B47' : '#D9D9D9','font-weight': twoBedroomSelect ? '500' : '400'}">
+                  <svg [ngClass]="twoBedroomSelect ? 'selected' : 'unselected'" id="fi_3297055" height="512"
+                    viewBox="0 0 64 64" width="512" xmlns="http://www.w3.org/2000/svg">
+                    <!-- SVG Content Omitted -->
+                    <path
+                      d="m3.456 57.139h10.9a1 1 0 0 0 .859-.489l3.1-5.206h27.745l3.1 5.206a1 1 0 0 0 .859.489h10.9a1 1 0 0 0 1-1v-24.339a5.749 5.749 0 0 0 -4.351-5.566v-14.134a3.1 3.1 0 0 0 -3.092-3.09h-2.3a3.1 3.1 0 0 0 -3.09 3.09v.226h-33.795v-.226a3.1 3.1 0 0 0 -3.091-3.09h-2.3a3.1 3.1 0 0 0 -3.094 3.09v14.136a5.748 5.748 0 0 0 -4.35 5.564v24.339a1 1 0 0 0 1 1zm56.465-7.695h-55.465v-11.338h55.465zm-46.134 5.7h-9.331v-3.7h11.532zm46.134 0h-9.331l-2.2-3.695h11.531zm-51.115-43.044a1.1 1.1 0 0 1 1.094-1.09h2.3a1.1 1.1 0 0 1 1.1 1.094v1.226a1 1 0 0 0 1 1h35.8a1 1 0 0 0 1-1v-1.23a1.1 1.1 0 0 1 1.095-1.094h2.3a1.1 1.1 0 0 1 1.075 1.094v13.959h-6.137a2.78 2.78 0 0 0 .132-.809v-3.62a2.811 2.811 0 0 0 -2.808-2.809h-8.857a2.812 2.812 0 0 0 -2.808 2.809v3.62a2.747 2.747 0 0 0 .133.809h-6.072a2.78 2.78 0 0 0 .133-.809v-3.62a2.812 2.812 0 0 0 -2.809-2.809h-8.857a2.812 2.812 0 0 0 -2.809 2.809v3.62a2.78 2.78 0 0 0 .133.809h-6.138zm28.285 13.15v-3.62a.809.809 0 0 1 .808-.809h8.858a.809.809 0 0 1 .808.809v3.62a.809.809 0 0 1 -.808.809h-8.857a.809.809 0 0 1 -.809-.809zm-20.28 0v-3.62a.81.81 0 0 1 .809-.809h8.857a.81.81 0 0 1 .809.809v3.62a.81.81 0 0 1 -.809.809h-8.857a.81.81 0 0 1 -.809-.809zm-12.355 6.55a3.746 3.746 0 0 1 3.744-3.741h47.978a3.746 3.746 0 0 1 3.743 3.741v4.3h-55.465z">
+                    </path>
+                    <path d="m17.798 44.137h28.78v2h-28.78z"></path>
+                  </svg>
+                  <span [ngStyle]="{'color': twoBedroomSelect ? '#971B47' : '#6B6D81'}">2 BHK</span>
+                </button>
+                }
+                @if (SelectedType == 'Buy' || SelectedType == 'Rent') {
+                <button class="city-card2" (click)="threeBedroom();updatecount()"
+                  [ngStyle]="{'border-color': threeBedroomSelect ? '#971B47' : '#D9D9D9', 'color': threeBedroomSelect ? '#971B47' : '#D9D9D9','font-weight': threeBedroomSelect ? '500' : '400'}">
+                  <svg [ngClass]="threeBedroomSelect ? 'selected' : 'unselected'" id="fi_3297055" height="512"
+                    viewBox="0 0 64 64" width="512" xmlns="http://www.w3.org/2000/svg">
+                    <!-- SVG Content Omitted -->
+                    <path
+                      d="m3.456 57.139h10.9a1 1 0 0 0 .859-.489l3.1-5.206h27.745l3.1 5.206a1 1 0 0 0 .859.489h10.9a1 1 0 0 0 1-1v-24.339a5.749 5.749 0 0 0 -4.351-5.566v-14.134a3.1 3.1 0 0 0 -3.092-3.09h-2.3a3.1 3.1 0 0 0 -3.09 3.09v.226h-33.795v-.226a3.1 3.1 0 0 0 -3.091-3.09h-2.3a3.1 3.1 0 0 0 -3.094 3.09v14.136a5.748 5.748 0 0 0 -4.35 5.564v24.339a1 1 0 0 0 1 1zm56.465-7.695h-55.465v-11.338h55.465zm-46.134 5.7h-9.331v-3.7h11.532zm46.134 0h-9.331l-2.2-3.695h11.531zm-51.115-43.044a1.1 1.1 0 0 1 1.094-1.09h2.3a1.1 1.1 0 0 1 1.1 1.094v1.226a1 1 0 0 0 1 1h35.8a1 1 0 0 0 1-1v-1.23a1.1 1.1 0 0 1 1.095-1.094h2.3a1.1 1.1 0 0 1 1.075 1.094v13.959h-6.137a2.78 2.78 0 0 0 .132-.809v-3.62a2.811 2.811 0 0 0 -2.808-2.809h-8.857a2.812 2.812 0 0 0 -2.808 2.809v3.62a2.747 2.747 0 0 0 .133.809h-6.072a2.78 2.78 0 0 0 .133-.809v-3.62a2.812 2.812 0 0 0 -2.809-2.809h-8.857a2.812 2.812 0 0 0 -2.809 2.809v3.62a2.78 2.78 0 0 0 .133.809h-6.138zm28.285 13.15v-3.62a.809.809 0 0 1 .808-.809h8.858a.809.809 0 0 1 .808.809v3.62a.809.809 0 0 1 -.808.809h-8.857a.809.809 0 0 1 -.809-.809zm-20.28 0v-3.62a.81.81 0 0 1 .809-.809h8.857a.81.81 0 0 1 .809.809v3.62a.81.81 0 0 1 -.809.809h-8.857a.81.81 0 0 1 -.809-.809zm-12.355 6.55a3.746 3.746 0 0 1 3.744-3.741h47.978a3.746 3.746 0 0 1 3.743 3.741v4.3h-55.465z">
+                    </path>
+                    <path d="m17.798 44.137h28.78v2h-28.78z"></path>
+                  </svg>
+                  <span [ngStyle]="{'color': threeBedroomSelect ? '#971B47' : '#6B6D81'}">3 BHK</span>
+                </button>
+                }
+                @if (SelectedType == 'Buy' || SelectedType == 'Rent') {
+                <button class="city-card2" (click)="fourBedroom();updatecount()"
+                  [ngStyle]="{'border-color': fourBedroomSelect ? '#971B47' : '#D9D9D9', 'color': fourBedroomSelect ? '#971B47' : '#D9D9D9','font-weight': fourBedroomSelect ? '500' : '400'}">
+                  <svg [ngClass]="fourBedroomSelect ? 'selected' : 'unselected'" id="fi_3297055" height="512"
+                    viewBox="0 0 64 64" width="512" xmlns="http://www.w3.org/2000/svg">
+                    <!-- SVG Content Omitted -->
+                    <path
+                      d="m3.456 57.139h10.9a1 1 0 0 0 .859-.489l3.1-5.206h27.745l3.1 5.206a1 1 0 0 0 .859.489h10.9a1 1 0 0 0 1-1v-24.339a5.749 5.749 0 0 0 -4.351-5.566v-14.134a3.1 3.1 0 0 0 -3.092-3.09h-2.3a3.1 3.1 0 0 0 -3.09 3.09v.226h-33.795v-.226a3.1 3.1 0 0 0 -3.091-3.09h-2.3a3.1 3.1 0 0 0 -3.094 3.09v14.136a5.748 5.748 0 0 0 -4.35 5.564v24.339a1 1 0 0 0 1 1zm56.465-7.695h-55.465v-11.338h55.465zm-46.134 5.7h-9.331v-3.7h11.532zm46.134 0h-9.331l-2.2-3.695h11.531zm-51.115-43.044a1.1 1.1 0 0 1 1.094-1.09h2.3a1.1 1.1 0 0 1 1.1 1.094v1.226a1 1 0 0 0 1 1h35.8a1 1 0 0 0 1-1v-1.23a1.1 1.1 0 0 1 1.095-1.094h2.3a1.1 1.1 0 0 1 1.075 1.094v13.959h-6.137a2.78 2.78 0 0 0 .132-.809v-3.62a2.811 2.811 0 0 0 -2.808-2.809h-8.857a2.812 2.812 0 0 0 -2.808 2.809v3.62a2.747 2.747 0 0 0 .133.809h-6.072a2.78 2.78 0 0 0 .133-.809v-3.62a2.812 2.812 0 0 0 -2.809-2.809h-8.857a2.812 2.812 0 0 0 -2.809 2.809v3.62a2.78 2.78 0 0 0 .133.809h-6.138zm28.285 13.15v-3.62a.809.809 0 0 1 .808-.809h8.858a.809.809 0 0 1 .808.809v3.62a.809.809 0 0 1 -.808.809h-8.857a.809.809 0 0 1 -.809-.809zm-20.28 0v-3.62a.81.81 0 0 1 .809-.809h8.857a.81.81 0 0 1 .809.809v3.62a.81.81 0 0 1 -.809.809h-8.857a.81.81 0 0 1 -.809-.809zm-12.355 6.55a3.746 3.746 0 0 1 3.744-3.741h47.978a3.746 3.746 0 0 1 3.743 3.741v4.3h-55.465z">
+                    </path>
+                    <path d="m17.798 44.137h28.78v2h-28.78z"></path>
+                  </svg>
+                  <span [ngStyle]="{'color': fourBedroomSelect ? '#971B47' : '#6B6D81'}">4 BHK</span>
+                </button>
+                }
+                @if (SelectedType == 'Buy' || SelectedType == 'Rent') {
+                <button class="city-card2" (click)="fiveBedroom();updatecount()"
+                  [ngStyle]="{'border-color': fiveBedroomSelect ? '#971B47' : '#D9D9D9', 'color': fiveBedroomSelect ? '#971B47' : '#D9D9D9','font-weight': fiveBedroomSelect ? '500' : '400'}">
+                  <svg [ngClass]="fiveBedroomSelect ? 'selected' : 'unselected'" id="fi_3297055" height="512"
+                    viewBox="0 0 64 64" width="512" xmlns="http://www.w3.org/2000/svg">
+                    <!-- SVG Content Omitted -->
+                    <path
+                      d="m3.456 57.139h10.9a1 1 0 0 0 .859-.489l3.1-5.206h27.745l3.1 5.206a1 1 0 0 0 .859.489h10.9a1 1 0 0 0 1-1v-24.339a5.749 5.749 0 0 0 -4.351-5.566v-14.134a3.1 3.1 0 0 0 -3.092-3.09h-2.3a3.1 3.1 0 0 0 -3.09 3.09v.226h-33.795v-.226a3.1 3.1 0 0 0 -3.091-3.09h-2.3a3.1 3.1 0 0 0 -3.094 3.09v14.136a5.748 5.748 0 0 0 -4.35 5.564v24.339a1 1 0 0 0 1 1zm56.465-7.695h-55.465v-11.338h55.465zm-46.134 5.7h-9.331v-3.7h11.532zm46.134 0h-9.331l-2.2-3.695h11.531zm-51.115-43.044a1.1 1.1 0 0 1 1.094-1.09h2.3a1.1 1.1 0 0 1 1.1 1.094v1.226a1 1 0 0 0 1 1h35.8a1 1 0 0 0 1-1v-1.23a1.1 1.1 0 0 1 1.095-1.094h2.3a1.1 1.1 0 0 1 1.075 1.094v13.959h-6.137a2.78 2.78 0 0 0 .132-.809v-3.62a2.811 2.811 0 0 0 -2.808-2.809h-8.857a2.812 2.812 0 0 0 -2.808 2.809v3.62a2.747 2.747 0 0 0 .133.809h-6.072a2.78 2.78 0 0 0 .133-.809v-3.62a2.812 2.812 0 0 0 -2.809-2.809h-8.857a2.812 2.812 0 0 0 -2.809 2.809v3.62a2.78 2.78 0 0 0 .133.809h-6.138zm28.285 13.15v-3.62a.809.809 0 0 1 .808-.809h8.858a.809.809 0 0 1 .808.809v3.62a.809.809 0 0 1 -.808.809h-8.857a.809.809 0 0 1 -.809-.809zm-20.28 0v-3.62a.81.81 0 0 1 .809-.809h8.857a.81.81 0 0 1 .809.809v3.62a.81.81 0 0 1 -.809.809h-8.857a.81.81 0 0 1 -.809-.809zm-12.355 6.55a3.746 3.746 0 0 1 3.744-3.741h47.978a3.746 3.746 0 0 1 3.743 3.741v4.3h-55.465z">
+                    </path>
+                    <path d="m17.798 44.137h28.78v2h-28.78z"></path>
+                  </svg>
+                  <span [ngStyle]="{'color': fiveBedroomSelect ? '#971B47' : '#6B6D81'}">5 BHK</span>
+                </button>
+                }
+                @if (SelectedType == 'Buy') {
+                <button class="city-card2" (click)="sixBedroom();updatecount()"
+                  [ngStyle]="{'border-color': sixBedroomSelect ? '#971B47' : '#D9D9D9', 'color': sixBedroomSelect ? '#971B47' : '#D9D9D9','font-weight': sixBedroomSelect ? '500' : '400'}">
+                  <svg [ngClass]="sixBedroomSelect ? 'selected' : 'unselected'" id="fi_3297055" height="512"
+                    viewBox="0 0 64 64" width="512" xmlns="http://www.w3.org/2000/svg">
+                    <!-- SVG Content Omitted -->
+                    <path
+                      d="m3.456 57.139h10.9a1 1 0 0 0 .859-.489l3.1-5.206h27.745l3.1 5.206a1 1 0 0 0 .859.489h10.9a1 1 0 0 0 1-1v-24.339a5.749 5.749 0 0 0 -4.351-5.566v-14.134a3.1 3.1 0 0 0 -3.092-3.09h-2.3a3.1 3.1 0 0 0 -3.09 3.09v.226h-33.795v-.226a3.1 3.1 0 0 0 -3.091-3.09h-2.3a3.1 3.1 0 0 0 -3.094 3.09v14.136a5.748 5.748 0 0 0 -4.35 5.564v24.339a1 1 0 0 0 1 1zm56.465-7.695h-55.465v-11.338h55.465zm-46.134 5.7h-9.331v-3.7h11.532zm46.134 0h-9.331l-2.2-3.695h11.531zm-51.115-43.044a1.1 1.1 0 0 1 1.094-1.09h2.3a1.1 1.1 0 0 1 1.1 1.094v1.226a1 1 0 0 0 1 1h35.8a1 1 0 0 0 1-1v-1.23a1.1 1.1 0 0 1 1.095-1.094h2.3a1.1 1.1 0 0 1 1.075 1.094v13.959h-6.137a2.78 2.78 0 0 0 .132-.809v-3.62a2.811 2.811 0 0 0 -2.808-2.809h-8.857a2.812 2.812 0 0 0 -2.808 2.809v3.62a2.747 2.747 0 0 0 .133.809h-6.072a2.78 2.78 0 0 0 .133-.809v-3.62a2.812 2.812 0 0 0 -2.809-2.809h-8.857a2.812 2.812 0 0 0 -2.809 2.809v3.62a2.78 2.78 0 0 0 .133.809h-6.138zm28.285 13.15v-3.62a.809.809 0 0 1 .808-.809h8.858a.809.809 0 0 1 .808.809v3.62a.809.809 0 0 1 -.808.809h-8.857a.809.809 0 0 1 -.809-.809zm-20.28 0v-3.62a.81.81 0 0 1 .809-.809h8.857a.81.81 0 0 1 .809.809v3.62a.81.81 0 0 1 -.809.809h-8.857a.81.81 0 0 1 -.809-.809zm-12.355 6.55a3.746 3.746 0 0 1 3.744-3.741h47.978a3.746 3.746 0 0 1 3.743 3.741v4.3h-55.465z">
+                    </path>
+                    <path d="m17.798 44.137h28.78v2h-28.78z"></path>
+                  </svg>
+                  <span [ngStyle]="{'color': sixBedroomSelect ? '#971B47' : '#6B6D81'}">6 BHK</span>
+                </button>
+                }
+                @if (SelectedType == 'Buy') {
+                <button class="city-card2" (click)="sevenBedroom();updatecount()"
+                  [ngStyle]="{'border-color': sevenBedroomSelect ? '#971B47' : '#D9D9D9', 'color': sevenBedroomSelect ? '#971B47' : '#D9D9D9','font-weight': sevenBedroomSelect ? '500' : '400'}">
+                  <svg [ngClass]="sevenBedroomSelect ? 'selected' : 'unselected'" id="fi_3297055" height="512"
+                    viewBox="0 0 64 64" width="512" xmlns="http://www.w3.org/2000/svg">
+                    <!-- SVG Content Omitted -->
+                    <path
+                      d="m3.456 57.139h10.9a1 1 0 0 0 .859-.489l3.1-5.206h27.745l3.1 5.206a1 1 0 0 0 .859.489h10.9a1 1 0 0 0 1-1v-24.339a5.749 5.749 0 0 0 -4.351-5.566v-14.134a3.1 3.1 0 0 0 -3.092-3.09h-2.3a3.1 3.1 0 0 0 -3.09 3.09v.226h-33.795v-.226a3.1 3.1 0 0 0 -3.091-3.09h-2.3a3.1 3.1 0 0 0 -3.094 3.09v14.136a5.748 5.748 0 0 0 -4.35 5.564v24.339a1 1 0 0 0 1 1zm56.465-7.695h-55.465v-11.338h55.465zm-46.134 5.7h-9.331v-3.7h11.532zm46.134 0h-9.331l-2.2-3.695h11.531zm-51.115-43.044a1.1 1.1 0 0 1 1.094-1.09h2.3a1.1 1.1 0 0 1 1.1 1.094v1.226a1 1 0 0 0 1 1h35.8a1 1 0 0 0 1-1v-1.23a1.1 1.1 0 0 1 1.095-1.094h2.3a1.1 1.1 0 0 1 1.075 1.094v13.959h-6.137a2.78 2.78 0 0 0 .132-.809v-3.62a2.811 2.811 0 0 0 -2.808-2.809h-8.857a2.812 2.812 0 0 0 -2.808 2.809v3.62a2.747 2.747 0 0 0 .133.809h-6.072a2.78 2.78 0 0 0 .133-.809v-3.62a2.812 2.812 0 0 0 -2.809-2.809h-8.857a2.812 2.812 0 0 0 -2.809 2.809v3.62a2.78 2.78 0 0 0 .133.809h-6.138zm28.285 13.15v-3.62a.809.809 0 0 1 .808-.809h8.858a.809.809 0 0 1 .808.809v3.62a.809.809 0 0 1 -.808.809h-8.857a.809.809 0 0 1 -.809-.809zm-20.28 0v-3.62a.81.81 0 0 1 .809-.809h8.857a.81.81 0 0 1 .809.809v3.62a.81.81 0 0 1 -.809.809h-8.857a.81.81 0 0 1 -.809-.809zm-12.355 6.55a3.746 3.746 0 0 1 3.744-3.741h47.978a3.746 3.746 0 0 1 3.743 3.741v4.3h-55.465z">
+                    </path>
+                    <path d="m17.798 44.137h28.78v2h-28.78z"></path>
+                  </svg>
+                  <span [ngStyle]="{'color': sevenBedroomSelect ? '#971B47' : '#6B6D81'}">7+ BHK</span>
+                </button>
+                }
+              </div>
+            </div>
+          </div>
+          }
+
+          @if ((SelectedType == 'Buy' || SelectedType == 'Rent') && (!plotSelect || apartmentSelect || villaSelect ||
+          HouseSelect)) {
+          <div class="mt-2 mb-2" style="border: 1.15px solid #E3E3E5"></div>
+          }
+
+          @if ((SelectedType == 'Buy' || SelectedType == 'Rent') && (!plotSelect || apartmentSelect || villaSelect ||
+          HouseSelect)) {
+          <div class="filter-section"
+            [ngClass]="{ 'blur-effect2': plotSelect && !apartmentSelect && !villaSelect && !HouseSelect }">
+            <h6>No.of Bathroom</h6>
+            <div class="filter-buttonss">
+              <div class="city-grid2">
+                <button class="city-card2" (click)="oneBathroom();updatecount()"
+                  [ngStyle]="{'border-color': oneBathroomSelect ? '#971B47' : '#D9D9D9', 'color': oneBathroomSelect ? '#971B47' : '#D9D9D9','font-weight': oneBathroomSelect ? '500' : '400'}">
+                  <svg [ngClass]="oneBathroomSelect ? 'selected' : 'unselected'" id="fi_5099115" width="38px"
+                    height="38px" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <!-- SVG Content Omitted -->
+                    <g>
+                      <path
+                        d="m496.5 244.127h-157.094c10.526-9.326 17.724-22.312 19.594-36.947h108.06c8.547 0 15.5-6.953 15.5-15.5v-176.18c0-8.547-6.953-15.5-15.5-15.5h-66.53c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h66.529c.28 0 .5.22.5.5v176.18c0 .28-.22.5-.5.5h-107.559v-23.704c0-6.341-5.159-11.5-11.5-11.5h-45.971v-8.562h3.503c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-10.906c-.032 0-.064-.005-.097-.005s-.064.004-.097.005h-10.9c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h3.497v8.562h-23.529v-48.146c0-3.316 1.293-6.439 3.626-8.779 2.354-2.348 5.474-3.641 8.784-3.641 6.849 0 12.42 5.572 12.42 12.42 0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5c0-15.12-12.301-27.42-27.42-27.42-7.309 0-14.189 2.848-19.391 8.034-5.172 5.186-8.02 12.071-8.02 19.386v48.146h-23.529v-8.562h3.497c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-10.9c-.032 0-.064-.005-.097-.005s-.064.004-.097.005h-10.906c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h3.503v8.562h-45.97c-6.341 0-11.5 5.159-11.5 11.5v23.704h-107.56c-.28 0-.5-.22-.5-.5v-176.18c0-.28.22-.5.5-.5h320.59c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-320.59c-8.547 0-15.5 6.953-15.5 15.5v176.18c0 8.547 6.953 15.5 15.5 15.5h108.06c1.87 14.635 9.069 27.621 19.594 36.947h-157.094c-8.547 0-15.5 6.953-15.5 15.5v19c0 8.547 6.953 15.5 15.5 15.5h13.94v202.373c0 8.547 6.953 15.5 15.5 15.5h130.28c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-21.25v-202.873h94.53v202.873h-38.28c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h256.84c8.547 0 15.5-6.953 15.5-15.5v-202.373h13.94c8.547 0 15.5-6.953 15.5-15.5v-19c0-8.546-6.953-15.5-15.5-15.5zm-329-44.526v-27.624h49.903c.023 0 .045.003.068.003s.045-.003.068-.003h76.923c.023 0 .045.003.068.003s.045-.003.068-.003h49.902v27.624c0 24.538-19.963 44.5-44.5 44.5h-88c-24.537 0-44.5-19.963-44.5-44.5zm-28.53 224.779h-94.53v-57.63h94.529v57.63zm-94.03 72.62c-.28 0-.5-.22-.5-.5v-57.12h94.529v57.62zm94.03-145.25h-94.53v-57.623h94.529v57.623zm124.53-57.623h94.53v202.873h-94.53zm204.06 130.253h-94.53v-57.63h94.529v57.63zm-.5 72.62h-94.03v-57.62h94.529v57.12c.001.28-.219.5-.499.5zm.5-145.25h-94.53v-57.623h94.529v57.623zm29.44-73.123c0 .276-.225.5-.5.5h-481c-.275 0-.5-.224-.5-.5v-19c0-.276.225-.5.5-.5h481c.275 0 .5.224.5.5z">
+                      </path>
+                      <path
+                        d="m233.5 409.25v-27.373c0-4.142-3.357-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v27.373c0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5z">
+                      </path>
+                      <path
+                        d="m286 374.377c-4.143 0-7.5 3.358-7.5 7.5v27.373c0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5v-27.373c0-4.142-3.357-7.5-7.5-7.5z">
+                      </path>
+                    </g>
+                  </svg>
+                  <span [ngStyle]="{'color': oneBathroomSelect ? '#971B47' : '#6B6D81'}">1 Bathroom</span>
+                </button>
+                <button class="city-card2" (click)="twoBathroom();updatecount()"
+                  [ngStyle]="{'border-color': twoBathroomSelect ? '#971B47' : '#D9D9D9', 'color': twoBathroomSelect ? '#971B47' : '#D9D9D9','font-weight': twoBathroomSelect ? '500' : '400'}">
+                  <svg [ngClass]="twoBathroomSelect ? 'selected' : 'unselected'" id="fi_5099115" width="38px"
+                    height="38px" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <!-- SVG Content Omitted -->
+                    <g>
+                      <path
+                        d="m496.5 244.127h-157.094c10.526-9.326 17.724-22.312 19.594-36.947h108.06c8.547 0 15.5-6.953 15.5-15.5v-176.18c0-8.547-6.953-15.5-15.5-15.5h-66.53c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h66.529c.28 0 .5.22.5.5v176.18c0 .28-.22.5-.5.5h-107.559v-23.704c0-6.341-5.159-11.5-11.5-11.5h-45.971v-8.562h3.503c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-10.906c-.032 0-.064-.005-.097-.005s-.064.004-.097.005h-10.9c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h3.497v8.562h-23.529v-48.146c0-3.316 1.293-6.439 3.626-8.779 2.354-2.348 5.474-3.641 8.784-3.641 6.849 0 12.42 5.572 12.42 12.42 0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5c0-15.12-12.301-27.42-27.42-27.42-7.309 0-14.189 2.848-19.391 8.034-5.172 5.186-8.02 12.071-8.02 19.386v48.146h-23.529v-8.562h3.497c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-10.9c-.032 0-.064-.005-.097-.005s-.064.004-.097.005h-10.906c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h3.503v8.562h-45.97c-6.341 0-11.5 5.159-11.5 11.5v23.704h-107.56c-.28 0-.5-.22-.5-.5v-176.18c0-.28.22-.5.5-.5h320.59c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-320.59c-8.547 0-15.5 6.953-15.5 15.5v176.18c0 8.547 6.953 15.5 15.5 15.5h108.06c1.87 14.635 9.069 27.621 19.594 36.947h-157.094c-8.547 0-15.5 6.953-15.5 15.5v19c0 8.547 6.953 15.5 15.5 15.5h13.94v202.373c0 8.547 6.953 15.5 15.5 15.5h130.28c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-21.25v-202.873h94.53v202.873h-38.28c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h256.84c8.547 0 15.5-6.953 15.5-15.5v-202.373h13.94c8.547 0 15.5-6.953 15.5-15.5v-19c0-8.546-6.953-15.5-15.5-15.5zm-329-44.526v-27.624h49.903c.023 0 .045.003.068.003s.045-.003.068-.003h76.923c.023 0 .045.003.068.003s.045-.003.068-.003h49.902v27.624c0 24.538-19.963 44.5-44.5 44.5h-88c-24.537 0-44.5-19.963-44.5-44.5zm-28.53 224.779h-94.53v-57.63h94.529v57.63zm-94.03 72.62c-.28 0-.5-.22-.5-.5v-57.12h94.529v57.62zm94.03-145.25h-94.53v-57.623h94.529v57.623zm124.53-57.623h94.53v202.873h-94.53zm204.06 130.253h-94.53v-57.63h94.529v57.63zm-.5 72.62h-94.03v-57.62h94.529v57.12c.001.28-.219.5-.499.5zm.5-145.25h-94.53v-57.623h94.529v57.623zm29.44-73.123c0 .276-.225.5-.5.5h-481c-.275 0-.5-.224-.5-.5v-19c0-.276.225-.5.5-.5h481c.275 0 .5.224.5.5z">
+                      </path>
+                      <path
+                        d="m233.5 409.25v-27.373c0-4.142-3.357-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v27.373c0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5z">
+                      </path>
+                      <path
+                        d="m286 374.377c-4.143 0-7.5 3.358-7.5 7.5v27.373c0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5v-27.373c0-4.142-3.357-7.5-7.5-7.5z">
+                      </path>
+                    </g>
+                  </svg>
+                  <span [ngStyle]="{'color': twoBathroomSelect ? '#971B47' : '#6B6D81'}">2 Bathroom</span>
+                </button>
+                <button class="city-card2" (click)="threeBathroom();updatecount()"
+                  [ngStyle]="{'border-color': threeBathroomSelect ? '#971B47' : '#D9D9D9', 'color': threeBathroomSelect ? '#971B47' : '#D9D9D9','font-weight': threeBathroomSelect ? '500' : '400'}">
+                  <svg [ngClass]="threeBathroomSelect ? 'selected' : 'unselected'" id="fi_5099115" width="38px"
+                    height="38px" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <!-- SVG Content Omitted -->
+                    <g>
+                      <path
+                        d="m496.5 244.127h-157.094c10.526-9.326 17.724-22.312 19.594-36.947h108.06c8.547 0 15.5-6.953 15.5-15.5v-176.18c0-8.547-6.953-15.5-15.5-15.5h-66.53c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h66.529c.28 0 .5.22.5.5v176.18c0 .28-.22.5-.5.5h-107.559v-23.704c0-6.341-5.159-11.5-11.5-11.5h-45.971v-8.562h3.503c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-10.906c-.032 0-.064-.005-.097-.005s-.064.004-.097.005h-10.9c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h3.497v8.562h-23.529v-48.146c0-3.316 1.293-6.439 3.626-8.779 2.354-2.348 5.474-3.641 8.784-3.641 6.849 0 12.42 5.572 12.42 12.42 0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5c0-15.12-12.301-27.42-27.42-27.42-7.309 0-14.189 2.848-19.391 8.034-5.172 5.186-8.02 12.071-8.02 19.386v48.146h-23.529v-8.562h3.497c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-10.9c-.032 0-.064-.005-.097-.005s-.064.004-.097.005h-10.906c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h3.503v8.562h-45.97c-6.341 0-11.5 5.159-11.5 11.5v23.704h-107.56c-.28 0-.5-.22-.5-.5v-176.18c0-.28.22-.5.5-.5h320.59c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-320.59c-8.547 0-15.5 6.953-15.5 15.5v176.18c0 8.547 6.953 15.5 15.5 15.5h108.06c1.87 14.635 9.069 27.621 19.594 36.947h-157.094c-8.547 0-15.5 6.953-15.5 15.5v19c0 8.547 6.953 15.5 15.5 15.5h13.94v202.373c0 8.547 6.953 15.5 15.5 15.5h130.28c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-21.25v-202.873h94.53v202.873h-38.28c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h256.84c8.547 0 15.5-6.953 15.5-15.5v-202.373h13.94c8.547 0 15.5-6.953 15.5-15.5v-19c0-8.546-6.953-15.5-15.5-15.5zm-329-44.526v-27.624h49.903c.023 0 .045.003.068.003s.045-.003.068-.003h76.923c.023 0 .045.003.068.003s.045-.003.068-.003h49.902v27.624c0 24.538-19.963 44.5-44.5 44.5h-88c-24.537 0-44.5-19.963-44.5-44.5zm-28.53 224.779h-94.53v-57.63h94.529v57.63zm-94.03 72.62c-.28 0-.5-.22-.5-.5v-57.12h94.529v57.62zm94.03-145.25h-94.53v-57.623h94.529v57.623zm124.53-57.623h94.53v202.873h-94.53zm204.06 130.253h-94.53v-57.63h94.529v57.63zm-.5 72.62h-94.03v-57.62h94.529v57.12c.001.28-.219.5-.499.5zm.5-145.25h-94.53v-57.623h94.529v57.623zm29.44-73.123c0 .276-.225.5-.5.5h-481c-.275 0-.5-.224-.5-.5v-19c0-.276.225-.5.5-.5h481c.275 0 .5.224.5.5z">
+                      </path>
+                      <path
+                        d="m233.5 409.25v-27.373c0-4.142-3.357-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v27.373c0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5z">
+                      </path>
+                      <path
+                        d="m286 374.377c-4.143 0-7.5 3.358-7.5 7.5v27.373c0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5v-27.373c0-4.142-3.357-7.5-7.5-7.5z">
+                      </path>
+                    </g>
+                  </svg>
+                  <span [ngStyle]="{'color': threeBathroomSelect ? '#971B47' : '#6B6D81'}">3 Bathroom</span>
+                </button>
+                <button class="city-card2" (click)="fourBathroom();updatecount()"
+                  [ngStyle]="{'border-color': fourBathroomSelect ? '#971B47' : '#D9D9D9', 'color': fourBathroomSelect ? '#971B47' : '#D9D9D9','font-weight': fourBathroomSelect ? '500' : '400'}">
+                  <svg [ngClass]="fourBathroomSelect ? 'selected' : 'unselected'" id="fi_5099115" width="38px"
+                    height="38px" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <!-- SVG Content Omitted -->
+                    <g>
+                      <path
+                        d="m496.5 244.127h-157.094c10.526-9.326 17.724-22.312 19.594-36.947h108.06c8.547 0 15.5-6.953 15.5-15.5v-176.18c0-8.547-6.953-15.5-15.5-15.5h-66.53c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h66.529c.28 0 .5.22.5.5v176.18c0 .28-.22.5-.5.5h-107.559v-23.704c0-6.341-5.159-11.5-11.5-11.5h-45.971v-8.562h3.503c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-10.906c-.032 0-.064-.005-.097-.005s-.064.004-.097.005h-10.9c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h3.503v8.562h-23.529v-48.146c0-3.316 1.293-6.439 3.626-8.779 2.354-2.348 5.474-3.641 8.784-3.641 6.849 0 12.42 5.572 12.42 12.42 0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5c0-15.12-12.301-27.42-27.42-27.42-7.309 0-14.189 2.848-19.391 8.034-5.172 5.186-8.02 12.071-8.02 19.386v48.146h-23.529v-8.562h3.497c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-10.9c-.032 0-.064-.005-.097-.005s-.064.004-.097.005h-10.906c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h3.503v8.562h-45.97c-6.341 0-11.5 5.159-11.5 11.5v23.704h-107.56c-.28 0-.5-.22-.5-.5v-176.18c0-.28.22-.5.5-.5h320.59c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-320.59c-8.547 0-15.5 6.953-15.5 15.5v176.18c0 8.547 6.953 15.5 15.5 15.5h108.06c1.87 14.635 9.069 27.621 19.594 36.947h-157.094c-8.547 0-15.5 6.953-15.5 15.5v19c0 8.547 6.953 15.5 15.5 15.5h13.94v202.373c0 8.547 6.953 15.5 15.5 15.5h130.28c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-21.25v-202.873h94.53v202.873h-38.28c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h256.84c8.547 0 15.5-6.953 15.5-15.5v-202.373h13.94c8.547 0 15.5-6.953 15.5-15.5v-19c0-8.546-6.953-15.5-15.5-15.5zm-329-44.526v-27.624h49.903c.023 0 .045.003.068.003s.045-.003.068-.003h76.923c.023 0 .045.003.068.003s.045-.003.068-.003h49.902v27.624c0 24.538-19.963 44.5-44.5 44.5h-88c-24.537 0-44.5-19.963-44.5-44.5zm-28.53 224.779h-94.53v-57.63h94.529v57.63zm-94.03 72.62c-.28 0-.5-.22-.5-.5v-57.12h94.529v57.62zm94.03-145.25h-94.53v-57.623h94.529v57.623zm124.53-57.623h94.53v202.873h-94.53zm204.06 130.253h-94.53v-57.63h94.529v57.63zm-.5 72.62h-94.03v-57.62h94.529v57.12c.001.28-.219.5-.499.5zm.5-145.25h-94.53v-57.623h94.529v57.623zm29.44-73.123c0 .276-.225.5-.5.5h-481c-.275 0-.5-.224-.5-.5v-19c0-.276.225-.5.5-.5h481c.275 0 .5.224.5.5z">
+                      </path>
+                      <path
+                        d="m233.5 409.25v-27.373c0-4.142-3.357-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v27.373c0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5z">
+                      </path>
+                      <path
+                        d="m286 374.377c-4.143 0-7.5 3.358-7.5 7.5v27.373c0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5v-27.373c0-4.142-3.357-7.5-7.5-7.5z">
+                      </path>
+                    </g>
+                  </svg>
+                  <span [ngStyle]="{'color': fourBathroomSelect ? '#971B47' : '#6B6D81'}">4+<br>Bathroom</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          }
+
+          @if ((SelectedType == 'Buy' || SelectedType == 'Rent') && (!plotSelect || apartmentSelect || villaSelect ||
+          HouseSelect)) {
+          <div class="mt-2 mb-2" style="border: 1.15px solid #E3E3E5"></div>
+          }
+
+          @if (SelectedType == 'Buy' || SelectedType == 'Rent') {
+          <div class="filter-section">
+            <h6>Availability</h6>
+            @if (SelectedType == 'Buy') {
+            <div class="filter-buttons">
+              <button type="button" class="btn btn-default" (click)="PosessionImmediate();updatecount()"
+                [ngStyle]="{'border-color': ImmediateSelect ? '#971B47' : '#455A64', 'color': ImmediateSelect ? '#971B47' : '#455A64','font-weight': ImmediateSelect ? '500' : '400'}">
+                &nbsp;&nbsp;@if (ImmediateSelect) { <span class="tick"><svg width="15" height="15" viewBox="0 0 8 6"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!ImmediateSelect) { <span class="tick2"></span>
+                }&nbsp;&nbsp;Immediate&nbsp;&nbsp;
+              </button>
+              <button type="button" class="btn btn-default" (click)="PosessionSixMonths();updatecount()"
+                [ngStyle]="{'border-color': SixMonthsSelect ? '#971B47' : '#455A64', 'color': SixMonthsSelect ? '#971B47' : '#455A64','font-weight': SixMonthsSelect ? '500' : '400'}">
+                &nbsp;&nbsp;@if (SixMonthsSelect) { <span class="tick"><svg width="15" height="15" viewBox="0 0 8 6"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!SixMonthsSelect) { <span class="tick2"></span> }&nbsp;&nbsp;6 months&nbsp;&nbsp;
+              </button>
+              <button type="button" class="btn btn-default" (click)="PosessionOneYear();updatecount()"
+                [ngStyle]="{'border-color': OneYearSelect ? '#971B47' : '#455A64', 'color': OneYearSelect ? '#971B47' : '#455A64','font-weight': OneYearSelect ? '500' : '400'}">
+                &nbsp;&nbsp;@if (OneYearSelect) { <span class="tick"><svg width="15" height="15" viewBox="0 0 8 6"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!OneYearSelect) { <span class="tick2"></span> }&nbsp;&nbsp;1 year&nbsp;&nbsp;
+              </button>
+              <button type="button" class="btn btn-default" (click)="PosessionTwoYearAbove();updatecount()"
+                [ngStyle]="{'border-color': twoYearSelect ? '#971B47' : '#455A64', 'color': twoYearSelect ? '#971B47' : '#455A64','font-weight': twoYearSelect ? '500' : '400'}">
+                @if (twoYearSelect) { <span class="tick"><svg width="15" height="15" viewBox="0 0 8 6" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!twoYearSelect) { <span class="tick2"></span> }&nbsp;&nbsp;2+ years&nbsp;&nbsp;
+              </button>
+            </div>
+            }
+
+            @if (SelectedType == 'Rent') {
+            <div class="filter-buttons">
+              <button type="button" class="btn btn-default" (click)="Immediateclick();updatecount()"
+                [ngStyle]="{'border-color': ImmediateSelect1 ? '#971B47' : '#455A64', 'color': ImmediateSelect1 ? '#971B47' : '#455A64','font-weight': ImmediateSelect1 ? '500' : '400'}">
+                &nbsp;&nbsp;@if (ImmediateSelect1) { <span class="tick"><svg width="15" height="15" viewBox="0 0 8 6"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!ImmediateSelect1) { <span class="tick2"></span>
+                }&nbsp;&nbsp;Immediate&nbsp;&nbsp;
+              </button>
+              <button type="button" class="btn btn-default" (click)="Within15Daysclick();updatecount()"
+                [ngStyle]="{'border-color': Within15DaysSelect ? '#971B47' : '#455A64', 'color': Within15DaysSelect ? '#971B47' : '#455A64','font-weight': Within15DaysSelect ? '500' : '400'}">
+                &nbsp;&nbsp;@if (Within15DaysSelect) { <span class="tick"><svg width="15" height="15" viewBox="0 0 8 6"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!Within15DaysSelect) { <span class="tick2"></span> }&nbsp;&nbsp; Within 15
+                Days&nbsp;&nbsp;
+              </button>
+              <button type="button" class="btn btn-default" (click)="Within30Daysclick();updatecount()"
+                [ngStyle]="{'border-color': Within30DaysSelect ? '#971B47' : '#455A64', 'color': Within30DaysSelect ? '#971B47' : '#455A64','font-weight': Within30DaysSelect ? '500' : '400'}">
+                &nbsp;&nbsp;@if (Within30DaysSelect) { <span class="tick"><svg width="15" height="15" viewBox="0 0 8 6"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!Within30DaysSelect) { <span class="tick2"></span> }&nbsp;&nbsp; Within 30
+                Days&nbsp;&nbsp;
+              </button>
+              <button type="button" class="btn btn-default" (click)="After30Daysclick();updatecount()"
+                [ngStyle]="{'border-color': After30DaysSelect ? '#971B47' : '#455A64', 'color': After30DaysSelect ? '#971B47' : '#455A64','font-weight': After30DaysSelect ? '500' : '400'}">
+                &nbsp;&nbsp;@if (After30DaysSelect) { <span class="tick"><svg width="15" height="15" viewBox="0 0 8 6"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!After30DaysSelect) { <span class="tick2"></span> }&nbsp;&nbsp;After 30
+                Days&nbsp;&nbsp;
+              </button>
+            </div>
+
+            }
+          </div>
+          }
+          <div class="mt-2 mb-2" style="border: 1.15px solid #E3E3E5"></div>
+
+          @if (SelectedType == 'Buy' && (!plotSelect || apartmentSelect || villaSelect || HouseSelect)) {
+          <div class="filter-section"
+            [ngClass]="{ 'blur-effect2': plotSelect && !apartmentSelect && !villaSelect && !HouseSelect }">
+            <h6>Property Status</h6>
+            <div class="filter-buttons">
+              <button type="button" class="btn btn-default" (click)="selectStatus('readyToMove'); updatecount()"
+                [ngStyle]="{'border-color': selectedStatus === 'readyToMove' ? '#971B47' : '#455A64', 
+                      'color': selectedStatus === 'readyToMove' ? '#971B47' : '#455A64',
+                      'font-weight': selectedStatus === 'readyToMove' ? '500' : '400'}">
+                &nbsp;&nbsp;@if (selectedStatus === 'readyToMove') { <span class="tick"><svg width="15" height="15"
+                    viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> }
+                @if (selectedStatus !== 'readyToMove') { <span class="tick2"></span> }&nbsp;&nbsp;Ready to
+                Move&nbsp;&nbsp;
+              </button>
+
+              <button type="button" class="btn btn-default" (click)="selectStatus('newLaunch'); updatecount()"
+                [ngStyle]="{'border-color': selectedStatus === 'newLaunch' ? '#971B47' : '#455A64', 
+                      'color': selectedStatus === 'newLaunch' ? '#971B47' : '#455A64',
+                      'font-weight': selectedStatus === 'newLaunch' ? '500' : '400'}">
+                &nbsp;&nbsp;@if (selectedStatus === 'newLaunch') { <span class="tick"><svg width="15" height="15"
+                    viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> }
+                @if (selectedStatus !== 'newLaunch') { <span class="tick2"></span> }&nbsp;&nbsp;New Launch&nbsp;&nbsp;
+              </button>
+
+              <button type="button" class="btn btn-default" (click)="selectStatus('underConstruction'); updatecount()"
+                [ngStyle]="{'border-color': selectedStatus === 'underConstruction' ? '#971B47' : '#455A64', 
+                      'color': selectedStatus === 'underConstruction' ? '#971B47' : '#455A64',
+                      'font-weight': selectedStatus === 'underConstruction' ? '500' : '400'}">
+                &nbsp;&nbsp;@if (selectedStatus === 'underConstruction') { <span class="tick"><svg width="15"
+                    height="15" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> }
+                @if (selectedStatus !== 'underConstruction') { <span class="tick2"></span> }&nbsp;&nbsp;Under
+                Construction&nbsp;&nbsp;
+              </button>
+
+              <button type="button" class="btn btn-default" (click)="selectStatus('upcoming'); updatecount()" [ngStyle]="{'border-color': selectedStatus === 'upcoming' ? '#971B47' : '#455A64', 
+                      'color': selectedStatus === 'upcoming' ? '#971B47' : '#455A64',
+                      'font-weight': selectedStatus === 'upcoming' ? '500' : '400'}">
+                &nbsp;&nbsp;@if (selectedStatus === 'upcoming') { <span class="tick"><svg width="15" height="15"
+                    viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> }
+                @if (selectedStatus !== 'upcoming') { <span class="tick2"></span> }&nbsp;&nbsp;Upcoming&nbsp;&nbsp;
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-2 mb-2" style="border: 1.15px solid #E3E3E5"></div>
+          }
+
+          @if (SelectedType == 'Rent') {
+          <div class="filter-section">
+            <h6>Furnishing Status</h6>
+            <div class="filter-buttonss">
+              <div class="city-grid">
+                <button class="city-card2" (click)="changeFurnishestype();updatecount()"
+                  [ngStyle]="{'border-color': Furnish ? '#971B47' : '#D9D9D9', 'color': Furnish ? '#971B47' : '#D9D9D9','font-weight': Furnish ? '500' : '400'}">
+                  <svg [ngClass]="Furnish ? 'selected' : 'unselected'" id="fi_9215678"
+                    enable-background="new 0 0 512 512" viewBox="0 0 512 512" width="38px" height="38px"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <!-- SVG Content Omitted -->
+                    <g>
+                      <path
+                        d="m474.505 496.938-15.281-45.844h24.816l15.384-123.016c1.243-9.939-1.458-19.768-7.608-27.675-6.149-7.907-15.009-12.946-24.949-14.189-8.792-1.1-17.26.961-24.274 5.281l-3.38-37.2c-1.141-12.55-6.987-23.519-15.713-31.268v-94.464h17.667v67.562h15v-67.562h38.924l-22.903-118.375h-112.376l-22.902 118.374h71.59v85.482c-5.168-1.905-10.755-2.951-16.592-2.951h-105.885c-10.022 0-19.443 3.904-26.527 10.994-1.279 1.281-2.451 2.639-3.518 4.062-6.846-9.135-17.756-15.056-30.024-15.056h-105.959c-24.749 0-45.087 18.588-47.309 43.237l-3.348 37.146c-6.997-4.298-15.436-6.352-24.199-5.265-20.521 2.545-35.145 21.31-32.6 41.83l15.261 123.051h24.976l-15.281 45.844h-37.495v15h512v-15h-37.495zm-102.317-471.75h87.624l17.098 88.375h-121.82zm92.818 275.911c5.964.745 11.28 3.769 14.969 8.513 3.689 4.745 5.311 10.642 4.565 16.605l-13.742 109.877h-38.843v-52.032l7.933-63.43c1.54-12.31 12.813-21.076 25.118-19.533zm-370.932 74.995-1.353-10.905c-.445-3.604.634-7.088 3.039-9.81 2.406-2.723 5.733-4.223 9.367-4.223h130.827c6.893 0 12.5 5.607 12.5 12.5v12.438zm323.759 0h-154.27v-12.438c0-6.893 5.607-12.5 12.5-12.5h119.402c6.451 0 12.599 2.773 16.868 7.61 4.19 4.747 6.184 11.044 5.5 17.328zm-330.207-120.417c1.52-16.865 15.436-29.583 32.369-29.583h105.959c12.407 0 22.5 10.094 22.5 22.5v42.469h15v-42.451h.069c-.004-6.013 2.333-11.667 6.584-15.921s9.903-6.597 15.916-6.597h105.884c16.92 0 30.835 12.707 32.367 29.559l4.599 50.604c-1.966 3.809-3.307 8.02-3.869 12.515l-3.493 27.927c-6.962-6.725-16.292-10.541-26.047-10.541h-119.402c-4.542 0-8.828 1.112-12.608 3.07v-33.228h-15v33.168c-3.753-1.923-8.001-3.012-12.5-3.012h-130.827c-5.547 0-10.908 1.685-15.419 4.739l-2.739-22.083c-.561-4.526-1.914-8.764-3.898-12.596zm-60.2 70.52c-1.527-12.312 7.248-23.571 19.56-25.098 12.312-1.53 23.572 7.247 25.099 19.559l7.863 63.4v52.036h-38.892zm138.699 124.897v-15h-71.178v-45h322.009v45h-235.289v15h261.745l14.979 44.938h-21.188l-10-30h-342.406l-10 30h-21.188l14.979-44.938zm-70.516 29.937h320.782l5.302 15.906h-331.386z">
+                      </path>
+                      <path d="m255.625.062h-74.625v15h59.625v151.563h-225v-151.563h150.042v-15h-165.042v181.563h255z">
+                      </path>
+                      <path
+                        d="m33.625 148.625h189v-115.563h-189zm15-15v-31.858c6.354-6.138 28.623-24.729 59.513-18.299 11.929 2.483 23.148 7.095 33.999 11.555 21.346 8.775 43.304 17.795 65.488 6.125v32.478h-159zm0-85.563h159v35.172c-17.54 14.191-33.653 8.656-59.786-2.086-11.482-4.719-23.354-9.6-36.645-12.366-5.605-1.167-10.965-1.679-16.061-1.679-20.175 0-36.173 8.036-46.509 15.298v-34.339z">
+                      </path>
+                      <path d="m132.5 271.562h15v15h-15z"></path>
+                      <path d="m185.5 271.562h15v15h-15z"></path>
+                      <path d="m312.5 271.562h15v15h-15z"></path>
+                      <path d="m365.5 271.562h15v15h-15z"></path>
+                    </g>
+                  </svg>
+                  <span [ngStyle]="{'color': Furnish ? '#971B47' : '#6B6D81'}">Furnished</span>
+                </button>
+                <button class="city-card2" (click)="changeSemiFurnishestype();updatecount()"
+                  [ngStyle]="{'border-color': SemiFurnish ? '#971B47' : '#D9D9D9', 'color': SemiFurnish ? '#971B47' : '#D9D9D9','font-weight': SemiFurnish ? '500' : '400'}">
+                  <svg [ngClass]="SemiFurnish ? 'selected' : 'unselected'" id="fi_4606898"
+                    enable-background="new 0 0 512.058 512.058" viewBox="0 0 512.058 512.058" width="38px" height="38px"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                      <path
+                        d="m504.527 46.062c4.143 0 7.5-3.358 7.5-7.5v-31.062c0-4.142-3.357-7.5-7.5-7.5h-496.996c-4.142 0-7.5 3.358-7.5 7.5v31.062c0 4.142 3.358 7.5 7.5 7.5h8.031v419.934h-8.031c-4.142 0-7.5 3.358-7.5 7.5v31.062c0 4.142 3.358 7.5 7.5 7.5h496.996c4.143 0 7.5-3.358 7.5-7.5v-31.062c0-4.142-3.357-7.5-7.5-7.5h-8.031v-419.934zm-489.496-31.062h481.996v16.062h-481.996zm15.531 279.681h202.436v78.066h-202.436zm202.436-248.619v233.619h-202.436v-233.619zm264.029 450.996h-481.996v-16.062h54.625c4.142 0 7.5-3.358 7.5-7.5s-3.358-7.5-7.5-7.5h-39.094v-78.128h202.436v78.128h-131.468c-4.142 0-7.5 3.358-7.5 7.5s3.358 7.5 7.5 7.5h395.497zm-15.531-31.124h-109.249v-60.069c0-4.142-3.357-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v60.069h-109.249v-419.872h109.249v327.117c0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5v-327.117h109.249z">
+                      </path>
+                      <path
+                        d="m54.124 263.589h155.312c4.142 0 7.5-3.358 7.5-7.5v-31.062c0-4.142-3.358-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v23.562h-140.312v-171.434h140.312v116.75c0 4.142 3.358 7.5 7.5 7.5s7.5-3.358 7.5-7.5v-124.25c0-4.142-3.358-7.5-7.5-7.5h-155.312c-4.142 0-7.5 3.358-7.5 7.5v186.434c0 4.142 3.358 7.5 7.5 7.5z">
+                      </path>
+                      <path
+                        d="m89.627 136.793 31.062-31.123c2.926-2.932 2.921-7.68-.011-10.606s-7.681-2.921-10.606.011l-31.062 31.122c-2.926 2.932-2.921 7.68.01 10.606 2.924 2.917 7.671 2.931 10.607-.01z">
+                      </path>
+                      <path
+                        d="m90.495 182.934 76.738-76.888c2.926-2.932 2.921-7.681-.01-10.607-2.933-2.926-7.682-2.921-10.607.01l-76.738 76.888c-2.926 2.932-2.921 7.681.01 10.607 2.92 2.913 7.668 2.934 10.607-.01z">
+                      </path>
+                      <path
+                        d="m155.077 310.623h-46.594c-4.142 0-7.5 3.358-7.5 7.5s3.358 7.5 7.5 7.5h46.594c4.142 0 7.5-3.358 7.5-7.5s-3.358-7.5-7.5-7.5z">
+                      </path>
+                      <path
+                        d="m333.684 225.201c-4.143 0-7.5 3.358-7.5 7.5v46.594c0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5v-46.594c0-4.142-3.357-7.5-7.5-7.5z">
+                      </path>
+                      <path
+                        d="m395.809 286.795c4.143 0 7.5-3.358 7.5-7.5v-46.594c0-4.142-3.357-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v46.594c0 4.142 3.358 7.5 7.5 7.5z">
+                      </path>
+                      <path
+                        d="m108.483 418.96h46.594c4.142 0 7.5-3.358 7.5-7.5s-3.358-7.5-7.5-7.5h-46.594c-4.142 0-7.5 3.358-7.5 7.5s3.358 7.5 7.5 7.5z">
+                      </path>
+                    </g>
+                  </svg>
+                  <span [ngStyle]="{'color': SemiFurnish ? '#971B47' : '#6B6D81'}">Semi Furnished</span>
+                </button>
+                <button class="city-card2" (click)="changeunFurnishestype();updatecount()"
+                  [ngStyle]="{'border-color': unFurnish ? '#971B47' : '#D9D9D9', 'color': unFurnish ? '#971B47' : '#D9D9D9','font-weight': unFurnish ? '500' : '400'}">
+                  <svg [ngClass]="unFurnish ? 'selected' : 'unselected'" id="fi_3629988"
+                    enable-background="new 0 0 512 512" width="38px" height="38px" viewBox="0 0 512 512"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                      <path
+                        d="m504.5 43.5h-49.449c-4.142 0-7.5 3.357-7.5 7.5s3.358 7.5 7.5 7.5h41.949v395h-58.791c-1.096-1.93-2.714-3.56-4.733-4.664l-18.897-10.336h59.921c4.142 0 7.5-3.357 7.5-7.5v-350c0-4.143-3.358-7.5-7.5-7.5h-316.862l18.898-10.336c2.019-1.104 3.637-2.734 4.733-4.664h238.705c4.142 0 7.5-3.357 7.5-7.5s-3.358-7.5-7.5-7.5h-241.11c-.701-.635-1.477-1.198-2.328-1.664l-22.956-12.556-12.557-22.957c-2.133-3.9-6.22-6.324-10.665-6.323-4.445 0-8.532 2.424-10.664 6.323l-12.556 22.956-22.956 12.557c-.851.466-1.627 1.029-2.328 1.664h-74.354c-4.142 0-7.5 3.357-7.5 7.5v410c0 4.143 3.358 7.5 7.5 7.5h272.372c4.142 0 7.5-3.357 7.5-7.5s-3.358-7.5-7.5-7.5h-264.872v-395h64.448c1.096 1.93 2.714 3.56 4.733 4.664l18.898 10.336h-65.579c-4.142 0-7.5 3.357-7.5 7.5v36.077c0 4.143 3.358 7.5 7.5 7.5s7.5-3.357 7.5-7.5v-28.577h69.129l5.566 10.176c2.132 3.9 6.219 6.324 10.664 6.324 4.445 0 8.532-2.423 10.665-6.323l5.566-10.177h86.91v335h-188.5v-271.346c0-4.143-3.358-7.5-7.5-7.5s-7.5 3.357-7.5 7.5v278.846c0 4.143 3.358 7.5 7.5 7.5h322.518l-18.897 10.336c-2.019 1.104-3.637 2.734-4.733 4.664h-21.234c-4.142 0-7.5 3.357-7.5 7.5s3.358 7.5 7.5 7.5h23.639c.701.635 1.477 1.198 2.328 1.664l22.958 12.557 12.555 22.955c2.133 3.901 6.219 6.324 10.665 6.324s8.532-2.423 10.665-6.323l12.556-22.956 22.958-12.557c.851-.466 1.627-1.029 2.328-1.664h68.694c4.142 0 7.5-3.357 7.5-7.5v-410c0-4.143-3.358-7.5-7.5-7.5zm-37.5 380h-63.471l-5.566-10.176c-2.133-3.901-6.219-6.324-10.665-6.324-4.445 0-8.532 2.423-10.664 6.323l-5.566 10.177h-92.568v-335h188.5zm-347.101-355.708c-1.119-2.046-2.791-3.717-4.832-4.832l-19.124-10.46 19.121-10.458c2.045-1.117 3.717-2.788 4.835-4.834l10.459-19.124 10.46 19.124c1.118 2.045 2.789 3.716 4.831 4.832l19.125 10.46-19.123 10.459c-2.044 1.117-3.715 2.788-4.833 4.833l-10.459 19.124zm128.601 355.708v-335h15v335zm154.094 46.458c-2.045 1.117-3.717 2.788-4.835 4.834l-10.459 19.124-10.46-19.124c-1.119-2.046-2.791-3.717-4.832-4.832l-19.125-10.46 19.121-10.458c2.045-1.117 3.717-2.788 4.835-4.834l10.459-19.124 10.46 19.124c1.119 2.046 2.791 3.717 4.832 4.832l19.125 10.46z">
+                      </path>
+                    </g>
+                  </svg>
+                  <span [ngStyle]="{'color': unFurnish ? '#971B47' : '#6B6D81'}">Unfurnished</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          }
+
+          @if (SelectedType == 'Rent') {
+          <div class="mt-2 mb-2" style="border: 1.15px solid #E3E3E5"></div>
+          }
+
+          @if (SelectedType == 'Rent') {
+          <div class="filter-section">
+            <h6>Posted By</h6>
+            <div class="filter-buttons">
+              <button type="button" class="btn btn-default" (click)="changeownership();updatecount()"
+                [ngStyle]="{'border-color': OwnerSelect ? '#971B47' : '#455A64', 'color': OwnerSelect ? '#971B47' : '#455A64','font-weight': OwnerSelect ? '500' : '400'}">
+                &nbsp;&nbsp;@if (OwnerSelect) { <span class="tick"><svg width="15" height="15" viewBox="0 0 8 6"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!OwnerSelect) { <span class="tick2"></span> }&nbsp;&nbsp;Owner
+              </button>
+              <button type="button" class="btn btn-default" (click)="changeagentship();updatecount()"
+                [ngStyle]="{'border-color': AgentSelect ? '#971B47' : '#455A64', 'color': AgentSelect ? '#971B47' : '#455A64','font-weight': AgentSelect ? '500' : '400'}">
+                &nbsp;&nbsp;@if (AgentSelect) { <span class="tick"><svg width="15" height="15" viewBox="0 0 8 6"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!AgentSelect) { <span class="tick2"></span> }&nbsp;&nbsp;Broker&nbsp;&nbsp;
+              </button>
+            </div>
+          </div>
+          }
+
+          @if (SelectedType == 'Rent') {
+          <div class="mt-2 mb-2" style="border: 1.15px solid #E3E3E5"></div>
+          }
+
+          @if (SelectedType == 'Rent') {
+          <div class="filter-section">
+            <h6>Door Facing</h6>
+            <div class="filter-buttons">
+              @for (facing of Doorfacelist; track facing.id) {
+              <button type="button" class="btn btn-default" (click)="DoorFacing(facing.id);updatecount()"
+                [ngStyle]="{ 'border-color': selectedFacings.includes(facing.id) ? '#971B47' : '#455A64', 'color': selectedFacings.includes(facing.id) ? '#971B47' : '#455A64', 'font-weight': selectedFacings.includes(facing.id) ? '500' : '400' }">
+                &nbsp;&nbsp;@if (selectedFacings.includes(facing.id)) { <span class="tick"><svg width="15" height="15"
+                    viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!selectedFacings.includes(facing.id)) { <span class="tick2"></span> }
+                &nbsp;&nbsp;{{
+                facing.doorface }}&nbsp;&nbsp;
+              </button>
+              }
+            </div>
+          </div>
+          }
+
+          @if (SelectedType == 'Rent') {
+          <div class="mt-2 mb-2" style="border: 1.15px solid #E3E3E5"></div>
+          }
+
+          @if (SelectedType == 'Rent') {
+          <div class="filter-section">
+            <h6>Filter By Floors</h6>
+            <div class="filter-buttons">
+              @for (option of FilterBYFloorsFilterOptions; track option.id) {
+              <button type="button" class="btn btn-default" (click)="FilterBYFloorsSelection(option.id); updatecount()"
+                [ngStyle]="{ 'border-color': (FilterBYFloors === option.id ? '#971B47' : '#455A64'), 
+                     'color': (FilterBYFloors === option.id ? '#971B47' : '#455A64'), 
+                     'font-weight': (FilterBYFloors === option.id ? '500' : '400') }">
+                &nbsp;&nbsp;
+                @if (FilterBYFloors === option.id) {
+                <span class="tick">
+                  <svg width="15" height="15" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg>
+                </span>
+                }
+                @if (FilterBYFloors !== option.id) { <span class="tick2"></span> }
+                &nbsp;&nbsp;{{ option.label }}&nbsp;&nbsp;
+              </button>
+              }
+            </div>
+          </div>
+          }
+
+          @if (SelectedType == 'Rent') {
+          <div class="mt-2 mb-2" style="border: 1.15px solid #E3E3E5"></div>
+          }
+
+          @if (SelectedType == 'Rent') {
+          <div class="filter-section">
+            <h6>Prefered Tenants</h6>
+            <div class="filter-buttons">
+              @for (option of TenentFilterOptions; track option.id) {
+              <button type="button" class="btn btn-default" (click)="toggleTenantSelection(+option.id); updatecount()"
+                [ngStyle]="{ 'border-color': selectedTenant === option.id ? '#971B47' : '#455A64', 'color': selectedTenant === option.id ? '#971B47' : '#455A64', 'font-weight': selectedTenant === option.id ? '500' : '400' }">
+                &nbsp;&nbsp;@if (selectedTenant === option.id) {
+                <span class="tick"><svg width="15" height="15" viewBox="0 0 8 6" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span>
+                }
+                @if (selectedTenant !== option.id) {
+                <span class="tick2"></span>
+                } &nbsp;&nbsp;{{
+                option.tenants }}&nbsp;&nbsp;
+              </button>
+              }
+            </div>
+          </div>
+          }
+
+          @if (SelectedType == 'Rent') {
+          <div class="mt-2 mb-2" style="border: 1.15px solid #E3E3E5"></div>
+          }
+
+          @if ((SelectedType == 'Buy' || SelectedType == 'Rent') && (!plotSelect || apartmentSelect || villaSelect ||
+          HouseSelect)) {
+          <div class="filter-section" style="margin: 0px 0px 10px 0;"
+            [ngClass]="{ 'blur-effect2': plotSelect && !apartmentSelect && !villaSelect && !HouseSelect }">
+            <h6>Amenities</h6>
+            <div class="filter-buttons">
+              <button type="button" class="btn btn-default" (click)="Amenitiesclick(1);updatecount()"
+                [ngStyle]="{'border-color': parkingSelect ? '#971B47' : '#455A64', 'color': parkingSelect ? '#971B47' : '#455A64','font-weight': parkingSelect ? '500' : '400'}">
+                &nbsp;&nbsp;@if (parkingSelect) { <span class="tick"><svg width="15" height="15" viewBox="0 0 8 6"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!parkingSelect) { <span class="tick2"></span> }&nbsp;&nbsp;Car
+                Parking&nbsp;&nbsp;
+              </button>
+              <button type="button" class="btn btn-default" (click)="Amenitiesclick(2);updatecount()"
+                [ngStyle]="{'border-color': powerBackupSelect ? '#971B47' : '#455A64', 'color': powerBackupSelect ? '#971B47' : '#455A64','font-weight': powerBackupSelect ? '500' : '400'}">
+                &nbsp;&nbsp;@if (powerBackupSelect) { <span class="tick"><svg width="15" height="15" viewBox="0 0 8 6"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!powerBackupSelect) { <span class="tick2"></span> }&nbsp;&nbsp;Power
+                Backup&nbsp;&nbsp;
+              </button>
+              <button type="button" class="btn btn-default" (click)="Amenitiesclick(3);updatecount()"
+                [ngStyle]="{'border-color': cctvSelect ? '#971B47' : '#455A64', 'color': cctvSelect ? '#971B47' : '#455A64','font-weight': cctvSelect ? '500' : '400'}">
+                &nbsp;&nbsp;@if (cctvSelect) { <span class="tick"><svg width="15" height="15" viewBox="0 0 8 6"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!cctvSelect) { <span class="tick2"></span> }&nbsp;&nbsp;CCTV&nbsp;&nbsp;
+              </button>
+              <button type="button" class="btn btn-default" (click)="Amenitiesclick(4);updatecount()"
+                [ngStyle]="{'border-color': elevatorSelect ? '#971B47' : '#455A64', 'color': elevatorSelect ? '#971B47' : '#455A64','font-weight': elevatorSelect ? '500' : '400'}">
+                &nbsp;&nbsp;@if (elevatorSelect) { <span class="tick"><svg width="15" height="15" viewBox="0 0 8 6"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!elevatorSelect) { <span class="tick2"></span> }&nbsp;&nbsp;Elevator&nbsp;&nbsp;
+              </button>
+            </div>
+          </div>
+          }
+
+          <!-- PG START -->
+          @if (SelectedType == 'PG') {
+          <div class="filter-section">
+            <h6>Sharing Type</h6>
+            <div class="filter-buttons">
+              @for (option of roomTypes; track option.value) {
+              <button type="button" class="btn btn-default" (click)="Sharing_TypeSelection(option.value);updatecount()"
+                [ngStyle]="{ 'border-color': Sharing_Type.includes(option.value) ? '#971B47' : '#455A64', 'color': Sharing_Type.includes(option.value) ? '#971B47' : '#455A64', 'font-weight': Sharing_Type.includes(option.value) ? '500' : '400' }">
+                &nbsp;&nbsp;@if (Sharing_Type.includes(option.value)) { <span class="tick"><svg width="15" height="15"
+                    viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!Sharing_Type.includes(option.value)) { <span class="tick2"></span> }
+                &nbsp;&nbsp;{{
+                option.label }}&nbsp;&nbsp;
+              </button>
+              }
+            </div>
+          </div>
+          }
+
+          @if (SelectedType == 'PG') {
+          <div class="filter-section">
+            <h6>PG For</h6>
+            <div class="filter-buttons">
+              @for (option of pgAvailableForList; track option.key) {
+              <button type="button" class="btn btn-default" (click)="PG_ForSelection(option.key);updatecount()"
+                [ngStyle]="{ 'border-color': PG_For_Type.includes(option.key) ? '#971B47' : '#455A64', 'color': PG_For_Type.includes(option.key) ? '#971B47' : '#455A64', 'font-weight': PG_For_Type.includes(option.key) ? '500' : '400' }">
+                &nbsp;&nbsp;@if (PG_For_Type.includes(option.key)) { <span class="tick"><svg width="15" height="15"
+                    viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!PG_For_Type.includes(option.key)) { <span class="tick2"></span> } &nbsp;&nbsp;{{
+                option.label }}&nbsp;&nbsp;
+              </button>
+              }
+            </div>
+          </div>
+          }
+
+          @if (SelectedType == 'PG') {
+          <div class="filter-section">
+            <h6>Suitable For</h6>
+            <div class="filter-buttons">
+              @for (option of pgBestSuitForList; track option.key) {
+              <button type="button" class="btn btn-default"
+                (click)="Suitable_For_TypeSelection(option.key);updatecount()"
+                [ngStyle]="{ 'border-color': Suitable_For_Type.includes(option.key) ? '#971B47' : '#455A64', 'color': Suitable_For_Type.includes(option.key) ? '#971B47' : '#455A64', 'font-weight': Suitable_For_Type.includes(option.key) ? '500' : '400' }">
+                &nbsp;&nbsp;@if (Suitable_For_Type.includes(option.key)) { <span class="tick"><svg width="15"
+                    height="15" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!Suitable_For_Type.includes(option.key)) { <span class="tick2"></span> }
+                &nbsp;&nbsp;{{
+                option.label }}&nbsp;&nbsp;
+              </button>
+              }
+            </div>
+          </div>
+          }
+
+          @if (SelectedType == 'PG') {
+          <div class="filter-section" style="margin: 0px 0px 46px 0;">
+            <h6>Food Included</h6>
+            <div class="filter-buttons">
+              @for (option of pgFoodList; track option.key) {
+              <button type="button" class="btn btn-default"
+                (click)="Food_Included_TypeSelection(option.key);updatecount()"
+                [ngStyle]="{ 'border-color': Food_Included_Type.includes(option.key) ? '#971B47' : '#455A64', 'color': Food_Included_Type.includes(option.key) ? '#971B47' : '#455A64', 'font-weight': Food_Included_Type.includes(option.key) ? '500' : '400' }">
+                &nbsp;&nbsp;@if (Food_Included_Type.includes(option.key)) { <span class="tick"><svg width="15"
+                    height="15" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!Food_Included_Type.includes(option.key)) { <span class="tick2"></span> }
+                &nbsp;&nbsp;{{
+                option.label }}&nbsp;&nbsp;
+              </button>
+              }
+            </div>
+          </div>
+          }
+          <!-- PG End -->
+
+          <!-- Commercial START -->
+          @if (SelectedType == 'Commercial') {
+          <div class="filter-section">
+            <h6>Property Category</h6>
+            <div class="filter-buttons">
+              @for (option of commercialPropertyTypeList; track option.key) {
+              <button type="button" class="btn btn-default"
+                (click)="commercialPropertyTypeListing(option.key);updatecount()"
+                [ngStyle]="{ 'border-color': commercialPropertyType.includes(option.key) ? '#971B47' : '#455A64', 'color': commercialPropertyType.includes(option.key) ? '#971B47' : '#455A64', 'font-weight': commercialPropertyType.includes(option.key) ? '500' : '400' }">
+                &nbsp;&nbsp;@if (commercialPropertyType.includes(option.key)) { <span class="tick"><svg width="15"
+                    height="15" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!commercialPropertyType.includes(option.key)) { <span class="tick2"></span> }
+                &nbsp;&nbsp;{{
+                option.label }}&nbsp;&nbsp;
+              </button>
+              }
+            </div>
+          </div>
+          }
+
+          @if (SelectedType == 'Commercial') {
+          <div class="filter-section">
+            <h6>Building Type</h6>
+            <div class="filter-buttons">
+              @for (option of buildingTypeList; track option.key) {
+              <button type="button" class="btn btn-default" (click)="buildingTypeListing(option.key);updatecount()"
+                [ngStyle]="{ 'border-color': buildingTypeListvalue.includes(option.key) ? '#971B47' : '#455A64', 'color': buildingTypeListvalue.includes(option.key) ? '#971B47' : '#455A64', 'font-weight': buildingTypeListvalue.includes(option.key) ? '500' : '400' }">
+                &nbsp;&nbsp;@if (buildingTypeListvalue.includes(option.key)) { <span class="tick"><svg width="15"
+                    height="15" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!buildingTypeListvalue.includes(option.key)) { <span class="tick2"></span> }
+                &nbsp;&nbsp;{{
+                option.label }}&nbsp;&nbsp;
+              </button>
+              }
+            </div>
+          </div>
+          }
+
+          @if (SelectedType == 'Commercial') {
+          <div class="filter-section">
+            <h6>Furnishing</h6>
+            <div class="filter-buttons">
+              @for (option of furnishTypeList; track option.key) {
+              <button type="button" class="btn btn-default" (click)="furnishTypeListing(option.key);updatecount()"
+                [ngStyle]="{ 'border-color': furnishTypeListvalue.includes(option.key) ? '#971B47' : '#455A64', 'color': furnishTypeListvalue.includes(option.key) ? '#971B47' : '#455A64', 'font-weight': furnishTypeListvalue.includes(option.key) ? '500' : '400' }">
+                &nbsp;&nbsp;@if (furnishTypeListvalue.includes(option.key)) { <span class="tick"><svg width="15"
+                    height="15" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!furnishTypeListvalue.includes(option.key)) { <span class="tick2"></span> }
+                &nbsp;&nbsp;{{
+                option.label }}&nbsp;&nbsp;
+              </button>
+              }
+            </div>
+          </div>
+          }
+
+          @if (SelectedType == 'Commercial') {
+          <div class="filter-section">
+            <h6>Property Age</h6>
+            <div class="filter-buttons">
+              @for (option of propertyAgeList; track option.key) {
+              <button type="button" class="btn btn-default" (click)="propertyAgeListing(option.key);updatecount()"
+                [ngStyle]="{ 'border-color': propertyAgeListvalue.includes(option.key) ? '#971B47' : '#455A64', 'color': propertyAgeListvalue.includes(option.key) ? '#971B47' : '#455A64', 'font-weight': propertyAgeListvalue.includes(option.key) ? '500' : '400' }">
+                &nbsp;&nbsp;@if (propertyAgeListvalue.includes(option.key)) { <span class="tick"><svg width="15"
+                    height="15" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!propertyAgeListvalue.includes(option.key)) { <span class="tick2"></span> }
+                &nbsp;&nbsp;{{
+                option.label }}&nbsp;&nbsp;
+              </button>
+              }
+            </div>
+          </div>
+          }
+
+          @if (SelectedType == 'Commercial') {
+          <div class="filter-section" style="margin: 0px 0px 46px 0;">
+            <h6>Availability</h6>
+            <div class="filter-buttons">
+              <button type="button" class="btn btn-default" (click)="Immediateclick();updatecount()"
+                [ngStyle]="{'border-color': ImmediateSelect1 ? '#971B47' : '#455A64', 'color': ImmediateSelect1 ? '#971B47' : '#455A64','font-weight': ImmediateSelect1 ? '500' : '400'}">
+                &nbsp;&nbsp;@if (ImmediateSelect1) { <span class="tick"><svg width="15" height="15" viewBox="0 0 8 6"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!ImmediateSelect1) { <span class="tick2"></span>
+                }&nbsp;&nbsp;Immediate&nbsp;&nbsp;
+              </button>
+              <button type="button" class="btn btn-default" (click)="Within15Daysclick();updatecount()"
+                [ngStyle]="{'border-color': Within15DaysSelect ? '#971B47' : '#455A64', 'color': Within15DaysSelect ? '#971B47' : '#455A64','font-weight': Within15DaysSelect ? '500' : '400'}">
+                &nbsp;&nbsp;@if (Within15DaysSelect) { <span class="tick"><svg width="15" height="15" viewBox="0 0 8 6"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!Within15DaysSelect) { <span class="tick2"></span> }&nbsp;&nbsp; Within 15
+                Days&nbsp;&nbsp;
+              </button>
+              <button type="button" class="btn btn-default" (click)="Within30Daysclick();updatecount()"
+                [ngStyle]="{'border-color': Within30DaysSelect ? '#971B47' : '#455A64', 'color': Within30DaysSelect ? '#971B47' : '#455A64','font-weight': Within30DaysSelect ? '500' : '400'}">
+                &nbsp;&nbsp;@if (Within30DaysSelect) { <span class="tick"><svg width="15" height="15" viewBox="0 0 8 6"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!Within30DaysSelect) { <span class="tick2"></span> }&nbsp;&nbsp; Within 30
+                Days&nbsp;&nbsp;
+              </button>
+              <button type="button" class="btn btn-default" (click)="After30Daysclick();updatecount()"
+                [ngStyle]="{'border-color': After30DaysSelect ? '#971B47' : '#455A64', 'color': After30DaysSelect ? '#971B47' : '#455A64','font-weight': After30DaysSelect ? '500' : '400'}">
+                &nbsp;&nbsp;@if (After30DaysSelect) { <span class="tick"><svg width="15" height="15" viewBox="0 0 8 6"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.83333 5.61037L0.5 3.27703L1.24375 2.53328L2.83333 4.12287L6.75625 0.199951L7.5 0.943701L2.83333 5.61037Z"
+                      fill="white" />
+                  </svg></span> } @if (!After30DaysSelect) { <span class="tick2"></span> }&nbsp;&nbsp;After 30
+                Days&nbsp;&nbsp;
+              </button>
+            </div>
+          </div>
+          }
+          <!-- <div class="mt-2 mb-2" style="border: 1.15px solid #E3E3E5"></div> -->
+
+          <br><br>
+          <!-- Commercial End -->
+
+        </form>
+
+      </div>
+      <div class="modal-footer" [ngClass]="{ 'blur-effect': projectcount == 0 }">
+        <button class="btn btn-results" data-dismiss="modal" (click)="FilterNavigation()">Show Results
+          ({{projectcount}})</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- @if (submitApplicationLoader) {
+<div class="loaderbody">
+  <div class="box">
+    <div class="loader-20"></div>
+  </div>
+</div>
+} -->

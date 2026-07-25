@@ -1,0 +1,27 @@
+<nav class="mobile-bottom-nav col-12" id="">
+    <div class="bottom-nav-item mobile-bottom-nav__item col-4">
+        <div class="mobile-bottom-nav__item-content">
+            <a routerLink="/" class="footer_img_1">
+            </a>
+        </div>
+    </div>
+    <div class="bottom-nav-item mobile-bottom-nav__item col-4">
+        <div class="mobile-bottom-nav__item-content">
+            <a href="https://www.homes247.in/compare-properties" class="footer_img_2">
+            </a>
+        </div>
+    </div>
+    <div class="bottom-nav-item mobile-bottom-nav__item col-4">
+        <div class="mobile-bottom-nav__item-content">
+            @if(!userID){
+            <a href="https://www.homes247.in/login" class="footer_img_3">
+            </a>
+            }
+
+            @if(userID){
+            <a href="https://www.homes247.in/userauth/profile/{{userID}}" class="footer_img_3">
+            </a>
+        }
+        </div>
+    </div>
+</nav>

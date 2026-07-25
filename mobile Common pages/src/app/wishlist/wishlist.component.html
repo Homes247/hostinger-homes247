@@ -1,0 +1,108 @@
+<nav class="navbar navbar-light enqbg-color fixed-top">
+  <a href="https://www.homes247.in/userauth/profile/{{this.UserId}}" class="navbar-brand icon_color"><i class="fa fa-arrow-left"
+      aria-hidden="true"></i></a>
+  <a class="sqrt-enqtitle">My Wishlist</a>
+</nav>
+<div *ngIf="favourite.length === 0" class="emptywishlistdiv">Please Wishlist your Favourite Properties</div>
+<div class="container-fluid listmainMargin" *ngFor="let propertylist of favourite;let i=index;">
+  <div class=" col-md-12 d-flex listmain " *ngFor="let property of propertylist.property_deatils">
+
+    <div class="col-xs-4 pr-3 propImg">
+      <img src="{{propertyimage}}{{property.ImagePath}}" alt="property.ImagePath">
+    </div>
+
+    <div class="col-xs-7 pl-0">
+      <div class="listtext">
+        <h1>{{property.propertyName}} in {{property.locality_name}}, {{property.city_name}}</h1>
+
+        <div class="locationtext">
+          <small>
+            <img [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/city/search-location.png'"
+              alt="search-icon" /> {{property.locality_name}},{{property.city_name}}</small>
+        </div>
+
+
+
+
+
+        <!-- <div> -->
+          <div class="property_bhk1">
+            <p *ngIf="property.propertyType !== 'Plots'">
+              <span *ngIf="!property.BHK">
+                BHK - On Request
+              </span>
+              <span *ngIf="property.BHK">{{property.BHK | replaceLineBreaksany | unique2 | orderBy2}} BHK</span>
+            </p>
+            <p *ngIf="property.propertyType == 'Plots'">
+              <span>PLOTS</span>
+            </p>
+            <div class="min_max_price" *ngIf="property.price_max !== '0 '">
+              <i class="fa fa-inr" aria-hidden="true"></i> {{property.price_min}}
+              -{{property.price_max}}
+            </div>
+            <div class="min_max_price" *ngIf="property.price_max === '0 '">Price - On Request</div>
+          </div>
+          <div class="property_bhk d-flex">
+            <p class="mb-0" *ngIf="property.dimension !== '0 '">{{property.dimension}} Acres</p>
+            <p *ngIf="property.dimension === '0 '">Units - On Request</p>
+            <span class="ready_to_move">Ready to move{{property.Status}}</span>
+          </div>
+        <!-- </div> -->
+
+        <a class="view-btn"
+          href="https://www.homes247.in/property/{{property.city_name | lowercase}}/{{property.locality_name | cleanUrl}}/{{property.propertyName | cleanUrl}}-{{propertylist.propertyId}}">
+          View details</a>
+      </div>
+    </div>
+    <div class="col-xs-1">
+      <span (click)="removeItem(propertylist.propertyId, i)"><i class="fa fa-heart heart-icon"
+          aria-hidden="true"></i></span>
+    </div>
+  </div>
+</div>
+
+
+<!-- Loader -->
+<div *ngIf="showLoader" class="loader_city row">
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <div class="item">
+          <ngx-skeleton-loader [theme]="{width: '70px', 'border-radius': '9', height: '120px' }">
+          </ngx-skeleton-loader>
+        </div>
+      </div>
+      <div class="col-9">
+        <div class="item">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '120px' }">
+          </ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ width: '170px','border-radius': '9',height: '15px', float:'right'}">
+          </ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <div class="item">
+          <ngx-skeleton-loader [theme]="{width: '70px', 'border-radius': '9', height: '120px' }">
+          </ngx-skeleton-loader>
+        </div>
+      </div>
+      <div class="col-9">
+        <div class="item">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '120px' }">
+          </ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ width: '170px','border-radius': '9',height: '15px', float:'right'}">
+          </ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Loader -->
+
+<div *ngIf="loaded">
+  <ng-container *ngComponentOutlet="FooterComponent"></ng-container>
+</div>

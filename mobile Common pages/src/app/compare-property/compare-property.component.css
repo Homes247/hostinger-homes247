@@ -1,0 +1,706 @@
+.compare_main_div {
+  background-color: #971b47;
+  padding: 12px 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  color: white;
+}
+
+.propimage {
+  width: 100%;
+  height: 90px;
+}
+
+.compare_mainlisting {
+  margin-top: 63px;
+}
+
+.resp_citydrops {
+  float: left;
+  margin: 1px 0 0px 1px;
+  display: block;
+}
+
+.fixed_compare_mainlisting {
+  position: fixed;
+  top: 10px;
+  width: 100%;
+  z-index: 999;
+}
+
+.prop_name {
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Poppins';
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 127px;
+}
+
+.compare_text {
+  font-size: 18px;
+  font-family: 'Poppins';
+  font-weight: 500;
+}
+
+.overall_rating {
+  background: #23c120;
+  padding: 3px 4px;
+  font-size: 10px;
+  color: white;
+  border-radius: 2px;
+}
+
+.starColour {
+  font-weight: 900;
+  /* Use the appropriate font weight for your icon style */
+  color: transparent;
+  /* Set the inner color to transparent */
+  background: linear-gradient(135deg, #FE0 25%, #FFE100 62.85%, #FFA400 166.67%);
+  /* Apply the linear gradient as the background */
+  background-clip: text;
+}
+
+.min_max_price {
+  font-size: 12px;
+  color: gray;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.compare_header {
+  text-align: center;
+}
+
+.listing_head {
+  font-size: 13px;
+  font-family: 'Poppins';
+  text-align: center;
+  background: #80808014;
+  padding: 9px 0;
+  color: #080808;
+  font-weight: 600;
+}
+
+.listing_text {
+  font-size: 12px;
+  font-family: 'Poppins';
+  text-align: center;
+  white-space: nowrap;
+}
+
+.rera_text {
+  font-size: 12px;
+  font-family: 'Poppins';
+  text-align: center;
+  width: 65%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.contact_btn {
+  font-size: 14px;
+  text-align: center;
+  color: white;
+  background: #971b47;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-family: 'Poppins';
+}
+
+.compare_listing {
+  border-top: 5px solid #80808052;
+  margin-top: 25px;
+}
+
+.floorplane_head {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Poppins';
+  text-align: left;
+}
+
+.closeprop {
+  position: absolute;
+  right: 20px;
+  top: 0px;
+  opacity: 0.8;
+  color: red;
+}
+
+.addproduct_btn {
+  font-size: 14px;
+  font-family: 'Poppins';
+  text-align: center;
+  background: #080808;
+  color: white;
+  border-radius: 4px;
+}
+
+.search_input_box {
+  border: 1px solid gray;
+  border-radius: 4px;
+  height: 40px;
+  margin-top: 18px;
+  line-height: 3;
+  padding-left: 8px;
+}
+
+.search_input_box input {
+  margin-top: -9px;
+}
+
+.compareprop_select {
+  margin-top: 70px;
+}
+
+.btn-primary {
+  position: absolute;
+  top: 185px;
+  right: 19px;
+}
+
+.minheight {
+  min-height: 100px;
+}
+
+.floorplane-height {
+  /* height: 300px; */
+  overflow: scroll;
+}
+
+.ratingText {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 5px 0 10px 0;
+}
+
+/* OTP-DESIGN */
+#modal-container {
+  position: fixed;
+  display: table;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transform: scale(0);
+  z-index: 1;
+}
+
+#modal-container.one {
+  transform: scaleY(0.01) scaleX(0);
+  animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+#modal-container.one .modal-background .modal {
+  transform: scale(0);
+  animation: zoomIn 0.5s 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+#modal-container.one.out {
+  transform: scale(1);
+  animation: unfoldOut 1s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+#modal-container.one.out .modal-background .modal {
+  animation: zoomOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+#modal-container .modal-background {
+  display: table-cell;
+  background: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  vertical-align: middle;
+}
+
+#modal-container .modal-background .modal {
+  background: white;
+  padding: 15px;
+  display: inline-block;
+  border-radius: 3px;
+  font-weight: 300;
+  position: relative;
+  width: 95%;
+  height: 340px;
+}
+
+#modal-container .modal-background .modal button {
+  background: rgba(151, 27, 71, .8117647058823529);
+  color: #fff;
+  border: 0;
+  padding: 10px;
+  margin: 15px 0 0 0;
+  width: 140px;
+  border-radius: 5px;
+}
+
+#modal-container .modal-background .modal .modal-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 3px;
+}
+
+#modal-container .modal-background .modal .modal-svg rect {
+  stroke: #fff;
+  stroke-width: 2px;
+  stroke-dasharray: 778;
+  stroke-dashoffset: 778;
+}
+
+#modal-container .modal-background .modal h4 {
+  font-size: 25px;
+  line-height: 25px;
+  margin-bottom: 15px;
+}
+
+#modal-container .modal-background .modal p {
+  font-size: 18px;
+  line-height: 50px;
+}
+
+@keyframes unfoldIn {
+  0% {
+    transform: scaleY(0.005) scaleX(0);
+  }
+
+  50% {
+    transform: scaleY(0.005) scaleX(1);
+  }
+
+  100% {
+    transform: scaleY(1) scaleX(1);
+  }
+}
+
+@keyframes unfoldOut {
+  0% {
+    transform: scaleY(1) scaleX(1);
+  }
+
+  50% {
+    transform: scaleY(0.005) scaleX(1);
+  }
+
+  100% {
+    transform: scaleY(0.005) scaleX(0);
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomOut {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+/* CSS-LOADER-DESIGN */
+.loaderbody {
+  backdrop-filter: blur(5px);
+  text-align: center;
+  box-sizing: border-box;
+  font-family: 'Poppins';
+  position: fixed;
+  width: 100%;
+  min-height: 4500px;
+  z-index: 999999;
+  top: 0;
+}
+
+.box {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border-radius: 3px;
+  font-size: 32px;
+  padding: 1em;
+  position: relative;
+  margin: 70% auto;
+  vertical-align: top;
+  -webkit-transition: .3s color, .3s border, .3s transform, .3s opacity;
+  transition: .3s color, .3s border, .3s transform, .3s opacity;
+}
+
+[class*="loader-"] {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  color: rgba(255, 255, 255, 0.8);
+  vertical-align: middle;
+  pointer-events: none;
+}
+
+.loader-20 {
+  background-color: rgba(151, 27, 71, .8117647058823529);
+  box-shadow: inset 0px 0px 0px .1em currentcolor;
+  border-radius: 50%;
+  position: relative;
+}
+
+.loader-20:after,
+.loader-20:before {
+  position: absolute;
+  content: "";
+  background-color: currentcolor;
+  top: .5em;
+  left: .5em;
+  height: .1em;
+  -webkit-transform-origin: left center;
+  transform-origin: left center;
+}
+
+.loader-20:after {
+  width: .4em;
+  -webkit-animation: loader-20 2s linear infinite;
+  animation: loader-20 2s linear infinite;
+}
+
+.loader-20:before {
+  width: .3em;
+  -webkit-animation: loader-20 8s linear infinite;
+  animation: loader-20 8s linear infinite;
+}
+
+@-webkit-keyframes loader-20 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader-20 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+/* CSS-LOADER-DESIGN */
+/* OTP-DESIGN */
+.contactFormHeading {
+  color: #6a767a;
+  margin: 1px 50px 10px;
+  border-radius: 4px;
+}
+
+.marginBottomForm {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  font-size: 16px;
+  font-weight: 900;
+  font-family: proxima_novaregular, Arial, sans-serif;
+}
+
+.formMargine {
+  margin: 105px 0px 0px 0px;
+  border-radius: 3px;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.48);
+}
+
+.contactFormMargine {
+  margin: 0px 8px;
+  padding: 15px 15px 5px 20px;
+  box-shadow: 5px 2px 15px #888888;
+}
+
+.contactForm {
+  padding: 15px 15px 5px 20px;
+  box-shadow: 5px 2px 15px #888888;
+}
+
+.contactButton {
+  background-color: rgba(151, 27, 71, .8117647058823529);
+  color: white;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 12px;
+  margin: 10px 0;
+}
+
+.iamIntrestText {
+  font-weight: 900;
+  color: #080808;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.modal-dialog {
+  margin-top: 100px;
+}
+
+/* review css */
+.reviewcount {
+  font-size: 12px;
+  font-weight: 800;
+  color: gray;
+  margin: 0;
+}
+
+.rating_top_head {
+  background: #080808;
+  color: white;
+  padding: 10px 10px;
+  font-size: 18px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 99;
+}
+
+.ratingreviewSection {
+  margin-top: 60px;
+  padding-bottom: 50px;
+}
+
+.ratingcount {
+  margin-top: 9px;
+  margin-left: 10px;
+}
+
+.rating_prop_name {
+  font-size: 16px;
+}
+
+.reviewerNAme {
+  font-size: 14px;
+  padding-left: 5px;
+  font-weight: 600;
+  color: #666666;
+}
+
+.reviewDescp {
+  font-size: 15px;
+  color: black;
+  padding: 0;
+  text-align: justify;
+}
+
+.user_text {
+  display: flex;
+}
+
+.userIcon {
+  font-size: 25px;
+  margin-top: 8px;
+}
+
+.reviewDate {
+  position: absolute;
+  top: 30px;
+  right: 23px;
+}
+
+.reviewDate p {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.starColour1 {
+  color: rgba(151, 27, 71, .8117647058823529);
+}
+
+.reviewBorder {
+  border-top: 1px solid #8080805e;
+}
+
+@media (min-width:360px) and (max-width:375px) {
+  .floorplane_head {
+    font-size: 9px;
+    font-weight: 700;
+  }
+
+  .listing_text {
+    font-size: 11px;
+    font-family: 'Poppins';
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .rera_text {
+    font-size: 11px;
+    font-family: 'Poppins';
+    text-align: center;
+    width: 65%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .Pricevalue {
+    width: 50px !important;
+  }
+}
+
+@media (min-width:384px) and (max-width:412px) {
+  .floorplane_head {
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  .listing_text {
+    font-size: 11px;
+    font-family: 'Poppins';
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .rera_text {
+    font-size: 11px;
+    font-family: 'Poppins';
+    text-align: center;
+    width: 65%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .Pricevalue {
+    width: 55px !important;
+  }
+}
+
+@media (min-width:320px) and (max-width:359px) {
+  .listing_text {
+    font-size: 9px;
+  }
+
+  .rera_text {
+    font-size: 9px;
+    font-family: 'Poppins';
+    text-align: center;
+    width: 65%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .floorplane_head {
+    font-size: 10px;
+  }
+
+}
+
+@media (width: 353px) {
+
+
+  .listing_text {
+    font-size: 10px;
+  }
+
+  .rera_text {
+    font-size: 10px;
+    font-family: 'Poppins';
+    text-align: center;
+    width: 65%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .floorplane_head {
+    font-size: 10px;
+  }
+}
+
+@media (width: 320px) {
+
+
+  .listing_text {
+    font-size: 10px;
+  }
+
+  .rera_text {
+    font-size: 10px;
+    font-family: 'Poppins';
+    text-align: center;
+    width: 65%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .floorplane_head {
+    font-size: 11px;
+  }
+}
+
+@media (width: 480px) {
+  .Pricevalue {
+    width: 86px !important;
+  }
+}
+
+@media (width: 344px) {
+
+  .listing_text {
+    font-size: 10px;
+  }
+
+  .rera_text {
+    font-size: 10px;
+    font-family: 'Poppins';
+    text-align: center;
+    width: 65%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .floorplane_head {
+    font-size: 10px;
+  }
+}
+
+
+
+::ng-deep .compare_input .mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: white !important;
+}
+
+::ng-deep .compare_input .mat-form-field-ripple {
+  background-color: white !important;
+}
+
+::ng-deep .city_dropdown {
+  width: fit-content;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #495057;
+  outline: none;
+}
+
+::ng-deep .contact_btn:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 .2rem #971b47;
+}
+
+.Pricevalue {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 45px;
+}

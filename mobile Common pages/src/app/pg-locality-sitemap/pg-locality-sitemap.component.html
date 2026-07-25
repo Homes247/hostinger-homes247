@@ -1,0 +1,281 @@
+<div class="main_div">
+    <div class="container">
+        <!-- <div class="col-md-12 mb-1 logomaindiv">
+            <a class="sitemap_logo" href="https://www.homes247.in/">
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/logo/Homes247_NewBlack_Logo.png" alt="Homes247_logo" />
+            </a>
+        </div> -->
+        <div class="col-md-12 mb-1 h1maindiv">
+            <h1>All Localities in {{cityname}}</h1>
+        </div>
+        <div class="col-md-12 mb-1">
+            <nav class="AlphabetNav">
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/{{cityid | cleanUrl}}">All</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/a/{{cityid | cleanUrl}}">A</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/b/{{cityid | cleanUrl}}">B</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/c/{{cityid | cleanUrl}}">C</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/d/{{cityid | cleanUrl}}">D</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/e/{{cityid | cleanUrl}}">E</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/f/{{cityid | cleanUrl}}">F</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/g/{{cityid | cleanUrl}}">G</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/h/{{cityid | cleanUrl}}">H</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/i/{{cityid | cleanUrl}}">I</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/j/{{cityid | cleanUrl}}">J</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/k/{{cityid | cleanUrl}}">K</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/l/{{cityid | cleanUrl}}">L</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/m/{{cityid | cleanUrl}}">M</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/n/{{cityid | cleanUrl}}">N</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/o/{{cityid | cleanUrl}}">O</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/p/{{cityid | cleanUrl}}">P</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/q/{{cityid | cleanUrl}}">Q</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/r/{{cityid | cleanUrl}}">R</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/s/{{cityid | cleanUrl}}">S</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/t/{{cityid | cleanUrl}}">T</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/u/{{cityid | cleanUrl}}">U</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/v/{{cityid | cleanUrl}}">V</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/w/{{cityid | cleanUrl}}">W</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/x/{{cityid | cleanUrl}}">X</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/y/{{cityid | cleanUrl}}">Y</a>
+                <a
+                    routerLink="/all-localities-by-pg-city/{{cityname | cleanUrl}}/z/{{cityid | cleanUrl}}">Z</a>
+            </nav>
+
+
+
+            <div class="row mt-5">
+                <div class="col-md-3"
+                    *ngFor="let data of completedata | myfilter: 'type' : 'locality_name' | startsWithLetterlocality : activeLetter | slice: 0:150">
+                    <div class="col-md-12 sectionTwo">
+                        <a class="localityName"
+                            title="Explore Top PGs in  {{data.name}},{{cityname | cleanUrl}}">{{data.name}}&nbsp;&nbsp;
+                            <a routerLink="/locality-overview/{{data.name | cleanUrl}}-in-{{cityname | cleanUrl}}-overview-{{data.id | cleanUrl}}-{{cityid | cleanUrl}}"
+                                title="An Overview of {{data.name}}" target="_blank">
+                                <i class="fa fa-external-link" aria-hidden="true"></i></a></a>
+                        <div class="row">
+                            <!-- PG Common -->
+                            <div class="col-md-12 mb-1">
+                                <a class="avgRatSqft"
+                                    href="https://www.homes247.in/pgll/pg-for-rent-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-{{data.id | cleanUrl}}"
+                                    title="PGs for Rent in {{data.name}} {{cityname}}">
+                                    PGs for Rent in {{data.name}}
+                                </a>
+                            </div>
+
+                            <!-- PG Category -->
+                            <div class="col-md-12 mb-1">
+                                <a class="avgRatSqft"
+                                    href="https://www.homes247.in/pgll/pg-for-boys-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-{{data.id | cleanUrl}}"
+                                    title="PGs for Boys in {{data.name}} {{cityname}}">
+                                    PGs for Boys in {{data.name}}
+                                </a>
+                            </div>
+
+                            <div class="col-md-12 mb-1">
+                                <a class="avgRatSqft"
+                                    href="https://www.homes247.in/pgll/pg-for-girls-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-{{data.id | cleanUrl}}"
+                                    title="PGs for Girls in {{data.name}} {{cityname}}">
+                                    PGs for Girls in {{data.name}}
+                                </a>
+                            </div>
+
+                            <div class="col-md-12 mb-1">
+                                <a class="avgRatSqft"
+                                    href="https://www.homes247.in/pgll/pg-for-co-living-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-{{data.id | cleanUrl}}"
+                                    title="Co-living PGs in {{data.name}} {{cityname}}">
+                                    Co-living PGs in {{data.name}}
+                                </a>
+                            </div>
+
+                            <!-- PG Price -->
+                            <div class="col-md-12 mb-1">
+                                <a class="avgRatSqft"
+                                    href="https://www.homes247.in/pgll/pg-for-rent-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-price-under-10000-{{data.id | cleanUrl}}"
+                                    title="PGs under ₹10,000 in {{data.name}} {{cityname}}">
+                                    PGs under ₹10,000 in {{data.name}}
+                                </a>
+                            </div>
+
+                            <div class="col-md-12 mb-1">
+                                <a class="avgRatSqft"
+                                    href="https://www.homes247.in/pgll/pg-for-rent-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-price-10000-to-15000-{{data.id | cleanUrl}}"
+                                    title="PGs ₹10,000–15,000 in {{data.name}} {{cityname}}">
+                                    PGs ₹10,000–15,000 in {{data.name}}
+                                </a>
+                            </div>
+
+                            <div class="col-md-12 mb-1">
+                                <a class="avgRatSqft"
+                                    href="https://www.homes247.in/pgll/pg-for-rent-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-price-15000-to-20000-{{data.id | cleanUrl}}"
+                                    title="PGs ₹15,000–20,000 in {{data.name}} {{cityname}}">
+                                    PGs ₹15,000–20,000 in {{data.name}}
+                                </a>
+                            </div>
+
+                            <!-- Audience -->
+                            <div class="col-md-12 mb-1">
+                                <a class="avgRatSqft"
+                                    href="https://www.homes247.in/pgll/pg-for-students-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-{{data.id | cleanUrl}}"
+                                    title="PGs for Students in {{data.name}} {{cityname}}">
+                                    PGs for Students in {{data.name}}
+                                </a>
+                            </div>
+
+                            <div class="col-md-12 mb-1">
+                                <a class="avgRatSqft"
+                                    href="https://www.homes247.in/pgll/pg-for-working-professionals-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-{{data.id | cleanUrl}}"
+                                    title="PGs for Working Professionals in {{data.name}} {{cityname}}">
+                                    PGs for Working Professionals in {{data.name}}
+                                </a>
+                            </div>
+
+                            <!-- Food Preference -->
+                            <div class="col-md-12 mb-1">
+                                <a class="avgRatSqft"
+                                    href="https://www.homes247.in/pgll/veg-pg-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-{{data.id | cleanUrl}}"
+                                    title="Veg PG in {{data.name}} {{cityname}}">
+                                    Veg PG in {{data.name}}
+                                </a>
+                            </div>
+
+                            <div class="col-md-12 mb-1">
+                                <a class="avgRatSqft"
+                                    href="https://www.homes247.in/pgll/veg-nonveg-pg-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-{{data.id | cleanUrl}}"
+                                    title="Veg & Non-Veg PG in {{data.name}} {{cityname}}">
+                                    Veg & Non-Veg PG in {{data.name}}
+                                </a>
+                            </div>
+
+                            <!-- Room Types -->
+                            <div class="col-md-12 mb-1">
+                                <a class="avgRatSqft"
+                                    href="https://www.homes247.in/pgll/private-room-pg-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-{{data.id | cleanUrl}}"
+                                    title="Private Room PG in {{data.name}} {{cityname}}">
+                                    Private Room PG in {{data.name}}
+                                </a>
+                            </div>
+
+                            <!-- repeat similarly for two-sharing to ten-sharing -->
+                            <div class="col-md-12 mb-1">
+                                <a class="avgRatSqft"
+                                    href="https://www.homes247.in/pgll/two-sharing-pg-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-{{data.id | cleanUrl}}"
+                                    title="Two Sharing PG in {{data.name}} {{cityname}}">
+                                    Two Sharing PG in {{data.name}}
+                                </a>
+                            </div>
+                            <div class="col-md-12 mb-1">
+                                <a class="avgRatSqft"
+                                    href="https://www.homes247.in/pgll/three-sharing-pg-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-{{data.id | cleanUrl}}"
+                                    title="Three Sharing PG in {{data.name}} {{cityname}}">
+                                    Three Sharing PG in {{data.name}}
+                                </a>
+                            </div>
+                            <div class="col-md-12 mb-1">
+                                <a class="avgRatSqft"
+                                    href="https://www.homes247.in/pgll/four-sharing-pg-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-{{data.id | cleanUrl}}"
+                                    title="Four Sharing PG in {{data.name}} {{cityname}}">
+                                    Four Sharing PG in {{data.name}}
+                                </a>
+                            </div>
+                            <div class="col-md-12 mb-1">
+                                <a class="avgRatSqft"
+                                    href="https://www.homes247.in/pgll/five-sharing-pg-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-{{data.id | cleanUrl}}"
+                                    title="Five Sharing PG in {{data.name}} {{cityname}}">
+                                    Five Sharing PG in {{data.name}}
+                                </a>
+                            </div>
+                            <div class="col-md-12 mb-1">
+                                <a class="avgRatSqft"
+                                    href="https://www.homes247.in/pgll/six-sharing-pg-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-{{data.id | cleanUrl}}"
+                                    title="Six Sharing PG in {{data.name}} {{cityname}}">
+                                    Six Sharing PG in {{data.name}}
+                                </a>
+                            </div>
+                            <div class="col-md-12 mb-1">
+                                <a class="avgRatSqft"
+                                    href="https://www.homes247.in/pgll/seven-sharing-pg-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-{{data.id | cleanUrl}}"
+                                    title="Seven Sharing PG in {{data.name}} {{cityname}}">
+                                    Seven Sharing PG in {{data.name}}
+                                </a>
+                            </div>
+                            <div class="col-md-12 mb-1">
+                                <a class="avgRatSqft"
+                                    href="https://www.homes247.in/pgll/eight-sharing-pg-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-{{data.id | cleanUrl}}"
+                                    title="Eight Sharing PG in {{data.name}} {{cityname}}">
+                                    Eight Sharing PG in {{data.name}}
+                                </a>
+                            </div>
+                            <div class="col-md-12 mb-1">
+                                <a class="avgRatSqft"
+                                    href="https://www.homes247.in/pgll/nine-sharing-pg-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-{{data.id | cleanUrl}}"
+                                    title="Nine Sharing PG in {{data.name}} {{cityname}}">
+                                    Nine Sharing PG in {{data.name}}
+                                </a>
+                            </div>
+                            <div class="col-md-12 mb-1">
+                                <a class="avgRatSqft"
+                                    href="https://www.homes247.in/pgll/ten-sharing-pg-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-{{data.id | cleanUrl}}"
+                                    title="Ten Sharing PG in {{data.name}} {{cityname}}">
+                                    Ten Sharing PG in {{data.name}}
+                                </a>
+                            </div>
+                            <!-- ... up to 10 sharing -->
+
+                            <!-- Amenities -->
+                            <div class="col-md-12 mb-1">
+                                <a class="avgRatSqft"
+                                    href="https://www.homes247.in/pgll/ac-pg-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-{{data.id | cleanUrl}}"
+                                    title="AC PG in {{data.name}} {{cityname}}">
+                                    AC PG in {{data.name}}
+                                </a>
+                            </div>
+
+                            <div class="col-md-12 mb-1">
+                                <a class="avgRatSqft"
+                                    href="https://www.homes247.in/pgll/pg-with-parking-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-{{data.id | cleanUrl}}"
+                                    title="PG with Parking in {{data.name}} {{cityname}}">
+                                    PG with Parking in {{data.name}}
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
+<app-footer2></app-footer2>
+<div class="innerheader_position">
+    <app-innerheader></app-innerheader>
+</div>

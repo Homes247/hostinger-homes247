@@ -1,0 +1,191 @@
+/* input.e-input,
+.e-input-group input.e-input,
+.e-input-group input,
+.e-input-group.e-control-wrapper input.e-input,
+.e-input-group.e-control-wrapper input,
+.e-float-input input,
+.e-float-input.e-input-group input,
+.e-float-input.e-control-wrapper input,
+.e-float-input.e-control-wrapper.e-input-group input,
+.e-input-group,
+.e-input-group.e-control-wrapper,
+.e-float-input,
+.e-float-input.e-control-wrapper {
+    border: none;
+    width: 100% !important;
+    font-family: 'Poppins';
+}
+::ng-deep .e-ddl {
+    font-family: 'Poppins' !important;
+}
+::ng-deep .e-dropdownbase .e-list-item, .e-dropdownbase .e-list-item.e-item-focus {
+    font-family: 'Poppins' !important;
+}
+::ng-deep .e-dropdownbase .e-list-item .e-highlight {
+    font-weight: 500;
+    color: #000000;
+}
+::ng-deep .e-list-item{
+    border-bottom: 0.5px solid #D9D9D9 !important;
+} */
+/* input{
+    background: transparent url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.5 9.5C7.70914 9.5 9.5 7.70914 9.5 5.5C9.5 3.29086 7.70914 1.5 5.5 1.5C3.29086 1.5 1.5 3.29086 1.5 5.5C1.5 7.70914 3.29086 9.5 5.5 9.5Z' stroke='%237E7E7E' stroke-width='0.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M10.5 10.5L8.34998 8.34998' stroke='%237E7E7E' stroke-width='0.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat 13px center;
+    padding-left: 34px !important;
+    background-color: #fff;
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+} */
+
+/* ===== Input Styling ===== */
+:host {
+    width: 100%;
+    font-family: 'Poppins';
+}
+
+::ng-deep .mat-mdc-form-field {
+    width: 100% !important;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+::ng-deep input.mat-mdc-input-element {
+    font-family: 'Poppins' !important;
+    border: none !important;
+}
+
+/* Remove outline border */
+::ng-deep .mdc-notched-outline {
+    display: none !important;
+}
+
+/* ===== Dropdown Panel ===== */
+::ng-deep .mat-mdc-autocomplete-panel {
+    font-family: 'Poppins' !important;
+}
+
+/* ===== Dropdown Items ===== */
+::ng-deep .mat-mdc-option {
+    font-family: 'Poppins' !important;
+    border-bottom: 0.5px solid #D9D9D9;
+}
+
+/* Highlight text */
+::ng-deep .mat-mdc-option.mdc-list-item--activated {
+    font-weight: 500;
+    color: #000000;
+}
+
+::ng-deep .mat-mdc-form-field {
+    width: 100%;
+    font-family: 'Poppins';
+}
+
+::ng-deep .mdc-notched-outline {
+    display: none;
+}
+
+::ng-deep .mat-mdc-option {
+    border-bottom: 0.5px solid #D9D9D9;
+}
+
+::ng-deep .mdc-notched-outline {
+    display: none !important;
+}
+
+/* Remove material background */
+/* ::ng-deep .mat-mdc-text-field-wrapper {
+    background: #fff !important;
+    box-shadow: 0px 8px 24px 0px #959DA533 !important;
+    border-top: 0.5px solid #00000021 !important;
+    border-radius: 6px !important;
+} */
+
+/* Input styling */
+::ng-deep input.mat-mdc-input-element {
+    font-family: 'Poppins' !important;
+    padding-left: 40px !important;
+    background: transparent url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.5 9.5C7.70914 9.5 9.5 7.70914 9.5 5.5C9.5 3.29086 7.70914 1.5 5.5 1.5C3.29086 1.5 1.5 3.29086 1.5 5.5C1.5 7.70914 3.29086 9.5 5.5 9.5Z' stroke='%237E7E7E' stroke-width='0.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M10.5 10.5L8.34998 8.34998' stroke='%237E7E7E' stroke-width='0.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat 13px center;
+    width: 100% !important;
+    height: 32px !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    color: #495057 !important;
+    background-color: #fff !important;
+    background-clip: padding-box !important;
+    border-radius: .25rem !important;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out !important;
+    font-family: 'poppins' !important;
+    box-shadow: 0px 8px 24px 0px #959DA533 !important;
+    border-top: 0.5px solid #00000021 !important;
+    margin-top: -16px;
+}
+
+::ng-deep .mat-mdc-form-field-infix {
+    margin-top: -8px;
+}
+
+.custom-auto-panel {
+    z-index: 9999 !important;
+}
+
+::ng-deep div.mat-mdc-autocomplete-panel {
+    background: white !important;
+    font-size: 12px !important;
+    top: -17px !important;
+}
+
+.no-record-option {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    border: none !important;
+    background: #fff !important;
+}
+
+/* Remove bottom line / divider */
+.no-record-option::after {
+    display: none !important;
+}
+
+/* Remove hover background */
+.no-record-option:hover {
+    background: #fff !important;
+}
+
+/* Target autocomplete overlay panel properly */
+.cdk-overlay-container .mat-mdc-autocomplete-panel .no-record-option {
+
+    display: flex !important;
+    justify-content: center !important;
+    border: none !important;
+    background: #fff !important;
+}
+
+/* Target the actual text */
+.cdk-overlay-container .mat-mdc-autocomplete-panel .no-record-option .mdc-list-item__primary-text {
+
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #000 !important;
+    text-align: center !important;
+}
+
+/* Remove hover effect */
+.cdk-overlay-container .mat-mdc-autocomplete-panel .no-record-option:hover {
+    background: #fff !important;
+}

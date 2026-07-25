@@ -1,0 +1,31 @@
+<!-- <ejs-autocomplete 
+  id="atcelement" 
+  #componentTrigger2
+  [dataSource]="autoCompleteData" 
+  [fields]="fields" 
+  [placeholder]="text"
+  [minLength]="minLength" 
+  [highlight]="highlight" 
+  (select)="selectEvent($event)">
+</ejs-autocomplete> -->
+
+
+<mat-form-field appearance="outline" class="w-100">
+  <input type="text" matInput [placeholder]="text" [formControl]="myControl" [matAutocomplete]="auto"  />
+
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayLocality" class="custom-auto-panel" (optionSelected)="onOptionSelected($event) ">
+
+    @for (option of filteredOptions | async; track $index) {
+    <mat-option [value]="option">
+      {{ option.name }}
+    </mat-option>
+    }
+
+    @if (empty && (myControl.value?.length >= 2)) {
+    <mat-option disabled class="no-record-option">
+      No results found
+    </mat-option>
+    }
+
+  </mat-autocomplete>
+</mat-form-field>

@@ -1,0 +1,52 @@
+.get_call_back {
+    top: 0;
+    right: 0;
+    transform: none;
+    height: 100%;
+    width: 100%;
+    background: #fff;
+    z-index: 10000;
+    position: fixed
+  }
+  .head {
+    font-size: 20px;
+    color: rgba(0, 0, 0, .5);
+    top: 0;
+    left: 0;
+    display: flex;
+    margin: 12px 0 10px 0px;
+    border-bottom: 1px solid #ccc;
+    padding: 0 0 10px 5px;
+  }
+  .contactFormHeading {
+    color: #6a767a;
+    margin: 1px 20px 10px;
+    border-radius: 4px;
+  }
+  .marginBottomForm {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: proxima_novaregular, Arial, sans-serif;
+    font-display: swap;
+  }
+  .mobile_res {
+    padding: 0px 10px;
+  }
+  .seenProjectImg{
+    width: 100%;
+  }
+  .titleFont {
+    color: #080808;
+    margin-bottom: 0px;
+    font-size: 12px;
+  }
+  .localityText {
+    color: #971b47;
+    font-size: 12px;
+  }
+  
+  .localityText i {
+    padding: 0 6px 0 0;
+  }

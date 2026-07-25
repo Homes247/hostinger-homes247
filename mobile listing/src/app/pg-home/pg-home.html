@@ -1,0 +1,715 @@
+<!-- Navbar -->
+  <app-home-sidenavbar [class.stickyHeader]="headerOnScroll"></app-home-sidenavbar>
+
+
+<div class="properties_india_main1 mt-5">
+
+  @if (false) {
+  <nav class="navbar navbar-custom d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center ">
+      <div class="resp_logo1 ">
+        <img loading="eager"
+          src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/menu.png"
+          alt="Homes247" (click)="clickNavopen()">
+      </div>
+      <div class=" resp_citydrop1">
+        <div class="inner_search mobileViewSelectDropDown d-flex" tabindex="0" (click)="ShowHidecontact()">
+          <div class="enquiryBtns">Select City</div>
+          <img height="5" width="9"
+            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/homePageDropDownIcon.png"
+            alt="homePageDropDownIcon.png">
+        </div>
+      </div>
+    </div>
+    <a href="https://www.homes247.in/postproperty"><button class="post-property-btn">Post a Property</button></a>
+  </nav>
+  <!-- Side Nav Start-->
+  <div id="mySidenavsss" class="sidenav" style="width: 0px;">
+    <div class="nav_logo">
+      <a class="logo_nav" routerLink="/">
+        <img
+          lazyLoad="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Homes247_NewBlack_Logo.png"
+          alt="Homes247">
+      </a>
+      <span class="closebtn" (click)="clickNavclose()">
+        <svg id="fi_6583137" enable-background="new 0 0 48 48" height="40" viewBox="0 0 48 48" width="40"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="m32.5 33c.4.4.4 1 0 1.4-.2.2-.5.3-.7.3s-.5-.1-.7-.3l-8.4-8.4-8.4 8.4c-.2.2-.5.3-.7.3s-.5-.1-.7-.3c-.4-.4-.4-1 0-1.4l8.4-8.4-8.4-8.4c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l8.4 8.4 8.4-8.4c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-8.4 8.4z">
+          </path>
+        </svg>
+      </span>
+    </div>
+
+    <div data-page="1" class="wipe open" id="red">
+      <p class="pl-2 navTextWipe"><a href="https://www.homes247.in/">Home</a></p>
+      @if (loginshow) {
+      <p class="pl-2 navTextWipe"><a routerLink="/login">Login</a></p>
+      }
+      <p class="pl-2 navTextWipe"><a href="https://www.homes247.in/aboutus">About Us</a></p>
+      <p class="pl-2 navTextWipe"><a href="https://www.homes247.in/careers">Careers</a></p>
+      <p class="pl-2 navTextWipe"><a href="https://www.homes247.in/blogs">Home Guide<span
+            class="blogmark">Blogs</span></a></p>
+      <ul class="nav_links pl-2 navTextWipe m-0" (click)="ShowHide_More()">
+        <li class=""><span data-toggle="" href="">More <span class="caret"></span></span>
+          @if (IsVisiblee) {
+          <ul class="drop_style p-0 m-0">
+            <li><a href="https://www.homes247.in/find-ifsc-code">Find IFSC Codes</a></li>
+            <li><a href="https://www.homes247.in/find-pincode">Find Pincode Codes</a></li>
+            <li><a href="https://www.homes247.in/all-project-reviews-in-india">All Property Reviews</a></li>
+            <li><a href="https://www.homes247.in/all-project-walkthrough-videos-in-india">All Property Walkthrough
+                Videos</a></li>
+            <li><a href="https://www.homes247.in/expertservices">Expert Services</a></li>
+            <li><a href="https://www.homes247.in/faq">FAQ</a></li>
+            <li><a href="https://www.homes247.in/policy">Privacy Policy</a></li>
+          </ul>
+          }
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- Side Nav End-->
+  }
+
+  <div class="col-12 p-0 slider_section_main">
+    <div class="slider_search_main">
+      <div class="homes247Logo text-center mt-3 pt-2">
+        <img
+          src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Homes247_NewBlack_Logo.png"
+          style="width: 140px;margin-top: 24px;" alt="homes247logo">
+      </div>
+      <h1 hidden>PGs for Rent in India | Paying Guest Accommodation Made Easy</h1>
+      <h2 class="search_label">
+        Find Your Home Away<br />From Home
+      </h2>
+      <div class="tab-search-container mx-3">
+        <div class="custom-tabs-fade">
+          <div class="custom-tabs" #activeTab>
+            <div class="custom-tab" routerLink="/" routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }">Buy</div>
+            <div class="custom-tab" routerLink="/property-for-rent-in-bangalore" routerLinkActive="active">Rent</div>
+            <div class="custom-tab" routerLink="/commercial" routerLinkActive="active">Commercial</div>
+            <div class="custom-tab active" routerLink="/pg-home" routerLinkActive="active">PG/Hostel</div>
+            <div class="custom-tab" data-toggle="modal" data-target="#exampleModalCenter">Sell</div>
+          </div>
+        </div>
+        <div class="search-bar search_c p-0">
+          <div class="nosubmit"><img
+              src="data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.5 9.5C7.70914 9.5 9.5 7.70914 9.5 5.5C9.5 3.29086 7.70914 1.5 5.5 1.5C3.29086 1.5 1.5 3.29086 1.5 5.5C1.5 7.70914 3.29086 9.5 5.5 9.5Z' stroke='%237E7E7E' stroke-width='0.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M10.5 10.5L8.34998 8.34998' stroke='%237E7E7E' stroke-width='0.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"
+              alt="svg%3E" height="12px" width="12px"></div>
+          <input (click)="ShowHidecontact()" type="text" placeholder="Search Location" />
+          <div style="position: absolute;right: 20px;">
+            <button class="search-bar_test" (click)="ShowHidecontact()">Search</button>
+          </div>
+        </div>
+
+
+         <!-- <div class="search-bar search_c p-0">
+          <div class="nosubmit"><img
+              src="data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.5 9.5C7.70914 9.5 9.5 7.70914 9.5 5.5C9.5 3.29086 7.70914 1.5 5.5 1.5C3.29086 1.5 1.5 3.29086 1.5 5.5C1.5 7.70914 3.29086 9.5 5.5 9.5Z' stroke='%237E7E7E' stroke-width='0.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M10.5 10.5L8.34998 8.34998' stroke='%237E7E7E' stroke-width='0.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"
+              alt="..svg%3E" height="12px" width="12px"></div>
+          <input (click)="ShowHidecontact()" type="text" placeholder="Search Location" />
+          <div style="position: absolute;right: 20px;">
+            <a routerLink="/smart-property-finder" class="askbutton btn btn-secondary ai_button">&nbsp;<img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/ai/ask_ai1.svg" alt=""> Ask AI&nbsp;&nbsp;</a>
+           
+          </div>
+        </div> -->
+
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ------------------- content section--------------- -->
+
+  <div class="properties_india_main pb-0">
+    <div class="container con1">
+      <div class="col-12 px-0">
+        <div class="col-lg-12 col-md-12 col-sm-12 px-0">
+          <div class="news_head ">
+            <h2>Discover All PG Properties Here</h2>
+            <p class="newHeadingSubTitle">Curated & Handpicked Properties</p>
+          </div>
+          <div class="spotLightPropDiv1 d-flex">
+            @for (property of allPGProperties; track property) {
+            <a [routerLink]="['/pgcl/pg-for-rent-in-bangalore']" [queryParams]="{ pgavailablefor: property.IDPK}"
+              class="propBox2 px-0">
+              <div>
+                <img class="propImg2" loading="lazy" width="183px" height="160px"
+                  [src]="allCommercialpropertyimage + property.image_url" alt="property.image_url">
+              </div>
+              <div class="featureCollectTxt">
+                <p id="txtTop">{{property.image_name}}</p>
+              </div>
+              <div class="featureCollectOverlay"></div>
+            </a>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ---------------- Next Section----------------- -->
+
+    <div class="container con2 pt-3 pr-0">
+      <div class="news_head ">
+        <h2>Newly Added PGs Properties for <span id="burgundyTitle">Boys</span></h2>
+        <p class="newHeadingSubTitle">Curated & Handpicked Properties</p>
+      </div>
+
+      @if (!boysprojectsloader && PGforboys.length === 0) {
+      <div class="pr-0 noPropDivRental">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/noRentalPropFoundMob.png"
+          alt="noRentalPropFoundMob.png" width="100%">
+        <div class="noPropTxt1">
+          <p class="mb-0">Sorry, we couldn't find any properties</p>
+        </div>
+      </div>
+      }
+
+      <div class="scroll-container">
+        @for (property of PGforboys; track property) {
+        <div class="property-card1">
+          <div class="propImg2 col-5 text-right px-0">
+
+            @if (property.Cover_images == null) {
+            <a class="pi_main" target="_blank"
+              href="https://www.homes247.in/pgd/pg-for-rent-in-{{property.city | cleanUrl}}-{{property.propartid}}" target="_blank">
+              <img height="133px" width="232" class="propertynoimg" alt="pi_main"
+                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image_New.jpg" />
+            </a>
+            }
+            @if (property.Cover_images !== null) {
+            <a class="pi_main" target="_blank"
+              href="https://www.homes247.in/pgd/pg-for-rent-in-{{property.city | cleanUrl}}-{{property.propartid}}" target="_blank">
+              <img height="133" width="232" class="propertyimg" alt="pi_main"
+                [src]="coverimage + property.Cover_images" />
+            </a>
+            }
+          </div>
+
+          <div class="top_project_info col-12 pt-0">
+            <div class="pi_left col-12 pl-0">
+              <div class="d-flex pricetitle">
+                <div class="pr-0 mt-7 text-truncate">
+                  <h3 class="propclass">{{ property.pg_name }}</h3>
+                </div>
+                @if (property.amount !== null) {
+                <div class="text-right px-0 col-4" id="priceCommercial">
+                  {{ property.amount | customPriceFormat}}
+                </div>
+                }
+                @if (property.amount == null) {
+                <div class="listsqrt_button">
+                  <button class="btn lock_button1 d-flex align-items-center">
+                    Unlock Price Info
+                    <img
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg"
+                      alt="padlock (1) 1.svg" class="ms-2 lock-icon" />
+                  </button>
+                </div>
+                }
+              </div>
+
+              <div class="row d-flex owner_name">
+                <div class="col-6 pr-0">
+                  @if (property.first_name !== null) {
+                  <p class="postedBy text-truncate">By {{property.first_name}}</p>
+                  }
+                  @if (property.first_name == null) {
+                  <p class="postedBy text-truncate">Guest User</p>
+                  }
+                </div>
+                <div class="col-6 text-right px-0">
+                  <p class="postedBy1">Onwards</p>
+                </div>
+              </div>
+
+              <div class="areaLoc col-12 mt-2 commercialAreaImg">
+                <div class="row mt-7">
+                  <div class="col-12 px-0 d-flex">
+                    <img loading="lazy" width="20" height="20"
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/commercial page/map-pin.svg"
+                      alt="map-pin.svg">&nbsp;
+                    <p class="top_project_info1 text-truncate">{{property.Address}}, {{ property.locality_name }}, {{
+                      property.city }}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="areaLoc col-12 mt-2 commercialAreaImg">
+                <div class="row mt-7">
+                  <div class="col-12 px-0 d-flex">
+                    <img loading="lazy" width="20" height="20"
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/PG-home/dish 3.svg"
+                      alt="dish 3.svg">&nbsp;
+                    @if (property.meels_types) {
+                    <p class="top_project_info1 text-truncate" [title]="property.meels_types">Food Included</p>
+                    }
+                    @if (!property.meels_types) {
+                    <p class="top_project_info1">No Meal</p>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center card-footer-icons">
+            <button class="btn btn-view-details btn-block mr-2">
+              <a href="https://www.homes247.in/pgd/pg-for-rent-in-{{property.city | cleanUrl}}-{{property.propartid}}"
+                target="_blank">View Details
+                <img
+                  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/commercial page/arrow_icon.svg"
+                  alt="arrow_icon.svg">
+              </a>
+            </button>
+            <div
+              [ngClass]="{'Rental_icons_Heart3_Active': isInWishlist1(property.propartid), 'Rental_icons_Heart3 mr-2': !isInWishlist1(property.propartid)}"
+              (click)="Heart_Transtion1(property.propartid)"></div>
+            <img
+              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Rental_share.png"
+              alt="Rental_share.png" class="sharecss" (click)="shareContent(property)">
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+
+    @if (boysprojectsloader) {
+    <div class="row container">
+      <div class="col-4">
+        <div class="item">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ width: '100px', 'border-radius': '9', height: '15px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '15px' }"></ngx-skeleton-loader>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="item">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ width: '100px', 'border-radius': '9', height: '15px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '15px' }"></ngx-skeleton-loader>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="item">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ width: '100px', 'border-radius': '9', height: '15px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '15px' }"></ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+    }
+
+    <div class="container con2 pt-4 pr-0">
+      <div class="news_head ">
+        <h2>Newly Added PGs Properties for <span id="burgundyTitle">Girls</span></h2>
+        <p class="newHeadingSubTitle">Curated & Handpicked Properties</p>
+      </div>
+
+      @if (!girlsprojectsloader && PGforgirls.length === 0) {
+      <div class=" pr-0 noPropDivRental">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/noRentalPropFoundMob.png"
+          alt="noRentalPropFoundMob.png" width="100%">
+        <div class="noPropTxt1">
+          <p class="mb-0">Sorry, we couldn't find any properties</p>
+        </div>
+      </div>
+      }
+
+      <div class="scroll-container">
+        @for (property of PGforgirls; track property) {
+        <div class="property-card1">
+          <div class="propImg2 col-5 text-right px-0">
+
+
+            @if (property.Cover_images !== null) {
+            <a class="pi_main" target="_blank"
+              href="https://www.homes247.in/pgd/pg-for-rent-in-{{property.city | cleanUrl}}-{{property.propartid}}" target="_blank">
+              <img height="133px" width="232" class="propertyimg" alt="pi_main"
+                [src]="coverimage + property.Cover_images" />
+            </a>
+            }
+
+            @if (property.Cover_images == null) {
+            <a class="pi_main" target="_blank"
+              href="https://www.homes247.in/pgd/pg-for-rent-in-{{property.city | cleanUrl}}-{{property.propartid}}" target="_blank">
+              <img height="133px" width="232" class="propertynoimg" alt="pi_main"
+                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image_New.jpg" />
+            </a>
+            }
+
+          </div>
+
+          <div class="top_project_info col-12 pt-0">
+            <div class="pi_left col-12 pl-0">
+              <div class="d-flex pricetitle">
+                <div class="pr-0 mt-7 text-truncate">
+                  <h3 class="propclass">{{ property.pg_name }}</h3>
+                </div>
+                @if (property.amount !== null) {
+                <div class="text-right px-0 col-4" id="priceCommercial">
+                  {{ property.amount | customPriceFormat}}
+                </div>
+                }
+                @if (property.amount == null) {
+                <div class="listsqrt_button">
+                  <button class="btn lock_button1 d-flex align-items-center">
+                    Unlock Price Info
+                    <img
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg"
+                      alt="padlock (1) 1.svg" class="ms-2 lock-icon" />
+                  </button>
+                </div>
+                }
+              </div>
+
+              <div class="row d-flex owner_name">
+                <div class="col-6 pr-0">
+                  @if (property.first_name !== null) {
+                  <p class="postedBy text-truncate">By {{property.first_name}}</p>
+                  }
+                  @if (property.first_name == null) {
+                  <p class="postedBy text-truncate">Guest User</p>
+                  }
+                </div>
+                <div class="col-6 text-right px-0">
+                  <p class="postedBy1">Onwards</p>
+                </div>
+              </div>
+
+              <div class="areaLoc col-12 mt-2 commercialAreaImg">
+                <div class="row mt-7">
+                  <div class="col-12 px-0 d-flex">
+                    <img loading="lazy" width="20" height="20"
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/commercial page/map-pin.svg"
+                      alt="map-pin.svg">&nbsp;
+                    <p class="top_project_info1 text-truncate">{{property.Address}}, {{ property.locality_name }}, {{
+                      property.city }}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="areaLoc col-12 mt-2 commercialAreaImg">
+                <div class="row mt-7">
+                  <div class="col-12 px-0 d-flex">
+                    <img loading="lazy" width="20" height="20"
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/PG-home/dish 3.svg"
+                      alt="dish 3.svg">&nbsp;
+                    @if (property.meels_types) {
+                    <p class="top_project_info1 text-truncate" [title]="property.meels_types">Food Included</p>
+                    }
+                    @if (property.meels_types == null) {
+                    <p class="top_project_info1">No Meal</p>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center card-footer-icons">
+            <button class="btn btn-view-details btn-block mr-2">
+              <a href="https://www.homes247.in/pgd/pg-for-rent-in-{{property.city | cleanUrl}}-{{property.propartid}}"
+                target="_blank">View Details
+                <img
+                  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/commercial page/arrow_icon.svg"
+                  alt="arrow_icon.svg">
+              </a>
+            </button>
+            <div
+              [ngClass]="{'Rental_icons_Heart3_Active': isInWishlist1(property.propartid), 'Rental_icons_Heart3 mr-2': !isInWishlist1(property.propartid)}"
+              (click)="Heart_Transtion1(property.propartid)"></div>
+            <img
+              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Rental_share.png"
+              alt="Rental_share.png" class="sharecss" (click)="shareContent(property)">
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+
+    @if (girlsprojectsloader) {
+    <div class="row container">
+      <div class="col-4">
+        <div class="item">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ width: '100px', 'border-radius': '9', height: '15px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '15px' }"></ngx-skeleton-loader>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="item">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ width: '100px', 'border-radius': '9', height: '15px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '15px' }"></ngx-skeleton-loader>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="item">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ width: '100px', 'border-radius': '9', height: '15px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '15px' }"></ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+    }
+
+    <div class="container con2 pt-4 pr-0">
+      <div class="col-12 px-0">
+        <div class="col-lg-12 col-md-12 col-sm-12 px-0">
+          <div class="news_head ">
+            <h2>Perfect Spaces for Your Needs</h2>
+            <p class="newHeadingSubTitle">Curated & Handpicked Properties</p>
+          </div>
+          <div class="spotLightPropDiv1 d-flex">
+            <a [routerLink]="['/pgcl/pg-for-rent-in-bangalore']" [queryParams]="{ min: 1000,max:10000}"
+              class="propBox2 px-0">
+              <div><img class="propImg2" loading="lazy" width="183px" height="160px"
+                  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/PG-home/Budget_Friendly.jpg"
+                  alt="Budget_Friendly.jpg"></div>
+              <div class="featureCollectTxt">
+                <p id="txtTop">Budget Friendly</p>
+              </div>
+              <div class="featureCollectOverlay"></div>
+            </a>
+            <a [routerLink]="['/pgcl/pg-for-rent-in-bangalore']" [queryParams]="{ pgfoodtype: 1}" class="propBox2 px-0">
+              <div><img class="propImg2" loading="lazy" width="183px" height="160px"
+                  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/PG-home/Meals Included.jpg"
+                  alt="Meals Included.jpg"></div>
+              <div class="featureCollectTxt">
+                <p id="txtTop">Meals Included</p>
+              </div>
+              <div class="featureCollectOverlay"></div>
+            </a>
+            <a [routerLink]="['/pgcl/pg-for-rent-in-bangalore']" [queryParams]="{ roomtype: 1}" class="propBox2 px-0">
+              <div><img class="propImg2" loading="lazy" width="183px" height="160px"
+                  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/PG-home/Private Room.jpg"
+                  alt="Private Room.jpg"></div>
+              <div class="featureCollectTxt">
+                <p id="txtTop">Private Room</p>
+              </div>
+              <div class="featureCollectOverlay"></div>
+            </a>
+            <a [routerLink]="['/pgcl/pg-for-rent-in-bangalore']" [queryParams]="{ pgbestsuit: 1}" class="propBox2 px-0">
+              <div><img class="propImg2" loading="lazy" width="183px" height="160px"
+                  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/PG-home/For Students.jpg"
+                  alt="For Students.jpg"></div>
+              <div class="featureCollectTxt">
+                <p id="txtTop">For Students</p>
+              </div>
+              <div class="featureCollectOverlay"></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container con2 pt-3 pr-0">
+      <div class="news_head ">
+        <h2>Newly Added PGs Properties for <span id="burgundyTitle">Co Live</span></h2>
+        <p class="newHeadingSubTitle">Curated & Handpicked Properties</p>
+      </div>
+
+      @if (!coliverojectsloader && PGforcolive.length === 0) {
+      <div class="pr-0 noPropDivRental">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/noRentalPropFoundMob.png"
+          alt="noRentalPropFoundMob.png" width="100%">
+        <div class="noPropTxt1">
+          <p class="mb-0">Sorry, we couldn't find any properties</p>
+        </div>
+      </div>
+      }
+
+      <div class="scroll-container">
+        @for (property of PGforcolive; track property) {
+        <div class="property-card1">
+          <div class="propImg2 col-5 text-right px-0">
+
+
+            @if (property.Cover_images !== null) {
+            <a class="pi_main" target="_blank"
+              href="https://www.homes247.in/pgd/pg-for-rent-in-{{property.city | cleanUrl}}-{{property.propartid}}" target="_blank">
+              <img height="133px" width="232" class="propertyimg" alt="pi_main"
+                [src]="coverimage + property.Cover_images" />
+            </a>
+            }
+            @if (property.Cover_images == null) {
+            <a class="pi_main" target="_blank"
+              href="https://www.homes247.in/pgd/pg-for-rent-in-{{property.city | cleanUrl}}-{{property.propartid}}" target="_blank">
+              <img height="133px" width="232" class="propertynoimg" alt="pi_main"
+                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image_New.jpg" />
+            </a>
+            }
+
+          </div>
+
+          <div class="top_project_info col-12 pt-0">
+            <div class="pi_left col-12 pl-0">
+              <div class="d-flex pricetitle">
+                <div class="pr-0 mt-7 text-truncate">
+                  <h3 class="propclass">{{ property.pg_name }}</h3>
+                </div>
+                @if (property.amount !== null) {
+                <div class="text-right px-0 col-4" id="priceCommercial">
+                  {{ property.amount | customPriceFormat}}
+                </div>
+                }
+                @if (property.amount == null) {
+                <div class="listsqrt_button">
+                  <button class="btn lock_button1 d-flex align-items-center">
+                    Unlock Price Info
+                    <img
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg"
+                      alt="padlock (1) 1.svg" class="ms-2 lock-icon" />
+                  </button>
+                </div>
+                }
+              </div>
+
+              <div class="row d-flex owner_name">
+                <div class="col-6 pr-0">
+                  @if (property.first_name !== null) {
+                  <p class="postedBy text-truncate">By {{property.first_name}}</p>
+                  }
+                  @if (property.first_name == null) {
+                  <p class="postedBy text-truncate">Guest User</p>
+                  }
+                </div>
+                @if (property.amount !== null) {
+                <div class="col-6 text-right px-0">
+                  <p class="postedBy1">Onwards</p>
+                </div>
+                }
+              </div>
+
+              <div class="areaLoc col-12 mt-2 commercialAreaImg">
+                <div class="row mt-7">
+                  <div class="col-12 px-0 d-flex">
+                    <img loading="lazy" width="20" height="20"
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/commercial page/map-pin.svg"
+                      alt="map-pin.svg">&nbsp;
+                    <p class="top_project_info1 text-truncate">{{property.Address}}, {{ property.locality_name }}, {{
+                      property.city }}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="areaLoc col-12 mt-2 commercialAreaImg">
+                <div class="row mt-7">
+                  <div class="col-12 px-0 d-flex">
+                    <img loading="lazy" width="20" height="20"
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/PG-home/dish 3.svg"
+                      alt="dish 3.svg">&nbsp;
+                    @if (property.meels_types) {
+                    <p class="top_project_info1 text-truncate" [title]="property.meels_types">Food Included</p>
+                    }
+                    @if (property.meels_types == null) {
+                    <p class="top_project_info1">No Meal</p>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center card-footer-icons">
+            <button class="btn btn-view-details btn-block mr-2">
+              <a href="https://www.homes247.in/pgd/pg-for-rent-in-{{property.city | cleanUrl}}-{{property.propartid}}"
+                target="_blank">View Details
+                <img
+                  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/commercial page/arrow_icon.svg"
+                  alt="arrow_icon.svg">
+              </a>
+            </button>
+            <div
+              [ngClass]="{'Rental_icons_Heart3_Active': isInWishlist1(property.propartid), 'Rental_icons_Heart3 mr-2': !isInWishlist1(property.propartid)}"
+              (click)="Heart_Transtion1(property.propartid)"></div>
+            <img
+              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Rental_share.png"
+              alt="Rental_share.png" class="sharecss" (click)="shareContent(property)">
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+
+    <div class="container con3 pr-0">
+      <div class="col-12 px-0">
+        <div class="col-lg-12 col-md-12 col-sm-12 px-0 pt-2">
+          <div class="news_head ">
+            <h2>Commercial Blogs</h2>
+            <p class="newHeadingSubTitle">Read real estate blogs all about homes</p>
+          </div>
+          <div class="col-12 p-0">
+            <div class="blogsSection">
+              @for (blog of trendingBlogs | slice:0:6; track blog) {
+              <a>
+                <div class="card sqrtcard-size">
+                  <a href="https://www.homes247.in/blogs/{{ blog.urlstruture | cleanUrl }}-{{ blog.id }}"
+                    style="text-decoration: none;">
+                    <img [src]="blogimagePath + blog.imgPath" class="blogImageSize" alt="blog.alttag" height="96px"
+                      width="100%" />
+                    <div class="card-body custom-card-body">
+                      <h5 class="sqrt-text sqrt-blog">{{ blog.title }}</h5>
+                      <div class="col-12">
+                        <div class="row sqrt2">
+                          <div class="col-6 px-0 sqrt1-text">
+                            <p class="mb-0">By {{blog.addedby}}</p>
+                          </div>
+                          <div class="col-5 text-right sqrt2-text">
+                            <p class="mb-0">{{blog.date | date:'MMM dd, yyyy'}}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </a>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="matAuto">
+    <ng-container *ngComponentOutlet="Matautocomplete"></ng-container>
+  </div>
+
+  <!-- Sell Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span style="font-size: 30px;" aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+          <div class="modalImg">
+            <img loading="lazy"
+              lazyLoad="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Asset 1@2x 2.png"
+              alt="Asset">
+            <p>Sell your property with ease! List it for free and connect with interested buyers right from your mobile
+              device.</p>
+          </div>
+        </div>
+        <div class="mb-3 text-center">
+          <a href="/postproperty" type="button" class="btn btn_sell_prop">Post Property for Free</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footerDiv" style="padding-bottom: 40px;">
+    <div>
+      <ng-container *ngComponentOutlet="FooterComponent"></ng-container>
+    </div>
+  </div>
+</div>

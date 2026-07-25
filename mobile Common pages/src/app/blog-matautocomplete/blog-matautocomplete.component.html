@@ -1,0 +1,22 @@
+<div class="mobile_view_search div_search col-lg-4 col-md-4 col-sm-4">
+  <h4 class="article_search">Search for article</h4>
+<div class="search">
+  <div class="search_input_box inner_page">
+    <mat-form-field>
+      <input id="searchinputform" matInput type="text"
+             matInput
+             [formControl]="myControl"
+             required
+             [matAutocomplete]="autoGroup">
+      <mat-autocomplete #autoGroup="matAutocomplete" (optionSelected)='onItemSelect($event.option.value)'
+                        [displayWith]="displayname">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <div class="blog_search_btn"><a><img
+    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/magnify.png" alt="search-icon"/></a></div>
+</div>
+</div>

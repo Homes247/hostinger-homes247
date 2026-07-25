@@ -1,0 +1,1069 @@
+<!-- <app-listing-header class="top_section_mainheader"></app-listing-header> -->
+
+
+<div class="card-headerr text-white d-flex">
+  <div class="container">
+    <div class="row">
+      <h1 class="card-title col-sm-8 col-lg-8 col-md-8 mt-2">IFSC and MICR Code For {{Meta_bankname | titlecase}} {{Meta_details | titlecase}}</h1>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 col-lg-8 col-md-8">
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumbs mb-0">
+          <li class="breadcrumb-item"><a href="https://www.homes247.in/" title="India's Favourite Property Portal !">Home</a></li>
+          <li class="breadcrumb-item" aria-current="page"><a href="https://www.homes247.in/find-ifsc-code" target="_blank"  title="Find IFSC Code">IFSC
+              Code</a></li>
+              
+          <li class="breadcrumb-item" aria-current="page"><a href="https://www.homes247.in/all-ifsc-and-micr-code/{{Bankname_2}}"
+              target="_blank" title="IFSC Code For {{Meta_bankname | titlecase}}">{{Meta_bankname | titlecase}}</a></li>
+
+          <li class="breadcrumb-item" aria-current="page"><a
+              href="https://www.homes247.in/all-ifsc-and-micr-code/{{Bankname_2}}/{{StateName_2}}" target="_blank" title="IFSC Code For {{Meta_statename | titlecase}}">{{Meta_statename | titlecase}}</a></li>
+
+          <li class="breadcrumb-item" aria-current="page"><a
+              href="https://www.homes247.in/all-ifsc-and-micr-code/{{Bankname_2}}/{{StateName_2}}/{{Cityname_2}}"
+              target="_blank" title="IFSC Code For {{Meta_cityname | titlecase}}">{{Meta_cityname | titlecase}}</a></li>
+
+          <li class="breadcrumb-item active" aria-current="page">{{Meta_details | titlecase}}</li>
+        </ul>
+      </nav>
+      <div class="col-lg-9 col-md-9 col-sm-9  p-0" style="display: flex">
+        <h2 class="mb-3">
+          <span class="pageTitle">Choose Branch</span>
+        </h2>
+      </div>
+      <div class="mx-auto">
+        <div class="card-body searchbank">
+          <!-- <form> -->
+          <div class="row form-group mx-auto ">
+            <div class="col-sm-12 col-md-12 col-lg-12 align-self-center">
+              <label for="bank" class="col-form-label previous_active">Bank Name</label>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="testing">
+                <search-dropdown-bank [items]="SelectedAllBankingNames" [size]="'small'" [label]="'bank_name'"
+                  [uid]="'bank_name'" [(ngModel)]="selectedBanks" (click)="GetBankNameNav()">
+                </search-dropdown-bank>
+                <input type="hidden" id="Bank_Name" [(ngModel)]="selectedBanks">
+              </div>
+            </div>
+          </div>
+          <div class="row form-group mx-auto ">
+            <div class="col-sm-12 col-md-12 col-lg-12 align-self-center">
+              <label for="bank" class="col-form-label previous_active">Select State</label>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="testing">
+                <search-dropdown-state [items]="StateName" [size]="'small'" [label]="'state'" [uid]="'state'"
+                  [(ngModel)]="selectedState" (click)="GetStateNameNav()">
+                </search-dropdown-state>
+                <input type="hidden" [value]="selectedState" id="State_Name" [(ngModel)]="selectedState">
+              </div>
+            </div>
+          </div>
+          <div class="row form-group mx-auto ">
+            <div class="col-sm-12 col-md-12 col-lg-12 align-self-center">
+              <label for="bank" class="col-form-label previous_active">Select City</label>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="testing">
+                <search-dropdown-city [items]="ApicityName" [size]="'small'" [label]="'city'" [uid]="'city'"
+                  [(ngModel)]="selectedCity" (click)="GetCityNameNav()">
+                </search-dropdown-city>
+                <input type="hidden" id="City_Name" [(ngModel)]="selectedCity">
+              </div>
+            </div>
+          </div>
+          <div class="row form-group mx-auto ">
+            <div class="col-sm-12 col-md-12 col-lg-12 align-self-center">
+              <label for="bank" class="col-form-label current_active">Select Branch</label>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="testing">
+                <search-dropdown-branch [items]="ApiBranchName" [size]="'small'" [label]="'branch'" [uid]="'id'"
+                  [(ngModel)]="selectedBranch" (click)="GetBranchNameNav()">
+                </search-dropdown-branch>
+                <input type="hidden" id="Branch_Name" [(ngModel)]="selectedBranch">
+              </div>
+            </div>
+          </div>
+          <!-- <div class="row form-group mx-auto">
+                        <div class="col-sm-4 col-md-4 col-lg-4 align-self-center">
+                            <label for="bank" class="col-form-label">Select State</label>
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4 align-self-center">
+                            <label for="bank" class="col-form-label">Select City</label>
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4 align-self-center">
+                            <label for="bank" class="col-form-label">Select Branch</label>
+                        </div>
+
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <div class="testing">
+                                <search-dropdown-state [items]="StateName" [size]="'small'" [label]="'state'"
+                                    [uid]="'state'" [(ngModel)]="selectedState" (click)="GetStateNameNav()">
+                                </search-dropdown-state>
+                                <input type="hidden" [value]="selectedState" id="State_Name"
+                                    [(ngModel)]="selectedState">
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <div class="testing">
+                                <search-dropdown-city [items]="ApicityName" [size]="'small'" [label]="'city'"
+                                    [uid]="'city'" [(ngModel)]="selectedCity" (click)="GetCityNameNav()">
+                                </search-dropdown-city>
+                                <input type="hidden" id="City_Name" [(ngModel)]="selectedCity">
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <div class="testing">
+                                <search-dropdown-branch [items]="ApiBranchName" [size]="'small'" [label]="'branch'"
+                                    [uid]="'id'" [(ngModel)]="selectedBranch" (click)="GetBranchNameNav()">
+                                </search-dropdown-branch>
+                                <input type="hidden" id="Branch_Name" [(ngModel)]="selectedBranch">
+                            </div>
+                        </div>
+                    </div> -->
+
+
+          <div class="row form-group mx-auto ">
+            <div class="grey-bg container-fluid">
+              <div class="">
+                <div class="row row-cols-3 g-3 ">
+                  <div class="col-lg-12 col-sm-12 col-md-12 mb-3 col-12">
+                    <table class="table table_body_color" *ngFor="let Ifsc of ApiMain_Id_details">
+                      <tbody class="">
+                        <tr>
+                          <th scope="row" class="table_details_head  pl-4 col-lg-6 col-sm-6 col-md-6 border_none">
+                            IFSC Code</th>
+                          <td class="t_data_details copy  col-lg-6 col-sm-6 col-md-6 border_none"
+                            value="Dynamically Will Pass" (click)="copyContent()" id="ifsc">
+                            {{Ifsc.ifsc}} &nbsp; <i class="fa fa-clone mr-4" aria-hidden="true"></i>
+                            <span *ngIf="copied" class="copied">&nbsp;&nbsp;<i class="fa fa-check"
+                                aria-hidden="true"></i>&nbsp;&nbsp;Copied</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="table_details_head pl-4">Bank</th>
+                          <td class="t_data_details"><img
+                              loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/bank-logo/{{Ifsc.bank_logo}}"
+                              alt="Ifsc.bank_name" class="rounded-circle font-large-2 mr-2" />{{Ifsc.bank_name}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="table_details_head pl-4">Address</th>
+                          <td class="t_data_details">{{Ifsc.address}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="table_details_head pl-4">City</th>
+                          <td class="t_data_details">{{Ifsc.city}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="table_details_head pl-4">State</th>
+                          <td class="t_data_details">{{Ifsc.state}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="table_details_head pl-4">Branch</th>
+                          <td class="t_data_details">{{Ifsc.branch}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="table_details_head pl-4">Phone Nuber</th>
+                          <td class="t_data_details">{{Ifsc.contact}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="table_details_head pl-4">Branch Code</th>
+                          <td class="t_data_details">{{BranchCode}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row" class="table_details_head pl-4">Micr Code</th>
+                          <td class="t_data_details">{{Ifsc.micr}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="row form-group mx-auto ">
+            <div class="grey-bg container-fluid">
+              <div class="banner_description" id="scrollable" style="height: 150px;">
+                <div class="row row-cols-3 g-3 banner_description">
+                  <div class="col-lg-12 col-sm-12 col-md-12 mb-3 col-12">
+                    <table class="table table-responsive">
+                      <thead>
+                        <tr class="Table_header">
+                          <th scope="col" class="Table_Main_head">Branch</th>
+                          <th scope="col" class="Table_Main_head">IFSC</th>
+                          <th scope="col" class="Table_Main_head">MICR</th>
+                          <th scope="col" class="Table_Main_head">Address</th>
+                          <th scope="col" class="Table_Main_head">City & State</th>
+                        </tr>
+                      </thead>
+                      <tbody *ngFor="let Ifsc of ApiDetails">
+                        <tr>
+                          <td scope="row"><a class="Table_head"
+                              href="https://www.homes247.in/all-ifsc-and-micr-code/{{Ifsc.bank_name| cleanUrl}}/{{Ifsc.state | cleanUrl}}/{{Ifsc.city | cleanUrl}}/{{Ifsc.branch | cleanUrl}}/{{Ifsc.id}}"
+                              target="_blank">{{Ifsc.branch}}</a></td>
+                          <td class="Table_data">{{Ifsc.ifsc}}</td>
+                          <td class="Table_data">{{Ifsc.micr}}</td>
+                          <td class="Table_data">{{Ifsc.address}}</td>
+                          <td class="Table_data">{{Ifsc.city}},{{Ifsc.state}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-12 mt-3 read_more_less">
+                <div class="arrow bounce down_arrow" (click)="readmore()">
+                  <span>Read More <i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                </div>
+                <div class="arrow bounce up_arrow" (click)="readless()">
+                  <span>Read Less <i class="fa fa-angle-up" aria-hidden="true"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- </form> -->
+        </div>
+      </div>
+      <div class="mx-auto mx-auto mt-5">
+        <div class="card-body searchbank2">
+          <div class="col-sm-12 col-md-12 col-lg-12 align-self-center">
+            <h2 for="bank" class="col-form-label pagetitle2">About {{htmlbankname | titlecase}}</h2>
+            <p class="content_IFSC">{{htmlbankname | titlecase}}, {{Cityname_2 | titlecase}}, {{current_Branch_name |
+              titlecase}} IFSC code is {{current_ifsc}} & its MICR code is {{current_micr}}. Find {{htmlbankname |
+              titlecase}}, {{Cityname_2 | titlecase}}, {{current_Branch_name | titlecase}} new address, contact details
+              and branch code below
+              <br><br>
+              Also explore and search bank details, IFSC code and MICR code with Homes247 tool for {{htmlbankname |
+              titlecase}} IFSC codes
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="mx-auto mx-auto mt-4">
+        <div class="card-body p-0">
+          <div class="col-sm-12 col-md-12 col-lg-12 align-self-center p-0">
+            <label for="bank" class="col-form-label pagetitle2 mb-4">The three major electronic payment/settlement
+              systems in India are as follows</label>
+            <div class="container p-0">
+              <div class="row text-center">
+
+                <div class="col-4">
+                  <div class=""><img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/neft.png" alt="..neft.png"  width="100" class="payment mb-1">
+                    <h3 class="mt-0 mb-0 neft">NEFT</h3>
+                    <h3 class="small text-uppercase text-muted mt-1">National Electronic
+                      Funds Transfer</h3>
+                  </div>
+                </div>
+
+                <div class="col-4">
+                  <div class=""><img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/imps.png" alt="..imps.png"  width="100" class="payment mb-1">
+                    <h3 class="mt-0 mb-0 neft">IMPS</h3>
+                    <h3 class="small text-uppercase text-muted mt-1">Immediate Payment
+                      Service</h3>
+                  </div>
+                </div>
+
+                <div class="col-4">
+                  <div class=""><img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/rtgs.png" alt="..rtgs.png"  width="100" class="payment mb-1">
+                    <h3 class="mt-0 mb-0 neft">RTGS</h3>
+                    <h3 class="small text-uppercase text-muted mt-1">Real-Time Gross
+                      Settlement</h3>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <div class="col-sm-12 p-0 mt-2">
+        <p class="ifscpara">IFSC codes in India are used for these three primary services. IFSC also helps in
+          the
+          Unified Payments
+          Interface or UPI payment system as well.</p>
+
+        <p class="ifscpara">An example of an IFSC Code will be SBIN0000AABB. Where the first four denote the
+          bank,
+          in this instance,
+          SBI, and the last would be the branch.</p>
+      </div>
+
+      <div class="col-sm-12 p-0 mt-4">
+        <h5 class="ifsc_question">How to find out the IFSC code?</h5>
+        <p class="ifsc_answer">One of the simplest ways to find out the IFSC code is by searching online. You
+          can
+          quickly source the branch codes through the reserve bank's official website or the bank's official
+          website. It
+          can also be found on the bank cheques or bank passbooks.</p>
+
+        <h5 class="ifsc_question">Advantage of IFSC codes?</h5>
+        <p class="ifsc_answer">IFSC code helps identify the right branches and banks, thereby eradicating
+          errors.</p>
+
+        <h5 class="ifsc_question">What is MICR?</h5>
+        <p class="ifsc_answer">MICR, or Magnetic Ink Character Recognition, is a code that helps in processing
+          the
+          cheques faster by identifying the particular bank branch through Electronic Clearing System or ECR.
+          MICR is
+          printed on the cheques issued by the banks.</p>
+
+        <h5 class="ifsc_question">What is the structure of the MICR code?</h5>
+        <p class="ifsc_answer">MICR code contains 9 digits where the first three signifies the city, the second three
+          digits indicates the bank (bank code), and the final three indicates the bank branch</p>
+
+        <h5 class="ifsc_question">What are the major differences between a IFSC code and MICR code?</h5>
+        <table class="table table-bordered table_radious">
+          <thead>
+            <tr>
+              <th scope="col" class="box_heading">IFSC Code</th>
+              <th scope="col" class="box_heading">MICR Code</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="box_content">The purpose of IFSC code is to help facilitate electronic transfer of funds</td>
+              <td class="box_content">MICR code's purpose is to process cheques faster through ECR</td>
+            </tr>
+            <tr>
+              <td class="box_content">IFSC codes has 11 alpha numeric characters</td>
+              <td class="box_content">MICR has 9 digit code</td>
+            </tr>
+            <tr>
+              <td class="box_content">The first 4 characters of IFSC is the Bank's code</td>
+              <td class="box_content">The bank is signified by the 4th, 5th and 6th digits of the code</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="topProjectsBg">
+              <h4 class="featuedProjectTitle">Trending Blogs</h4>
+              <div class="homeGuideMobileView">
+                <div class="scrollmenu">
+                    <a *ngFor="let blog of Trending_Blogs">
+                      <a href="https://www.homes247.in/blogs/{{blog.urlstruture | cleanUrl }}-{{blog.id | cleanUrl}}" title="{{blog.alttag}}" >
+                        <div class="homeGuideMobileView-border">
+                          <img class="homeGuideMobileViewImage"
+                              
+                              loading="lazy" src="{{blogimagePath}}{{blog.imgPath}}" alt="blog.alttag" />
+                          <h3 itemprop="headline">{{blog.title}}</h3>
+                          <div class="row">
+                              <div class="col-6">
+                                  <p>Date : {{blog.date}}</p>
+                              </div>
+                              <div class="col-6">
+                                  <p>Read: 5min</p>
+                              </div>
+                              <!-- <div class="col-6"> </div> -->
+                          </div>
+                      </div>
+                      </a>
+                        
+                        <!-- <div class="col-6"> <button
+                        href="https://www.homes247.in/blogs/{{blog.urlstruture | cleanUrl }}-{{blog.id | cleanUrl}}"
+                        class="btn btn-light blogsViewButton">View More</button> </div> -->
+                    </a>
+                </div>
+            </div>
+            </div>
+          </div>
+        </div>
+        <h5 class="ifsc_Frequently mb-0 mt-4">Most Frequently <strong>Asked Questions?</strong></h5>
+        <span class="ifsc_underline"></span>
+        <p class="underline_content mt-3 mb-3">Let's Explore the Most Frequently Asked Questions on IFSC & MICR</p>
+      </div>
+
+
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div id="accordionExample">
+            <div class="card faq mb-4">
+              <a class="card-header2" id="heading-1" type="button" data-toggle="collapse" data-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+                <h5 class="mb-0 faq_After">
+                  <a class="text_colour">
+                    <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Group 108.png" alt="..Group 108.png" >What is the full form of IFSC?
+                  </a>
+                </h5>
+              </a>
+              <div id="collapse-1" class="collapse show" aria-labelledby="heading-1" data-parent="#accordionExample">
+                <div class="card-body">
+
+                  <p class="contentColor mb-0">
+                    Indian Financial System Code is the expanded form of the IFSC code.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="card faq mb-4">
+              <a class="card-header2" id="heading-2" type="button" data-toggle="collapse" data-target="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
+                <h5 class="mb-0 faq_After">
+                  <a class="collapsed text_colour">
+                    <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Group 108.png" alt="..Group 108.png" >How to identify the bank in an IFSC code?
+                  </a>
+                </h5>
+              </a>
+              <div id="collapse-2" class="collapse" aria-labelledby="heading-2" data-parent="#accordionExample">
+                <div class="card-body">
+                  <p class="contentColor mb-0"><strong>We can identify the Bank from the first 4 characters of the IFSC
+                      code.
+                    </strong></p>
+                </div>
+              </div>
+            </div>
+            <div class="card faq mb-4">
+              <div class="card-header2" id="heading-4">
+                <h5 class="mb-0 faq_After">
+                  <a class="collapsed text_colour" type="button" data-toggle="collapse" href="#collapse-4"
+                    aria-expanded="false" aria-controls="collapse-4">
+                    <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Group 108.png" alt="..Group 108.png" >What type of characters are there in an IFSC
+                    code?
+                  </a>
+                </h5>
+              </div>
+              <div id="collapse-4" class="collapse"data-parent="#accordionExample" aria-labelledby="heading-4">
+                <div class="card-body">
+                  <p class="contentColor mb-0"><strong>An IFSC code contains alphanumeric characters.</strong></p>
+                </div>
+              </div>
+            </div>
+            <div class="card faq mb-4">
+              <div class="card-header2" id="heading-3">
+                <h5 class="mb-0 faq_After">
+                  <a class="collapsed text_colour" type="button" data-toggle="collapse" href="#collapse-3"
+                    aria-expanded="false" aria-controls="collapse-3">
+                    <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Group 108.png" alt="..Group 108.png" >How many characters are there in the IFSC code?
+                  </a>
+                </h5>
+              </div>
+              <div id="collapse-3" class="collapse"data-parent="#accordionExample" aria-labelledby="heading-3">
+                <div class="card-body">
+                  <p class="contentColor mb-0"><strong>An IFSC code contains alphanumeric characters.</strong></p>
+                </div>
+              </div>
+            </div>
+            <div class="card faq mb-4">
+              <div class="card-header2" id="heading-5">
+                <h5 class="mb-0 faq_After">
+                  <a class="collapsed text_colour" type="button" data-toggle="collapse" href="#collapse-5"
+                    aria-expanded="false" aria-controls="collapse-3">
+                    <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Group 108.png" alt="..Group 108.png" >What are the major components signed in an IFSC
+                    code?
+                  </a>
+                </h5>
+              </div>
+              <div id="collapse-5" class="collapse"data-parent="#accordionExample" aria-labelledby="heading-5">
+                <div class="card-body">
+                  <p class="contentColor mb-0"><strong>The major parts of the IFSC code are the bank code and branch
+                      code.</strong></p>
+                </div>
+              </div>
+            </div>
+            <div class="card faq mb-4">
+              <div class="card-header2" id="heading-6">
+                <h5 class="mb-0 faq_After">
+                  <a class="collapsed text_colour" type="button" data-toggle="collapse" href="#collapse-6"
+                    aria-expanded="false" aria-controls="collapse-6">
+                    <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Group 108.png" alt="..Group 108.png" >What is the SWIFT code?
+                  </a>
+                </h5>
+              </div>
+              <div id="collapse-6" class="collapse"data-parent="#accordionExample" aria-labelledby="heading-6">
+                <div class="card-body">
+                  <p class="contentColor mb-0"><strong>A SWIFT code is used for transferring funds on an International
+                      level.</strong></p>
+                </div>
+              </div>
+            </div>
+            <div class="card faq mb-4">
+              <div class="card-header2" id="heading-7">
+                <h5 class="mb-0 faq_After">
+                  <a class="collapsed text_colour" type="button" data-toggle="collapse" href="#collapse-7"
+                    aria-expanded="false" aria-controls="collapse-7">
+                    <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Group 108.png" alt="..Group 108.png" >Which are the major electronic payment systems
+                    of India?
+                  </a>
+                </h5>
+              </div>
+              <div id="collapse-7" class="collapse"data-parent="#accordionExample" aria-labelledby="heading-7">
+                <div class="card-body">
+                  <p class="contentColor mb-0"><strong>The major electronic payment systems in India are NEFT, RTGS,
+                      IMPS, and UPI. </strong></p>
+                </div>
+              </div>
+            </div>
+            <div class="card faq mb-4">
+              <div class="card-header2" id="heading-8">
+                <h5 class="mb-0 faq_After">
+                  <a class="collapsed text_colour" type="button" data-toggle="collapse" href="#collapse-8"
+                    aria-expanded="false" aria-controls="collapse-8">
+                    <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Group 108.png" alt="..Group 108.png" >Who are the creators of the IFSC code?
+                  </a>
+                </h5>
+              </div>
+              <div id="collapse-8" class="collapse"data-parent="#accordionExample" aria-labelledby="heading-8">
+                <div class="card-body">
+                  <p class="contentColor mb-0"><strong>The Reserve Bank of India provides a unique 11-digit IFSC code to
+                      the banks.</strong></p>
+                </div>
+              </div>
+            </div>
+            <div class="card faq mb-4">
+              <div class="card-header2" id="heading-9">
+                <h5 class="mb-0 faq_After">
+                  <a class="collapsed text_colour" type="button" data-toggle="collapse" href="#collapse-9"
+                    aria-expanded="false" aria-controls="collapse-9">
+                    <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Group 108.png" alt="..Group 108.png" >
+                    What is the minimum amount you can transfer in NEFT?
+                  </a>
+                </h5>
+              </div>
+              <div id="collapse-9" class="collapse"data-parent="#accordionExample" aria-labelledby="heading-9">
+                <div class="card-body">
+                  <p class="contentColor mb-0"><strong>There is no minimum amount you can transfer under NEFT under
+                      retail banking and corporate banking</strong></p>
+                </div>
+              </div>
+            </div>
+            <div class="card faq mb-4">
+              <div class="card-header2" id="heading-10">
+                <h5 class="mb-0 faq_After">
+                  <a class="collapsed text_colour" type="button" data-toggle="collapse" href="#collapse-10"
+                    aria-expanded="false" aria-controls="collapse-10">
+                    <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Group 108.png" alt="..Group 108.png" >What is the maximum amount you can transfer in
+                    NEFT?
+                  </a>
+                </h5>
+              </div>
+              <div id="collapse-10" class="collapse"data-parent="#accordionExample" aria-labelledby="heading-10">
+                <div class="card-body">
+                  <p class="contentColor mb-0"><strong>The maximum amount you can transfer under NEFT under retail
+                      banking is INR 5 Lakhs and in corporate banking it is INR 50 lakhs for Vyapaar/trade and INR 500
+                      crores under Vistaar. </strong></p>
+                </div>
+              </div>
+            </div>
+            <div class="card faq mb-4">
+              <div class="card-header2" id="heading-11">
+                <h5 class="mb-0 faq_After">
+                  <a class="collapsed text_colour" type="button" data-toggle="collapse" href="#collapse-11"
+                    aria-expanded="false" aria-controls="collapse-11">
+                    <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Group 108.png" alt="..Group 108.png" >What is the minimum amount you can transfer in
+                    RTGS?
+                  </a>
+                </h5>
+              </div>
+              <div id="collapse-11" class="collapse"data-parent="#accordionExample" aria-labelledby="heading-11">
+                <div class="card-body">
+                  <p class="contentColor mb-0"><strong>INR 2 lakhs is the amount you can transfer under RTGS under
+                      retail banking.</strong></p>
+                </div>
+              </div>
+            </div>
+            <div class="card faq mb-4">
+              <div class="card-header2" id="heading-12">
+                <h5 class="mb-0 faq_After">
+                  <a class="collapsed text_colour" type="button" data-toggle="collapse" href="#collapse-12"
+                    aria-expanded="false" aria-controls="collapse-12">
+                    <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Group 108.png" alt="..Group 108.png" >What is the maximum amount you can transfer in
+                    RTGS?
+                  </a>
+                </h5>
+              </div>
+              <div id="collapse-12" class="collapse"data-parent="#accordionExample" aria-labelledby="heading-12">
+                <div class="card-body">
+                  <p class="contentColor mb-0"><strong>The maximum amount you can transfer under RTGS under retail
+                      banking is INR 5 Lakhs and in corporate banking it is INR 50 lakhs for Vyapaar/trade and INR 500
+                      crores under Vistaar. </strong></p>
+                </div>
+              </div>
+            </div>
+            <div class="card faq mb-0">
+              <div class="card-header2" id="heading-13">
+                <h5 class="mb-0 faq_After">
+                  <a class="collapsed text_colour" type="button" data-toggle="collapse" href="#collapse-13"
+                    aria-expanded="false" aria-controls="collapse-13">
+                    <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Group 108.png" alt="..Group 108.png" >Why do we require many IFSC codes?
+                  </a>
+                </h5>
+              </div>
+              <div id="collapse-13" class="collapse"data-parent="#accordionExample" aria-labelledby="heading-13">
+                <div class="card-body">
+                  <p class="contentColor mb-0"><strong>In a vast country like India, there are numerous cities and towns
+                      with the same name, some of them even in the same district. Thus to correctly identify the right
+                      or the proper branch, IFSC codes can help out easily by dedicating a specific code for each
+                      branch. </strong></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="col-sm-4 col-lg-4 col-md-4 mt-0">
+      <div class="box-right mt-4">
+        <div class="mx-auto">
+          <div class="searchbank6">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
+                <label for="bank" class="col-12 mb-0 mt-3 title">Popular Cities in India</label>
+                <label for="bank" class="col-12 title2">Properties for sale</label>
+              </div>
+            </div>
+            <div class="sliders2">
+              <owl-carousel-o [options]="TestingOw2">
+                <ng-container *ngFor="let city of citiess | slice: 0:5; let i=index">
+                  <ng-template carouselSlide>
+                    <div class="searchbank12">
+                      <div class="row ml-1">
+                        <div class="col-md-12">
+                          <h6 class="rgt_card_title my-0">{{city.city}}</h6>
+                          <div class="row m-0 mb-4 Box_color">
+                            <div class="col-sm-6 col-md-6 col-lg-6 mt-0" style="text-align: center;">
+                              <h3 for="bank" class="col-12 mb-0 mt-3 p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/residential-flats-in-{{city.city | cleanUrl}}-for-sale"
+                                  title="Flats for sale in {{city.city}} | Flats in {{city.city}}">Apartments in
+                                  {{city.city}}</a></h3>
+                              <h3 for="bank" class="col-12 mb-0 mt-3 p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/new-launch-projects/new-projects-in-{{city.city | cleanUrl}}"
+                                  title="Upcoming projects in {{city.city}} | New projects in {{city.city}}">New
+                                  Projects in {{city.city}}</a>
+                              </h3>
+                              <h3 for="bank" class="col-12 mb-0 mt-3  p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/villas-for-sale-in-{{city.city | cleanUrl}}"
+                                  title="Villas for sale in {{city.city}} | Villas in {{city.city}}">Villas for
+                                  sale in {{city.city}}</a>
+                              </h3>
+                              <h3 for="bank" class="col-12 mb-0 mt-3  p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/plots-in-{{city.city | cleanUrl}}"
+                                  title="Plots in {{city.city}} | Plots for sale in {{city.city}}">Plots in
+                                  {{city.city}}</a>
+                              </h3>
+
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6 mt-0" style="text-align: center;">
+                              <h3 for="bank" class="col-12 mb-0 mt-3 p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/home-for-sale-in-{{city.city | cleanUrl}}"
+                                  title="Home for sale in {{city.city}} | House for sale in {{city.city}}">Home
+                                  for sale in {{city.city}}</a>
+                              </h3>
+                              <h3 for="bank" class="col-12 mb-0 mt-3  p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/ready-to-move-apartments/ready-to-move-flats-in-{{city.city | cleanUrl}}"
+                                  title="Ready to move flats in {{city.city}} | Ready to move apartments in {{city.city}}">Ready
+                                  to move Flats in {{city.city}}</a>
+                              </h3>
+                              <h3 for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a rel="bookmark"
+                                  title="Properties for Sale in {{city.city}} | Buy Property in {{city.city}}"
+                                  href="https://www.homes247.in/{{city.city | cleanUrl}}/property-sale"
+                                  class="avgRatSqft">Properties For Sale in {{city.city}}</a>
+                              </h3>
+                              <h3 for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/agricultural-land-for-sale-in-{{city.city | cleanUrl}}"
+                                  title="Agricultural Land for Sale in {{city.city}} | Farm Land for sale in {{city.city}} | Homes247.in"
+                                  rel="bookmark">Agricultural land in {{city.city}}</a>
+                              </h3>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ng-container>
+              </owl-carousel-o>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="box-right mt-4">
+        <div class="mx-auto">
+          <div class="searchbank4">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
+                <label for="bank" class="col-12 mb-0 mt-3 title">Popular Cities in India</label>
+                <label for="bank" class="col-12 title2">Properties for sale</label>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
+                <section id="slider" class="pt-0">
+                  <div class="">
+                    <div class="sliders">
+                      <owl-carousel-o [options]="TestingOwl">
+                        <ng-container *ngFor="let city of citiess | slice: 0:5; let i=index">
+                          <ng-template carouselSlide>
+                            <div class="slider-card">
+                              <h5 class="mb-0 text-center"><b>{{city.city}}</b></h5>
+                              <p class="text-center"></p>
+                            </div>
+                            <p class="owlrectangle"></p>
+                            <div class="searchbank5">
+                              <div class="row">
+                                <div class="col-sm-6 col-md-6 col-lg-6" style="text-align: center;">
+                                  <a href="https://www.homes247.in/btc/1-bhk-flats-in-{{city.city | cleanUrl}}"
+                                    title="1 BHK Flats in {{city.city}}" rel="bookmark">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 title3">1 BHK Flats in {{city.city}}</h3>
+                                  </a>
+                                  <a href="https://www.homes247.in/btc/2-bhk-flats-in-{{city.city | cleanUrl}}"
+                                    title="2 BHK Flats in {{city.city}}" rel="bookmark">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 title3">2 BHK Flats in {{city.city}}</h3>
+                                  </a>
+                                  <a href="https://www.homes247.in/btc/3-bhk-flats-in-{{city.city | cleanUrl}}"
+                                    title="3 BHK Flats in {{city.city}}" rel="bookmark">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 title3">3 BHK Flats in {{city.city}}</h3>
+                                  </a>
+                                  <a href="https://www.homes247.in/btc/4-bhk-flats-in-{{city.city | cleanUrl}}"
+                                    title="4 BHK Flats in {{city.city}}" rel="bookmark">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 title3">4 BHK Flats in {{city.city}}</h3>
+                                  </a>
+                                  <a href="https://www.homes247.in/btc/5-bhk-flats-in-{{city.city | cleanUrl}}"
+                                    title="5 BHK Flats in {{city.city}}" rel="bookmark">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 title3">5 BHK Flats in {{city.city}}</h3>
+                                  </a>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-lg-6" style="text-align: center;">
+                                  <a href="https://www.homes247.in/bstc/1-bhk-ready-to-move-flats-apartments-in-{{city.city | cleanUrl}}"
+                                    title="1 BHK Ready to Move Flats in {{city.city}}" rel="bookmark">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 title3">1 BHK Ready to Move Flats in
+                                      {{city.city}}</h3>
+                                  </a>
+                                  <a href="https://www.homes247.in/bstc/2-bhk-ready-to-move-flats-apartments-in-{{city.city | cleanUrl}}"
+                                    title="2 BHK Ready to Move Flats in {{city.city}}" rel="bookmark">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 title3">2 BHK Ready to Move Flats in
+                                      {{city.city}}</h3>
+                                  </a>
+                                  <a href="https://www.homes247.in/bstc/3-bhk-ready-to-move-flats-apartments-in-{{city.city | cleanUrl}}"
+                                    title="3 BHK Ready to Move Flats in {{city.city}}" rel="bookmark">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 title3">3 BHK Ready to Move Flats in
+                                      {{city.city}}</h3>
+                                  </a>
+                                  <a href="https://www.homes247.in/bstc/4-bhk-ready-to-move-flats-apartments-in-{{city.city | cleanUrl}}"
+                                    title="4 BHK Ready to Move Flats in {{city.city}}" rel="bookmark">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 title3">4 BHK Ready to Move Flats in
+                                      {{city.city}}</h3>
+                                  </a>
+                                  <a href="https://www.homes247.in/bstc/5-bhk-ready-to-move-flats-apartments-in-{{city.city | cleanUrl}}"
+                                    title="5 BHK Ready to Move Flats in {{city.city}}" rel="bookmark">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 title3">5 BHK Ready to Move Flats in
+                                      {{city.city}}</h3>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </ng-template>
+                        </ng-container>
+                      </owl-carousel-o>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    
+      <!-- <div class="box-right mt-4">
+        <div class="mx-auto">
+          <div class="searchbank66">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12 pt-3 pb-3" style="text-align: center;">
+                <section id="slider" class="pt-0">
+                  <div class="">
+                    <div class="sliders">
+                      <owl-carousel-o [options]="TestingOwl3">
+                        <ng-container *ngFor="let cityname of citiess; let i=index">
+                          <ng-template carouselSlide>
+                            <div class="slider-card">
+                              <h5 class="mb-0 text-center"><b>{{cityname.city}}</b></h5>
+                            </div>
+                            <div class="">
+                              <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12 px-4" style="text-align: center;">
+                                  <a href="https://www.homes247.in/fbc/flats-for-30-lakhs-in-{{cityname.city | cleanUrl}}"
+                                    title="Flats Under 30 Lakhs in {{cityname.city}}" rel="bookmark" class="newcard">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 title5">Flats Under 30
+                                      Lakhs in {{cityname.city}}</h3>
+                                  </a>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-12 px-4" style="text-align: center;">
+                                  <a href="https://www.homes247.in/fbc/flats-in-{{cityname.city | cleanUrl}}-for-sale-30-lakhs-to-40-lakhs"
+                                    title="Flats in {{cityname.city}} for sale 30 Lakhs to 40 Lakhs" rel="bookmark"
+                                    class="newcard">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 title5">Flats in
+                                      {{cityname.city}} for sale 30 Lakhs to 40 Lakhs</h3>
+                                  </a>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-12 px-4" style="text-align: center;">
+                                  <a href="https://www.homes247.in/fbc/flats-in-{{cityname.city | cleanUrl}}-for-sale-40-lakhs-to-50-lakhs"
+                                    title="Flats in {{cityname.city}} for sale 40 Lakhs to 50 Lakhs" rel="bookmark"
+                                    class="newcard">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 title5">Flats in
+                                      {{cityname.city}} for sale 40 Lakhs to 50 Lakhs</h3>
+                                  </a>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-12 px-4" style="text-align: center;">
+                                  <a href="https://www.homes247.in/fbc/flats-in-{{cityname.city | cleanUrl}}-for-sale-50-lakhs-to-60-lakhs"
+                                    title="Flats in {{cityname.city}} for sale 50 Lakhs to 60 Lakhs" rel="bookmark"
+                                    class="newcard">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 title5">Flats in
+                                      {{cityname.city}} for sale 50 Lakhs to 60 Lakhs</h3>
+                                  </a>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-12 px-4" style="text-align: center;">
+                                  <a href="https://www.homes247.in/fbc/flats-in-{{cityname.city | cleanUrl}}-for-sale-60-lakhs-to-70-lakhs"
+                                    title="Flats in {{cityname.city}} for sale 60 Lakhs to 70 Lakhs" rel="bookmark"
+                                    class="newcard">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 title5">Flats in
+                                      {{cityname.city}} for sale 60 Lakhs to 70 Lakhs</h3>
+                                  </a>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-12 px-4" style="text-align: center;">
+                                  <a href="https://www.homes247.in/fbc/flats-in-{{cityname.city | cleanUrl}}-for-sale-70-lakhs-to-80-lakhs"
+                                    title="Flats in {{cityname.city}} for sale 70 Lakhs to 80 Lakhs" rel="bookmark"
+                                    class="newcard">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 title5">Flats in
+                                      {{cityname.city}} for sale 70 Lakhs to 80 Lakhs</h3>
+                                  </a>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-12 px-4" style="text-align: center;">
+                                  <a href="https://www.homes247.in/fbc/flats-in-{{cityname.city | cleanUrl}}-for-sale-80-lakhs-to-90-lakhs"
+                                    title="Flats in {{cityname.city}} for sale 80 Lakhs to 90 Lakhs" rel="bookmark"
+                                    class="newcard">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 title5">Flats in
+                                      {{cityname.city}} for sale 80 Lakhs to 90 Lakhs</h3>
+                                  </a>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-12 px-4" style="text-align: center;">
+                                  <a href="https://www.homes247.in/fbc/flats-in-{{cityname.city | cleanUrl}}-for-sale-90-lakhs-to-1-crore"
+                                    title="Flats in {{cityname.city}} for sale 90 Lakhs to 1 Crore" rel="bookmark"
+                                    class="newcard">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 mb-2 title5">Flats in
+                                      {{cityname.city}} for sale 90 Lakhs to 1 Crore</h3>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </ng-template>
+                        </ng-container>
+                      </owl-carousel-o>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div> -->
+      <div class="box-right mt-4">
+        <div class="mx-auto">
+          <div class="searchbank66">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
+                <label for="bank" class="col-12 mb-0 mt-3 title"> Top Blogs Categories</label>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-12 pt-3 pb-3" style="text-align: center;">
+                <section id="slider" class="pt-0 px-2" *ngFor="let city of citiess | slice: 0:1; let i=index">
+                  <div id="accordion">
+                    <div class="card curve mb-2">
+                      <!-- <a class="card-header2" id="heading-1" role="button" data-toggle="collapse" href="#collapse-{{i}}" aria-expanded="true"
+                      aria-controls="collapse-1">
+                        <h5 class="mb-0">
+                          <a class="text_colour" >
+                           Top Blogs Categories
+                          </a>
+                        </h5>
+                      </a> -->
+                      <P class="card_down_underline"></P>
+                      <div id="collapse-{{i}}" class="collapse show" data-parent="#accordion" aria-labelledby="heading-1">
+                        <div class="row m-0 Box_color1">
+                          <div class="col-sm-6 col-md-6 col-lg-6 mt-0" style="text-align: center;">
+                            <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                href="https://www.homes247.in/blogs" title="Best Real Estate Blogs in India-Latest News & Updates | Homes247.in">Real Estate Blogs</a></label>
+
+                            <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                href="https://www.homes247.in/articles/our-latest-updates-2" title="Latest Blogs on Real Estate,Vastu,Health,Tech | Homes247.in">Our Latest Blogs</a> </label>
+
+                            <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                href="https://www.homes247.in/articles/interior-design-ideas-5" title="Must Read Interior Design Blogs | Homes247.in">Interior Design Ideas</a> </label>
+
+                            <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                href="https://www.homes247.in/articles/healthy-lifestyle-blogs-9" title="Best Lifestyle Blogs to follow in 2020 | Homes247.in">Healthy Lifestyle Blogs</a> </label>
+
+                            <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                href="https://www.homes247.in/articles/diy-decor-ideas-12" title="Best DIY Craft Blogs to follow for Decor | Homes247.in">DIY Decor Ideas</a> </label>
+
+                            <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                href="https://www.homes247.in/blogs/best-entertainment-blogs-18" title="Best Entertainment blogs 2023 available with Homes247.in">Entertainment Blogs</a> </label>
+
+                            <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                href="https://www.homes247.in/articles/popular-indian-festivals-15" title="Popular Indian Festivals & Festival Blog |Homes247.in">Indian Festivals</a> </label>
+
+                          </div>
+                          <div class="col-sm-6 col-md-6 col-lg-6 mt-0" style="text-align: center;">
+
+                            <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                href="https://www.homes247.in/articles/technology-blogs-6" title="Top Technology Blogs to follow|Best Tech Blogs|Homes247.in">Latest Technology News</a> </label>
+
+                            <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                href="https://www.homes247.in/articles/indian-realestate-articles-17" title="Best Indian Real Estate & Property Investment Blogs|Homes247.in">Indian Real Estate Blogs</a> </label>
+
+                            <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                href="https://www.homes247.in/articles/health-fitness-blogs-11" title="Amazing Healthy Living & Fitness Blogs | Homes247.in">Health & Fitness Blogs</a> </label>
+
+                            <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                href="https://www.homes247.in/articles/finance-loan-taxes-13" title="Finance ,Home Loan & Taxes Blogs | Homes247.in">Finance, Loan & Taxes</a> </label>
+
+                            <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                href="https://www.homes247.in/articles/most-popular-news-14" title="Latest News | Popular News Blogs | Homes247.in">Most Popular News</a> </label>
+
+                            <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                href="https://www.homes247.in/articles/tips-for-buying-a-house-4" title="Best Home Buying Blogs You Should Read | Homes247.in">Tips for Buying a House</a> </label>
+
+                            <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                href="https://www.homes247.in/articles/modern-construction-techniques-10" title="Modern construction Blogs for Builders | Homes247.in">Construction Blogs</a> </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="box-right mt-4">
+            <div class="mx-auto">
+              <div class="searchbank6">
+                <div class="row">
+                  <div class="col-sm-12 col-md-12 col-lg-12 pt-3 pb-3" style="text-align: center;">
+                    <section id="slider" class="pt-0">
+                      <div class="" >
+                        <div class="sliders">
+                          <div class="slider-card">
+                            <h5 class="mb-0 text-center"><b>Links</b></h5>
+                          </div>
+                          <div class="row" *ngFor="let city of citiess | slice: 0:4; let i=index ">
+                            <div class="col-sm-12 col-md-12 col-lg-12 px-4" style="text-align: center;">
+                              <div class="overflow_x">
+                              <a href="https://www.homes247.in/" class="newcard1"><label for="bank" class="col-12 mb-0 mt-3 mr-3 title6">Flats For Sale {{city.city}}</label></a>
+                              <a href="https://www.homes247.in/" class="newcard1"><label for="bank" class="col-12 mb-0 mt-3 mr-3 title6">VillasFor Sale {{city.city}}</label></a>
+                              <a href="https://www.homes247.in/" class="newcard1"><label for="bank" class="col-12 mb-0 mb-3 mr-3 title6">Plots For Sale {{city.city}}</label></a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+      <div class="box-right mt-4">
+        <div class="mx-auto">
+          <div class="searchbank9">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
+                <label for="bank" class="col-12 mb-0 mt-3 title">Blogs Categories</label>
+                <!-- <label for="bank" class="col-12 title2">Properties for sale</label> -->
+              </div>
+            </div>
+            <div class="searchbank10">
+              <!-- <h6 class="rgt_card_title">Bangalore</h6> -->
+              <div class="container" id="infotable">
+                <div class="row">
+                  <div class="col-sm-6 col-md-6 col-lg-6 mt-0" style="text-align: center;">
+                    <div class="blogs_card">
+                      <a class="col-12 mb-0 mt-3 pl-0 card2 blogs_images1" href="https://www.homes247.in/articles/our-trending-blogs-1" title="Best Trending Blog Topics | Popular Blogs | Homes247.in">
+                        <span class="ml-5">Trending Topics</span>
+
+                      </a>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-6 col-lg-6 mt-0" style="text-align: center;">
+                    <div class="blogs_card">
+                      <a class="col-12 mb-0 mt-3 pl-0 card2 blogs_images3" href="https://www.homes247.in/articles/top-real-estate-news-7" title="Latest Real Estate News & Updates | Homes247.in">
+                        <span class=" ml-5">Real Estate News</span>
+
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6 col-md-6 col-lg-6 ml-0" style="text-align: center;">
+                    <div class="blogs_card">
+                      <a class="col-12 mb-0 mt-3 pl-0 card2 blogs_images2 " href="https://www.homes247.in/articles/vastu-shastra-tips-8" title="Best Vastu Shastra Tips | Vastu Articles | Homes247.in">
+                        <span class=" ml-5">Vastu</span>
+
+                      </a>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-6 col-lg-6 mr-0" style="text-align: center;">
+                    <div class="blogs_card">
+                      <a class="col-12 mb-0 mt-3 pl-0 card2 blogs_images4" href="https://www.homes247.in/articles/healthy-lifestyle-blogs-9" title="Best Lifestyle Blogs to follow in 2020 | Homes247.in">
+                        <span class=" ml-5">Lifestyle</span>
+
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4 mb-4">
+        <div class="col-sm-12">
+          <div class="topProjectsBg">
+            <h4 class="featuedProjectTitle">Entertainment Blogs</h4>
+            <div class="homeGuideMobileView">
+              <div class="scrollmenu">
+                  <a *ngFor="let blog of Entertainment_blogs">
+                    <a href="https://www.homes247.in/blogs/{{blog.urlstruture | cleanUrl }}-{{blog.id | cleanUrl}}" title="{{blog.alttag}}">
+                      <div class="homeGuideMobileView-border">
+                        <img class="homeGuideMobileViewImage"
+                            loading="lazy" src="{{blogimagePath}}{{blog.imgPath}}" alt="blog.alttag"  />
+                        <h3 itemprop="headline">{{blog.title}}</h3>
+                        <div class="row">
+                            <div class="col-6">
+                                <p>Date : {{blog.date}}</p>
+                            </div>
+                            <div class="col-6">
+                                <p>Read: 5min</p>
+                            </div>
+                            <!-- <div class="col-6"> </div> -->
+                        </div>
+                    </div>
+                    </a>
+                      
+                      <!-- <div class="col-6"> <button
+                      href="https://www.homes247.in/blogs/{{blog.urlstruture | cleanUrl }}-{{blog.id | cleanUrl}}"
+                      class="btn btn-light blogsViewButton">View More</button> </div> -->
+                  </a>
+              </div>
+          </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<app-footer2></app-footer2>
+<div class="innerheader_position">
+  <app-innerheader></app-innerheader>
+</div>

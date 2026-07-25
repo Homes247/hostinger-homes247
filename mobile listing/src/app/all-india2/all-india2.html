@@ -1,0 +1,419 @@
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<!-- <div class="top_projects_section">
+    <div class="col-12">
+        <div *ngIf="topprojectsloader" class="row mt-4">
+            <div class="col-6">
+                <div class="item">
+                    <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '180px' }">
+                    </ngx-skeleton-loader>
+                    <ngx-skeleton-loader [theme]="{ width: '170px','border-radius': '9',height: '15px'}">
+                    </ngx-skeleton-loader>
+                    <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                    </ngx-skeleton-loader>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="item">
+                    <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '180px' }">
+                    </ngx-skeleton-loader>
+                    <ngx-skeleton-loader [theme]="{ width: '170px','border-radius': '9',height: '15px'}">
+                    </ngx-skeleton-loader>
+                    <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                    </ngx-skeleton-loader>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="homeGuideMobileView divDivider mt-3 py-1">
+  <div class="container">
+    <div class="news_head underline">
+      <h2>Project In Focus</h2>
+      <p class="newHeadingSubTitle mb-3">
+        Best Projects From the Best Builders
+      </p>
+    </div>
+    <div class="amenitiesScroll">
+      @for (locProp of topProperties; track $index) {
+        <div>
+          <a href="https://www.homes247.in/property/{{
+            locProp.city_name | lowercase
+          }}/{{ locProp.locality_name | cleanUrl }}/{{
+            locProp.propertyName | cleanUrl
+          }}-{{ locProp.property_info_IDPK }}">
+            <div class="homeGuideMobileView-border ms-2 pb-1">
+              @for (image of locProp.images; track $index) {
+                <div class="imgDiv">
+                  <img loading="lazy" style="height: 160px; width: 100%; object-fit: cover; "
+                    class="homeGuideMobileViewImage" src="{{propertyimage}}{{image.name}}" alt="{{image.name}}"/>
+                </div>
+              }
+
+
+              <div class="propNameDiv text-center">
+                <p id="headline">{{locProp.propertyName}}</p>
+              </div>
+
+
+              <!-- wishlisting -->
+
+              <div class='control-group1'>
+                @if (localstorediv) {
+                  <div>
+                    @for (id of storagearr; track $index; let i = $index) {
+                      <div>
+                        @if (!locProp.user_fav && locProp.property_info_IDPK == id) {
+                          <input class='red-heart-checkbox'
+                            (click)="wishlistaddstorage(locProp.property_info_IDPK)" type='checkbox' title="Whishlist" checked>
+                        }
+                      </div>
+                    }
+                    @if (!locProp.user_fav && storagearr?.indexOf(locProp.property_info_IDPK) == -1) {
+                      <input class='red-heart-checkbox' (click)="wishlistaddstorage(locProp.property_info_IDPK)" type='checkbox'
+                        title="Whishlist">
+                    }
+                  </div>
+                }
+
+                @if (locProp.user_fav == false) {
+                  <input class='red-heart-checkbox'
+                    (click)="addwishlist(locProp.property_info_IDPK)" id='red-check2' type='checkbox' title="Whishlist">
+                }
+                @if (locProp.user_fav == true) {
+                  <input class='red-heart-checkbox'
+                    (click)="addwishlist(locProp.property_info_IDPK)" id='red-check2' type='checkbox' title="Whishlist"
+                    checked>
+                }
+                <label for='red-check2'></label>
+                <!-- <div class="heart" (click)="toggleHeart()" [@heartState]="isActive ? 'active' : 'inactive'">
+                  <img src="" alt="Heart" aria-label="Heart">
+                </div> -->
+              </div>
+
+              <!-- wishlisting -->
+
+              <div class="sharePropDiv" (click)="onclickshare(locProp)">
+                <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/share-variant-outline.png" alt="share-variant-outline.png" >
+              </div>
+
+
+
+
+              <div class="propDetailsDiv ps-1">
+                @if (locProp.property_minprice != 0) {
+                  <h2> <i class="fa fa-inr"
+                      aria-hidden="true"></i>&nbsp;{{locProp.price_min }} - {{locProp.price_max}}</h2>
+                }
+
+                @if (locProp.price_min == 0) {
+                  <h2>Price On Request</h2>
+                }
+                
+                @if (locProp.propertyType !== 'Plots') {
+                  <small>&nbsp;<img loading="lazy" class="burgundiImgTopProp"
+                      width="16"
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/bed-queen-outline.png"
+                      alt="bed-queen-outline" /></small>
+                }
+                
+                @for (allBHK of locProp.BHK_Details | unique : 'BHK' | orderBy : 'BHK'; track $index; let isLast = $last) {
+                  <small>
+                    @if (allBHK.topProBhk !== 'PLOTS') {
+                      <span id="bhkFurnishtyp">{{allBHK.BHK.replace("BHK", "")
+                        }}{{ isLast ? "BHK" : "," }}</span>
+                    }
+                    @if (allBHK.topProBhk == 'PLOTS') {
+                      <span id="bhkFurnishtyp">&nbsp;{{allBHK.BHK}}</span>
+                    }
+                  </small>
+                }&nbsp;&nbsp;
+                
+                @if (locProp.dimension != 0) {
+                  <small id="bhkFurnishtyp"><img loading="lazy" width="12" height="12"
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/set-square.png"
+                      alt="set-square">
+                    {{locProp.dimension}} Acres</small>
+                }
+                @if (locProp.dimension == 0) {
+                  <small id="bhkFurnishtyp"><img loading="lazy" width="12" height="12"
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/set-square.png"
+                      alt="set-square">
+                    Size On Request</small>
+                }
+              </div>
+            </div>
+          </a>
+        </div>
+      }
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  @for (data of homeLoanAdds | slice:0:1; track $index) {
+    <div class="addBanner1 mt-3"
+      (click)="clickedService(data.expert_IDFK)">
+      <img loading="lazy" width="100%" src="{{addRoot}}{{data.mobile_image}}" alt="addBanner1">
+      <!-- <img loading="lazy"  width="100%" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/mobile/propImage/addHomePage1.jpg" alt="addHomePage1.jpg" > -->
+    </div>
+  }
+</div>
+
+<div class="blogs_section_main" id="blog_section">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <a href="https://www.homes247.in/blogs">
+          <div class="news_head underline">
+            <h2>Our Blogs</h2>
+            <p class="newHeadingSubTitle">
+              Get all the Latest Real Estate Updates
+            </p>
+          </div>
+        </a>
+      </div>
+      <div class="viewAllclient">
+        <a href="https://www.homes247.in/blogs" target="_blank">
+          <p class="view-text">View All</p>
+        </a>
+      </div>
+    </div>
+    <div class="homeGuideMobileView">
+      <div class="scrollmenu">
+        @for (blog of blogs; track $index) {
+          <span>
+            @if (blog.title) {
+              <div class="homeGuideMobileView-border">
+                <!-- <div class="overlay"> -->
+                <div class="imageInsideTxt">
+                  <p>{{ blog.categoryName }}</p>
+                </div>
+                <!-- </div> -->
+                <a class="blogAnchorTag" href="https://www.homes247.in/blogs/{{
+                  blog.urlstruture | cleanUrl
+                }}-{{ blog.id }}">
+                  <img loading="lazy" height="100%" width="100%" class="blogImage"
+                    src="{{ blogimagePath }}{{ blog.imgPath }}" alt="{{ blog.alttag }}" title="{{ blog.alttag }}" />
+                </a>
+                <h3>{{ blog.title }}</h3>
+                <div class="row">
+                  <div class="col-12 mt-2 pb-1">
+                    <p>
+                      &nbsp;<img loading="lazy" class="user_icon"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/newChangeProp/User Rounded.png"
+                        alt="Rounded" />&nbsp;<span class="addby">&nbsp;&nbsp;{{ blog.addedby }}&nbsp;&nbsp; - &nbsp;</span>
+                      <span class="blog_date">{{ blog.date }}</span>
+                    </p>
+                    <!-- <p id="blogDesc" [innerHTML]="blog.description | sanitizeHtml"></p> -->
+                  </div>
+                </div>
+              </div>
+            }
+          </span>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="strip_section">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="news_head underline">
+          <!-- <h2   > End To End <b class="newHeadingTitleBold">Assistance</b></h2> -->
+          <h2>End To End Assistance</h2>
+          <p class="newHeadingSubTitle">Complete 360 degree services & aid</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="call_back_section">
+      <div class="best_price_box">
+        <ul style="list-style-type: none">
+          <li class="bst_prce_cmn best_price_icon1 lp best_price_icon_hover">
+            <img loading="lazy" class="image_default"
+              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/strip/meet.svg" alt="meet" />
+            <img loading="lazy" class="image_hover"
+              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/strip/2/meet-onhover.svg" alt="meet" />
+            <p class="strip_Image_Title">Meet</p>
+          </li>
+          <li class="bst_prce_cmn best_price_icon2 lp">
+            <img loading="lazy" class="image_default"
+              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/strip/visit.svg" alt="visit" />
+            <img loading="lazy" class="image_hover"
+              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/strip/2/visit-onhover.svg" alt="visit" />
+            <p class="strip_Image_Title">Site Visit</p>
+          </li>
+          <li class="bst_prce_cmn best_price_icon3 lp">
+            <img loading="lazy" class="image_default"
+              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/strip/bestprice.svg" alt="bestprice" />
+            <img loading="lazy" class="image_hover"
+              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/strip/2/bestprice-onhover.svg"
+              alt="bestprice" />
+            <p class="strip_Image_Title">Best Price</p>
+          </li>
+          <li class="bst_prce_cmn best_price_icon4 lp">
+            <img loading="lazy" class="image_default"
+              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/strip/easyloan.svg" alt="easyloan" />
+            <img loading="lazy" class="image_hover"
+              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/strip/2/easyloan-onhover.svg"
+              alt="easyloan" />
+            <p class="strip_Image_Title">Easy Loan</p>
+          </li>
+          <li class="bst_prce_cmn best_price_icon6 lp">
+            <img loading="lazy" class="image_default"
+              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/strip/decorup.svg" alt="decorup" />
+            <img loading="lazy" class="image_hover"
+              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/strip/2/decorup-onhover.svg" alt="decorup" />
+            <p class="strip_Image_Title">Interiors</p>
+          </li>
+        </ul>
+        <!-- <div class="col-12 Consultancy_main">
+          <a href="tel:+91 9164247247">
+            <button class="Consultancy_btn">
+              <span class="Consultancy"><img loading="lazy"
+                  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/Homes New/phone-outline.png"
+                  alt="phone-outline" />&nbsp;Get Free Consultancy</span>
+            </button>
+          </a>
+        </div> -->
+        <div class="col-12 Consultancy_main">
+  <a href="tel:+91 9164247247" class="Consultancy_btn">
+    <span class="Consultancy">
+      <img loading="lazy"
+        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/Homes New/phone-outline.png"
+        alt="phone-outline" />&nbsp;Get Free Consultancy
+    </span>
+  </a>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="appDownloadBanner mt-4">
+  <div class="mainImg">
+    <img loading="lazy" width="100%" height="100%"
+      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/appDownloadFrame.jpg"
+      alt="appDownloadFrame" />
+  </div>
+  <div class="AppBannerInsideTxt">
+    <h2 class="downloadAppTitle">
+      Download Our Mobile App <br> to Make it Easier
+    </h2>
+    <div class="appDwnloadLogoDiv mt-3">
+      <a href="https://apps.apple.com/au/app/homes247/id1611544989" target="_blank">
+        <div class="mb-1" style="width: 100px;">
+          <img loading="lazy" width="100"
+            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/appStoreLogo.png"
+            alt="appStoreLogo">
+        </div>
+      </a>
+
+      <a href="https://play.google.com/store/apps/details?id=vsnap.homes247.in" target="_blank">
+        <div style="width: 100px;">
+          <img loading="lazy" width="100"
+            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/googlePlayLogo.png"
+            alt="googlePlayLogo">
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="blogs_section_main" id="blog_section">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <a href="https://www.homes247.in/blogs">
+          <div class="news_head underline">
+            <h2>Our Trending Blogs</h2>
+            <p class="newHeadingSubTitle">
+              Find out what the Rest of the Nation Is Reading
+            </p>
+          </div>
+        </a>
+      </div>
+      <div class="viewAllclient">
+        <a href="https://www.homes247.in/blogs" target="_blank">
+          <p class="view-text">View All</p>
+        </a>
+      </div>
+    </div>
+    <div class="homeGuideMobileView">
+      <div class="scrollmenu">
+        @for (blog of trendingBlogs; track $index) {
+          <span>
+            <div class="homeGuideMobileView-border">
+              <!-- <div class="overlay"> -->
+              <div class="imageInsideTxt">
+                <p>{{ blog.categoryName }}</p>
+              </div>
+              <!-- </div> -->
+              <a class="blogAnchorTag" href="https://www.homes247.in/blogs/{{
+                  blog.urlstruture | cleanUrl
+                }}-{{ blog.id }}">
+                <img loading="lazy" height="100%" width="100%" class="blogImage"
+                  src="{{ blogimagePath }}{{ blog.imgPath }}" alt="{{ blog.alttag }}" title="{{ blog.alttag }}" />
+              </a>
+              <h3>{{ blog.title }}</h3>
+              <div class="row">
+                <div class="col-12 mt-2 pb-1">
+                  <p>
+                    &nbsp;<img loading="lazy" class="user_icon"
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/mobile/newChangeProp/User Rounded.png"
+                      alt="Rounded" />&nbsp;<span class="addby">{{ blog.addedby }} - &nbsp;</span>
+                    <span class="blog_date">{{ blog.date }}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </span>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mb-3">
+  @for (data of globalAddsArray | slice:0:1; track $index) {
+    <div class="addBanner1" (click)="clickedService(data.expert_IDFK)">
+      <img loading="lazy" width="100%" src="{{addRoot}}{{data.mobile_image}}" alt="addBanner1">
+      <!-- <img loading="lazy"  width="100%" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/propImage/addHomePage1.jpg" alt="addHomePage1.jpg" > -->
+    </div>
+  }
+</div>
+
+
+<!-- apex Chart start -->
+<!-- <apx-chart
+  #chart
+  [series]="chartOptions.series"
+  [chart]="chartOptions.chart"
+  [colors]="chartOptions.colors"
+  [yaxis]="chartOptions.yaxis"
+  [dataLabels]="chartOptions.dataLabels"
+  [markers]="chartOptions.markers"
+  [stroke]="chartOptions.stroke"
+  [xaxis]="chartOptions.xaxis"
+  [tooltip]="chartOptions.tooltip"
+  [annotations]="chartOptions.annotations"
+></apx-chart> -->
+
+<!-- apex Chart End -->
+
+
+
+
+
+<ng-container *ngComponentOutlet="Fixedfooter"></ng-container>

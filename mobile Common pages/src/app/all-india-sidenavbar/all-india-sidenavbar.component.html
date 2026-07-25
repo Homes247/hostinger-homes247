@@ -1,0 +1,309 @@
+<div class="fixed_section_main">
+    <div class="head_color">
+        <div class="top_row_left">
+            <div id="brgr_whitess" class="burger_icon" (click)="openFixedNav()">
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/dots-white.svg" alt="Homes247_navbar">
+            </div>
+            <div id="FixedmySidenavs" class="sidenav" style="width: 0px;">
+                <div class="nav_logo">
+                    <a class="logo_nav" href="https://www.homes247.in/"><img
+                            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/logo/Homes247_NewBlack_Logo.png"
+                            alt="Homes247"></a>
+                    <span class="closebtn" (click)="closeFixedNav()">
+                        <svg id="fi_6583137" enable-background="new 0 0 48 48" height="40" viewBox="0 0 48 48" width="40" xmlns="http://www.w3.org/2000/svg"><path d="m32.5 33c.4.4.4 1 0 1.4-.2.2-.5.3-.7.3s-.5-.1-.7-.3l-8.4-8.4-8.4 8.4c-.2.2-.5.3-.7.3s-.5-.1-.7-.3c-.4-.4-.4-1 0-1.4l8.4-8.4-8.4-8.4c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l8.4 8.4 8.4-8.4c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-8.4 8.4z"></path></svg></span>
+                </div>
+                <div data-page="1" class="wipe open" id="red">
+                    <p class="pl-2 navTextWipe"><span>Home</span></p>
+                    <p *ngIf="loginshow" class="pl-2 navTextWipe" routerLink="/login"><span>Login</span></p>
+                    <p class="pl-2 navTextWipe" (click)="tran(2)">
+                        <span>Properties In India</span> <span class="rightWipeArrow"><i class="fa fa-angle-right"
+                                aria-hidden="true"></i></span>
+                    </p>
+                    <p class="pl-2 navTextWipe" (click)="tran(25)">
+                        <span>Top Searches</span> <span class="rightWipeArrow"><i class="fa fa-angle-right"
+                                aria-hidden="true"></i></span>
+                    </p>
+                    <p class="pl-2 navTextWipe"><a routerLink="/aboutus">About Us</a></p>
+                    <p class="pl-2 navTextWipe"><a  href="https://www.homes247.in/careers">Careers</a></p>
+                    
+                    <p class="pl-2 navTextWipe"><a href="https://www.homes247.in/blogs">Home Guide<span class="blogmark">Blogs</span></a>
+                    </p>
+                    <!-- <p class="pl-2 navTextWipe"><a routerLink="/calculator">EMI Calculator</a></p>
+ -->
+                    <ul class="nav_links m-0"  (click)="ShowHide_More()">
+                        <li class=""><span data-toggle="" href="">More <span class="caret"></span></span>
+                            <ul class="drop_style p-0 m-0" *ngIf="IsVisible">
+                                <li><a href="https://www.homes247.in/find-ifsc-code">Find IFSC Codes</a></li>
+                                <li><a href="https://www.homes247.in/find-pincode">Find  PinCodes</a></li>
+                                <li><a routerLink="/expert-service">Expert Services</a></li>
+                                <!-- <li><a routerLink="/buyers-guide">Home Buyers Guide</a></li> -->
+                                <!-- <li><a routerLink="/latest-trends">Latest Real Estate Updates</a></li> -->
+                                
+                                <!-- <li><a routerLink="/price-trends">Price Trends</a></li> -->
+                                <!-- <li><a routerLink="/homeloan">Home Loan</a></li> -->
+                                <!-- <li><a routerLink="/vaastu">Vaastu Tips</a></li> -->
+                                <!-- <li><a routerLink="/interior">Interiors</a></li> -->
+                                <li> <a routerLink="/faq">FAQ</a></li>
+                                <li> <a routerLink="/policy">Privacy Policy</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="nav_social_icon">
+                        <ul>
+                            <li>
+                                <a class="nav_fb" target="_blank" href="https://www.facebook.com/Homes247.in/"></a>
+                            </li>
+                            <li>
+                                <a class="nav_insta" target="_blank" href="https://www.instagram.com/homes247.in"></a>
+                            </li>
+                            <li>
+                                <a class="nav_twitter" target="_blank" href="https://x.com/homes247_in"></a>
+                            </li>
+                            <li>
+                                <a class="nav_in" target="_blank" href="https://www.linkedin.com/company/homes247/"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div data-page="25" class="wipe closed" id="green">
+                    <p class="backBtnWipe" (click)="tran(1)">
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>&nbsp;&nbsp;<span>Back</span>
+                    </p>
+                    <div class="flex flex-column faq-section">
+                        <div id="accordion">
+                            <div class="card-header">
+                                <p class="mb-0">
+                                    <a role="button" data-toggle="collapse" href="#collapse-155" aria-expanded="false">
+                                        Top Indian Cities
+                                    </a>
+                                </p>
+                            </div>
+                            <div id="collapse-155" class="collapse" data-parent="#accordion">
+                                <div class="p-2">
+                                    <p class="navTextWipe" *ngFor="let cityname of citiess; let i = index">
+                                        <a
+                                            href="https://www.homes247.in/{{cityname.city | cleanUrl}}/property-sale">Properties
+                                            for sale in {{cityname.city}}</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-column faq-section" *ngFor="let recent of uploads; let i = index">
+                        <div id="accordion">
+                            <div class="card-header">
+                                <p class="mb-0">
+                                    <a role="button" data-toggle="collapse" href="#recentcollapse-{{i}}"
+                                        aria-expanded="false">
+                                        Recent Projects in {{recent.city}}
+                                    </a>
+                                </p>
+                            </div>
+                            <div id="recentcollapse-{{i}}" class="collapse" data-parent="#accordion">
+                                <div class="p-2">
+                                    <p class="navTextWipe" *ngFor="let property of recent.properties">
+                                        <a href="https://www.homes247.in/property/{{property.city | cleanUrl}}/{{property.localityname | cleanUrl}}/{{property.propertyname | cleanUrl}}-{{property.id | cleanUrl}}"
+                                            rel="bookmark"
+                                            title="{{property.propertyname}}, {{property.localityname}}, {{property.city}} | Reviews | Price">{{property.propertyname}}</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div data-page="2" class="wipe closed" id="green">
+                    <p class="backBtnWipe" (click)="tran(1)">
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>&nbsp;&nbsp;<span>Back</span>
+                    </p>
+                    <div *ngFor="let cityname of majorcities; let i = index">
+                        <p class="pl-2 navTextWipe">
+                            <a href="https://www.homes247.in/real-estate-in-{{cityname.city | cleanUrl}}">Real
+                                Estate in {{cityname.city}}</a> <a role="button" data-toggle="collapse"
+                                href="#citycollapse-{{i}}" aria-expanded="true" class="rightWipeArrow"><i
+                                    class="fa fa-angle-right" aria-hidden="true"></i></a>
+                        </p>
+
+                        <div id="citycollapse-{{i}}" class="collapse" data-parent="#accordion">
+                            <div *ngFor="let trend of trending">
+                                <div *ngIf="trend.city == cityname.city">
+                                    <div *ngIf="trend.properties.length">
+                                        <div class="flex flex-column faq-section">
+                                            <div id="accordion">
+                                                <div class="card-header" id="heading-{{i}}">
+                                                    <p class="mb-0">
+                                                        <a role="button" data-toggle="collapse"
+                                                            href="#trendcollapse-{{i}}" aria-expanded="false">Trending
+                                                            Projects in {{cityname.city}}</a>
+                                                    </p>
+                                                </div>
+                                                <div id="trendcollapse-{{i}}" class="collapse" data-parent="#accordion">
+                                                    <div class="p-2">
+                                                        <p class="submenulist navTextWipe"
+                                                            *ngFor="let trendprop of trend.properties">
+                                                            <a href="https://www.homes247.in/property/{{trendprop.city | cleanUrl}}/{{trendprop.localityname | cleanUrl}}/{{trendprop.name | cleanUrl}}-{{trendprop.id}}"
+                                                                rel="bookmark"
+                                                                title="{{trendprop.name}}, {{trendprop.localityname}}, {{trendprop.city}} | Reviews | Price">{{trendprop.name}}
+                                                                in {{trendprop.localityname}}, {{trendprop.city}} |
+                                                                Reviews | Price</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div *ngFor="let priority of handpicked">
+                                <div *ngIf="priority.city == cityname.city">
+                                    <div *ngIf="priority.properties.length">
+                                        <div class="flex flex-column faq-section">
+                                            <div id="accordion">
+                                                <div class="card-header" id="heading-{{i}}">
+                                                    <p class="mb-0">
+                                                        <a role="button" data-toggle="collapse"
+                                                            href="#handpickcollapse-{{i}}"
+                                                            aria-expanded="false">Handpicked Projects in
+                                                            {{cityname.city}}</a>
+                                                    </p>
+                                                </div>
+                                                <div id="handpickcollapse-{{i}}" class="collapse"
+                                                    data-parent="#accordion">
+                                                    <div class="p-2">
+                                                        <p class="submenulist navTextWipe"
+                                                            *ngFor="let pickedprop of priority.properties">
+                                                            <a href="https://www.homes247.in/property/{{pickedprop.city | cleanUrl}}/{{pickedprop.localityname | cleanUrl}}/{{pickedprop.name | cleanUrl}}-{{pickedprop.id}}"
+                                                                rel="bookmark"
+                                                                title="{{pickedprop.name}}, {{pickedprop.localityname}}, {{pickedprop.city}} | Reviews | Price">{{pickedprop.name}}
+                                                                in {{pickedprop.localityname}}, {{pickedprop.city}} |
+                                                                Reviews | Price</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngFor="let newlaunch of launched">
+                                <div *ngIf="newlaunch.city == cityname.city">
+                                    <div *ngIf="newlaunch.properties.length">
+                                        <div class="flex flex-column faq-section">
+                                            <div id="accordion">
+                                                <div class="card-header" id="heading-{{i}}">
+                                                    <p class="mb-0">
+                                                        <a role="button" data-toggle="collapse"
+                                                            href="#newlaunchcollapse-{{i}}" aria-expanded="false">New
+                                                            Launched Projects in {{cityname.city}}</a>
+                                                    </p>
+                                                </div>
+                                                <div id="newlaunchcollapse-{{i}}" class="collapse"
+                                                    data-parent="#accordion">
+                                                    <div class="p-2">
+                                                        <p class="submenulist navTextWipe"
+                                                            *ngFor="let launchprop of newlaunch.properties">
+                                                            <a href="https://www.homes247.in/property/{{launchprop.city | cleanUrl}}/{{launchprop.localityname | cleanUrl}}/{{launchprop.name | cleanUrl}}-{{launchprop.id}}"
+                                                                rel="bookmark"
+                                                                title="{{launchprop.name}}, {{launchprop.localityname}}, {{launchprop.city}} | Reviews | Price">{{launchprop.name}}
+                                                                in {{launchprop.localityname}}, {{launchprop.city}} |
+                                                                Reviews | Price</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-column faq-section">
+                                <div id="accordion">
+                                    <div class="card-header" id="heading-{{i}}">
+                                        <p class="mb-0">
+                                            <a role="button" data-toggle="collapse" href="#freqcollapse-{{i}}"
+                                                aria-expanded="false">Frequently Searched</a>
+                                        </p>
+                                    </div>
+                                    <div id="freqcollapse-{{i}}" class="collapse" data-parent="#accordion">
+                                        <div class="p-2">
+                                            <p class="submenulist navTextWipe">
+                                                <a
+                                                    href="https://www.homes247.in/ready-to-move-apartments/ready-to-move-flats-in-{{cityname.city | cleanUrl}}">Ready
+                                                    To Move Flats in {{cityname.city}}</a>
+                                            </p>
+                                            <p class="submenulist navTextWipe">
+                                                <a
+                                                    href="https://www.homes247.in/new-launch-projects/new-projects-in-{{cityname.city | cleanUrl}}">New
+                                                    Launch Projects in {{cityname.city}}</a>
+                                            </p>
+                                            <p class="submenulist navTextWipe">
+                                                <a
+                                                    href="https://www.homes247.in/fbc/flats-for-30-lakhs-in-{{cityname.city | cleanUrl}}">Flats
+                                                    Under 30 Lakhs in {{cityname.city}}</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-column faq-section">
+                                <div id="accordion">
+                                    <div class="card-header" id="heading-{{i}}">
+                                        <p class="mb-0">
+                                            <a role="button" data-toggle="collapse" href="#popularcollapse-{{i}}"
+                                                aria-expanded="false">Popular Searches for Availability</a>
+                                        </p>
+                                    </div>
+                                    <div id="popularcollapse-{{i}}" class="collapse" data-parent="#accordion">
+                                        <div class="p-2">
+                                            <p class="submenulist navTextWipe">
+                                                <a
+                                                    href="https://www.homes247.in/btc/1-bhk-flats-in-{{cityname.city | cleanUrl}}">1
+                                                    BHK Flats in {{cityname.city}}</a>
+                                            </p>
+                                            <p class="submenulist navTextWipe">
+                                                <a
+                                                    href="https://www.homes247.in/btc/2-bhk-flats-in-{{cityname.city | cleanUrl}}">2
+                                                    BHK Flats in {{cityname.city}}</a>
+                                            </p>
+                                            <p class="submenulist navTextWipe">
+                                                <a
+                                                    href="https://www.homes247.in/btc/3-bhk-flats-in-{{cityname.city | cleanUrl}}">3
+                                                    BHK Flats in {{cityname.city}}</a>
+                                            </p>
+                                            <p class="submenulist navTextWipe">
+                                                <a
+                                                    href="https://www.homes247.in/btc/4-bhk-flats-in-{{cityname.city | cleanUrl}}">4
+                                                    BHK Flats in {{cityname.city}}</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="inner_header_search inner_header_search_fixed floatingHeader">
+            
+            <div class="search_input_box fixed_search_input_box">
+                <ng-container *ngComponentOutlet="Autocomplete"></ng-container>
+               
+            </div>
+            <div class="search_btn fixed_search_btn">
+                <span (click)="getProjectsmain(currentCity)">
+                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/arrow.svg" alt="Homes247-icon">
+                </span>
+            </div>
+
+        </div>
+    </div>
+</div>

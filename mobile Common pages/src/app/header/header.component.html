@@ -1,0 +1,230 @@
+
+<div class="header">
+    <div id="homepge_nav" class="top_section_main2" >
+      <div class="top_row_left">
+        <div id="brgr_white" class="burger_icon" (mouseover)="openNavopen()" >
+          <img src="'https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/navbar_home.svg'" alt="Homes247_navbar"></div>
+        <div id="brgr_ash" class="burger_icon" (mouseover)="openNavopen()" style="display: none;">
+          <img src="'https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/navbar_inner.svg'" alt="Homes247_navbar">
+        </div>
+          <div id="mySidenav" (mouseleave)="closeNavclose()"  class="sidenav" style="width: 0px;">
+            <div class="nav_logo">
+              <a class="logo_nav"  href="https://www.homes247.in/">
+                <picture>
+                    <source media="(max-width: 380px)"
+                    sizes="1px"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7 1w"/>
+                  <img src="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/logo/logo.svg'" alt="Homes247_logo"/>
+    
+                </picture>
+              </a>
+              <a href="javascript:void(0)" class="closebtn" (click)="closeNavclose()">
+                <!-- <img [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/burger_menu_close.png'" alt="Homes247_close"> -->
+              </a>
+            </div>
+              <ul class="nav_links">
+                <li ><a href="https://www.homes247.in/">Home</a></li>
+                <li class="dropdown"><a data-toggle="dropdown" href="">Properties In India<span class="caret"></span></a>
+                  <ul class="dropdown-menu drop_style">
+                    <li><a  href="https://www.homes247.in/bangalore/property-sale">Bangalore</a></li>
+                    <li><a  href="https://www.homes247.in/hyderabad/property-sale">Hyderabad</a></li>
+                    <li><a  href="https://www.homes247.in/chennai/property-sale">Chennai</a></li>
+                    <li><a  href="https://www.homes247.in/kochi/property-sale">Kochi</a></li>
+                    <li><a  href="https://www.homes247.in/pune/property-sale">Pune</a></li>
+                    <li><a  href="https://www.homes247.in/delhi/property-sale">Delhi</a></li>
+                    <li><a  href="https://www.homes247.in/kolkata/property-sale">Kolkata</a></li>
+                    <li><a  href="https://www.homes247.in/mumbai/property-sale">Mumbai</a></li>
+                  </ul>
+                </li>
+                <li><a  routerLink="/aboutus">About Us</a></li>
+                <li> <a href="https://www.homes247.in/careers">Careers</a></li>
+                <li> <a href="https://www.homes247.in/blogs">Home Guide</a></li>
+                <!-- <li><a  routerLink="/calculator">EMI Calculator</a></li> -->
+                <li> <a routerLink="/contactus">Contact Us</a></li>
+               
+                <li class="more_border dropdown"><a data-toggle="dropdown" href="">More <span class="caret"></span></a>
+                  <ul class="dropdown-menu drop_style">
+                    <li><a href="https://www.homes247.in/find-ifsc-code">Find IFSC Codes</a></li>
+                    <li><a href="https://www.homes247.in/find-pincode">Find Pincode Codes</a></li>
+                    <li><a href="https://www.homes247.in/all-project-reviews-in-india">All Property Reviews</a></li>
+                    <li><a href="https://www.homes247.in/all-project-walkthrough-videos-in-india">All Property Walkthrough Videos</a></li>
+                    <li><a routerLink="/expertservices">Expert Services</a></li>
+                    <!-- <li><a routerLink="/buyers-guide">Home Buyers Guide</a></li> -->
+                    <!-- <li><a routerLink="/latest-trends">Latest Real Estate Updates</a></li> -->
+                    
+                    <!-- <li><a routerLink="/price-trends">Price Trends</a></li> -->
+                    <!-- <li><a  routerLink="/homeloan">Home Loan</a></li> -->
+                    <!-- <li><a  routerLink="/vaastu">Vaastu Tips</a></li> -->
+                    <!-- <li><a  routerLink="/interior">Interiors</a></li> -->
+                    <li> <a routerLink="/faq">FAQ</a></li>
+                    <li> <a routerLink="/policy">Privacy Policy</a></li>
+                    <!-- <li hidden><a routerLink="/properties-in-sarjapur-road-bangalore">Sarjapur Ad</a></li>
+                    <li hidden><a routerLink="/ahad-excellencia-sarjapur-road-bangalore">Ahad Ad</a></li> -->
+                    <!-- <li hidden><a routerLink="/apartments-for-sale-in-bangalore">Bangalore Apartments</a></li>
+                    <li hidden><a routerLink="/apartments-for-sale-in-hyderabad">Hyderabad Apartments</a></li>
+                    <li hidden><a routerLink="/apartments-for-sale-in-chennai">Chennai Apartments</a></li>
+                    <li hidden><a routerLink="/apartments-for-sale-in-kochi">Kochi Apartments</a></li>
+                    <li hidden><a routerLink="/apartments-for-sale-in-pune">Pune Apartments</a></li> -->
+                  </ul>
+                </li>
+              </ul>
+              <div class="nav_social_icon">
+                <ul>
+                    <li><a class="nav_fb" target="_blank" href="https://www.facebook.com/Homes247.in/"></a></li>
+                    <li><a class="nav_insta" target="_blank" href="https://www.instagram.com/homes247.in"></a></li>
+                    <li><a class="nav_twitter" target="_blank" href="https://x.com/homes247_in"></a></li>
+                    <li><a class="nav_in" target="_blank" href="https://www.linkedin.com/company/homes247/"></a></li>
+                </ul>
+              </div>
+            </div>
+    
+          <div class="logo"><a href="https://www.homes247.in/">
+            <picture>
+                <source media="(max-width: 380px)"
+                sizes="1px"
+                srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7 1w"/>
+            <img src="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/07-01-2020/logo_white.svg'" class="a" alt="Homes247_logo"/>
+            <img src="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/logo/logo.svg'" class="b" alt="Homes247_logo"/>
+          </picture>
+          </a></div>
+        </div>
+        <div class="search_icon_resp">
+            <div class="search_btn"><a data-toggle="modal" data-target="#resp_modal">
+              <img src="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/search_icon.png'" alt="Homes247_search">
+            </a></div>
+        </div>
+        <div id="top_right" class="top_row_right2">
+          <div class="top_row_right_phno_mobile">
+              <picture>
+                  <source media="(max-width: 380px)"
+                  sizes="1px"
+                  srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7 1w"/>
+              <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/call-icon.gif" alt="call-icon" />
+              </picture>
+                <p>+91 9164247247</p>
+            </div>
+            <ul>
+    
+                <!-- <li id="refer_li" class="refer_earn"><a routerLink="/offers" >
+                  <img src="https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/offers1.svg" alt="offer-icon">Best Offers</a></li> -->
+                <li id="myNavbar"><a href="#newproject">
+                  <span class="hdr_cmn nri_icon"></span><span> New Launches</span></a></li>
+            </ul>
+        </div>
+    </div>
+    
+    
+    <div class="top_section_main" >
+      <div class="top_row_left">
+       <div class="burger_icon" (click)="clickNavopen()">
+         <img src="'https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/navbar_resp.png'" alt="Homes247_navbar"></div>
+       <div id="mySidenavs" class="sidenav" style="width: 0px;">
+        <div class="nav_logo">
+          <a class="logo_nav"  href="https://www.homes247.in/">
+              <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Logo.png" alt="Homes247_logo"/>
+          </a>
+          <a  class="closebtn" (click)="clickNavclose()">
+          </a>
+         </div>
+            <ul class="nav_links">
+              <li><a href="https://www.homes247.in/">Home</a></li>
+              <li class="dropdown">
+                <a data-toggle="dropdown" href="">Properties In India<span class="caret"></span></a>
+                <ul class="dropdown-menu drop_style">
+                  <li><a  href="https://www.homes247.in/bangalore/property-sale">Bangalore</a></li>
+                  <li><a  href="https://www.homes247.in/hyderabad/property-sale">Hyderabad</a></li>
+                  <li><a  href="https://www.homes247.in/chennai/property-sale">Chennai</a></li>
+                  <li><a  href="https://www.homes247.in/kochi/property-sale">Kochi</a></li>
+                  <li><a  href="https://www.homes247.in/pune/property-sale">Pune</a></li>
+                  <li><a  href="https://www.homes247.in/delhi/property-sale">Delhi</a></li>
+                    <li><a  href="https://www.homes247.in/kolkata/property-sale">Kolkata</a></li>
+                    <li><a  href="https://www.homes247.in/mumbai/property-sale">Mumbai</a></li>
+                </ul>
+              </li>
+              <li><a  routerLink="/aboutus">About Us</a></li>
+              <li class="event_link_resp"><a href="https://www.homes247.in/events">Events
+                <i class="fa fa-trophy" aria-hidden="true" style="font-size: 20px;"></i></a></li>
+              <li> <a href="https://www.homes247.in/careers">Careers</a></li>
+              <li> <a routerLink="/blogs">Home Guide</a></li>
+              <!-- <li><a  routerLink="/calculator">EMI Calculator</a></li> -->
+              <li> <a routerLink="/contactus">Contact Us</a></li>
+              <li class="more_border dropdown"><a data-toggle="dropdown" href="">More <span class="caret"></span></a>
+                <ul class="dropdown-menu drop_style">
+                  <li><a routerLink="/find-ifsc-code">Find IFSC Codes</a></li>
+                  <!-- <li><a routerLink="/find-pincode">Find PinCodes</a></li>
+                  <li><a routerLink="/city-overview/{{cityname.city | cleanUrl}}-overview"
+                    title="An Overview of {{cityname.city}} City | Select your category and get your Property easily"
+                    rel="bookmark">Overview of {{cityname.city}} City</a></li> -->
+
+                  <li><a routerLink="/expertservices">Expert Services</a></li>
+                  <!-- <li><a routerLink="/buyers-guide">Home Buyers Guide</a></li> -->
+                  <!-- <li><a routerLink="/latest-trends">Latest Real Estate Updates</a></li> -->
+                  
+                  <!-- <li><a routerLink="/price-trends">Price Trends</a></li> -->
+                  <!-- <li><a  routerLink="/homeloan">Home Loan</a></li> -->
+                  <!-- <li><a  routerLink="/vaastu">Vaastu Tips</a></li> -->
+                  <!-- <li><a  routerLink="/interior">Interiors</a></li> -->
+                  <li> <a routerLink="/faq">FAQ</a></li>
+                  <li> <a routerLink="/policy">Privacy Policy</a></li>
+                  <!-- <li hidden><a routerLink="/properties-in-sarjapur-road-bangalore">Sarjapur Ad</a></li>
+                  <li hidden><a routerLink="/ahad-excellencia-sarjapur-road-bangalore">Ahad Ad</a></li>
+                  <li hidden><a routerLink="/apartments-for-sale-in-bangalore">New Apartment</a></li> -->
+                </ul>
+              </li>
+    
+            </ul>
+              <div class="nav_social_icon">
+                <ul>
+                  <li><a class="nav_fb" target="_blank" href="https://www.facebook.com/Homes247.in/"></a></li>
+                  <li><a class="nav_insta" target="_blank" href="https://www.instagram.com/homes247.in"></a></li>
+                  <li><a class="nav_twitter" target="_blank" href="https://x.com/homes247_in"></a></li>
+                  <li><a class="nav_in" target="_blank" href="https://www.linkedin.com/company/homes247/"></a></li>
+                </ul>
+              </div>
+            </div>
+    
+           <div ng-if="resplogo" class="resp_logo "><a href="https://www.homes247.in/">
+            <img src="https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/logo2.svg" alt="Homes247_Logo"></a></div><!-- end ngIf: resplogo -->
+            <div class="resp_citydrop">
+                <div class="inner_search" tabindex="0">
+                    <!-- <select  class="ui selection dropdown" (change)="getcityname($event)" [(ngModel)]="currentCity">
+                        <option *ngFor="let cityname of citiess" value="{{cityname.city}}">
+                            {{cityname.city}}
+                        </option>
+                    </select> -->
+                    </div>
+            </div>
+            <div ng-if="callbtn" class="header_call" style="width: 10%; margin: 15px 0 0 0;">
+              <!-- <a href="https://api.whatsapp.com/send?phone=919008029014">
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/whatsapp.svg" alt="whatsapp">
+              </a> -->
+              <!-- <a href="tel:+91 9164247247">
+                  <img src="https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/call.svg" alt="call-icon" style="width: 70%;" />
+                </a> -->
+                <a href="tel:+91 9164247247">
+                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/call-icon.gif" alt="call-icon" style="width: 70%;" />
+                </a>
+            </div>
+            <!-- end ngIf: callbtn -->
+            <!-- ngIf: respoffer --><div ng-if="respoffer" class="header_offer">
+                <!-- <a ng-href="/offers" routerLink="/offers">Best Offers</a> -->
+            </div><!-- end ngIf: respoffer -->
+          </div>
+          <!-- ngIf: respwork -->
+          <div class="inner_header_search">
+              <div class="search_input_box inner_page">
+                    <!-- <ng2-completer [(ngModel)]="searchStr" [datasource]="dataService" [minSearchLength]="2" (selected)="onItemSelect($event)"
+                       [placeholder]="'Enter a location, builder, project'" [fillHighlighted]="false" [clearSelected]="true">
+                    </ng2-completer> -->
+                </div>
+                <div class="search_btn">
+                    <!-- <a (click)="getProjectsmain(currentCity,selected)">
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/arrow.svg"
+                        alt="Homes247-icon" src="https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/arrow.svg">
+                    </a> -->
+            </div>
+          </div><!-- end ngIf: respwork -->
+    
+    
+    </div>
+    </div>    

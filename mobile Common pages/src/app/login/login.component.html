@@ -1,0 +1,153 @@
+<div class="mainbg">
+  <div *ngIf="loginOTP" class="container-fluid log">
+    <!-- <div class="backarrow" (click)="back()">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i>
+  </div> -->
+    <div class="imgcontainer">
+      <span class="close-login" title="Close Modal" href="https://www.homes247.in/">&times;</span>
+    </div>
+    <div class="home_logo">
+      <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/logo/Homes247_NewBlack_Logo.png"
+        (click)="closesignin()">
+      <h1 class="underline-1">Login with OTP</h1>
+    </div>
+    <div class="formdiv maindiv">
+      <form>
+        <div class="input-cont">
+          <input autocomplete="off" type="text" id="cname" name="cname" placeholder="Name" [(ngModel)]="user.name">
+          <div class="border1"></div>
+        </div>
+        <div class="input-cont">
+          <input autocomplete="off" type="number" id="emobile" name="mobile" placeholder="Mobile Number"
+            [(ngModel)]="user.number">
+          <div class="border1"></div>
+        </div>
+        <div class="clear"></div>
+
+      </form>
+      <div class="col-12">
+        <div class="row">
+          <!-- <div class="col-6 p-0">
+            <button type="submit" id="one" (click)="otpsend()" value="Reset Password"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+              &nbsp;&nbsp;Send OTP</button>
+            <button #cancel hidden type="button" data-dismiss="modal" style="display: none;"></button>
+          </div> -->
+          <!-- <div class="col-6 ">
+            <div class="signinbutton" href="https://www.homes247.in/">
+              <i class="fa fa-home" aria-hidden="true"></i>&nbsp;&nbsp;Go Back
+            </div>
+          </div> -->
+
+          <div class="col-6 ">
+            <div class="signinbutton" href="https://www.homes247.in/">
+              <i class="fa fa-home" aria-hidden="true"></i>&nbsp;&nbsp;Go Back
+            </div>
+          </div>
+
+          <div class="col-6 p-0">
+            <button type="submit" id="one" (click)="otpsend()" value="Reset Password"><i class="fa fa-paper-plane"
+                aria-hidden="true"></i>
+              &nbsp;&nbsp;Send OTP</button>
+            <button #cancel hidden type="button" data-dismiss="modal" style="display: none;"></button>
+          </div>
+
+
+
+
+        </div>
+      </div>
+      <!--<div class="googleloginbutton" (click)="signInWithGoogle()">
+        Login with &nbsp;&nbsp;<img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/login/google.png" alt="google.png">
+      </div>-->
+    </div>
+  </div>
+</div>
+
+
+<!--OTP-MODAL-->
+<div id="modal-container">
+  <div class="modal-background">
+    <div class="modal mol">
+      <form name="otpForm" novalidate>
+        <div class="col-sm-12 text-center">
+          <img class="loginModelImg"
+            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/logo/Homes247_NewBlack_Logo.png" />
+          <p class="loginModelText1">
+            India's Favourite Property Portal
+          </p>
+          <!-- <img class="loginModelImg1" height="100%" width="100%"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/otpsection/otpNumberNameImg.svg" alt="otpNumberNameImg.svg"> -->
+        </div>
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/otpsection/otpauth.svg"
+          class="otpimg">
+        <h2 id="otpVerificationTxt">Enter Verification Code</h2>
+        <p id="enterOtp">We've sent a code to your WhatsApp <b>+91 {{this.user.number}}</b><a (click)="goback()"
+            id="editNum"> - Edit</a></p>
+        <div class="col-12 countdown_maindiv">
+          <countdown #cd1 [config]="countdownconfig" (event)="handleEvent($event)"></countdown>
+        </div>
+        <input hidden autocomplete="off" type="text" placeholder="OTP" name="otp" id="otp" [(ngModel)]="user.otp"
+          required />
+        <ng-otp-input class="otpinput" #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config">
+        </ng-otp-input>
+        <p class="otpexpireclass" *ngIf="otpexpired">OTP Expired - <a (click)="otpsend()" id="editNum">Resend</a></p>
+        <button (click)="otpvalidate()">Validate OTP</button>
+
+        <button type="reset" id="btn_reset" style="display: none;"></button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- <div id="modal-container">
+  <div class="modal-background">
+    <div class="modal">
+      <div class="col-sm-12 text-center">
+      <img class="loginModelImg" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/logo/Homes247_NewBlack_Logo.png" alt="Homes247_NewBlack_Logo.png"/>
+      <p class="loginModelText">
+        India's Favourite Property Portal
+      </p>
+      <img class="loginModelImg1" height="100%" width="100%"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/otpsection/otpNumberNameImg.svg" alt="otpNumberNameImg.svg">
+    </div>
+    </div>
+
+     <div class="OtpDiv">
+      <form name="otpForm" novalidate>
+        <div class="col-sm-12 mt-0 mb-4 text-center">
+          <img class="loginModelImg1" height="100%" width="80%"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/otpsection/otpauth.svg" alt="otpauth.svg">
+
+          <h3 id="otpVerificationTxt">Enter Verification Code</h3>
+          <p id="enterOtp">We've sent a code to your WhatsApp <br><b> +91 {{this.user.number}}</b>
+            <a id="editNum" (click)="goback()"> - Edit</a>
+        </p>
+        </div>
+        
+
+        <input hidden autocomplete="off" type="text" placeholder="OTP" name="otp" id="otp" [(ngModel)]="user.otp" required/>
+        <ng-otp-input class="otpinput text-center" #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config">
+        </ng-otp-input>
+        <div class="col-12 text-center countdown_maindiv mt-3 mb-3">
+          <span>Resend the OTP in <countdown #cd4 [config]="countdownconfig" (event)="handleEvent($event)"></countdown>  Seconds</span>
+        </div>
+        <p class="otpexpireclass text-center mt-3" *ngIf="otpexpired">
+          OTP Expired - <a   id="editNum" (click)="otpsend()">Resend</a>
+        </p>
+        <div class="col-sm-12 text-center mb-3">
+          <button (click)="otpvalidate()" class="btn mt-2 mobileLogButton1">Verify</button>
+        </div>
+        
+        <button type="reset" id="btn_reset" style="display: none"></button>
+      </form>
+    </div>
+  </div>
+</div> -->
+
+<!--OTP-MODAL-->
+
+
+<!-- CSS-Loader -->
+<div *ngIf="otploader" class="loaderbody">
+  <div class="box">
+    <div class="loader-20"></div>
+  </div>
+</div>
+<!-- CSS-Loader -->

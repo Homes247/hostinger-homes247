@@ -1,0 +1,40 @@
+<div class="section ">
+        <div class="col-sm-12 pt-3 text-center">
+            <a href="https://www.homes247.in/">
+              <img style=" margin-bottom: 22px; height: 37px;" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/postPropLanding/logo ps.png" alt="..logo ps.png" >
+            </a>
+            <div class="row">
+              <div class="col-12 text-center">
+                <h3 class="finalPageSubText">
+                  Start Your <span id="bloTxt">Blogging</span>
+                  <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/blogsLanding/textHightlights.png" alt="..textHightlights.png"  class="highlightRight">
+                  <br>Journey Now !
+                </h3>
+                <img style="margin-top: -32px; width: 100%; object-fit: cover;" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/landing-page/Group-238054.webp" alt="..Group-238054.webp" >
+      
+              </div>
+              <div class="col-12 text-left" >
+           
+
+                    <p id="pageSubText">
+                        Ready to make your mark? <br> Start writing your own blog posts today and share your unique perspective with the world. Whether it's real estate insights, lifestyle tips, or personal anecdotes, your voice matters here.
+
+                       <br> <span id="valueTxtLeft">We Value Your Voice</span> <span id="valueTxtRight"> not AI's</span>
+                    </p>
+      
+                    <!-- <p></p> -->
+                    <div class="col-12 mt-4" style="padding: 0px 40px 0 40px;">
+                        <a routerLink="/writeblogs/authors/guest-blogger/1" *ngIf="beforeLogin">
+                            <button class="btn btn-primary finalBtn mb-1">
+                                Start Writing &nbsp; <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/blogsLanding/writingPen.png" alt="..writingPen.png" ></button>
+                          </a>
+                        <a routerLink="/writeblogs/authors/{{blogger_name_html | cleanUrl}}/{{bloggerId}}" *ngIf="afterLogin">
+                            <button class="btn btn-primary finalBtn mb-1">
+                                Start Writing &nbsp; <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/blogsLanding/writingPen.png" alt="..writingPen.png" ></button>
+                          </a>
+                    </div>
+              </div>
+            </div>
+          </div>
+    <!-- </div> -->
+  </div>

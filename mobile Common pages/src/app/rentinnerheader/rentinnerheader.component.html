@@ -1,0 +1,265 @@
+<div class="col-12 androidApp blur">
+    <div class="row p-2">
+  
+        <div class="col-9 pl-2 pr-2">
+            <p class="androidAppTitle">India's Best Realty App</p>
+            <p class="androidAppSubTitle">4.6 <i class="fa fa-star androidAppStar" aria-hidden="true"></i> |
+                Experience
+                Seamless Home Search</p>
+        </div>
+        <div class="col-2 pl-2 pr-2 text-right">
+            <span (click)="applinkClick()">
+                <button class="btn btn-light installBtn">Install</button>
+            </span>
+        </div>
+        <div class="col-1 pl-0 pr-0 text-right">
+            <i class="fa fa-times androidAppIcon" aria-hidden="true" (click)="closeAndroidApp()"></i>
+        </div>
+    </div>
+  </div>
+<div class="head">
+
+    <div class="top_section_main">
+        <div class="head_color">
+            <div class="top_row_left">
+                <div id="brgr_whitess" class="burger_icon" (click)="clickNavopen()">
+                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/dots-white.svg" alt="Homes247_navbar"></div>
+                <div id="mySidenavs" class="sidenav" style="width: 0px;">
+                    <div class="nav_logo">
+                        <a class="logo_nav" href="https://www.homes247.in/"><img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/logo/Homes247_NewBlack_Logo.png" alt="Homes247"></a>
+                        <a class="closebtn" (click)="clickNavclose()">
+                            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/burger_menu_close.png" alt="Homes247_close"></a>
+                    </div>
+                    <ul class="nav_links">
+                        <li><a href="https://www.homes247.in/">Home</a></li>
+                        <li class="dropdown"><a data-toggle="dropdown" href="">Properties In India<span class="caret"></span></a>
+                            <ul class="dropdown-menu drop_style">
+                                <li><a href="https://www.homes247.in/bangalore/property-sale">Bangalore</a></li>
+                                <li><a href="https://www.homes247.in/hyderabad/property-sale">Hyderabad</a></li>
+                                <li><a href="https://www.homes247.in/chennai/property-sale">Chennai</a></li>
+                                <li><a href="https://www.homes247.in/kochi/property-sale">Kochi</a></li>
+                                <li><a href="https://www.homes247.in/pune/property-sale">Pune</a></li>
+                                <li><a href="https://www.homes247.in/delhi/property-sale">Delhi</a></li>
+                                <li><a href="https://www.homes247.in/kolkata/property-sale">Kolkata</a></li>
+                                <li><a href="https://www.homes247.in/mumbai/property-sale">Mumbai</a></li>
+                            </ul>
+                        </li>
+                        <li><a routerLink="/aboutus">About Us</a></li>
+                        <li hidden class="event_link_resp"><a href="https://www.homes247.in/events">Events
+                <i class="fa fa-trophy" aria-hidden="true" style="font-size: 20px;"></i></a></li>
+                        <li> <a href="https://www.homes247.in/careers">Careers</a></li>
+                        <li> <a routerLink="/offers">Best Offers</a></li>
+                        <li> <a routerLink="/blogs">Home Guide<span class="blogmark">Blogs</span></a></li>
+                        <!-- <li><a routerLink="/calculator">EMI Calculator</a></li> -->
+                        <li> <a routerLink="/contactus">Contact Us</a></li>
+                        <li class="more_border dropdown"><a data-toggle="dropdown" href="">More <span class="caret"></span></a>
+                            <ul class="dropdown-menu drop_style">
+                                <li><a routerLink="/find-ifsc-code">Find IFSC Codes</a></li>
+                                <li><a routerLink="/expertservices">Expert Services</a></li>
+                                <!-- <li><a routerLink="/buyers-guide">Home Buyers Guide</a></li> -->
+                                <!-- <li><a routerLink="/latest-trends">Latest Real Estate Updates</a></li> -->
+                                
+                                <!-- <li><a routerLink="/price-trends">Price Trends</a></li> -->
+                                <!-- <li><a routerLink="/homeloan">Home Loan</a></li> -->
+                                <!-- <li><a routerLink="/vaastu">Vaastu Tips</a></li> -->
+                                <!-- <li><a routerLink="/interior">Interiors</a></li> -->
+                                <li> <a routerLink="/faq">FAQ</a></li>
+                                <li> <a routerLink="/policy">Privacy Policy</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="nav_social_icon">
+                        <ul>
+                            <li>
+                                <a class="nav_fb" target="_blank" href="https://www.facebook.com/Homes247.in/"></a>
+                            </li>
+                            <li>
+                                <a class="nav_insta" target="_blank" href="https://www.instagram.com/homes247.in"></a>
+                            </li>
+                            <li>
+                                <a class="nav_twitter" target="_blank" href="https://x.com/homes247_in"></a>
+                            </li>
+                            <li>
+                                <a class="nav_in" target="_blank" href="https://www.linkedin.com/company/homes247/"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div ng-if="resplogo" class="resp_logo ">
+                    <a href="https://www.homes247.in/">
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/logo2.svg" alt="Homes247_Logo">
+                    </a>
+                </div>
+                <!-- end ngIf: resplogo -->
+                <div class="resp_citydrop">
+                    <div class="inner_search mobileViewSelectDropDown" tabindex="0">
+                        <mat-form-field floatLabel='never'>
+                            <mat-label>Location</mat-label>
+                            <mat-select [(value)]="currentCity" (selectionChange)="selectionChange($event)" [(ngModel)]="currentCity">
+                                <mat-option [value]="cityname.city" *ngFor="let cityname of citiess">{{ cityname.city }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!-- <div ng-if="callbtn" class="header_call" style="width: 10%; margin: 15px 0 0 0;">
+              <a href="tel:+91 9164247247">
+                  <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/call-icon.gif" alt="call-icon" style="width: 70%;" />
+              </a>
+            </div>
+              <div ng-if="respoffer" class="header_offer">
+                <a routerLink="/offers">Best Offers</a>
+            </div> -->
+                <div *ngIf="loginshow" class="header_offer">
+                    <a routerLink="/login">Post Property <span>Free</span></a>
+                </div>
+                <div *ngIf="userlogin" class="dropdown">
+                    <a id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="usericon">Hi,&nbsp;{{this.username}}</span></a>
+                    <div class="dropdown-menu custom-dropdown" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="https://www.homes247.in/userauth/profile/{{this.UserId}}">Profile</a>
+                        <a class="dropdown-item" routerLink="/postfree-property-ads-posting-siteproperty">Post Property</a>
+                        <a class="dropdown-item" routerLink="/userauth/wishlist/{{this.UserId}}">Wishlist</a>
+                        <a class="dropdown-item" routerLink="/userauth/seenprojects/{{this.UserId}}">Seen Projects</a>
+                        <a class="dropdown-item" (click)="Logout()">Logout</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ngIf: respwork -->
+            <div class="inner_header_search">
+                <!-- <div class="search_input_box">
+                  <input client-auto-complete="" class="form-control ng-pristine ng-untouched ng-valid ui-autocomplete-input ng-empty" ng-model="ctrl.client.name"
+                   placeholder="Enter a location, builder, project or a RERA ID" type="text" autocomplete="off">
+                </div> -->
+                <div class="search_input_box inner_page">
+                    <!-- <ng2-completer [(ngModel)]="searchStr" [datasource]="dataService" [minSearchLength]="2" (selected)="onItemSelect($event)"
+                         [placeholder]="'Enter a location, builder, project'" [fillHighlighted]="false"
+                         [clearSelected]="true">
+                    </ng2-completer> -->
+                    <!-- <mat-form-field>
+                        <input type="text"
+                               matInput
+                               placeholder="Enter a location, builder, project"
+                               [formControl]="myControl"
+                               required
+                               [matAutocomplete]="autoGroup"
+                               [(ngModel)]="searchstring">
+                               <mat-autocomplete #autoGroup="matAutocomplete"
+                               (optionSelected)='onItemSelect($event.option.value)'>
+                                   <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                     {{option.name}}
+                                   </mat-option>
+                             </mat-autocomplete>
+                      </mat-form-field> -->
+                    <ejs-autocomplete id='atcelement' [dataSource]='autoCompleteData' [fields]='fields' [placeholder]='text' [minLength]='minLength' [highlight]='highlight' (select)='selectEvent($event)'>
+                    </ejs-autocomplete>
+                </div>
+                <div class="search_btn">
+                    <a (click)="getProjectsmain()">
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/arrow.svg" alt="Homes247-icon">
+                    </a>
+                </div>
+            </div>
+            <!-- end ngIf: respwork -->
+        </div>
+    </div>
+
+    <!-- radha update -->
+    <div class="fixed_section_main">
+        <div class="head_color">
+            <div class="top_row_left">
+                <div id="brgr_whitess" class="burger_icon" (click)="openFixedNav()">
+                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/dots-white.svg" alt="Homes247_navbar"></div>
+                <div id="FixedmySidenavs" class="sidenav" style="width: 0px;">
+                    <div class="nav_logo">
+                        <a class="logo_nav" href="https://www.homes247.in/"><img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/logo/Homes247_NewBlack_Logo.png" alt="Homes247"></a>
+                        <a class="closebtn" (click)="closeFixedNav()">
+                            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/burger_menu_close.png" alt="Homes247_close"></a>
+                    </div>
+                    <ul class="nav_links">
+                        <li><a href="https://www.homes247.in/">Home</a></li>
+                        <li class="dropdown"><a data-toggle="dropdown" href="">Properties In India<span class="caret"></span></a>
+                            <ul class="dropdown-menu drop_style">
+                                <li><a href="https://www.homes247.in/bangalore/property-sale">Bangalore</a></li>
+                                <li><a href="https://www.homes247.in/hyderabad/property-sale">Hyderabad</a></li>
+                                <li><a href="https://www.homes247.in/chennai/property-sale">Chennai</a></li>
+                                <li><a href="https://www.homes247.in/kochi/property-sale">Kochi</a></li>
+                                <li><a href="https://www.homes247.in/pune/property-sale">Pune</a></li>
+                                <li><a href="https://www.homes247.in/delhi/property-sale">Delhi</a></li>
+                                <li><a href="https://www.homes247.in/kolkata/property-sale">Kolkata</a></li>
+                                <li><a href="https://www.homes247.in/mumbai/property-sale">Mumbai</a></li>
+                            </ul>
+                        </li>
+                        <li><a routerLink="/aboutus">About Us</a></li>
+                        <li hidden class="event_link_resp"><a href="https://www.homes247.in/events">Events
+                <i class="fa fa-trophy" aria-hidden="true" style="font-size: 20px;"></i></a></li>
+                        <li> <a href="https://www.homes247.in/careers">Careers</a></li>
+                        <!-- <li> <a routerLink="/offers">Best Offers</a></li> -->
+                        <li> <a routerLink="/blogs">Home Guide<span class="blogmark">Blogs</span></a></li>
+                        <!-- <li><a routerLink="/calculator">EMI Calculator</a></li> -->
+                        <li> <a routerLink="/contactus">Contact Us</a></li>
+                        <li class="more_border dropdown"><a data-toggle="dropdown" href="">More <span class="caret"></span></a>
+                            <ul class="dropdown-menu drop_style">
+                                <li><a routerLink="/expertservices">Expert Services</a></li>
+                                <!-- <li><a routerLink="/buyers-guide">Home Buyers Guide</a></li> -->
+                                <!-- <li><a routerLink="/latest-trends">Latest Real Estate Updates</a></li> -->
+                                
+                                <!-- <li><a routerLink="/price-trends">Price Trends</a></li> -->
+                                <!-- <li><a routerLink="/homeloan">Home Loan</a></li> -->
+                                <!-- <li><a routerLink="/vaastu">Vaastu Tips</a></li> -->
+                                <!-- <li><a routerLink="/interior">Interiors</a></li> -->
+                                <li> <a routerLink="/faq">FAQ</a></li>
+                                <li> <a routerLink="/policy">Privacy Policy</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="nav_social_icon">
+                        <ul>
+                            <li>
+                                <a class="nav_fb" target="_blank" href="https://www.facebook.com/Homes247.in/"></a>
+                            </li>
+                            <li>
+                                <a class="nav_insta" target="_blank" href="https://www.instagram.com/homes247.in"></a>
+                            </li>
+                            <li>
+                                <a class="nav_twitter" target="_blank" href="https://x.com/homes247_in"></a>
+                            </li>
+                            <li>
+                                <a class="nav_in" target="_blank" href="https://www.linkedin.com/company/homes247/"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="inner_header_search">
+                    <div class="search_input_box fixed_search_input_box">
+                        <!-- <mat-form-field>
+                        <input type="text"
+                               matInput
+                               placeholder="Enter a location, builder, project"
+                               [formControl]="myControl"
+                               required
+                               [matAutocomplete]="autoGroup"
+                               [(ngModel)]="searchstring"
+                               >
+                               <mat-autocomplete #autoGroup="matAutocomplete" (optionSelected)='onItemSelect($event.option.value)'
+                               [displayWith]="displayname">
+                                   <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                     {{option.name}}
+                                   </mat-option>
+                             </mat-autocomplete>
+                      </mat-form-field> -->
+                        <ejs-autocomplete id='atcelement' [dataSource]='autoCompleteData' [fields]='fields' [placeholder]='text' [minLength]='minLength' [highlight]='highlight' (select)='selectEvent($event)'>
+                        </ejs-autocomplete>
+                    </div>
+                    <div class="search_btn fixed_search_btn">
+                        <a (click)="getProjectsmain()">
+                            <img src="https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/arrow.svg" alt="Homes247-icon">
+                        </a>
+                    </div>
+                </div>
+                <!-- end ngIf: respwork -->
+            </div>
+        </div>
+        <!-- radha update -->
+    </div>

@@ -1,0 +1,1412 @@
+<!-- <ng-container *ngComponentOutlet="innerheader"></ng-container> -->
+<div class="innerheader_position">
+    <app-inner-header></app-inner-header>
+</div>
+<div style="height: 110px;"></div>
+<div class="breadcrumbsection_del">
+    <ul class="breadcrumb">
+        <li><a href="https://www.homes247.in" title="India's Favourite Property Portal !" rel="bookmark">Home</a></li>
+        <li><a href='https://www.homes247.in/{{CityName | lowercase | cleanUrl }}/property-sale'>properties in
+                {{CityName}}</a></li>
+        <li><a href='https://www.homes247.in/{{CityName | lowercase | cleanUrl }}/property-sale'>Projects in
+                {{CityName}}</a></li>
+        <li><a href='https://www.homes247.in/{{CityName | lowercase | cleanUrl }}/property-sale'>{{bhk}} {{proptype}}
+                For Sale</a></li>
+    </ul>
+
+</div>
+
+<div #scrollapiloader></div>
+@for (data of propDetails; let i = $index; track data) {
+<div id="HeaderId" class="main_banner_div  col-12 p-0">
+
+    <div class="favAndShare d-flex pr-1">
+        <div class="favShare text-center">
+            <div [ngClass]="{'Rental_icons_Heart_Active': isInWishlist(data.PropertyID), 'Rental_icons_Heart': !isInWishlist(data.PropertyID)}"
+                class="Rental_icons_Heart mb-2" (click)="Heart_Transtion(data.PropertyID)">
+            </div>
+            <div class="Rental_icons_Share" (click)="shareContent(data)"></div>
+            <div class="Rental_icons_Report" data-toggle="modal" data-target="#propReportModal" data-backdrop="static"
+                data-keyboard="false"></div>
+        </div>
+    </div>
+
+    @if (data.property_coverimage === null) {
+    <button class="btn requestImageBtn" data-toggle="modal" data-target="#myModal"
+        (click)="ShowHideEnquery(data.BHK,data.PropertyType,data.PropertyName, data.userIDFK,data)">
+        <i class="fa fa-picture-o" aria-hidden="true"></i>&nbsp;Request Images
+    </button>
+    }
+
+
+    <!-- @if (data.property_coverimage !== null) { -->
+    <img class="main_banner" fetchpriority="high" loading="eager" decoding="async"
+        src="{{coverimages}}{{data.property_coverimage}}?width=288&height=168" alt="data.property_coverimage" />
+    <!-- } -->
+
+    @if (data.property_coverimage !== null && data.images.length !=0) {
+    <p class="seeAllImages" (click)="gallerySection()">
+        <i class="fa fa-picture-o" aria-hidden="true"></i>&nbsp;&nbsp;Click To See All Images
+    </p>
+    }
+
+    @if (data.images.length !== null && data.images.length !=0) {
+    <div class="imgDiv" (click)="gallerySection()">
+        <div class="vedio_icon">
+            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/rentalImagesIcon.png"
+                alt="..rentalImagesIcon.png" widht="24px" height="20px" />
+            <span>{{ data.images.length }} Photos</span>
+        </div>
+        <!-- <div class="vedio_icon">
+          <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/inidi-details/vedio icon .svg" alt="..vedio icon .svg"  />
+          <span>Videos</span>
+        </div> -->
+    </div>
+    }
+
+    @if (data.property_coverimage === null) {
+    <img class="listsqrt-img1"
+        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/noimage/Updated_No_Image.jpg"
+        alt="data.property_coverimage" />
+    }
+
+    <div class="sqrt-details container">
+
+        @if (data.PropertyType != 'Plot') {
+        <h1 class="sqrt-maintitle">{{data.BHK}}
+            {{data.PropertyType}} For Sell
+        </h1>
+        }
+
+        @if (data.PropertyType == 'Plot') {
+        <h1 class="sqrt-maintitle">{{data.PropertyArea}} {{data.Areaytype}}
+            {{data.PropertyType}} For Sell
+        </h1>
+        }
+
+        <div>
+            <h4 class="list-card-disc sub_property_name">
+                {{data.PropertyName}}</h4>
+        </div>
+
+        <div class="" style="width: 100%;">
+            @if (data.Price !== null) {
+            <p class="listsqrt-text_Price">
+                ₹ {{data.Price| numberconvert}}
+            </p>
+            }
+        </div>
+
+        <div class="row ml-0">
+            <h2 class="sqrt-loctext">
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/inidi-details/location icon.svg"
+                    alt="..location icon.svg" class="location_icon">
+                {{data.Locality}}, {{data.City}} <span id="exploreNearbyTxt">
+                    <a href="https://www.homes247.in/locality-overview/{{data.Locality| lowercase | cleanUrl}}-in-{{data.City| lowercase | cleanUrl}}-overview-{{data.LocalityId}}-{{data.Cityid}}"
+                        target="_blank">
+                    </a></span>
+            </h2>
+        </div>
+
+        <p class="sqrt-loctext">Posted By <b> {{data.Ownership}} </b> On <b>{{data.Postedon | date: 'dd/MMM/yy'}}</b>
+        </p>
+
+        <!-- ------------apartment icon section----------- -->
+
+        <div class="row feature-box">
+
+            <div class="col-6 mb-2 pr-0">
+
+                <div>
+                    @if (data.PropertyType === 'Apartment' || data.PropertyType === null) {
+                    <div class="feature-item">
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/inidi-details/apartment icon.svg"
+                            alt="..apartment icon.svg" height="26" width="26">
+                        <span class="detail-title status_value m-0">
+                            {{ data.PropertyType }}
+                        </span>
+                    </div>
+                    }
+                </div>
+
+                <div>
+                    @if (data.PropertyType === 'Plot') {
+                    <div class="feature-item">
+                        <svg class="icon-wrapper" id="fi_17072437" viewBox="0 0 64 64"
+                            xmlns="http://www.w3.org/2000/svg" propertydemo-name="Layer 1">
+                            <path
+                                d="m60 60h-56c-1.65 0-3-1.35-3-3v-7.5c0-.55.45-1 1-1h60c.55 0 1 .45 1 1v7.5c0 1.65-1.35 3-3 3zm-57-9.5v6.5c0 .55.45 1 1 1h56c.55 0 1-.45 1-1v-6.5z">
+                            </path>
+                            <path d="m26.42 36h-4.96c-.55 0-1-.45-1-1s.45-1 1-1h4.96c.55 0 1 .45 1 1s-.45 1-1 1z">
+                            </path>
+                            <path
+                                d="m62 50.5h-60c-.33 0-.65-.17-.83-.44-.19-.28-.22-.63-.09-.94l4.71-11.38c.21-.51.79-.75 1.31-.54.51.21.75.8.54 1.31l-4.13 9.99h57.01l-4.92-11.88c-.16-.38-.52-.62-.92-.62h-17.12c-.55 0-1-.45-1-1s.45-1 1-1h17.12c1.22 0 2.31.73 2.77 1.85l5.49 13.26c.13.31.09.66-.09.94-.19.28-.5.44-.83.44z">
+                            </path>
+                            <path
+                                d="m34.42 43.25h-4.83c-.55 0-1-.45-1-1v-12.42c0-.55.45-1 1-1h4.83c.55 0 1 .45 1 1v12.42c0 .55-.45 1-1 1zm-3.83-2h2.83v-10.42h-2.83z">
+                            </path>
+                            <path
+                                d="m34.42 9.78h-4.83c-.55 0-1-.45-1-1v-3.78c0-.55.45-1 1-1h4.83c.55 0 1 .45 1 1v3.78c0 .55-.45 1-1 1zm-3.83-2h2.83v-1.78h-2.83z">
+                            </path>
+                            <path
+                                d="m50 30.83h-36c-.55 0-1-.45-1-1v-21.05c0-.55.45-1 1-1h36c.55 0 1 .45 1 1v21.06c0 .55-.45 1-1 1zm-35-2h34v-19.05h-34v19.06z">
+                            </path>
+                            <g>
+                                <path
+                                    d="m9.71 36.53c-.92 0-1.99-.18-3.03-.75-2.7-1.49-3-4.57-3.01-4.7-.04-.45.22-.87.64-1.02.36-.14 3.59-1.29 5.85.08 2.28 1.38 2.57 3.62 2.73 4.82.06.45-.19.95-.61 1.12-.07.03-1.14.45-2.56.45zm-3.88-4.85c.23.72.73 1.75 1.81 2.35 1.13.62 2.37.54 3.14.4-.18-.93-.56-1.91-1.66-2.58-.9-.54-2.31-.39-3.28-.16z">
+                                </path>
+                                <path
+                                    d="m14.09 42.48c-1.42 0-2.49-.42-2.56-.45-.42-.17-.68-.61-.62-1.06.17-1.27.46-3.51 2.74-4.89 2.25-1.37 5.49-.22 5.85-.08.42.16.68.58.64 1.02-.01.13-.32 3.22-3.01 4.7-1.04.57-2.11.75-3.03.75zm-1.07-2.1c.76.15 2 .23 3.14-.4 1.07-.59 1.58-1.63 1.81-2.35-.97-.23-2.39-.38-3.28.16-1.12.68-1.49 1.68-1.66 2.58z">
+                                </path>
+                                <path
+                                    d="m11.9 46.59c-.55 0-1-.45-1-1v-10.44c0-.55.45-1 1-1s1 .45 1 1v10.44c0 .55-.45 1-1 1z">
+                                </path>
+                            </g>
+                        </svg>
+                        <span class="detail-title status_value m-0">
+                            {{ data.PropertyType }}
+                        </span>
+                    </div>
+                    }
+                </div>
+
+                <div>
+                    @if (data.PropertyType === 'Villa') {
+                    <div class="feature-item">
+                        <svg class="icon-wrapper " id="fi_9090135" enable-background="new 0 0 511.946 511.946"
+                            viewBox="0 0 511.946 511.946" xmlns="http://www.w3.org/2000/svg">
+                            <g>
+                                <path
+                                    d="m163.36 185.807c21.264 0 38.563-17.299 38.563-38.563-1.938-51.089-75.195-51.075-77.126 0 0 21.264 17.299 38.563 38.563 38.563zm0-62.126c12.992 0 23.563 10.57 23.563 23.563-1.185 31.216-45.945 31.208-47.125 0-.001-12.993 10.57-23.563 23.562-23.563z">
+                                </path>
+                                <path
+                                    d="m209.407 310.056c4.143 0 7.5-3.357 7.5-7.5v-93.187c0-4.143-3.357-7.5-7.5-7.5h-93.187c-4.143 0-7.5 3.357-7.5 7.5v93.187c0 4.143 3.357 7.5 7.5 7.5zm-38.547-15.001v-31.593h31.047v31.593zm31.047-46.593h-31.047v-31.594h31.047zm-46.047-31.594v31.594h-32.14v-31.594zm-32.14 46.594h32.14v31.593h-32.14z">
+                                </path>
+                                <path
+                                    d="m147.829 403.775c-4.143 0-7.5 3.357-7.5 7.5v13.49c.344 9.931 14.66 9.924 15 0v-13.49c0-4.143-3.358-7.5-7.5-7.5z">
+                                </path>
+                                <path
+                                    d="m287.763 326.118c-4.143 0-7.5 3.357-7.5 7.5v93.187c0 4.143 3.357 7.5 7.5 7.5h154.613c4.143 0 7.5-3.357 7.5-7.5v-93.187c0-4.143-3.357-7.5-7.5-7.5zm7.5 15h62.306v78.187h-62.306zm139.613 78.187h-62.306v-78.187h62.306z">
+                                </path>
+                                <path
+                                    d="m504.501 481.431h-8.028v-84.879c0-4.143-3.357-7.5-7.5-7.5s-7.5 3.357-7.5 7.5v84.881h-217.972v-171.377h217.971v53.817c0 4.143 3.357 7.5 7.5 7.5s7.5-3.357 7.5-7.5v-53.817h8.028c6.271-1.124 8.507-4.743 6.708-10.855l-31.063-62.124c-1.271-2.54-3.867-4.146-6.708-4.146h-23.566v-109.251h23.57c6.271-1.125 8.507-4.744 6.708-10.856l-31.071-62.12c-1.271-2.541-3.867-4.146-6.708-4.146h-107.898c-9.905.331-9.947 14.652 0 15h103.266l23.569 47.12h-195.17l-47.121-47.12h82.767c4.143 0 7.5-3.357 7.5-7.5s-3.357-7.5-7.5-7.5h-97.767l-24.287-24.286c-8.982-8.979-23.629-9.016-32.655-.084l-109.844 108.72c-18.731 19.523 1.334 49.023 24.9 37.956v72.126c-24.669-19.559-62.414-1.254-62.128 30.505 0-.001 0 93.187 0 93.187 0 18.696 13.374 34.327 31.058 37.829v78.921h-23.558c-4.143 0-7.5 3.357-7.5 7.5s3.357 7.5 7.5 7.5h497c9.686-.255 10.161-14.559-.001-15.001zm-12.136-186.376-228.864-.004v-47.12h205.302zm-57.492-93.187h-109.247v-47.124h109.247zm0-78.188v16.064h-116.747c-4.143 0-7.5 3.357-7.5 7.5v62.124c0 4.143 3.357 7.5 7.5 7.5h116.747v16.063h-171.372v-64.312c22.124 8.841 42.95-19.62 24.947-37.627l-7.312-7.312zm-387.091 17.889 109.845-108.719c3.177-3.145 8.334-3.131 11.495.03 0 0 108.72 108.719 108.72 108.719 7.935 7.931-2.002 20.882-11.757 11.295l-97.478-97.479c-2.92-2.918-7.647-2.931-10.58-.026l-98.78 97.767c-7.997 6.649-18.997-4.226-11.465-11.587zm-32.781 223.112v-93.187c1.189-31.224 45.948-31.2 47.125 0v93.187c0 12.959-10.517 23.508-23.463 23.562-.068-.002-.137-.002-.205 0-12.944-.057-23.457-10.605-23.457-23.562zm31.058 37.831c5.962-1.179 11.435-3.737 16.07-7.326v86.245h-16.07zm77.661 78.921v-140.311h22.75c9.931-.344 9.924-14.66 0-15h-30.25c-4.143 0-7.5 3.357-7.5 7.5v147.811h-31.59v-324.873l86.145-85.262 85.226 85.227v324.908h-31.59v-147.811c0-4.143-3.357-7.5-7.5-7.5h-30.25c-9.931.344-9.924 14.66 0 15h22.75v140.311z">
+                                </path>
+                            </g>
+                        </svg>
+                        @if (data.PropertyType !== 'Plot') {
+                        <span class="detail-title status_value m-0">
+                            {{ data.PropertyType }}
+                        </span>
+                        }
+                    </div>
+                    }
+                </div>
+
+                <div>
+                    @if (data.PropertyType === 'Row house' || data.PropertyType === 'Independent House') {
+                    <div class="feature-item">
+                        <svg class="icon-wrapper" viewBox="0 -4 512.00045 512" xmlns="http://www.w3.org/2000/svg"
+                            id="fi_1018573">
+                            <path
+                                d="m212.882812 111.867188h-75.871093c-6.894531 0-12.5 5.605468-12.5 12.5v123.933593c0 6.890625 5.605469 12.5 12.5 12.5h75.871093c6.894532 0 12.5-5.609375 12.5-12.5v-123.933593c0-6.894532-5.605468-12.5-12.5-12.5zm-45.4375 133.933593h-27.933593v-30.671875h27.933593zm0-45.671875h-27.933593v-27.59375h27.933593zm0-42.59375h-27.933593v-30.667968h27.933593zm42.9375 88.265625h-27.9375v-30.671875h27.9375zm0-45.671875h-27.9375v-27.59375h27.9375zm0-42.59375h-27.9375v-30.667968h27.9375zm0 0">
+                            </path>
+                            <path
+                                d="m313.472656 411.296875c-4.144531 0-7.5 3.359375-7.5 7.5v18.007813c0 4.140624 3.355469 7.5 7.5 7.5 4.144532 0 7.5-3.359376 7.5-7.5v-18.007813c0-4.140625-3.355468-7.5-7.5-7.5zm0 0">
+                            </path>
+                            <path
+                                d="m511.929688 335.554688c-.347657-2.632813-1.695313-4.980469-3.792969-6.605469l-158.894531-122.941407c-3.523438-2.722656-7.734376-4.164062-12.179688-4.164062-4.449219 0-8.660156 1.441406-12.1875 4.167969l-24.03125 18.59375v-21.539063c0-4.144531-3.355469-7.5-7.5-7.5s-7.5 3.355469-7.5 7.5v33.144532l-119.851562 92.734374c-2.085938 1.609376-3.472657 4.035157-3.800782 6.640626-.339844 2.636718.367188 5.253906 1.988282 7.367187l12.160156 15.816406c1.910156 2.472657 4.792968 3.890625 7.914062 3.890625 2.195313 0 4.363282-.738281 6.105469-2.085937l146.703125-113.507813 110.886719 85.796875v156.265625h-60.40625v-14.0625c0-4.144531-3.355469-7.5-7.5-7.5s-7.5 3.355469-7.5 7.5v14.0625h-70.972657v-114.898437h70.972657v65.585937c0 4.144532 3.355469 7.5 7.5 7.5s7.5-3.355468 7.5-7.5v-68.085937c0-6.890625-5.609375-12.5-12.5-12.5h-75.96875c-6.894531 0-12.503907 5.609375-12.503907 12.5v117.398437h-56.992187v-20.457031c0-6.894531-5.605469-12.5-12.5-12.5h-7.179687c.597656-2.984375.921874-6.066406.921874-9.222656 0-25.957031-21.121093-47.074219-47.078124-47.074219-14.089844 0-27.273438 6.464844-36.089844 16.949219-3.335938-1.054688-6.882813-1.628907-10.5625-1.628907-2.703125 0-5.359375.300782-7.941406.902344-8.167969-13.992187-23.410157-22.992187-39.886719-22.992187-1.753907 0-3.488281.109375-5.199219.308593v-251.054687l110.890625-85.804687 110.894531 85.804687v25.703125c0 4.144531 3.355469 7.5 7.5 7.5 4.140625 0 7.5-3.355469 7.5-7.5v-14.097656l20.8125 16.101562c1.738282 1.347656 3.90625 2.085938 6.101563 2.085938 3.128906 0 6.015625-1.421875 7.917969-3.898438.027343-.035156.054687-.074218.082031-.109375l11.648437-15.734375.074219-.09375c.769531-.964844 2.8125-3.523437 2.335937-7.269531-.347656-2.644531-1.699218-4.992187-3.792968-6.605469l-158.890625-122.941406c-3.523438-2.722656-7.734375-4.164062-12.183594-4.164062s-8.660156 1.441406-12.1875 4.167968l-43.625 33.753906v-9.453124c5.898437-1 10.40625-6.132813 10.40625-12.308594v-14.996094c0-6.894531-5.609375-12.5-12.5-12.5h-60.777344c-6.890625 0-12.5 5.605469-12.5 12.5v14.992188c0 6.179687 4.507813 11.308593 10.40625 12.3125v59.71875l-50.28125 38.90625c-2.09375 1.609374-3.480469 4.039062-3.8085935 6.636718-.3437495 2.640625.3593745 5.257813 1.9843745 7.375l12.160157 15.816406c1.90625 2.476563 4.789062 3.894532 7.914062 3.894532 2.195313 0 4.359375-.738282 6.109375-2.085938l20.808594-16.101562v243.859375c-11.90625 5.859375-21.074219 16.71875-24.480469 29.964843-11.308593 4.359376-19.078125 15.34375-19.078125 27.8125 0 1.375.097656 2.726563.277344 4.054688-2.378906 2.277344-3.863281 5.472656-3.863281 9.015625v22.960937c0 6.890626 5.605469 12.5 12.5 12.5h470.269531c4.144531 0 7.5-3.359374 7.5-7.5 0-4.144531-3.355469-7.5-7.5-7.5h-21.738281v-144.664062l20.816406 16.105469c1.738281 1.34375 3.90625 2.085937 6.101563 2.085937 3.128906 0 6.015624-1.421875 7.917968-3.902344.027344-.035156.054688-.070312.082032-.105468l11.652343-15.738282.078125-.097656c.765625-.960937 2.804688-3.519531 2.332032-7.261718zm-348.1875 79.320312c17.6875 0 32.078124 14.390625 32.078124 32.074219 0 3.207031-.484374 6.300781-1.363281 9.222656h-42.78125c.324219-1.90625.503907-3.867187.503907-5.867187 0-10.175782-4.355469-19.347657-11.289063-25.769532 5.929687-6.019531 14.132813-9.660156 22.851563-9.660156zm-104.972657-399.875h55.777344v9.992188h-55.777344zm45.371094 24.992188v20.871093l-34.964844 27.054688v-47.925781zm-81.085937 115.132812-6.050782-7.871094 154.9375-119.886718c.886719-.683594 1.898438-1.03125 3.011719-1.03125s2.125.347656 3.007813 1.027343l154.726562 119.722657-5.90625 7.980468-147.238281-113.925781c-2.703125-2.089844-6.476563-2.089844-9.179688 0zm191.523437 334.007812h-197.660156v-17.960937h69.085937c4.140625 0 7.5-3.355469 7.5-7.5s-3.359375-7.5-7.5-7.5h-65.480468c-.007813-.191406-.019532-.378906-.019532-.570313 0-7.074218 5.027344-13.1875 11.960938-14.53125 3.136718-.609374 5.542968-3.136718 5.996094-6.296874 2.1875-15.199219 15.429687-26.664063 30.800781-26.664063 12.765625 0 24.4375 8.011719 29.042969 19.933594.75 1.945312 2.273437 3.488281 4.210937 4.265625 1.9375.773437 4.105469.703125 5.992187-.1875 2.695313-1.273438 5.585938-1.921875 8.582032-1.921875 11.078125 0 20.089844 9.019531 20.089844 20.109375 0 2.042968-.320313 4.007812-.890626 5.863281h-14.285156c-4.144531 0-7.5 3.359375-7.5 7.5 0 4.144531 3.355469 7.5 7.5 7.5h92.574219zm274.3125-143.558593-147.238281-113.921875c-2.703125-2.09375-6.476563-2.09375-9.179688 0l-147.3125 113.980468-6.050781-7.871093 154.941406-119.882813c.886719-.6875 1.898438-1.035156 3.011719-1.035156 1.109375 0 2.125.347656 3.007812 1.03125l154.726563 119.71875zm0 0">
+                            </path>
+                        </svg>
+                        @if (data.PropertyType !== 'Plot') {
+                        <span class="detail-title status_value m-0">
+                            {{ data.PropertyType }}
+                        </span>
+                        }
+                    </div>
+                    }
+                </div>
+
+            </div>
+
+            <div class="col-6 mb-2 pl-0">
+                @if (data.PropertyType !== 'Plot') {
+                <div>
+                    <div class="feature-item">
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/inidi-details/bhk icon.svg"
+                            alt="..bhk icon.svg" height="26" width="26">
+                        @if (!data.BHK || data.BHK == null) {
+                        <span>NA</span>
+                        }
+                        @if (data.BHK) {
+                        <span>
+                            {{ data.BHK }}
+                        </span>
+                        }
+                    </div>
+                </div>
+                }
+                @if (data.PropertyType == 'Plot') {
+                <div>
+                    <div class="feature-item">
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/rentalImages/roadFacing.svg"
+                            alt="..roadFacing.svg" height="26" width="26">
+                        @if (!data.Doorfacing || data.Doorfacing == null) {
+                        <span>NA</span>
+                        }
+                        @if (data.Doorfacing) {
+                        <span>
+                            {{ data.Doorfacing }}
+                        </span>
+                        }
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+
+        <div class="row feature-box">
+            <div class="col-6 pr-0">
+                <div class="feature-item">
+                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/AREA ICON.svg"
+                        alt="Area" height="26" width="26">
+                    @if (data.PropertyArea !== '0') {
+                    <span>{{ data.PropertyArea }} {{ data.Areaytype }}</span>
+                    }
+                    @if (data.PropertyArea === '0') {
+                    <span>NA</span>
+                    }
+                </div>
+            </div>
+
+            <div class="col-6 pl-0">
+                <div class="feature-item">
+
+                    @if (data.Status === 'Ready to Move' || data.Status === 'Ready to Register') {
+                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/building (2) 1.svg"
+                        alt="Status Icon" height="26" width="26" />
+                    <span class="status_value">{{ data.Status }}</span>
+                    }
+
+                    @if (data.Status === 'Under Construction' || data.Status === 'Up Coming'
+                    || data.Status === 'New Launch') {
+                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/building (3) 1.svg"
+                        alt="Status Icon" height="26" width="26" />
+                    <span class="status_value">{{ data.Status }}</span>
+                    }
+
+                    @if (data.Status === null && data.PropertyType === 'Plot') {
+                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/inidi-city/plot size.svg"
+                        alt="Plot Size Icon" height="26" width="26" />
+                    @if (data.Plotsize !== '0*0' && data.Plotsize !== 'Other') {
+                    <span class="status_value">{{ data.Plotsize }}</span>
+                    }
+                    @if (data.Plotsize === '0*0' || data.Plotsize === 'Other' || data.Plotsize === null) {
+                    <span>NA</span>
+                    }
+                    }
+
+                    @if (data.Status === null && data.PropertyType !== 'Plot') {
+                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/building (3) 1.svg"
+                        alt="Status Icon" height="26" width="26" />
+                    <span>NA</span>
+                    }
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="">
+            <div class="row">
+                <div class="col-12 p-0 sticky-stuff">
+                    <div id="sticky-anchor1"></div>
+                    <div class="property_details_menu single-page-nav" id="sublinks_sticky">
+                        <ul class="nav nav-tabs px-4 pt-1" style="position: sticky;">
+                            <li #navItm [ngClass]="{ 'actives': section === 'section1'}" class="subMenu" id="">
+                                <span (click)="scrollTo('section1')">Overview</span>
+                            </li>
+
+                            @if (data.Description) {
+                            <li #navItm [ngClass]="{ 'actives': section === 'section2'}" class="subMenu">
+                                <span id="Property_Nav_Gallery" (click)="scrollTo('section2')">Description</span>
+                            </li>
+                            }
+
+                            @if (FacilitiesHide && data.PropertyType !== 'Plot') {
+                            <li #navItm [ngClass]="{ 'actives': section === 'section3'}" class="subMenu">
+                                <span id="Property_Nav_Masterplan" (click)="scrollTo('section3')">Facilities</span>
+                            </li>
+                            }
+
+                            @if (amenitiesHide && data.PropertyType !== 'Plot') {
+                            <li #navItm [ngClass]="{ 'actives': section === 'section4'}" class="subMenu">
+                                <span id="Property_Nav_Masterplan" (click)="scrollTo('section4')">Amenities</span>
+                            </li>
+                            }
+
+                            <!-- <li #navItems [ngClass]="{ 'actives': section === 'section5'}" class="subMenu" *ngIf="data.prop_loc_desc">
+                                <span id="Property_Nav_Amenities" (click)="scrollTo('section5')">About Locality</span>
+                            </li> -->
+
+                            <!-- <li #navItems [ngClass]="{ 'actives': section === 'section6'}" class="subMenu">
+                                <span id="Property_Nav_Builder" (click)="scrollTo('section6')">Reviews</span>
+                            </li>
+                            <li #navItems [ngClass]="{ 'actives': section === 'section7'}" *ngIf="nearByLocalityLen" class="subMenu scrollDivHide sublinks_sticky_item1">
+                                <span id="Property_Nav_Reviews" (click)="scrollTo('section7')">Nearby Localities
+                                </span>
+                            </li>
+                            <li #navItems [ngClass]="{ 'actives': section === 'section8'}" *ngIf="showSimilarProp" class="subMenu scrollDivHide sublinks_sticky_item">
+                                <span id="Property_Nav_Location_Map" (click)="scrollTo('section8')">Similar
+                                    Properties</span>
+                            </li>
+                            <li #navItems [ngClass]="{ 'actives': section === 'section9'}" *ngIf="showNearbyLocProp" class="subMenu scrollDivHide sublinks_sticky_item">
+                                <span id="Property_Nav_Location_Map" (click)="scrollTo('section9')">Nearby
+                                    Properties</span>
+                            </li> -->
+
+                            @if (hideGallerySection) {
+                            <li #navItm [ngClass]="{ 'actives': section === 'section5'}" class="subMenu">
+                                <span id="Property_Nav_Gallery" (click)="scrollTo('section5')">Gallery</span>
+                            </li>
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div ScrollSpy [spiedTags]="['DIV']" (sectionChange)="onSectionChange($event)">
+
+            <div id="section1"></div>
+            <div class="">
+                <div
+                    style="background: rgba(255, 255, 255, 1); padding: 1px 0px 0px 10px; margin: 16px 0px 0px 0px; border-radius: 8px; box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.06);">
+
+                    <div class="section1 section">
+                        <div class="col-12 pl-0">
+                            <h2 class="sqrt-titletext">Overview</h2>
+                            <div class="row">
+                                @if (data.PropertyType !== 'Plot' && data.building_typeName !== null) {
+                                <div class="col-6">
+                                    <p class="sqrt-renthead">Property Type</p>
+                                    <p class="sqrt-renttext">{{data.building_typeName || 'NA'}}</p>
+                                </div>
+                                }
+
+                                @if (data.PropertyType == 'Plot' && data.building_typeName !== null) {
+                                <div class="col-6">
+                                    <p class="sqrt-renthead">Property Type</p>
+                                    <p class="sqrt-renttext">{{data.building_typeName || 'NA'}}</p>
+                                </div>
+                                }
+
+                                <!-- <div class="col-6" *ngIf="data.Price">
+                                    <h5 class="sqrt-renthead">Price</h5>
+                                    <p class="sqrt-renttext"><i class="fa fa-inr" aria-hidden="true"></i>&nbsp;{{data.Price}}</p>
+                                    <p class="sqrt-renttext" *ngIf="data.Price === '0' ||data.Price ===  null">NA</p>
+                                </div> -->
+
+                                @if (data.PropertyType == 'Plot') {
+                                <div class="col-6">
+                                    <p class="sqrt-renthead">Plot Dimension</p>
+                                    <p class="sqrt-renttext">{{data.Plotsize || 'NA'}}</p>
+                                </div>
+                                }
+
+                                @if (data.PropertyType !== 'Plot') {
+                                <div class="col-6">
+                                    <p class="sqrt-renthead">Furnishing</p>
+                                    <p class="sqrt-renttext">{{data.Furnish || 'NA'}}</p>
+                                </div>
+                                }
+
+                                <div class="col-6">
+                                    <p class="sqrt-renthead">Area</p>
+                                    <p class="sqrt-renttext">{{data.PropertyArea || 'NA'}} {{data.Areaytype || 'NA'}}
+                                    </p>
+                                </div>
+
+                                @if (data.PropertyType !== 'Plot') {
+                                <div class="col-6">
+                                    <p class="sqrt-renthead">BHK Type</p>
+                                    @if (data.PropertyType !== 'Plot') {
+                                    <p class="sqrt-renttext">{{data.BHK || 'NA'}}
+                                    </p>
+                                    }
+                                </div>
+                                }
+
+                                @if (data.PropertyType !== 'Plot') {
+                                <div class="col-6">
+                                    <p class="sqrt-renthead">Bathroom</p>
+                                    @if (data.PropertyType !== 'Plot' && data.Bathroom !== '0') {
+                                    <p class="sqrt-renttext">{{data.Bathroom}}</p>
+                                    }
+                                    @if (data.Bathroom === '0' || data.Bathroom === null) {
+                                    <p class="sqrt-renttext">NA</p>
+                                    }
+                                </div>
+                                }
+
+                                @if (data.PropertyType !== 'Plot') {
+                                <div class="col-6">
+                                    <p class="sqrt-renthead">Balcony</p>
+                                    @if (data.PropertyType !== 'Plot') {
+                                    <p class="sqrt-renttext">{{data.Balcony}}</p>
+                                    }
+                                    @if (data.Balcony === null) {
+                                    <p class="sqrt-renttext">NA</p>
+                                    }
+                                </div>
+                                }
+
+                                @if (data.PropertyType !== 'Plot' && data.Doorfacing !== null) {
+                                <div class="col-6">
+                                    <p class="sqrt-renthead">Door Facing</p>
+                                    <p class="sqrt-renttext">{{data.Doorfacing || 'NA'}}</p>
+                                </div>
+                                }
+
+                                @if (data.PropertyType == 'Plot' && data.Doorfacing !== null) {
+                                <div class="col-6">
+                                    <p class="sqrt-renthead">Road Facing</p>
+                                    <p class="sqrt-renttext">{{data.Doorfacing || 'NA'}}</p>
+                                </div>
+                                }
+
+                                @if (data.PropertyType == 'Plot' && data.Plotage !== null) {
+                                <div class="col-6">
+                                    <p class="sqrt-renthead">Plotage</p>
+                                    @if (data.Plotage !== '0') {
+                                    <p class="sqrt-renttext">{{data.Plotage || 'NA'}}</p>
+                                    }
+                                    @if (data.Plotage === '0' || null) {
+                                    <p class="sqrt-renttext">NA</p>
+                                    }
+                                </div>
+                                }
+
+                                @if ((data.PropertyAgeYear !== null || data.PropertyAgeMonth !== null)
+                                && (data.PropertyAgeYear !== 0 || data.PropertyAgeMonth !==0)) {
+                                <div class="col-6">
+                                    <p class="sqrt-renthead">Age Of Property</p>
+                                    <p class="sqrt-renttext">
+                                        @if (data.PropertyAgeYear !== null) {
+                                        <span>{{data.PropertyAgeYear || 'NA'}}.</span>
+                                        }
+                                        @if (data.PropertyAgeYear === null) {
+                                        <span>0.</span>
+                                        }
+                                        @if (data.PropertyAgeMonth !== null) {
+                                        <span>{{data.PropertyAgeMonth || 'NA'}} years</span>
+                                        }
+                                        @if (data.PropertyAgeMonth === null) {
+                                        <span>0 years</span>
+                                        }
+                                    </p>
+                                </div>
+                                }
+
+                                @if (data.PropertyType !== 'Plot' && data.Floor !== null) {
+                                <div class="col-6">
+                                    <p class="sqrt-renthead">Property Floor</p>
+                                    @if (data.PropertyType !== 'Plot' && data.Floor !== '0') {
+                                    <p class="sqrt-renttext">{{data.Floor}}</p>
+                                    }
+                                    @if (data.Floor === '0' || data.Floor === null) {
+                                    <p class="sqrt-renttext">NA</p>
+                                    }
+                                </div>
+                                }
+
+                                @if (data.PropertyType !== 'Plot') {
+                                <div class="col-6">
+                                    <p class="sqrt-renthead">Open Parking</p>
+                                    @if (data.Openparking !== null) {
+                                    <p class="sqrt-renttext">{{data.Openparking}} Space</p>
+                                    }
+                                    @if (data.Openparking === null) {
+                                    <p class="sqrt-renttext">NA</p>
+                                    }
+                                </div>
+                                }
+
+                                @if (data.PropertyType !== 'Plot') {
+                                <div class="col-6">
+                                    <p class="sqrt-renthead">Covered Parking</p>
+                                    @if (data.Coveredparking !== null) {
+                                    <p class="sqrt-renttext">{{data.Coveredparking}} Space</p>
+                                    }
+                                    @if (data.Coveredparking === null) {
+                                    <p class="sqrt-renttext">NA</p>
+                                    }
+                                </div>
+                                }
+
+                                @if (data.property_maintanence_charges) {
+                                <div class="col-6">
+                                    <h5 class="sqrt-renthead">Maintanence</h5>
+                                    <p class="sqrt-renttext"><i class="fa fa-inr"
+                                            aria-hidden="true"></i>&nbsp;{{data.property_maintanence_charges || 'NA'}}
+                                    </p>
+                                </div>
+                                }
+
+                                <!-- <div class="col-6" *ngIf="data.PropertyType == 'Plot' && data.Brokerages !== null">
+                                    <p class="sqrt-renthead">Broker Ages</p>
+                                    <p class="sqrt-renttext">{{data.Brokerages || 'NA'}}</p>
+                                </div> -->
+
+                                @if (data.PropertyType !== 'Plot') {
+                                <div class="col-6">
+                                    <p class="sqrt-renthead">Total Floor</p>
+                                    <p class="sqrt-renttext">{{data.total_floor || 'NA'}}</p>
+                                </div>
+                                }
+
+                                @if (data.property_zipcode) {
+                                <div class="col-6">
+                                    <p class="sqrt-renthead">Postal Code</p>
+                                    <p class="sqrt-renttext mb-3">{{data.property_zipcode}}</p>
+                                </div>
+                                }
+
+                                <!-- <div class="col-6" *ngIf="data.PropertyType !== 'Plot'">
+                                    <p class="sqrt-renthead">Property Floor</p>
+                                    <p class="sqrt-renttext">{{data.Floor || 'NA'}}</p>
+                                </div> -->
+
+                                <!-- <div class="col-6">
+                                    <p class="sqrt-renthead">Posted By</p>
+                                    <p class="sqrt-renttext">{{data.Ownership || 'NA'}}</p>
+                                </div> -->
+
+                                @if (data.Address && data.Address.trim() !== '') {
+                                <div class="col-sm-12">
+                                    <p class="sqrt-renthead">Address</p>
+                                    <p class="sqrt-renttext mb-3">{{ data.Address || 'NA'}}</p>
+                                </div>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="col-12 pl-0 " style="padding: 1px 7% 12px 4%;" *ngIf="data.Address">
+                        <h2 class="sqrt-renthead">Address</h2>
+                        <div class="address-box">
+                          <p class="blurred-text m-0" >
+                            Trying to cheat your way in? Not gonna work! 😎
+                          </p>
+                          <button class="view-address-btn"(click)="ShowHideEnquery()">View Address</button>
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+
+            <div id="section2"></div>
+            <div class="">
+                <div
+                    style="background:rgba(255, 255, 255, 1); padding: 1px 10px 1px 10px; margin: 16px 0px 16px 0px; border-radius: 8px; box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.06);">
+                    <h2 class="sqrt-titletext">Description</h2>
+                    <!-- <p class="sqrt-desctext" [innerHTML]="data.Description | sanitizeHtml">
+                    </p> -->
+                    <div class="propDesc2" id="scrollable2">
+                        <p class="sqrt-desctext" [innerHTML]="data.Description | sanitizeHtml">
+                        </p>
+                        @if (data.Description == '') {
+                        <p class="sqrt-renttext">NA</p>
+                        }
+                    </div>
+                    <div class="show-toggle-container">
+                        @if (data.Description?.length >= 200) {
+                        <div class="arrow1 bounce down_arrow pb-4" (click)="readmore1()">
+                            <span class="showMoreLessTxt2" id="Property_Locality_Readmore_Mobile">Show More</span>
+                        </div>
+                        }
+                        <div class="arrow1 bounce up_arrow pb-4" (click)="readless1()">
+                            <span class="showMoreLessTxt2">Show Less</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @if (FacilitiesHide) {
+            <div id="section3">
+                <div class="">
+                    <div
+                        style="background: rgba(255, 255, 255, 1); padding: 1px 0px 1px 10px; margin: 16px 0px 16px 0px; border-radius: 8px; box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.06);">
+                        @if (data.PropertyType !== 'Plot' && FacilitiesHide) {
+                        <div class="section3 section">
+                            <div class="col-12 pl-0">
+                                <h2 class="sqrt-titletext ">Facilities</h2>
+                                <div class="row">
+                                    @for (facilities of data.Facilities; track facilities) {
+                                    <div class="amenitiesMobileImage">
+                                        <img src="{{amenitesImages}}{{facilities.ImgPath}}" class=""
+                                            alt="facilities.facilities" height="25" width="25">
+                                        <h4 class="amenitiesText">{{facilities.facilities}}</h4>
+                                    </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            }
+
+            @if (amenitiesHide && data.PropertyType !== 'Plot' ) {
+            <div id="section4">
+                <div class="">
+                    <div
+                        style="background: rgba(255, 255, 255, 1); padding: 1px 0px 1px 10px; margin: 16px 0px 16px 0px; border-radius: 8px; box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.06);">
+                        <h2 class="sqrt-titletext">Amenities</h2>
+                        <div class="row mr-0 ml-2 ">
+                            @for (amenities of data.Amenities; track amenities) {
+                            <div class="amenitiesMobileImage">
+                                <img src="{{amenitesImages}}{{amenities.ImgPath}}" class="" alt="amenities.amenities"
+                                    height="23" width="23">
+                                <h4 class="amenitiesText">{{amenities.amenities}}</h4>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+
+            <!-- <div id="section4" *ngIf="data.PropertyType !== 'Plot' && amenitiesHide">
+                <div class="col-12">
+                    <div style="background: rgba(255, 255, 255, 1); padding: 1px 0px 1px 10px; margin: 16px 0px 16px 0px; border-radius: 8px; box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.06);">
+                        <h2 class="sqrt-titletext">Amenities</h2>
+                        <div class="row scrolldiv">
+                            <div class="col-sm-4 textAligncss pl-0" *ngFor="let amen of data.Amenities">
+                                <img loading="lazy" src="{{amenitesImages}}{{amen.ImgPathNew}}" class="amenitiesIcon" alt="amen.amenities">
+                                <p class="Facilities_icon">{{amen.amenities}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- <div id="section5" *ngIf="hideGallerySection">
+                <div class="col-12" *ngIf="data.prop_loc_desc">
+                    <div style="background: rgba(255, 255, 255, 1); padding: 1px 10px 1px 10px; margin: 16px 0px 16px 0px; border-radius: 8px; box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.06);">
+                        <h2 class="sqrt-titletext">About {{data.Locality}}, {{data.City}}</h2>
+                        <div class="propDesc1" id="scrollable2">
+                            <p class="sqrt-desctext" [innerHTML]="data.prop_loc_desc | sanitizeHtml">
+                            </p>
+                        </div>
+                        <div class="arrow1 bounce down_arrow pb-4" *ngIf="data.Description?.length >= 200" (click)="readmore1()">
+                            <span class="showMoreLessTxt2" id="Property_Locality_Readmore_Mobile">Show More</span>
+                        </div>
+                        <div class="arrow1 bounce up_arrow pb-4" (click)="readless1()">
+                            <span class="showMoreLessTxt2">Show Less</span>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+
+            <div id="section5"></div>
+            @if (hideGallerySection) {
+            <div>
+                <div style="position: relative;">
+                    <div style="position: relative; top: -80px; height: 1px;"></div>
+                    <ul class="nav plain-nav" role="tablist">
+                        @if (data.property_coverimage) {
+                        <li class="nav-item">
+                            <a class="nav-link" [class.active]="selectedTab === 'gallery'"
+                                (click)="selectedTab = 'gallery'">Gallery</a>
+                        </li>
+                        }
+                        @if (data.property_masterimage) {
+                        <li class="nav-item">
+                            <a class="nav-link" [class.active]="selectedTab === 'master'"
+                                (click)="selectedTab = 'master'">Master Plan</a>
+                        </li>
+                        }
+                        @if (data.Floorplan) {
+                        <li class="nav-item">
+                            <a class="nav-link" [class.active]="selectedTab === 'floor'"
+                                (click)="selectedTab = 'floor'">Floor Plan</a>
+                        </li>
+                        }
+                    </ul>
+
+
+                    @if(mousemovement) {
+                    <div class="tab-content mb-1">
+                        @if (selectedTab === 'gallery') {
+                        <div>
+                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                <div class="gallery_slider_box">
+                                    <div class="left position-relative " id="slideshow-main" [photoGalleryGroup]>
+                                        @if (data.property_coverimage !== null) {
+                                        <p class="seeAllImages12" (click)="gallerySection()">
+                                            <i class="fa fa-picture-o"></i>&nbsp;&nbsp;Click To See All Images
+                                        </p>
+                                        }
+
+
+                                        <owl-carousel-o [options]="customOptionsLocality">
+                                            @for (imgs of data.images; track imgs) {
+                                            <ng-template carouselSlide>
+                                                <div photoGallery="{{ImageUrl}}{{imgs.Imagename}}">
+                                                    <img width="100%" src="{{ImageUrl}}{{imgs.Imagename}}"
+                                                        alt="imgs.Imagename">
+                                                </div>
+                                            </ng-template>
+                                            }
+                                        </owl-carousel-o>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        }
+
+                        @if (selectedTab === 'master' && data.property_masterimage) {
+                        <div>
+                            <div class="tab-pane" id="tabs-2" role="tabpanel" [photoGalleryGroup]>
+                                <div class="MasterplanImge" photoGallery="{{masterplan}}{{data.property_masterimage}}">
+                                    <img src="{{masterplan}}{{data.property_masterimage}}"
+                                        alt="data.property_masterimage">
+                                </div>
+                            </div>
+                        </div>
+                        }
+
+                        @if (selectedTab === 'floor' && data.Floorplan) {
+                        <div>
+                            <div class="tab-pane" id="tabs-3" role="tabpanel" [photoGalleryGroup]>
+                                <div class="MasterplanImge" photoGallery="{{Floorplan}}{{data.Floorplan}}">
+                                    <img src="{{Floorplan}}{{data.Floorplan}}" alt="data.Floorplan">
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                    }
+
+                </div>
+            </div>
+            }
+
+        </div>
+
+    </div>
+
+
+
+
+    @if(IsVisibleEnquery){
+
+
+    <div class="container">
+        <div class="get_call_back">
+            <nav class="navbar navbar-light enqbg-color22 fixed-top" style="justify-content: stretch;">
+                <a class="navbar-brand"
+                    (click)="ShowHideEnquery(data.BHK,data.PropertyType,data.PropertyName, data.userIDFK,data)"><i
+                        class="fa fa-arrow-left icon-color mb-3" aria-hidden="true"></i></a>
+                @if (requestCallback) {
+                <h5 class="margin">Request a Callback</h5>
+                }
+                @if (imagesCallback) {
+                <h5 class="margin">Request a images</h5>
+                }
+                <!-- <h5 *ngIf="Brochure" class="margin">Request a Brochure</h5> -->
+            </nav>
+            <div class="container BHKEnqueryForm">
+                <div class="card12">
+                    <p class="iamIntrestText">I'm Interested In {{data.BHK}} {{data.PropertyType}}</p>
+                    <form name="BHKEnqueryForm" novalidate>
+                        <div class="row">
+                            <div class="col-sm">
+                                <i class="fa fa-user user_icon" aria-hidden="true"></i>
+                                <div class="form-field">
+                                    <div class="form-field__control">
+                                        <input type="text" class="form-field__input" id="uname" name="name"
+                                            [(ngModel)]="user.name" placeholder="Username" />
+                                        <div class="form-field__bar"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <i class="fa fa-envelope user_icon" aria-hidden="true"></i>
+                                <div class="form-field">
+                                    <div class="form-field__control">
+                                        <input type="text" class="form-field__input" id="uemail" name="email"
+                                            [(ngModel)]="user.mail" placeholder="Email" />
+                                        <div class="form-field__bar"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <i class="fa fa-phone user_icon" aria-hidden="true"></i>
+                                <div class="form-field">
+                                    <div class="form-field__control">
+                                        <input type="text" class="form-field__input" id="unumber" maxlength="10"
+                                            minlength="10" [(ngModel)]="user.number" name="number" placeholder="+91" />
+                                        <div class="form-field__bar"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            @if (checkBox) {
+                            <div class="form-check custom-form-check">
+                                <input class="form-check-input" type="checkbox" (click)="checkboxClick2()"
+                                    id="exampleCheck2" value="">
+                                <label class="form-check-label custom-lable" for="exampleCheck2">
+                                    I agree to be contacted by Homes247 and other agents via WhatsApp, SMS, Phone, Email
+                                    etc
+                                </label>
+                            </div>
+                            }
+                            @if (contactButton) {
+                            <div class="form-group col-12 text-center">
+                                <button type="submit" class="btn contactButton" id="contactButton2" (click)="otpsend()"
+                                    disabled>Contact Seller</button>
+                                <button #cancel hidden type="button" data-dismiss="modal"
+                                    style="display: none;"></button>
+                            </div>
+                            }
+                            @if (RequestButton) {
+                            <div class="form-group col-12 text-center">
+                                <button type="submit" class="btn contactButton" id="contactButton2"
+                                    (click)="otpsend()">Request images
+                                </button>
+                                <button #cancel hidden type="button" data-dismiss="modal"
+                                    style="display: none;"></button>
+                                <p>All requests are handled in just 5 minutes.
+                                </p>
+                            </div>
+                            }
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    }
+
+
+    @defer (on idle){
+    @if (verificationStatus == 0 && verificationStatus != 2) {
+    <div class="bottomContactFooter pb-3">
+        <div class="container">
+            <p class="footerBtnTxt">
+                @if (mousemovement) {
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/Eye_Animation.gif"
+                    alt="..Eye_Animation.gif" height="20" width="20">
+                }
+                <span style="color: #971b47;">{{numberOfViewers}} People</span> Currently Viewing This Property
+            </p>
+            <div class="footerBtns container">
+                <div class="row">
+                    <div class="col-2">
+                        @for (data of propDetails; track data; let i = $index) {
+                        <div class="footerWhatsAppBtn text-center">
+                            <a class="whatAppIcon"
+                                href="https://api.whatsapp.com/send?phone=919008029014&text=%20https://www.homes247.in{{currenturl}}%0A%0AHi!%20I%27m%20interested%20in%20{{data.PropertyName}}%20in%20{{data.Locality}},%20{{data.City}}.Can%20i%20have%20some%20more%20info%20please."
+                                aria-label="Whatsapp Chat" target="_blank">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                        </div>
+                        }
+                    </div>
+                    @for (data of propDetails; track data) {
+                    <div class="col-2 p-0">
+                        <!-- <div class="footerFavBtn text-center">
+                            <img loading="lazy"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/propImage/heart-outline.png" alt="..heart-outline.png" >
+                        </div> -->
+                        <div class="wishLishtDiv1 footerFavBtn">
+                            <div [ngClass]="{'Rental_icons_Heart_Active': isInWishlist(data.PropertyID), 'Rental_icons_Heart': !isInWishlist(data.PropertyID)}"
+                                class="Rental_icons_Heart mb-2" (click)="Heart_Transtion(data.PropertyID)">
+                            </div>
+                        </div>
+                        <!-- <input *ngIf="userfav == false" class='red-heart-checkbox' (click)="addwishlist(data.property_info_IDPK)" id='red-check3' type='checkbox' title="Wishlist Check">
+                        <input *ngIf="userfav == true" class='red-heart-checkbox' (click)="addwishlist(data.property_info_IDPK)" id='red-check4' type='checkbox' title="Wishlist Check" checked> -->
+                    </div>
+                    }
+                    <div class="col-8 text-center" style="justify-items: right;">
+
+
+                        @if(login == false) {
+                        <a class="footerContactBtn" routerLink="/login"><i
+                                class="fa fa-phone-square phoneButton"></i>&nbsp;&nbsp;&nbsp;Contact Seller</a>
+                        }
+
+                        @if(login == true) {
+                        <button class="footerContactBtn" data-toggle="modal" data-target="#myModal_city"
+                            data-backdrop="static" data-keyboard="false" (click)="elitePlanView(data.PropertyID);"><i
+                                class="fa fa-phone-square phoneButton"></i>&nbsp;&nbsp;&nbsp;Contact Seller</button>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+
+
+    <div id="customModalBackdrop" class="homiSheetBackdrop"></div>
+
+    @if (verificationStatus == 1) {
+    <div id="homiSheet" class="homiDetailAiSheet bottomContactFooter pb-3">
+        <div id="homiDetailAiSheet" class="homiFooterSheet">
+            <div id="homiDetailAiHeader" class="homiHeadderSheet" (click)="toggleHomiDetailAiSheet()">
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/HomiAi/homiTimmerIconMobile.svg"
+                    alt="..homiTimmerIconMobile.svg">
+                <p>Verification In Progress...</p>
+            </div>
+            <div id="homiDetailAiBody" class="homiMainSheetContent">
+                <!-- <span width="50px" (click)="closeHomiDetailAiSheet()">hi</span> -->
+                <img class="homiClose" (click)="closeHomiDetailAiSheet()"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/HomiAi/homiMobileClose.svg"
+                    alt="..homiMobileClose.svg">
+                <div class="homiDetailTimmerBg">
+                    <img class="homiDetailTimmer"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/HomiAi/homiTimmerIconMainMobile.svg"
+                        alt="..homiTimmerIconMainMobile.svg">
+                </div>
+                <div class="homiDetailVerifyContainer">
+                    <p class="homiDetailVerify mb-0">Verification In Progress</p>
+                    <p class="homiDetailVerificationTerm mb-0">Our team is checking your property details. Once
+                        verified, your listing will be published automatically.
+                        You'll be notified shortly.</p>
+                </div>
+                <div class="d-flex homiContactInfoContainer">
+                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/HomiAi/homiDetailContactInfo.svg"
+                        alt="..homiDetailContactInfo.svg">
+                    <p class="homiContactInfo m-0">Contact Info</p>
+                </div>
+                <div class="homiContactDetails">
+                    <div>
+                        <p class="homiContactInfoHead m-0">Name</p>
+                        <p class="homiContactInfoDetail">{{userNameAi}}</p>
+                    </div>
+                    <div>
+                        <p class="homiContactInfoHead m-0">Mobile Number</p>
+                        <p class="homiContactInfoDetail">+91 XXXXXXXXXX</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+
+    <!-- homi Samy -->
+
+
+    <!-- subscription -->
+    @if(verificationStatus == 2) {
+    <div id="customModalBackdropSubscription" class="homiSheetBackdrop" (click)="closeSubscriptionSheet()"></div>
+
+    <div id="homiSheet" class="subscriptionMainSheet bottomContactFooter pb-3">
+        <div id="subscriptionMainSheet" class="homiFooterSheet">
+
+            <!-- <div id="subscriptionDetailHeader" class="homiHeadderSheet" (click)="toggleSubscriptionSheet()">
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/HomiAi/homiTimmerIconMobile.svg"
+                    alt="..homiTimmerIconMobile.svg">
+                <p>Verification In Progress...</p>
+            </div> -->
+
+
+            <div id="subscriptionDetailHeader" class="bottomContactFooter pb-3">
+                <div class="container">
+                    <p class="footerBtnTxt">
+                        @if (mousemovement) {
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/Eye_Animation.gif"
+                            alt="..Eye_Animation.gif" height="20" width="20">
+                        }
+                        <span style="color: #971b47;">{{numberOfViewers}} People</span> Currently Viewing This Property
+                    </p>
+                    <div class="footerBtns container">
+                        <div class="row">
+                            <div class="col-2">
+                                @for (data of propDetails; track data; let i = $index) {
+                                <div class="footerWhatsAppBtn text-center">
+                                    <a class="whatAppIcon"
+                                        href="https://api.whatsapp.com/send?phone=919008029014&text=%20https://www.homes247.in{{currenturl}}%0A%0AHi!%20I%27m%20interested%20in%20{{data.PropertyName}}%20in%20{{data.Locality}},%20{{data.City}}.Can%20i%20have%20some%20more%20info%20please."
+                                        aria-label="Whatsapp Chat" target="_blank">
+                                        <i class="fa-brands fa-whatsapp"></i>
+                                    </a>
+                                </div>
+                                }
+                            </div>
+                            @for (data of propDetails; track data) {
+                            <div class="col-2 p-0">
+                                <!-- <div class="footerFavBtn text-center">
+                            <img loading="lazy"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/propImage/heart-outline.png" alt="..heart-outline.png" >
+                        </div> -->
+                                <div class="wishLishtDiv1 footerFavBtn">
+                                    <div [ngClass]="{'Rental_icons_Heart_Active': isInWishlist(data.PropertyID), 'Rental_icons_Heart': !isInWishlist(data.PropertyID)}"
+                                        class="Rental_icons_Heart mb-2" (click)="Heart_Transtion(data.PropertyID)">
+                                    </div>
+                                </div>
+                                <!-- <input *ngIf="userfav == false" class='red-heart-checkbox' (click)="addwishlist(data.property_info_IDPK)" id='red-check3' type='checkbox' title="Wishlist Check">
+                        <input *ngIf="userfav == true" class='red-heart-checkbox' (click)="addwishlist(data.property_info_IDPK)" id='red-check4' type='checkbox' title="Wishlist Check" checked> -->
+                            </div>
+                            }
+                            <div class="col-8 text-center" style="justify-items: right;">
+                                <button class="footerSubscriptionContactBtn" (click)="toggleSubscriptionSheet()">View
+                                    Contact Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="subscriptionDetailsBody" class="subscriptionMainSheetContent">
+                <div class="modal-content unlock_content">
+
+                    <div class="unlockheader" data-dismiss="modal" (click)="closeSubscriptionSheet()">
+                        <p class="unlock_close"></p>
+                        <p class="text-center Main_unlockheader mt-3">Contact Details</p>
+                    </div>
+
+                    <div class="container sub_Unlockheader">
+
+                        <div class="mt-2">
+                            <p class="sub_header">Owner Name<br><span
+                                    class="sub_value">{{contactData.owner_name}}</span></p>
+                        </div>
+
+                        <div class="mt-3 text-truncate">
+                            <p class="sub_header">Email ID<br><span class="sub_value"
+                                    title="Gowshik@gmail.com">{{contactData.owner_email || 'NA'}}</span></p>
+                        </div>
+
+                        <div class="mt-3">
+                            <p class="sub_header">Mobile Number<br><span class="sub_value">{{contactData.owner_number ||
+                                    'NA'}}</span></p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+    <!-- subscription -->
+    }
+
+    <!-- CSS-Loader -->
+    @if (otploader) {
+    <div class="loaderbody">
+        <div class="box">
+            <div class="loader-20"></div>
+        </div>
+    </div>
+    }
+    <!-- CSS-Loader -->
+
+</div>
+}
+
+<!-- Gallery MODAL STARTS -->
+<!-- (entire commented block preserved as-is) -->
+<!-- Gallery MODAL ENDS -->
+
+<!-- jebin Gallery -->
+
+<ng-container *ngComponentOutlet="enquiryFormindComponent"></ng-container>
+
+@if (gallerySection1) {
+<div class="background_modal modal-fullscreen-xl" id="modal-fullscreen-xl3" tabindex="-1" role="dialog"
+    aria-hidden="true">
+    @for (data of propDetails; track data) {
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header rating_top_head  d-flex">
+                <div>
+                    <div class="d-flex align-items-center ">
+                        <img (click)="backPageIcon()"
+                            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/arrow_back_ios (1).png"
+                            alt="..arrow_back_ios (1).png">
+                        <p class="propName"> {{propname}}</p>
+                    </div>
+
+                    <p class="propPrice22">&nbsp;&nbsp; &nbsp; &#8377; {{detailed | priceFormatter}} </p>
+                </div>
+            </div>
+            <div class="p-0 sticky-stuff">
+                <div id="sticky-anchor1"></div>
+                <div class="property_details_menu1 single-page-nav" id="sublinks_sticky">
+                    @if (hideGallerySection) {
+                    <ul class="nav  nav-tabs1">
+                        <li [ngClass]="{ 'actives': section === 'section0'}" class="subMenu">
+                            <span (click)="scrollToGallery('section0')">All</span>
+                        </li>
+                        <li #navItm [ngClass]="{ 'actives': section === 'section10'}" class="subMenu">
+                            <span (click)="scrollToGallery('section10')">Cover Images</span>
+                        </li>
+                        <li #navItm [ngClass]="{ 'actives': section === 'section7'}" class="subMenu">
+                            <span (click)="scrollToGallery('section7')">Property Photos</span>
+                        </li>
+                        @if (data.property_masterimage.trim() !== '') {
+                        <li #navItm [ngClass]="{ 'actives': section === 'section8'}" class="subMenu">
+                            <span (click)="scrollToGallery('section8')">Master Plan</span>
+                        </li>
+                        }
+                        @if (data.Floorplan.trim() !== '') {
+                        <li #navItm [ngClass]="{ 'actives': section === 'section9'}" class="subMenu">
+                            <span (click)="scrollToGallery('section9')">Floor Plan</span>
+                        </li>
+                        }
+                    </ul>
+                    }
+                </div>
+            </div>
+            @for (data of propDetails; track data) {
+            <div class="modal-body answer-custom-body">
+                <div class="fixTopGalerry">
+
+                    <div class="gallery" [photoGalleryGroup] ScrollSpy [spiedTags]="['DIV']"
+                        (sectionChange)="onSectionChange($event)">
+                        <div id="section0"></div>
+                        <div id="section10">
+                            <div class="card Property" #masterPlanSection>
+                                <p class="card__captionProperty1">Cover Images</p>
+                                <div class="imageTumb" photoGallery="{{coverimages}}{{data.property_coverimage}}">
+                                    @if (data.property_coverimage !== null) {
+                                    <img class="main_banner" loading="lazy"
+                                        src="{{coverimages}}{{data.property_coverimage}}"
+                                        alt="data.property_coverimage" />
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="section7">
+                            @for (imgs of data.images; track imgs; let i = $index) {
+                            <div class="card Property" #masterPlanSection>
+                                <p class="card__captionProperty">Property Photos</p>
+                                <div photoGallery="{{ImageUrl}}{{imgs.Imagename}}" class="imageTumb">
+                                    <img class="card__image" loading="lazy" src="{{ImageUrl}}{{imgs.Imagename}}"
+                                        alt="imgs.alttag">
+                                </div>
+                            </div>
+                            }
+                        </div>
+
+                        @if (data.property_masterimage.trim() !== '') {
+                        <div id="section8">
+                            <div class="card MasterPlan">
+                                <div class="imageTumb" photoGallery="{{masterplan}}{{data.property_masterimage}}">
+                                    <p class="card__captionMP">Master Plan</p>
+                                    <img class="card__image" loading="lazy"
+                                        src="{{masterplan}}{{data.property_masterimage}}" alt="masterPlan">
+                                </div>
+                            </div>
+                        </div>
+                        }
+
+                        @if (data.Floorplan.trim() !== '') {
+                        <div id="section9">
+                            <div class="card FloorPlan">
+                                <p class="card__caption">Floor Plan</p>
+                                <div class="imageTumb" photoGallery="{{Floorplan}}{{data.Floorplan}}">
+                                    <img class="card__image" loading="lazy" src="{{Floorplan}}{{data.Floorplan}}"
+                                        alt="bhk.alttag">
+                                </div>
+                            </div>
+                        </div>
+                        }
+
+                    </div>
+
+
+
+                </div>
+            </div>
+            }
+
+        </div>
+    </div>
+    }
+    <!-- @defer (on idle) {
+    @for (data of propDetails; track data) {
+    <div class="bottomContactFooter1 pb-3">
+        <div class="container">
+            <p class="footerBtnTxt">
+                @if (mousemovement) {
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/Eye_Animation.gif"
+                    alt="..Eye_Animation.gif" height="20px" width="20px">
+                }
+                <span style="color: #971b47;">{{numberOfViewers}} People</span> Currently Viewing This Property
+            </p>
+            <div class="footerBtns1 container">
+                <div class="row">
+                    <div class="col-6 text-center">
+                        <a class="whatAppIcon"
+                            href="https://api.whatsapp.com/send?phone=919008029014&text=%20https://www.homes247.in{{currenturl}}%0A%0AHi!%20I%27m%20interested%20in%20{{data.PropertyName}}%20in%20{{data.Locality}},%20{{data.City}}.Can%20i%20have%20some%20more%20info%20please."
+                            aria-label="Whatsapp Chat">
+                            <button class="footerContactBtn2">
+                                <i class="fa-brands fa-whatsapp whatsapp1">
+                                </i>
+                                <P class="chat">Chat</P>
+                            </button>
+                        </a>
+                    </div>
+                    <div class="col-6 text-center"
+                        (click)="ShowHideEnquery1(data.PropertyArea,data.Areatype,data.PropertyType,data.PropertyName,data.userIDFK,data)">
+                        <button class="footerContactBtn3">
+                            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/Vector.png"
+                                alt="..Vector.png" style="margin-bottom: 3px;">
+                            &nbsp;Contact Seller
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+    } -->
+</div>
+}
+
+<!-- footer gallery -->
+<!-- <div class="bottomContactFooter1 pb-3">
+    <div class="container">
+        <p class="footerBtnTxt">
+                            @if (mousemovement) {
+
+            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/Eye_Animation.gif" alt="..Eye_Animation.gif"  height="20px" width="20px">
+                            }
+            <span style="color: #971b47;">{{numberOfViewers}} People</span> Currently Viewing This Property
+        </p>
+        <div class="footerBtns1 container">
+            <div class="row">
+                <div class="col-6 text-center" (click)="ShowHideEnquery()">
+                    <button class="footerContactBtn2">Request Brochure</button>
+                </div>
+                <div class="col-6 text-center" (click)="ShowHideEnquery()">
+                    <button class="footerContactBtn3">
+                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/Vector.png" alt="..Vector.png" style="margin-bottom: 3px;" >
+                        &nbsp;Contact Seller</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+
+
+<!-- Subcription code  -->
+<div class="modal fade" id="elitePlanModal" tabindex="-1" aria-labelledby="elitePlanModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+
+            <div class="d-flex justify-content-end mt-3 me-3">
+                <img class="elitePlanLogo mr-3" id="elitePlanClose"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/closeIcon.svg"
+                    alt="Close" data-dismiss="modal" style="cursor:pointer;">
+            </div>
+
+
+            <div class="modal-body text-center">
+
+                <div class="d-flex justify-content-center align-items-center mt-3">
+                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/metarIcon.svg"
+                        alt="">
+                </div>
+
+                <div class="text-center YourFree mt-3">
+                    <h6>Your free contact limit is over</h6>
+                    <p>Upgrade your plan to keep connecting with property owners.</p>
+                </div>
+
+                <div class="afterSuccessPayment mt-4">
+                    <div class="d-flex justify-content-center align-items-center mb-2">
+                        <a class="btn UnlockMoreBtn" (click)="elitePlanRouter()">
+                            Unlock More Contacts
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+@if(isVisible){
+<div class="visibility-popup__backdrop" (click)="onBackdropClick()"></div>
+
+<div class="visibility-popup" role="dialog" aria-modal="true" aria-label="Your property visibility">
+    <button type="button" class="visibility-popup__close" (click)="closeVsibilityPopup()" aria-label="Close">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/notificationClose.svg"
+            alt="" class="visibility-popup__close-icon" />
+    </button>
+
+    <div class="visibility-popup__top">
+        <div class="visibility-popup__top-text">
+            <h2 class="visibility-popup__heading">Your Property Visibility</h2>
+            <p class="visibility-popup__level"> Low </p>
+        </div>
+
+        <div class="visibility-popup__eye">
+            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/lowVisibilityEye.svg"
+                alt="Visibility indicator" class="visibility-popup__eye-icon" />
+        </div>
+    </div>
+
+    <p class="visibility-popup__description">
+        Boost your listing to improve ranking and reach more interested buyers.
+    </p>
+
+    <div class="visibility-popup__timeline">
+        @for (step of steps; track step.label; let isLast = $last) {
+        <div class="visibility-popup__step visibility-popup__step--{{ step.state }}">
+            <div class="visibility-popup__step-icon">
+                <img [src]="step.icon" [alt]="step.label" class="visibility-popup__step-icon-img" />
+            </div>
+            <span class="visibility-popup__step-label">{{ step.label }}</span>
+            @if (step.subLabel) {
+            <span class="visibility-popup__step-sublabel">{{ step.subLabel }}</span>
+            }
+        </div>
+
+        @if (!isLast) {
+        <div class="visibility-popup__connector"></div>
+        }
+        }
+    </div>
+
+    <div class="visibility-popup__info">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/boostListingIcon.svg"
+            alt="" class="visibility-popup__info-icon" />
+        <p class="visibility-popup__info-text">
+            Boosted Listings get up to
+            <span class="visibility-popup__info-highlight">3x more</span>
+            views &amp; enquiries.
+        </p>
+    </div>
+
+    <button type="button" class="visibility-popup__cta" (click)="increaseVisibility()">
+        <span class="visibility-popup__cta-text">Increase Visibility</span>
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/visibilityEyeIcon.svg"
+            alt="" class="visibility-popup__cta-icon" />
+    </button>
+</div>
+}
+
+@defer (on idle) {
+<div class="footerDiv">
+    <ng-container *ngComponentOutlet="FooterComponent"></ng-container>
+    <!-- <div style="height: 94px;"></div> -->
+</div>
+}

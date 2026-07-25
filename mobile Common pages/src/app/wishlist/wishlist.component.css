@@ -1,0 +1,230 @@
+.enqbg-color {
+  background-color: #0b3544;
+}
+.icon_color {
+  color: white !important;
+}
+.sqrt-enqtitle {
+  color: white !important;
+  font-size: 16px;
+  position: absolute;
+  left: 54px;
+  top: 18px;
+  font-family: "Poppins";
+}
+.listhead {
+  background: rgba(151,27,71,.8117647058823529);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 999;
+}
+.listhead i {
+  padding: 13px 11px;
+}
+.listhead span {
+  color: white;
+  padding: 0 30px;
+}
+
+.property {
+  font-size: 10px;
+}
+
+.propImg img {
+  height: 110px;
+  width: 110px;
+}
+
+.listmainMargin {
+  margin-top: 16%;
+  margin-bottom: -12%;
+}
+
+.min_max_price{
+  float: right;
+}
+
+.addwishlist p {
+  position: absolute;
+  font-size: 30px;
+  top: 200px;
+  text-align: center;
+  font-weight: 500;
+  font-family: "Poppins";
+}
+.emptywishlistdiv {
+  width: 100%;
+  text-align: center;
+  color: #999;
+  margin: 200px auto;
+}
+.listmain {
+  margin-top: 10px;
+  margin-bottom: 70px;
+  padding: 10px 10px;
+  border: 1px solid #dadada;
+  width: 100%;
+  padding: 8px;
+}
+.heart-icon {
+  color: red;
+  position: absolute;
+  /* right: 27px; */
+  margin-top: -4px;
+}
+
+.listmain h1 {
+  font-size: 12px;
+  color: rgba(11, 53, 68, 0.65) !important;
+  font-weight: 600 !important;
+  font-family: Poppins;
+
+  /* white-space: nowrap; */
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 193px;
+}
+.loader_city {
+  margin: 62px 0 0 0;
+}
+
+.locationtext {
+  margin-top: -8px;
+  font-size: 13px;
+}
+.listtext small img {
+  width: 9px;
+  height: 12px;
+  margin-right: 5px;
+}
+.projectprice {
+  color: rgba(151,27,71,.8117647058823529);
+  font-size: 14px;
+  font-weight: 500;
+}
+.projectdemension {
+  color: #080808;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.view-btn {
+  position: absolute;
+  right: 7px;
+  top: 70px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 0px 11px;
+  color: #ffffff;
+  margin-top: 30px;
+  background-color: rgba(151,27,71,.8117647058823529);
+  border-radius: 4px;
+}
+
+.property_bhk p {
+  margin-top: -12px;
+  width: 100%;
+  font-size: 10px;
+}
+
+.property_bhk1 {
+  font-size: 10px;
+  display: flex;
+  justify-content: space-between;
+  /* gap: 36px; */
+}
+.ready_to_move {
+  font-size: 10px;
+  white-space: nowrap;
+  margin-top: -14px;
+}
+
+.property_acres {
+  display: inline-flex;
+  width: 100%;
+}
+.probhk {
+  font-size: 14px;
+  position: absolute;
+  right: 26px;
+  color: #080808;
+  font-weight: 500;
+}
+.ready_move {
+  font-size: 14px;
+  position: absolute;
+  right: 26px;
+  color: #080808;
+  font-weight: 500;
+}
+@media (min-width: 360px) and (max-width: 389px) {
+  .listmain {
+    margin-top: 62px;
+    margin-bottom: 51px;
+    /* padding: 10px 10px; */
+    border: 1px solid #dadada;
+    width: 100%;
+    height: 126px;
+    padding: 8px;
+  }
+
+  .propImg img {
+    height: 71px;
+    width: 90px;
+  }
+
+  .ready_move {
+    font-size: 12px;
+  }
+  .probhk {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 359px) {
+  .listmain {
+    margin-top: 61px !important;
+    margin-bottom: 46px !important;
+    padding: 10px 10px !important;
+    border: 1px solid #dadada;
+    width: 100% !important;
+    padding: 8px;
+    height: 127px;
+  }
+
+  .propImg img {
+    height: 71px;
+    width: 51px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 359px) {
+  .listmain {
+    margin-top: 10px;
+    margin-bottom: 70px;
+    padding: 10px 10px;
+    border: 1px solid #dadada;
+    width: 122%;
+    padding: 8px;
+  }
+
+  .projectprice {
+    font-size: 12px;
+  }
+  .ready_move {
+    font-size: 10px;
+  }
+  .projectdemension {
+    font-size: 10px;
+  }
+  .view-btn {
+    right: 20px;
+    padding: 0px 6px;
+    font-size: 12px;
+  }
+  .probhk {
+    font-size: 12px;
+  }
+}

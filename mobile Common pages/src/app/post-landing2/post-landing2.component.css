@@ -1,0 +1,226 @@
+/* .bg6 {
+  background: url("https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/postPropLanding/personLogo.png");
+  background-position: center;
+    background-size: cover;
+    height: 730px;
+    width: 100%;
+    position: relative;
+    left: 44px;
+  } */
+
+  /* .section{
+    overflow-y: hidden!important;
+  }
+
+  body{
+    overflow-y: hidden;
+  }
+
+  .section {
+    font-size: 3em;
+  } */
+
+  .section{
+    /* background: #fcfafa; */
+  }
+
+  .finalPageSubText{
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+    font-size: 28px;
+    text-align: left;
+    padding: 18px;
+    line-height: 38px;
+
+    /* line-height: 69px; */
+  }
+
+  #freeTxt{
+    font-family: 'Poppins';
+  font-Weight:600;
+  font-Size: 32px ;
+  line-height: 96px;
+  color: #961B47;
+  }
+  
+  .box1{
+    /* width: 295px; */
+    height: 110px;
+    border-radius: 6px;
+    border: 1px solid #c7c7c7;
+    box-shadow: 0px 2px 8px 0px rgba(99, 99, 99, 0.2);
+
+  }
+  
+  #boxTxt{
+    color: #961B47;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: Poppins;
+    margin-bottom: 7px;
+  }
+  .spotlightOverlay {
+    top: 332px;
+    height: 198px;
+    width: 100%;
+    position: absolute;
+    border-radius: 0 0 8px 8px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 12.5%, rgba(255, 255, 255, 0.97) 90.5%);
+
+}
+  #minutesTxt{
+    color: #000000;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: Poppins;
+  }
+
+  .finalBtn{
+    font-size: 20px;
+    font-family: "Poppins";
+    background: #971b47;
+    padding: 14px 42px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    /* width: 284px; */
+    font-weight: 600;
+  }
+
+  .highlightLeft{
+    position: absolute;
+    top: 51px;
+    left: 16px;
+
+  }
+
+  .highlightRight{
+    position: relative;
+    top: -94px;
+    left: 122px;
+  }
+  @media (min-width: 480px) and (max-width: 767px) {
+    .personLogo{
+      height: 460px;
+    }
+    .spotlightOverlay {
+      top: 562px;
+      height: 78px;
+      width: 100%;
+      position: absolute;
+      border-radius: 0 0 8px 8px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 12.5%, rgba(255, 255, 255, 0.97) 90.5%);
+  }
+  }
+
+  @media (min-width: 412px) and (max-width: 479px) {
+    .personLogo{
+      height: 430px;
+    }
+    .spotlightOverlay {
+      top: 500px;
+      height: 108px;
+      width: 100%;
+      position: absolute;
+      border-radius: 0 0 8px 8px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 12.5%, rgba(255, 255, 255, 0.97) 90.5%);
+  }
+  }
+
+  @media (min-width: 375px) and (max-width: 411px) {
+    .personLogo{
+      height: 400px;
+
+    }
+    .spotlightOverlay {
+      top: 500px;
+      height: 80px;
+      width: 100%;
+      position: absolute;
+      border-radius: 0 0 8px 8px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 12.5%, rgba(255, 255, 255, 0.97) 90.5%);
+  }
+  }
+
+  @media (min-width: 360px) and (max-width: 374px) {
+    #boxTxt {
+      color: #961B47;
+      font-size: 14px;
+      font-weight: 500;
+      font-family: Poppins;
+      margin-bottom: 7px;
+  }
+  .personLogo{
+    height: 420px;
+    margin-top: -191px !important;
+  }
+  .spotlightOverlay {
+    top: 450px;
+    height: 78px;
+    width: 100%;
+    position: absolute;
+    border-radius: 0 0 8px 8px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 12.5%, rgba(255, 255, 255, 0.97) 90.5%);
+}
+  }
+
+  @media (min-width: 320px) and (max-width: 359px) {
+    .personLogo{
+      height: 330px;
+    }
+    .spotlightOverlay {
+      top: 439px;
+      height: 68px;
+      width: 100%;
+      position: absolute;
+      border-radius: 0 0 8px 8px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 12.5%, rgba(255, 255, 255, 0.97) 90.5%);
+  }
+  #boxTxt {
+    color: #961B47;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: Poppins;
+    margin-bottom: 7px;
+}
+  }
+
+  @media (max-width: 320px) {
+    .spotlightOverlay {
+      top: 400px;
+      height: 48px;
+      width: 100%;
+      position: absolute;
+      border-radius: 0 0 8px 8px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 12.5%, rgba(255, 255, 255, 0.97) 90.5%);
+  }
+  .finalPageSubText {
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+    font-size: 18px;
+    text-align: left;
+    padding: 18px;
+    line-height: 38px;
+}
+#boxTxt {
+  color: #961B47;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: Poppins;
+  margin-bottom: 7px;
+}
+.finalBtn {
+  font-size: 16px;
+  font-family: "Poppins";
+  background: #971b47;
+  padding: 14px 42px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  font-weight: 600;
+}
+.personLogo{
+  height: 320px;
+  margin-top: -170px !important;
+}
+  }

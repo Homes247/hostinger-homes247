@@ -1,0 +1,155 @@
+<div class="pageBackground">
+  <div class="container">
+    <div class="row p-0 m-0">
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumbs mb-0">
+          <li class="breadcrumb-item"><a href="https://www.homes247.in/"
+              title="India's Favourite Property Portal !">Home</a></li>
+          <li class="breadcrumb-item" aria-current="page">
+            <a rel="bookmark" class="relatedSearchButton" title="All Project Walkthrough videos in India | Homes247.in"
+              href="https://www.homes247.in/all-project-walkthrough-videos-in-india">All Project Walkthrough Videos in
+              India</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page" *ngIf="currentCity">
+            <a target="_blank" class="breadcrumbs__element"
+              href="https://www.homes247.in/pcv/project-walkthrough-videos-in-{{currentCity | cleanUrl}}"
+              title="Project Walkthrough Videos in {{currentCity}} | Homes247.in">
+              Project Walkthrough Videos in {{currentCity}}
+            </a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page" *ngIf="LocalityId">
+            <a target="_blank" class="breadcrumbs__element"
+              href="https://www.homes247.in/pclv/project-walkthrough-videos-in-{{LocalityName | cleanUrl}}-{{currentCity | cleanUrl}}-{{LocalityId}}"
+              title="Project Walkthrough Videos in {{LocalityName}} {{currentCity}} | Homes247.in">
+              Project Walkthrough Videos in {{LocalityName}} {{currentCity}}
+            </a>
+          </li>
+          <!-- <li class="breadcrumb-item active" aria-current="page">
+            <a target="_blank" class="breadcrumbs__element">
+            {{currentPropName}}
+            </a>
+          </li> -->
+        </ul>
+      </nav>
+      <div class="col-md-12 pl-0 headingBox">
+        <h1 class="heading_tag pt-3" *ngIf="mainTag">All Project Walkthrough Videos in India</h1>
+        <h1 class="heading_tag pt-3" *ngIf="CityTag">Project Walkthrough Videos in {{currentCity}}</h1>
+        <h1 class="heading_tag pt-3" *ngIf="LocalityTag">Project Walkthrough Videos in {{LocalityName}} {{currentCity}}
+        </h1>
+        <div class="col-md-8 mt-3 pl-0 headingBoxPanel ">
+          <div class="d-flex ml-3 searchInput">
+            <div class="searchLogo ml-1 pr-2"></div>
+            <ejs-autocomplete class="ml-2 " id='atcelement' [dataSource]='autoCompleteData' [fields]='fields'
+              [placeholder]='text' [minLength]='minLength' [highlight]='highlight' (select)='selectEvent($event)'>
+            </ejs-autocomplete>
+          </div>
+          <div class="d-flex mt-3">
+            <div class="d-flex select_option">
+              <div class="locationLogo ml-1"></div>
+              <select (change)="getcityname($event)">
+                <option *ngIf="!currentCity" disabled>Select City</option>
+                <option *ngIf="currentCity">{{currentCity | titlecase}}</option>
+                <option *ngFor="let cityname of citiess" value="{{cityname.city}}">
+                  &nbsp;&nbsp;&nbsp;&nbsp;{{cityname.city}}
+                </option>
+              </select>
+            </div>
+
+            <div class="searchBtn">
+              <button>Search</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex mt-3 projectsLocalitiesHeader">
+        <p>Projects</p>
+      </div>
+
+
+      <div class="col-md-12 p-0 d-flex locationClearAll">
+        <div class="mb-3 selectDropdown">
+          <select class="pr-2" (change)="onLocalityChange($event)">
+            <option *ngIf="!localityValue" value="" disabled>Enter Locality</option>
+            <option *ngIf="localityValue" value="">{{localityValue | titlecase}}</option>
+            <option value="{{loc.locality_IDPK}}" *ngFor="let loc of localityList">
+              {{loc.locality_name}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md-12 errorMsgTxt" *ngIf="errorMsg">
+        <h5>No Properties having any reviews in {{LocalityName | titlecase}} - {{currentCity | titlecase}} </h5>
+      </div>
+
+      <div class="col-12">
+        <div class="col-md-12 mt-0 p-2">
+          <div class="col-md-12  mt-2 pl-0 reviewProp"
+            *ngFor="let prop1 of reviewPropertyVideos| paginate: { itemsPerPage: 10, currentPage: p } ">
+            <div class="d-flex leftSectionProp">
+              <div class="videoFrame">
+                <div class="bs-example ml-2">
+                  <a href="#reviewVideo" class="" (click)="youtubeVideo(prop1['video_URL'], prop1);"
+                    data-toggle="modal"><img style="border-radius: 8px;" height="78px" width="100px" class=""
+                      src="https://img-mb.homes247.in/images/property_youtube/{{prop1.video_thumbnail}}" alt="Property Video Thumbnail" async></a>
+                </div>
+                <div id="reviewVideo" class="modal fade">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content text-center">
+                      <div class="modalHeader">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">Close</button>
+                        <h6 class="modal-title">{{VideoName}}</h6>
+                      </div>
+                      <div class="modal-body">
+                        <iframe id="modalVideo" width="650" height="450" frameborder="0" allowfullscreen>
+                        </iframe>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class=" propDetail pl-2">
+                <h2 class="" style="margin: -20px 0px -12px 0px;">
+                  <a id="prop1text"
+                    href="https://www.homes247.in/property/{{prop1.city| cleanUrl}}/{{prop1.locality| cleanUrl}}/{{prop1.property| cleanUrl}}-{{prop1.propertyid}}"
+                    rel="bookmark" title="{{prop1.property}} in {{prop1.locality}}, {{prop1.city}} | Reviews | Price"
+                    target="_blank">{{prop1.property}}</a>
+                </h2>
+                <h2 class="mt-0 mb-2">
+                  <a id="prop1Loc"
+                    href="https://www.homes247.in/{{prop1.city | cleanUrl}}/property-sale-in-{{prop1.locality | cleanUrl}}-{{prop1.localityid}}"
+                    rel="bookmark"
+                    title="Properties for Sale in {{prop1.locality}}, {{prop1.city}} - Homes247.in">Properties in
+                    {{prop1.locality}}</a>
+
+                </h2>
+                <p class="m-0">
+                  <i [ngClass]="{'starColour': prop1.rating >= 1}" class="fa fa-star"></i>&nbsp;
+                  <i [ngClass]="{'starColour': prop1.rating >= 2}" class="fa fa-star"></i>&nbsp;
+                  <i [ngClass]="{'starColour': prop1.rating >= 3}" class="fa fa-star"></i>&nbsp;
+                  <i [ngClass]="{'starColour': prop1.rating >= 4}" class="fa fa-star"></i>&nbsp;
+                  <i [ngClass]="{'starColour': prop1.rating >= 5}" class="fa fa-star "></i>&nbsp;
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+      <div class="mt-4 mb-3 text-center col-sm-12">
+        <pagination-controls (pageChange)="p = $event" (click)="scrollTop()"></pagination-controls>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="innerheader_position">
+  <app-innerheader></app-innerheader>
+</div>
+<app-footer2></app-footer2>

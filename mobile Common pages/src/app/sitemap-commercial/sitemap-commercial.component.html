@@ -1,0 +1,444 @@
+<div class="innerheader_position">
+    <app-innerheader></app-innerheader>
+</div>
+
+
+<div class="main_div">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4" *ngFor="let cityname of completedata">
+                <div class="col-md-12 sectionTwo">
+                    <div class="row">
+                        <!-- City based -->
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-properties-in-{{ cityname.city | cleanUrl }}"
+                                title="Commercial Properties in {{ cityname.city }} | Buy, Sell, or Rent Properties in {{ cityname.city }}"
+                                rel="bookmark">
+                                Commercial Properties in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-properties-for-sale-in-{{ cityname.city | cleanUrl }}"
+                                title="Commercial Properties for Sale in {{ cityname.city }} | Buy Properties in {{ cityname.city }}"
+                                rel="bookmark">
+                                Commercial Properties for Sale in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-properties-for-rent-in-{{ cityname.city | cleanUrl }}"
+                                title="Commercial Properties for Rent in {{ cityname.city }} | Rent Properties in {{ cityname.city }}"
+                                rel="bookmark">
+                                Commercial Properties for Rent in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <!-- Category based for Sale -->
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-officespace-for-sale-in-{{ cityname.city | cleanUrl }}"
+                                title="Office Space for Sale in {{ cityname.city }} | Buy Commercial Office in {{ cityname.city }}"
+                                rel="bookmark">
+                                Office Space for Sale in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-shopshowroom-for-sale-in-{{ cityname.city | cleanUrl }}"
+                                title="Shop & Showroom for Sale in {{ cityname.city }} | Buy Shops in {{ cityname.city }}"
+                                rel="bookmark">
+                                Shop & Showroom for Sale in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-plot-for-sale-in-{{ cityname.city | cleanUrl }}"
+                                title="Commercial Plot for Sale in {{ cityname.city }} | Buy Land in {{ cityname.city }}"
+                                rel="bookmark">
+                                Commercial Plot for Sale in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-warehouse-for-sale-in-{{ cityname.city | cleanUrl }}"
+                                title="Warehouse for Sale in {{ cityname.city }} | Buy Commercial Warehouse in {{ cityname.city }}"
+                                rel="bookmark">
+                                Warehouse for Sale in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <!-- Category based for Rent-Lease -->
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-officespace-for-rent-lease-in-{{ cityname.city | cleanUrl }}"
+                                title="Office Space for Rent/Lease in {{ cityname.city }} | Rent Commercial Offices in {{ cityname.city }}"
+                                rel="bookmark">
+                                Office Space for Rent/Lease in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-shopshowroom-for-rent-lease-in-{{ cityname.city | cleanUrl }}"
+                                title="Shop & Showroom for Rent/Lease in {{ cityname.city }} | Rent Shops in {{ cityname.city }}"
+                                rel="bookmark">
+                                Shop & Showroom for Rent/Lease in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-plot-for-rent-lease-in-{{ cityname.city | cleanUrl }}"
+                                title="Commercial Plot for Rent/Lease in {{ cityname.city }} | Lease Land in {{ cityname.city }}"
+                                rel="bookmark">
+                                Commercial Plot for Rent/Lease in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-warehouse-for-rent-lease-in-{{ cityname.city | cleanUrl }}"
+                                title="Warehouse for Rent/Lease in {{ cityname.city }} | Rent Warehouse in {{ cityname.city }}"
+                                rel="bookmark">
+                                Warehouse for Rent/Lease in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <!-- Plot Type for Sale -->
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-industrial-plot-for-sale-in-{{ cityname.city | cleanUrl }}"
+                                title="Industrial Plot for Sale in {{ cityname.city }} | Buy Industrial Land in {{ cityname.city }}"
+                                rel="bookmark">
+                                Industrial Plot for Sale in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-agricultural-plot-for-sale-in-{{ cityname.city | cleanUrl }}"
+                                title="Agricultural Plot for Sale in {{ cityname.city }} | Buy Farm Land in {{ cityname.city }}"
+                                rel="bookmark">
+                                Agricultural Plot for Sale in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-commercial-plot-for-sale-in-{{ cityname.city | cleanUrl }}"
+                                title="Commercial Plot for Sale in {{ cityname.city }} | Buy Plots in {{ cityname.city }}"
+                                rel="bookmark">
+                                Commercial Plot for Sale in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-farmhouse-plot-for-sale-in-{{ cityname.city | cleanUrl }}"
+                                title="Farmhouse Plot for Sale in {{ cityname.city }} | Buy Farmhouse Land in {{ cityname.city }}"
+                                rel="bookmark">
+                                Farmhouse Plot for Sale in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <!-- Plot Type for Rent-Lease -->
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-industrial-plot-for-rent-lease-in-{{ cityname.city | cleanUrl }}"
+                                title="Industrial Plot for Rent/Lease in {{ cityname.city }} | Rent Industrial Land in {{ cityname.city }}"
+                                rel="bookmark">
+                                Industrial Plot for Rent/Lease in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-agricultural-plot-for-rent-lease-in-{{ cityname.city | cleanUrl }}"
+                                title="Agricultural Plot for Rent/Lease in {{ cityname.city }} | Lease Farm Land in {{ cityname.city }}"
+                                rel="bookmark">
+                                Agricultural Plot for Rent/Lease in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-commercial-plot-for-rent-lease-in-{{ cityname.city | cleanUrl }}"
+                                title="Commercial Plot for Rent/Lease in {{ cityname.city }} | Rent Commercial Land in {{ cityname.city }}"
+                                rel="bookmark">
+                                Commercial Plot for Rent/Lease in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-farmhouse-plot-for-rent-lease-in-{{ cityname.city | cleanUrl }}"
+                                title="Farmhouse Plot for Rent/Lease in {{ cityname.city }} | Rent Farmhouse Land in {{ cityname.city }}"
+                                rel="bookmark">
+                                Farmhouse Plot for Rent/Lease in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <!-- Building Type Rent-Lease -->
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-independent-building-for-rent-lease-in-{{ cityname.city | cleanUrl }}"
+                                title="Independent Building for Rent/Lease in {{ cityname.city }} | Rent Buildings in {{ cityname.city }}"
+                                rel="bookmark">
+                                Independent Building for Rent/Lease in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-shared-building-for-rent-lease-in-{{ cityname.city | cleanUrl }}"
+                                title="Shared Building for Rent/Lease in {{ cityname.city }} | Rent Shared Spaces in {{ cityname.city }}"
+                                rel="bookmark">
+                                Shared Building for Rent/Lease in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-commercial-complex-for-rent-lease-in-{{ cityname.city | cleanUrl }}"
+                                title="Commercial Complex for Rent/Lease in {{ cityname.city }} | Lease Complexes in {{ cityname.city }}"
+                                rel="bookmark">
+                                Commercial Complex for Rent/Lease in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-industrial-building-for-rent-lease-in-{{ cityname.city | cleanUrl }}"
+                                title="Industrial Building for Rent/Lease in {{ cityname.city }} | Rent Industrial Units in {{ cityname.city }}"
+                                rel="bookmark">
+                                Industrial Building for Rent/Lease in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-shed-for-rent-lease-in-{{ cityname.city | cleanUrl }}"
+                                title="Shed for Rent/Lease in {{ cityname.city }} | Rent Industrial Shed in {{ cityname.city }}"
+                                rel="bookmark">
+                                Shed for Rent/Lease in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-high-street-for-rent-lease-in-{{ cityname.city | cleanUrl }}"
+                                title="High Street for Rent/Lease in {{ cityname.city }} | Rent Commercial High Streets in {{ cityname.city }}"
+                                rel="bookmark">
+                                High Street for Rent/Lease in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <!-- Building Type Sale -->
+
+                        <div class="col-md-12 borderclass">
+
+                            <a href="https://www.homes247.in/cll/commercial-independent-building-for-sale-in-{{ cityname.city | cleanUrl }}"
+                                title="Independent Building for Sale in {{ cityname.city }} | Buy Commercial Buildings in {{ cityname.city }}"
+                                rel="bookmark">
+                                Independent Building for Sale in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-shared-building-for-sale-in-{{ cityname.city | cleanUrl }}"
+                                title="Shared Building for Sale in {{ cityname.city }} | Buy Shared Commercial Spaces in {{ cityname.city }}"
+                                rel="bookmark">
+                                Shared Building for Sale in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-commercial-complex-for-sale-in-{{ cityname.city | cleanUrl }}"
+                                title="Commercial Complex for Sale in {{ cityname.city }} | Buy Complexes in {{ cityname.city }}"
+                                rel="bookmark">
+                                Commercial Complex for Sale in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-industrial-building-for-sale-in-{{ cityname.city | cleanUrl }}"
+                                title="Industrial Building for Sale in {{ cityname.city }} | Buy Industrial Units in {{ cityname.city }}"
+                                rel="bookmark">
+                                Industrial Building for Sale in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-shed-for-sale-in-{{ cityname.city | cleanUrl }}"
+                                title="Shed for Sale in {{ cityname.city }} | Buy Industrial Sheds in {{ cityname.city }}"
+                                rel="bookmark">
+                                Shed for Sale in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-high-street-for-sale-in-{{ cityname.city | cleanUrl }}"
+                                title="High Street for Sale in {{ cityname.city }} | Buy Commercial High Streets in {{ cityname.city }}"
+                                rel="bookmark">
+                                High Street for Sale in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <!-- Furnish Type Sale -->
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-furnished-properties-for-sale-in-{{ cityname.city | cleanUrl }}"
+                                title="Furnished Properties for Sale in {{ cityname.city }} | Buy Furnished Properties in {{ cityname.city }}"
+                                rel="bookmark">
+                                Furnished Properties for Sale in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-semi-furnish-properties-for-sale-in-{{ cityname.city | cleanUrl }}"
+                                title="Semi-Furnished Properties for Sale in {{ cityname.city }} | Buy Semi-Furnished Units in {{ cityname.city }}"
+                                rel="bookmark">
+                                Semi-Furnished Properties for Sale in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-unfurnish-properties-for-sale-in-{{ cityname.city | cleanUrl }}"
+                                title="Unfurnished Properties for Sale in {{ cityname.city }} | Buy Unfurnished Properties in {{ cityname.city }}"
+                                rel="bookmark">
+                                Unfurnished Properties for Sale in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <!-- Furnish Type Rent-Lease -->
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-furnished-properties-for-rent-lease-in-{{ cityname.city | cleanUrl }}"
+                                title="Furnished Properties for Rent/Lease in {{ cityname.city }} | Rent Furnished Properties in {{ cityname.city }}"
+                                rel="bookmark">
+                                Furnished Properties for Rent/Lease in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-semi-furnish-properties-for-rent-lease-in-{{ cityname.city | cleanUrl }}"
+                                title="Semi-Furnished Properties for Rent/Lease in {{ cityname.city }} | Rent Semi-Furnished Units in {{ cityname.city }}"
+                                rel="bookmark">
+                                Semi-Furnished Properties for Rent/Lease in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/cll/commercial-unfurnish-properties-for-rent-lease-in-{{ cityname.city | cleanUrl }}"
+                                title="Unfurnished Properties for Rent/Lease in {{ cityname.city }} | Rent Unfurnished Properties in {{ cityname.city }}"
+                                rel="bookmark">
+                                Unfurnished Properties for Rent/Lease in {{ cityname.city }}&nbsp;&nbsp;<a
+                                    routerLink="/all-localities-by-commercial-city/{{ cityname.city | cleanUrl }}/{{ cityname.id}}"
+                                    title="Explore Top Commercial Properties in {{cityname.city}}" target="_blank">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                            </a>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+
+<!-- <ng-container *ngComponentOutlet="innerheader"></ng-container> -->
+<!-- <div id="conatctbutton"> -->
+  <!-- <app-float-contact></app-float-contact> -->
+  <!-- <ng-container *ngComponentOutlet="FloatContact"></ng-container> -->
+  <!-- </div> -->
+<div class="about_us_banner">
+    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/contact/banner.jpg" alt="contact-us-header" />
+      <h1>We Work Around the Clock to Serve Your Property Needs</h1>
+      <ul class="breadcrumbs breadcrumbs_type">
+          <li class="breadcrumbs__item"><a href="https://www.homes247.in/" class="breadcrumbs__element">Home</a></li>
+          <li class="breadcrumbs__item_active"><span class="breadcrumbs__element">Contact Us</span></li>
+      </ul>
+  </div>
+  <p>Expect a Call from us in 5 minutes</p>
+  <div class="container" style="margin-top: 90px;">
+    <form name="brochureForm" novalidate>
+          <div class="row" style="    place-content: center;">
+            <div class="col-sm-12 mb-3">
+              <div class="form-field">
+                <i class="fa fa-user user_icon" aria-hidden="true"></i>
+                <div class="form-field__control">
+                  <input id="name" type="text" class="form-field__input brochure_nameinput form-control" name="name" [(ngModel)]="user.name" placeholder="Username" />
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="col-sm-12 mb-3">
+              <div class="form-field">
+                <i class="fa fa-envelope user_icon" aria-hidden="true"></i>
+                <div class="form-field__control">
+                  <input type="email" class="form-field__input brochure_emailinput form-control" name="email" [(ngModel)]="user.mail" placeholder="Email" />
+                </div>
+              </div>
+            </div> -->
+
+            <div class="col-sm-12 mb-3">
+              <div class="form-field">
+                <i class="fa fa-phone user_icon" aria-hidden="true"></i>
+                <div class="form-field__control">
+                  <input id="mobile" type="text" class="form-field__input brochure_numinput form-control" maxlength="10" minlength="10" name="number" [(ngModel)]="user.number" placeholder="+91" />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-check custom-form-check mb-3">
+              <!-- <input  class="form-check-input" type="checkbox" value="" (click)="checkboxClick2()" id="exampleCheck2"> -->
+              <label class="form-check-label custom-lable" for="exampleCheck2">
+                By submitting this form, I consent to receive communications from the Homes247 through WhatsApp, SMS, email, phone calls, and other channels, even if my number is registered on DND/NDNC.
+              </label>
+            </div>
+
+            <div class="form-group text-center">
+              <button type="submit" class="btn contactButton2" id="contactButton2" (click)="otpsend()">
+                Contact Us
+              </button>
+            </div>
+          </div>
+        </form>
+  </div>
+       
+
+  <!-- <div class="contact_us_info_main">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <p class="address_contact">21/1, Cunningham Rd, Shivaji Nagar,<br />Bengaluru, Karnataka 560001</p>
+                  <div class="phone_email_info">
+                    <p><span><img src="https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/contact/email.png" alt="call-icon" /></span> +91 91642 47247</p>
+                  </div>
+                  <div class="phone_email_info">
+                    <p><span><img src="https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/contact/phone.png" alt="mail-icon" /></span> enquiry&#64;homes247.in</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div> -->
+  <div class="contact_us_map">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1943.9837803137764!2d77.61122178439152!3d12.973926647549444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae17c002264e01%3A0x7facc77feaa26898!2sHomes247.in!5e0!3m2!1sen!2sin!4v1550725095102" width="100%" height="290px" frameborder="0" style="border:0" allowfullscreen></iframe>
+  </div>
+<!-- CSS-Loader -->
+<div *ngIf="otploader" class="loaderbody">
+  <div class="box">
+    <div class="loader-20"></div>
+  </div>
+</div>
+<!-- CSS-Loader -->
+<div class="footerDiv">
+  <div *ngIf="loaded">
+    <ng-container *ngComponentOutlet="FooterComponent"></ng-container>
+  </div>
+  </div>
+  
+  <div class="innerheader_position">
+    <app-innerheader></app-innerheader>
+</div>

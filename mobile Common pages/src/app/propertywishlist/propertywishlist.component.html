@@ -1,0 +1,21 @@
+<div class="get_call_back">
+    <div class="head" (click)="ShowHidewishlistProject()">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        <div class="contactFormHeading">
+            <p class="marginBottomForm">Whishlist Projects</p>
+        </div>
+    </div>
+    <div class="mobile_res mod">
+        <div class="row">
+            <div class="col-6" *ngFor="let seenProp of recent_viewArray">
+                <a href="https://www.homes247.in/property/{{seenProp.city | cleanUrl}}/{{seenProp.locality | cleanUrl}}/{{seenProp.propertyname | cleanUrl}}-{{seenProp.Id}}" target="_blank">
+                    <img src="{{ImageUrl}}{{seenProp.Image}}" alt="seenProp.Image" class="seenProjectImg">
+                </a>
+                <p class="titleFont">{{seenProp.propertyname}}</p>
+                <p class="localityText">
+                    <i class="fa fa-map-marker iconFontSize"></i>&nbsp;{{seenProp.locality}},{{seenProp.city}}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

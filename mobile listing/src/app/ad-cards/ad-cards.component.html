@@ -1,0 +1,42 @@
+<!-- OWNER BOOST CARD -->
+@if (currentAd && currentAd.category === 'owner') {
+<div class="ad-card owner-boost-card mb-2" style="background-image: url( {{currentAd.bgImage}} ); ">
+  <div class="owner-card-inner">
+    <div class="owner-card-content">
+      <p class="owner-title">
+        <span class="title-line1">{{ currentAd.titleLine1 }}</span><br />
+        <span class="title-line2">{{ currentAd.titleLine2 }}</span>
+      </p>
+      <button class="boost-btn" (click)="onBoostPropertyClick(currentAd)">
+        <span class="btn-text">{{ currentAd.buttonText }}</span>
+        <img [src]="rocketIcon" alt="rocket" class="rocket-icon" />
+      </button>
+    </div>
+    <div class="owner-card-image">
+      <img [src]="currentAd.image" [alt]="currentAd.titleLine1" class="card-illustration" />
+    </div>
+  </div>
+</div>
+}
+
+<!-- BUYER PREMIUM CARD -->
+@if (currentAd && currentAd.category === 'buyer') {
+<div class="ad-card buyer-premium-card mb-2">
+  <div class="buyer-card-inner">
+    <div class="buyer-card-content">
+      <p class="buyer-title">
+        <span class="buyer-title-line1">{{ currentAd.titleLine1 }}</span><br />
+        <span class="buyer-title-line2 highlight-text">{{ currentAd.titleLine2 }}</span>
+      </p>
+      <p class="buyer-description">{{ currentAd.description }}</p>
+      <button class="unlock-btn" (click)="onUnlockNowClick(currentAd)">
+        <span class="btn-text">{{ currentAd.buttonText }}</span>
+        <img [src]="arrowIcon" alt="arrow" class="arrow-icon" />
+      </button>
+    </div>
+    <div class="buyer-card-image">
+      <img [src]="currentAd.image" [alt]="currentAd.titleLine1" class="card-illustration" />
+    </div>
+  </div>
+</div>
+}

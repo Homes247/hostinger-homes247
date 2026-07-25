@@ -1,0 +1,366 @@
+
+input:focus{
+  outline: none;
+}
+
+.pageBackground{
+  margin-top: 110px;
+  background: rgba(248, 248, 248, 1);
+  width: 100%;
+}
+
+.headingBox{
+  text-align: center;
+  margin-top: 30px;
+  border-radius: 16px;
+  background: #FFF;
+
+}
+
+.headingBox h3{
+  color: #0B3544;
+  font-size: 12px;
+  font-family: 'Poppins';
+  font-weight: 600;
+  padding-top: 21px;
+}
+
+.headingBoxPanel{
+  justify-content: center;
+}
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin-bottom: 13px;
+  margin-top: 13px;
+  margin-left: 0;
+  list-style: none;
+}
+li.breadcrumb-item {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 101px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 15px;
+  color: #000000;
+  opacity: 0.5;
+}
+li.breadcrumb-item a{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 15px;
+  color: #000000;
+  opacity: 0.5;
+}
+.reviewBoxImg{
+  margin-top: -42px;
+  margin-left: 127px;
+  background-image: url('https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/rentalDetails/reviewpageimg.png');
+  height: 54px;
+  width: 204px;
+  background-repeat: no-repeat;
+}
+
+.searchLogo{
+  margin-top: 7px;
+  width: 10px;
+  height: 10px;
+  background-repeat: no-repeat;
+  background-image: url('https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/rentalDetails/MagnifiyingGlass.png');
+}
+
+.locationLogo{
+  margin-top: 7px;
+  width: 10px;
+  height: 10px;
+  background-repeat: no-repeat;
+  background-image: url('https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/rentalDetails/Location.png');
+}
+
+.searchInput{
+  color: #000;
+  font-size: 12px;
+  font-family: 'Poppins';
+  font-weight: 500;
+  width: 100%;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.08);
+}
+
+.searchInput input{
+  border: none;
+  background-color: #ffffff;
+  width: 184px;
+  height: 24px;
+  color: #000;
+  font-size: 12px;
+  font-family: 'Poppins';
+  font-weight: 500;
+}
+
+.select_option{
+  width: 100%;
+  margin-left: 16px;
+  border-radius: 8px;
+  background:#ffffff ;
+  /* width: 100%;
+  height: 24px; */
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.08);
+}
+
+
+
+.select_option select {
+  width: 100%;
+  margin-top: 0px;
+  border: none;
+  cursor: pointer;
+  color: #000;
+  font-size: 12px;
+  font-family: 'Poppins';
+  font-weight: 500;
+  opacity: 0.6;
+  /* background:#F8F8F8 ; */
+}
+
+select {
+  border: none;
+  outline: none;
+}
+
+
+::ng-deep .custom-dropdown {
+  text-indent: 10px;
+  background-color:rgb(255, 255, 255)!important;
+  border-radius: 8px!important;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.08);
+}
+
+::ng-deep .ui.search.dropdown > .text{
+  margin-top: 5px!important;
+}
+
+::ng-deep .ui.dropdown > .dropdown.icon{
+  margin-top: -2px!important;
+}
+
+::ng-deep .ui.search.selection.dropdown > input.search{
+  margin-top: 5px!important;
+  width: 50px!important;
+}
+
+.locationClearAll{
+  justify-content: space-between;
+}
+
+.locationClearAll p{
+  color: #000;
+text-align: right;
+font-size: 12px;
+font-family: Poppins;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+text-decoration-line: underline;
+opacity: 0.800000011920929;
+}
+
+.searchBtn button{
+  border: none;
+  margin-left: 9px;
+  width: 100%;
+  height: 24px;
+  border-radius: 8px;
+  background-color: #0B3544;
+  color: #FFF;
+  font-size: 12px;
+  font-family: 'Poppins';
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.08);
+}
+
+.projectsLocalitiesHeader p{
+  cursor: pointer;
+  color: #0B3544;
+  font-size: 10px;
+  font-family: 'Poppins';
+  font-weight: 600;
+}
+
+#localitiesHeader{
+  color: #0B3544;
+  font-size: 10px;
+  font-family: Poppins;
+  opacity: 0.3199999928474426;
+}
+
+
+
+.selectDropdown{
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.08);
+  width: 40%;
+  background-color: white;
+  border-radius: 8px;
+  margin-top: -8px;
+}
+
+
+.selectDropdown select{
+  cursor: pointer;
+  color: #000;
+  font-size: 12px;
+  background-color: white;
+  font-family: 'Poppins';
+  font-weight: 500;
+  opacity: 0.6;
+  /* border-radius: 8px; */
+  height: 39px;
+  width: 138px;
+  display: flex;
+  padding: 0px 0px 0px 10px;
+  align-items: center;
+  gap: 48px;
+}
+.starColour {
+  font-weight: 600!important;
+  color: transparent; /* Set the inner color to transparent */
+  background: linear-gradient(135deg, #FE0 25%, #FFE100 62.85%, #FFA400 166.67%); /* Apply the linear gradient as the background */
+  background-clip: text;
+}
+.heading_tag{
+  font-size: 16px;
+  font-family: 'poppins';
+  color: #0B3544;
+}
+.reviewProp{
+    flex-shrink: 0;
+    border-radius: 16px;
+    background: #FFF;
+}
+
+.reviewProp:hover{
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.08);
+}
+
+
+.propImg1 a img{
+  height: 88px;
+  width: 88px;
+  background-repeat: no-repeat;
+  /* background-image: url('https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/rentalDetails/Prop1.png'); */
+}
+
+
+
+ #prop1text p{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 226px;
+  margin-bottom: 7px;
+}
+
+.ratingText a{
+  color: #0B3544;
+  font-size: 10px;
+  font-family: 'Poppins';
+  opacity: 0.5600000023841858;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 144px;
+
+}
+
+.propDetail #prop1text a{
+  color: #0B3544;
+  font-size: 12px;
+  font-family: 'Poppins';
+  font-weight: 600;
+  line-height: 0px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 144px;
+  padding: 0px;
+}
+
+#prop1Loc{
+  color: #0B3544;
+  font-size: 10px;
+  font-family: 'Poppins';
+  font-weight: 600;
+  opacity: 0.5600000023841858;
+  line-height: 10px;
+}
+#prop1Loc a{
+  color: #0B3544;
+}
+
+.rightSectionProp{
+  margin-right: 25px;
+  margin-top: 20px;
+}
+
+.ratingAndStar h2{
+margin-top: 7px;
+}
+
+.fill-star {
+  color: #E4652B;
+  padding: 0px 2px;
+}
+
+#ratingNumber{
+  margin-bottom: 5px;
+  color: #0B3544;
+font-size: 32px;
+font-family: 'Poppins';
+font-weight: 500;
+}
+
+.rightSectionProp svg{
+  margin-left: 5px;
+  margin-top: 7px;
+  height: 25px;
+  width: 25px;
+}
+
+.ratingText {
+  color: #0B3544;
+  font-size: 14px;
+  font-family: 'Poppins';
+  opacity: 0.5600000023841858;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 227px;
+  line-height: 9px;
+}
+
+
+.errorMsgTxt h1 {
+  color: #0B3544;
+  font-size: 15px;
+  font-family: Poppins;
+  font-weight: 500;
+  padding-top: 66px;
+}
+
+.errorMsgTxt{
+  text-align: center;
+}
+
+
+
+
+

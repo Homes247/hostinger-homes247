@@ -1,0 +1,66 @@
+{
+  "name": "common-details-project",
+  "version": "0.0.0",
+"scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "build:ssr": "ng build",
+    "serve:ssr": "node dist/Common-details-project/server/server.mjs"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
+  "private": true,
+  "packageManager": "npm@10.8.2",
+  "dependencies": {
+    "@angular/animations": "^21.1.2",
+    "@angular/common": "^21.1.0",
+    "@angular/compiler": "^21.1.0",
+    "@angular/core": "^21.1.0",
+    "@angular/forms": "^21.1.0",
+    "@angular/material": "^21.0.5",
+    "@angular/platform-browser": "^21.1.0",
+    "@angular/platform-server": "^21.1.0",
+    "@angular/router": "^21.1.0",
+    "@fortawesome/fontawesome-free": "^7.2.0",
+    "@twogate/ngx-photo-gallery": "^1.8.1",
+    "apexcharts": "^5.10.4",
+    "bootstrap": "^4.4.1",
+    "compression": "^1.8.1",
+    "express": "^5.1.0",
+    "jquery": "^3.7.1",
+    "ng-apexcharts": "^2.3.0",
+    "ng-otp-input": "^2.0.9",
+    "ngx-countdown": "^21.0.0",
+    "ngx-owl-carousel-o": "^21.0.0",
+    "ngx-skeleton-loader": "^11.3.0",
+    "popper.js": "^1.16.1",
+    "rxjs": "~7.8.0",
+    "sweetalert2": "^11.26.23",
+    "tslib": "^2.3.0",
+    "zone.js": "^0.16.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^21.1.0",
+    "@angular/cli": "^21.1.0",
+    "@angular/compiler-cli": "^21.1.0",
+    "@types/compression": "^1.8.1",
+    "@types/express": "^5.0.1",
+    "@types/node": "^20.17.19",
+    "jsdom": "^27.1.0",
+    "typescript": "~5.9.2",
+    "vitest": "^4.0.8"
+  }
+}

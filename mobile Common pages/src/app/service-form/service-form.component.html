@@ -1,0 +1,218 @@
+
+  <div class="modal modal-fullscreen-xl" id="myModal_services" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" style="top: 0px;" role="document">
+      <div class="modal-content">
+        <div class="modal-header rating_top_head23" style="display: block;">
+         <div class="d-flex">
+          <div class="col-11 text-center">
+            <img class="loginModelImg" width="50%" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/logo/Homes247_NewBlack_Logo.png" alt="Homes247_NewBlack_Logo.png"/>
+          <p class="loginModelText2 mb-0">
+            India's Favourite Property Portal
+          </p>
+          </div>
+          <div class="col-1">
+            <button type="button" id="enquiryInfoClose" class="close1 modal_close" style="background: #fff;" data-bs-dismiss="modal" (click)="closeModal()">
+              <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/propImage/serviceModalclose.png" alt="..serviceModalclose.png" width="15" height="15" >
+            </button>
+          </div>
+         </div>
+        </div> 
+
+        <div class="modal-body answer-custom-body"  id="interiorRow">
+
+          <!-- <div class="container"> -->
+            <div class="property_details_form modal_prprty_form">
+              <!-- <input type="hidden" [(ngModel)]="user.propertyname" name="propertyname"> -->
+  
+              <form [formGroup]="serviceForm">
+               
+  
+                <div class="text-center">
+                  <!-- <img *ngIf="interiors" class="loginModelImg1" height="100%" width="100%"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/banner/propertyInteriors.png" alt="propertyInteriors.png">
+
+                  <img  *ngIf="homeLoan" class="loginModelImg1" height="100%" width="60%"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/banner/propertyHomeLoan.png" alt="propertyHomeLoan.png">
+
+                  <img  *ngIf="realEstate" class="loginModelImg1" height="100%" width="60%"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/banner/propertyRealEstateMarket.png" alt="propertyRealEstateMarket.png">
+
+                  <img  *ngIf="propertyManagement" class="loginModelImg1" height="100%" width="100%"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/banner/propertyManagement.png" alt="propertyManagement.png">
+
+                  <img  *ngIf="homeInspection" class="loginModelImg1" height="100%" width="100%"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/banner/propertyInspection.png" alt="propertyInspection.png">
+  
+  
+                <img  *ngIf="legal" class="loginModelImg1" height="100%" width="60%"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/banner/propertyLegal.png" alt="propertyLegal.png">
+  
+                <img  *ngIf="vastu" class="loginModelImg1" height="100%" width="60%"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/banner/propertyVastu.png" alt="propertyVastu.png">
+  
+                <img  *ngIf="floorPlan" class="loginModelImg1" height="100%" width="60%"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/banner/propertyFloorPlan.png" alt="propertyFloorPlan.png"> -->
+
+                <img *ngIf="interiors" class="loginModelImg1" height="100%" width="100%"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/allImagesFolder/propertyInteriors.png" alt="propertyInteriors.png">
+
+                <img  *ngIf="homeLoan" class="loginModelImg1" height="100%" width="60%"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/allImagesFolder/propertyHomeLoan.png" alt="propertyHomeLoan.png">
+  
+                <img  *ngIf="realEstate" class="loginModelImg1" height="100%" width="60%"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/allImagesFolder/propertyRealEstateMarket.png" alt="propertyRealEstateMarket.png">
+  
+                <img  *ngIf="propertyManagement" class="loginModelImg1" height="100%" width="100%"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/allImagesFolder/propertyManagement.png" alt="propertyManagement.png">
+  
+                <img  *ngIf="homeInspection" class="loginModelImg1" height="100%" width="100%"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/allImagesFolder/propertyInspection.png" alt="propertyInspection.png">
+  
+                <img  *ngIf="legal" class="loginModelImg1" height="100%" width="60%"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/allImagesFolder/propertyLegal.png" alt="propertyLegal.png">
+  
+                <img  *ngIf="vastu" class="loginModelImg1" height="100%" width="60%"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/allImagesFolder/propertyVastu.png" alt="propertyVastu.png">
+  
+                <img  *ngIf="floorPlan" class="loginModelImg1" height="100%" width="60%"  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/allImagesFolder/propertyFloorPlan.png" alt="propertyFloorPlan.png">
+  
+                </div>
+                <p  *ngIf="interiors" class="loginModelText13 pt-0">
+                  Fill out the form below, and our <b>Interior Design Expert</b> will get in touch with you shortly.
+                </p>
+               
+                <p   *ngIf="legal" class="loginModelText13 pt-0">
+                  Fill out the form below, and our <b>Legal Expert</b> will get in touch with you shortly.
+                </p>
+                <p   *ngIf="vastu" class="loginModelText13 pt-0">
+                  Fill out the form below, and our <b>Vastu Expert</b> will get in touch with you shortly.
+                </p>
+                <p   *ngIf="floorPlan" class="loginModelText13 pt-0">
+                  Fill out the form below, and our <b>Floor Plan Expert</b> will get in touch with you shortly.
+                </p>
+                <p   *ngIf="homeLoan" class="loginModelText13 pt-0">
+                  Fill out the form below, and our <b>Loan Expert</b> will get in touch with you shortly.
+                </p>
+                <p   *ngIf="realEstate" class="loginModelText13 pt-0">
+                  Fill out the form below, and our <b>Real Estate Market Expert</b> will get in touch with you shortly.
+                </p>
+                <p   *ngIf="propertyManagement" class="loginModelText13 pt-0">
+                  Fill out the form below, and our <b>Property Management Expert</b> will get in touch with you shortly.
+                </p>
+                <p   *ngIf="homeInspection" class="loginModelText13 pt-0">
+                  Fill out the form below, and our <b>Home Inspection Expert</b> will get in touch with you shortly.
+                </p>
+  
+  
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">Name</label>
+                    <input type="text" formControlName="userName" class="form-control intialInputs" placeholder="Enter Your Name"  name="name1" id="enameService"
+                    [(ngModel)]="user.ename" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">Number</label>
+                    <input type="number" formControlName="userNumber"  class="form-control intialInputs" placeholder="Enter Your Number"   name="number1"
+                    id="emobileService" [(ngModel)]="user.emobile" required>
+                  </div>
+                  <!-- <div class="form-group">
+                    <label for="exampleFormControlInput1">Email ID</label>
+                    <input type="email" formControlName="userEmail" class="form-control intialInputs" placeholder="Enter Your Email ID"  name="email1" id="eemailService"
+                    [(ngModel)]="user.email" required>
+                  </div> -->
+                  <div class="form-group" *ngIf="showTextArea">
+                    <label for="exampleFormControlTextarea1">Message</label>
+                    <textarea class="form-control serviceTextArea" formControlName="serviceMessage" placeholder="Type Your Queries" name="message1" id="messageService" [(ngModel)]="message" required rows="3"></textarea>
+                  </div>
+                  
+                  <div *ngIf="interiors">
+
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label for="exampleFormControlSelect1">Property Type</label>
+                          <select class="form-control selectField" id="propertyTypeId" (change)="getPropertyType($event)" formControlName="propertyTypeId">
+                            <option value="" disabled>
+                              Select Property Type
+                            </option>
+                            <option value="1">Residential</option>
+                            <option value="2">Commercial</option>
+                            <option value="3">Others</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label for="exampleFormControlSelect1">Interior Type</label>
+                          <select class="form-control selectField" id="interiorTypeId" (change)="getInteriorType($event)" formControlName="interiorTypeId" >
+                            <option value="" disabled>
+                              Select Interior Type
+                            </option>
+                            <option value="1">Economical</option>
+                            <option value="2">Premium</option>
+                            <option value="3">Luxury</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="budgetRow"></div>
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">Budget</label>
+                      <select class="form-control selectField" id="budgetId" (change)="getBudget($event)" formControlName="budgetId">
+                        <option value="" disabled>
+                          Select Your Budget
+                        </option>
+                        <option value="1">1L - 10L Above</option>
+                        <option value="2">25L - 50L Above</option>
+                        <option value="3">75L - 1CR Above</option>
+                        <option value="4">2CR Above</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div *ngIf="homeLoan">
+
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label for="exampleFormControlSelect1">Loan Amount</label>
+                          <select class="form-control selectField" id="enteredLoanAmount" (change)="getLoanAmount($event)" formControlName="enteredLoanAmount">
+                            <option value="" disabled>
+                              Select Your Loan Range
+                            </option>
+                            <option value="1">Less than 50 Lakhs</option>
+                            <option value="2">50 Lakhs - 1 Cr</option>
+                            <option value="3">1 Cr & above</option>
+                          </select>
+                        </div>
+                      </div>
+                      <!-- <div class="col-12">
+                        <div class="form-group">
+                          <label for="exampleFormControlSelect1">Interest Rate</label>
+                          <select class="form-control selectField" id="expectedInterest" (change)="getExpectedInterest($event)" formControlName="expectedInterest" >
+                            <option value="" disabled>
+                              Select Your Expected Interest 
+                            </option>
+                            <option value="1">8 - 10%</option>
+                          <option value="2">10 - 12%</option>
+                          <option value="3">12 - 14%</option>
+                          <option value="4">14 - 16%</option>
+                          </select>
+                        </div>
+                      </div> -->
+                    </div>
+                    <div id="budgetRow"></div>
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">Preferred Bank</label>
+                      <select class="form-control selectField" id="bankId" (change)="getBankSelected($event)" formControlName="bankId">
+                        <option value="" disabled>
+                          Select Your Bank
+                        </option>
+                        <option *ngFor="let bankName of bankLists" value="{{bankName.bank_IDPK}}">
+                          {{bankName.bank_name}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+  
+    
+                <div class="gcb_btnDiv">
+                  <button id="one" class="btn btn_style gcb_btn " (click)="callServiceApi()">Submit</button>
+                </div>
+                <button #cancel hidden type="button" data-dismiss="modal" style="display: none;"></button>
+              </form>
+            </div>
+          <!-- </div> -->
+         
+         
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngComponentOutlet="otpValidationComponent"></ng-container>
+

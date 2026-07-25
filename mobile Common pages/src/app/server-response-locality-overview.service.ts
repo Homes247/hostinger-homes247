@@ -1,0 +1,23 @@
+import { RESPONSE } from '@nguniversal/express-engine/tokens';
+import { Inject, Injectable, Optional } from '@angular/core';
+import { Response } from 'express';
+
+@Injectable()
+export class ServerResponseService_Locality_Overview {
+  private response: Response;
+
+  constructor(@Optional() @Inject(RESPONSE) response: any) {
+    this.response = response;
+  }
+
+  setStatus(code: number, localityname?:string, City_Seo?:string, LocalityID?:number, CityID?:number, ): this {
+    if (this.response) {
+      this.response.redirect(code, "https://www.homes247.in/locality-overview/"+localityname+"-in-"+City_Seo+"-overview-"+LocalityID+"-"+CityID);
+    }
+    return this;
+  }
+
+  set301Status(localityname,City_Seo,LocalityID,CityID): this {
+    return this.setStatus(301,localityname,City_Seo,LocalityID,CityID);
+  }
+}

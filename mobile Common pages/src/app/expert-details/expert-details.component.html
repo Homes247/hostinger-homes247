@@ -1,0 +1,383 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+  integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+<div class="wrapper body_color">
+  <!-- Navbar content -->
+  <nav class="navbar navbar-expand-md navbar-dark mb-4 bg-blue fixed-top">
+    <h1 class="header-title mb-0">
+      <a routerLink="/expertservices"> <i class="fa-solid fa-arrow-left pr-4 white"></i>
+      </a>
+      {{expIn}} Services
+
+    </h1>
+  </nav>
+
+  <ol class="breadcrumb ">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a routerLink="/expertservices">Experts Services</a></li>
+    <li class="breadcrumb-item">{{expIn}}</li>
+  </ol>
+
+
+  <div class="container-fluid">
+    <div class="row px-3">
+      <div class="col-sm-12 card  pb-3 px-0 border-0">
+        <div class="row card-bottom-border pb-4">
+          <div class="col-3 align-self-center">
+            <div class="previewImg1" *ngIf="imageUrls == null">
+            <img class="rounded-circle " src="{{ProfileImage}}{{imageUrl}}" alt="Generic placeholder image" width="80"
+              height="80">
+            </div>
+            <div class="previewImg1" *ngIf="imageUrls">
+            <img class="rounded-circle " src="{{ProfileImage}}{{imageUrls}}" alt="Generic placeholder image" width="80"
+              height="80">
+            </div>
+          </div>
+          <div class="col-9 align-self-center">
+            <h2 class="expert-name">{{expertName}}</h2>
+            <p class="expert-number">{{contactNumber}}</p>
+            <span class="expert-star m-0" *ngIf="totaluserratings == 1">
+              <i [ngClass]="{'starColour': averagerating >= 1}" class="fa fa-star-o"></i>&nbsp;
+              <i [ngClass]="{'starColour': averagerating >= 2}" class="fa fa-star-o"></i>&nbsp;
+              <i [ngClass]="{'starColour': averagerating >= 3}" class="fa fa-star-o"></i>&nbsp;
+              <i [ngClass]="{'starColour': averagerating >= 4}" class="fa fa-star-o"></i>&nbsp;
+              <i [ngClass]="{'starColour': averagerating >= 5}" class="fa fa-star-o "></i>&nbsp;
+              ({{totaluserratings}})</span>
+          </div>
+        </div>
+        <!-- </div> -->
+        <div class="col-sm-12 card  pb-3 px-0 border-0  ">
+          <div class="row card-bottom-border pb-4">
+            <p class="expert-about1 px-3 mt-2" *ngFor="let exp of expertData;" id="scrollable" [innerHTML]="exp.Description | sanitizeHtml"></p>
+            <div class="arrow bounce down_arrow" (click)="readmore()">
+              <span>Read More</span>
+          </div>
+          <div class="arrow bounce up_arrow" (click)="readless()">
+              <span>Read Less</span>
+          </div>
+
+
+            <div class="card col-12 border-0">
+
+              <p class="expert-exp-field"><span class="float-left">Experience</span> <span
+                  class="expert-exp-field-Value1">: {{expertExperience}} Years</span>
+                </p>
+              <p class="expert-exp-field"><span class="float-left">Current Designation</span> <span
+                  class="expert-exp-field-Value2">: {{currentDesignation}}</span>
+                </p>
+              <p class="expert-exp-field"><span class="float-left">Company</span> <span
+                  class="expert-exp-field-Value3">: {{workingIn}}</span>
+                </p>
+              <p class="expert-exp-field"><span class="float-left">Email</span> <span
+                  class="expert-exp-field-Value4">: {{expEmail}}</span>
+                </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="btn shareFeedbackBtn col-12" data-toggle="modal" data-target="#exampleModalLong">
+        Share Feedback
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
+        <div class="modal-dialog m-0" role="document">
+          <div class="modal-content full-screen model-radius">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body bg-white">
+              <p id="ReviewModal">Review</p>
+              <p class="expert-aboutModal">How did we do?</p>
+              <div class="rating" id="ratingSection">
+                <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
+                <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+                <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+            </div>
+              <p class="expert-aboutModal">Care to share more about it?</p>
+              <textarea class="form-control mb-5" name="review" rows="8" placeholder="Write your feedbacks here"
+                [(ngModel)]="reviewDetails1"></textarea>
+              <button type="button" class="btn shareFeedbackBtn"
+                (click)="OnCommentUpdate()">Share Feedback</button>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="Visiblebrochure">
+          <ng-container *ngComponentOutlet="otpValidationComponent"></ng-container>
+        </div>
+      </div>
+
+      <div *ngIf="openModal" class="modal fade mt-3" id="nameNumberModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content" style="height:500px; width:620px;">
+            <div class="modal-header" style="
+                  background: #0B3544;">
+              <p class="modal-title" id="exampleModalLabel" style="color: white;">Please Login First</p>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span style="color: white; font-size: 13px;" aria-hidden="true">Close</span>
+              </button>
+            </div>
+            <div class="modal-body" style="height: 100%;">
+              <div class="col-sm-12 mb-2 formDiv">
+
+                <form [formGroup]="RegistrationForm">
+                  <!-- <div> -->
+                  <label style=" margin-top: 100px;">
+                    <span>Name(optional)</span><br>
+                    <input style="width: 99%;" type="text" formControlName="newUserName" name="NAME" id="userName"
+                      [(ngModel)]="user.name" required />
+                  </label> <br><br>
+                  <label>
+                    <span>Number</span><br>
+                    <input style="width: 99%;" type="number" formControlName="newUserNumber" name="Number"
+                      id="emobileLogin" [(ngModel)]="user.number" required />
+                  </label><br><br>
+                  <div class="submitMainDiv">
+                    <button type="button" id="one" class="submit btn" (click)="otpBasedLogin()">Send
+                      OTP</button>
+                  </div>
+                  <!-- </div> -->
+                  <div id="modal-container">
+                    <div class="modal-background">
+                      <div class="modal">
+                        <form name="otpForm" novalidate>
+                          <p id="otpModaltxtVerifyAndCode">Please Verify your Number</p>
+                          <p id="otpModaltxtVerifyAndCode">Enter the 4 digit Verification Code sent on
+                            {{this.user.number}}<a (click)="goback()">(Edit)</a></p>
+                          <div class="col-12 countdown_maindiv">
+                            <countdown #cd1 [config]="countdownconfig" (event)="handleEvent($event)"></countdown>
+                          </div>
+                          <input hidden autocomplete="off" type="text" placeholder="OTP" name="otp" id="otp"
+                            [(ngModel)]="user.otp" required />
+
+                          <ng-otp-input class="otpinput" #ngOtpInput (onInputChange)="onOtpChange($event)"
+                            [config]="config">
+                          </ng-otp-input>
+                          <button (click)="otpvalidate()">Validate OTP</button>
+                          <p class="otpexpireclass" *ngIf="otpexpired">OTP Expired - <a
+                              (click)="otpBasedLogin()">Resend</a></p>
+                          <button type="reset" id="btn_reset" style="display: none;"></button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+        <!-- <div class="col-12 text-center noRecordBox"  *ngIf="!ratingreviews">
+        <p id="noReviewsFound">No Reviews Found</p>
+        </div> -->
+
+
+      <div class="card col-12 border-0 p-0 mt-3" *ngIf="ratingreviews">
+        <h4 class="mainheading mt-2 mb-3"><span class="float-left">Client reviews</span></h4>
+        <!-- <span class="float-right"><a
+              (click)="seeMore()">See all</a></span> -->
+      </div>
+      <div class="col-sm-12 allReviewsSection">
+        <div class="col-sm-12 card expert-card p-2 mb-2 " *ngFor="let review of expertReviews">
+          <div class="row">
+            <div class="col-3 align-self-center">
+              <img class="rounded-circle " src="{{ProfileImage}}{{imageUrl}}" alt="Generic placeholder image" width="80"
+                height="80">
+            </div>
+            <div class="col-9">
+              <h4 class="expert-name"><b>{{review.CustomerName}}</b>
+                <span class="expert-star m-0 float-right">
+                  <i [ngClass]="{'starColour': review.Rating >= 1}" class="fa fa-star-o"></i>
+                  <i [ngClass]="{'starColour': review.Rating >= 2}" class="fa fa-star-o"></i>
+                  <i [ngClass]="{'starColour': review.Rating >= 3}" class="fa fa-star-o"></i>
+                  <i [ngClass]="{'starColour': review.Rating >= 4}" class="fa fa-star-o"></i>
+                  <i [ngClass]="{'starColour': review.Rating >= 5}" class="fa fa-star-o "></i> </span>
+              </h4>
+              <p class="expert-about">{{review.Feedback}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="fixed-bottom">
+  <div class="card bg-blue footer-book-btn">
+    <button class="btn btn-orange col-9  align-self-center" data-toggle="modal" data-target="#showBookSlot">
+      Book Your Slot
+    </button>
+  </div>
+</footer>
+
+<div class="modal" id="showBookSlot" style="display: none;">
+  <div class=" modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body ml-4 p-0" style="width:89%">
+        <div class="property_details_form modal_prprty_form">
+          <a type="button" class="close mt-2 mr-3" data-dismiss="modal" >
+            <span aria-hidden="true">X</span>
+          </a>
+          <div class="mt-4 col-md-12">
+            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/3684396 1.png" alt="placeholder image" width="160px" height="160px">
+          </div>
+          <div class="col-md-12">
+
+            <form class="text-center enquiryFormSlot" (ngSubmit)="onFormSubmit()" name="enquiryForm" novalidate>
+              <p>Book Your Slot Here</p>
+              <input type="text" placeholder="  Name" class="dash_enqr_name" name="name" id="name"
+                [(ngModel)]="formData.name" required />
+
+              <input type="number" placeholder="  Mobile Number" class="abt_enqr_number" name="number" id="number"
+                [(ngModel)]="formData.number" required  />
+
+                <input type="text" placeholder="  Set Date and Time" onfocus="this.type='datetime-local'" onblur="this.type='datetime-local'" name="dateTime" id="dateTime" [(ngModel)]="formData.dateTime" required max="9999-12-31T23:59" />
+
+              <button type="submit" class="btn_style gcb_btn">Schedule Meeting</button><br>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+
+  <div class="loaderbody" id="showloader" style="display:none">
+    <div class="box">
+      <div class="loader-20"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div *ngIf="dataloader" class="loaderbody">
+  <div class="loaderbox">
+      <div class="loader-20"></div>
+  </div>
+</div>
+
+<div class="innerheader_position">
+  <app-innerheader></app-innerheader>
+</div>
+<!-- <ng-container *ngComponentOutlet="FooterComponent"></ng-container> -->
+
+
+<!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center property_details_form modal_prprty_form">
+        <div class="mt-4 col-md-12">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span style="font-size: 30px;" aria-hidden="true">&times;</span>
+          </button>
+          <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/3684396 1.svg" alt="placeholder image" width="160px" height="160px">
+        </div>
+        <div class="col-md-12">
+          <form class="text-center enquiryFormSlot" (ngSubmit)="onFormSubmit()" name="enquiryForm" novalidate>
+            <p>Book Your Slot Here</p>
+            <input type="text" placeholder="  Name" class="dash_enqr_name" name="name" id="name"
+              [(ngModel)]="formData.name" required />
+
+            <input type="number" placeholder="  Mobile Number" class="abt_enqr_number" name="number" id="number"
+              [(ngModel)]="formData.number" required />
+
+            <input type="text" placeholder="  Set Date and Time" onfocus="this.type='datetime-local'"
+              onblur="this.type='datetime-local'" name="dateTime" id="dateTime" [(ngModel)]="formData.dateTime" required
+              max="9999-12-31T23:59" />
+
+            <button type="submit" class="btn_style gcb_btn">Schedule Meeting</button><br>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+
+
+
+<!-- <h4>Fill out this one-time form</h4>
+<p class="expert-about">to call and chat with owner</p>
+
+<div class="col-sm-12 card expert-card p-2 my-2 border">
+  <div class="row">
+    <div class="col-3 text-center align-self-center">
+      <img class="rounded-circle "
+        src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+        alt="Generic placeholder image" width="60" height="60">
+    </div>
+    <div class="col-9">
+      <h4 class="expert-name pb-2">{{expertName}}</h4>
+      <p>{{contactNumber}}</p>
+    </div>
+  </div>
+</div> -->
+
+<!-- <form action="javascript:void(0);" class="login-form my-5 px-2" autocomplete="off">
+  <div class="form-input-material">
+    <input type="text" name="username" id="username" placeholder=" " required class="form-control-material" />
+    <label for="username">Name</label>
+  </div>
+  <div class="form-input-material">
+    <input type="email" name="text" id="email" placeholder=" " required class="form-control-material" />
+    <label for="email">Email</label>
+  </div>
+  <div>
+    <select class="no-border">
+      <option>IN +91</option>
+      <option>IN +91</option>
+      <option>IN +91</option>
+      <option>IN +91</option>
+      <option>IN +91</option>
+      <option>IN +91</option>
+    </select>
+    <div class="form-input-material mobilefeild">
+      <input type="number" name="mobileno" id="mobileno" placeholder=" " required class="form-control-material" />
+      <label for="mobileno">Mobile Number</label>
+    </div>
+  </div>
+  <div class="form-check pb-5">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">I Agree to Homes247’s <a href="#"
+        class="text-orange">Terms of Use </a></label>
+  </div>
+  <button type="button" class="btn btn-orange btn-block " data-toggle="modal" data-target="#exampleModalCenter">
+    <i class="fa-brands fa-whatsapp"></i> Chat
+  </button>
+</form> -->
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialogs modal-dialog-centered" role="document">
+    <div class="modal-content contents text-center">
+      <div class="modal-body">
+        <h4>Verify your number</h4>
+        <p class="expert-about pb-4">enter 4-digit verification code send to</p>
+        <span class="expert-about">+91 98765 43210 <i class="fa-solid fa-pencil pl-2"></i></span>
+        <div id='inputs'>
+          <input id='input1' class="otp" type='text' maxLength="1" />
+          <input id='input2' class="otp" type='text' maxLength="1" />
+          <input id='input3' class="otp" type='text' maxLength="1" />
+          <input id='input4' class="otp" type='text' maxLength="1" />
+        </div>
+        <button type="button" class="btn btn-blue btn-block mt-4 white" (click)="loader()"> Verify</button>
+        <p class="text-center"><a>resend OTP</a></p>
+      </div>
+    </div>
+  </div>
+</div> -->

@@ -1,0 +1,811 @@
+<!-- subscription-plan-management.html -->
+
+<!-- ════════════════════════════════════════════════════════════
+     SCREEN 1 — ADD VIEW (Manage Plans / Boost Promo)
+════════════════════════════════════════════════════════════ -->
+@if (addView) {
+<section class="mp-section">
+
+  <!-- <div class="mp-header d-flex align-items-center px-3">
+    <button class="mp-back-btn d-flex align-items-center justify-content-center p-0 mr-2" type="button"
+      aria-label="Go back">
+      <i class="bi bi-chevron-left"></i>
+    </button>
+    <div class="d-flex flex-column justify-content-center">
+      <h1 class="mp-title">Manage Plans</h1>
+      <p class="mp-subtitle">View and manage all your active plans</p>
+    </div>
+  </div> -->
+
+  <div class="mp-banner w-100">
+    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription management/3xmoreViewBanner.svg"
+      alt="3X More Views & Faster Leads" class="img-fluid w-100" />
+    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription management/3xBackBtn.svg"
+      style="width: 30px;" height="30px" width="30px" (click)="xBackBtn()" alt="3xBackBtn" class="xBackBtn" />
+  </div>
+
+  <div class="mp-perks px-3 pt-3 unlock-gradient-border">
+    <div class="d-flex align-items-center mb-2">
+      <div class="mp-perks-heading mr-2">Unlock Exclusive Perks!</div>
+      <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription management/3xExclusiveSpark.svg"
+        alt="star" class="mp-star" />
+    </div>
+    <ul class="list-unstyled mb-4">
+      <li class="d-flex align-items-center">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription management/3xPointsTick.svg"
+          alt="3xPointsTick" class="mp-benefit-icon mr-1" />
+        <span class="mp-benefit-text">Your Property Appears At The Top Of Search Results</span>
+      </li>
+      <li class="d-flex align-items-center">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription management/3xPointsTick.svg"
+          alt="3xPointsTick" class="mp-benefit-icon mr-1" />
+        <span class="mp-benefit-text">Get Up To 3x More Views From Buyers &amp; Renters</span>
+      </li>
+      <li class="d-flex align-items-center">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription management/3xPointsTick.svg"
+          alt="3xPointsTick" class="mp-benefit-icon mr-1" />
+        <span class="mp-benefit-text">Attract Genuine Leads Quickly</span>
+      </li>
+      <li class="d-flex align-items-center">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription management/3xPointsTick.svg"
+          alt="3xPointsTick" class="mp-benefit-icon mr-1" />
+        <span class="mp-benefit-text">Stand Out With A "Featured" Tag</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="mp-boost-card-Div">
+    <div class="mp-boost-card d-flex align-items-end justify-content-between p-3" style="position: relative;">
+      <div class="flex-grow-1 pr-2 mb-3">
+        <h3 class="mp-boost-heading">
+          Boost Your Property For <span class="mp-boost-days">7 Days</span>
+        </h3>
+        <p class="mp-boost-desc">
+          Get Featured Placement, More Views And Quality Buyer Enquiries
+        </p>
+      </div>
+      <div class="mp-img-placeholder flex-shrink-0"><img
+          src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription management/7DaysBoostBannerImage.svg"
+          alt="7DaysBoostBannerImage"></div>
+    </div>
+    <div class="mp-action-bar d-flex align-items-center px-2">
+      <div class="mp-inner-box d-flex align-items-center justify-content-between px-2 w-100">
+        <div class="d-flex flex-column justify-content-center">
+          <span class="mp-price">&#8377;19 Only</span>
+          <span class="mp-price-label">7 Days Boost</span>
+        </div>
+        <button class="mp-cta-btn btn" type="button" (click)="onAddBoostProperty()">
+          Boost My Property Now
+        </button>
+      </div>
+    </div>
+  </div>
+
+</section>
+}
+
+<!-- ════════════════════════════════════════════════════════════
+     SCREEN 2 — SELECT PROPERTIES
+════════════════════════════════════════════════════════════ -->
+@if (propertiesForBoost) {
+<div class="selProp__page-wrapper">
+
+  <div class="selProp__header d-flex align-items-center px-3">
+    <button class="selProp__header-back-btn d-flex align-items-center justify-content-center mr-2" type="button"
+      aria-label="Go back" (click)="goBack()">
+      <img
+        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription management/selectPropertiesBackBtn.svg"
+        alt="selectPropertiesBackBtn" height="14px" width="14px">
+
+    </button>
+    <h1 class="selProp__header-title flex-grow-1 text-center">Select Properties</h1>
+    <div style="width:32px;"></div>
+  </div>
+
+  <div class="selProp__scroll-body">
+
+    <!-- Category toggle -->
+    <div class="d-flex justify-content-center pt-3 pb-2">
+      <div class="selProp__category-toggle position-relative d-flex align-items-center">
+        <div class="selProp__category-pill position-absolute" [style.transform]="'translateX(' + activePillX + 'px)'"
+          [style.width.px]="pillWidth"></div>
+        @for (cat of categories; track cat; let i = $index) {
+        <button class="selProp__category-tab position-relative"
+          [class.selProp__category-tab--active]="activeCategory === i" (click)="setCategory(i)" type="button">{{ cat
+          }}</button>
+        }
+      </div>
+    </div>
+
+    <!-- Property cards list -->
+    <div class="selProp__cards-list px-3 pb-3">
+      @for (prop of filteredProperties;track prop.property_id) {
+      <div class="selProp__property-card" [class.selProp__property-card--selected]="prop.selected"
+        (click)="toggleSelect(prop)">
+
+        <div class="selProp__image-wrapper">
+          @if(prop.coverImagePath != null && prop.coverImagePath != '') {
+          <img class="selProp__image" [src]="prop.coverImagePath" [alt]="prop.coverimage" />
+          } @else {
+          <img class="selProp__image"
+            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image_New.jpg"
+            alt="priceOnRequestListing" />
+          }
+          <div class="selProp__action-icons">
+            <div class="selProp__icon-placeholder selProp__icon-like"><img
+                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/eliteWishList.svg"
+                alt="eliteWishList"></div>
+            <div class="selProp__icon-placeholder selProp__icon-share"><img
+                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/eliteShare.svg"
+                alt="eliteShare"></div>
+          </div>
+          <div class="selProp__overlay">
+            <div class="selProp__overlay-left">
+              @if (prop.property_type) {
+              <span class="selProp__overlay-text">{{ prop.bhk }} {{ prop.property_type }}</span>
+              }
+              @if (prop.property_type && prop.square_feet) {
+              <span class="selProp__divider"></span>
+              }
+              @if (prop.square_feet) {
+              <span class="selProp__overlay-text">{{ prop.square_feet }}</span>
+              }
+            </div>
+            @if (prop.total_image_count) {
+            <div class="selProp__overlay-right">
+              <span class="selProp__overlay-date">01/{{ prop.total_image_count }}</span>
+              <div class="selProp__gallery-icon"><img
+                  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/eliteImageCount.svg"
+                  alt="eliteGallery"></div>
+            </div>
+            }
+          </div>
+        </div>
+
+        <div class="selProp__content">
+          <h3 class="selProp__title text-truncate">{{ prop.property_name }}</h3>
+          <p class="selProp__location">{{prop.localityName}}, {{ prop.cityName }}</p>
+        </div>
+
+      </div>
+      } @empty {
+      <div class="selProp__empty d-flex flex-column align-items-center justify-content-center py-5">
+        <i class="bi bi-building" style="font-size: 36px; color: #ccc;"></i>
+        <p style="font-size: 13px; color: #999; margin-top: 8px;">No verified properties in this category</p>
+      </div>
+      }
+    </div>
+
+  </div>
+
+  <!-- Fixed bottom summary bar -->
+  <div class="selProp__summary-bar d-flex flex-column align-items-center justify-content-center px-3">
+    <div class="d-flex align-items-center justify-content-between w-100 mb-2">
+      <div class="d-flex align-items-baseline" style="gap:3px;">
+        <span class="selProp__summary-prop-label">Properties</span>
+        <span class="selProp__summary-multiply-sign">x</span>
+        <span class="selProp__summary-selected-count">{{ selectedCount }}</span>
+      </div>
+
+    </div>
+    <button class="selProp__proceed-btn w-100" type="button" (click)="proceedToConfigure()">
+      Proceed To Configure
+    </button>
+  </div>
+
+</div>
+}
+
+
+<!-- ════════════════════════════════════════════════════════════
+     SCREEN 3 — PROPERTY BOOST SETTINGS
+════════════════════════════════════════════════════════════ -->
+@if ((showBoostSettings || showEditBoostSettings) && currentPage === 'boost') {
+<div class="pb__page-wrapper">
+
+  <div class="pb__header d-flex align-items-center px-3">
+    <button class="pb__header-back" type="button" aria-label="Go back"
+      (click)="showEditBoostSettings ? backToActiveBoosted() : backToSelectProperties()">
+      <img
+        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription management/selectPropertiesBackBtn.svg"
+        alt="selectPropertiesBackBtn" height="14px" width="14px">
+    </button>
+    <h1 class="pb__header-title flex-grow-1 text-center">Property boost settings</h1>
+    <div style="width:32px;"></div>
+  </div>
+
+  <div class="pb__scroll-body">
+
+    <!-- Boost property cards -->
+    @for (prop of showEditBoostSettings ? editBoostedList : boostedList; track prop.id; let i = $index) {
+
+    <div class="pb__boost-card">
+      <p class="pb__subtitle">Choose your budget and campaign duration</p>
+
+      <div class="pb__prop-row d-flex align-items-center">
+        <div class="pb__prop-img-wrap">
+          @if (prop.image) {
+          <img [src]="prop.image" [alt]="prop.title" class="pb__prop-img" />
+          } @else {
+          <div class="pb__prop-img-placeholder">
+            <img class="bi bi-building" width="100%"
+              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image_New.jpg"
+              alt="priceOnRequestListing" />
+          </div>
+          }
+        </div>
+        <div class="pb__prop-info ml-2">
+          <div class="pb__prop-title">{{ prop.title }}</div>
+          <div class="pb__prop-loc">{{ prop.location }}</div>
+        </div>
+
+      </div>
+      <button class="pb__remove-btn" type="button" (click)="removeProperty(i)">
+        Remove &nbsp; <img
+          src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/removePropertyIcon.svg"
+          alt="Remove Property Icon" />
+      </button>
+      <div class="pb__controls d-flex align-items-end justify-content-between">
+        <div class="pb__field">
+          <label class="pb__field-label">Set Budget</label>
+          <div class="pb__budget-wrap">
+            <span class="pb__currency">₹</span>
+            <input class="pb__budget-input" type="number" [value]="prop.budget" [min]="prop.minBudget ?? 150"
+              (change)="onBudgetChange(i, $event)" (input)="onBudgetChange(i, $event)" />
+          </div>
+        </div>
+
+        <div class="pb__field ml-3">
+          <label class="pb__field-label">Set Duration (days)</label>
+          <div class="pb__stepper d-flex align-items-center">
+            <button class="pb__step-btn-left" type="button" [disabled]="prop.days <= 1" (click)="changeDays(i, -1)"><img
+                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/removeDurationDaysIcon.svg"
+                alt="removeDurationDaysIcon"></button>
+            <span class="pb__step-val">{{ prop.days }}</span>
+            <button class="pb__step-btn-right" type="button" [disabled]="prop.days >= 30"
+              (click)="changeDays(i, 1)"><img
+                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/addDurationDaysIcon.svg"
+                alt="addDurationDaysIcon"></button>
+          </div>
+        </div>
+
+        <!-- <div class="pb__field ml-auto">
+              <label class="pb__field-label">Total</label>
+              <span class="pb__total-val">₹{{ prop.budget * prop.days }}</span>
+            </div> -->
+      </div>
+
+      <div class="pb__checkbox-row d-flex align-items-center mb-3 mt-2">
+        <!-- <input class="pb__checkbox" type="checkbox" [id]="'chk' + i" [(ngModel)]="prop.checked" /> -->
+        <input type="checkbox" class="pb__checkbox-input" [id]="'chk' + i" [(ngModel)]="prop.checked"
+          [disabled]="prop.checkboxDisabled ?? false" (ngModelChange)="onCheckboxChange(i)" />
+        <label class="pb__checkbox-label" [for]="'chk' + i">
+          Boost property at ₹{{ prop.budget }}/day
+          @if (prop.checked) {
+          <span> — Total: ₹{{ prop.budget * prop.days }}</span>
+          }
+        </label>
+
+        @if (prop.budgetError) {
+        <span class="pb__budget-error">
+          {{ showEditBoostSettings
+          ? 'Cannot reduce below ₹' + (prop.originalBudget ?? prop.minBudget ?? 150)
+          : 'Minimum budget is ₹' + (prop.minBudget ?? 150)
+          }}
+        </span>
+        }
+      </div>
+
+      @if (showEditBoostSettings) {
+      <div class="pb__payable-row">
+
+
+        <span class="pb__payable-label">Payable: </span>
+        <span class="pb__payable-amount" [class.pb__payable-amount--zero]="prop.payableAmount === 0">
+          ₹{{ prop.payableAmount }}
+        </span>
+      </div>
+      }
+
+    </div>
+    }
+
+    <!-- Add more property -->
+    <div class="d-flex justify-content-end my-2">
+      <button class="pb__add-btn" type="button" (click)="openBottomSheet()">
+        <img
+          src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/addMoreBoostProperty.svg"
+          alt="selectPropertyIcon" /> Add more Property
+      </button>
+    </div>
+
+    <!-- Alerts -->
+    <!-- @for (alert of alerts; track alert) {
+    <div class="pb__alert d-flex align-items-center">
+      <i class="bi bi-exclamation-triangle-fill pb__alert-icon"></i>
+      <span class="pb__alert-text">{{ alert }}</span>
+    </div>
+    } -->
+
+  </div>
+
+  <!-- Toast notification -->
+  @if (toastVisible) {
+  <div class="pb__toast d-flex align-items-center" [class.pb__toast--good]="toastType === 'good'"
+    [class.pb__toast--warn]="toastType === 'warn'">
+    @if (toastType === 'warn') {
+    <i class="bi bi-exclamation-triangle-fill pb__toast-icon mr-2"></i>
+    } @else {
+    <i class="bi bi-check-circle-fill pb__toast-icon mr-2"></i>
+    }
+    <span class="pb__toast-text"><img
+        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription management/triangleWarningIcon.svg"
+        alt="triangleWarningIcon" width="14" height="14" /> {{ toastMessage }}</span>
+  </div>
+  }
+  <div class="pb__footer">
+    <p class="pb__footer-summary">{{ (showEditBoostSettings ? editBoostedList : boostedList).length }} Property
+      Configured</p>
+
+    <div class="pb__cta d-flex justify-content-center">
+      <button class="pb__cta-btn" type="button" [disabled]="hasEditError" (click)="goToReview()">
+        {{ showEditBoostSettings ? (editTotalPayable > 0 ? 'Review Upgrade ₹' + editTotalPayable : 'Update Boost ') :
+        'Proceed &amp; Continue' }}
+      </button>
+    </div>
+  </div>
+  <!-- Bottom sheet — Add property (multi-select, only unboosted shown) -->
+  @if (sheetOpen) {
+  <div class="pb__bs-overlay" (click)="onOverlayClick($event)">
+    <div class="pb__bs-sheet">
+      <div class="pb__bs-handle mx-auto"></div>
+      <h2 class="pb__bs-title text-center">Boost Property</h2>
+      <p class="pb__bs-sub text-center">Set the boost duration as per your wish</p>
+      <hr class="pb__bs-divider" />
+
+      <div class="pb__bs-list">
+        @for (prop of showEditBoostSettings ? editUnboostedProperties : unboostedProperties; track prop.id ??
+        prop.property_id) {
+        <div class="pb__bs-row d-flex align-items-center"
+          [class.pb__bs-row--selected]="isSheetSelected(prop.id ?? prop.property_id)"
+          (click)="toggleSheetSelect(prop.id ?? prop.property_id)">
+          <div class="pb__bs-img-wrap">
+            @if (prop.image || prop.coverImage) {
+            <img [src]="prop.image || prop.coverImage" [alt]="prop.title || prop.property_name" class="pb__bs-img" />
+            } @else {
+            <div class="pb__bs-img-placeholder"><i class="bi bi-building"></i></div>
+            }
+          </div>
+          <div class="pb__bs-info ml-2">
+            <div class="pb__bs-prop-title">{{ prop.title || prop.property_name }}</div>
+            <div class="pb__bs-prop-loc">{{ prop.location || prop.localityName }}</div>
+            @if (showEditBoostSettings) {
+            <div class="pb__bs-prop-loc">₹{{ prop.boostedPrice }} · {{ prop.daysLeft }} days left</div>
+            }
+          </div>
+          <div class="pb__bs-tick ml-auto" [class.pb__bs-tick--checked]="isSheetSelected(prop.id ?? prop.property_id)">
+            @if (isSheetSelected(prop.id ?? prop.property_id)) {
+            <img
+              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/selectPropertyIcon.svg"
+              alt="selectPropertyIcon" class="pb__bs-tick ml-auto" />
+            }
+          </div>
+        </div>
+        } @empty {
+        <p class="pb__bs-empty">All properties have been added!</p>
+        }
+      </div>
+
+      <button class="pb__bs-add-btn w-100" type="button" (click)="addFromSheet()">
+        Add Selected ({{ sheetSelected.size }})
+      </button>
+    </div>
+  </div>
+  }
+
+</div>
+}
+
+
+<!-- ════════════════════════════════════════════════════════════
+     SCREEN 4 — REVIEW ORDER
+════════════════════════════════════════════════════════════ -->
+@if ((showBoostSettings || showEditBoostSettings) && currentPage === 'review') {
+<div class="pb__page-wrapper">
+
+  <div class="pb__header d-flex align-items-center px-3">
+    <button class="pb__header-back" type="button" aria-label="Go back" (click)="backToBoostSettings()">
+      <img
+        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription management/selectPropertiesBackBtn.svg"
+        alt="selectPropertiesBackBtn" height="14px" width="14px">
+    </button>
+    <h1 class="pb__header-title flex-grow-1 text-center">Review order</h1>
+    <div style="width:32px;"></div>
+  </div>
+
+  <div class="pb__scroll-body">
+    <!-- <p class="pb__subtitle" style="margin-bottom:12px;">Confirm your boost order</p> -->
+
+    @for (prop of showEditBoostSettings ? editBoostedList : boostedList; track prop.id) {
+    <div class="pb__ro-card d-flex align-items-center mx-auto">
+      <div class="pb__ro-img-wrap">
+        @if (prop.image) {
+        <img [src]="prop.image" [alt]="prop.title" class="pb__ro-img" />
+        } @else {
+        <div class="pb__ro-img-placeholder">
+          <i class="bi bi-building"></i>
+        </div>
+        }
+      </div>
+      <div class="pb__ro-info ml-2 flex-grow-1">
+        <div class="pb__ro-title  text-truncate">{{ prop.title }}</div>
+        <div class="pb__ro-loc">{{ prop.location }}</div>
+        <div class="pb__ro-price">₹{{ prop.checked? prop.budget + '/day' : prop.budget }}</div>
+        <div class="pb__ro-days">{{ prop.days }} Days</div>
+
+      </div>
+      <!-- <div class="pb__ro-right text-right ml-2">
+       
+      </div> -->
+    </div>
+    }
+
+    <div class="pb__ro-summary mx-auto">
+      <div class="pb__ro-summary-title">Order Summary</div>
+
+      @for (prop of showEditBoostSettings ? editBoostedList : boostedList; track prop.id) {
+      <div class="pb__ro-summary-row d-flex justify-content-between">
+        <span class="pb__ro-summary-label">{{ prop.title }}</span>
+        <span class="pb__ro-summary-val">
+          ₹{{ showEditBoostSettings ? (prop.payableAmount ?? 0) : (prop.checked ? prop.budget * prop.days : prop.budget)
+          }}.00
+        </span>
+      </div>
+      }
+
+      <div class="pb__ro-summary-row d-flex justify-content-between">
+        <span class="pb__ro-gst-label">GST (18%)</span>
+        <span class="pb__ro-gst-val">₹{{ showEditBoostSettings ? editGstAmount : gstAmount }}.00</span>
+      </div>
+
+      <hr class="pb__ro-divider" />
+
+      <div class="pb__ro-summary-row d-flex justify-content-between">
+        <span class="pb__ro-total-label">Total</span>
+        <span class="pb__ro-total-val">₹{{ showEditBoostSettings ? editTotalPayable : totalAmount }}.00</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="pb__cta d-flex justify-content-center">
+    <button class="pb__cta-btn" type="button"
+      (click)="showEditBoostSettings ? proceedToEditPayment() : proceedToPayment()">
+      {{ showEditBoostSettings ? 'Pay ₹' + editTotalPayable : 'Pay ₹' + totalAmount }}
+    </button>
+  </div>
+
+</div>
+}
+
+
+<!-- ════════════════════════════════════════════════════════════
+     SCREEN 5 — PLAN VIEW (Manage Plans dashboard)
+════════════════════════════════════════════════════════════ -->
+@if (planView) {
+<section class="manage-plans-section">
+
+  <div class="mp-header">
+    <span class="mp-header-back" (click)="goBack()"><img
+        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/3xmoreViewBannerBackBtn.svg"
+        alt="3xmoreViewBannerBackBtn"></span>
+    <div class="mp-header-text">
+      <span class="mp-header-title">Manage Plans</span>
+      <span class="mp-header-sub">View and manage all your active plans</span>
+    </div>
+  </div>
+
+  <div class="mp-body">
+
+    <div class="mp-summary-card mb-2">
+      <div class="mp-summary-left">
+        <div class="mp-crown-wrap">
+          <img
+            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription management/managePlansCrown.svg"
+            alt="Crown" class="mp-crown-img" />
+        </div>
+        <div class="mp-summary-counts">
+          <span class="mp-summary-label">Total Active Plans</span>
+          <span class="mp-summary-value">{{ totalSubscriptions }}</span>
+        </div>
+      </div>
+      <div class="mp-summary-divider"></div>
+      <div class="mp-summary-right">
+        <span class="mp-renewal-label">Next Renewal</span>
+        <span class="mp-renewal-date">{{ userSubscribedPlansExpiry?.expiryDate | date:'MMM dd, yyyy' }}</span>
+        <span class="mp-renewal-plan">{{ userSubscribedPlansExpiry?.eliteUserType }} Plan</span>
+      </div>
+    </div>
+
+    <div class="mp-section-title mb-2">Your Active Plans</div>
+
+    <div class="mp-plans-list">
+
+      @for (plan of activePlans; track plan.title) {
+      @if (plan.eliteUserId != '3') {
+      <div class="mp-plan-card mb-2" [ngClass]="{
+    'relax_max': plan.eliteUserPlanID == '3',
+    'relax_plus': plan.eliteUserPlanID == '2',
+    'relax': plan.eliteUserPlanID == '1',
+    'free_relax_plan': plan.eliteUserPlanID == '0',
+  }">
+
+        <div class="mp-plan-left">
+          <div class="mp-plan-title-row">
+            <span class="mp-plan-title">{{ plan.eliteUserType }}</span>
+            <span class="mp-active-chip">
+              <span class="mp-active-dot"></span>
+              <span class="mp-active-text">{{ plan.subscriptionStatus }}</span>
+            </span>
+          </div>
+          <span class="mp-type-chip">{{ plan.eliteUserPlan }}</span>
+          <div class="mp-meta-row mt-1">
+            <span class="mp-meta-icon"><img height="10" width="10"
+                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/planDaysLeft.svg"
+                alt=""></span>
+            <span>{{ plan.planExpiry }} days</span>
+          </div>
+          <div class="mp-meta-row">
+            <span class="mp-meta-icon"><img height="10" width="10"
+                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/planValidity.svg"
+                alt=""></span>
+            <span>Valid till&nbsp;</span>
+            <span class="mp-valid-date">{{ plan.expiryDate | date:'MMM dd, yyyy' }}</span>
+          </div>
+        </div>
+
+        <div class="mp-plan-right">
+          <span class="mp-contacts-label">Contacts Used</span>
+          <div class="mp-contacts-row" (click)="goToRecharge(plan.eliteUserId)">
+            <div class="flex-grow-1">
+              <span class="mp-contacts-value">{{ plan.usedCredits }} of {{ plan.totalCredits }}</span>
+              <div class="mp-progress-track">
+                <div class="mp-progress-fill" [style.width]="plan.progressWidth + '%'"></div>
+              </div>
+            </div>
+            <img
+              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/planRightArrow.svg"
+              alt="">
+          </div>
+          <span class="mp-remain-text">{{ plan.pendingCredits }} more contacts remaining</span>
+          @if(plan.isMaxUser == '1') {
+          <button class="mp-renew-btn" (click)="onRenewPlan(plan.eliteUserId)">Renew Plan</button>
+          } @else {
+          <button class="mp-renew-btn" routerLink="/homes-elite" [fragment]="plan.eliteUserId">Upgrade Plan</button>
+          }
+        </div>
+
+      </div>
+      }
+      }
+
+    </div>
+
+
+
+    <!-- Pending plans wrapper SECOND -->
+    <div class="mp-upcoming-wrapper" [class.mp-upcoming-wrapper--open]="showUpcomingPlans">
+      <p class="mp-section-title mb-2">Upcoming Plans</p>
+      @for (plan of pendingPlans; track $index) {
+      <div class="mp-plan-card mb-2" [ngClass]="{
+    'relax_max': plan.eliteUserId == '3',
+    'relax_plus': plan.eliteUserId == '2',
+    'relax': plan.eliteUserId == '1'
+  }">
+
+        <div class="mp-plan-left">
+          <div class="mp-plan-title-row">
+            <span class="mp-plan-title">{{ plan.eliteUserType }}</span>
+            <span class="mp-active-chip">
+              <span class="mp-active-dot"></span>
+              <span class="mp-active-text">{{ plan.subscriptionStatus }}</span>
+            </span>
+          </div>
+          <span class="mp-type-chip">{{ plan.eliteUserPlan }}</span>
+        </div>
+
+        <div class="mp-plan-right">
+          <span class="mp-contacts-label">Contacts Used</span>
+          <div class="mp-contacts-row">
+            <div class="flex-grow-1">
+              <span class="mp-contacts-value">{{ plan.usedCredits }} of {{ plan.totalCredits }}</span>
+              <div class="mp-progress-track">
+                <div class="mp-progress-fill" [style.width]="plan.progressWidth + '%'"></div>
+              </div>
+            </div>
+          </div>
+          <span class="mp-remain-text">{{ plan.pendingCredits }} more contacts remaining</span>
+        </div>
+
+      </div>
+      }
+      <p class="mp-upcoming-plan">These Plans will get activated once the existing plan expires or all credits are used.
+      </p>
+    </div>
+
+    <!-- Plans In Queue button FIRST -->
+    @if (pendingPlans.length > 0) {
+    <div class="d-flex justify-content-end px-3 mb-2">
+      <button class="mp-upcoming-btn" type="button" (click)="showUpcomingPlans = !showUpcomingPlans">
+        {{ showUpcomingPlans ? 'Hide Queue' : 'Plans In Queue' }}
+        <img
+          src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/homesEliteFAQDropDown.svg"
+          alt="Toggle" class="toggle-icon" [class.rotate]="showUpcomingPlans">
+      </button>
+    </div>
+    }
+
+    <div class="mp-boosting-card">
+      <div class="mp-boost-header">
+        <span class="mp-boost-title">Property Boost</span>
+        <button class="mp-add-boost-btn" (click)="onAddBoostProperty()">
+          <img
+            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/addBoostProperty.svg"
+            alt="Add Boost Property">
+          Add Boost Property
+        </button>
+      </div>
+
+      <div class="mp-prop-list">
+        @for (prop of boostedPropertiesList; track prop.property_id; let last = $last) {
+        <div class="mp-prop-row" [class.mp-prop-row-last]="last">
+          <div class="mp-prop-left">
+            <div class="mp-prop-title-row">
+              <span class="mp-prop-name">{{ prop.property_name }}</span>
+              <span class="mp-badge" [class]="'mp-badge mp-badge-' + prop.status">
+                <span class="mp-badge-dot"></span>
+                <span class="mp-badge-text">{{ prop.status === 'active' ? 'Active' : 'Expired' }}</span>
+              </span>
+            </div>
+            <span class="mp-prop-location">{{ prop.cityName }}</span>
+          </div>
+          @switch (prop.status) {
+          @case ('active') {
+          <span class="mp-prop-days-left">{{ prop.daysLeft }} Days Left</span>
+          }
+          @case ('pending') {
+          <button class="mp-prop-renew-btn" (click)="onRenewBoostedProperty(prop)">Renew</button>
+          }
+          }
+        </div>
+        }
+      </div>
+    </div>
+
+  </div>
+</section>
+}
+
+
+
+<!-- ════════════════════════════════════════════════════════════
+     SCREEN 6 — ACTIVE BOOSTED PROPERTIES
+════════════════════════════════════════════════════════════ -->
+
+
+@if (activeBoostedView) {
+
+<div class="active-props__page-wrapper">
+
+  <div class="active-props__header">
+    <button class="active-props__back-btn" type="button" (click)="goBack()">
+      <img
+        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/3xmoreViewBannerBackBtn.svg"
+        alt="back" />
+    </button>
+    <div class="active-props__header-text">
+      <span class="active-props__title">Active Properties</span>
+      <span class="active-props__subtitle">Track all property owner contact unlocked</span>
+    </div>
+  </div>
+
+  <div class="active-props__scroll-body">
+    @for (prop of boostedPropertiesList; track prop.property_id) {
+    <div class="active-props__card mb-2" [class.active-props__card--selected]="isBoostSelected(prop.property_id)">
+
+      <div class="active-props__card-main">
+        <div class="active-props__img-wrap">
+          @if (prop.coverImage) {
+          <img class="active-props__img" [src]="prop.coverImagePath" [alt]="prop.property_name" />
+          } @else {
+          <img class="active-props__img"
+            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image_New.jpg"
+            alt="no image" />
+          }
+        </div>
+
+        <div class="active-props__info">
+          <span class="active-props__name">{{ prop.property_name }}</span>
+          <span class="active-props__location">{{ prop.localityName }}{{ prop.localityName && prop.cityName ? ', ' : ''
+            }}{{ prop.cityName }}</span>
+          <span class="active-props__status-chip" [class.active-props__status-chip--active]="prop.status === 'active'"
+            [class.active-props__status-chip--expired]="prop.status === 'pending'">
+            <span class="active-props__status-dot"></span>
+            {{ prop.status === 'active' ? 'Active' : 'Expired' }}
+          </span>
+        </div>
+
+        <div class="active-props__right">
+          @if (prop.status === 'active') {
+          <span class="active-props__days-left">{{ prop.daysLeft }} Days Left</span>
+          } @else {
+          <button class="active-props__renew-btn" type="button" (click)="onRenewBoostedProperty(prop)">Renew</button>
+          }
+        </div>
+      </div>
+
+      <div class="active-props__select-strip" (click)="toggleBoostSelect(prop.property_id)">
+        @if (isBoostSelected(prop.property_id)) {
+        <div class="active-props__selected-icon"></div>
+        } @else {
+        <div class="active-props__unselected-icon"></div>
+        }
+        <span class="active-props__select-label">
+          {{ isBoostSelected(prop.property_id) ? 'Selected' : 'Tap To Select' }}
+        </span>
+      </div>
+
+    </div>
+    } @empty {
+    <!-- <div class="active-props__empty">
+      <i class="bi bi-building"></i>
+      <p>No boosted properties found</p>
+    </div> -->
+
+
+    <div class="emptyStateContainer">
+
+      <div class="iconBadge">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+          style="width: 32px; height: 32px;">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+        </svg>
+      </div>
+
+      <h3 class="emptyStateTitle">No Boosted Properties Found</h3>
+      <p class="emptyStateDesc">Boost your listings to appear at the top of local searches and unlock direct owner
+        connection panels instantly.</p>
+
+      <div class="boostCtaCard">
+        <span class="recommendedBadge">Recommended</span>
+        <h4 class="cardTitle">Ready to close deals faster?</h4>
+        <p class="cardText">Select one of your active properties to boost its visibility by up to 10x.</p>
+
+        <button class="boostBtn" (click)="onAddBoostProperty()">Boost a Property Now</button>
+      </div>
+
+    </div>
+    }
+  </div>
+
+  @if (selectedBoostCount > 0) {
+  <div class="active-props__footer">
+    <button class="active-props__proceed-btn w-100" type="button" (click)="proceedToEditBoost()">
+      Edit Selected ({{ selectedBoostCount }})
+    </button>
+  </div>
+  }
+
+</div>
+
+}
+
+<!-- CSS-Loader -->
+@if (otploader) {
+<div class="loaderbody">
+  <div class="box">
+    <div class="loader-20"></div>
+  </div>
+</div>
+}
+<!-- CSS-Loader -->

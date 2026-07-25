@@ -1,0 +1,109 @@
+<div *ngIf="ReviewPageView" class="reviewPostionPage">
+    <div class="modal-header">
+        <div class="col-12 p-0">
+            <div class="row">
+                <div class="col-1 pr-0 pl-1" (click)="showReviewModel();removeHashTag()">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </div>
+                <div class="col-11 pl-0 text-center">
+                    <h3 class="reviewHeadingView">Write Your Review For {{propName}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="container">
+            <form>
+                <div class="row">
+                    <div class="">
+                        <div class="row mt-2 mb-2">
+                            <div class="col-7 mt-2">
+                                <p class="ratingtitle">Rating</p>
+                            </div>
+                            <div class="col-5 float-right">
+                                <div class="rating" id="ratingSection">
+                                    <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                                    <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
+                                    <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                                    <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+                                    <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                                </div>
+                            </div>
+                        </div>
+                        <textarea class="postTextArea" placeholder="Write review" name="review" rows="4" cols="50" [(ngModel)]="reviewDetails"></textarea>
+                        <div class="col-12 mb-2 mt-2 text-center">
+                            <button class="col-6 btn review-btn" (click)="OnCommentUpdate()">Submit Review</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+<div *ngIf="Visiblebrochure">
+    <ng-container *ngComponentOutlet="otpValidationComponent"></ng-container>
+  </div>
+</div>
+
+
+<!-- CSS-Loader -->
+<div *ngIf="otploader" class="loaderbody">
+    <div class="box">
+        <div class="loader-20"></div>
+    </div>
+</div>
+<!-- CSS-Loader -->
+
+
+
+<div class="showLoginView loginPostionPage" *ngIf="LoginView">
+    <div class="col-sm-12 text-center" style="padding: 1rem;">
+        <img class="loginModelImg" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/logo/Homes247_NewBlack_Logo.png" alt="Homes247_NewBlack_Logo.png">
+        <!-- <p class="loginModelText">Best Innovative Realestate Website of the year and most trusted brand.</p> -->
+        <button (click)="close()" type="button" class="close" data-bs-dismiss="modal">&times;</button>
+      </div>
+    <div class="modal-body">
+        <div class="container log">
+            <div class="">
+                <h5 class="underline-1">Verify Your Number</h5>
+            </div>
+            <div class="maindiv">
+                <form>
+                    <div class="input-cont">
+                        <input autocomplete="off" type="number" id="loginmobile" name="mobile" placeholder="Mobile Number" [(ngModel)]="user.number" maxlength="10">
+                        <div class="border1"></div>
+                    </div>
+                    <div class="clear"></div>
+                    <button id="one" (click)="loginotpsend()">Send OTP</button>
+                    <button #cancel hidden type="button" data-dismiss="modal" style="display: none;"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--OTP-MODAL-->
+    <div id="modal-container4">
+        <div class="modal-background">
+          <div class="modal">
+            <form name="otpForm" novalidate>
+              <div class="col-sm-12 text-center">
+                <img class="loginModelImg" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/logo/Homes247_NewBlack_Logo.png" alt="Homes247_NewBlack_Logo.png">
+                <p class="loginModelText">Best Innovative Realestate Website of the year and most trusted brand.</p>
+            </div>
+              <h5 class="loginModelText1 mb-4">Enter the 4 digit Verification Code sent on {{user.number}}<a style="color: blue;" (click)="goback4()"> -
+                Edit</a></h5>
+                <div class="col-12 countdown_maindiv">
+                  <countdown #cd1 [config]="countdownconfig" (event)="handleEvent($event)"></countdown>
+                </div>
+              <input hidden autocomplete="off" type="text" placeholder="OTP" name="otp" id="loginotp"
+                     [(ngModel)]="user.otp" required/>
+              <ng-otp-input class="otpinput mt-3" #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config">
+              </ng-otp-input>
+              <button (click)="otpvalidatelogin()" class="btn btn-dark mobileLogButton">Validate OTP</button>
+              <p class="otpexpireclass" *ngIf="otpexpired">OTP Expired - <a style="color: blue;" (click)="loginotpsend()">Resend</a></p>
+              <button type="reset" id="btn_reset" style="display: none;"></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    <!--OTP-MODAL-->
+</div>

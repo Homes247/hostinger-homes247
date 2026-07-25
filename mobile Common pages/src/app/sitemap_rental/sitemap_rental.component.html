@@ -1,0 +1,340 @@
+    <div class="innerheader_position">
+      <app-innerheader></app-innerheader>
+    </div>
+<div class="main_div">
+    <!-- <div class="container">
+        <div class="col-md-12">
+            <div class="priority_page">
+                <div class="citylist row">
+                    <p class="col-md-4 borderclass" *ngFor="let autodata of completedata">
+                        <a href="https://www.homes247.in/blogs/{{autodata.url | cleanUrl}}-{{autodata.id | cleanUrl}}">{{autodata.name}}</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4" *ngFor="let cityname of completedata">
+                <div class="col-md-12 sectionTwo">
+                    <div class="row">
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/house-for-rent-in-{{ cityname.city | cleanUrl }}"
+                                title="Properties for Rent in {{ cityname.city }} | Rent a House in {{ cityname.city }}"
+                                rel="bookmark">
+                                Properties for Rent in {{ cityname.city }}
+                            </a>
+                        </div>
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/flats-for-rent-in-{{ cityname.city | cleanUrl }}"
+                                title="Flats for Rent in {{ cityname.city }} | Apartments for Rent in {{ cityname.city }} | Homes247.in"
+                                rel="bookmark">
+                                Flats for Rent in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/villas-for-rent-in-{{ cityname.city | cleanUrl }}"
+                                title="Villas for Rent in {{ cityname.city }} | Luxury Villas in {{ cityname.city }} | Homes247.in"
+                                rel="bookmark">
+                                Villas for Rent in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/plots-for-rent-in-{{ cityname.city | cleanUrl }}"
+                                title="Land for Rent in {{ cityname.city }} | Commercial Plots & Agricultural Land | Homes247.in"
+                                rel="bookmark">
+                                Land for Rent in {{ cityname.city }}
+                            </a>
+                        </div>
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/flats-for-rent-in-{{ cityname.city | cleanUrl }}-price-under-10000"
+                                title="Flats for Rent Under ₹10,000 in {{cityname.city}}" rel="bookmark">
+                                Flats for Rent Under ₹10,000 in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/flats-for-rent-in-{{ cityname.city | cleanUrl }}-price-10000-to-20000"
+                                title="Flats for Rent in {{cityname.city}} Between ₹10,000 - ₹20,000" rel="bookmark">
+                                Flats for Rent ₹10,000 - ₹20,000 in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/flats-for-rent-in-{{ cityname.city | cleanUrl }}-price-20000-to-30000"
+                                title="Flats for Rent in {{cityname.city}} Between ₹20,000 - ₹30,000" rel="bookmark">
+                                Flats for Rent ₹20,000 - ₹30,000 in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/flats-for-rent-in-{{ cityname.city | cleanUrl }}-price-30000-to-40000"
+                                title="Flats for Rent in {{cityname.city}} Between ₹30,000 - ₹40,000" rel="bookmark">
+                                Flats for Rent ₹30,000 - ₹40,000 in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/flats-for-rent-in-{{ cityname.city | cleanUrl }}-price-40000-to-50000"
+                                title="Flats for Rent in {{cityname.city}} Between ₹40,000 - ₹50,000" rel="bookmark">
+                                Flats for Rent ₹40,000 - ₹50,000 in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/flats-for-rent-in-{{ cityname.city | cleanUrl }}-price-above-50000"
+                                title="Flats for Rent in {{cityname.city}} Above ₹50,000" rel="bookmark">
+                                Flats for Rent Above ₹50,000 in {{ cityname.city }}
+                            </a>
+                        </div>
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/villas-for-rent-in-{{ cityname.city | cleanUrl }}-price-under-10000"
+                                title="Villas for Rent Under ₹10,000 in {{cityname.city}}" rel="bookmark">
+                                Villas for Rent Under ₹10,000 in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/villas-for-rent-in-{{ cityname.city | cleanUrl }}-price-10000-to-20000"
+                                title="Villas for Rent in {{cityname.city}} Between ₹10,000 - ₹20,000" rel="bookmark">
+                                Villas for Rent ₹10,000 - ₹20,000 in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/villas-for-rent-in-{{ cityname.city | cleanUrl }}-price-20000-to-30000"
+                                title="Villas for Rent in {{cityname.city}} Between ₹20,000 - ₹30,000" rel="bookmark">
+                                Villas for Rent ₹20,000 - ₹30,000 in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/villas-for-rent-in-{{ cityname.city | cleanUrl }}-price-30000-to-40000"
+                                title="Villas for Rent in {{cityname.city}} Between ₹30,000 - ₹40,000" rel="bookmark">
+                                Villas for Rent ₹30,000 - ₹40,000 in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/villas-for-rent-in-{{ cityname.city | cleanUrl }}-price-40000-to-50000"
+                                title="Villas for Rent in {{cityname.city}} Between ₹40,000 - ₹50,000" rel="bookmark">
+                                Villas for Rent ₹40,000 - ₹50,000 in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/villas-for-rent-in-{{ cityname.city | cleanUrl }}-price-above-50000"
+                                title="Villas for Rent in {{cityname.city}} Above ₹50,000" rel="bookmark">
+                                Villas for Rent Above ₹50,000 in {{ cityname.city }}
+                            </a>
+                        </div>
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/independent-house-for-rent-in-{{ cityname.city | cleanUrl }}"
+                                title="Independent Houses for Rent in {{cityname.city}}" rel="bookmark">
+                                Independent Houses for Rent in {{ cityname.city }}
+                            </a>
+                        </div>
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/independent-house-for-rent-in-{{ cityname.city | cleanUrl }}-price-under-10000"
+                                title="Independent Houses for Rent Under ₹10,000 in {{cityname.city}}" rel="bookmark">
+                                Independent Houses for Rent Under ₹10,000 in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/independent-house-for-rent-in-{{ cityname.city | cleanUrl }}-price-10000-to-20000"
+                                title="Independent Houses for Rent ₹10,000 - ₹20,000 in {{cityname.city}}"
+                                rel="bookmark">
+                                Independent Houses for Rent ₹10,000 - ₹20,000 in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/independent-house-for-rent-in-{{ cityname.city | cleanUrl }}-price-20000-to-30000"
+                                title="Independent Houses for Rent ₹20,000 - ₹30,000 in {{cityname.city}}"
+                                rel="bookmark">
+                                Independent Houses for Rent ₹20,000 - ₹30,000 in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/independent-house-for-rent-in-{{ cityname.city | cleanUrl }}-price-30000-to-40000"
+                                title="Independent Houses for Rent ₹30,000 - ₹40,000 in {{cityname.city}}"
+                                rel="bookmark">
+                                Independent Houses for Rent ₹30,000 - ₹40,000 in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/independent-house-for-rent-in-{{ cityname.city | cleanUrl }}-price-40000-to-50000"
+                                title="Independent Houses for Rent ₹40,000 - ₹50,000 in {{cityname.city}}"
+                                rel="bookmark">
+                                Independent Houses for Rent ₹40,000 - ₹50,000 in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/independent-house-for-rent-in-{{ cityname.city | cleanUrl }}-price-above-50000"
+                                title="Independent Houses for Rent Above ₹50,000 in {{cityname.city}}" rel="bookmark">
+                                Independent Houses for Rent Above ₹50,000 in {{ cityname.city }}
+                            </a>
+                        </div>
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/plots-for-rent-in-{{ cityname.city | cleanUrl }}-price-under-10000"
+                                title="Plots for Rent Under ₹10,000 in {{cityname.city}}" rel="bookmark">
+                                Plots for Rent Under ₹10,000 in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/plots-for-rent-in-{{ cityname.city | cleanUrl }}-price-10000-to-20000"
+                                title="Plots for Rent ₹10,000 - ₹20,000 in {{cityname.city}}" rel="bookmark">
+                                Plots for Rent ₹10,000 - ₹20,000 in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/plots-for-rent-in-{{ cityname.city | cleanUrl }}-price-20000-to-30000"
+                                title="Plots for Rent ₹20,000 - ₹30,000 in {{cityname.city}}" rel="bookmark">
+                                Plots for Rent ₹20,000 - ₹30,000 in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/plots-for-rent-in-{{ cityname.city | cleanUrl }}-price-30000-to-40000"
+                                title="Plots for Rent ₹30,000 - ₹40,000 in {{cityname.city}}" rel="bookmark">
+                                Plots for Rent ₹30,000 - ₹40,000 in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/plots-for-rent-in-{{ cityname.city | cleanUrl }}-price-40000-to-50000"
+                                title="Plots for Rent ₹40,000 - ₹50,000 in {{cityname.city}}" rel="bookmark">
+                                Plots for Rent ₹40,000 - ₹50,000 in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/plots-for-rent-in-{{ cityname.city | cleanUrl }}-price-above-50000"
+                                title="Plots for Rent Above ₹50,000 in {{cityname.city}}" rel="bookmark">
+                                Plots for Rent Above ₹50,000 in {{ cityname.city }}
+                            </a>
+                        </div>
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/1-rk-flats-for-rent-in-{{ cityname.city | cleanUrl }}"
+                                title="1 RK Flats for Rent in {{ cityname.city }}" rel="bookmark">
+                                1 RK Flats for Rent in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/1-bhk-flats-for-rent-in-{{ cityname.city | cleanUrl }}"
+                                title="1 BHK Flats for Rent in {{ cityname.city }}" rel="bookmark">
+                                1 BHK Flats for Rent in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/2-bhk-flats-for-rent-in-{{ cityname.city | cleanUrl }}"
+                                title="2 BHK Flats for Rent in {{ cityname.city }}" rel="bookmark">
+                                2 BHK Flats for Rent in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/3-bhk-flats-for-rent-in-{{ cityname.city | cleanUrl }}"
+                                title="3 BHK Flats for Rent in {{ cityname.city }}" rel="bookmark">
+                                3 BHK Flats for Rent in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/4-bhk-flats-for-rent-in-{{ cityname.city | cleanUrl }}"
+                                title="4 BHK Flats for Rent in {{ cityname.city }}" rel="bookmark">
+                                4 BHK Flats for Rent in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/5-bhk-flats-for-rent-in-{{ cityname.city | cleanUrl }}"
+                                title="5 BHK Flats for Rent in {{ cityname.city }}" rel="bookmark">
+                                5 BHK Flats for Rent in {{ cityname.city }}
+                            </a>
+                        </div>
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/1-bhk-villas-for-rent-in-{{ cityname.city | cleanUrl }}"
+                                title="1 BHK Villas for Rent in {{ cityname.city }}" rel="bookmark">
+                                1 BHK Villas for Rent in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/2-bhk-villas-for-rent-in-{{ cityname.city | cleanUrl }}"
+                                title="2 BHK Villas for Rent in {{ cityname.city }}" rel="bookmark">
+                                2 BHK Villas for Rent in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/3-bhk-villas-for-rent-in-{{ cityname.city | cleanUrl }}"
+                                title="3 BHK Villas for Rent in {{ cityname.city }}" rel="bookmark">
+                                3 BHK Villas for Rent in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/4-bhk-villas-for-rent-in-{{ cityname.city | cleanUrl }}"
+                                title="4 BHK Villas for Rent in {{ cityname.city }}" rel="bookmark">
+                                4 BHK Villas for Rent in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/5-bhk-villas-for-rent-in-{{ cityname.city | cleanUrl }}"
+                                title="5 BHK Villas for Rent in {{ cityname.city }}" rel="bookmark">
+                                5 BHK Villas for Rent in {{ cityname.city }}
+                            </a>
+                        </div>
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/semi-furnished-flats-for-rent-in-{{ cityname.city | cleanUrl }}"
+                                title="Semi-Furnished Flats for Rent in {{ cityname.city }}" rel="bookmark">
+                                Semi-Furnished Flats for Rent in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/furnished-flats-for-rent-in-{{ cityname.city | cleanUrl }}"
+                                title="Fully Furnished Flats for Rent in {{ cityname.city }}" rel="bookmark">
+                                Fully Furnished Flats for Rent in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/unfurnished-flats-for-rent-in-{{ cityname.city | cleanUrl }}"
+                                title="Unfurnished Flats for Rent in {{ cityname.city }}" rel="bookmark">
+                                Unfurnished Flats for Rent in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/flats-for-rent-from-owners-in-{{ cityname.city | cleanUrl }}"
+                                title="Flats for Rent from Owners in {{ cityname.city }}" rel="bookmark">
+                                Flats for Rent from Owners in {{ cityname.city }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 borderclass">
+                            <a href="https://www.homes247.in/rent/no-brokerage-flats-for-rent-in-{{ cityname.city | cleanUrl }}"
+                                title="No Brokerage Flats for Rent in {{ cityname.city }}" rel="bookmark">
+                                No Brokerage Flats for Rent in {{ cityname.city }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

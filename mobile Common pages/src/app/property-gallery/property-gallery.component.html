@@ -1,0 +1,86 @@
+
+<!-- <app-innerheader class="navHide"></app-innerheader> -->
+
+
+<div class="outerDivBg" *ngFor="let data of propertiesDetailsnew;let i = index">
+    <div class="col-12">
+            <div class="col-12 borderBottomOverview pl-0 mb-4">
+                <nav aria-label="breadcrumb">
+                    <ul class="breadcrumbs mb-0">
+                      <li class="breadcrumb-item"><a href="https://www.homes247.in/"
+                          title="India's Favourite Property Portal !">Home</a></li>
+                      <li class="breadcrumb-item" aria-current="page">
+                        <a rel="bookmark" class="relatedSearchButton" title="All Project Reviews in India | Homes247.in"
+                          href="https://www.homes247.in/property/{{data.city_name|cleanUrl}}/{{data.locality_name|cleanUrl}}/{{data.propertyName|cleanUrl}}-{{propID | cleanUrl}}">{{data.propertyName}}</a>
+                      </li>
+                      <li class="breadcrumb-item active" aria-current="page">
+                        <a target="_blank" class="breadcrumbs__element"
+                          title="Locality Reviews {{data.city_name}} | Homes247.in">
+                          {{data.propertyName}} Gallery
+                        </a>
+                      </li>
+                      <!-- <li class="breadcrumb-item active" aria-current="page">
+                        <a target="_blank" class="breadcrumbs__element">
+                        {{data.locality_name}}
+                        </a>
+                      </li> -->
+                    </ul>
+                  </nav>
+                <div class="row">
+                    <div class="col-sm-12 d-flex">
+                        <!-- <a><img (click)="location.back()" style="cursor: pointer;" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/propImage/Vector.png" alt="..Vector.png" >&nbsp;&nbsp;</a> -->
+                        <!-- <a><i (click)="location.back()" class="fa fa-long-arrow-left left-icon topheadbackbtn" aria-hidden="true"></i>&nbsp;&nbsp;</a> -->
+                        <h1 class="overViewColour">{{data.propertyName}} Photos & Videos</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="galleryDiv"photoGalleryGroup>
+                <h2 class="overViewColour1">{{data.propertyName}} Gallery Images</h2>
+                <div class="allGalleryImgs">
+                    <div class="row">
+                    <img *ngFor="let imgs of galleryimages;let i = index" width="50%"  photoGallery="{{ImageUrl}}{{imgs.name}}" src="{{ImageUrl}}{{imgs.name}}" alt="imgs.alttag">
+                    </div>
+                </div>
+                <h2 class="mt-5 overViewColour1">{{data.propertyName}} Walkthrough</h2>
+                <div class="propVideoBg">
+                    <div class="video_section"></div>
+                    <img *ngIf="hideImage" (click)="youtube(data['video_URL']);" class="play-youtube-video blogsVideoImages" width="100%" src="{{videoimgUrl}}{{data.video_thumbnail}}" alt="data.video_thumbnail" async>
+                </div>
+            </div>
+           
+
+
+        </div>
+
+            <div class="issuePropDiv col-12 px-0">
+                <div class="mb-2">
+                    <div class="col-sm-12">
+                        <h2 class="overViewColour2">{{propName}} Quick Links</h2>
+                    </div>
+                </div>
+                <div class="quickLinksDiv col-12">
+                    <ul class="pl-0">
+                        <a href="/pbd/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-brochure-download-{{propID | cleanUrl}}"><li>{{data.propertyName}} Brochure&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a>
+                        <a href="/plm/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-location-map-{{propID | cleanUrl}}"><li>{{data.propertyName}} Location Map&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a>
+                        <a href="/pas/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-amenities-{{propID | cleanUrl}}"><li>{{data.propertyName}} Amenities&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a>
+                        <!-- <a href="/pgv/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-photo-gallery-{{propID | cleanUrl}}"><li>{{data.propertyName}} Photos & Videos&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a> -->
+                        <a href="/dfl/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-disscussion-forum-list-{{propID | cleanUrl}}"><li>{{data.propertyName}} Questions Answers&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a>
+                        <a href="/prd/rating-and-reviews-of-{{data.propertyName | cleanUrl}}-{{propID | cleanUrl}}"><li>{{data.propertyName}} Reviews&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a>
+                        <a href="/fpl/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-floorplans-{{propID | cleanUrl}}"><li>{{data.propertyName}} Floor Plans & Prices&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a> 
+                      </ul>
+                </div>
+            </div>
+</div>
+
+    <!-- CSS-Loader -->
+<div *ngIf="otploader" class="loaderbody">
+    <div class="box">
+        <div class="loader-20"></div>
+    </div>
+</div>
+<!-- CSS-Loader -->
+<div class="innerheader_position">
+    <app-innerheader></app-innerheader>
+</div>
+

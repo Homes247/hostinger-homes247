@@ -1,0 +1,38 @@
+{
+  "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/index.html",
+          "/main-*",
+          "/common-*",
+          "/runtime-*",
+          "/*.css",
+          "/manifest.webmanifest",
+          "/favicon.ico"
+        ]
+      }
+    }, {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/*.js",
+          "/ngsw-worker.*",
+          "/main-*",
+          "/common-*",
+          "/runtime-*",
+          "/polyfills-*",
+          "/safety-worker.*",
+          "/worker-basic.min.*"
+        ]
+      }
+    }
+  ]
+}

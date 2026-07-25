@@ -1,0 +1,137 @@
+
+<!-- <ng-container *ngComponentOutlet="innerheader"></ng-container> -->
+<div class="about_us_banner city_div" id="city_page">
+  <ul class="breadcrumbs breadcrumbs_city" itemscope itemtype="http://schema.org/BreadcrumbList">
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="breadcrumbs__item">
+      <a itemprop="item" target="_blank" href="/" itemid="/" class="breadcrumbs__element">
+        <span itemprop="name">Home</span>
+      </a>
+      <meta itemprop="position" content="1" />
+    </li>
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="breadcrumbs__item">
+      <a itemprop="item" target="_blank" href="" class="breadcrumbs__element">
+        <span itemprop="name">{{localtyname}}</span>
+      </a>
+      <meta itemprop="position" content="2" />
+    </li>
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"
+      class="breadcrumbs__item breadcrumbs__item_active">
+      <span itemprop="name">apartments for sale in {{localtyname}}</span>
+      <link itemprop="item" href="">
+      <meta itemprop="position" content="3" />
+    </li>
+  </ul>
+</div>
+
+<div class="">
+  <h1 class="head_text"> {{projectcount}} &nbsp; Apartments For Sale In {{localtyname}} </h1>
+</div>
+
+
+<div infinite-scroll [fromRoot]="true" [infiniteScrollDistance]="0" [infiniteScrollThrottle]="3000"
+  [alwaysCallback]="true" (scrolled)="loadMore()">
+  <div class="col-12" *ngFor="let propertydemo of propertylists;let i = index">
+    <div class="prop_div_main">
+      <div class="property_img">
+        <a *ngFor="let image of propertydemo.images | slice:0:1"
+          href="https://www.homes247.in/property/{{propertydemo.city_name | lowercase}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+          target="_blank">
+          <img src="{{propertyimage}}{{image.name}}" class="apartment_img_size" alt="image.alttag" />
+        </a>
+      </div>
+      <div class="property_info">
+        <h3 class="prop_name">
+          <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+            target="_blank">
+            {{propertydemo.propertyName}}
+          </a>
+        </h3>
+        <p class="location_name">
+          <img [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/city/search-location.png'"
+            alt="search-icon" /> {{propertydemo.locality_name}},{{propertydemo.city_name}}
+        </p>
+        <p class="builder_name">{{propertydemo.BuilderName}}</p>
+        <div class="property_bhk">
+          <p>
+            <span *ngIf="!propertydemo.BHK">
+               BHK - On Request
+            </span>
+            <span *ngIf="propertydemo.BHK">{{propertydemo.BHK | replaceLineBreaksany | unique2 | orderBy2 | replaceEightWithSix}} BHK</span>
+          </p>
+          <div class="min_max_price" *ngIf="propertydemo.price_max !== '0 '">
+            <i class="fa fa-inr" aria-hidden="true"></i> {{propertydemo.price_min}}
+            -{{propertydemo.price_max}}
+          </div>
+          <div class="min_max_price" *ngIf="propertydemo.price_max === '0 '">
+            On Request</div>
+        </div>
+        <div class="property_bhk">
+          <p *ngIf="propertydemo.dimension !== '0 '">{{propertydemo.dimension}} Acres</p>
+          <p *ngIf="propertydemo.dimension === '0 '">Acres - On Request</p>
+          <div *ngIf="propertydemo.Status != 'Sold Out'" class="ready_move">
+            <p *ngIf="(Date | date:'yyyy-MM') > (propertydemo.PossessionDate | date:'yyyy-MM')">
+              <span class="ready_to_move"
+                *ngIf="(Date | date:'yyyy-MM') > (propertydemo.PossessionDate | date:'yyyy-MM')">Ready to Move</span>
+            </p>
+            <p *ngIf="(Date | date:'yyyy-MM') <= (propertydemo.PossessionDate | date:'yyyy-MM')">
+              <span class="ready_to_move"
+                *ngIf="(Date | date:'yyyy-MM') <= (propertydemo.PossessionDate | date:'yyyy-MM')">Under
+                Construction</span>
+            </p>
+          </div>
+        </div>
+        <div *ngIf="propertydemo.Status == 'Sold Out'" class="sold_out">
+          <p class="sold_out">SOLD OUT</p>
+        </div>
+        <a class="view_btn"
+          href="https://www.homes247.in/property/{{propertydemo.city_name | lowercase}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}">
+          View Details</a>
+        <div class="offer-div">
+          <p class="excit_class" *ngIf="propertydemo.offerPrice"><strong>Exciting
+              Offers</strong><br>{{propertydemo.offerPrice}}</p>
+          <p class="excit_class" *ngIf="!propertydemo.offerPrice"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Loader -->
+<div class="container-fluid">
+  <div *ngIf="showLoader" class="loader_city row">
+    <div class="col-4">
+      <div class="item">
+        <ngx-skeleton-loader [theme]="{'border-radius': '9', height: '130px' }">
+        </ngx-skeleton-loader>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="item">
+        <ngx-skeleton-loader [theme]="{'border-radius': '9', height: '130px' }">
+        </ngx-skeleton-loader>
+        <ngx-skeleton-loader [theme]="{ width: '170px','border-radius': '9',height: '15px',float: 'right'}">
+        </ngx-skeleton-loader>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="item">
+        <ngx-skeleton-loader [theme]="{'border-radius': '9', height: '130px' }">
+        </ngx-skeleton-loader>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="item">
+        <ngx-skeleton-loader [theme]="{'border-radius': '9', height: '130px' }">
+        </ngx-skeleton-loader>
+        <ngx-skeleton-loader [theme]="{ width: '170px','border-radius': '9',height: '15px',float: 'right'}">
+        </ngx-skeleton-loader>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Loader -->
+
+<div><ng-container *ngComponentOutlet="FooterComponent"></ng-container></div>
+<div class="innerheader_position">
+  <app-innerheader></app-innerheader>
+</div>

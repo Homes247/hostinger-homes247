@@ -1,0 +1,2158 @@
+<!-- <ng-container *ngComponentOutlet="innerheader"></ng-container> -->
+<!-- <div id="conatctbutton">
+  <app-float-contact></app-float-contact>
+  </div> -->
+<!-- <div class="about_us_banner" id="city_page">
+    <ul *ngIf="citybread" class="breadcrumbs breadcrumbs_city" itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="breadcrumbs__item">
+            <a itemprop="item" href="https://www.homes247.in/" class="breadcrumbs__element">
+                <span itemprop="name">Home</span>
+            </a>
+            <meta itemprop="position" content="1" />
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item_active">
+            <span itemprop="name">Properties in {{city}}</span>
+            <link itemprop="item" href="/{{citybreadcrump}}/property-sale">
+            <meta itemprop="position" content="2" />
+        </li>
+    </ul>
+    <ul *ngIf="property_type" class="breadcrumbs breadcrumbs_city" itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="breadcrumbs__item">
+            <a itemprop="item" href="https://www.homes247.in/" class="breadcrumbs__element">
+                <span itemprop="name">Home</span>
+            </a>
+            <meta itemprop="position" content="1" />
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="breadcrumbs__item">
+            <a itemprop="item" routerLink="/{{citybreadcrump}}/property-sale" class="breadcrumbs__element">
+                <span itemprop="name">Properties in {{city}}</span>
+            </a>
+            <meta itemprop="position" content="2" />
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item_active">
+            <span itemprop="name">{{property_type}}</span>
+            <link itemprop="item" href="/{{citybreadcrump}}/sale/{{proptypeurlparam}}">
+            <meta itemprop="position" content="3" />
+        </li>
+    </ul>
+</div> -->
+
+<div class="city_search_filter">
+    <div class="container">
+        <div class="col-12 mb-2" #scrollapiloader>
+            <div class="row">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-Project">Projects ({{projectcount}})</button>
+                    <button type="button" class="btn btn-Properties"> <a
+                            href="https://www.homes247.in/villa-projects-in-{{cityname | cleanUrl}}">
+                            Properties ({{projectcount}})
+                        </a>
+                    </button>
+                </div>
+                <div class="header_offers">
+                    <a routerLink="/postproperty">Post Property</a>
+                </div>
+            </div>
+        </div>
+        <!-- filter value display -->
+        <div id="hidefilter">
+            <div class="filter_scrollmenu">
+                <button *ngIf="oneBedroomSelect" (click)="oneBedroom();getcity()">1 bhk&nbsp;<i
+                        class="fa fa-times-circle-o" aria-hidden="true"></i></button>
+                <button *ngIf="twoBedroomSelect" (click)="twoBedroom();getcity()">2 bhk&nbsp;<i
+                        class="fa fa-times-circle-o" aria-hidden="true"></i></button>
+                <button *ngIf="threeBedroomSelect" (click)="threeBedroom();getcity()">3 bhk&nbsp;<i
+                        class="fa fa-times-circle-o" aria-hidden="true"></i></button>
+                <button *ngIf="fourBedroomSelect" (click)="fourBedroom();getcity()">4 bhk&nbsp;<i
+                        class="fa fa-times-circle-o" aria-hidden="true"></i></button>
+                <button *ngIf="fiveBedroomSelect" (click)="fiveBedroom();getcity()">5+ bhk&nbsp;<i
+                        class="fa fa-times-circle-o" aria-hidden="true"></i></button>
+                <button *ngIf="readyToMoveSelect" (click)="readyToMove();getcity()">Ready to move&nbsp;<i
+                        class="fa fa-times-circle-o" aria-hidden="true"></i></button>
+                <button *ngIf="underConstructionSelect" (click)="underConstruction();getcity()">Under
+                    Construction&nbsp;<i class="fa fa-times-circle-o" aria-hidden="true"></i></button>
+                <button *ngIf="newLaunchSelect" (click)="newLaunch();getcity()">New Launch&nbsp;<i
+                        class="fa fa-times-circle-o" aria-hidden="true"></i></button>
+                <button *ngIf="preLaunchSelect" (click)="upcoming();getcity()">Up Coming&nbsp;<i
+                        class="fa fa-times-circle-o" aria-hidden="true"></i></button>
+                <button *ngIf="tweentylaksSelect" (click)="lessThntweentylaks();getcity()">
+                    < 20L&nbsp;<i class="fa fa-times-circle-o" aria-hidden="true"></i>
+                </button>
+                <button *ngIf="tweentylaksTosixtylakhsSelect" (click)="tweentylaksTosixtylakhs();getcity()">20L-60L
+                    &nbsp;<i class="fa fa-times-circle-o" aria-hidden="true"></i></button>
+                <button *ngIf="sixtylakhsToEhightylakhsSelect"
+                    (click)="sixtylakhsToEhightylakhs();getcity()">60L-80L&nbsp;<i class="fa fa-times-circle-o"
+                        aria-hidden="true"></i></button>
+                <button *ngIf="EhightylakhsTooneCrSelect" (click)="EhightylakhsTooneCr();getcity()">80L-1Cr&nbsp;<i
+                        class="fa fa-times-circle-o" aria-hidden="true"></i></button>
+                <button *ngIf="oneCrAboveCrSelect" (click)="oneCrAbove();getcity()">1Cr+&nbsp;<i
+                        class="fa fa-times-circle-o" aria-hidden="true"></i></button>
+                <button *ngIf="ImmediateSelect" (click)="PosessionImmediate();getcity()">Immediate&nbsp;<i
+                        class="fa fa-times-circle-o" aria-hidden="true"></i></button>
+                <button *ngIf="SixMonthsSelect" (click)="PosessionSixMonths();getcity()">6 months&nbsp;<i
+                        class="fa fa-times-circle-o" aria-hidden="true"></i></button>
+                <button *ngIf="OneYearSelect" (click)="PosessionOneYear();getcity()">1 year&nbsp;<i
+                        class="fa fa-times-circle-o" aria-hidden="true"></i></button>
+                <button *ngIf="twoYearSelect" (click)="PosessionTwoYearAbove();getcity()">2+ years&nbsp;<i
+                        class="fa fa-times-circle-o" aria-hidden="true"></i></button>
+            </div>
+        </div>
+        <!-- filter value display -->
+        <hr class="row hr_bottom">
+        <nav class="breadcrumb">
+            <li class="breadcrumb-item"><a href="https://www.homes247.in/" title="India's Favourite Property Portal !"
+                    rel="bookmark">Home</a></li>
+            <li class="breadcrumb-item"><a target="_blank"
+                    href="/new-launch-projects/new-projects-in-{{cityname | cleanUrl}}"
+                    title="New projects in {{cityname}} | Upcoming Projects in {{cityname}} | Homes247.in"> New Projects
+                    in {{cityname}} </a></li>
+            <li class="breadcrumb-item"><a routerLink="/{{cityname | cleanUrl}}/property-sale"
+                    title="Properties for Sale in {{cityname}} | Buy Property in {{cityname}}">Properties For sale in
+                    {{cityname | titlecase}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a>{{property_type}} for Sale in {{cityname |
+                    titlecase}}</a></li>
+        </nav>
+        <!-- </nav> -->
+
+        <div class="row">
+            <div class="col-12">
+                <h1>{{projectcount}} {{property_type}} in {{city}}</h1>
+            </div>
+            <span class="col-12 last_update" *ngFor="let format of formatsDateTest">last update : {{ dateNow | date:
+                format }}</span>
+        </div>
+
+        <!-- Overview -->
+        <div *ngIf="description" class="desc_div">
+            <p class="banner_description" id="scrollable" [innerHTML]="proptypedescription | sanitizeHtml ">
+            </p>
+            <div class="arrow bounce down_arrow" (click)="readmore()">
+                <span>Read More</span>
+            </div>
+            <div class="arrow bounce up_arrow" (click)="readless()">
+                <span>Read Less</span>
+            </div>
+        </div>
+        <!-- Overview -->
+
+
+
+        <div class="row search-results" infinite-scroll [fromRoot]="true" [infiniteScrollDistance]="0"
+            [infiniteScrollThrottle]="3000" [alwaysCallback]="true" (scrolled)="loadMore()">
+
+            <!-- section 1 -->
+            <div class="col-12 resp_div_main" *ngFor="let propertydemo of propertylists1; let i=index">
+                <div class="city_property_detail_box">
+                    <div *ngIf="propertydemo.Averagerating != null">
+                        <span class="overall_rating green"
+                            *ngIf="propertydemo.Averagerating >= 4">{{propertydemo.Averagerating | number :
+                            '1.1-1'}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+                        <span class="overall_rating yellow"
+                            *ngIf="propertydemo.Averagerating >= 3 && propertydemo.Averagerating < 4">{{propertydemo.Averagerating
+                            | number : '1.1-1'}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+                        <span class="overall_rating red"
+                            *ngIf="propertydemo.Averagerating < 3">{{propertydemo.Averagerating | number :
+                            '1.1-1'}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+                    </div>
+                    <div *ngIf="propertydemo.recentview == true">
+                        <p class="seen-prop">Seen</p>
+                        <div class="triangle-3"></div>
+                    </div>
+                    <div *ngIf="localstoredivSeenProjects">
+                        <div *ngFor="let id of seenProjectsStoragearr;let i=index">
+                            <div *ngIf="!propertydemo.recentview && propertydemo.property_info_IDPK == id">
+                                <p class="seen-prop">Seen</p>
+                                <div class="triangle-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="property_important_img">
+                        <a *ngFor="let image of propertydemo.images | slice:0:1" class="image city_list_imgs"
+                            href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                            target="_blank">
+                            <img src="{{propertyimage}}{{image.name}}" alt="image.alttag" />
+                        </a>
+                        <p *ngIf="compareShowonimg" class="compare_show"
+                            (click)="oncompareshowimgclick(propertydemo.property_info_IDPK,propertydemo.propertyType)">
+                            Compare</p>
+                        <div *ngFor="let id of compareproparray;let i=index">
+                            <p *ngIf="propertydemo.property_info_IDPK == id" class="added_show"
+                                (click)="oncompareshowimgclick(propertydemo.property_info_IDPK,propertydemo.propertyType)">
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;Added
+                            </p>
+                        </div>
+                        <p class="rera_class" *ngIf="propertydemo.RERA_ID">RERA ID : {{propertydemo.RERA_ID}}</p>
+                        <p class="rera_class" *ngIf="!propertydemo.RERA_ID"></p>
+                        <span class="verified" *ngIf="propertydemo.property_info_verify == 0">
+                            <p>Verified</p>
+
+                        </span>
+
+                    </div>
+                    <div class="property_important_info">
+                        <h3 class="prop_name">
+                            <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                                target="_blank">
+                                {{propertydemo.propertyName}} in {{propertydemo.locality_name}},
+                                {{propertydemo.city_name}}
+                            </a>
+                        </h3>
+                        <small>
+                            <!-- <img [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/city/search-location.png'"
+                                alt="search-icon" /> -->
+                            Villa for sale in {{propertydemo.locality_name}}, {{propertydemo.city_name}}</small>
+                        <!-- <div class='control-group' (click)="getwishlist(propertydemo.property_info_IDPK)">
+         <input type='checkbox' title="Whishlist" name="heart" />
+       </div> -->
+                        <!-- wishlisting -->
+                        <div class='control-group'>
+                            <div *ngIf="localstorediv">
+                                <div *ngFor="let id of storagearr;let i=index">
+                                    <input *ngIf="!propertydemo.user_fav && propertydemo.property_info_IDPK == id"
+                                        class='red-heart-checkbox'
+                                        (click)="wishlistaddstorage(propertydemo.property_info_IDPK)" type='checkbox'
+                                        title="Whishlist" checked>
+                                </div>
+                                <input
+                                    *ngIf="!propertydemo.user_fav && storagearr.indexOf(propertydemo.property_info_IDPK) == -1"
+                                    class='red-heart-checkbox'
+                                    (click)="wishlistaddstorage(propertydemo.property_info_IDPK)" type='checkbox'
+                                    title="Whishlist">
+                            </div>
+
+                            <input *ngIf="propertydemo.user_fav == false" class='red-heart-checkbox'
+                                (click)="addwishlist(propertydemo.property_info_IDPK)" id='red-check2' type='checkbox'
+                                title="Whishlist">
+                            <input *ngIf="propertydemo.user_fav == true" class='red-heart-checkbox'
+                                (click)="addwishlist(propertydemo.property_info_IDPK)" id='red-check2' type='checkbox'
+                                title="Whishlist" checked>
+                            <label for='red-check2'></label>
+                        </div>
+                        <!-- wishlisting -->
+                        <!-- <div class="toast">
+            {{this.alertmesg}}
+        </div>  -->
+                        <!-- <p class="builder_name">{{propertydemo.BuilderName}}</p> -->
+                        <div class="property_bhk">
+                            <p>
+                                <span *ngIf="!propertydemo.BHK">BHK - On Request </span>
+                                <span *ngIf="propertydemo.BHK">{{propertydemo.BHK | replaceLineBreaksany | unique2 |
+                                    orderBy2 | replaceEightWithSix}} BHK</span>
+                            </p>
+                            <div class="min_max_price" *ngIf="propertydemo.price_max !== '0 '">
+                                <i class="fa fa-inr" aria-hidden="true"></i> {{propertydemo.price_min}}
+                                -{{propertydemo.price_max}}
+                            </div>
+                            <div class="min_max_price" *ngIf="propertydemo.price_max === '0 '">Price - On Request</div>
+                        </div>
+                        <div class="property_bhk">
+                            <p *ngIf="propertydemo.dimension !== '0 '">{{propertydemo.dimension}} Acres</p>
+                            <p *ngIf="propertydemo.dimension === '0 '">Acres - On Request</p>
+                            <span class="ready_to_move">{{propertydemo.Status}}</span>
+                            <!-- <div class="overall_rating">4.5 <i class="fa fa-star starColour"></i></div> -->
+                            <!-- <div *ngIf="propertydemo.Status != 'Sold Out'" class="ready_move">
+            <p *ngIf="(Date | date:'yyyy-MM') > (propertydemo.PossessionDate | date:'yyyy-MM')">
+              <span class="ready_to_move" *ngIf="(Date | date:'yyyy-MM') > (propertydemo.PossessionDate | date:'yyyy-MM')">Ready to move in</span>
+            </p>
+            <p *ngIf="(Date | date:'yyyy-MM') <= (propertydemo.PossessionDate | date:'yyyy-MM')">
+              <span class="ready_to_move" *ngIf="(Date | date:'yyyy-MM') <= (propertydemo.PossessionDate | date:'yyyy-MM')">Under Construction</span>
+            </p>
+          </div> -->
+                        </div>
+                        <!-- <div *ngIf="propertydemo.Status == 'Sold Out'" class="sold_out">
+          <p class="sold_out">SOLD OUT</p>
+        </div> -->
+                    </div>
+                </div>
+                <div class="btn-div">
+                    <div class="offer-div">
+                        <p class="excit_class" *ngIf="propertydemo.offerPrice"><strong>Exciting
+                                Offers</strong><br>{{propertydemo.offerPrice}}</p>
+                        <p class="excit_class" *ngIf="!propertydemo.offerPrice"></p>
+                    </div>
+                </div>
+                <a class="enquiryBtn"
+                    href="https://api.whatsapp.com/send?phone=919008029014&text=%20https://www.homes247.in{{currenturl}}%0A%0AHi!%20I%27m%20interested%20in%20{{propertydemo.propertyName}}%20in%20{{propertydemo.locality_name}},%20{{propertydemo.city_name}}.Can%20i%20have%20some%20more%20info%20please."
+                    target="_blank"><i class="fa fa-whatsapp whatsup_icon" aria-hidden="true"></i></a>
+                <a class="view_btn"
+                    (click)="ShowHide();propertyNameClick(propertydemo.propertyName,propertydemo.RegionID,propertydemo.localityid,propertydemo.property_info_IDPK)"
+                    target="_blank">Contact</a>
+
+
+            </div>
+            <!-- section 1 -->
+            <!-- section 1 Design-->
+            <div class="col-12" #scrollapiloader></div>
+            <div class="col-12 p-0" *ngIf="HideAffordableProp">
+                <div *ngIf="sectionFirstResponce" class="topProjectsSectionMobileView topProjectsBg">
+                    <h4 class="topFetPropText">Affordable Featured Projects </h4>
+                    <div class="scrollmenu1" *ngIf="affordableproploader == false">
+                        <a *ngFor="let property of affordablePropList" class="card">
+
+                            <a *ngFor="let image of property.images | slice:0:1" target="_blank" itemprop="url"
+                                href="https://www.homes247.in/property/{{property.city_name | cleanUrl}}/{{property.locality_name | cleanUrl}}/{{property.propertyName | cleanUrl}}-{{property.property_info_IDPK}}">
+                                <img src="{{propertyimage}}{{image.name }}" alt="property.propertyName"
+                                    class="propclass topProjectsSectionMobileImages" />
+                            </a>
+                            <span hidden itemprop="name">{{property.propertyName}}</span>
+                            <a *ngIf="property.images.length === 0" class="pi_main"
+                                ng-click="getPropertyID(property.property_info_IDPK);">
+                                <img [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/notfound.png'"
+                                    alt="not-found">
+                            </a>
+                            <div class="top_project_info">
+                                <div class="pi_left">
+                                    <h3 class="propclass">{{property.propertyName}} <small>{{property.locality_name}}
+                                            ,{{property.city_name}}</small></h3>
+                                    <p class="top_prjct_status"><small>{{property.Status}}</small></p>
+                                </div>
+                                <div class="pi_right">
+                                    <p class="price_tag"><i class="fa fa-inr" aria-hidden="true"></i>
+                                        {{property.price_min}} Onwards
+                                    </p>
+                                    <div class="clearfix"></div>
+                                    <ul>
+                                        <li class="float-right">
+                                            <a href="https://www.homes247.in/property/{{property.city_name | cleanUrl}}/{{property.locality_name | cleanUrl}}/{{property.propertyName | cleanUrl}}-{{property.property_info_IDPK}}"
+                                                target="_blank">View Details</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </a>
+                    </div>
+
+                    <div class="col-12" *ngIf="affordableproploader">
+                        <div class="item">
+                            <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }">
+                            </ngx-skeleton-loader>
+                            <ngx-skeleton-loader [theme]="{ width: '170px','border-radius': '9',height: '15px'}">
+                            </ngx-skeleton-loader>
+                            <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                            </ngx-skeleton-loader>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- section 1 Design-->
+            <!-- section 2 -->
+            <div class="col-12 resp_div_main" *ngFor="let propertydemo of propertylists2; let i=index">
+                <div class="city_property_detail_box">
+                    <div *ngIf="propertydemo.Averagerating != null">
+                        <span class="overall_rating green"
+                            *ngIf="propertydemo.Averagerating >= 4">{{propertydemo.Averagerating | number :
+                            '1.1-1'}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+                        <span class="overall_rating yellow"
+                            *ngIf="propertydemo.Averagerating >= 3 && propertydemo.Averagerating < 4">{{propertydemo.Averagerating
+                            | number : '1.1-1'}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+                        <span class="overall_rating red"
+                            *ngIf="propertydemo.Averagerating < 3">{{propertydemo.Averagerating | number :
+                            '1.1-1'}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+                    </div>
+                    <div *ngIf="propertydemo.recentview == true">
+                        <p class="seen-prop">Seen</p>
+                        <div class="triangle-3"></div>
+                    </div>
+                    <div *ngIf="localstoredivSeenProjects">
+                        <div *ngFor="let id of seenProjectsStoragearr;let i=index">
+                            <div *ngIf="!propertydemo.recentview && propertydemo.property_info_IDPK == id">
+                                <p class="seen-prop">Seen</p>
+                                <div class="triangle-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="property_important_img">
+                        <a *ngFor="let image of propertydemo.images | slice:0:1" class="image city_list_imgs"
+                            href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                            target="_blank">
+                            <img src="{{propertyimage}}{{image.name}}" alt="image.alttag" />
+                        </a>
+                        <p *ngIf="compareShowonimg" class="compare_show"
+                            (click)="oncompareshowimgclick(propertydemo.property_info_IDPK,propertydemo.propertyType)">
+                            Compare</p>
+                        <div *ngFor="let id of compareproparray;let i=index">
+                            <p *ngIf="propertydemo.property_info_IDPK == id" class="added_show"
+                                (click)="oncompareshowimgclick(propertydemo.property_info_IDPK,propertydemo.propertyType)">
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;Added
+                            </p>
+                        </div>
+                        <p class="rera_class" *ngIf="propertydemo.RERA_ID">RERA ID : {{propertydemo.RERA_ID}}</p>
+                        <p class="rera_class" *ngIf="!propertydemo.RERA_ID"></p>
+                        <span class="verified" *ngIf="propertydemo.property_info_verify == 0">
+                            <p>Verified</p>
+
+                        </span>
+
+                    </div>
+                    <div class="property_important_info">
+                        <h3 class="prop_name">
+                            <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                                target="_blank">
+                                {{propertydemo.propertyName}} in {{propertydemo.locality_name}},
+                                {{propertydemo.city_name}}
+                            </a>
+                        </h3>
+                        <small>
+                            <!-- <img [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/city/search-location.png'"
+                                alt="search-icon" /> -->
+                            Villa for sale in {{propertydemo.locality_name}}, {{propertydemo.city_name}}</small>
+                        <!-- <div class='control-group' (click)="getwishlist(propertydemo.property_info_IDPK)">
+         <input type='checkbox' title="Whishlist" name="heart" />
+       </div> -->
+                        <!-- wishlisting -->
+                        <div class='control-group'>
+                            <div *ngIf="localstorediv">
+                                <div *ngFor="let id of storagearr;let i=index">
+                                    <input *ngIf="!propertydemo.user_fav && propertydemo.property_info_IDPK == id"
+                                        class='red-heart-checkbox'
+                                        (click)="wishlistaddstorage(propertydemo.property_info_IDPK)" type='checkbox'
+                                        title="Whishlist" checked>
+                                </div>
+                                <input
+                                    *ngIf="!propertydemo.user_fav && storagearr.indexOf(propertydemo.property_info_IDPK) == -1"
+                                    class='red-heart-checkbox'
+                                    (click)="wishlistaddstorage(propertydemo.property_info_IDPK)" type='checkbox'
+                                    title="Whishlist">
+                            </div>
+
+                            <input *ngIf="propertydemo.user_fav == false" class='red-heart-checkbox'
+                                (click)="addwishlist(propertydemo.property_info_IDPK)" id='red-check2' type='checkbox'
+                                title="Whishlist">
+                            <input *ngIf="propertydemo.user_fav == true" class='red-heart-checkbox'
+                                (click)="addwishlist(propertydemo.property_info_IDPK)" id='red-check2' type='checkbox'
+                                title="Whishlist" checked>
+                            <label for='red-check2'></label>
+                        </div>
+                        <!-- wishlisting -->
+                        <!-- <div class="toast">
+            {{this.alertmesg}}
+        </div>  -->
+                        <!-- <p class="builder_name">{{propertydemo.BuilderName}}</p> -->
+                        <div class="property_bhk">
+                            <p>
+                                <span *ngIf="!propertydemo.BHK">BHK - On Request </span>
+                                <span *ngIf="propertydemo.BHK">{{propertydemo.BHK | replaceLineBreaksany | unique2 |
+                                    orderBy2 | replaceEightWithSix}} BHK</span>
+                            </p>
+                            <div class="min_max_price" *ngIf="propertydemo.price_max !== '0 '">
+                                <i class="fa fa-inr" aria-hidden="true"></i> {{propertydemo.price_min}}
+                                -{{propertydemo.price_max}}
+                            </div>
+                            <div class="min_max_price" *ngIf="propertydemo.price_max === '0 '">Price - On Request</div>
+                        </div>
+                        <div class="property_bhk">
+                            <p *ngIf="propertydemo.dimension !== '0 '">{{propertydemo.dimension}} Acres</p>
+                            <p *ngIf="propertydemo.dimension === '0 '">Acres - On Request</p>
+                            <span class="ready_to_move">{{propertydemo.Status}}</span>
+                            <!-- <div class="overall_rating">4.5 <i class="fa fa-star starColour"></i></div> -->
+                            <!-- <div *ngIf="propertydemo.Status != 'Sold Out'" class="ready_move">
+            <p *ngIf="(Date | date:'yyyy-MM') > (propertydemo.PossessionDate | date:'yyyy-MM')">
+              <span class="ready_to_move" *ngIf="(Date | date:'yyyy-MM') > (propertydemo.PossessionDate | date:'yyyy-MM')">Ready to move in</span>
+            </p>
+            <p *ngIf="(Date | date:'yyyy-MM') <= (propertydemo.PossessionDate | date:'yyyy-MM')">
+              <span class="ready_to_move" *ngIf="(Date | date:'yyyy-MM') <= (propertydemo.PossessionDate | date:'yyyy-MM')">Under Construction</span>
+            </p>
+          </div> -->
+                        </div>
+                        <!-- <div *ngIf="propertydemo.Status == 'Sold Out'" class="sold_out">
+          <p class="sold_out">SOLD OUT</p>
+        </div> -->
+                    </div>
+                </div>
+                <div class="btn-div">
+                    <div class="offer-div">
+                        <p class="excit_class" *ngIf="propertydemo.offerPrice"><strong>Exciting
+                                Offers</strong><br>{{propertydemo.offerPrice}}</p>
+                        <p class="excit_class" *ngIf="!propertydemo.offerPrice"></p>
+                    </div>
+                </div>
+                <a class="enquiryBtn"
+                    href="https://api.whatsapp.com/send?phone=919008029014&text=%20https://www.homes247.in{{currenturl}}%0A%0AHi!%20I%27m%20interested%20in%20{{propertydemo.propertyName}}%20in%20{{propertydemo.locality_name}},%20{{propertydemo.city_name}}.Can%20i%20have%20some%20more%20info%20please."
+                    target="_blank"><i class="fa fa-whatsapp whatsup_icon" aria-hidden="true"></i></a>
+                <a class="view_btn"
+                    (click)="ShowHide();propertyNameClick(propertydemo.propertyName,propertydemo.RegionID,propertydemo.localityid,propertydemo.property_info_IDPK)"
+                    target="_blank">Contact</a>
+
+
+            </div>
+            <!-- section 2 -->
+            <!-- section 2 Design-->
+            <div *ngIf="hideTopLocality" class="col-12 p-0">
+                <div *ngIf="sectionFirstResponce" class="topLocalityView searchPropCard">
+
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="topFetPropText">
+                                <p><b>Top Featured Localities</b></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scrollmenu col-12 px-0 mb-3">
+                        <a routerLink="/{{city | cleanUrl}}/property-sale-in-{{localityOneName | cleanUrl}}-{{localityOneId}}"
+                            class="loc_mat_card_a col-10">
+                            <div class="card loc_mat_card_1 test">
+                                <div class="localitie"><span class="locality_text_padding1">{{localityOneName}}</span>
+                                </div>
+                                <div class="localitie"><span class="locality_text_padding">Total Projects -
+                                        {{localityOneCount}}</span></div>
+                            </div>
+                        </a>
+                        <a routerLink="/{{city | cleanUrl}}/property-sale-in-{{localityTwoName | cleanUrl}}-{{localityTwoId}}"
+                            class="loc_mat_card_a col-10">
+                            <div class="card loc_mat_card_2 test">
+                                <div class="localitie"><span class="locality_text_padding1">{{localityTwoName}}</span>
+                                </div>
+                                <div class="localitie"><span class="locality_text_padding">Total Projects -
+                                        {{localityTwoCount}}</span></div>
+                            </div>
+                        </a>
+                        <a routerLink="/{{city | cleanUrl}}/property-sale-in-{{localityThreeName | cleanUrl}}-{{localityThreeId}}"
+                            class="loc_mat_card_a col-10">
+                            <div class="card loc_mat_card_3 test">
+                                <div class="localitie"><span class="locality_text_padding1">{{localityThreeName}}</span>
+                                </div>
+                                <div class="localitie"><span class="locality_text_padding">Total Projects -
+                                        {{localityThreeCount}}</span></div>
+                            </div>
+                        </a>
+                        <a routerLink="/{{city | cleanUrl}}/property-sale-in-{{localityFourName | cleanUrl}}-{{localityFourId}}"
+                            class="loc_mat_card_a col-10">
+                            <div class="card loc_mat_card_4 test">
+                                <div class="localitie"><span class="locality_text_padding1">{{localityFourName}}</span>
+                                </div>
+                                <div class="localitie"><span class="locality_text_padding">Total Projects -
+                                        {{localityFourCount}}</span></div>
+                            </div>
+                        </a>
+                        <a routerLink="/{{city | cleanUrl}}/property-sale-in-{{localityFiveName | cleanUrl}}-{{localityFiveId}}"
+                            class="loc_mat_card_a col-10">
+                            <div class="card loc_mat_card_5 test">
+                                <div class="localitie"><span class="locality_text_padding1">{{localityFiveName}}</span>
+                                </div>
+                                <div class="localitie"><span class="locality_text_padding">Total Projects -
+                                        {{localityFiveCount}}</span></div>
+                            </div>
+                        </a>
+                        <a routerLink="/{{city | cleanUrl}}/property-sale-in-{{localitySixName | cleanUrl}}-{{localitySixId}}"
+                            class="loc_mat_card_a col-10">
+                            <div class="card loc_mat_card_6 test">
+                                <div class="localitie"><span class="locality_text_padding1">{{localitySixName}}</span>
+                                </div>
+                                <div class="localitie"><span class="locality_text_padding">Total Projects -
+                                        {{localitySixCount}}</span></div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-12" *ngIf="topLocalityloader">
+                        <div class="item">
+                            <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }">
+                            </ngx-skeleton-loader>
+                            <ngx-skeleton-loader [theme]="{ width: '170px','border-radius': '9',height: '15px'}">
+                            </ngx-skeleton-loader>
+                            <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                            </ngx-skeleton-loader>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- section 2 Design-->
+            <!-- section 3 -->
+            <div class="col-12 resp_div_main" *ngFor="let propertydemo of propertylists3; let i=index">
+                <div class="city_property_detail_box">
+                    <div *ngIf="propertydemo.Averagerating != null">
+                        <span class="overall_rating green"
+                            *ngIf="propertydemo.Averagerating >= 4">{{propertydemo.Averagerating | number :
+                            '1.1-1'}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+                        <span class="overall_rating yellow"
+                            *ngIf="propertydemo.Averagerating >= 3 && propertydemo.Averagerating < 4">{{propertydemo.Averagerating
+                            | number : '1.1-1'}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+                        <span class="overall_rating red"
+                            *ngIf="propertydemo.Averagerating < 3">{{propertydemo.Averagerating | number :
+                            '1.1-1'}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+                    </div>
+                    <div *ngIf="propertydemo.recentview == true">
+                        <p class="seen-prop">Seen</p>
+                        <div class="triangle-3"></div>
+                    </div>
+                    <div *ngIf="localstoredivSeenProjects">
+                        <div *ngFor="let id of seenProjectsStoragearr;let i=index">
+                            <div *ngIf="!propertydemo.recentview && propertydemo.property_info_IDPK == id">
+                                <p class="seen-prop">Seen</p>
+                                <div class="triangle-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="property_important_img">
+                        <a *ngFor="let image of propertydemo.images | slice:0:1" class="image city_list_imgs"
+                            href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                            target="_blank">
+                            <img src="{{propertyimage}}{{image.name}}" alt="image.alttag" />
+                        </a>
+                        <p *ngIf="compareShowonimg" class="compare_show"
+                            (click)="oncompareshowimgclick(propertydemo.property_info_IDPK,propertydemo.propertyType)">
+                            Compare</p>
+                        <div *ngFor="let id of compareproparray;let i=index">
+                            <p *ngIf="propertydemo.property_info_IDPK == id" class="added_show"
+                                (click)="oncompareshowimgclick(propertydemo.property_info_IDPK,propertydemo.propertyType)">
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;Added
+                            </p>
+                        </div>
+                        <p class="rera_class" *ngIf="propertydemo.RERA_ID">RERA ID : {{propertydemo.RERA_ID}}</p>
+                        <p class="rera_class" *ngIf="!propertydemo.RERA_ID"></p>
+                        <span class="verified" *ngIf="propertydemo.property_info_verify == 0">
+                            <p>Verified</p>
+
+                        </span>
+
+                    </div>
+                    <div class="property_important_info">
+                        <h3 class="prop_name">
+                            <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                                target="_blank">
+                                {{propertydemo.propertyName}} in {{propertydemo.locality_name}},
+                                {{propertydemo.city_name}}
+                            </a>
+                        </h3>
+                        <small>
+                            <!-- <img [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/city/search-location.png'"
+                                alt="search-icon" /> -->
+                            Villa for sale in {{propertydemo.locality_name}}, {{propertydemo.city_name}}</small>
+                        <!-- <div class='control-group' (click)="getwishlist(propertydemo.property_info_IDPK)">
+         <input type='checkbox' title="Whishlist" name="heart" />
+       </div> -->
+                        <!-- wishlisting -->
+                        <div class='control-group'>
+                            <div *ngIf="localstorediv">
+                                <div *ngFor="let id of storagearr;let i=index">
+                                    <input *ngIf="!propertydemo.user_fav && propertydemo.property_info_IDPK == id"
+                                        class='red-heart-checkbox'
+                                        (click)="wishlistaddstorage(propertydemo.property_info_IDPK)" type='checkbox'
+                                        title="Whishlist" checked>
+                                </div>
+                                <input
+                                    *ngIf="!propertydemo.user_fav && storagearr.indexOf(propertydemo.property_info_IDPK) == -1"
+                                    class='red-heart-checkbox'
+                                    (click)="wishlistaddstorage(propertydemo.property_info_IDPK)" type='checkbox'
+                                    title="Whishlist">
+                            </div>
+
+                            <input *ngIf="propertydemo.user_fav == false" class='red-heart-checkbox'
+                                (click)="addwishlist(propertydemo.property_info_IDPK)" id='red-check2' type='checkbox'
+                                title="Whishlist">
+                            <input *ngIf="propertydemo.user_fav == true" class='red-heart-checkbox'
+                                (click)="addwishlist(propertydemo.property_info_IDPK)" id='red-check2' type='checkbox'
+                                title="Whishlist" checked>
+                            <label for='red-check2'></label>
+                        </div>
+                        <!-- wishlisting -->
+                        <!-- <div class="toast">
+            {{this.alertmesg}}
+        </div>  -->
+                        <!-- <p class="builder_name">{{propertydemo.BuilderName}}</p> -->
+                        <div class="property_bhk">
+                            <p>
+                                <span *ngIf="!propertydemo.BHK">BHK - On Request </span>
+                                <span *ngIf="propertydemo.BHK">{{propertydemo.BHK | replaceLineBreaksany | unique2 |
+                                    orderBy2 | replaceEightWithSix}} BHK</span>
+                            </p>
+                            <div class="min_max_price" *ngIf="propertydemo.price_max !== '0 '">
+                                <i class="fa fa-inr" aria-hidden="true"></i> {{propertydemo.price_min}}
+                                -{{propertydemo.price_max}}
+                            </div>
+                            <div class="min_max_price" *ngIf="propertydemo.price_max === '0 '">Price - On Request</div>
+                        </div>
+                        <div class="property_bhk">
+                            <p *ngIf="propertydemo.dimension !== '0 '">{{propertydemo.dimension}} Acres</p>
+                            <p *ngIf="propertydemo.dimension === '0 '">Acres - On Request</p>
+                            <span class="ready_to_move">{{propertydemo.Status}}</span>
+                            <!-- <div class="overall_rating">4.5 <i class="fa fa-star starColour"></i></div> -->
+                            <!-- <div *ngIf="propertydemo.Status != 'Sold Out'" class="ready_move">
+            <p *ngIf="(Date | date:'yyyy-MM') > (propertydemo.PossessionDate | date:'yyyy-MM')">
+              <span class="ready_to_move" *ngIf="(Date | date:'yyyy-MM') > (propertydemo.PossessionDate | date:'yyyy-MM')">Ready to move in</span>
+            </p>
+            <p *ngIf="(Date | date:'yyyy-MM') <= (propertydemo.PossessionDate | date:'yyyy-MM')">
+              <span class="ready_to_move" *ngIf="(Date | date:'yyyy-MM') <= (propertydemo.PossessionDate | date:'yyyy-MM')">Under Construction</span>
+            </p>
+          </div> -->
+                        </div>
+                        <!-- <div *ngIf="propertydemo.Status == 'Sold Out'" class="sold_out">
+          <p class="sold_out">SOLD OUT</p>
+        </div> -->
+                    </div>
+                </div>
+                <div class="btn-div">
+                    <div class="offer-div">
+                        <p class="excit_class" *ngIf="propertydemo.offerPrice"><strong>Exciting
+                                Offers</strong><br>{{propertydemo.offerPrice}}</p>
+                        <p class="excit_class" *ngIf="!propertydemo.offerPrice"></p>
+                    </div>
+                </div>
+                <a class="enquiryBtn"
+                    href="https://api.whatsapp.com/send?phone=919008029014&text=%20https://www.homes247.in{{currenturl}}%0A%0AHi!%20I%27m%20interested%20in%20{{propertydemo.propertyName}}%20in%20{{propertydemo.locality_name}},%20{{propertydemo.city_name}}.Can%20i%20have%20some%20more%20info%20please."
+                    target="_blank"><i class="fa fa-whatsapp whatsup_icon" aria-hidden="true"></i></a>
+                <a class="view_btn"
+                    (click)="ShowHide();propertyNameClick(propertydemo.propertyName,propertydemo.RegionID,propertydemo.localityid,propertydemo.property_info_IDPK)"
+                    target="_blank">Contact</a>
+
+
+            </div>
+            <!-- section 3 -->
+            <!-- section 3 Design-->
+            <div *ngIf="sectionFirstResponce" class="topLocalityView searchPropCard">
+                <h4 class="topFetPropText">Search Properties in {{cityname}} </h4>
+                <div class="col-12 mt-3">
+                    <div class="marginTop2">
+                        <h5 class="filterHEading">Bedroom</h5>
+
+                        <button type="button" class="btn btn-secondary bedBtn" (click)="oneBedroom()" [ngStyle]="{'background-color': oneBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                            'color': oneBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">1
+                        </button>&nbsp;&nbsp;
+                        <button type="button" class="btn btn-secondary bedBtn" (click)="twoBedroom()" [ngStyle]="{'background-color': twoBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                            'color': twoBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">2
+                        </button>&nbsp;&nbsp;
+                        <button type="button" class="btn btn-secondary bedBtn" (click)="threeBedroom()" [ngStyle]="{'background-color': threeBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                            'color': threeBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">3
+                        </button>&nbsp;&nbsp;
+                        <button type="button" class="btn btn-secondary bedBtn" (click)="fourBedroom()" [ngStyle]="{'background-color': fourBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                            'color': fourBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">4
+                        </button>&nbsp;&nbsp;
+                        <button type="button" class="btn btn-secondary bedBtn" (click)="fiveBedroom()" [ngStyle]="{'background-color': fiveBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                            'color': fiveBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">5+
+                        </button>
+
+                    </div>
+
+                    <div class="marginTop2">
+                        <h5 class="filterHEading">Budget</h5>
+
+                        <div class="col-12 p-0">
+                            <button type="button" class="btn btn-default budgetMobileViewButton2"
+                                (click)="lessThntweentylaks()" [ngStyle]="{'background-color': tweentylaksSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                'color': tweentylaksSelect ? '#fff' : 'rgb(76, 73, 73)'}">
+                                < 20L </button>&nbsp;
+                                    <button type="button" class="btn btn-default budgetMobileViewButton2"
+                                        (click)="tweentylaksTosixtylakhs()" [ngStyle]="{'background-color': tweentylaksTosixtylakhsSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                'color': tweentylaksTosixtylakhsSelect ? '#fff' : 'rgb(76, 73, 73)'}"> 20L-60L
+                                    </button>&nbsp;
+                                    <button type="button" class="btn btn-default budgetMobileViewButton2"
+                                        (click)="sixtylakhsToEhightylakhs()" [ngStyle]="{'background-color': sixtylakhsToEhightylakhsSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                'color': sixtylakhsToEhightylakhsSelect ? '#fff' : 'rgb(76, 73, 73)'}"> 60L-80L
+                                    </button>&nbsp;
+                                    <button type="button" class="btn btn-default budgetMobileViewButton2"
+                                        (click)="EhightylakhsTooneCr()" [ngStyle]="{'background-color': EhightylakhsTooneCrSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                'color': EhightylakhsTooneCrSelect ? '#fff' : 'rgb(76, 73, 73)'}"> 80L-1Cr
+                                    </button>&nbsp;
+                                    <button type="button" class="btn btn-default budgetMobileViewButton2 mt-1"
+                                        (click)="oneCrAbove()" [ngStyle]="{'background-color': oneCrAboveCrSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                'color': oneCrAboveCrSelect ? '#fff' : 'rgb(76, 73, 73)'}"> 1Cr+
+                                    </button>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-default submiteSearch" (click)="getcity()">Search Properties</button>
+            </div>
+            <!-- section 3 Design-->
+            <!-- section 4 -->
+            <div class="col-12 resp_div_main" *ngFor="let propertydemo of propertylists4; let i=index">
+                <div class="city_property_detail_box">
+                    <div *ngIf="propertydemo.Averagerating != null">
+                        <span class="overall_rating green"
+                            *ngIf="propertydemo.Averagerating >= 4">{{propertydemo.Averagerating | number :
+                            '1.1-1'}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+                        <span class="overall_rating yellow"
+                            *ngIf="propertydemo.Averagerating >= 3 && propertydemo.Averagerating < 4">{{propertydemo.Averagerating
+                            | number : '1.1-1'}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+                        <span class="overall_rating red"
+                            *ngIf="propertydemo.Averagerating < 3">{{propertydemo.Averagerating | number :
+                            '1.1-1'}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+                    </div>
+                    <div *ngIf="propertydemo.recentview == true">
+                        <p class="seen-prop">Seen</p>
+                        <div class="triangle-3"></div>
+                    </div>
+                    <div *ngIf="localstoredivSeenProjects">
+                        <div *ngFor="let id of seenProjectsStoragearr;let i=index">
+                            <div *ngIf="!propertydemo.recentview && propertydemo.property_info_IDPK == id">
+                                <p class="seen-prop">Seen</p>
+                                <div class="triangle-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="property_important_img">
+                        <a *ngFor="let image of propertydemo.images | slice:0:1" class="image city_list_imgs"
+                            href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                            target="_blank">
+                            <img src="{{propertyimage}}{{image.name}}" alt="image.alttag" />
+                        </a>
+                        <p *ngIf="compareShowonimg" class="compare_show"
+                            (click)="oncompareshowimgclick(propertydemo.property_info_IDPK,propertydemo.propertyType)">
+                            Compare</p>
+                        <div *ngFor="let id of compareproparray;let i=index">
+                            <p *ngIf="propertydemo.property_info_IDPK == id" class="added_show"
+                                (click)="oncompareshowimgclick(propertydemo.property_info_IDPK,propertydemo.propertyType)">
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;Added
+                            </p>
+                        </div>
+                        <p class="rera_class" *ngIf="propertydemo.RERA_ID">RERA ID : {{propertydemo.RERA_ID}}</p>
+                        <p class="rera_class" *ngIf="!propertydemo.RERA_ID"></p>
+                        <span class="verified" *ngIf="propertydemo.property_info_verify == 0">
+                            <p>Verified</p>
+
+                        </span>
+
+                    </div>
+                    <div class="property_important_info">
+                        <h3 class="prop_name">
+                            <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                                target="_blank">
+                                {{propertydemo.propertyName}} in {{propertydemo.locality_name}},
+                                {{propertydemo.city_name}}
+                            </a>
+                        </h3>
+                        <small>
+                            <!-- <img [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/city/search-location.png'"
+                                alt="search-icon" /> -->
+                            Villa for sale in {{propertydemo.locality_name}}, {{propertydemo.city_name}}</small>
+                        <!-- <div class='control-group' (click)="getwishlist(propertydemo.property_info_IDPK)">
+         <input type='checkbox' title="Whishlist" name="heart" />
+       </div> -->
+                        <!-- wishlisting -->
+                        <div class='control-group'>
+                            <div *ngIf="localstorediv">
+                                <div *ngFor="let id of storagearr;let i=index">
+                                    <input *ngIf="!propertydemo.user_fav && propertydemo.property_info_IDPK == id"
+                                        class='red-heart-checkbox'
+                                        (click)="wishlistaddstorage(propertydemo.property_info_IDPK)" type='checkbox'
+                                        title="Whishlist" checked>
+                                </div>
+                                <input
+                                    *ngIf="!propertydemo.user_fav && storagearr.indexOf(propertydemo.property_info_IDPK) == -1"
+                                    class='red-heart-checkbox'
+                                    (click)="wishlistaddstorage(propertydemo.property_info_IDPK)" type='checkbox'
+                                    title="Whishlist">
+                            </div>
+
+                            <input *ngIf="propertydemo.user_fav == false" class='red-heart-checkbox'
+                                (click)="addwishlist(propertydemo.property_info_IDPK)" id='red-check2' type='checkbox'
+                                title="Whishlist">
+                            <input *ngIf="propertydemo.user_fav == true" class='red-heart-checkbox'
+                                (click)="addwishlist(propertydemo.property_info_IDPK)" id='red-check2' type='checkbox'
+                                title="Whishlist" checked>
+                            <label for='red-check2'></label>
+                        </div>
+                        <!-- wishlisting -->
+                        <!-- <div class="toast">
+            {{this.alertmesg}}
+        </div>  -->
+                        <!-- <p class="builder_name">{{propertydemo.BuilderName}}</p> -->
+                        <div class="property_bhk">
+                            <p>
+                                <span *ngIf="!propertydemo.BHK">BHK - On Request </span>
+                                <span *ngIf="propertydemo.BHK">{{propertydemo.BHK | replaceLineBreaksany | unique2 |
+                                    orderBy2 | replaceEightWithSix}} BHK</span>
+                            </p>
+                            <div class="min_max_price" *ngIf="propertydemo.price_max !== '0 '">
+                                <i class="fa fa-inr" aria-hidden="true"></i> {{propertydemo.price_min}}
+                                -{{propertydemo.price_max}}
+                            </div>
+                            <div class="min_max_price" *ngIf="propertydemo.price_max === '0 '">Price - On Request</div>
+                        </div>
+                        <div class="property_bhk">
+                            <p *ngIf="propertydemo.dimension !== '0 '">{{propertydemo.dimension}} Acres</p>
+                            <p *ngIf="propertydemo.dimension === '0 '">Acres - On Request</p>
+                            <span class="ready_to_move">{{propertydemo.Status}}</span>
+                            <!-- <div class="overall_rating">4.5 <i class="fa fa-star starColour"></i></div> -->
+                            <!-- <div *ngIf="propertydemo.Status != 'Sold Out'" class="ready_move">
+            <p *ngIf="(Date | date:'yyyy-MM') > (propertydemo.PossessionDate | date:'yyyy-MM')">
+              <span class="ready_to_move" *ngIf="(Date | date:'yyyy-MM') > (propertydemo.PossessionDate | date:'yyyy-MM')">Ready to move in</span>
+            </p>
+            <p *ngIf="(Date | date:'yyyy-MM') <= (propertydemo.PossessionDate | date:'yyyy-MM')">
+              <span class="ready_to_move" *ngIf="(Date | date:'yyyy-MM') <= (propertydemo.PossessionDate | date:'yyyy-MM')">Under Construction</span>
+            </p>
+          </div> -->
+                        </div>
+                        <!-- <div *ngIf="propertydemo.Status == 'Sold Out'" class="sold_out">
+          <p class="sold_out">SOLD OUT</p>
+        </div> -->
+                    </div>
+                </div>
+                <div class="btn-div">
+                    <div class="offer-div">
+                        <p class="excit_class" *ngIf="propertydemo.offerPrice"><strong>Exciting
+                                Offers</strong><br>{{propertydemo.offerPrice}}</p>
+                        <p class="excit_class" *ngIf="!propertydemo.offerPrice"></p>
+                    </div>
+                </div>
+                <a class="enquiryBtn"
+                    href="https://api.whatsapp.com/send?phone=919008029014&text=%20https://www.homes247.in{{currenturl}}%0A%0AHi!%20I%27m%20interested%20in%20{{propertydemo.propertyName}}%20in%20{{propertydemo.locality_name}},%20{{propertydemo.city_name}}.Can%20i%20have%20some%20more%20info%20please."
+                    target="_blank"><i class="fa fa-whatsapp whatsup_icon" aria-hidden="true"></i></a>
+                <a class="view_btn"
+                    (click)="ShowHide();propertyNameClick(propertydemo.propertyName,propertydemo.RegionID,propertydemo.localityid,propertydemo.property_info_IDPK)"
+                    target="_blank">Contact</a>
+
+
+            </div>
+            <!-- section 4 -->
+            <!-- section 4 Design-->
+            <div class="col-12 p-0" *ngIf="luxuryPropList">
+                <div *ngIf="sectionFirstResponce" class="topProjectsSectionMobileView topProjectsBg">
+                    <h4 class="topFetPropText">Luxury Featured Projects </h4>
+                    <div class="scrollmenu1" *ngIf="luxuryproploader == false">
+                        <a *ngFor="let property of luxuryPropList" class="card">
+
+                            <a *ngFor="let image of property.images | slice:0:1" target="_blank" itemprop="url"
+                                href="https://www.homes247.in/property/{{property.city_name | cleanUrl}}/{{property.locality_name | cleanUrl}}/{{property.propertyName | cleanUrl}}-{{property.property_info_IDPK}}">
+                                <img src="{{propertyimage}}{{image.name }}" alt="property.propertyName"
+                                    class="propclass topProjectsSectionMobileImages" />
+                            </a>
+                            <span hidden itemprop="name">{{property.propertyName}}</span>
+                            <a *ngIf="property.images.length === 0" class="pi_main"
+                                ng-click="getPropertyID(property.property_info_IDPK);">
+                                <img [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/notfound.png'"
+                                    alt="not-found">
+                            </a>
+                            <div class="top_project_info">
+                                <div class="pi_left">
+                                    <h3 class="propclass">{{property.propertyName}} <small>{{property.locality_name}}
+                                            ,{{property.city_name}}</small></h3>
+                                    <p class="top_prjct_status"><small>{{property.Status}}</small></p>
+                                </div>
+                                <div class="pi_right">
+                                    <p class="price_tag"><i class="fa fa-inr" aria-hidden="true"></i>
+                                        {{property.price_min}} Onwards
+                                    </p>
+                                    <div class="clearfix"></div>
+                                    <ul>
+                                        <li class="float-right">
+                                            <a href="https://www.homes247.in/property/{{property.city_name | cleanUrl}}/{{property.locality_name | cleanUrl}}/{{property.propertyName | cleanUrl}}-{{property.property_info_IDPK}}"
+                                                target="_blank">View Details</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </a>
+                    </div>
+
+                    <div class="col-12" *ngIf="luxuryproploader">
+                        <div class="item">
+                            <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }">
+                            </ngx-skeleton-loader>
+                            <ngx-skeleton-loader [theme]="{ width: '170px','border-radius': '9',height: '15px'}">
+                            </ngx-skeleton-loader>
+                            <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                            </ngx-skeleton-loader>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- section 4 Design-->
+            <!-- section 5 -->
+            <div class="col-12 resp_div_main" *ngFor="let propertydemo of propertylists5; let i=index">
+                <div class="city_property_detail_box">
+                    <div *ngIf="propertydemo.Averagerating != null">
+                        <span class="overall_rating green"
+                            *ngIf="propertydemo.Averagerating >= 4">{{propertydemo.Averagerating | number :
+                            '1.1-1'}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+                        <span class="overall_rating yellow"
+                            *ngIf="propertydemo.Averagerating >= 3 && propertydemo.Averagerating < 4">{{propertydemo.Averagerating
+                            | number : '1.1-1'}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+                        <span class="overall_rating red"
+                            *ngIf="propertydemo.Averagerating < 3">{{propertydemo.Averagerating | number :
+                            '1.1-1'}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+                    </div>
+                    <div *ngIf="propertydemo.recentview == true">
+                        <p class="seen-prop">Seen</p>
+                        <div class="triangle-3"></div>
+                    </div>
+                    <div *ngIf="localstoredivSeenProjects">
+                        <div *ngFor="let id of seenProjectsStoragearr;let i=index">
+                            <div *ngIf="!propertydemo.recentview && propertydemo.property_info_IDPK == id">
+                                <p class="seen-prop">Seen</p>
+                                <div class="triangle-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="property_important_img">
+                        <a *ngFor="let image of propertydemo.images | slice:0:1" class="image city_list_imgs"
+                            href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                            target="_blank">
+                            <img src="{{propertyimage}}{{image.name}}" alt="image.alttag" />
+                        </a>
+                        <p *ngIf="compareShowonimg" class="compare_show"
+                            (click)="oncompareshowimgclick(propertydemo.property_info_IDPK,propertydemo.propertyType)">
+                            Compare</p>
+                        <div *ngFor="let id of compareproparray;let i=index">
+                            <p *ngIf="propertydemo.property_info_IDPK == id" class="added_show"
+                                (click)="oncompareshowimgclick(propertydemo.property_info_IDPK,propertydemo.propertyType)">
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;Added
+                            </p>
+                        </div>
+                        <p class="rera_class" *ngIf="propertydemo.RERA_ID">RERA ID : {{propertydemo.RERA_ID}}</p>
+                        <p class="rera_class" *ngIf="!propertydemo.RERA_ID"></p>
+                        <span class="verified" *ngIf="propertydemo.property_info_verify == 0">
+                            <p>Verified</p>
+
+                        </span>
+
+                    </div>
+                    <div class="property_important_info">
+                        <h3 class="prop_name">
+                            <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                                target="_blank">
+                                {{propertydemo.propertyName}} in {{propertydemo.locality_name}},
+                                {{propertydemo.city_name}}
+                            </a>
+                        </h3>
+                        <small>
+                            <!-- <img [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/city/search-location.png'"
+                                alt="search-icon" /> -->
+                            Villa for sale in {{propertydemo.locality_name}}, {{propertydemo.city_name}}</small>
+                        <!-- <div class='control-group' (click)="getwishlist(propertydemo.property_info_IDPK)">
+         <input type='checkbox' title="Whishlist" name="heart" />
+       </div> -->
+                        <!-- wishlisting -->
+                        <div class='control-group'>
+                            <div *ngIf="localstorediv">
+                                <div *ngFor="let id of storagearr;let i=index">
+                                    <input *ngIf="!propertydemo.user_fav && propertydemo.property_info_IDPK == id"
+                                        class='red-heart-checkbox'
+                                        (click)="wishlistaddstorage(propertydemo.property_info_IDPK)" type='checkbox'
+                                        title="Whishlist" checked>
+                                </div>
+                                <input
+                                    *ngIf="!propertydemo.user_fav && storagearr.indexOf(propertydemo.property_info_IDPK) == -1"
+                                    class='red-heart-checkbox'
+                                    (click)="wishlistaddstorage(propertydemo.property_info_IDPK)" type='checkbox'
+                                    title="Whishlist">
+                            </div>
+
+                            <input *ngIf="propertydemo.user_fav == false" class='red-heart-checkbox'
+                                (click)="addwishlist(propertydemo.property_info_IDPK)" id='red-check2' type='checkbox'
+                                title="Whishlist">
+                            <input *ngIf="propertydemo.user_fav == true" class='red-heart-checkbox'
+                                (click)="addwishlist(propertydemo.property_info_IDPK)" id='red-check2' type='checkbox'
+                                title="Whishlist" checked>
+                            <label for='red-check2'></label>
+                        </div>
+                        <!-- wishlisting -->
+                        <!-- <div class="toast">
+            {{this.alertmesg}}
+        </div>  -->
+                        <!-- <p class="builder_name">{{propertydemo.BuilderName}}</p> -->
+                        <div class="property_bhk">
+                            <p>
+                                <span *ngIf="!propertydemo.BHK">BHK - On Request </span>
+                                <span *ngIf="propertydemo.BHK">{{propertydemo.BHK | replaceLineBreaksany | unique2 |
+                                    orderBy2 | replaceEightWithSix}} BHK</span>
+                            </p>
+                            <div class="min_max_price" *ngIf="propertydemo.price_max !== '0 '">
+                                <i class="fa fa-inr" aria-hidden="true"></i> {{propertydemo.price_min}}
+                                -{{propertydemo.price_max}}
+                            </div>
+                            <div class="min_max_price" *ngIf="propertydemo.price_max === '0 '">Price - On Request</div>
+                        </div>
+                        <div class="property_bhk">
+                            <p *ngIf="propertydemo.dimension !== '0 '">{{propertydemo.dimension}} Acres</p>
+                            <p *ngIf="propertydemo.dimension === '0 '">Acres - On Request</p>
+                            <span class="ready_to_move">{{propertydemo.Status}}</span>
+                            <!-- <div class="overall_rating">4.5 <i class="fa fa-star starColour"></i></div> -->
+                            <!-- <div *ngIf="propertydemo.Status != 'Sold Out'" class="ready_move">
+            <p *ngIf="(Date | date:'yyyy-MM') > (propertydemo.PossessionDate | date:'yyyy-MM')">
+              <span class="ready_to_move" *ngIf="(Date | date:'yyyy-MM') > (propertydemo.PossessionDate | date:'yyyy-MM')">Ready to move in</span>
+            </p>
+            <p *ngIf="(Date | date:'yyyy-MM') <= (propertydemo.PossessionDate | date:'yyyy-MM')">
+              <span class="ready_to_move" *ngIf="(Date | date:'yyyy-MM') <= (propertydemo.PossessionDate | date:'yyyy-MM')">Under Construction</span>
+            </p>
+          </div> -->
+                        </div>
+                        <!-- <div *ngIf="propertydemo.Status == 'Sold Out'" class="sold_out">
+          <p class="sold_out">SOLD OUT</p>
+        </div> -->
+                    </div>
+                </div>
+                <div class="btn-div">
+                    <div class="offer-div">
+                        <p class="excit_class" *ngIf="propertydemo.offerPrice"><strong>Exciting
+                                Offers</strong><br>{{propertydemo.offerPrice}}</p>
+                        <p class="excit_class" *ngIf="!propertydemo.offerPrice"></p>
+                    </div>
+                </div>
+                <a class="enquiryBtn"
+                    href="https://api.whatsapp.com/send?phone=919008029014&text=%20https://www.homes247.in{{currenturl}}%0A%0AHi!%20I%27m%20interested%20in%20{{propertydemo.propertyName}}%20in%20{{propertydemo.locality_name}},%20{{propertydemo.city_name}}.Can%20i%20have%20some%20more%20info%20please."
+                    target="_blank"><i class="fa fa-whatsapp whatsup_icon" aria-hidden="true"></i></a>
+                <a class="view_btn"
+                    (click)="ShowHide();propertyNameClick(propertydemo.propertyName,propertydemo.RegionID,propertydemo.localityid,propertydemo.property_info_IDPK)"
+                    target="_blank">Contact</a>
+
+
+            </div>
+            <!-- section 5 -->
+            <!-- section 5 Design-->
+            <div *ngIf="HideTopPropSection" class="col-12 p-0">
+                <div *ngIf="sectionFirstResponce" class="topProjectsSectionMobileView topProjectsBg">
+                    <h4 class="topFetPropText">Top Featured Projects </h4>
+                    <div class="scrollmenu1" *ngIf="topprojectsloader == false">
+                        <a *ngFor="let property of topProperties" class="card">
+
+                            <a *ngFor="let image of property.images | slice:0:1" target="_blank" itemprop="url"
+                                href="https://www.homes247.in/property/{{property.city_name | cleanUrl}}/{{property.locality_name | cleanUrl}}/{{property.propertyName | cleanUrl}}-{{property.property_info_IDPK}}">
+                                <img src="{{propertyimage}}{{image.name }}" alt="property.propertyName"
+                                    class="propclass topProjectsSectionMobileImages" />
+                            </a>
+                            <span hidden itemprop="name">{{property.propertyName}}</span>
+                            <a *ngIf="property.images.length === 0" class="pi_main"
+                                ng-click="getPropertyID(property.property_info_IDPK);">
+                                <img [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/notfound.png'"
+                                    alt="not-found">
+                            </a>
+                            <div class="top_project_info">
+                                <div class="pi_left">
+                                    <h3 class="propclass">{{property.propertyName}} <small>{{property.locality_name}}
+                                            ,{{property.city_name}}</small></h3>
+                                    <p class="top_prjct_status"><small>{{property.Status}}</small></p>
+                                </div>
+                                <div class="pi_right">
+                                    <p class="price_tag"><i class="fa fa-inr" aria-hidden="true"></i>
+                                        {{property.price_min}} Onwards
+                                    </p>
+                                    <div class="clearfix"></div>
+                                    <ul>
+                                        <li class="float-right">
+                                            <a href="https://www.homes247.in/property/{{property.city_name | cleanUrl}}/{{property.locality_name | cleanUrl}}/{{property.propertyName | cleanUrl}}-{{property.property_info_IDPK}}"
+                                                target="_blank">View Details</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </a>
+                    </div>
+
+                    <div class="col-12" *ngIf="topprojectsloader">
+                        <div class="item">
+                            <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }">
+                            </ngx-skeleton-loader>
+                            <ngx-skeleton-loader [theme]="{ width: '170px','border-radius': '9',height: '15px'}">
+                            </ngx-skeleton-loader>
+                            <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                            </ngx-skeleton-loader>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- section 5 Design-->
+            <!-- section 6 -->
+            <div class="col-12 resp_div_main" *ngFor="let propertydemo of propertylists6; let i=index">
+                <div class="city_property_detail_box">
+                    <div *ngIf="propertydemo.Averagerating != null">
+                        <span class="overall_rating green"
+                            *ngIf="propertydemo.Averagerating >= 4">{{propertydemo.Averagerating | number :
+                            '1.1-1'}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+                        <span class="overall_rating yellow"
+                            *ngIf="propertydemo.Averagerating >= 3 && propertydemo.Averagerating < 4">{{propertydemo.Averagerating
+                            | number : '1.1-1'}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+                        <span class="overall_rating red"
+                            *ngIf="propertydemo.Averagerating < 3">{{propertydemo.Averagerating | number :
+                            '1.1-1'}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+                    </div>
+                    <div *ngIf="propertydemo.recentview == true">
+                        <p class="seen-prop">Seen</p>
+                        <div class="triangle-3"></div>
+                    </div>
+                    <div *ngIf="localstoredivSeenProjects">
+                        <div *ngFor="let id of seenProjectsStoragearr;let i=index">
+                            <div *ngIf="!propertydemo.recentview && propertydemo.property_info_IDPK == id">
+                                <p class="seen-prop">Seen</p>
+                                <div class="triangle-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="property_important_img">
+                        <a *ngFor="let image of propertydemo.images | slice:0:1" class="image city_list_imgs"
+                            href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                            target="_blank">
+                            <img src="{{propertyimage}}{{image.name}}" alt="image.alttag" />
+                        </a>
+                        <p *ngIf="compareShowonimg" class="compare_show"
+                            (click)="oncompareshowimgclick(propertydemo.property_info_IDPK,propertydemo.propertyType)">
+                            Compare</p>
+                        <div *ngFor="let id of compareproparray;let i=index">
+                            <p *ngIf="propertydemo.property_info_IDPK == id" class="added_show"
+                                (click)="oncompareshowimgclick(propertydemo.property_info_IDPK,propertydemo.propertyType)">
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;Added
+                            </p>
+                        </div>
+                        <p class="rera_class" *ngIf="propertydemo.RERA_ID">RERA ID : {{propertydemo.RERA_ID}}</p>
+                        <p class="rera_class" *ngIf="!propertydemo.RERA_ID"></p>
+                        <span class="verified" *ngIf="propertydemo.property_info_verify == 0">
+                            <p>Verified</p>
+
+                        </span>
+
+                    </div>
+                    <div class="property_important_info">
+                        <h3 class="prop_name">
+                            <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                                target="_blank">
+                                {{propertydemo.propertyName}} in {{propertydemo.locality_name}},
+                                {{propertydemo.city_name}}
+                            </a>
+                        </h3>
+                        <small>
+                            <!-- <img [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/city/search-location.png'"
+                                alt="search-icon" /> -->
+                            Villa for sale in {{propertydemo.locality_name}}, {{propertydemo.city_name}}</small>
+                        <!-- <div class='control-group' (click)="getwishlist(propertydemo.property_info_IDPK)">
+         <input type='checkbox' title="Whishlist" name="heart" />
+       </div> -->
+                        <!-- wishlisting -->
+                        <div class='control-group'>
+                            <div *ngIf="localstorediv">
+                                <div *ngFor="let id of storagearr;let i=index">
+                                    <input *ngIf="!propertydemo.user_fav && propertydemo.property_info_IDPK == id"
+                                        class='red-heart-checkbox'
+                                        (click)="wishlistaddstorage(propertydemo.property_info_IDPK)" type='checkbox'
+                                        title="Whishlist" checked>
+                                </div>
+                                <input
+                                    *ngIf="!propertydemo.user_fav && storagearr.indexOf(propertydemo.property_info_IDPK) == -1"
+                                    class='red-heart-checkbox'
+                                    (click)="wishlistaddstorage(propertydemo.property_info_IDPK)" type='checkbox'
+                                    title="Whishlist">
+                            </div>
+
+                            <input *ngIf="propertydemo.user_fav == false" class='red-heart-checkbox'
+                                (click)="addwishlist(propertydemo.property_info_IDPK)" id='red-check2' type='checkbox'
+                                title="Whishlist">
+                            <input *ngIf="propertydemo.user_fav == true" class='red-heart-checkbox'
+                                (click)="addwishlist(propertydemo.property_info_IDPK)" id='red-check2' type='checkbox'
+                                title="Whishlist" checked>
+                            <label for='red-check2'></label>
+                        </div>
+                        <!-- wishlisting -->
+                        <!-- <div class="toast">
+            {{this.alertmesg}}
+        </div>  -->
+                        <!-- <p class="builder_name">{{propertydemo.BuilderName}}</p> -->
+                        <div class="property_bhk">
+                            <p>
+                                <span *ngIf="!propertydemo.BHK">BHK - On Request </span>
+                                <span *ngIf="propertydemo.BHK">{{propertydemo.BHK | replaceLineBreaksany | unique2 |
+                                    orderBy2 | replaceEightWithSix}} BHK</span>
+                            </p>
+                            <div class="min_max_price" *ngIf="propertydemo.price_max !== '0 '">
+                                <i class="fa fa-inr" aria-hidden="true"></i> {{propertydemo.price_min}}
+                                -{{propertydemo.price_max}}
+                            </div>
+                            <div class="min_max_price" *ngIf="propertydemo.price_max === '0 '">Price - On Request</div>
+                        </div>
+                        <div class="property_bhk">
+                            <p *ngIf="propertydemo.dimension !== '0 '">{{propertydemo.dimension}} Acres</p>
+                            <p *ngIf="propertydemo.dimension === '0 '">Acres - On Request</p>
+                            <span class="ready_to_move">{{propertydemo.Status}}</span>
+                            <!-- <div class="overall_rating">4.5 <i class="fa fa-star starColour"></i></div> -->
+                            <!-- <div *ngIf="propertydemo.Status != 'Sold Out'" class="ready_move">
+            <p *ngIf="(Date | date:'yyyy-MM') > (propertydemo.PossessionDate | date:'yyyy-MM')">
+              <span class="ready_to_move" *ngIf="(Date | date:'yyyy-MM') > (propertydemo.PossessionDate | date:'yyyy-MM')">Ready to move in</span>
+            </p>
+            <p *ngIf="(Date | date:'yyyy-MM') <= (propertydemo.PossessionDate | date:'yyyy-MM')">
+              <span class="ready_to_move" *ngIf="(Date | date:'yyyy-MM') <= (propertydemo.PossessionDate | date:'yyyy-MM')">Under Construction</span>
+            </p>
+          </div> -->
+                        </div>
+                        <!-- <div *ngIf="propertydemo.Status == 'Sold Out'" class="sold_out">
+          <p class="sold_out">SOLD OUT</p>
+        </div> -->
+                    </div>
+                </div>
+                <div class="btn-div">
+                    <div class="offer-div">
+                        <p class="excit_class" *ngIf="propertydemo.offerPrice"><strong>Exciting
+                                Offers</strong><br>{{propertydemo.offerPrice}}</p>
+                        <p class="excit_class" *ngIf="!propertydemo.offerPrice"></p>
+                    </div>
+                </div>
+                <a class="enquiryBtn"
+                    href="https://api.whatsapp.com/send?phone=919008029014&text=%20https://www.homes247.in{{currenturl}}%0A%0AHi!%20I%27m%20interested%20in%20{{propertydemo.propertyName}}%20in%20{{propertydemo.locality_name}},%20{{propertydemo.city_name}}.Can%20i%20have%20some%20more%20info%20please."
+                    target="_blank"><i class="fa fa-whatsapp whatsup_icon" aria-hidden="true"></i></a>
+                <a class="view_btn"
+                    (click)="ShowHide();propertyNameClick(propertydemo.propertyName,propertydemo.RegionID,propertydemo.localityid,propertydemo.property_info_IDPK)"
+                    target="_blank">Contact</a>
+
+
+            </div>
+            <!-- section 6 -->
+            <!-- section 6 Design-->
+            <div class="col-12 p-0" *ngIf="HideReadyToMoveProp">
+                <div *ngIf="sectionFirstResponce" class="topProjectsSectionMobileView topProjectsBg">
+                    <h4 class="topFetPropText">Ready to Move Featured Projects </h4>
+                    <div class="scrollmenu1" *ngIf="readyToMoveproploader == false">
+                        <a *ngFor="let property of readyToMovePropList" class="card">
+
+                            <a *ngFor="let image of property.images | slice:0:1" target="_blank" itemprop="url"
+                                href="https://www.homes247.in/property/{{property.city_name | cleanUrl}}/{{property.locality_name | cleanUrl}}/{{property.propertyName | cleanUrl}}-{{property.property_info_IDPK}}">
+                                <img src="{{propertyimage}}{{image.name }}" alt="property.propertyName"
+                                    class="propclass topProjectsSectionMobileImages" />
+                            </a>
+                            <span hidden itemprop="name">{{property.propertyName}}</span>
+                            <a *ngIf="property.images.length === 0" class="pi_main"
+                                ng-click="getPropertyID(property.property_info_IDPK);">
+                                <img [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/notfound.png'"
+                                    alt="not-found">
+                            </a>
+                            <div class="top_project_info">
+                                <div class="pi_left">
+                                    <h3 class="propclass">{{property.propertyName}} <small>{{property.locality_name}}
+                                            ,{{property.city_name}}</small></h3>
+                                    <p class="top_prjct_status"><small>{{property.Status}}</small></p>
+                                </div>
+                                <div class="pi_right">
+                                    <p class="price_tag"><i class="fa fa-inr" aria-hidden="true"></i>
+                                        {{property.price_min}} Onwards
+                                    </p>
+                                    <div class="clearfix"></div>
+                                    <ul>
+                                        <li class="float-right">
+                                            <a href="https://www.homes247.in/property/{{property.city_name | cleanUrl}}/{{property.locality_name | cleanUrl}}/{{property.propertyName | cleanUrl}}-{{property.property_info_IDPK}}"
+                                                target="_blank">View Details</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </a>
+                    </div>
+
+                    <div class="col-12" *ngIf="readyToMoveproploader">
+                        <div class="item">
+                            <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }">
+                            </ngx-skeleton-loader>
+                            <ngx-skeleton-loader [theme]="{ width: '170px','border-radius': '9',height: '15px'}">
+                            </ngx-skeleton-loader>
+                            <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                            </ngx-skeleton-loader>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- section 6 Design-->
+
+            <div class="col-12 resp_div_main" *ngFor="let propertydemo of propertylists; let i=index">
+                <div class="city_property_detail_box">
+                    <div *ngIf="propertydemo.Averagerating != null">
+                        <span class="overall_rating green"
+                            *ngIf="propertydemo.Averagerating >= 4">{{propertydemo.Averagerating | number :
+                            '1.1-1'}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+                        <span class="overall_rating yellow"
+                            *ngIf="propertydemo.Averagerating >= 3 && propertydemo.Averagerating < 4">{{propertydemo.Averagerating
+                            | number : '1.1-1'}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+                        <span class="overall_rating red"
+                            *ngIf="propertydemo.Averagerating < 3">{{propertydemo.Averagerating | number :
+                            '1.1-1'}}&nbsp;<i class="fa fa-star starColour1"></i></span>
+                    </div>
+                    <div *ngIf="propertydemo.recentview == true">
+                        <p class="seen-prop">Seen</p>
+                        <div class="triangle-3"></div>
+                    </div>
+                    <div *ngIf="localstoredivSeenProjects">
+                        <div *ngFor="let id of seenProjectsStoragearr;let i=index">
+                            <div *ngIf="!propertydemo.recentview && propertydemo.property_info_IDPK == id">
+                                <p class="seen-prop">Seen</p>
+                                <div class="triangle-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="property_important_img">
+                        <a *ngFor="let image of propertydemo.images | slice:0:1" class="image city_list_imgs"
+                            href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                            target="_blank">
+                            <img src="{{propertyimage}}{{image.name}}" alt="image.alttag" />
+                        </a>
+                        <p *ngIf="compareShowonimg" class="compare_show"
+                            (click)="oncompareshowimgclick(propertydemo.property_info_IDPK,propertydemo.propertyType)">
+                            Compare</p>
+                        <div *ngFor="let id of compareproparray;let i=index">
+                            <p *ngIf="propertydemo.property_info_IDPK == id" class="added_show"
+                                (click)="oncompareshowimgclick(propertydemo.property_info_IDPK,propertydemo.propertyType)">
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;Added
+                            </p>
+                        </div>
+                        <p class="rera_class" *ngIf="propertydemo.RERA_ID">RERA ID : {{propertydemo.RERA_ID}}</p>
+                        <p class="rera_class" *ngIf="!propertydemo.RERA_ID"></p>
+                        <span class="verified" *ngIf="propertydemo.property_info_verify == 0">
+                            <p>Verified</p>
+
+                        </span>
+
+                    </div>
+                    <div class="property_important_info">
+                        <h3 class="prop_name">
+                            <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                                target="_blank">
+                                {{propertydemo.propertyName}} in {{propertydemo.locality_name}},
+                                {{propertydemo.city_name}}
+                            </a>
+                        </h3>
+                        <small>
+                            <!-- <img [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version2.0/icons/city/search-location.png'"
+                                alt="search-icon" /> -->
+                            Villa for sale in {{propertydemo.locality_name}}, {{propertydemo.city_name}}</small>
+                        <!-- <div class='control-group' (click)="getwishlist(propertydemo.property_info_IDPK)">
+         <input type='checkbox' title="Whishlist" name="heart" />
+       </div> -->
+                        <!-- wishlisting -->
+                        <div class='control-group'>
+                            <div *ngIf="localstorediv">
+                                <div *ngFor="let id of storagearr;let i=index">
+                                    <input *ngIf="!propertydemo.user_fav && propertydemo.property_info_IDPK == id"
+                                        class='red-heart-checkbox'
+                                        (click)="wishlistaddstorage(propertydemo.property_info_IDPK)" type='checkbox'
+                                        title="Whishlist" checked>
+                                </div>
+                                <input
+                                    *ngIf="!propertydemo.user_fav && storagearr.indexOf(propertydemo.property_info_IDPK) == -1"
+                                    class='red-heart-checkbox'
+                                    (click)="wishlistaddstorage(propertydemo.property_info_IDPK)" type='checkbox'
+                                    title="Whishlist">
+                            </div>
+
+                            <input *ngIf="propertydemo.user_fav == false" class='red-heart-checkbox'
+                                (click)="addwishlist(propertydemo.property_info_IDPK)" id='red-check2' type='checkbox'
+                                title="Whishlist">
+                            <input *ngIf="propertydemo.user_fav == true" class='red-heart-checkbox'
+                                (click)="addwishlist(propertydemo.property_info_IDPK)" id='red-check2' type='checkbox'
+                                title="Whishlist" checked>
+                            <label for='red-check2'></label>
+                        </div>
+                        <!-- wishlisting -->
+                        <!-- <div class="toast">
+            {{this.alertmesg}}
+        </div>  -->
+                        <!-- <p class="builder_name">{{propertydemo.BuilderName}}</p> -->
+                        <div class="property_bhk">
+                            <p>
+                                <span *ngIf="!propertydemo.BHK">BHK - On Request </span>
+                                <span *ngIf="propertydemo.BHK">{{propertydemo.BHK | replaceLineBreaksany | unique2 |
+                                    orderBy2 | replaceEightWithSix}} BHK</span>
+                            </p>
+                            <div class="min_max_price" *ngIf="propertydemo.price_max !== '0 '">
+                                <i class="fa fa-inr" aria-hidden="true"></i> {{propertydemo.price_min}}
+                                -{{propertydemo.price_max}}
+                            </div>
+                            <div class="min_max_price" *ngIf="propertydemo.price_max === '0 '">Price - On Request</div>
+                        </div>
+                        <div class="property_bhk">
+                            <p *ngIf="propertydemo.dimension !== '0 '">{{propertydemo.dimension}} Acres</p>
+                            <p *ngIf="propertydemo.dimension === '0 '">Acres - On Request</p>
+                            <span class="ready_to_move">{{propertydemo.Status}}</span>
+                            <!-- <div class="overall_rating">4.5 <i class="fa fa-star starColour"></i></div> -->
+                            <!-- <div *ngIf="propertydemo.Status != 'Sold Out'" class="ready_move">
+            <p *ngIf="(Date | date:'yyyy-MM') > (propertydemo.PossessionDate | date:'yyyy-MM')">
+              <span class="ready_to_move" *ngIf="(Date | date:'yyyy-MM') > (propertydemo.PossessionDate | date:'yyyy-MM')">Ready to move in</span>
+            </p>
+            <p *ngIf="(Date | date:'yyyy-MM') <= (propertydemo.PossessionDate | date:'yyyy-MM')">
+              <span class="ready_to_move" *ngIf="(Date | date:'yyyy-MM') <= (propertydemo.PossessionDate | date:'yyyy-MM')">Under Construction</span>
+            </p>
+          </div> -->
+                        </div>
+                        <!-- <div *ngIf="propertydemo.Status == 'Sold Out'" class="sold_out">
+          <p class="sold_out">SOLD OUT</p>
+        </div> -->
+                    </div>
+                </div>
+                <div class="btn-div">
+                    <div class="offer-div">
+                        <p class="excit_class" *ngIf="propertydemo.offerPrice"><strong>Exciting
+                                Offers</strong><br>{{propertydemo.offerPrice}}</p>
+                        <p class="excit_class" *ngIf="!propertydemo.offerPrice"></p>
+                    </div>
+                </div>
+                <a class="enquiryBtn"
+                    href="https://api.whatsapp.com/send?phone=919008029014&text=%20https://www.homes247.in{{currenturl}}%0A%0AHi!%20I%27m%20interested%20in%20{{propertydemo.propertyName}}%20in%20{{propertydemo.locality_name}},%20{{propertydemo.city_name}}.Can%20i%20have%20some%20more%20info%20please."
+                    target="_blank"><i class="fa fa-whatsapp whatsup_icon" aria-hidden="true"></i></a>
+                <a class="view_btn"
+                    (click)="ShowHide();propertyNameClick(propertydemo.propertyName,propertydemo.RegionID,propertydemo.localityid,propertydemo.property_info_IDPK)"
+                    target="_blank">Contact</a>
+
+                <div class="card statusfilterDiv" *ngIf="(i+1)%3 == 0">
+                    <div class="statusfiltertop" [hidden]="!statusHide">
+                        <label>Property Status you'd prefer?</label><br>
+                        <div class="project_status">
+                            <button type="button" class="btn btn-default" (click)="readyToMove();" [ngStyle]="{'background-color': readyToMoveSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                        'color': readyToMoveSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;
+                                Ready to move&nbsp;&nbsp;
+                            </button>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-default" (click)="underConstruction();"
+                                [ngStyle]="{'background-color': underConstructionSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                        'color': underConstructionSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;Under
+                                Construction&nbsp;&nbsp;
+                            </button>
+                        </div>
+                        <div class="btnMargin status_resp_second">
+                            <button type="button" class="btn btn-default" (click)="newLaunch();" [ngStyle]="{'background-color': newLaunchSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                        'color': newLaunchSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;New
+                                Launch&nbsp;&nbsp;
+                            </button>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-default" (click)="upcoming();" [ngStyle]="{'background-color': preLaunchSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                        'color': preLaunchSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;UP
+                                Coming&nbsp;&nbsp;
+                            </button>
+                        </div>
+                    </div>
+                    <button class="btn btn-light apply_btn" (click)="getcity();">Apply</button>
+                </div>
+
+                <div class="card bedroomfilterDiv" *ngIf="(i+1)%6 == 0">
+                    <div class="statusfiltertop">
+                        <label>How many rooms do you prefer? </label><br>
+                        <div>
+                            <button type="button" class="btn btn-secondary" (click)="oneBedroom();" [ngStyle]="{'background-color': oneBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': oneBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">1
+                            </button>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-secondary" (click)="twoBedroom();" [ngStyle]="{'background-color': twoBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': twoBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">2
+                            </button>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-secondary" (click)="threeBedroom();" [ngStyle]="{'background-color': threeBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': threeBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">3
+                            </button>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-secondary" (click)="fourBedroom();" [ngStyle]="{'background-color': fourBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': fourBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">4
+                            </button>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-secondary" (click)="fiveBedroom();" [ngStyle]="{'background-color': fiveBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': fiveBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">5+
+                            </button>
+                        </div>
+                    </div>
+                    <button class="btn btn-light bedroom_btn" (click)="getcity();">Apply</button>
+                </div>
+                <div class="card propertyfilterDiv" *ngIf="(i+1)%10 == 0">
+                    <div class="statusfiltertop" [hidden]="!projectTypeHide">
+                        <label>Choose your Property Type</label><br>
+                        <div class="project_type">
+                            <button type="button" class="btn btn-default" (click)="apartmentclick();" [ngStyle]="{'background-color': apartmentSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                            'color': apartmentSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;
+                                Apartments&nbsp;&nbsp;
+                            </button>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-default" (click)="villaclick();" [ngStyle]="{'background-color': villaSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                            'color': villaSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;
+                                Villas&nbsp;&nbsp;
+                            </button>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-default" (click)="plotclick();" [ngStyle]="{'background-color': plotSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                            'color': plotSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;
+                                Plots&nbsp;&nbsp;
+                            </button>
+                        </div>
+                    </div>
+                    <button class="btn btn-light property_btn" (click)="getcity();">Apply</button>
+                </div>
+            </div>
+
+            <div *ngIf="zeroprojects">
+                <p class="noprojects">Sorry, No Projects Found<span>.</span><span>.</span><span>.</span></p>
+            </div>
+        </div>
+    </div>
+    <!-- Loader -->
+    <div class="container">
+        <div *ngIf="showLoader" class="loader_city row">
+            <div class="col-4">
+                <div class="item">
+                    <ngx-skeleton-loader [theme]="{'border-radius': '9', height: '130px' , background: 'gray' }">
+                    </ngx-skeleton-loader>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="item">
+                    <ngx-skeleton-loader [theme]="{'border-radius': '9', height: '130px' , background: 'gray' }">
+                    </ngx-skeleton-loader>
+                    <ngx-skeleton-loader
+                        [theme]="{ width: '170px','border-radius': '9',height: '15px',float: 'right' , background: 'gray'}">
+                    </ngx-skeleton-loader>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="item">
+                    <ngx-skeleton-loader [theme]="{'border-radius': '9', height: '130px' }">
+                    </ngx-skeleton-loader>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="item">
+                    <ngx-skeleton-loader [theme]="{'border-radius': '9', height: '130px' }">
+                    </ngx-skeleton-loader>
+                    <ngx-skeleton-loader [theme]="{ width: '170px','border-radius': '9',height: '15px',float: 'right'}">
+                    </ngx-skeleton-loader>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loader -->
+</div>
+
+<!-- radha new update -->
+
+<!-- radha new update -->
+<div class="about_contact_us">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+            <div class="col-lg-8 col-md-8 col-sm-8">
+
+                <!--   <div class="call_back_form">
+          <h5>Quick Way To Save Time!!</h5>
+          <form name="cityForm" method="POST">
+            <input type="hidden" name="origin">
+            <input autocomplete="off" type="text" placeholder="Name" class="dash_enqr_name" name="name" id="name"
+                   [(ngModel)]="enquiry.name" required/>
+
+            <input autocomplete="off" type="text" placeholder="Mobile Number" class="abt_enqr_number" name="number"
+                   id="mobile" [(ngModel)]="enquiry.number" required/>
+            <input autocomplete="off" type="text" placeholder="Email" class="abt_enqr_number" name="email"
+                   id="email" [(ngModel)]="enquiry.email" required/>
+            <div class="clearfix"></div>
+            <button id="one" (click)="otpsend2()" class="btn_style">Connect Now</button>
+          </form>
+          <p style="text-align:center">All requests are handled in just 5 minutes.</p>
+        </div>-->
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+        </div>
+    </div>
+</div>
+<!-- compare section -->
+<div *ngIf="hideshowcompare" class="add_compare_div" id="add_compare_div">
+    <div class="container" style="margin-top: 10px;">
+        <div class="row">
+            <div class="col-6">
+                <div *ngIf="compareprop1" class="">
+                    <i class="fa fa-times-circle-o closeprop" (click)="closeprop1(propid1)" aria-hidden="true"></i>
+                    <!-- <a (click)="closeprop1(propid1)" class="closeprop"></a> -->
+                    <img src="{{propertyimage}}{{propimag1}}" class="compare_pro_img_size" alt="propimag1">
+                    <p class="propert_nametext">{{propertyname1}}</p>
+                </div>
+                <div *ngIf="compareloader1" class="col">
+                    <div class="item">
+                        <ngx-skeleton-loader [theme]="{'border-radius': '5', height: '50px' }">
+                        </ngx-skeleton-loader>
+                    </div>
+                    <div class="item">
+                        <ngx-skeleton-loader [theme]="{'border-radius': '5', height: '5px' }">
+                        </ngx-skeleton-loader>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div *ngIf="compareprop2" class="">
+                    <i class="fa fa-times-circle-o closeprop" (click)="closeprop2(propid2)" aria-hidden="true"></i>
+                    <!-- <a  class="closeprop" (click)="closeprop2(propid2)"></a> -->
+                    <img src="{{propertyimage}}{{propimag2}}" alt="propimag2" class="compare_pro_img_size">
+                    <p class="propert_nametext">{{propertyname2}}</p>
+                </div>
+                <div *ngIf="compareloader2" class="col">
+                    <div class="item">
+                        <ngx-skeleton-loader [theme]="{'border-radius': '5', height: '50px' }">
+                        </ngx-skeleton-loader>
+                    </div>
+                    <div class="item">
+                        <ngx-skeleton-loader [theme]="{'border-radius': '5', height: '5px' }">
+                        </ngx-skeleton-loader>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col">
+        <div *ngIf="compareprop3" class="">
+          <i class="fa fa-times-circle-o closeprop" (click)="closeprop3(propid3)" aria-hidden="true"></i>
+        <img src="{{propertyimage}}{{propimag3}}" class="compare_pro_img_size">
+        <p class="propert_nametext">{{propertyname3}}</p>
+         </div>
+        <div  *ngIf="compareloader3" class="col">
+          <div class="item">
+            <ngx-skeleton-loader
+              [theme]="{'border-radius': '5', height: '50px' }">
+            </ngx-skeleton-loader>
+          </div>
+          <div class="item">
+            <ngx-skeleton-loader
+              [theme]="{'border-radius': '5', height: '5px' }">
+            </ngx-skeleton-loader>
+          </div>
+        </div>
+       </div> -->
+        </div>
+    </div>
+    <!-- <div *ngIf="showselectitem" class="compare-text">select another product to compare</div>
+    <div *ngIf="showcomparenow" class="compare-now-btn" (click)="CompareNow()">Compare Now</div> -->
+    <div class="compare-now-btn" (click)="CompareNow()">Compare Now</div>
+</div>
+<div *ngIf="IsVisible">
+    <div class="get_call_back">
+        <div class="row head" (click)="ShowHide()">
+            <div class="col-2">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </div>
+            <div class="col-10 pl-0 mt-3">
+                <h6 class="mb-0">Request Call back</h6>
+            </div>
+        </div>
+        <div class="col-12 call_back_form">
+            <h6 class="mt-4 text-center">I'm Interested In {{SelectedPropName}}</h6>
+            <form name="cityForm" method="POST">
+                <input type="hidden" name="origin">
+                <input autocomplete="off" type="text" placeholder="Name" class="dash_enqr_name" name="name" id="name"
+                    [(ngModel)]="enquiry.name" required />
+
+                <input autocomplete="off" type="text" placeholder="Mobile Number" class="abt_enqr_number" name="number"
+                    id="mobile" [(ngModel)]="enquiry.number" required />
+                <input autocomplete="off" type="text" placeholder="Email" class="abt_enqr_number" name="email"
+                    id="email" [(ngModel)]="enquiry.email" required />
+                <div class="clearfix"></div>
+                <button id="one" (click)="otpsend2()" class="btn_style">Connect Now</button>
+            </form>
+            <p style="text-align:center">All requests are handled in just 5 minutes.</p>
+        </div>
+        <!--  <div class="mobile_res mod">
+      <div class="Call_city">
+        <div class="call_us">
+          <span> <p><img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/enquiry/call.png" alt="call-icon">&nbsp; Call Us</p></span>
+        </div>
+        <div class="number_call">
+          <span>  <p> 091-64-247-247 </p> </span>
+        </div>
+        <br>
+        <div class="or"><p> or </p></div>
+      </div>
+      <input type="text" [(ngModel)]="propertyname" name="propertyname" hidden>
+      &lt;!&ndash;                                  <form name="enquiryFormone" novalidate>&ndash;&gt;
+
+      &lt;!&ndash;                                    <input type="text" placeholder="Name" class="dash_enqr_name" name="ename" id="ename"&ndash;&gt;
+      &lt;!&ndash;                                    [(ngModel)]="enquiry.ename"  required />&ndash;&gt;
+
+      &lt;!&ndash;                                    <input type="text" placeholder="Mobile Number"&ndash;&gt;
+      &lt;!&ndash;                                    class="abt_enqr_number"&ndash;&gt;
+      &lt;!&ndash;                                    name="emobile" id="emobile"  [(ngModel)]="enquiry.emobile"&ndash;&gt;
+      &lt;!&ndash;                                     required />&ndash;&gt;
+      &lt;!&ndash;                                    <div class="clearfix"></div>&ndash;&gt;
+
+      &lt;!&ndash;                                  <button (click)="addenquiry()" class="btn_style gcb_btn">Get A Call Back</button>&ndash;&gt;
+      &lt;!&ndash;                                    <a class="read_d">All the request are handled in just 5 minutes.</a>&ndash;&gt;
+      &lt;!&ndash;                                </form>&ndash;&gt;
+      <form name="aboutForm" method="POST">
+        <input type="hidden" name="origin">
+        <input autocomplete="off" type="text" placeholder="Name" class="dash_enqr_name" name="name"
+               id="name1" [(ngModel)]="user.name" required/>
+        <input autocomplete="off" type="text" placeholder="Mobile Number" class="abt_enqr_number"
+               name="number" id="mobile1" [(ngModel)]="user.number" required/>
+        <div class="clearfix"></div>
+        <button id="one1" (click)="otpsend()" class="btn_style gcb_btn">Get a Callback</button>
+        &lt;!&ndash; <countdown #cd [config]="countdownconfig" ></countdown>
+        <button (click)="start()">Start</button>
+        <button (click)="reset()">Reset</button> &ndash;&gt;
+        &lt;!&ndash;OTP-MODAL&ndash;&gt;
+        <div id="modal-container">
+          <div class="modal-background">
+            <div class="modal">
+              <h4>Please Verify your Number</h4>
+              <p>Enter the 6 digit Verification Code sent on {{user.number}}<a (click)="goback()">(Edit)</a></p>
+              <div class="col-12 countdown_maindiv">
+                <countdown #cd [config]="countdownconfig" (event)="handleEvent($event)"></countdown>
+              </div>
+              <input hidden autocomplete="off" type="text" placeholder="OTP"
+                     name="otp" id="otp" [(ngModel)]="user.otp" required/>
+              <ng-otp-input class="otpinput" #ngOtpInput (onInputChange)="onOtpChange($event)"
+                            [config]="config"></ng-otp-input>
+              <button (click)="otpvalidate()">Validate OTP</button>
+              <p class="otpexpireclass" *ngIf="otpexpired">OTP Expired - <a (click)="otpsend()">Resend</a></p>
+              <button type="reset" id="btn_reset" style="display: none;"></button>
+            </div>
+          </div>
+        </div>
+        &lt;!&ndash;OTP-MODAL&ndash;&gt;
+      </form>
+    </div>
+
+
+    <div class="get_down">
+      <div class="imp-points-wrap">
+        <ul class="imp-points clearfix">
+          <li>
+                                             <span class="wrap-icon">
+                                                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/enquiry/callicon1.png" alt="zero-brokerage">
+                                            </span>
+            <div class="txt">Zero <br>Brokerage</div>
+            <div class="clear"></div>
+          </li>
+          <li>
+                                                  <span class="wrap-icon">
+                                                        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/enquiry/callicon2.png" alt="best-price">
+                                                      </span>
+            <div class="txt">Best Price <br>Guaranteed</div>
+            <div class="clear"></div>
+          </li>
+          <li>
+                                                      <span class="wrap-icon">
+                                                            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/enquiry/callicon3.png"
+                                                                 alt="assistance">
+                                        </span>
+            <div class="txt">End To End <br>Assistance</div>
+          </li>
+        </ul>
+      </div>
+      <div class="clear"></div>
+    </div>-->
+    </div>
+    <!-- CSS-Loader -->
+    <div *ngIf="otploader" class="loaderbody">
+        <div class="box">
+            <div class="loader-20"></div>
+        </div>
+    </div>
+    <!-- CSS-Loader -->
+</div>
+
+<!--START-MODAL-->
+<div class="modal fade" id="myModal_city" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content modal_enqury_cntnt">
+
+            <button type="button" class="close modal_close" data-dismiss="modal">&times;</button>
+            <div class="modal-body prop_modal">
+
+                <div class="property_details_form modal_prprty_form">
+                    <p>To Avail The Best Deal</p>
+                    <input type="text" [(ngModel)]="enquiry.propertyname" name="propertyname" hidden>
+                    <form name="enquiryForm" novalidate>
+
+                        <input type="hidden" name="origin">
+                        <input autocomplete="off" type="text" placeholder="Name" class="dash_enqr_name" name="ename"
+                            id="ename" [(ngModel)]="enquiry.ename" required />
+
+                        <input autocomplete="off" type="text" placeholder="Mobile Number" class="abt_enqr_number"
+                            name="emobile" id="emobile" [(ngModel)]="enquiry.emobile" required />
+                        <div class="clearfix"></div>
+
+                        <button (click)="addenquiry()" class="btn_style gcb_btn">Get a Callback</button>
+                        <button #cancel hidden type="button" data-dismiss="modal" style="display: none;"></button>
+                        <a class="read_d">All the request are handled in just 5 minutes.</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- radha-new-Update -->
+<!-- <div *ngIf="filterShowHide">
+   <div class="filter_section" (click)="ShowHideFilter()">
+    <i class="fa fa-filter" aria-hidden="true"></i>
+    <label>Filters</label>
+  </div>
+</div> -->
+<!-- Filter Icons -->
+<div class="container">
+    <div class="container">
+        <div class="row compare_sort_filter_div">
+            <ul class="floating-menu" id="floatinglink">
+                <li class="floating-list">
+                    <div id="testing" class="floating-link" (transitionend)="transitionEnd($event)">
+                        <div class="floating-text">
+                            <div class="circle move" id="move">
+                                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Group 221.svg"
+                                    alt="comapreimg_size" id="floating_img">
+                            </div>
+                            <div class="col border_div" id="hidetext" (click)="ShowHideSort()">
+                                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/compare-vertical.svg"
+                                    class="comapreimg_size3" alt="comapreimg_size">
+                                &nbsp;<span class="footer_design">Sort</span>
+                            </div>
+                            <div class="col border_div" id="hidetext" (click)="Oncompareclick()">
+                                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/compare-horizontal.svg"
+                                    class="comapreimg_size1" alt="comapreimg_size">
+                                &nbsp;<span class="footer_design">Compare</span>
+                            </div>
+                            <div class="col border_div" id="hidetext" data-toggle="modal" (click)="ShowHideFilter()"
+                                data-target="#filterModal">
+                                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/filter-variant.svg"
+                                    class="comapreimg_size2" alt="comapreimg_size">
+                                &nbsp;<span class="footer_design">Filter</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Filter Icons -->
+
+<!-- <div class="enquire_section" (click)="ShowHide()">
+    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/call-icon.gif" alt="Homes247 Callback"> -->
+<!-- <i class="fa fa-volume-control-phone" aria-hidden="true"></i> -->
+<!-- <label>Enquire Now</label>
+  </div> -->
+
+
+<div *ngIf="sortShowHide" id="sortmain_div">
+    <div>
+        <p class="sortBydiv">Sort By</p>
+    </div>
+    <div class="custom-control custom-radio radiodiv">
+        <input type="radio" id="customRadio1" [(ngModel)]="Relevance" value="0" name="Relevance"
+            class="custom-control-input">
+        <label class="custom-control-label" for="customRadio1">Relevance</label>
+    </div>
+    <div class="custom-control custom-radio radiodiv">
+        <input type="radio" id="customRadio2" [(ngModel)]="LowtoHigh" value="1" name="LowtoHigh"
+            class="custom-control-input">
+        <label class="custom-control-label" for="customRadio2">Low to High</label>
+    </div>
+    <div class="custom-control custom-radio radiodiv">
+        <input type="radio" id="customRadio3" [(ngModel)]="HightoLow" value="2" name="HightoLow"
+            class="custom-control-input">
+        <label class="custom-control-label" for="customRadio3">High to Low</label>
+    </div>
+    <div class="custom-control custom-radio  radiodiv">
+        <input type="radio" id="customRadio4" [(ngModel)]="Recent" value="3" name="Recent" class="custom-control-input">
+        <label class="custom-control-label" for="customRadio4">Recent</label>
+    </div>
+</div>
+
+
+
+<!-- radha-new-Update -->
+
+<!-- abijith-new-Update -->
+<div [hidden]="!IsVisibleFilter" class="container">
+    <div class="get_call_back" [ngClass]="{'filterClass': filterLoader == true}">
+        <div class="filterHead">
+            <div (click)="ShowHideFilter()"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;<span>Back</span>
+                <!--            <span class="filterHeadSpan">{{this.projectcount}} projects found</span>-->
+            </div>
+            <button type="button" class="btn btn-success resetFilter" (click)="onReset()">Reset</button>
+        </div>
+        <form [formGroup]="registerForm" class="formStyle">
+            <div class="marginTop" [hidden]="!projectTypeHide">
+                <label>Project Type</label><br>
+                <div class="project_type">
+                    <button type="button" class="btn btn-default" (click)="apartmentclick();getcity()" [ngStyle]="{'background-color': apartmentSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                        'color': apartmentSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;
+                        Apartments&nbsp;&nbsp;
+                    </button>&nbsp;&nbsp;
+                    <button type="button" class="btn btn-default" (click)="villaclick();getcity()" [ngStyle]="{'background-color': villaSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                        'color': villaSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;
+                        Villas&nbsp;&nbsp;
+                    </button>&nbsp;&nbsp;
+                    <button type="button" class="btn btn-default" (click)="plotclick();getcity()" [ngStyle]="{'background-color': plotSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                        'color': plotSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;
+                        Plots&nbsp;&nbsp;
+                    </button>
+                </div>
+                <!-- <select class="ui dropdown dropdownsUi commonMobileDropdown" #prType (change)="projectType(prType.value);getcity()" formControlName="projectType">
+            <option value="" selected="selected">Select</option>
+            <option value="50401">Apartments</option>
+            <option value="50402">Villas</option>
+            <option value="50403">Plots</option>
+        </select> -->
+            </div>
+            <div class="marginTop">
+                <label>Bedroom</label><br>
+                <div>
+                    <button type="button" class="btn btn-secondary" (click)="oneBedroom();getcity()" [ngStyle]="{'background-color': oneBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                'color': oneBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">1
+                    </button>&nbsp;&nbsp;
+                    <button type="button" class="btn btn-secondary" (click)="twoBedroom();getcity()" [ngStyle]="{'background-color': twoBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                'color': twoBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">2
+                    </button>&nbsp;&nbsp;
+                    <button type="button" class="btn btn-secondary" (click)="threeBedroom();getcity()" [ngStyle]="{'background-color': threeBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                'color': threeBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">3
+                    </button>&nbsp;&nbsp;
+                    <button type="button" class="btn btn-secondary" (click)="fourBedroom();getcity()" [ngStyle]="{'background-color': fourBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                'color': fourBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">4
+                    </button>&nbsp;&nbsp;
+                    <button type="button" class="btn btn-secondary" (click)="fiveBedroom();getcity()" [ngStyle]="{'background-color': fiveBedroomSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                'color': fiveBedroomSelect ? '#fff' : 'rgb(76, 73, 73)'}">5+
+                    </button>
+                </div>
+            </div>
+            <div class="marginTop" [hidden]="!statusHide">
+                <label>Project Status</label><br>
+                <div class="project_status">
+                    <button type="button" class="btn btn-default" (click)="readyToMove();getcity()" [ngStyle]="{'background-color': readyToMoveSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': readyToMoveSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;
+                        Ready to move&nbsp;&nbsp;
+                    </button>&nbsp;&nbsp;
+                    <button type="button" class="btn btn-default" (click)="underConstruction();getcity()" [ngStyle]="{'background-color': underConstructionSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': underConstructionSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;Under
+                        Construction&nbsp;&nbsp;
+                    </button>
+                </div>
+                <div class="btnMargin status_resp_second">
+                    <button type="button" class="btn btn-default" (click)="newLaunch();getcity()" [ngStyle]="{'background-color': newLaunchSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': newLaunchSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;New
+                        Launch&nbsp;&nbsp;
+                    </button>&nbsp;&nbsp;
+                    <button type="button" class="btn btn-default" (click)="upcoming();getcity()" [ngStyle]="{'background-color': preLaunchSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': preLaunchSelect ? '#fff' : 'rgb(76, 73, 73)'}">&nbsp;&nbsp;UP
+                        Coming&nbsp;&nbsp;
+                    </button>
+                </div>
+            </div>
+            <div class="marginTop">
+                <label>Budget</label><br>
+                <!--                        <div class="minbug">-->
+                <!--                            <select class="ui dropdown dropdownsUi commonMobileDropdown" #minbug-->
+                <!--                            (change)="minbugvalue(minbug.value);getcity()" [(ngModel)]="minbudget_IDPK"-->
+                <!--                                formControlName="minBudget">-->
+                <!--                                <option value="" selected="selected">min</option>-->
+                <!--                                <option *ngFor="let budget of budgets" [value]="budget.budget_IDPK">{{budget.budget_value}}-->
+                <!--                                </option>-->
+                <!--                            </select>-->
+
+                <!--                        </div>&nbsp;&nbsp;-->
+                <!--                        <div class="maxbug">-->
+                <!--                            <select class="ui dropdown dropdownsUi commonMobileDropdown" #maxbug-->
+                <!--                            (change)="maxbugvalue(maxbug.value);getcity()" [(ngModel)]="maxbudget_IDPK"-->
+                <!--                            formControlName="maxBudget">-->
+                <!--                                <option value="" selected="selected">max</option>-->
+                <!--                                <option *ngFor="let budget of newBudget" [value]="budget.budget_IDPK">{{budget.budget_value}}-->
+                <!--                                </option>-->
+                <!--                            </select>-->
+                <!--                        </div>-->
+                <div class="col-12 p-0">
+                    <button type="button" class="btn btn-default budgetMobileViewButton"
+                        (click)="lessThntweentylaks();getcity()" [ngStyle]="{'background-color': tweentylaksSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': tweentylaksSelect ? '#fff' : 'rgb(76, 73, 73)'}">
+                        < 20L </button>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-default budgetMobileViewButton"
+                                (click)="tweentylaksTosixtylakhs();getcity()" [ngStyle]="{'background-color': tweentylaksTosixtylakhsSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': tweentylaksTosixtylakhsSelect ? '#fff' : 'rgb(76, 73, 73)'}"> 20L-60L
+                            </button>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-default budgetMobileViewButton"
+                                (click)="sixtylakhsToEhightylakhs();getcity()" [ngStyle]="{'background-color': sixtylakhsToEhightylakhsSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': sixtylakhsToEhightylakhsSelect ? '#fff' : 'rgb(76, 73, 73)'}"> 60L-80L
+                            </button>&nbsp;&nbsp;
+                </div>
+                <div class="col-12 mt-2 p-0">
+                    <button type="button" class="btn btn-default budgetMobileViewButton"
+                        (click)="EhightylakhsTooneCr();getcity()" [ngStyle]="{'background-color': EhightylakhsTooneCrSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': EhightylakhsTooneCrSelect ? '#fff' : 'rgb(76, 73, 73)'}"> 80L-1Cr
+                    </button>&nbsp;&nbsp;
+                    <button type="button" class="btn btn-default budgetMobileViewButton"
+                        (click)="oneCrAbove();getcity()" [ngStyle]="{'background-color': oneCrAboveCrSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': oneCrAboveCrSelect ? '#fff' : 'rgb(76, 73, 73)'}"> 1Cr+
+                    </button>&nbsp;&nbsp;
+                </div>
+            </div>
+
+            <div class="marginTop">
+                <label>Possession Within</label><br>
+                <!--            <select class="ui dropdown dropdownsUi commonMobileDropdown" #posession (change)="posessionWithin(posession.value);getcity()" formControlName="posessionWithin">-->
+                <!--                <option value="" selected="selected">Select</option>-->
+                <!--                <option *ngFor="let possission of possissions" [value]="possission.possission_ID">-->
+                <!--                    {{possission.possission_value}}</option>-->
+                <!--            </select>-->
+                <button type="button" class="btn btn-default budgetMobileViewButton"
+                    (click)="PosessionImmediate();getcity()" [ngStyle]="{'background-color': ImmediateSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': ImmediateSelect ? '#fff' : 'rgb(76, 73, 73)'}">Immediate
+                </button>&nbsp;&nbsp;
+                <button type="button" class="btn btn-default budgetMobileViewButton"
+                    (click)="PosessionSixMonths();getcity()" [ngStyle]="{'background-color': SixMonthsSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': SixMonthsSelect ? '#fff' : 'rgb(76, 73, 73)'}">6 months
+                </button>&nbsp;&nbsp;
+                <button type="button" class="btn btn-default budgetMobileViewButton"
+                    (click)="PosessionOneYear();getcity()" [ngStyle]="{'background-color': OneYearSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': OneYearSelect ? '#fff' : 'rgb(76, 73, 73)'}">1 year
+                </button>&nbsp;&nbsp;
+                <div class="col-12 p-0 mt-2">
+                    <button type="button" class="btn btn-default budgetMobileViewButton"
+                        (click)="PosessionTwoYearAbove();getcity()" [ngStyle]="{'background-color': twoYearSelect ? 'rgba(151,27,71,.8117647058823529)' : 'rgb(255, 255, 255)',
+                                    'color': twoYearSelect ? '#fff' : 'rgb(76, 73, 73)'}">2+ years
+                    </button>&nbsp;&nbsp;
+                </div>
+            </div>
+            <div class="marginTop">
+                <label>Locality</label><br>
+                <!--            <select class="ui fluid search dropdown dropdownsUi commonMobileDropdown" multiple=""-->
+                <!--            [(ngModel)]="locality" (change)="getcity()" formControlName="locality">-->
+                <!--                <option value="" selected="selected">Select</option>-->
+                <!--                <option *ngFor="let locality of localitys" [value]="locality.locality_IDPK">-->
+                <!--                    {{locality.locality_name}}-->
+                <!--                </option>-->
+                <!--            </select>-->
+                <ng-multiselect-dropdown [placeholder]="'Search upto 3 localities'" [data]="localitys"
+                    [(ngModel)]="locality" [settings]="dropdownSettingsMobile" (onSelect)="onLocalitySelect($event)"
+                    (onDeSelect)="onLocalityDeSelect($event)" formControlName="locality">
+                </ng-multiselect-dropdown>
+            </div>
+            <div class="marginTop">
+                <p *ngIf="filterSelectOne" class="filterSelectAtleastOne">Select atleast one</p>
+                <div class="footer">
+                    <h4>Call us for instant assistance</h4>
+                    <p>091-64-247-247</p>
+                    <span>Trust us we can save you quite a lot of time</span>
+                </div>
+
+            </div>
+
+            <div *ngIf="filterShowHide" class="filterApplyBtn">
+                <div class="" (click)="ShowHideFilter()">
+                    <button class="btn btn-light">View Properties <span
+                            class="badge countBackground">{{this.projectcount}}</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div *ngIf="filterLoader" class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+<!-- update by veera end-->
+
+<!--OTP-MODAL-->
+<!-- <div id="modal-container2">
+  <div class="modal-background">
+    <div class="modal">
+      <form name="otpForm2" novalidate>
+        <h4>Please Verify your Number</h4>
+        <p>Enter the 4 digit Verification Code sent on {{enquiry.number}}<a (click)="goback()">(Edit)</a></p>
+        <div class="col-12 countdown_maindiv">
+          <countdown #cd2 [config]="countdownconfig" (event)="handleEvent($event)"></countdown>
+        </div>
+        <input hidden autocomplete="off" type="text" placeholder="OTP"
+               name="otp" id="otp2" [(ngModel)]="enquiry.otp" required/>
+        <ng-otp-input class="otpinput" #ngOtpInput (onInputChange)="onOtpChange2($event)" [config]="config">
+        </ng-otp-input>
+        <button (click)="otpvalidate2()">Validate OTP</button>
+        <p class="otpexpireclass" *ngIf="otpexpired">OTP Expired - <a (click)="otpsend2()">Resend</a></p>
+        <button type="reset" id="btn_reset" style="display: none;"></button>
+      </form>
+    </div>
+  </div>
+</div> -->
+<!--OTP-MODAL-->
+
+<!-- CSS-Loader -->
+<div *ngIf="otploader" class="loaderbody">
+    <div class="box">
+        <div class="loader-20"></div>
+    </div>
+</div>
+<!-- CSS-Loader -->
+
+<!--<div class="footerDiv">
+  <div *ngIf="loaded">
+    <ng-container *ngComponentOutlet="FooterComponent"></ng-container>
+  </div>
+</div>-->
+<div class="innerheader_position">
+    <app-innerheader></app-innerheader>
+</div>

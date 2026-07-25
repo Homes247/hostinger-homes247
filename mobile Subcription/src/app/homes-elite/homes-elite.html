@@ -1,0 +1,847 @@
+<script type="module" src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js"></script>
+
+@if (elitePlanShow) {
+<div>
+    <!-- Header -->
+    <div class="custom-header fixed-top d-flex align-items-center justify-content-between px-3">
+        <div class="d-flex align-items-center">
+            <!-- Left Back Arrow -->
+            <div class="back-btn" routerLink="/userauth/profile/{{UserId}}">
+                <i class="fa fa-chevron-left"></i>
+            </div>
+
+            <!-- Logo + Title -->
+            <div class="logo-section d-flex align-items-center">
+                <img class="mr-2" (click)="homesEliteBackBtn()"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/homesEliteBackBtn.svg"
+                    height="16" width="16" alt="homesEliteBackBtn">
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/elite/homes_elite_logo.svg"
+                    height="32px" alt="Elite Logo">
+                <!-- <span class="elite-text">Elite</span> -->
+            </div>
+        </div>
+
+        <!-- 
+        <div class="dropdown">
+            <button class="btn plan-dropdown dropdown-toggle" type="button" (click)="toggleDropdown()"
+                aria-expanded="false">
+                {{ selectedUser }}
+            </button>
+
+            <div class="dropdown-menu buyerDropDown" [class.show]="dropdownVisible">
+                @for (plan of eliteUserName; track plan) {
+                <div class="dropdown-item"
+                    (click)="selectEliteUserPlan(plan)">
+                    {{ plan.value.eliteUserType }}
+                </div>
+                }
+            </div>
+        </div> -->
+
+
+        <div class="dropdown">
+            <button class="btn plan-dropdown dropdown-toggle" type="button" (click)="toggleDropdown()">
+                {{ selectedUser || 'Select User Type' }} <img class="ml-1"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/homesEliteDropDownArrow.svg"
+                    height="10" width="10" alt="homesEliteBackBtn">
+            </button>
+            <div class="dropdown-menu buyerDropDown" [class.show]="dropdownVisible">
+                @for (user of eliteUserName; track user) {
+                <div class="dropdown-item" (click)="selectEliteUserPlan(user)">
+                    {{ user.eliteUserType }}
+                </div>
+                }
+            </div>
+        </div>
+        
+    </div>
+
+
+    <!-- <div class="container mt-5">
+        <owl-carousel-o class="owl-carousel-placeholder" [options]="customOptions">
+            @for (slider of sliderDetails; track slider) {
+            <ng-container>
+                <div class="carousel-slide">
+                    <div class="slider-box text-center">
+                        <h2 class="slider_head">{{slider.title}}</h2>
+                        <p class="slider_content">{{slider.details}}</p>
+                    </div>  
+                </div>
+            </ng-container>
+            }
+        </owl-carousel-o>
+    </div> -->
+
+    <div class="container mt-4" style="
+    height: 150px;
+">
+        <owl-carousel-o [options]="customOptions" class="owlCustomOptions">
+            @for (slider of sliderDetails; track slider) {
+            <ng-container>
+                <ng-template carouselSlide>
+                    <div class="slider-box text-center">
+                        <h2 class="slider_head">{{slider.title}}</h2>
+                        <p class="slider_content">{{slider.details}}</p>
+                    </div>
+                </ng-template>
+            </ng-container>
+            }
+        </owl-carousel-o>
+    </div>
+
+
+    @if (plansList?.length) {
+    <div class="container-fluid mb-4">
+
+        <!-- Plan Headers -->
+        <div class="row Relax_bg_color">
+            @for (plan of plansList; track plan; let i = $index) {
+            <div class="col-4 p-0">
+                <div class="relax_head" [ngClass]="{
+        'relax_bg_color': i === 0,
+        'relaxplus_bg_color': i === 1,
+        'relaxmax_bg_color': i === 2
+      }">
+                    {{ plan.planName }}<br>
+                    <span class="days_head">{{ plan.Days_limit }} Days</span>
+                </div>
+            </div>
+            }
+        </div>
+
+        <!-- Features driven from mobileImg -->
+        @for (mobImg of mobileImg; track mobImg) {
+        <div class="row">
+
+            <!-- Feature Header -->
+            <div class="col-12">
+                <div class="relax_inline">
+                    <img [src]="planDetailesImagePath + mobImg.img_mb" class="relax_logos"
+                        alt="{{ mobImg.detail_plans }}">
+                    <div class="relax_heading">{{ mobImg.detail_plans }}</div>
+                </div>
+            </div>
+
+            <!-- Feature Values for each Plan -->
+            @for (plan of plansList; track plan; let i = $index) {
+            <div class="col-4 p-0">
+                <div [ngClass]="{
+        'relax_bg': i === 0,
+        'relaxplus_bg': i === 1,
+        'relaxmax_bg': i === 2
+      }">
+                    @for (data of plan.details; track data) {
+
+
+                    <ng-container>
+                        @if (data.planID == mobImg.planID) {
+                        <ng-container>
+                            @if (data.trueOrFalse != '0' && data.trueOrFalse !='1') {
+                            <span [ngClass]="{
+        'relax_text': i === 0,
+        'relaxplus_text': i === 1,
+        'relaxmax_text': i === 2
+      }">
+                                {{ data.trueOrFalse }}
+                            </span>
+                            }
+                            @if (data.trueOrFalse == '0') {
+                            <img [src]="
+                  i === 0
+                    ? 'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/elite/green_vector.svg'
+                    : i === 1
+                    ? 'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/elite/blue_vector.svg'
+                    : 'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/elite/yellow_vector.svg'
+                 " class="vectorlogo">
+                            }
+
+
+                            @if (data.trueOrFalse == '1') {
+                            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/elite/cancel_vector.svg"
+                                class="vectorlogo">
+                            }
+
+
+                        </ng-container>
+                        }
+
+
+
+                    </ng-container>
+                    }
+
+                </div>
+
+            </div>
+            }
+        </div>
+        }
+
+    </div>
+    }
+
+
+
+    <div class="container">
+        <div class="section_heading mb-3">How it works</div>
+
+        <!-- <owl-carousel-o class="owl-carousel-placeholder" [options]="carouselOptions1">
+            @for (slider of howItWorks; track slider) {
+            <ng-container>
+                <div class="carousel-slide">
+                    <div class="work_card_height">
+                        <div class="work-card">
+                            <h5 class="card-title m-0">{{slider.title}}</h5>
+                            <p class="card-desc m-0">{{slider.details}}</p>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            }
+        </owl-carousel-o> -->
+
+
+        <owl-carousel-o [options]="carouselOptions1">
+            @for (slider of howItWorks; track $index; let i=$index) {
+            <ng-template carouselSlide>
+                <div class="work_card_height">
+                    <div class="work-card">
+                        <h5 class="card-title m-0">{{ slider.title }}</h5>
+                        <p class="card-desc m-0">{{ slider.details }}</p>
+                        <p class="card-desc-count">{{i + 1}}</p>
+                    </div>
+                </div>
+            </ng-template>
+            }
+        </owl-carousel-o>
+
+
+    </div>
+
+    <div class="container">
+        <div class="section_heading mb-3 mt-3">What Max Elite Users Say</div>
+
+        <div class="testimonial-wrapper">
+            <div class="bg-layer pink"></div>
+            <div class="bg-layer maroon"></div>
+            <!-- <owl-carousel-o class="owl-carousel-placeholder" [options]="customOptions2">
+                @for (card of userSay; track card) {
+                <ng-container>
+                    <div class="carousel-slide">
+                        
+                        <div class="testimonial-card">
+                            <div class=""><img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/elite/top_design.svg" alt="top_design"
+                                    class="top_design">
+                            </div>
+                           
+                            <p class="testimonial-text">{{ card.content }}</p>
+                            <div class="user-card">
+                                <img src="{{cardImgPath}}{{card.user_img}}" class="user-img person_img"
+                                    alt="{{ card.username }}">
+                                <div class="user-info">
+                                    <div class="user-name">{{ card.username }}</div>
+                                    <div class="user-plan">{{ card.plan_name }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                }
+            </owl-carousel-o> -->
+
+            <owl-carousel-o [options]="customOptions2">
+                @for (card of userSay; track card) {
+
+                <ng-container>
+                    <ng-template carouselSlide>
+                        <!-- Main card -->
+                        <div class="testimonial-card">
+                            <div class=""><img
+                                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/elite/top_design.svg"
+                                    alt="top_design" class="top_design">
+                            </div>
+                            <!-- <div class="quote-mark">❝</div> -->
+                            <p class="testimonial-text">{{ card.content }}</p>
+                            <div class="user-card">
+                                <img src="{{cardImgPath}}{{card.user_img}}" class="user-img person_img"
+                                    alt="{{ card.username }}">
+                                <div class="user-info">
+                                    <div class="user-name">{{ card.username }}</div>
+                                    <div class="user-plan">{{ card.plan_name }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ng-container>
+                }
+            </owl-carousel-o>
+
+        </div>
+    </div>
+
+    <div class="container mt-5 pb-5">
+        <div class="section_heading mb-3">Frequently Asked Questions</div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 IFSC_sec">
+                <div id="accordionExample">
+                    @for (faq of frquentlyasked; track faq; let i = $index) {
+                    <div class="card faq mb-2">
+
+                        <a class="card-header2" [attr.id]="'heading-' + faq.Id" data-toggle="collapse"
+                            [attr.data-target]="'#collapse-' + faq.Id" [attr.aria-expanded]="i === 0">
+
+                            <h5 class="mb-0 faq_After d-flex justify-content-between">
+                                <span class="text_colour">{{ faq.question }}</span>
+                                <img class="faq-arrow"
+                                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/homesEliteFAQDropDown.svg" height="16" width="16"
+                                    alt="arrow">
+                            </h5>
+                        </a>
+
+                        <div class="collapse" [ngClass]="{ show: i === 0 }" [attr.id]="'collapse-' + faq.Id"
+                            [attr.aria-labelledby]="'heading-' + faq.Id" data-parent="#accordionExample">
+
+                            <div class="card-body">
+                                <p class="contentColor mb-0">
+                                    {{ faq.answer }}
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    }
+                    <!-- <div class="card faq mb-2">
+                        <a class="card-header2" id="heading-1" type="button" data-toggle="collapse"
+                            data-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+                            <h5 class="mb-0 faq_After">
+                                <a class="text_colour">
+                        
+                                    What is the full form of IFSC?
+                                </a>
+                            </h5>
+                        </a>
+                        <div id="collapse-1" class="collapse show" aria-labelledby="heading-1"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+
+                                <p class="contentColor mb-0">
+                                    Indian Financial System Code is the expanded form of the IFSC code.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card faq mb-2">
+                        <a class="card-header2" id="heading-2" type="button" data-toggle="collapse"
+                            data-target="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
+                            <h5 class="mb-0 faq_After">
+                                <a class="collapsed text_colour">
+                                 
+                                    How to identify the bank in an IFSC code?
+                                </a>
+                            </h5>
+                        </a>
+                        <div id="collapse-2" class="collapse" aria-labelledby="heading-2"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+                                <p class="contentColor mb-0">We can identify the Bank from the first 4 characters of the
+                                    IFSC code.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card faq mb-2">
+                        <div class="card-header2" id="heading-4">
+                            <h5 class="mb-0 faq_After">
+                                <a class="collapsed text_colour" type="button" data-toggle="collapse" href="#collapse-4"
+                                    aria-expanded="false" aria-controls="collapse-4">
+                                    
+                                    What type of characters are there in an IFSC
+                                    code?
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapse-4" class="collapse" data-parent="#accordionExample"
+                            aria-labelledby="heading-4">
+                            <div class="card-body">
+                                <p class="contentColor mb-0">An IFSC code contains alphanumeric characters.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card faq mb-2">
+                        <div class="card-header2" id="heading-3">
+                            <h5 class="mb-0 faq_After">
+                                <a class="collapsed text_colour" type="button" data-toggle="collapse" href="#collapse-3"
+                                    aria-expanded="false" aria-controls="collapse-3">
+                                
+                                    How many characters are there in the IFSC code?
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapse-3" class="collapse" data-parent="#accordionExample"
+                            aria-labelledby="heading-3">
+                            <div class="card-body">
+                                <p class="contentColor mb-0">An IFSC code contains alphanumeric characters.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card faq mb-2">
+                        <div class="card-header2" id="heading-5">
+                            <h5 class="mb-0 faq_After">
+                                <a class="collapsed text_colour" type="button" data-toggle="collapse" href="#collapse-5"
+                                    aria-expanded="false" aria-controls="collapse-3">
+                                  
+                                    What are the major components signed in an IFSC
+                                    code?
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapse-5" class="collapse" data-parent="#accordionExample"
+                            aria-labelledby="heading-5">
+                            <div class="card-body">
+                                <p class="contentColor mb-0">The major parts of the IFSC code are the bank code and
+                                    branch code.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card faq mb-2">
+                        <div class="card-header2" id="heading-6">
+                            <h5 class="mb-0 faq_After">
+                                <a class="collapsed text_colour" type="button" data-toggle="collapse" href="#collapse-6"
+                                    aria-expanded="false" aria-controls="collapse-6">
+                                
+                                    What is the SWIFT code?
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapse-6" class="collapse" data-parent="#accordionExample"
+                            aria-labelledby="heading-6">
+                            <div class="card-body">
+                                <p class="contentColor mb-0">A SWIFT code is used for transferring funds on an
+                                    International level.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card faq mb-2">
+                        <div class="card-header2" id="heading-7">
+                            <h5 class="mb-0 faq_After">
+                                <a class="collapsed text_colour" type="button" data-toggle="collapse" href="#collapse-7"
+                                    aria-expanded="false" aria-controls="collapse-7">
+                                    
+                                    Which are the major electronic payment systems
+                                    of India?
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapse-7" class="collapse" data-parent="#accordionExample"
+                            aria-labelledby="heading-7">
+                            <div class="card-body">
+                                <p class="contentColor mb-0">The major electronic payment systems in India are NEFT,
+                                    RTGS, IMPS, and UPI.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card faq mb-2">
+                        <div class="card-header2" id="heading-8">
+                            <h5 class="mb-0 faq_After">
+                                <a class="collapsed text_colour" type="button" data-toggle="collapse" href="#collapse-8"
+                                    aria-expanded="false" aria-controls="collapse-8">
+                                    
+                                    Who are the creators of the IFSC code?
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapse-8" class="collapse" data-parent="#accordionExample"
+                            aria-labelledby="heading-8">
+                            <div class="card-body">
+                                <p class="contentColor mb-0">The Reserve Bank of India provides a unique 11-digit IFSC
+                                    code to the banks.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card faq mb-2">
+                        <div class="card-header2" id="heading-9">
+                            <h5 class="mb-0 faq_After">
+                                <a class="collapsed text_colour" type="button" data-toggle="collapse" href="#collapse-9"
+                                    aria-expanded="false" aria-controls="collapse-9">
+                              
+                                    What is the minimum amount you can transfer in NEFT?
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapse-9" class="collapse" data-parent="#accordionExample"
+                            aria-labelledby="heading-9">
+                            <div class="card-body">
+                                <p class="contentColor mb-0">There is no minimum amount you can transfer under NEFT
+                                    under retail banking and corporate banking</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card faq mb-2">
+                        <div class="card-header2" id="heading-10">
+                            <h5 class="mb-0 faq_After">
+                                <a class="collapsed text_colour" type="button" data-toggle="collapse"
+                                    href="#collapse-10" aria-expanded="false" aria-controls="collapse-10">
+                             
+                                    What is the maximum amount you can transfer in
+                                    NEFT?
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapse-10" class="collapse" data-parent="#accordionExample"
+                            aria-labelledby="heading-10">
+                            <div class="card-body">
+                                <p class="contentColor mb-0">The maximum amount you can transfer under NEFT under retail
+                                    banking is INR 5 Lakhs and in corporate banking it is INR 50 lakhs for Vyapaar/trade
+                                    and INR 500 crores under Vistaar.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card faq mb-2">
+                        <div class="card-header2" id="heading-11">
+                            <h5 class="mb-0 faq_After">
+                                <a class="collapsed text_colour" type="button" data-toggle="collapse"
+                                    href="#collapse-11" aria-expanded="false" aria-controls="collapse-11">
+                              
+                                    What is the minimum amount you can transfer in
+                                    RTGS?
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapse-11" class="collapse" data-parent="#accordionExample"
+                            aria-labelledby="heading-11">
+                            <div class="card-body">
+                                <p class="contentColor mb-0">INR 2 lakhs is the amount you can transfer under RTGS
+                                    under
+                                    retail banking.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card faq mb-2">
+                        <div class="card-header2" id="heading-12">
+                            <h5 class="mb-0 faq_After">
+                                <a class="collapsed text_colour" type="button" data-toggle="collapse"
+                                    href="#collapse-12" aria-expanded="false" aria-controls="collapse-12">
+                                  
+                                    What is the maximum amount you can transfer in
+                                    RTGS?
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapse-12" class="collapse" data-parent="#accordionExample"
+                            aria-labelledby="heading-12">
+                            <div class="card-body">
+                                <p class="contentColor mb-0">The maximum amount you can transfer under RTGS under retail
+                                    banking is INR 5 Lakhs and in corporate banking it is INR 50 lakhs for Vyapaar/trade
+                                    and INR 500 crores under Vistaar.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card faq mb-0">
+                        <div class="card-header2" id="heading-13">
+                            <h5 class="mb-0 faq_After">
+                                <a class="collapsed text_colour" type="button" data-toggle="collapse"
+                                    href="#collapse-13" aria-expanded="false" aria-controls="collapse-13">
+                                  
+                                    Why do we require many IFSC codes?
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapse-13" class="collapse" data-parent="#accordionExample"
+                            aria-labelledby="heading-13">
+                            <div class="card-body">
+                                <p class="contentColor mb-0">In a vast country like India, there are numerous cities and
+                                    towns with the same name, some of them even in the same district. Thus to correctly
+                                    identify the right or the proper branch, IFSC codes can help out easily by
+                                    dedicating a specific code for each branch.</p>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pricing-container">
+
+        <!-- Main Pricing Card -->
+        <article class="pricing-card">
+
+            <!-- Pricing Options -->
+            <section class="pricing-options" *ngIf="plansList?.length">
+
+                <div class="pricing-option" *ngFor="let plan of plansList; let i = index">
+
+                    <!-- MOST POPULAR -->
+                    <!-- <div class="popular-badge" *ngIf="i === 1">
+                  MOST POPULAR
+              </div> -->
+                    <ng-container *ngIf="i === 1">
+                        <span class="most-popular">
+                            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/elite/popular.svg">
+                        </span>
+                        <span class="popularText">MOST POPULAR</span>
+                    </ng-container>
+                    <!-- RADIO -->
+                    <input type="radio" [id]="'plan-' + i" name="plan" class="plan-radio" [value]="plan.planId"
+                        [(ngModel)]="selectedPlanId"
+                        (change)="selectedPlan(plan.planId, selectedUserId, selectedUser, plan)">
+                    <!-- LABEL -->
+                    <label [for]="'plan-' + i" class="plan-label" [ngClass]="{
+                      'relax-selected': i === 0 && selectedPlanId == plan.planId,
+                      'relax-plus-selected': i === 1 && selectedPlanId == plan.planId,
+                      'relax-max-selected': i === 2 && selectedPlanId == plan.planId
+                  }">
+
+                        <!-- PLAN NAME -->
+                        <div class="plan-header">
+                            <span class="plan-name" [ngClass]="{
+                              'plan-title1': i === 0,
+                              'plan-title2': i === 1,
+                              'plan-title3': i === 2
+                          }">
+                                {{ plan.planName }}
+                            </span>
+                        </div>
+
+                        <!-- PRICE -->
+                        <div class="plan-pricing">
+                            <span class="current-price">
+                                ₹{{ plan.price }}
+                            </span>
+
+                            <span class="original-price">
+                                ₹{{ plan.stric_price }}
+                            </span>
+                        </div>
+
+                        <!-- RADIO INDICATOR -->
+                        <div class="radio-indicator"></div>
+
+                    </label>
+
+                </div>
+
+            </section>
+
+            <!-- BUTTON -->
+            <footer class="">
+                <button type="button" class="buy-btn" [disabled]="!userSelected" (click)="paymentFinnal()">
+                    <span class="buy-text">
+                        Proceed & continue
+                    </span>
+                    <!-- <span class="buy-text">
+                        Buy <strong>{{ billingSummaryList.planName || 'Relax' }}</strong>
+                    </span> -->
+
+                    <svg class="arrow-icon" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </footer>
+
+        </article>
+
+    </div>
+
+</div>
+}
+
+
+
+<!-- -------------------payment page------------------- -->
+@if (paymentShow) {
+<div>
+
+    <div class="custom-header fixed-top px-3">
+        <div class="back-btn row">
+            <div class="col-1" (click)="elitePlan()"><i class="fa fa-chevron-left"></i> </div>
+            <div class="col-9 text-center">Payment</div>
+        </div>
+    </div>
+
+    <div class="container mt-5 mb-5">
+        <div class="upi_head">UPI</div>
+        <div class="mobile_background mt-2">
+            <p class="pay_upi_id mb-3">Pay with UPI ID / Number</p>
+            <div class="d-flex align-items-center payment-box mb-1">
+                <input type="text" class="form-control upi-input input_size p-3"
+                    placeholder="7871484597@okhdfcbank">&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+        </div>
+
+        <div class="mobile_background online_payment_text mt-2">
+            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/elite/mobile_google_pay.svg"
+                alt="mobile_google_pay"> &nbsp;Google Pay
+        </div>
+        <div class="mobile_background online_payment_text mt-2">
+            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/elite/mobile_phone_pay.svg"
+                alt="mobile_phone_pay"> &nbsp;PhonePe
+        </div>
+        <div class="mobile_background online_payment_text mt-2">
+            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/elite/mobile_paytm.svg"
+                alt="mobile_paytm"> &nbsp;PayTM
+        </div>
+
+        <div class="mobile_background_container mt-3">
+            <div class="price_details border_buttom p-2">Price Details</div>
+            <div class="center_gap total_amt border_buttom p-2">Total Amount <span>₹ 399</span></div>
+            <div class="center_gap total_amt border_buttom p-2">Price Details <span>₹59</span></div>
+            <div class="center_gap amt_payable border_buttom p-2">Amount payable <span>₹ 448</span></div>
+        </div>
+    </div>
+    <div class="sticky-plan-selector">
+        <div class="text-center">
+            <button class="buy-btn" (click)="startBrowsing()">Continue</button>
+        </div>
+    </div>
+
+</div>
+}
+<!-- -------------------payment page------------------- -->
+
+<!-- -------------------payment all set page------------------- -->
+@if (startBrowsingShow) {
+<div class="d-flex">
+
+    <div class="container px-0">
+        <div class="d-flex justify-content-center align-items-center mt-5">
+
+            <!-- <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newProfile/paymentDone_Icon.svg" alt="paymentDone_Icon" class="rotate-animation"> -->
+
+            <dotlottie-wc src="https://lottie.host/e9bbe875-af95-4619-87e3-096771572c05/VM7kWrDSvq.lottie"
+                style="width: 300px;height: 300px" speed="1" autoplay></dotlottie-wc>
+
+        </div>
+        <div class="text-center youreAllSet">
+            <h6>You’re All Set! </h6>
+            <p>Your Relax Max Plan is Now Active</p>
+        </div>
+
+
+
+        <div class="afterSuccessPayment">
+            <div class="d-flex justify-content-center align-items-center mb-2">
+                <button class="btn StartBrowsingBtn">Start Browsing Properties</button>
+            </div>
+            <div class="d-flex justify-content-center align-items-center mb-3">
+                <button class="btn ViewMyPlanBtn" routerLink="/userauth/profile/{{UserId}}">View My Plan</button>
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+<!-- -------------------payment all set page------------------- -->
+
+@if (billingShowSummary) {
+<section class="bs">
+
+    <!-- Header -->
+    <header class="bs__header">
+        <button (click)="closeBillingSummary()" class="bs__back-btn" type="button" aria-label="Go back">
+            <img class="bs__back-icon"
+                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/3xmoreViewBannerBackBtn.svg"
+                alt="Back" />
+        </button>
+        <h1 class="bs__title">Billing Summary</h1>
+        <span class="bs__header-spacer"></span>
+    </header>
+
+    <!-- Scrollable Body -->
+    <div class="bs__body">
+
+        <!-- Plan Card -->
+        <div class="bs__plan-card">
+            <div class="bs__plan-card-left">
+                <div class="bs__crown-wrap">
+                    <img class="bs__crown-icon"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/myPlansGoldCrown.svg"
+                        alt="Crown" />
+                </div>
+                <span class="bs__plan-name">{{ billingSummaryList.planName }}</span>
+            </div>
+            <span class="bs__plan-price">₹{{ billingSummaryList.price }}</span>
+        </div>
+
+        <!-- Order Summary Card -->
+        <div class="bs__card">
+            <p class="bs__card-heading">Order Summary</p>
+
+            <div class="bs__order-rows">
+                <!-- @for (item of billingSummaryList.orderItems; track item.label) { -->
+                <div class="bs__order-row">
+                    <span class="bs__order-label">{{ billingSummaryList.planName }}</span>
+                    <span class="bs__order-amount">₹{{ billingSummaryList.price | number: '1.2-2' }}</span>
+                </div>
+
+                <div class="bs__order-row">
+                    <span class="bs__order-label">GST 18%</span>
+                    <span class="bs__order-amount">₹{{ (+billingSummaryList.price * 0.18) | number:'1.2-2' }}</span>
+                </div>
+
+                <!-- } -->
+            </div>
+
+            <div class="bs__divider"></div>
+
+            <div class="bs__total-row">
+                <span class="bs__total-label">Total</span>
+                <span class="bs__total-amount">₹{{ (+billingSummaryList.price * 1.18).toFixed(2) | number: '1.2-2'
+                    }}</span>
+            </div>
+        </div>
+
+        <!-- Purchase By Card -->
+        <div class="bs__card">
+            <p class="bs__card-heading">Purchase by</p>
+            @if(userName){
+            <div class="bs__purchase-row">
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription management/userContactUserIcon.svg"
+                    alt="userContactUserIcon" class="bs__purchase-icon-placeholder" />
+                <span class="bs__purchase-text">{{ userName || 'N/A' }}</span>
+            </div>
+            }
+
+            @if(userEmail){
+            <div class="bs__purchase-row">
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription management/userContactMailIcon.svg"
+                    alt="userContactMailIcon" class="bs__purchase-icon-placeholder" />
+                <span class="bs__purchase-text">{{ userEmail || 'N/A' }}</span>
+            </div>
+            }
+
+            @if (userNumber) {
+            <div class="bs__purchase-row">
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription management/userContactCallIcon.svg"
+                    alt="userContactCallIcon" class="bs__purchase-icon-placeholder" />
+                <span class="bs__purchase-text">{{ userNumber }}</span>
+            </div>
+            }
+        </div>
+
+    </div>
+
+    <!-- Fixed Bottom CTA -->
+    <div class="bs__cta-bar">
+        <button class="bs__cta-btn" type="button" (click)="payment()">
+            <span class="bs__cta-text">Buy <span>{{ billingSummaryList.planName }}</span></span>
+            <span class="bs__cta-arrow">→</span>
+        </button>
+    </div>
+
+</section>
+}
+
+
+
+<!-- CSS-Loader -->
+    @if (otploader) {
+    <div class="loaderbody">
+        <div class="box">
+            <div class="loader-20"></div>
+        </div>
+    </div>
+    }
+    <!-- CSS-Loader -->

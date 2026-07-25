@@ -1,0 +1,2151 @@
+   <div class="overlay" *ngIf="submitionLoader">
+        <div class="lds-hourglass"></div>
+    </div>
+
+<nav class="navbar navbar-light enqbg-color fixed-top">
+    <a routerLink="/userauth/sellproperties/{{UserId}}" class="navbar-brand icon_color"><i class="fa fa-arrow-left"
+            aria-hidden="true"></i></a>
+    <a class="sqrt-enqtitle">Edit Your Property</a>
+</nav>
+
+<div class="col-12 sqrt-margintop">
+    <!-- <h5>Post/Sell your property</h5> -->
+</div>
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+
+        <form [formGroup]="firstFormGroup" (ngSubmit)="onSubmit()" novalidate>
+            <ng-template matStepLabel></ng-template>
+
+            <div class="">
+                <h4 class="sqrt-posttitle">Are you a ?</h4>
+                <div class="row">
+                        <div class="ml-3">
+                            <input type="radio" [(ngModel)]="sellownership" (click)="onOwnerClick('654825')" id="owner"
+                                formControlName="persontype" value="654825"
+                                [disabled]="sellownershipreview !== 'Broker'" />
+                            <label class="label1" for="owner" [ngClass]="{'disabled-label': sellownership  && sellownership  !== '654825'}">Owner</label>
+                        </div>
+                        <div class="ml-3">
+                            <input type="radio" [(ngModel)]="sellownership" (click)="onBrokerClick('654826')"
+                                id="broker" formControlName="persontype" value="654826"
+                                [disabled]="sellownershipreview == 'Broker'" />
+                            <label class="label1" for="broker" [ngClass]="{'disabled-label': sellownership  && sellownership  !== '654826'}">Broker</label>
+                        </div>
+                    </div>
+                <div class="row">
+                    <!-- <div *ngIf="sellownership == 654826" class="ml-3">
+                        <input type="radio" [(ngModel)]="sellownership" (click)="onOwnerClick('654825')" id="owner"
+                            formControlName="persontype" value="654825" disabled />
+                        <label class="label1" [ngClass]="{'disabled-label': sellownership  && sellownership  !== '654825'}" for="owner">Owner</label>
+                    </div>
+                    <div *ngIf="sellownership != 654826" class="ml-3">
+                        <input type="radio" [(ngModel)]="sellownership" (click)="onOwnerClick('654825')" id="owner"
+                            formControlName="persontype" value="654825" />
+                        <label class="label1" [ngClass]="{'disabled-label': sellownership  && sellownership  !== '654825'}" for="owner">Owner</label>
+                    </div>
+                    <div *ngIf="sellownership == 654825" class="ml-3">
+                        <input type="radio" [(ngModel)]="sellownership" (click)="onBrokerClick('654826')" id="broker"
+                            formControlName="persontype" value="654826" disabled />
+                        <label class="label1" [ngClass]="{'disabled-label': sellownership  && sellownership  !== '654825'}" for="broker">Broker</label>
+                    </div>
+                    <div *ngIf="sellownership != 654825" class="ml-3">
+                        <input type="radio" [(ngModel)]="sellownership" (click)="onBrokerClick('654826')" id="broker"
+                            formControlName="persontype" value="654826" />
+                        <label class="label1" [ngClass]="{'disabled-label': sellownership  && sellownership  !== '654825'}" for="broker">Broker</label>
+                    </div> -->
+                </div>
+                <div *ngIf="submitted && f.persontype.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="f.persontype.errors.required">Choose You Are a</div>
+                </div>
+            </div>
+
+
+
+
+            <div class="mt-3">
+                <h4 class="sqrt-posttitle">Would you like to ?</h4>
+                <div class="row">
+                    <div class="ml-3">
+                        <input type="radio" [(ngModel)]="sellpurpose" formControlName="purposetype" value="1"
+                            id="sell" />
+                        <label class="label1" for="sell">Sell</label>
+                    </div>
+                    <div class="ml-3">
+                        <input type="radio" disabled [(ngModel)]="sellpurpose" formControlName="purposetype" value="2"
+                            id="rent" />
+                        <label class="label1 disabled-label" for="rent">Rent</label>
+                    </div>
+                    <div class="ml-3">
+                        <input type="radio" disabled [(ngModel)]="sellpurpose" formControlName="purposetype" value="3"
+                            id="Lease" />
+                        <label class="label1 disabled-label" for="Lease">Lease</label>
+                    </div>
+                </div>
+                <div *ngIf="submitted && f.purposetype.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="f.purposetype.errors.required">Please Select you like to</div>
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <h4 class="sqrt-posttitle">Property Type</h4>
+                <div class="row">
+                    <div class="ml-3" *ngFor="let proptype of Propertytypelist">
+                        <input type="radio" [(ngModel)]="sellproptype" formControlName="PropType"
+                            (click)="propertyclick(proptype.propertytype)" value="{{proptype.id}}"
+                            id="{{proptype.propertytype}}" />
+                        <!-- <label class="label1" for="{{proptype.propertytype}}">{{proptype.propertytype}}</label> -->
+                        <label class="label1" for="{{proptype.id}}" [ngClass]="{
+                                         
+                                            'disabled-label': sellproptype  && sellproptype  !== proptype.id
+                                          }">
+                            {{proptype.propertytype}}
+                        </label>
+
+
+                        <!-- <div class="mr-2" *ngFor="let data of PropertytypeLists">
+                                            <input style="display: none;" type="radio" formControlName="PropertyType"
+                                                value="{{data.id}}" id="{{data.id}}" [(ngModel)]="PropertyType"
+                                                (click)="onotherPropTypeClick(data.propertytype, data.id)" />
+                                            <label for="{{data.id}}" [ngClass]="{
+                                         
+                                            'disabled-label': PropertyType && PropertyType !== data.id
+                                          }">
+                                                {{data.propertytype}}
+                                            </label>
+                                        </div> -->
+                    </div>
+
+
+                </div>
+                <div *ngIf="submitted && f.PropType.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="f.PropType.errors.required">Please Select Property Type</div>
+                </div>
+            </div>
+
+
+            <div class="mt-3">
+                <h4 class="sqrt-posttitle" *ngIf="ShowPlotType">Plot Area Type</h4>
+                <h4 class="sqrt-posttitle" *ngIf="ApartmentForm">Building Type</h4>
+                <div class="row">
+                    <div class="ml-3">
+                        <input type="radio" [(ngModel)]="sellbuildingtype" (click)="getbuildingreviewdata('14960')"
+                            formControlName="PropertyAreaType" value="14960" id="PropertyArea1" />
+                        <label class="label1" for="PropertyArea1">Residential</label>
+                    </div>
+                    <div class="ml-3">
+                        <input type="radio" [(ngModel)]="sellbuildingtype" (click)="getbuildingreviewdata('14961')"
+                            formControlName="PropertyAreaType" value="14961" id="PropertyArea2" />
+                        <label class="label1" for="PropertyArea2">Commercial</label>
+                    </div>
+                </div>
+                <!-- <div *ngIf="submitted && f.PropertyAreaType.errors" class="custom-alert-danger mt-2">
+                <div *ngIf="f.PropertyAreaType.errors.required">Please Select Building Type</div>
+              </div> -->
+
+                <div *ngIf="submitted && f.PropertyAreaType.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="f.PropertyAreaType.errors.required">Please Select Building Type</div>
+                </div>
+
+            </div>
+
+
+            <div class="mt-3">
+                <h4 class="sqrt-posttitle mb-1">City</h4>
+                <div class="selectMatFieldConfig" appearance="fill">
+                    <!-- <mat-label>City</mat-label> -->
+                    <mat-select class="emailProperty" required formControlName="city" [(ngModel)]="sellcity"
+                        [(value)]="selectedLocation" (selectionChange)="selectionChange($event)">
+                        <mat-option [value]="cityname.id"
+                            *ngFor="let cityname of citiess">{{cityname.city}}</mat-option>
+                    </mat-select>
+                </div>
+                <div *ngIf="submitted && f.city.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="f.city.errors.required">Please Select a city</div>
+                </div>
+            </div>
+
+            <!--         <div class="mt-4 mb-2">
+                <h4 class="sqrt-posttitle mb-3">Which region dose property located ?</h4>
+                 <div class="selectMatFieldConfig" appearance="fill">
+                  <mat-label>Region</mat-label>
+                  <mat-select required formControlName="Region" [(ngModel)]="sellregion" (selectionChange)="onChangeRegion($event.value)">
+                    <mat-option value="{{location.region_id}}"
+                                *ngFor="let location of regionList"> {{location.region_name}}</mat-option>
+                  </mat-select>
+                </div>
+                <div *ngIf="submitted && f.Region.errors" class="custom-alert-danger mt-2">
+                  <div *ngIf="f.Region.errors.required">Please Select a Region</div>
+                </div>
+              </div>-->
+
+            <!-- <div class="postProp">
+                    <h4 class="sqrt-posttitle mb-1" *ngIf="!addNewLocality">Locality</h4>
+                            <h4 class="sqrt-posttitle mb-1" *ngIf="addNewLocality">Locality (Newly Request)</h4>
+                    <div class="selectMatFieldConfig mt-2" appearance="fill">
+                        <input type="text" itemprop="query-input" name="search_term_string" matInput
+                            placeholder="Enter a locality name" [formControl]="myControlSellLocality"
+                            formControlName="localities" [matAutocomplete]="localityautoGroup"
+                            [(ngModel)]="propertyAutoLocalityName">
+         
+
+                        <mat-autocomplete #localityautoGroup="matAutocomplete"
+                            (optionSelected)="onItemSelectSell($event.option.value)">
+                            <mat-option *ngFor="let option of filteredOptionsSellLocality | async" [value]="option">
+                                {{ option.Name }}
+                            </mat-option>
+
+                            <mat-option *ngIf="showAddLocalityOption" class="add-new-option"
+                                (click)="onAddNewLocalityClick()">
+                                Please select from list Or Add New "{{ propertyAutoLocalityName }}" <button
+                                    class="addLocality">Add New</button>
+                            </mat-option>
+                        </mat-autocomplete>
+
+
+                    </div>
+                    <div *ngIf="submitted && f.localities.errors" class="custom-alert-danger mt-2">
+                        <div *ngIf="f.localities.errors.required">Please Enter The Locality</div>
+                    </div>
+                </div> -->
+            <!-- ====================================================================================== -->
+            <!-- <div class="postProp">
+                    <h4 class="sqrt-posttitle mb-1" *ngIf="!addNewLocality">Locality</h4>
+                    <h4 class="sqrt-posttitle mb-1" *ngIf="addNewLocality">Locality (Newly Requested)</h4>
+
+                    <div class="selectMatFieldConfig mt-2" appearance="fill">
+                        <input type="text" itemprop="query-input" name="search_term_string" matInput
+                            placeholder="Enter a locality name" [formControl]="myControlSellLocality"
+                            formControlName="localities" [matAutocomplete]="localityautoGroup"
+                            [(ngModel)]="propertyAutoLocalityName" (blur)="onLocalityBlur()">
+
+                        <mat-icon matSuffix *ngIf="addNewLocality" color="primary"
+                            matTooltip="This will be added as a new locality">
+                            add_location
+                        </mat-icon>
+
+                        <mat-autocomplete #localityautoGroup="matAutocomplete"
+                            (optionSelected)="onItemSelectSell($event.option.value)">
+                            <mat-option *ngFor="let option of filteredOptionsSellLocality | async" [value]="option">
+                                {{ option.Name }}
+                            </mat-option>
+
+                            <mat-option *ngIf="showAddLocalityOption" class="add-new-option"
+                                (click)="onAddNewLocalityClick()">
+                                Add New Locality: <strong>{{ propertyAutoLocalityName }}</strong>
+                            </mat-option>
+                        </mat-autocomplete>
+                    </div>
+
+        
+                    <div *ngIf="addNewLocality" class="text-success mt-1" style="font-size: 0.9rem;">
+                         New locality requested: <strong>{{ requested_locality }}</strong>
+                    </div>
+
+              
+                    <div *ngIf="submitted && f.localities.errors" class="custom-alert-danger mt-2">
+                        <div *ngIf="f.localities.errors.required">Please Enter The Locality</div>
+                    </div>
+                </div> -->
+
+
+            <!-- <div class="" *ngIf="addNewLocality">
+                    <h4 class="sqrt-posttitle mb-1">Request New Locality</h4>
+
+                    <div class="selectMatFieldConfig" appearance="fill">
+                        <input type="text" matInput placeholder="Choose a property name"
+                            formControlName="requestLocality" [(ngModel)]="requested_locality">
+
+                    </div>
+                </div> -->
+            <!-- ====================================================================================== -->
+
+
+            <div class="postProp mt-3">
+                <h4 class="sqrt-posttitle mb-1" *ngIf="NewLocality">Locality</h4>
+                <h4 class="sqrt-posttitle mb-1" *ngIf="!NewLocality">Locality (Newly Requested)</h4>
+
+                <div class="selectMatFieldConfig mt-2" appearance="fill">
+                    <input class="numberProperty" (paste)="$event.preventDefault()" matInput type="text"
+                        placeholder="Enter a locality name" itemprop="query-input" name="search_term_string"
+                        autocomplete="off" [(ngModel)]="propertyAutoLocalityName" [formControl]="myControlSellLocality"
+                        formControlName="localities" [matAutocomplete]="localityautoGroup"
+                        (input)="onInputChangeSell()">
+                </div>
+
+                <mat-autocomplete #localityautoGroup="matAutocomplete" [displayWith]="displayLocalityName"
+                    (optionSelected)="onItemSelectSell($event.option.value)">
+                    <ng-container *ngIf="!addNewLocality">
+                        <mat-option *ngFor="let option of filteredOptionsSellLocality | async" [value]="option">
+                            {{ option.Name }}
+                        </mat-option>
+                    </ng-container>
+                </mat-autocomplete>
+
+
+                <!-- Newly Requested Message + Button -->
+                <div *ngIf="addNewLocality && propertyAutoLocalityName !== reviewlocality" class="mt-1">
+                    <div class="card p-2">
+                        <p class="addNewTxt mb-2">
+                            Please select from list Or Add New <strong>"{{ propertyAutoLocalityName }}"</strong>
+                        </p>
+                        <button class="addLocality" (click)="submitNewLocality()">Add New</button>
+                    </div>
+                </div>
+
+                <div *ngIf="submitted && f.localities.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="f.localities.errors.required">Please Enter The Locality</div>
+                </div>
+            </div>
+
+
+            <!-- <div class="" *ngIf="requested_locality">
+                    <h4 class="sqrt-posttitle mb-1">Request New Locality</h4>
+
+                    <div class="selectMatFieldConfig" appearance="fill">
+                        <input type="text" matInput placeholder="Choose a property name"
+                            formControlName="requestLocality" [(ngModel)]="requested_locality">
+
+                    </div>
+                
+                </div> -->
+
+
+            <div class="mt-3">
+                <h4 class="sqrt-posttitle mb-1" *ngIf="ShowPlotType">Plot Name</h4>
+                <h4 class="sqrt-posttitle mb-1" *ngIf="ApartmentForm">Property Name</h4>
+                <div class="selectMatFieldConfig" appearance="fill">
+                    <input class="numberProperty" type="text" matInput placeholder="Choose a property name"
+                        [formControl]="myControl" formControlName="PropertyName" [matAutocomplete]="autoGroup"
+                        [(ngModel)]="sellpropname">
+                    <mat-autocomplete #autoGroup="matAutocomplete" (optionSelected)='onItemSelect($event.option.value)'>
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                            {{option.name}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </div>
+                  <div *ngIf="submitted && f.PropertyName.errors && ApartmentForm" class="custom-alert-danger mt-2">
+                  <div *ngIf="f.PropertyName.errors.required">Property Name is required</div>
+                </div>
+                <div *ngIf="submitted && f.PropertyName.errors && ShowPlotType" class="custom-alert-danger mt-2">
+                  <div *ngIf="f.PropertyName.errors.required">Plot Name is required</div>
+                </div>
+            </div>
+
+
+            <div class="mt-3">
+                <h4 class="sqrt-posttitle ">Address</h4>
+                <!-- <div class="selectMatFieldConfig" appearance="fill"> -->
+                <!-- <mat-label>Address </mat-label> -->
+                <textarea class="addressProperty" [(ngModel)]="sellpropaddress" autocomplete="off" matInput
+                    formControlName="fulladdress"></textarea>
+                <!-- </div> -->
+
+                <div *ngIf="submitted && f.fulladdress.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="f.fulladdress.errors.required">Required address</div>
+                </div>
+            </div>
+            <div class="mt-3 mb-2">
+                <h4 class="sqrt-posttitle mb-3">Postal Code</h4>
+                <div class="selectMatFieldConfig">
+                    <!-- <mat-label>Postal Code</mat-label> -->
+                    <input class="numberProperty" type="number" [(ngModel)]="sellproppostalcode" autocomplete="off"
+                        matInput #postalCode formControlName="zip" placeholder="Ex. 94105">
+                </div>
+
+                <div *ngIf="submitted && f.zip.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="f.zip.errors.required">Postal code is required</div>
+                    <div *ngIf="f.zip.errors.pattern">Enter a valid 5 or 6 digit postal code</div>
+                </div>
+
+            </div>
+
+
+
+            <div>
+                <div class="col-12 text-right pr-0">
+                    <button mat-button class="custom-mat-button" matStepperNext>Next &nbsp;
+                        <img
+                            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/arrow_forward.png"></button>
+                </div>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step *ngIf="ShowPlotType" [stepControl]="PlotFormGroup">
+        <form [formGroup]="PlotFormGroup" (ngSubmit)="onSubmitPlot()" novalidate>
+            <ng-template matStepLabel></ng-template>
+            <div class="mt-4 mb-2">
+                <h4 class="sqrt-posttitle">Plot Type </h4>
+                <div class="row">
+                    <div class="ml-3" *ngFor="let plottype of plottypelist">
+                        <input type="radio" [(ngModel)]="sellplottype" id="{{plottype.plottype}}"
+                            (click)="getplottypereview(plottype.plottype)" formControlName="PlotProperty"
+                            value="{{plottype.id}}" />
+                        <label class="label1" for="{{plottype.plottype}}">{{plottype.plottype}}</label>
+                    </div>
+                </div>
+                <div *ngIf="submittedPlot && P.PlotProperty.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="P.PlotProperty.errors.required">Please Select Plot Type</div>
+                </div>
+            </div>
+
+
+            <div class="mt-4 mb-2">
+                <h4 class="sqrt-posttitle">Plot Size</h4>
+                <div class="row">
+                    <div class="ml-3" *ngFor="let plotsize of plotsizelist">
+                        <input type="radio" [(ngModel)]="sellplotsize" id="{{plotsize.plotsize}}"
+                            (click)="getplotsizereview(plotsize.plotsize)" formControlName="PlotPropertySize"
+                            value="{{plotsize.plotsize}}" />
+                        <label class="label1" for="{{plotsize.plotsize}}">{{plotsize.plotsize}}</label>
+                    </div>
+                    <div class="ml-3" (click)="Othersize()">
+                        <input type="radio" id="Plotsize5" formControlName="PlotPropertySize" value="" />
+                        <label class="label1" for="Plotsize5">Other</label>
+                    </div>
+                </div>
+                <!-- <div *ngIf="submittedPlot && P.PlotPropertySize.errors" class="custom-alert-danger mt-2">
+                        <div *ngIf="P.PlotPropertySize.errors.required">Please Select Plot Size</div>
+                    </div> -->
+            </div>
+            <div class="mt-4 mb-2" *ngIf="ShowOtherSize">
+                <div appearance="fill">
+
+                    <input class="numberProperty" matInput [(ngModel)]="sellplotsize" autocomplete="off" type="text"
+                        formControlName="PlotPropertySize" placeholder="xxx">
+                </div>
+                <div *ngIf="submittedPlot && P.PlotPropertySize.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="P.PlotPropertySize.errors.required">Plot size is required</div>
+                    <div *ngIf="P.PlotPropertySize.errors.pattern">Invalid plot size (e.g 20*30)</div>
+                </div>
+            </div>
+
+
+            <div class="mt-4 mb-2">
+                <h4 class="sqrt-posttitle mb-4">Plot Age</h4>
+                <div class="selectMatFieldConfig" appearance="fill">
+                    <input class="numberProperty" autocomplete="off" [(ngModel)]="sellplotage" matInput type="number"
+                        formControlName="PlotAge" placeholder="xxx">
+                </div>
+                <div *ngIf="submittedPlot && P.PlotAge.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="P.PlotAge.errors.required">Plot Age is required</div>
+                </div>
+            </div>
+
+
+            <div class="mt-4 mb-2">
+                <h4 class="sqrt-posttitle mb-3">Plot Area</h4>
+                <div class="row">
+                    <div class="col-6" appearance="fill">
+                        <input class="numberProperty" autocomplete="off" [(ngModel)]="sellproparea" matInput
+                            type="number" required formControlName="plotArea">
+                    </div>
+                    <div class="selectMatField col-6" appearance="fill">
+                        <mat-select class="numberProperty" [(ngModel)]="sellareatype" formControlName="plotAreaType">
+                            <mat-option value="sq.feet">sq.feet</mat-option>
+                            <mat-option value="Acres">Acres</mat-option>
+                        </mat-select>
+                    </div>
+                </div>
+                <div *ngIf="submittedPlot && P.plotArea.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="P.plotArea.errors.required">Plot Area is required</div>
+                </div>
+            </div>
+
+
+            <!-- <div class="mt-4 mb-2">
+                    <h4 class="sqrt-posttitle mb-3">Write About Your Property</h4>
+                  
+                    <textarea class="textAreaHight" matInput [(ngModel)]="sellpropdesc"
+                        formControlName="propdescriptionPlot"></textarea>
+                  
+                    <div *ngIf="submittedPlot && P.propdescriptionPlot.errors" class="custom-alert-danger mt-2">
+                        <div *ngIf="P.propdescriptionPlot.errors.required">Please Enter Property Description</div>
+                    </div>
+
+                </div> -->
+
+            <div class="mt-3">
+
+                <h4 class="sqrt-posttitle">Road Facing</h4>
+                <div class="row">
+                    <div class="ml-3" *ngFor="let face of Doorfacelist">
+                        <input type="radio" [(ngModel)]="sellpropdoorface" id="{{face.doorface}}"
+                            (click)="getfacingreviewdata(face.doorface)" formControlName="roadFacing"
+                            value="{{face.id}}" />
+                        <label class="label1" for="{{face.doorface}}">{{face.doorface}}</label>
+                    </div>
+                </div>
+
+                <div *ngIf="submittedPlot && P.roadFacing.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="P.roadFacing.errors.required">Please Select Road Facing</div>
+                </div>
+            </div>
+
+
+            <div class="mt-4">
+                <div class="row">
+                    <div class="col-6">
+                        <button mat-button class="custom-mat-button" matStepperPrevious><img
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/arrow_left.png">&nbsp;&nbsp;Back</button>
+                    </div>
+                    <div class="col-6 text-right">
+                        <button mat-button class="custom-mat-button" matStepperNext>Next &nbsp;
+                            <img
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/arrow_forward.png"></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step *ngIf="ApartmentForm" [stepControl]="ApartmentFormGroup">
+        <form [formGroup]="ApartmentFormGroup" (ngSubmit)="onSubmitApartment()" novalidate>
+            <ng-template matStepLabel></ng-template>
+
+
+            <div class="">
+                <h4 class="sqrt-posttitle">Property Status</h4>
+                <div class="row">
+                    <div class="ml-3">
+                        <input type="radio" [(ngModel)]="sellpropstatus" formControlName="PropStatus" value="138564"
+                            id="Ready to move" />
+                        <label class="label1" for="Ready to move" (click)="onReadyToMoveInClick('138564')">Ready to
+                            move in</label>
+                    </div>
+                    <div class="ml-3">
+                        <input type="radio" [(ngModel)]="sellpropstatus" formControlName="PropStatus" value="138565"
+                            id="Under construction" />
+                        <label class="label1" for="Under construction"
+                            (click)="onUnderConstructionClick('138565')">Under construction</label>
+                    </div>
+                </div>
+                <div *ngIf="Apartmentsubmitted && A.PropStatus.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="A.PropStatus.errors.required">Please Select the Status</div>
+                </div>
+            </div>
+
+            <div class="mt-3" *ngIf="ShowPropertyAge">
+                <h4 class="sqrt-posttitle">Property age</h4>
+                <div class="row ml-0 mt-1">
+                    <div class="col-6 pl-0" appearance="fill">
+                        <!-- <mat-label>Age in year</mat-label> -->
+                        <input class="numberProperty" autocomplete="off" [(ngModel)]="sellpropyear" matInput
+                            type="number" formControlName="PropertyAgeyear">
+                    </div>
+                    <div *ngIf="Apartmentsubmitted && A.PropertyAgeyear.errors" class="custom-alert-danger mt-2">
+                        <div *ngIf="A.PropertyAgeyear.errors.required">Please Enter the Property age</div>
+                    </div>
+                    <div class="col-6 selectMatField" appearance="fill">
+                        <!-- <mat-label>Age in  s</mat-label> -->
+                        <mat-select [(ngModel)]="sellpropmonth" formControlName="PropertyAgemonth"
+                            class="numberProperty">
+
+                            <mat-option value="1">1 Month</mat-option>
+                            <mat-option value="2">2 Month</mat-option>
+                            <mat-option value="3">3 Month</mat-option>
+                            <mat-option value="4">4 Month</mat-option>
+                            <mat-option value="5">5 Month</mat-option>
+                            <mat-option value="6">6 Month</mat-option>
+                            <mat-option value="7">7 Month</mat-option>
+                            <mat-option value="8">8 Month</mat-option>
+                            <mat-option value="9">9 Month</mat-option>
+                            <mat-option value="10">10 Month</mat-option>
+                            <mat-option value="11">11 Month</mat-option>
+                            <mat-option value="12">12 Month</mat-option>
+                        </mat-select>
+                    </div>
+                </div>
+
+                <div *ngIf="Apartmentsubmitted && A.PropertyAgemonth.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="A.PropertyAgemonth.errors.required">Please Select the Month</div>
+                </div>
+            </div>
+
+
+            <div class="mt-2" *ngIf="ShowPossesiondate">
+                <!-- <div class="formDatePicker" appearance="fill">
+                    
+                        <input matInput [(ngModel)]="newpossesiondate" [matDatepicker]="picker1"
+                            formControlName="possesiondate">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </div> -->
+
+                <div class="formDatePicker" appearance="fill">
+                    <input class="numberPropertydate" matInput [matDatepicker]="picker1" readonly
+                        formControlName="possesiondate" [(ngModel)]="newpossesiondate" (focus)="picker1.open()">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </div>
+
+                <div *ngIf="Apartmentsubmitted && A.possesiondate.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="A.possesiondate.errors.required">Please select the
+                        possession date</div>
+                </div>
+            </div>
+
+
+            <div class="mt-3">
+                <h4 class="sqrt-posttitle">Bedroom</h4>
+                <div class="row">
+                    <div class="ml-3" *ngFor="let bhks of bhklist">
+                        <input type="radio" [(ngModel)]="sellpropbhk" id="{{bhks.bhk}}"
+                            (click)="getbhkreviewdata(bhks.bhk)" formControlName="Bedroom" value="{{bhks.id}}" />
+                        <label class="label1" for="{{bhks.bhk}}">{{bhks.bhk}}</label>
+                    </div>
+                </div>
+                <div *ngIf="Apartmentsubmitted && A.Bedroom.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="A.Bedroom.errors.required">Please Select the Bedroom</div>
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <h4 class="sqrt-posttitle">Bathroom</h4>
+                <div class="row">
+                    <div class="ml-3" *ngFor="let bath of bathroomlist">
+                        <input type="radio" [(ngModel)]="sellpropbathroom" id="{{bath.id}}"
+                            (click)="getbathreviewdata(bath.bathroom)" formControlName="Bathroom" value="{{bath.id}}" />
+                        <label class="label1" for="{{bath.id}}">{{bath.bathroom}}</label>
+                    </div>
+                </div>
+                <div *ngIf="Apartmentsubmitted && A.Bathroom.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="A.Bathroom.errors.required">Please Select the Bathroom</div>
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <h4 class="sqrt-posttitle">Balconies</h4>
+                <div class="row">
+                    <div class="ml-3" *ngFor="let balconie of balconylist">
+                        <input type="radio" [(ngModel)]="sellpropbalconie" id="{{balconie.balcony}}"
+                            (click)="getbalconiereviewdata(balconie.balcony)" formControlName="Balconies"
+                            value="{{balconie.id}}" />
+                        <label class="label1" for="{{balconie.balcony}}">{{balconie.balcony}}</label>
+                    </div>
+                </div>
+                <div *ngIf="Apartmentsubmitted && A.Balconies.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="A.Balconies.errors.required">Please Select the Balconies</div>
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <h4 class="sqrt-posttitle">Furnishing Status</h4>
+                <div class="row">
+                    <div class="ml-3" *ngFor="let furnish of furnishlist">
+                        <input type="radio" [(ngModel)]="sellpropfurnish" id="{{furnish.furnish}}"
+                            (click)="getfurnishreviewdata(furnish.furnish)" formControlName="FurnishingStatus"
+                            value="{{furnish.id}}" />
+                        <label class="label1" for="{{furnish.furnish}}">{{furnish.furnish}}</label>
+                    </div>
+                </div>
+                <div *ngIf="Apartmentsubmitted && A.FurnishingStatus.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="A.FurnishingStatus.errors.required">Please Select Furnishing Status</div>
+                </div>
+            </div>
+
+
+
+            <div class="mt-3">
+                <h4 class="sqrt-posttitle" *ngIf="ApartmentForm">Door Facing</h4>
+                <h4 class="sqrt-posttitle" *ngIf="ShowPlotType">Road Facing</h4>
+                <div class="row">
+                    <div class="ml-3" *ngFor="let face of Doorfacelist">
+                        <input type="radio" [(ngModel)]="sellpropdoorface" id="{{face.doorface}}"
+                            (click)="getfacingreviewdata(face.doorface)" formControlName="DoorFacing"
+                            value="{{face.id}}" />
+                        <label class="label1" for="{{face.doorface}}">{{face.doorface}}</label>
+                    </div>
+                </div>
+                <div *ngIf="ApartmentForm && Apartmentsubmitted && A.DoorFacing.errors"
+                    class="custom-alert-danger mt-2">
+                    <div *ngIf="A.DoorFacing.errors.required">Please Select Door Facing</div>
+                </div>
+                <div *ngIf="ShowPlotType && Apartmentsubmitted && A.DoorFacing.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="A.DoorFacing.errors.required">Please Select Road Facing</div>
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <h4 class="sqrt-posttitle mb-1">Property Dimensions</h4>
+                <div class="row ml-0">
+                    <div appearance="fill" class="col-6 pl-0">
+
+                        <input class="numberProperty" autocomplete="off" [(ngModel)]="sellproparea" matInput
+                            type="number" required formControlName="sealableArea">
+                    </div>
+                    <!-- <div class="selectMatField" appearance="fill">
+                            <mat-select [(ngModel)]="sellareatype" formControlName="sealableAreaSize">
+                                <mat-option value="sq.feet">sq.feet</mat-option>
+                                <mat-option value="Built Up area">Built Up Area</mat-option>
+                                <mat-option value="Super Built Up">Super Built Up</mat-option>
+                                <mat-option value="Carpet Area">Carpet Area</mat-option>
+                            </mat-select>
+                        </div> -->
+
+
+                    <div class="selectMatField col-6" appearance="fill">
+                        <mat-select class="numberProperty" formControlName="sealableAreaSize" [(value)]="sellareatype">
+
+                            <mat-option value="sq.feet">sq.feet</mat-option>
+                            <mat-option value="Super built up area">Super built up area</mat-option>
+                            <mat-option value="Built up area">Built up area</mat-option>
+                            <mat-option value="Carpet area">Carpet area</mat-option>
+                        </mat-select>
+                    </div>
+
+
+
+                </div>
+                <div *ngIf="Apartmentsubmitted && A.sealableArea.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="A.sealableArea.errors.required">Please Enter Property Area</div>
+                </div>
+            </div>
+
+
+
+
+
+            <!--<div class="mt-4 mb-2">
+                <h4 class="sqrt-posttitle">Total Floor</h4>
+                <div class="selectMatFieldConfig">
+                  &lt;!&ndash; <mat-label >Total Floor</mat-label> &ndash;&gt;
+                  <input autocomplete="off" [(ngModel)]="sellproptotalfloor" matInput required #postalCode formControlName="TotalFloor" maxlength="5">
+                </div>
+    
+                <div *ngIf="Apartmentsubmitted && A.TotalFloor.errors" class="custom-alert-danger mt-2">
+                  <div *ngIf="A.TotalFloor.errors.required">Please Select Total Floor</div>
+                </div>
+              </div>
+    
+              <div class="mt-4 mb-2">
+                <h4 class="sqrt-posttitle">Which Floor</h4>
+                <div class="selectMatFieldConfig">
+                  &lt;!&ndash; <mat-label >Which Floor</mat-label> &ndash;&gt;
+                  <input autocomplete="off" [(ngModel)]="sellpropwhichfloor" matInput required #postalCode formControlName="WhichFloor" maxlength="5">
+                </div>
+    
+                <div *ngIf="Apartmentsubmitted && A.WhichFloor.errors" class="custom-alert-danger mt-2">
+                  <div *ngIf="A.WhichFloor.errors.required">Please Select Which Floor</div>
+                </div>
+              </div>
+    
+              <div class="mt-4 mb-2">
+                <h4 class="sqrt-posttitle mb-3">Write About Your Property</h4>
+                <div class="selectMatFieldConfig" appearance="fill">
+                  <mat-label>About Your Property</mat-label>
+                  <textarea matInput [(ngModel)]="sellpropdesc" formControlName="propdescription"></textarea>
+                </div>
+              </div>-->
+
+            <div class="mt-4">
+                <div class="row">
+                    <div class="col-6">
+                        <button mat-button class="custom-mat-button" matStepperPrevious><img
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/arrow_left.png">&nbsp;&nbsp;Back</button>
+                    </div>
+                    <div class="col-6 text-right">
+                        <button mat-button class="custom-mat-button" matStepperNext>Next &nbsp;
+                            <img
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/arrow_forward.png"></button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </mat-step>
+
+    <div *ngIf="!ShowPlotType">
+        <mat-step [stepControl]="NewSubDetailsFormGroup">
+            <form [formGroup]="NewSubDetailsFormGroup" (ngSubmit)="onSubmitNewSubDetails()" novalidate>
+
+                <div class="">
+                    <h4 class="sqrt-posttitle">Parking</h4>
+                    <div class="row">
+                        <div class="ml-3" *ngFor="let option of parkinglist">
+                            <input type="radio" [(ngModel)]="sellpropparking" id="{{option.parking}}"
+                                (click)="getparkingreviewdata(option.parking)" formControlName="Parking"
+                                value="{{option.id}}" />
+                            <label class="label1" for="{{option.parking}}">{{option.parking}}</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-3">
+                    <h4 class="sqrt-posttitle">Covered Parking</h4>
+                    <div class="row">
+                        <div class="ml-3">
+                            <input type="radio" [(ngModel)]="sellcoverpark" id="parking12"
+                                formControlName="CoveredParking" value="0" />
+                            <label class="label1" for="parking12">0</label>
+                        </div>
+                        <div class="ml-3">
+                            <input type="radio" [(ngModel)]="sellcoverpark" id="parking22"
+                                formControlName="CoveredParking" value="1" />
+                            <label class="label1" for="parking22">1</label>
+                        </div>
+                        <div class="ml-3">
+                            <input type="radio" [(ngModel)]="sellcoverpark" id="parking32"
+                                formControlName="CoveredParking" value="2" />
+                            <label class="label1" for="parking32">2</label>
+                        </div>
+                        <div class="ml-3">
+                            <input type="radio" [(ngModel)]="sellcoverpark" id="parking42"
+                                formControlName="CoveredParking" value="3" />
+                            <label class="label1" for="parking42">3</label>
+                        </div>
+                        <div class="ml-3">
+                            <input type="radio" [(ngModel)]="sellcoverpark" id="parking52"
+                                formControlName="CoveredParking" value="4" />
+                            <label class="label1" for="parking52">4</label>
+                        </div>
+                        <div class="ml-3">
+                            <input type="radio" [(ngModel)]="sellcoverpark" id="parking62"
+                                formControlName="CoveredParking" value="5" />
+                            <label class="label1" for="parking62">5</label>
+                        </div>
+                    </div>
+                    <div *ngIf="NewSubDetailssubmitted && N.CoveredParking.errors" class="custom-alert-danger mt-2">
+                        <div *ngIf="N.CoveredParking.errors.required">Please Select Covered Parking</div>
+                    </div>
+                </div>
+
+                <div class="mt-3">
+                    <h4 class="sqrt-posttitle">Open Parking</h4>
+                    <div class="row">
+                        <div class="ml-3">
+                            <input type="radio" [(ngModel)]="sellopenpark" id="Openparking12"
+                                formControlName="OpenParking" value="0" />
+                            <label class="label1" for="Openparking12">0</label>
+                        </div>
+                        <div class="ml-3">
+                            <input type="radio" [(ngModel)]="sellopenpark" id="Openparking22"
+                                formControlName="OpenParking" value="1" />
+                            <label class="label1" for="Openparking22">1</label>
+                        </div>
+                        <div class="ml-3">
+                            <input type="radio" [(ngModel)]="sellopenpark" id="Openparking32"
+                                formControlName="OpenParking" value="2" />
+                            <label class="label1" for="Openparking32">2</label>
+                        </div>
+                        <div class="ml-3">
+                            <input type="radio" [(ngModel)]="sellopenpark" id="Openparking42"
+                                formControlName="OpenParking" value="3" />
+                            <label class="label1" for="Openparking42">3</label>
+                        </div>
+                        <div class="ml-3">
+                            <input type="radio" [(ngModel)]="sellopenpark" id="Openparking52"
+                                formControlName="OpenParking" value="4" />
+                            <label class="label1" for="Openparking52">4</label>
+                        </div>
+                        <div class="ml-3">
+                            <input type="radio" [(ngModel)]="sellopenpark" id="Openparking62"
+                                formControlName="OpenParking" value="5" />
+                            <label class="label1" for="Openparking62">5</label>
+                        </div>
+                    </div>
+                    <div *ngIf="NewSubDetailssubmitted && N.OpenParking.errors" class="custom-alert-danger mt-2">
+                        <div *ngIf="N.OpenParking.errors.required">Please Select Open Parking</div>
+                    </div>
+                </div>
+
+                <div class="mt-3 mb-2" *ngIf="!ShowPlotType">
+                    <h4 class="sqrt-posttitle">Amenities</h4>
+                    <div class="row">
+                        <div class="ml-3 mt-1">
+
+
+                            <!-- <mat-chip-listbox multiple>
+                                    <mat-chip-option *ngFor="let option of finalamenities" [value]="option.id"
+                                        [selected]="option.selected"
+                                        (selectionChange)="changeSelectedamenities($event, option)">
+                                        {{ option.amenities }}
+                                    </mat-chip-option>
+                                </mat-chip-listbox> -->
+
+
+
+                            <mat-chip-list [multiple]="true">
+                                <mat-chip *ngFor="let option of finalamenities" [selectable]="true"
+                                    [selected]="sellpropamenitiesid.includes(option.id)"
+                                    (click)="changeSelectedamenities(option)">
+                                    {{ option.amenities }}
+                                </mat-chip>
+                            </mat-chip-list>
+
+
+
+
+
+                        </div>
+                    </div>
+
+                    <!-- <div *ngIf="Apartmentsubmitted && s.Amenities.errors" class="custom-alert-danger mt-2">
+                  <div *ngIf="s.Amenities.errors.required">Please Select Amenities</div>
+                </div>-->
+                </div>
+
+                <div class="mt-3 mb-2" *ngIf="!ShowPlotType">
+                    <h4 class="sqrt-posttitle">Facilities</h4>
+                    <div class="row">
+                        <div class="ml-3 mt-1">
+
+                            <!-- <mat-chip-listbox selectable multiple>
+                                    <mat-chip-option *ngFor="let option of finalfacilities" [value]="option.facilities"
+                                        [selected]="option.selected"
+                                        (selectionChange)="changeSelectedfacilities($event, option)">
+                                        {{ option.facilities }}
+                                    </mat-chip-option>
+                                </mat-chip-listbox> -->
+                            <mat-chip-list [multiple]="true">
+                                <mat-chip *ngFor="let option of finalfacilities" [selectable]="true"
+                                    [selected]="sellpropfacilitiesid.includes(option.id)"
+                                    (click)="changeSelectedfacilities(option)">
+                                    {{ option.facilities }}
+                                </mat-chip>
+                            </mat-chip-list>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="row">
+                        <div class="col-6">
+                            <button mat-button class="custom-mat-button" matStepperPrevious><img
+                                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/arrow_left.png">&nbsp;&nbsp;Back</button>
+                        </div>
+                        <div class="col-6 text-right">
+                            <button mat-button class="custom-mat-button" matStepperNext>Next &nbsp;
+                                <img
+                                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/arrow_forward.png"></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </mat-step>
+    </div>
+
+    <mat-step *ngIf="ApartmentForm" [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup" (ngSubmit)="onSubmit2()" novalidate>
+            <ng-template matStepLabel></ng-template>
+
+
+            <div class="">
+                <h4 class="sqrt-posttitle mb-1">Total Floor</h4>
+                <div class="selectMatFieldConfig" appearance="fill">
+                    <!-- <mat-label>Total Floor</mat-label> -->
+                    <input type="number" class="numberProperty" autocomplete="off" [(ngModel)]="sellproptotalfloor"
+                        matInput required #postalCode formControlName="TotalFloor" maxlength="5">
+                </div>
+
+                <div *ngIf="submitted2 && s.TotalFloor.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="s.TotalFloor.errors.required">Please Select Total Floor</div>
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <h4 class="sqrt-posttitle mb-1">Which Floor</h4>
+                <div class="selectMatFieldConfig" appearance="fill">
+                    <!-- <mat-label>Which Floor</mat-label> -->
+                    <input type="number" class="numberProperty" autocomplete="off" [(ngModel)]="sellpropwhichfloor"
+                        matInput required #postalCode formControlName="WhichFloor" maxlength="5">
+                </div>
+
+                <!-- <div *ngIf="submitted2 && s.WhichFloor.errors" class="custom-alert-danger mt-2">
+                        <div *ngIf="s.WhichFloor.errors.required">Please Select Which Floor</div>
+                    </div> -->
+                <div *ngIf="submitted2 && s.WhichFloor.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="s.WhichFloor.errors.required">Please Select Which Floor</div>
+                    <div *ngIf="s.WhichFloor.errors.floorMismatch">Which Floor cannot be greater than Total
+                        Floor
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+            <!-- <div class="mt-4 mb-2" *ngIf="approvalshow">
+            <h4 class="sqrt-posttitle">Approval Authority</h4>
+            <div class="row ml-1 mt-4">
+              <mat-chip-listbox selectable multiple>
+                <mat-chip-option #c="matChip" (selectionChange)="changeSelectedapproval($event,option)"
+                  *ngFor="let option of finalapprovals" [value]="option.approvals" [selected]="option.selected"
+                  (click)="toggleSelectionapproval(c, option)">
+                  {{option.approvals}}
+                </mat-chip-option>
+              </mat-chip-listbox>
+            </div>
+          </div> -->
+
+
+            <!-- <div class="mt-4 mb-2">
+            <h4 class="sqrt-posttitle mb-4">Water Supply</h4>
+    
+            <div class="row ml-1 mt-2">
+              <div appearance="fill" class="selectMatFieldConfig">
+                <mat-label>water supply</mat-label>
+                <input autocomplete="off" [(ngModel)]="sellpropwatersupply" matInput required formControlName="WaterSupply">
+              </div><br>
+            </div>
+            <div *ngIf="submitted2 && s.WaterSupply.errors" class="custom-alert-danger mt-2">
+              <div *ngIf="s.WaterSupply.errors.required">Please Select Water Supply Option</div>
+            </div>
+          </div> -->
+
+
+            <div class="mt-3">
+                <h4 class="sqrt-posttitle">Price</h4>
+                <!-- <div class="row ml-0 mt-1"> -->
+                <div appearance="fill" class="selectMatFieldConfig">
+                    <!-- <mat-label>Price</mat-label> -->
+                    <input class="numberProperty" autocomplete="off" [(ngModel)]="sellpropprice" type="number" matInput
+                        required formControlName="Price">
+                </div><br>
+                <p class="amounttext">{{sellpropprice | amountToWord }}</p>
+                <!-- </div> -->
+                <div *ngIf="submitted2 && secondFormGroup.get('Price').errors?.required" class="custom-alert-danger ">
+                    Please Enter a Price
+                </div>
+                <div *ngIf="submitted2 && secondFormGroup.get('Price').errors?.min" class="custom-alert-danger ">
+                    Please enter above 1 lakhs
+                </div>
+                <div *ngIf="submitted2 && secondFormGroup.get('Price').errors?.pattern" class="custom-alert-danger ">
+                    No negative values are allowed.
+                </div>
+
+
+            </div>
+
+
+            <div class="mt-3">
+                <h4 class="sqrt-posttitle ">Maintenance Charges</h4>
+                <div appearance="fill" class="selectMatFieldConfig mt-1">
+                    <!-- <mat-label>Maintenance charges (per month)</mat-label> -->
+                    <input class="numberProperty" type="number" [(ngModel)]="sellpropmaintanencecharge" matInput
+                        required formControlName="MaintenanceCharges">
+                </div>
+                <div *ngIf="submitted2 && s.MaintenanceCharges.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="s.MaintenanceCharges.errors.required">Please Select Maintenance Charges</div>
+                </div>
+            </div>
+
+
+            <div class="mt-3" *ngIf="ShowBrokerageCharge">
+                <h4 class="sqrt-posttitle">Brokerge in %</h4>
+                <div class="selectMatFieldConfig" appearance="fill">
+
+                    <input class="numberProperty" autocomplete="off" [(ngModel)]="sellpropbrokerage" type="number"
+                        matInput formControlName="BrokergePrice">
+
+                </div>
+                <div *ngIf="submitted2 && s.BrokergePrice.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="s.BrokergePrice.errors.required">Please Select Brokerge Price</div>
+                </div>
+            </div>
+
+            <!-- <div class="mt-4 mb-2">
+            <h4 class="sqrt-posttitle">Property Title</h4>
+            <div class="row">
+              <div class="ml-3">
+                <input type="radio" [(ngModel)]="sellproptitle" id="Propertytitle12" formControlName="PropertyTitle"
+                  value="A Khata" />
+                <label class="label1" for="Propertytitle12">A Khata</label>
+              </div>
+              <div class="ml-3">
+                <input type="radio" [(ngModel)]="sellproptitle" id="Propertytitle22" formControlName="PropertyTitle"
+                  value="B Khata" />
+                <label class="label1" for="Propertytitle22">B Khata</label>
+              </div>
+              <div class="ml-3">
+                <input type="radio" [(ngModel)]="sellproptitle" id="Propertytitle32" formControlName="PropertyTitle"
+                  value="E Khata" />
+                <label class="label1" for="Propertytitle32">E Khata</label>
+              </div>
+            </div>
+            <div *ngIf="submitted2 && s.PropertyTitle.errors" class="custom-alert-danger mt-2">
+              <div *ngIf="s.PropertyTitle.errors.required">Please Select Property Title</div>
+            </div>
+          </div> -->
+
+
+
+            <!-- <div *ngIf="submitted2 && s.zip.errors" class="custom-alert-danger mt-2">
+                  <div *ngIf="s.zip.errors.required">Required Postal Code</div>
+                </div> -->
+
+
+
+
+
+            <!-- <div class="mt-4 mb-2">
+            <h4 class="sqrt-posttitle">Near By</h4>
+            <div class="row ml-1 mt-4">
+              <mat-chip-listbox selectable multiple>
+                <mat-chip-option #c="matChip" (selectionChange)="changeSelectednearby($event,option)"
+                  *ngFor="let option of finalnearby" [value]="option.id" [selected]="option.selected"
+                  (click)="toggleSelectionnearby(c, option)">
+                  {{option.nearby}}
+                </mat-chip-option>
+              </mat-chip-listbox>
+            </div>
+          </div>
+    
+    
+          <div class="mt-4 mb-2">
+            <h4 class="mb-2">Write Details of Near by Location</h4>
+            <div class="selectMatFieldConfig" appearance="fill">
+              <mat-label>Write Details of Near by Location</mat-label>
+              <textarea [(ngModel)]="sellpropNeardesc" formControlName="NearByLandmarkAddress" matInput></textarea>
+            </div>
+          </div> -->
+
+            <div class="mt-3">
+                <h4 class="sqrt-posttitle mb-1">Write About Your Property</h4>
+                <!-- <div class="selectMatFieldConfig" appearance="fill"> -->
+                <!-- <mat-label>About Your Property</mat-label> -->
+                <textarea class="addressProperty" matInput [(ngModel)]="sellpropdesc"
+                    formControlName="propdescription"></textarea>
+                <!-- </div> -->
+                <div *ngIf="submitted2 && s.propdescription.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="s.propdescription.errors.required">Please Enter Property Description</div>
+                </div>
+            </div>
+            <div class="mt-4">
+                <div class="row">
+                    <div class="col-6">
+                        <button mat-button class="custom-mat-button" matStepperPrevious><img
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/arrow_left.png">&nbsp;&nbsp;Back</button>
+                    </div>
+                    <div class="col-6 text-right">
+                        <button mat-button class="custom-mat-button" matStepperNext>Next &nbsp;
+                            <img
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/arrow_forward.png"></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step *ngIf="ShowPlotType" [stepControl]="secondFormGroupPlot">
+        <form [formGroup]="secondFormGroupPlot" (ngSubmit)="onPlotSubmit2()" novalidate>
+            <ng-template matStepLabel></ng-template>
+
+            <!-- <div *ngIf="ApartmentForm">
+                <div class="">
+                    <h4 class="sqrt-posttitle mb-1">Total Floor</h4>
+                    <div class="selectMatFieldConfig" appearance="fill">
+                       
+                        <input autocomplete="off" [(ngModel)]="sellproptotalfloor" matInput required #postalCode
+                            formControlName="TotalFloor" maxlength="5">
+                    </div>
+
+                    <div *ngIf="submitted2 && s.TotalFloor.errors" class="custom-alert-danger mt-2">
+                        <div *ngIf="s.TotalFloor.errors.required">Please Select Total Floor</div>
+                    </div>
+                </div>
+
+                <div class="">
+                    <h4 class="sqrt-posttitle mb-1">Which Floor</h4>
+                    <div class="selectMatFieldConfig" appearance="fill">
+                       
+                        <input autocomplete="off" [(ngModel)]="sellpropwhichfloor" matInput required #postalCode
+                            formControlName="WhichFloor" maxlength="5">
+                    </div>
+
+                  
+                    <div *ngIf="submitted2 && s.WhichFloor.errors" class="custom-alert-danger mt-2">
+                        <div *ngIf="s.WhichFloor.errors.required">Please Select Which Floor</div>
+                        <div *ngIf="s.WhichFloor.errors.floorMismatch">Which Floor cannot be greater than Total
+                            Floor
+                        </div>
+                    </div>
+
+                </div>
+                </div> -->
+
+
+
+            <!-- <div class="mt-4 mb-2" *ngIf="approvalshow">
+            <h4 class="sqrt-posttitle">Approval Authority</h4>
+            <div class="row ml-1 mt-4">
+              <mat-chip-listbox selectable multiple>
+                <mat-chip-option #c="matChip" (selectionChange)="changeSelectedapproval($event,option)"
+                  *ngFor="let option of finalapprovals" [value]="option.approvals" [selected]="option.selected"
+                  (click)="toggleSelectionapproval(c, option)">
+                  {{option.approvals}}
+                </mat-chip-option>
+              </mat-chip-listbox>
+            </div>
+          </div> -->
+
+
+            <!-- <div class="mt-4 mb-2">
+            <h4 class="sqrt-posttitle mb-4">Water Supply</h4>
+    
+            <div class="row ml-1 mt-2">
+              <div appearance="fill" class="selectMatFieldConfig">
+                <mat-label>water supply</mat-label>
+                <input autocomplete="off" [(ngModel)]="sellpropwatersupply" matInput required formControlName="WaterSupply">
+              </div><br>
+            </div>
+            <div *ngIf="submitted2 && s.WaterSupply.errors" class="custom-alert-danger mt-2">
+              <div *ngIf="s.WaterSupply.errors.required">Please Select Water Supply Option</div>
+            </div>
+          </div> -->
+
+
+            <div class="">
+                <h4 class="sqrt-posttitle">Price</h4>
+                <!-- <div class="row mx-0 mt-1"> -->
+                <div appearance="fill" class="selectMatFieldConfig">
+                    <!-- <mat-label>Price</mat-label> -->
+                    <input class="numberProperty" autocomplete="off" [(ngModel)]="sellpropprice" type="number" matInput
+                        required formControlName="Price">
+                </div><br>
+                <p class="amounttext">{{sellpropprice | amountToWord }}</p>
+                <!-- </div> -->
+                <div *ngIf="submitted2 && secondFormGroupPlot.get('Price').errors?.required"
+                    class="custom-alert-danger ">
+                    Please Enter a Price
+                </div>
+                <div *ngIf="submitted2 && secondFormGroupPlot.get('Price').errors?.min" class="custom-alert-danger ">
+                    Please enter above 1 lakhs
+                </div>
+                <div *ngIf="submitted2 && secondFormGroupPlot.get('Price').errors?.pattern"
+                    class="custom-alert-danger ">
+                    No negative values are allowed.
+                </div>
+
+
+            </div>
+
+
+            <div class="">
+                <h4 class="sqrt-posttitle ">Maintenance Charges</h4>
+                <div appearance="fill" class="selectMatFieldConfig mt-1">
+                    <!-- <mat-label>Maintenance charges (per month)</mat-label> -->
+                    <input class="numberProperty" type="number" [(ngModel)]="sellpropmaintanencecharge" matInput
+                        required formControlName="MaintenanceCharges">
+                </div>
+                <div *ngIf="submitted2 && sp.MaintenanceCharges.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="sp.MaintenanceCharges.errors.required">Please Select Maintenance Charges</div>
+                </div>
+            </div>
+
+
+            <div class="" *ngIf="ShowBrokerageCharge">
+                <h4 class="sqrt-posttitle">Brokerge in %</h4>
+                <div class="selectMatFieldConfig" appearance="fill">
+
+                    <input class="numberProperty" autocomplete="off" [(ngModel)]="sellpropbrokerage" type="number"
+                        matInput formControlName="BrokergePrice">
+
+                </div>
+                <div *ngIf="submitted2 && sp.BrokergePrice.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="sp.BrokergePrice.errors.required">Please Select Brokerge Price</div>
+                </div>
+            </div>
+
+            <!-- <div class="mt-4 mb-2">
+            <h4 class="sqrt-posttitle">Property Title</h4>
+            <div class="row">
+              <div class="ml-3">
+                <input type="radio" [(ngModel)]="sellproptitle" id="Propertytitle12" formControlName="PropertyTitle"
+                  value="A Khata" />
+                <label class="label1" for="Propertytitle12">A Khata</label>
+              </div>
+              <div class="ml-3">
+                <input type="radio" [(ngModel)]="sellproptitle" id="Propertytitle22" formControlName="PropertyTitle"
+                  value="B Khata" />
+                <label class="label1" for="Propertytitle22">B Khata</label>
+              </div>
+              <div class="ml-3">
+                <input type="radio" [(ngModel)]="sellproptitle" id="Propertytitle32" formControlName="PropertyTitle"
+                  value="E Khata" />
+                <label class="label1" for="Propertytitle32">E Khata</label>
+              </div>
+            </div>
+            <div *ngIf="submitted2 && s.PropertyTitle.errors" class="custom-alert-danger mt-2">
+              <div *ngIf="s.PropertyTitle.errors.required">Please Select Property Title</div>
+            </div>
+          </div> -->
+
+
+
+            <!-- <div *ngIf="submitted2 && s.zip.errors" class="custom-alert-danger mt-2">
+                  <div *ngIf="s.zip.errors.required">Required Postal Code</div>
+                </div> -->
+
+
+
+
+
+            <!-- <div class="mt-4 mb-2">
+            <h4 class="sqrt-posttitle">Near By</h4>
+            <div class="row ml-1 mt-4">
+              <mat-chip-listbox selectable multiple>
+                <mat-chip-option #c="matChip" (selectionChange)="changeSelectednearby($event,option)"
+                  *ngFor="let option of finalnearby" [value]="option.id" [selected]="option.selected"
+                  (click)="toggleSelectionnearby(c, option)">
+                  {{option.nearby}}
+                </mat-chip-option>
+              </mat-chip-listbox>
+            </div>
+          </div>
+    
+    
+          <div class="mt-4 mb-2">
+            <h4 class="mb-2">Write Details of Near by Location</h4>
+            <div class="selectMatFieldConfig" appearance="fill">
+              <mat-label>Write Details of Near by Location</mat-label>
+              <textarea [(ngModel)]="sellpropNeardesc" formControlName="NearByLandmarkAddress" matInput></textarea>
+            </div>
+          </div> -->
+
+            <div class="">
+                <h4 class="sqrt-posttitle mb-1">Write About Your Property</h4>
+                <!-- <div class="selectMatFieldConfig" appearance="fill"> -->
+                <!-- <mat-label>About Your Property</mat-label> -->
+                <textarea class="addressProperty" matInput [(ngModel)]="sellpropdesc"
+                    formControlName="propdescription"></textarea>
+                <!-- </div> -->
+                <div *ngIf="submitted2 && sp.propdescription.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="sp.propdescription.errors.required">Please Enter Property Description</div>
+                </div>
+            </div>
+            <div class="mt-4">
+                <div class="row">
+                    <div class="col-6">
+                        <button mat-button class="custom-mat-button" matStepperPrevious><img
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/arrow_left.png">&nbsp;&nbsp;Back</button>
+                    </div>
+                    <div class="col-6 text-right">
+                        <button mat-button class="custom-mat-button" matStepperNext>Next &nbsp;
+                            <img
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/arrow_forward.png"></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </mat-step>
+
+    <!-- <mat-step [stepControl]="secondFormGroup5">
+            <form [formGroup]="secondFormGroup5" (ngSubmit)="onSubmitImage()">
+              <div class="row">
+                <div class="imageUploadDragDropMainDiv col-sm-4"><br>
+                  <h4 class="mt-3 mb-3">Upload Cover Image</h4>
+                  <input class="mt-2" type='file' name="cover" formControlName="coverImage"
+                         (change)="onCoverSelectFile($event)">
+                  <div class="row">
+                    <div class="col-4 mt-3 mr-3 text-center"
+                         *ngFor='let url of CoverImage; let i = index'>
+                      <div class="coverImg">
+                        <label for="file-upload" class="custom-file-upload">
+                          <i class="fa fa-pencil"></i>
+                        </label>
+                        <input id="file-upload" type="file"
+                               (change)="onCoverSelectFile($event)"/>
+                      </div>
+                      <img class="mr-2" [src]="url" class="uploadImages">
+                      <a (click)="removeCoverImage(i)" class="btn btn-xs closeButton btn-danger mt-2 mb-2">x</a>
+                    </div>
+                  </div>
+                  <div *ngIf="submittedImage && s5.coverImage.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="s5.coverImage.errors.required">Please Select Cover Image</div>
+                  </div>
+                </div>
+    
+    
+                <div class="imageUploadDragDropMainDiv col-sm-4"><br>
+                  <h4 class="mt-3 mb-3">Upload Master Plan Image</h4>
+                  <input class="mt-2" type='file' name="master" formControlName="masterPlanImage"
+                         (change)="onmasterPlanSelectFile($event)">
+                  <div class="row">
+                    <div class="col-4 mt-3 mr-3 text-center"
+                         *ngFor='let url of MasterPlanImage; let i = index'>
+                      <div class="coverImg">
+                        <label for="file-uploadMasterPlan" class="custom-file-upload">
+                          <i class="fa fa-pencil"></i>
+                        </label>
+                        <input id="file-uploadMasterPlan" type="file"
+                               (change)="onmasterPlanSelectFile($event)"/>
+                      </div>
+                      <img class="mr-2" [src]="url" class="uploadImages">
+                      <a (click)="masterPlanImageImage(i)" class="btn btn-xs btn-danger closeButton mt-2 mb-2">x</a>
+                    </div>
+                  </div>
+                  <div *ngIf="submittedImage && s5.masterPlanImage.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="s5.masterPlanImage.errors.required">Please Select Master Plan Image</div>
+                  </div>
+                </div>
+    
+    
+                <div class="imageUploadDragDropMainDiv col-sm-4"><br>
+                  <h4 class="mt-3 mb-3">Upload Floor Plan Image</h4>
+                  <input class="mt-2" type='file' name="floorplan" formControlName="floorPlanImage"
+                         (change)="onFloorPlanSelectFile($event)">
+                  <div class="row">
+                    <div class="col-4 mt-3 mr-3 text-center"
+                         *ngFor='let url of FloorPlanImage; let i = index'>
+                      <div class="coverImg">
+                        <label for="file-uploadFloorPlan" class="custom-file-upload">
+                          <i class="fa fa-pencil"></i>
+                        </label>
+                        <input id="file-uploadFloorPlan" type="file"
+                               (change)="onFloorPlanSelectFile($event)"/>
+                      </div>
+                      <img class="mr-2" [src]="url" class="uploadImages">
+                      <a (click)="FloorPlanImageImage(i)" class="btn btn-xs closeButton btn-danger mt-2 mb-2">X</a>
+                    </div>
+                  </div>
+                  <div *ngIf="submittedImage && s5.floorPlanImage.errors" class="custom-alert-danger mt-2">
+                    <div *ngIf="s5.floorPlanImage.errors.required">Please Select Floor Plan Image</div>
+                  </div>
+                </div>
+              </div>
+    
+    
+              <div class="imageUploadDragDropMainDiv"><br>
+                <h4 class="mt-4 mb-3">Upload Gallery Images</h4>
+                <input class="mt-2" multiple type='file' id="file" formControlName="file"
+                (change)="onSelectFile($event)">
+                <div class="row">
+                  <div class="col-4 mt-3 mr-3 text-center" *ngFor='let url of urls; let i = index'>
+                    <div class="coverImg">
+                      <label for="file-uploadGalleryPlan" class="custom-file-upload">
+                        <i class="fa fa-pencil"></i>
+                      </label>
+                      <input id="file-uploadGalleryPlan" type="file"
+                             (change)="onSelectFile2($event, i)"/>
+                    </div>
+                    <img class="mr-2" [src]="url" class="uploadImages">
+                    <a (click)="removeImage(i)" class="btn btn-xs btn-danger crossBtn mt-2 mb-2">x</a>
+                  </div>
+                </div>
+                <div *ngIf="submittedImage && s5.file.errors" class="custom-alert-danger mt-2">
+                  <div *ngIf="s5.file.errors.required">Please Select Gallery Images</div>
+                </div>
+              </div>
+    
+              <div class="mt-4">
+                <button mat-button class="custom-mat-button" matStepperPrevious>Back</button>
+                <button mat-button class="custom-mat-button" matStepperNext>Review & Update</button>
+              </div>
+            </form>
+          </mat-step> -->
+
+
+    <mat-step [stepControl]="secondFormGroup5">
+        <form [formGroup]="secondFormGroup5" (ngSubmit)="onSubmitImage()">
+            <div class="row">
+
+                <!--  Cover Image (Only Update, No Delete) -->
+                <div class="imageUploadDragDropMainDiv col-6"><br>
+                    <h4 class="mt-3 mb-3">Cover Image</h4>
+                    <!-- <input type="file" (change)="onCoverSelectFile($event)"
+                            accept=".png, .webp, .jpg, .jpeg"> -->
+
+                    <div (click)="fileInput.click()" class="noImages">
+                        <input #fileInput hidden type='file' accept=".png, .webp, .jpg, .jpeg"
+                            (change)="onCoverSelectFile($event)">
+                        <img height="25px" width="25px"
+                            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/Frame 48095639.png"
+                            class="addIcon">
+                        <p class="Addimages">Add image
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="col mt-3 text-center" *ngIf="CoverImage.length > 0">
+                            <img [src]="CoverImage[0]" alt="CoverImage[0]" class="uploadImages">
+                            <div class="coverImg"> 
+                                <!-- <label for="file-uploadGalleryPlan" class="custom-file-upload">
+                                        <i class="fa fa-pencil"></i>
+                                    </label> -->
+                                <label for="file-upload" class="custom-fileCover">
+                                    <img
+                                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/change_circle.svg">
+                                    <input id="file-upload" type="file" (change)="onCoverSelectFile($event)"
+                                        accept=".png, .webp, .jpg, .jpeg" />
+                                </label>
+
+                                <!-- <input id="file-uploadGalleryPlan" type="file" (change)="onCoverSelectFile($event)"
+                                        accept=".png, .webp, .jpg, .jpeg" /> -->
+                            </div>
+                        </div>
+                        <div class="col mt-3 text-center" *ngIf="CoverImage.length === 0 && CoverImg">
+                            <img [src]="coverImageUrl + CoverImg" alt="CoverImg" class="uploadImages">
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!--  Master Plan Image -->
+                <!-- <div class="imageUploadDragDropMainDiv col-sm-4"><br>
+                            <h4 class="mt-3 mb-3">Upload Master Plan Image</h4>
+                            <input type="file" (change)="onmasterPlanSelectFile($event)">
+                            <div class="row">
+                                <div class="col-4 mt-3 text-center" *ngFor="let url of MasterPlanImage; let i = index">
+                                    <img [src]="url" class="uploadImages">
+                                    <div class="coverImg">
+                                        <label for="file-uploadGalleryPlan" class="custom-file-upload">
+                                            <i class="fa fa-pencil"></i>
+                                        </label>
+                                        <input id="file-uploadGalleryPlan" type="file"
+                                            (change)="onmasterPlanSelectFile($event)" />
+                                    </div>
+                                    <a (click)="masterPlanImageImage(i)" class="btn btn-xs btn-danger mt-2 mb-2">x</a>
+                                </div>
+                             
+                                <div class="col-4 mt-3 mr-3 text-center" *ngIf="MasterPlanImage.length == 0">
+                                    <div class="coverImg">
+                                        <label for="file-uploadMasterPlan1" class="custom-file-upload">
+                                            <i class="fa fa-pencil"></i>
+                                        </label>
+                                        <input id="file-uploadMasterPlan1" type="file"
+                                            (change)="onmasterPlanSelectFile($event)" />
+                                    </div>
+                                    <img src="{{masterImageUrl}}{{MasterImg}}" class="uploadImages">
+                                    <a (click)="masterPlanImageDeleate()"
+                                        class="btn btn-xs btn-danger closeButton mt-2 mb-2">x</a>
+                                </div>
+                            </div>
+                        </div> -->
+
+                <!-- Master Plan Image -->
+                <div class="imageUploadDragDropMainDiv col-12" *ngIf="ApartmentForm">
+                    <div class="col-6 p-0">
+                        <h4 class="mt-3 mb-3">Master Plan Image</h4>
+                        <!-- <input type="file" (change)="onmasterPlanSelectFile($event)"
+                                accept=".png, .webp, .jpg, .jpeg"> -->
+                        <div class="masterImages" (click)="fileInputMaster.click()">
+                            <input hidden type='file' accept=".png, .webp, .jpg, .jpeg" #fileInputMaster
+                                (change)="onmasterPlanSelectFile($event)">
+                            <img height="25px" width="25px"
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/Frame 48095639.png"
+                                class="addIcon">
+                            <p class="Addimages">Add image
+                            </p>
+                        </div>
+                        <div class="row">
+                            <!-- New image -->
+                            <div class="col mt-3 text-center" *ngFor="let url of MasterPlanImage; let i = index">
+                                <img [src]="url"alt="uploadImages" class="uploadImages">
+                                <!-- <div class="coverImg">
+                                        <label class="custom-file-upload">
+                                            <i class="fa fa-pencil"></i>
+                                        </label>
+                                        <input type="file" (change)="onmasterPlanSelectFile($event)"
+                                            accept=".png, .webp, .jpg, .jpeg" />
+                                    </div> -->
+
+                                <div class="coverImg">
+                                    <label for="file-master" class="custom-fileMaster">
+                                        <img
+                                            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/change_circle.svg">
+
+
+                                        <input id="file-master" type="file" (change)="onmasterPlanSelectFile($event)"
+                                            accept=".png, .webp, .jpg, .jpeg" />
+
+                                    </label>
+                                </div>
+                                <!-- <a (click)="masterPlanImageDeleate()" class="btn btn-xs btn-danger mt-2 mb-2">x</a> -->
+
+                                <div class="closeIcon">
+                                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/close_small.svg"
+                                        (click)="masterPlanImageDeleate()" class="closeButton">
+                                </div>
+                            </div>
+
+                            <!-- Existing image from DB -->
+                            <div class="col mt-3 mr-3 text-center" *ngIf="MasterPlanImage.length == 0 && MasterImg">
+                                <!-- <div class="coverImg">
+                                        <label class="custom-file-upload">
+                                            <i class="fa fa-pencil"></i>
+                                        </label>
+                                        <input type="file" (change)="onmasterPlanSelectFile($event)"
+                                            accept=".png, .webp, .jpg, .jpeg" />
+                                    </div> -->
+
+                                <div class="coverImg">
+                                    <label for="file-master" class="custom-file-upload">
+                                        <img
+                                            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/change_circle.svg">
+
+
+                                        <input id="file-master" type="file" (change)="onmasterPlanSelectFile($event)"
+                                            accept=".png, .webp, .jpg, .jpeg" />
+
+                                    </label>
+                                </div>
+                                <img [src]="masterImageUrl + MasterImg" alt="MasterImg" class="uploadImages">
+                                <!-- <a (click)="masterPlanImageDeleate()" class="btn btn-xs btn-danger mt-2 mb-2">x</a> -->
+                                <div class="closeIconMaster">
+                                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/close_small.svg"
+                                        (click)="masterPlanImageDeleate()" class="closeButton">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--  Floor Plan Image -->
+                <!-- <div class="imageUploadDragDropMainDiv col-sm-4"><br>
+                            <h4 class="mt-3 mb-3">Upload Floor Plan Image</h4>
+                            <input type="file" (change)="onFloorPlanSelectFile($event)">
+                            <div class="row">
+                                <div class="col-4 mt-3 text-center" *ngFor="let url of FloorPlanImage; let i = index">
+                                    <img [src]="url" class="uploadImages">
+                                    <div class="coverImg">
+                                        <label for="file-uploadGalleryPlan" class="custom-file-upload">
+                                            <i class="fa fa-pencil"></i>
+                                        </label>
+                                        <input id="file-uploadGalleryPlan" type="file"
+                                            (change)="onFloorPlanSelectFile($event)" />
+                                    </div>
+                                    <a (click)="FloorPlanImageImage(i)" class="btn btn-xs btn-danger mt-2 mb-2">x</a>
+                                </div>
+                             
+
+                                <div class="col-4 mt-3 mr-3 text-center" *ngIf="FloorPlanImage.length == 0">
+                                    <div class="coverImg">
+                                        <label for="file-uploadFloorPlan1" class="custom-file-upload">
+                                            <i class="fa fa-pencil"></i>
+                                        </label>
+                                        <input id="file-uploadFloorPlan1" type="file"
+                                            (change)="onFloorPlanSelectFile($event)" />
+                                    </div>
+                                    <img src="{{floorplanImageUrl}}{{FloorplanImg}}" class="uploadImages">
+                                    <a (click)="FloorPlanImageDelete()"
+                                        class="btn btn-xs closeButton btn-danger mt-2 mb-2">X</a>
+                                </div>
+                            </div>
+                        </div> -->
+
+                <!-- Floor Plan Image -->
+
+                <div class="imageUploadDragDropMainDiv col-12" *ngIf="ApartmentForm">
+                    <div class="col-6 p-0">
+                        <h4 class="mt-3 mb-3">Floor Plan Image</h4>
+                        <!-- <input type="file" (change)="onFloorPlanSelectFile($event)"
+                                accept=".png, .webp, .jpg, .jpeg"> -->
+                        <div class="floorImages" (click)="fileInputFloor.click()">
+                            <input hidden type='file' accept=".png, .webp, .jpg, .jpeg" #fileInputFloor
+                                (change)="onFloorPlanSelectFile($event)">
+                            <img height="25px" width="25px"
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/Frame 48095639.png"
+                                class="addIcon">
+                            <p class="Addimages">Add image
+                            </p>
+                        </div>
+                        <div class="row">
+                            <!-- New image -->
+                            <div class="col mt-3 text-center" *ngFor="let url of FloorPlanImage; let i = index">
+                                <img [src]="url" alt="uploadImages" class="uploadImages">
+                                <!-- <div class="coverImg">
+                                        <label class="custom-file-upload">
+                                            <i class="fa fa-pencil"></i>
+                                        </label>
+                                        <input type="file" (change)="onFloorPlanSelectFile($event)"
+                                            accept=".png, .webp, .jpg, .jpeg" />
+                                    </div> -->
+                                <label for="file-cover" class="coverImg12 custom-file-upload">
+                                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/change_circle.svg"
+                                        class="coverImg1">
+                                    <input hidden id="file-cover" type="file" (change)="onFloorPlanSelectFile($event)"
+                                        accept=".png, .webp, .jpg, .jpeg" />
+                                </label>
+                                <!-- <a (click)="FloorPlanImageDelete()" class="btn btn-xs btn-danger mt-2 mb-2">x</a> -->
+                                <div class="closeIcon">
+                                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/close_small.svg"
+                                        (click)="FloorPlanImageDelete()" class="closeButton">
+                                </div>
+                            </div>
+
+                            <!-- Existing image from DB -->
+                            <div class="col mt-3 mr-3 text-center" *ngIf="FloorPlanImage.length == 0 && FloorplanImg">
+                                <!-- <div class="coverImg">
+                                        <label class="custom-file-upload">
+                                            <i class="fa fa-pencil"></i>
+                                        </label>
+                                        
+                                        <input type="file" (change)="onFloorPlanSelectFile($event)"
+                                            accept=".png, .webp, .jpg, .jpeg" />
+                                    </div> -->
+                                <label for="file-cover" class="coverImg12    custom-file-upload">
+                                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/change_circle.svg"
+                                        class="coverImg1">
+                                    <input hidden id="file-cover" type="file" (change)="onFloorPlanSelectFile($event)"
+                                        accept=".png, .webp, .jpg, .jpeg" />
+                                </label>
+                                <img [src]="floorplanImageUrl + FloorplanImg" alt="FloorplanImg" class="uploadImages">
+                                <!-- <a (click)="FloorPlanImageDelete()" class="btn btn-xs btn-danger mt-2 mb-2">x</a> -->
+
+                                <div class="closeIcon">
+                                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/close_small.svg"
+                                        (click)="FloorPlanImageDelete()" class="closeButton">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!--  Gallery Images -->
+                <div class="imageUploadDragDropMainDiv col-12"><br>
+                    <div class="col-6 p-0">
+                        <h4 class="mt-4 mb-3">Gallery Images</h4>
+                        <!-- <input type="file" multiple (change)="onSelectFile($event)"
+                            accept=".png, .webp, .jpg, .jpeg"> -->
+
+
+                        <div (click)="fileInputGallery.click()" class="galleryImages mb-4">
+                            <input multiple hidden type='file' accept=".png, .webp, .jpg, .jpeg" #fileInputGallery
+                                (change)="onSelectFile($event)">
+                            <img height="25px" width="25px"
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/Group 238054.svg"
+                                class="addIcongallery">
+                            <p class="Addimagesgallery">Add images
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- New Uploaded Previews -->
+                        <div class="col-6 mt-3 text-center" *ngFor="let url of urls; let i = index">
+                            <img [src]="url" alt="uploadImages" class="uploadImages">
+
+
+                            <!-- <div class="coverImg">
+                                    <label for="file-uploadGalleryPlan" class="custom-file-upload">
+                                        <i class="fa fa-pencil"></i>
+                                    </label>
+                                    <input id="file-uploadGalleryPlan" type="file" (change)="onSelectFile2($event, i)"
+                                        accept=".png, .webp, .jpg, .jpeg" />
+                                </div> -->
+
+                            <div class="coverImg">
+                                <label for="file-uploadGalleryPlan" class="custom-fileMaster">
+                                    <img
+                                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/change_circle.svg">
+                                    <input id="file-uploadGalleryPlan" type="file" (change)="onSelectFile2($event, i)"
+                                        accept=".png, .webp, .jpg, .jpeg" />
+                                </label>
+                            </div>
+                            <!-- <a (click)="removeImage(i)" class="btn btn-xs btn-danger mt-2 mb-2">x</a> -->
+                            <div class="closeIcon">
+                                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/close_small.svg"
+                                    (click)="removeImage(i)" class="closeButton">
+                            </div>
+
+
+
+                        </div>
+
+                        <!-- Existing DB Gallery Images -->
+                        <!-- <div class="col-4 mt-3 text-center" *ngFor="let data of images">
+                                    <img [src]="galleryImageUrl + data.Imagename" class="uploadImages">
+                                    <a (click)="deleteGalleryImageById(data.Id)"
+                                        class="btn btn-xs btn-danger mt-2 mb-2">x</a>
+                                </div> -->
+
+                        <!-- Existing DB Gallery Images -->
+                        <div class="col-6 mt-3 text-center" *ngFor="let data of images">
+                            <img [src]="galleryImageUrl + data.Imagename" alt="data.Imagename" class="uploadImages">
+                            <!-- <a (click)="markGalleryImageForRemoval(data.Id)"
+                                    class="btn btn-xs btn-danger mt-2 mb-2">x</a> -->
+                            <div class="closeIcon">
+                                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/close_small.svg"
+                                    (click)="markGalleryImageForRemoval(data.Id)" class="closeButton">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-4 d-flex justify-content-between">
+                <button mat-button class="custom-mat-button" matStepperPrevious><img
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/arrow_left.png">&nbsp;&nbsp;Back</button>
+                <button mat-button class="custom-mat-button" matStepperNext>Review & Update&nbsp;
+                    <img
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/arrow_forward.png"></button>
+            </div>
+        </form>
+    </mat-step>
+
+
+    <mat-step>
+        <ng-template matStepLabel></ng-template>
+        <div class="row">
+            <mat-tab-group>
+                <mat-tab label="List Review">
+                    <div class="col-12 mt-4 mainDiv">
+                        <div class="" *ngFor="let img of CoverImage">
+                            <img [src]="img" class="d-block w-100" height="220" alt="...">
+                        </div>
+                        <div class="" *ngIf="CoverImage.length === 0">
+                            <img src="{{coverImageUrl}}{{CoverImg}}" class="d-block w-100" height="220" alt="...">
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="card mt-4 mb-4" *ngIf="ApartmentForm">
+                            <div class="p-2">
+                                <!-- <h5 class="card-title prop_name">{{sellpropname}}</h5> -->
+                                <div class="col-12">
+                                    <div class="row mt-2">
+                                        <div class="col-8 px-0">
+                                            <h6 class="propertyName mt-1 px-0">{{sellpropname}}</h6>
+
+                                            <p class="listView">{{reviewlocality}}, {{reviewcityname}}</p>
+
+                                        </div>
+                                        <div class="col-4 px-0">
+
+                                            <span class="priceValue">₹{{sellpropprice | priceFormatter}}</span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <p class="card-text property_info property_info_margin">Property Name</p> -->
+                                <!-- <p class="card-text property_info property_info_margin">{{sellpropname}}</p>
+                                    <p class="card-text property_info property_info_margin">{{reviewlocality}}
+                                        ,{{reviewcityname}}</p> -->
+                                <div class="row">
+                                    <div class="col-6 property_info">
+                                        <h4 class="pa">Property Type</h4>
+                                        <p>{{sellproptypereview}}</p>
+                                    </div>
+                                    <div class="col-6 property_info">
+                                        <h4>Property Status</h4>
+                                        <p>{{sellpropstatusreview}}</p>
+                                    </div>
+                                    <div class="col-6 property_info">
+                                        <h4>Area</h4>
+                                        <p>{{sellproparea}} {{sellareatype}}
+                                        </p>
+                                    </div>
+                                    <div class="col-6 property_info">
+                                        <h4>Posted By</h4>
+                                        <p>{{sellownershipreview}}</p>
+                                    </div>
+                                    <div class="col-6 property_info">
+                                        <h4>Furnishing</h4>
+                                        <p>{{sellpropfurnishreview}}</p>
+                                    </div>
+                                    <div class="col-6 property_info">
+                                        <h4>Total Floor</h4>
+                                        <p>{{sellproptotalfloor}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mt-4 mb-4" *ngIf="ShowPlotType">
+                            <div class="p-2">
+                                <!-- <h5 class="card-title prop_name">{{sellproptypereview}} For Sell</h5>
+                                    <p class="card-text property_info">{{sellpropname}}</p>
+                                    <p class="card-text property_info">{{reviewlocality}}
+                                        ,{{reviewcityname}}</p> -->
+
+                                <div class="col-12">
+                                    <div class="row mt-2">
+                                        <div class="col-8 px-0">
+                                            <h6 class="propertyName mt-1 px-0">{{sellpropname}}</h6>
+
+                                            <p class="listView">{{reviewlocality}}, {{reviewcityname}}</p>
+
+                                        </div>
+                                        <div class="col-4 px-0">
+
+                                            <span class="priceValue">₹{{sellpropprice | priceFormatter}}</span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6 property_info">
+                                        <h4>Plot Age</h4>
+                                        <p>{{sellplotage}}</p>
+                                    </div>
+                                    <div class="col-6 property_info">
+                                        <h4>Posted By</h4>
+                                        <p>{{sellownershipreview}}</p>
+                                    </div>
+                                    <div class="col-6 property_info">
+                                        <h4>Plot Size</h4>
+                                        <p>{{sellplotsize}}</p>
+                                    </div>
+                                    <div class="col-6 property_info">
+                                        <h4>Plot Type</h4>
+                                        <p *ngIf="sellplottype == '1'">Independent Plot</p>
+                                        <p *ngIf="sellplottype == '2'">Layout</p>
+                                        <p *ngIf="sellplottype == '3'">Gated Communuity</p>
+                                    </div>
+
+                                    <div class="col-6 property_info">
+                                        <h4>Plot Dimensions</h4>
+                                        <p>{{sellproparea}} {{sellareatype}}</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Detail Review">
+                    <div class="col-12 mt-4 mainDiv">
+                        <div class="" *ngFor="let img of CoverImage">
+                            <img [src]="img" class="d-block w-100" height="220" alt="...">
+                        </div>
+                        <div class="" *ngIf="CoverImage.length === 0">
+                            <img src="{{coverImageUrl}}{{CoverImg}}" class="d-block w-100" height="220" alt="...">
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2 mainDiv detailedView">
+
+                        <div class="row" *ngIf="showMorePhotos">
+                            <div class="col-6 mt-4" *ngFor="let img of urls | slice:4">
+                                <img [src]="img" class="galleryimg" alt="...">
+                            </div>
+                        </div>
+
+                        <div *ngIf="MorePhotos && urls.length > 4" class="ShowMorePhotos">
+                            <p (click)="ShowMorePhotos()"> Show more</p>
+                        </div>
+
+                        <!-- <div class="row" *ngIf="urls.length === 0">
+                      <div class="col-6 mt-4" *ngFor="let data of images; let i = index">
+                        <img src="{{galleryImageUrl}}{{data.Imagename}}" class="uploadImages">
+                      </div>
+                    </div> -->
+
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">You Are a ?</h4>
+                                <p>{{sellownershipreview}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Would you like to </h4>
+                                <p>Sell</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Selected City</h4>
+                                <p>{{reviewcityname}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Selected Location</h4>
+                                <p>{{reviewlocality}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle" *ngIf="ApartmentForm">Property Name</h4>
+                                <h4 class="sqrt-posttitle" *ngIf="ShowPlotType">Plot Name</h4>
+                                <p>{{sellpropname}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle" *ngIf="ApartmentForm">Building Type</h4>
+                                <h4 class="sqrt-posttitle" *ngIf="ShowPlotType">Plot Area Type</h4>
+                                <p *ngIf="sellbuildingtype == '14960'">Residential</p>
+                                <p *ngIf="sellbuildingtype == '14961'">Commercial</p>
+                            </div>
+
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Price</h4>
+                                <p>₹ {{sellpropprice}}</p>
+                            </div>
+                            <!-- <div class="col-6" *ngIf="approvalshow">
+                    <h4 class="sqrt-posttitle">Approvals</h4>
+                    <p>{{sellpropapprovalsreview.join(',')}}</p>
+                  </div> -->
+
+                            <!-- <div class="col-6">
+                    <h4 class="sqrt-posttitle">Water supply</h4>
+                    <p>{{sellpropwatersupply}}</p>
+                  </div> -->
+                            <!-- <div class="col-6">
+                    <h4 class="sqrt-posttitle">property title</h4>
+                    <p>{{sellproptitle}}</p>
+                  </div> -->
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Maintenance Charges</h4>
+                                <p>₹ {{sellpropmaintanencecharge}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Address</h4>
+                                <p>{{sellpropaddress}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Postal code</h4>
+                                <p>{{sellproppostalcode}}</p>
+                            </div>
+
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Property Type</h4>
+                                <p>{{sellproptypereview}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle" *ngIf="ApartmentForm">Door Facing</h4>
+                                <h4 class="sqrt-posttitle" *ngIf="ShowPlotType">Road Facing</h4>
+                                <p>{{sellpropdoorfacereview}}</p>
+                            </div>
+                            <div class="col-6" *ngIf="ShowBrokerageCharge">
+                                <h4 class="sqrt-posttitle">Brokerage price</h4>
+                                <p>{{sellpropbrokerage}}</p>
+                            </div>
+                            <!-- <div class="col-6">
+                    <h4 class="sqrt-posttitle">Near By</h4>
+                    <p>{{sellpropnearbyreview.join(',')}}</p>
+                  </div>
+                  <div class="col-6">
+                    <h4 class="sqrt-posttitle">Near By Details</h4>
+                    <p>{{sellpropNeardesc}}</p>
+                  </div> -->
+                        </div>
+
+                        <div class="row" *ngIf="ApartmentForm">
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Facilities</h4>
+                                <p>{{sellpropfacilitiesreview.join(',')}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Amenities</h4>
+                                <p>{{this.sellpropamenitiesreview.join(', ')}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Covered Parking</h4>
+                                <p>{{sellcoverpark}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Open Parking</h4>
+                                <p>{{sellopenpark}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Parking</h4>
+                                <p>{{sellpropparkingreview}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Property Status</h4>
+                                <p>{{sellpropstatusreview}}</p>
+                            </div>
+                            <div class="col-6" *ngIf="ShowPropertyAge">
+                                <h4 class="sqrt-posttitle">Property Age</h4>
+                                <p>{{sellpropyear}}.{{sellpropmonth}} years</p>
+                            </div>
+                            <div class="col-6" *ngIf="ShowPossesiondate">
+                                <h4 class="sqrt-posttitle">Possession Date</h4>
+                                <p>{{newpossesiondate | date:'dd/MM/yyyy'}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Bedroom</h4>
+                                <p>{{sellpropbhkreview}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Bathroom</h4>
+                                <p>{{bathroomreview}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Balconies</h4>
+                                <p>{{sellpropbalconiereview}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Area</h4>
+                                <p>{{sellproparea}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Area Type</h4>
+                                <p>{{sellareatype}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Furnishing Status</h4>
+                                <p>{{sellpropfurnishreview}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Total Floor</h4>
+                                <p>{{sellproptotalfloor}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Property Floor</h4>
+                                <p>{{sellpropwhichfloor}}</p>
+                            </div>
+                            <div class="col-12">
+                                <h4 class="sqrt-posttitle">About Your Property</h4>
+                                <p>{{sellpropdesc}}</p>
+                            </div>
+                            <!-- <div class="row">
+                      <div class="col-6 mt-4" *ngFor="let img of urls | slice:0:4">
+                        <img [src]="img" class="galleryimg" alt="...">
+                      </div>
+                      <div class="col-6 mt-4" *ngFor="let data of images; let i = index">
+                        <img src="{{galleryImageUrl}}{{data.Imagename}}" class="uploadImages">
+                      </div>
+                    </div> -->
+                            <!-- <div class="col-6">
+                      <h4>Floorplan Image</h4>
+                      <div class="col-6 mb-4" *ngFor="let img of FloorPlanImage">
+                        <img [src]="img" class="galleryimg" alt="...">
+                        <img src="{{floorplanImageUrl}}{{FloorplanImg}}" class="uploadImages">
+                      </div>
+                    </div> -->
+                            <!-- <div class="col-6">
+                      <h4>Masterplan Image</h4>
+                      <div class="col-6 mb-4" *ngFor="let img of MasterPlanImage">
+                        <img [src]="img" class="galleryimg" alt="...">
+                      </div>
+                    </div> -->
+                            <div class="col-12" *ngIf="images.length !== 0">
+                                <h4>Gallery Images</h4>
+                            </div>
+                            <div class="col-6 mb-4" *ngFor="let img of urls | slice:0:4">
+                                <img [src]="img" class="galleryimg" alt="...">
+                            </div>
+                            <div class="col-6 mb-4" *ngFor="let data of images; let i = index">
+
+                                <img src="{{galleryImageUrl}}{{data.Imagename}}" alt="data.Imagename" height="100" width="160">
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="ShowPlotType">
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Plot Type</h4>
+                                <p *ngIf="sellplottype == '1'">Independent Plot</p>
+                                <p *ngIf="sellplottype == '2'">Layout</p>
+                                <p *ngIf="sellplottype == '3'">Gated Communuity</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Plot Size</h4>
+                                <p>{{sellplotsize}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Plot Dimensions</h4>
+                                <p>{{sellproparea}} {{sellareatype}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h4 class="sqrt-posttitle">Plot Age</h4>
+                                <p>{{sellplotage}}</p>
+                            </div>
+                            <div class="col-12">
+                                <h4 class="sqrt-posttitle">About Your Property</h4>
+                                <p>{{sellpropdesc}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+        <div class="d-flex justify-content-between">
+            <button mat-button class="custom-mat-button" matStepperPrevious><img
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/arrow_left.png">&nbsp;&nbsp;Back</button>
+            <!-- <button mat-button class="custom-mat-button" (click)="stepper.reset()">Reset</button> -->
+            <button mat-button class="updateBTN" (click)="UpdateSellprop()">Update</button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>

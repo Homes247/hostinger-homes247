@@ -1,0 +1,28 @@
+<div class="search-dropdown" [ngClass]="{'open': shown && list !== undefined}">
+  <div class="search-dropdown__btn" (click)="show()">
+    <input
+      class="search-dropdown__dropdown__search"
+      type="text"
+      [placeholder]="value"
+      [(ngModel)]="keyword"
+      (keyup)="search(keyword)"
+      #input
+    />
+  </div>
+
+  <div class="search-dropdown__dropdown">
+    <div class="search-dropdown__dropdown__scroller" (scroll)="onScroll($event)">
+
+      @for (item of list | slice:0:visibleCount; track item[_uid]) {
+        <div class="search-dropdown__dropdown__item" (click)="select(item)">
+          {{item[_label] | titlecase}}
+        </div>
+      }
+
+      @if (list?.length === 0) {
+        <div class="search-dropdown__dropdown__msg">No Result Found</div>
+      }
+
+    </div>
+  </div>
+</div>

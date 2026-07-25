@@ -1,0 +1,181 @@
+
+.apartment_img_size{
+width: 130px;
+height: 130px;
+}
+.prop_name a{
+    font-size: 14px;
+    color: rgba(151,27,71,.8117647058823529);
+    font-weight: 600;
+}
+.head_text{
+    font-size: 18px;
+    margin-left: 18px;
+    margin-bottom: 32px;
+}
+.location_name{
+   color: gray;
+   font-size: 12px;
+   margin-top: -5px;
+}
+.location_name img{
+ width: 9px;
+}
+.prop_div_main{
+display: flex;
+height: 210px;
+border-top: 1px solid gray;
+padding: 25px 0 0 0;
+}
+.builder_name{
+    margin-top: -11px;
+    font-size: 12px;
+}
+.property_bhk {
+ margin-top: -7px;
+}
+.property_bhk p{
+    font-size: 12px;
+    width: 100%;
+    float: left;
+}
+.min_max_price{
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+    position: absolute;
+    right: 12px;
+}
+.ready_move{
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+    position: absolute;
+    right: 12px;  
+    top: 124px;
+}
+.property_info{
+    margin-left: 10px;
+}
+
+.breadcrumbs {
+    --cssuiBreadcrumbsTextColor: var(--breadcrumbsTextColor);
+    --cssuiBreadcrumbsTextColorActive: var(--breadcrumbsTextColorActive);
+    --cssuiBreadcrumbsDivider: var(--breadcrumbsDivider);
+    --cssuiBreadcrumbsDividerColor: var(--breadcrumbsDividerColor, inherit);
+    --cssuiBreadcrumbsDividerSize: var(--breadcrumbsDividerSize, 16px);
+    --cssuiBreadcrumbsIndent: var(--breadcrumbsIndent, 8px);
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap
+}
+
+.breadcrumbs__item {
+    display: inline-block;
+    position: relative;
+    padding-right: calc(var(--cssuiBreadcrumbsDividerSize) + var(--cssuiBreadcrumbsIndent));
+    margin-right: var(--cssuiBreadcrumbsIndent);
+    color: var(--cssuiBreadcrumbsTextColor)
+}
+
+.breadcrumbs__item:after {
+    content: var(--cssuiBreadcrumbsDivider);
+    width: var(--cssuiBreadcrumbsDividerSize);
+    height: var(--cssuiBreadcrumbsDividerSize);
+    line-height: 1;
+    text-align: center;
+    font-family: 'Poppins';
+    font-size: var(--cssuiBreadcrumbsDividerSize);
+    color: #000;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%)
+}
+
+.breadcrumbs__item_active {
+    margin-right: 0;
+    padding-right: 0;
+    /* color: #000; */
+    font-size: 10px;
+    margin-top: 3px;
+   color: var(--cssuiBreadcrumbsTextColorActive) 
+}
+
+.breadcrumbs__item_active:after {
+    display: none
+}
+
+.breadcrumbs__element {
+    color: #000
+}
+
+.breadcrumbs_city {
+    position: absolute;
+    top: 14%;
+    width: 100%;
+    padding: 0 10px;
+    z-index: 1;
+    margin: 8px 0;
+    --breadcrumbsDivider: "›";
+    --breadcrumbsDividerSize: 20px
+}
+
+.breadcrumbs_city .breadcrumbs__item:after {
+    top: 40%
+}
+
+a.breadcrumbs__element:hover {
+    color: rgba(151,27,71,.8117647058823529);
+    text-decoration: none
+}
+.about_us_banner{
+margin-top: 40%;
+}
+.view_btn{
+    position: absolute;
+    right: 8px;
+    top: 151px;
+    padding: 0 10px;
+    color: #080808;
+    border: 1px solid rgba(151,27,71,.8117647058823529);
+    border-radius: 3px;  
+}
+.sold_out{
+    font-size: 18px;
+    color: red;
+    font-weight: 500;
+    position: absolute;
+    right: 17px;
+    text-align: right;
+    width: 100%;
+    bottom: 25px;
+    }
+    .offer-div{
+        position: absolute;
+        left: 15px;
+        top: 166px;
+    }
+     .excit_class strong {
+        color: #166439;
+        margin-right: 10px
+    }
+    .excit_class {
+        font-size: 12px;
+        color: #333
+    }
+    @media (min-width:360px) and (max-width:374px) {
+        .apartment_img_size{
+            width: 110px;
+            height: 120px;
+            }
+    }
+    @media (min-width:375px) and (max-width:410px) {
+        .apartment_img_size{
+            width: 110px;
+            height: 120px;
+            }
+    }

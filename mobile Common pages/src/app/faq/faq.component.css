@@ -1,0 +1,430 @@
+.about_us_banner {
+  position: relative
+}
+
+.about_us_banner img {
+  width: 100%;
+  filter: brightness(.8)
+}
+
+.about_us_banner h1 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 40px;
+  font-weight: 400;
+  text-align: center;
+  width: 100%;
+  margin: 0
+}
+
+.breadcrumbs_type {
+  position: absolute;
+  top: 3%;
+  width: 100%;
+  padding: 0 10px;
+  --breadcrumbsDivider: "›";
+  --breadcrumbsDividerSize: 20px
+}
+
+.breadcrumbs {
+  --breadcrumbsTextColor: #D1C4E9;
+  --breadcrumbsTextColorActive: #fff
+}
+
+.breadcrumbs {
+  --cssuiBreadcrumbsTextColor: var(--breadcrumbsTextColor);
+  --cssuiBreadcrumbsTextColorActive: var(--breadcrumbsTextColorActive);
+  --cssuiBreadcrumbsDivider: var(--breadcrumbsDivider);
+  --cssuiBreadcrumbsDividerColor: var(--breadcrumbsDividerColor, inherit);
+  --cssuiBreadcrumbsDividerSize: var(--breadcrumbsDividerSize, 16px);
+  --cssuiBreadcrumbsIndent: var(--breadcrumbsIndent, 8px);
+  padding-left: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap
+}
+
+.breadcrumbs__item {
+  display: inline-block;
+  position: relative;
+  padding-right: calc(var(--cssuiBreadcrumbsDividerSize) + var(--cssuiBreadcrumbsIndent));
+  margin-right: var(--cssuiBreadcrumbsIndent);
+  color: var(--cssuiBreadcrumbsTextColor)
+}
+
+.breadcrumbs__element {
+  color: #fff
+}
+
+.breadcrumbs__item_active {
+  margin-right: 0;
+  padding-right: 0;
+  color: var(--cssuiBreadcrumbsTextColorActive)
+}
+
+.breadcrumbs__item:after {
+  content: var(--cssuiBreadcrumbsDivider);
+  width: var(--cssuiBreadcrumbsDividerSize);
+  height: var(--cssuiBreadcrumbsDividerSize);
+  line-height: 1;
+  text-align: center;
+  font-family: 'Poppins';
+  font-size: var(--cssuiBreadcrumbsDividerSize);
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%)
+}
+
+a.breadcrumbs__element:hover {
+  color: rgba(151,27,71,.8117647058823529);
+  text-decoration: none
+}
+
+.faq_main {
+  margin: 0;
+  padding: 0
+}
+
+.faq_main h2 {
+  font-size: 40px;
+  color: #0b3544;
+  font-weight: 400;
+  margin: 30px 0
+}
+
+.faq_main .panel {
+  background: 0 0;
+  border: 0;
+  box-shadow: none;
+  margin: 0 0 35px
+}
+
+.faq_main .panel-default > .panel-heading {
+  background: 0 0;
+  padding: 0
+}
+
+.panel-default > .panel-heading {
+  cursor: pointer
+}
+
+.collapse.in {
+  display: block
+}
+
+.current_job_opening_section .panel-group .panel-heading + .panel-collapse > .list-group, .panel-group .panel-heading + .panel-collapse > .panel-body {
+  border-top: 0 solid #ddd;
+  border-top-color: #ddd
+}
+
+.panel-default .panel-body p {
+  font-size: 13px;
+  line-height: 20px;
+  color: #716e6e;
+  margin: 0;
+  padding: 0 0 0 27px;
+  text-align: justify
+}
+
+.panel-group .panel + .panel {
+  margin-top: 5px
+}
+
+.faq_main .panel {
+  background: 0 0;
+  border: 0;
+  box-shadow: none;
+  margin: 0 0 35px
+}
+
+.faq_form_main {
+  border: 1px solid #a1a1a1;
+  padding: 25px 0;
+  margin: 35px 0 0
+}
+
+.faq_form_main h4 {
+  font-size: 18px;
+  color: #0b3544;
+  font-weight: 600;
+  margin: 0 0 20px;
+  text-align: center
+}
+
+.faq_form_main form {
+  margin: 0;
+  padding: 0 25px
+}
+
+.faq_form_main form input[type=email], .faq_form_main form input[type=text] {
+  border: 0;
+  border-bottom: 1px solid #1c1c1c;
+  padding: 5px 0;
+  font-size: 16px;
+  font-weight: 400;
+  width: 100%;
+  color: #494848;
+  background: 0 0;
+  margin-bottom: 30px;
+  outline: 0
+}
+
+.faq_main .panel-default > .panel-heading a {
+  padding: 0 0 0 35px;
+  font-size: 18px;
+  color: #1c1c1c;
+  font-weight: 400;
+  display: inline-block;
+  text-decoration: none;
+  position: relative
+}
+
+.faq_form_main form textarea {
+  border: 0;
+  border: 1px solid #1c1c1c;
+  padding: 5px;
+  font-size: 16px;
+  font-weight: 400;
+  width: 100%;
+  height: 240px;
+  color: #494848;
+  background: 0 0;
+  margin-bottom: 30px;
+  outline: 0
+}
+
+.faq_form_main form button {
+  background: rgba(151,27,71,.8117647058823529);
+  font-size: 24px;
+  color: #fff;
+  text-transform: uppercase;
+  display: block;
+  padding: 10px 0;
+  margin: 0;
+  border: 0;
+  width: 100%;
+  transition: all .5s ease
+}
+
+.faq_form_main form button:hover {
+  background: #0b3544
+}
+
+.faq_main .panel-default > .panel-heading a[aria-expanded=false]:after {
+  content: "\e260";
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg)
+}
+
+.faq_main .panel-default > .panel-heading a:after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1;
+  left: 0;
+  float: left;
+  transition: transform .25s linear;
+  -webkit-transition: -webkit-transform .25s linear;
+  left: 0
+}
+
+.current_job_opening_section .panel-default > .panel-heading a:after, .faq_main .panel-default > .panel-heading a:after {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-family: 'Glyphicons Halflings'
+}
+
+.faq_main .panel-default > .panel-heading a[aria-expanded=true]:after {
+  content: "\e260";
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg)
+}
+
+.current_job_opening_section .panel-default > .panel-heading a:after, .faq_main .panel-default > .panel-heading a:after {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-family: 'Glyphicons Halflings'
+}
+.text_colour{
+  color: #080808;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.contentColor{
+  color: #666;
+  font-size: 14px;
+  margin-left: 18px;
+  /*font-weight: bold;*/
+}
+.contentColorUl{
+  color: #666;
+  font-size: 14px;
+  margin-left: 0px;
+  /*font-weight: bold;*/
+}
+.arrowFAQ{
+  font-size: 20px;
+  margin-top: 7px;
+  font-weight: 600;
+  color: #080808;
+}
+
+.mb-0 > a {
+  display: block;
+  position: relative;
+  font-weight: 500;
+  font-size: 17px;
+}
+.mb-0 > a:after {
+  content: "\f078"; /* fa-chevron-down */
+  font-family: 'FontAwesome';
+  position: absolute;
+  right: 0;
+}
+.mb-0 > a[aria-expanded="true"]:after {
+  content: "\f077"; /* fa-chevron-up */
+}
+
+@media (min-width: 478px) and (max-width: 767px) {
+  .about_us_banner {
+    margin: 0px 0 0
+  }
+
+  .about_us_banner img {
+    height: 90px
+  }
+
+  .about_us_banner h1 {
+    font-size: 20px
+  }
+}
+
+@media (min-width: 412px) and (max-width: 479px) {
+  .faq_main .panel-default > .panel-heading a {
+    font-size: 14px;
+    padding: 0 0 0 25px
+  }
+
+  .faq_main .panel-default .panel-body p {
+    padding: 0 0 0 10px
+  }
+
+  .about_us_banner {
+    margin: 0px 0 0
+  }
+
+  .about_us_banner img {
+    height: 90px
+  }
+
+  .about_us_banner h1 {
+    font-size: 20px
+  }
+}
+
+@media (min-width: 375px) and (max-width: 411px) {
+  .faq_main .panel-default > .panel-heading a {
+    font-size: 14px;
+    padding: 0 0 0 25px
+  }
+
+  .faq_main .panel-default .panel-body p {
+    padding: 0 0 0 10px
+  }
+
+  .faq_main h2 {
+    font-size: 26px;
+    text-align: center
+  }
+
+  .about_us_banner {
+    margin: 0px 0 0
+  }
+
+  .about_us_banner img {
+    height: 90px
+  }
+
+  .about_us_banner h1 {
+    font-size: 20px
+  }
+}
+
+@media (min-width: 360px) and (max-width: 374px) {
+  .faq_main .panel-default > .panel-heading a {
+    font-size: 14px;
+    padding: 0 0 0 25px
+  }
+
+  .faq_main .panel-default .panel-body p {
+    padding: 0 0 0 10px
+  }
+
+  .faq_main h2 {
+    font-size: 26px;
+    text-align: center
+  }
+
+  .about_us_banner {
+    margin: 0px 0 0
+  }
+
+  .about_us_banner img {
+    height: 90px
+  }
+
+  .about_us_banner h1 {
+    font-size: 20px
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .faq_main .panel-default > .panel-heading a {
+    font-size: 14px;
+    padding: 0 0 0 25px
+  }
+
+  .faq_main .panel-default .panel-body p {
+    padding: 0 0 0 10px
+  }
+
+  .faq_main h2 {
+    font-size: 26px;
+    text-align: center
+  }
+
+  .about_us_banner {
+    margin: 0px 0 0
+  }
+
+  .about_us_banner img {
+    height: 90px
+  }
+
+  .about_us_banner h1 {
+    font-size: 20px
+  }
+}
+@media (min-width: 768px) and (max-width: 992px){
+  .about_us_banner{
+    margin: 0px 0 0 0;
+  }
+}
+  @media (min-width: 993px) and (max-width: 1024px){
+    .about_us_banner{
+      margin: 112px 0 0 0;
+    }
+}

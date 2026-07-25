@@ -1,0 +1,219 @@
+.mainOverflow {margin: 0; height: 100%; overflow: hidden}
+.bg6 {
+  background-image: url("https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/landing-page/footerbg.png");
+  background-position: center;
+  background-size: cover;
+  height: 665px;
+}
+
+.mainPlanet {
+  left: -150px;
+  height: 650px;
+  background-repeat: no-repeat;
+  -webkit-animation: rotation 200s infinite linear;
+  position: absolute;
+  margin-top: 150px;
+}
+.mainPlanet2{
+  animation: zoom-in-zoom-out 30s ease-out infinite;
+}
+/*twinkling starts*/
+.ag-star {
+  height: 1em;
+  width: 3.75em;
+  background: url(https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/animation-star/images/star.png) no-repeat center;
+  background-size: contain;
+
+  z-index: 1;
+  position: absolute;
+
+  -webkit-animation: an-star 2s 2s linear infinite;
+  -moz-animation: an-star 2s 2s linear infinite;
+  -o-animation: an-star 2s 2s linear infinite;
+  animation: an-star 2s 2s linear infinite;
+
+  image-rendering: optimize-contrast;
+}
+
+
+/*zoom in and out effect*/
+.HomesLogo {
+  width: 350px;
+}
+
+.mainBannerHeading {
+  font-size: 60px;
+  font-family: 'Stick No Bills', sans-serif;
+  color: white;
+  font-weight: bold;
+  padding-top: 80px;
+  margin-bottom: 0px;
+}
+
+.mainBannerHeading2 {
+  font-size: 60px;
+  font-family: 'Stick No Bills', sans-serif;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.button-shiny {
+  border: 1px solid white;
+  background: #007bff;
+  color: white;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  transition: opacity 15ms ease-in-out;
+  font-size: 20px;
+  font-family: 'Stick No Bills', sans-serif;
+}
+.button-shiny:hover {
+   opacity: 0.75;
+ }
+.button-shiny:before {
+   content: "";
+   position: absolute;
+   top: 0;
+   left: 0;
+   background: white;
+   opacity: 0.1;
+   height: 100%;
+   width: 100%;
+   transform: skewX(-45deg);
+   background: linear-gradient(to right, white, white 40px, transparent 40px);
+   transform-origin: left bottom;
+   animation: shine 5s ease-in infinite;
+ }
+
+ .guidelinesText{
+  color: white;
+  text-decoration: underline;
+  font-size: 12px;
+  font-family: "Poppins";
+}
+.guidelinesText:hover{
+  color: #e56e2e;
+}
+
+@media (min-width: 1920px) and (max-width: 2560px) {
+  .bg6 {
+    background-image: url("https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/landing-page/footerbg.png");
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+  }
+  .footerHome{
+    height: 180px;
+    width: fit-content;
+    margin-top: 0px;
+    animation: float 9s ease-in-out infinite;
+  }
+  .footerSpaceMan{
+    height: 190px;
+    width: fit-content;
+    margin-top: -200px!important;
+    margin-left: 420px;
+    transform: translatey(0px);
+    animation: float 6s ease-in-out infinite;
+  }
+  .asteroid4{
+    height: 100px;
+    margin-top: 30px;
+    margin-left: 600px;
+    transform: translatey(0px);
+    animation: float 7s ease-in-out infinite;
+  }
+  .asteroid7{
+    height: 80px;
+    margin-top: -200px;
+    margin-left: 450px;
+    transform: translatey(0px);
+    animation: float 10s ease-in-out infinite;
+  }
+}
+
+.socialIcons{
+  color: white;
+}
+.socialIconsText{
+  color: white;
+  font-size: 14px;
+}
+.fb{
+  color: white;
+  border: 1px solid white;
+  padding: 10px 15px 10px 15px;
+  border-radius: 77px;
+  font-size: 20px;
+}
+.fb:hover{
+  background: #3b5998;
+  border: 1px solid #3b5998;
+  transition: background 0.6s ease-in;
+}
+.twitt{
+  color: white;
+  border: 1px solid white;
+  padding: 10px 12px 10px 12px;
+  border-radius: 77px;
+  font-size: 20px;
+}
+.twitt:hover{
+  background: #00aced;
+  border: 0;
+  transition: background 0.6s ease-in;
+}
+.pintrst{
+  color: white;
+  border: 1px solid white;
+  padding: 10px 13px 10px 13px;
+  border-radius: 77px;
+  font-size: 20px;
+}
+.pintrst:hover{
+  background: #e60023;
+  border: 0;
+  transition: background 0.6s ease-in;
+}
+.insta{
+  color: white;
+  border: 1px solid white;
+  padding: 10px 13px 10px 13px;
+  border-radius: 77px;
+  font-size: 20px;
+}
+.insta:hover{
+  background: linear-gradient(45deg,#f09433,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888);
+  border: 0;
+  transition: background 0.6s ease-in;
+}
+.linked{
+  color: white;
+  border: 1px solid white;
+  padding: 10px 13px 10px 13px;
+  border-radius: 77px;
+  font-size: 20px;
+}
+.linked:hover{
+  background: #1c92d3;
+  border: 0;
+  transition: background 0.6s ease-in;
+}
+.youtube{
+  color: white;
+  border: 1px solid white;
+  padding: 10px 13px 10px 13px;
+  border-radius: 77px;
+  font-size: 20px;
+}
+.youtube:hover{
+  background: red;
+  border: 0;
+  transition: background 0.6s ease-in;
+}
+.finalPageSubText{
+  font-family: "Poppins";
+  color: white;
+  font-weight: bold;
+}

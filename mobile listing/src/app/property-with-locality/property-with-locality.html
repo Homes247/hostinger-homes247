@@ -1,0 +1,765 @@
+<app-my-json-ld [innerHTML]="breadcrumbLD" ngSkipHydration></app-my-json-ld>
+<app-my-json-ld [innerHTML]="carouselsLD" ngSkipHydration></app-my-json-ld>
+<app-my-json-ld [innerHTML]="eventsLD" ngSkipHydration></app-my-json-ld>
+<app-my-json-ld [innerHTML]="localbusinessLD" ngSkipHydration></app-my-json-ld>
+<app-my-json-ld [innerHTML]="productmerchantreviewLD" ngSkipHydration></app-my-json-ld>
+<div class="topMarginBreadCrumbs"></div>
+
+<div class="city_search_filters">
+    <div class="container">
+
+        <div class="col-12 mb-2 head_stick" #scrollapiloader>
+            <div class="row justify-content-between scroll_part">
+                @if (!projectcount) {
+                <button type="button" class="btn btn-Project">Projects (XXXX)</button>
+                }
+                @if (projectcount) {
+                <button type="button" class="btn btn-Project">Projects ({{projectcount}})</button>
+                }
+
+                @if (!propertiescount) {
+                <button type="button" class="btn btn-Properties">By Individuals (XXX)</button>
+                }
+                @if (propertiescount) {
+                <a type="button" class="btn btn-Properties"
+                    href="https://www.homes247.in/projects-in-{{citybreadcrump}}">By
+                    Individuals ({{propertiescount}})</a>
+                }
+
+                @if (!projectcountRent) {
+                <button type="button" class="btn btn-Properties">Rental (XXX)</button>
+                }
+                @if (projectcountRent) {
+                <a type="button" class="btn btn-Properties"
+                    href="https://www.homes247.in/rent/house-for-rent-in-{{citybreadcrump}}">Rental
+                    ({{projectcountRent}})</a>
+                }
+
+                @if (!projectcountcommercial) {
+                <button type="button" class="btn btn btn-Properties">Commercial (XXX)</button>
+                }
+                @if (projectcountcommercial) {
+                <a type="button" class="btn btn btn-Properties"
+                    href="https://www.homes247.in/cll/commercial-properties-in-{{citybreadcrump}}">Commercial
+                    ({{projectcountcommercial}})</a>
+                }
+
+                @if (!projectpgcount) {
+                <button type="button" class="btn btn btn-Properties mr-3">PG (XXX)</button>
+                }
+                @if (projectpgcount) {
+                <a type="button" class="btn btn btn-Properties mr-3"
+                    href="https://www.homes247.in/pgcl/pg-for-rent-in-{{citybreadcrump}}">PG ({{projectpgcount}})</a>
+                }
+            </div>
+        </div>
+
+        <ng-container *ngComponentOutlet="Matautocomplete"></ng-container>
+
+        <hr class="row hr_bottom">
+        <nav class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/" title="India's Favourite Property Portal !"
+                    rel="bookmark">Home</a></li>
+            <li class="breadcrumb-item"><a target="_blank"
+                    href="/new-launch-projects/new-projects-in-{{citybreadcrump | cleanUrl}}"
+                    class="breadcrumbs__element"
+                    title="New projects in {{citybreadcrump}} | Upcoming Projects in {{citybreadcrump}} | Homes247.in">
+                    New Projects in {{citybreadcrump}} </a></li>
+            <li class="breadcrumb-item"><a routerLink="/{{citybreadcrump | cleanUrl}}/property-sale">Properties in
+                    {{city}}</a></li>
+            <li class="breadcrumb-item" aria-current="page"
+                routerLink="/{{property_type}}-in-{{localityName | cleanUrl}}-{{city | cleanUrl}}"><a>Properties in
+                    {{localityName}} {{city | titlecase}}</a></li>
+            <li class="breadcrumb-item active"><a>{{property_type}}</a></li>
+        </nav>
+
+
+        <div class="row">
+            <div class="col-12">
+                <h1 class="pagePropertyCountNew text-truncate"><span>{{projectcount}}</span> {{property_type}} in
+                    {{localityName}},
+                    {{citybreadcrump | titlecase}}</h1>
+            </div>
+            <!-- Example of converting commented out *ngFor if needed later:
+            @for (format of formatsDateTest; track format) {
+                <span class="col-12 last_update">last update : {{ dateNow | date: format }}</span>
+            } -->
+        </div>
+
+        @if (description) {
+        <div class="desc_div">
+            <div class="banner_description" id="scrollable" [innerHTML]="proptypedescription | sanitizeHtml ">
+            </div>
+            @if (!isExpanded) {
+            <div class="arrow bounce down_arrow" (click)="readmore()">
+                <span>Read More</span>
+            </div>
+            }
+            @if (isExpanded) {
+            <div class="arrow bounce up_arrow" (click)="readless()">
+                <span>Read Less</span>
+            </div>
+            }
+        </div>
+        }
+
+        <div class="search-results">
+            @for (propertydemo of propertylists; track $index; let i = $index) {
+            <div class="newListingCard px-2">
+                <div class="listingCardTop">
+                    <div class="cardTagsTop d-flex justify-content-between">
+                        <div class="d-flex">
+                            <div class="d-flex reraIconDiv">
+                                <svg width="15" height="15" viewBox="0 0 11 10" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_6905_2596)">
+                                        <path
+                                            d="M10.1875 5C10.1875 5.4 9.69609 5.72969 9.59766 6.09844C9.49609 6.47969 9.75313 7.01094 9.56016 7.34453C9.36406 7.68359 8.77422 7.72422 8.49922 7.99922C8.22422 8.27422 8.18359 8.86406 7.84453 9.06016C7.51094 9.25313 6.97969 8.99609 6.59844 9.09766C6.22969 9.19609 5.9 9.6875 5.5 9.6875C5.1 9.6875 4.77031 9.19609 4.40156 9.09766C4.02031 8.99609 3.48906 9.25313 3.15547 9.06016C2.81641 8.86406 2.77578 8.27422 2.50078 7.99922C2.22578 7.72422 1.63594 7.68359 1.43984 7.34453C1.24687 7.01094 1.50391 6.47969 1.40234 6.09844C1.30391 5.72969 0.8125 5.4 0.8125 5C0.8125 4.6 1.30391 4.27031 1.40234 3.90156C1.50391 3.52031 1.24687 2.98906 1.43984 2.65547C1.63594 2.31641 2.22578 2.27578 2.50078 2.00078C2.77578 1.72578 2.81641 1.13594 3.15547 0.939844C3.48906 0.746875 4.02031 1.00391 4.40156 0.902344C4.77031 0.803906 5.1 0.3125 5.5 0.3125C5.9 0.3125 6.22969 0.803906 6.59844 0.902344C6.97969 1.00391 7.51094 0.746875 7.84453 0.939844C8.18359 1.13594 8.22422 1.72578 8.49922 2.00078C8.77422 2.27578 9.36406 2.31641 9.56016 2.65547C9.75313 2.98906 9.49609 3.52031 9.59766 3.90156C9.69609 4.27031 10.1875 4.6 10.1875 5Z"
+                                            fill="white" />
+                                        <path
+                                            d="M6.8547 3.6031L5.07032 5.38748L4.14532 4.46326C3.94454 4.26248 3.61876 4.26248 3.41798 4.46326C3.2172 4.66404 3.2172 4.98982 3.41798 5.1906L4.71564 6.48826C4.91095 6.68357 5.22814 6.68357 5.42345 6.48826L7.58126 4.33044C7.78204 4.12966 7.78204 3.80388 7.58126 3.6031C7.38048 3.40232 7.05548 3.40232 6.8547 3.6031Z"
+                                            fill="#148922" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_6905_2596">
+                                            <rect width="12" height="12" fill="white" transform="translate(0.5)" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                                <span class="renaText">RERA</span>
+                            </div> &nbsp;
+                            <div class="d-flex">
+                                @if (propertydemo.Averagerating != null) {
+                                <div>
+                                    @if (propertydemo.Averagerating >= 4) {
+                                    <span class="overallRateingNew green">
+                                        <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo.Averagerating |
+                                        number : '1.1-1'}}
+                                    </span>
+                                    }
+                                    @if (propertydemo.Averagerating >= 3 && propertydemo.Averagerating < 4) { <span
+                                        class="overallRateingNew yellow">
+                                        <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo.Averagerating |
+                                        number : '1.1-1'}}
+                                        </span>
+                                        }
+                                        @if (propertydemo.Averagerating < 3) { <span class="overallRateingNew red">
+                                            <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo.Averagerating |
+                                            number : '1.1-1'}}
+                                            </span>
+                                            }
+                                </div>
+                                }
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="newCardHeart mb-2">
+                                <div [ngClass]="{'Rental_icons_Heart_Active_New': isInWishlist(propertydemo.property_info_IDPK), 'New_wistlist_Heart': !isInWishlist(propertydemo.property_info_IDPK)}"
+                                    class="Rental_icons_Heart_New mb-2"
+                                    (click)="Heart_Transtion(propertydemo.property_info_IDPK)">
+                                </div>
+                            </div>
+                            <div class="newCardHeart">
+                                <div class="Rental_icons_Share_new" (click)="shareContent(propertydemo)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- propertyInitialImages / main carousel -->
+                    @if (Mousemovement == true && !imageErrorMap[propertydemo?.property_info_IDPK] && propertydemo.images.length > 1) {
+                    <owl-carousel-o [options]="customOptionsGallery" class="owlCarouselODiv"
+                        (changed)="activeIndexMap[i] = $event.startPosition + 1">
+                        @for (image of propertydemo.images | slice:0:5; track $index; let j = $index) {
+                        <ng-template carouselSlide>
+                            @if (propertydemo.images.length > 1) {
+                            <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                                target="_blank">
+                                @if (pagePropertyCount <= 5) { <img class="newListingCardImage" loading="eager"
+                                    fetchpriority="high" decoding="async"
+                                    [src]="propertyimage + $any(image).name + '?width=280&height=221'"  (error)="onImgError($event, propertydemo?.property_info_IDPK)"
+                                    alt="newListingCardImage">
+                                    }
+                                    @if (pagePropertyCount > 5) {
+                                    <img class="newListingCardImage" loading="eager" fetchpriority="high"
+                                        decoding="async" [src]="propertyimage + $any(image).name" (error)="onImgError($event, propertydemo?.property_info_IDPK)"
+                                        alt="newListingCardImage">
+                                    }
+                            </a>
+                            }
+                        </ng-template>
+                        }
+                    </owl-carousel-o>
+                    }
+
+                    <!-- Main Single Image -->
+                    @for (image of propertydemo.images; track $index) {
+                    @if (Mousemovement == true && propertydemo.images.length == 1 && !imageErrorMap[propertydemo?.property_info_IDPK]) {
+                    <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                        target="_blank">
+                        @if (pagePropertyCount <= 5) { <img class="newListingCardImage" loading="eager"
+                            fetchpriority="high" decoding="async"
+                            [src]="propertyimage + $any(image).name + '?width=250&height=201'" (error)="onImgError($event, propertydemo?.property_info_IDPK)"
+                            alt="newListingCardImage">
+                            }
+                            @if (pagePropertyCount > 5) {
+                            <img class="newListingCardImage" loading="eager" fetchpriority="high" decoding="async"
+                                [src]="propertyimage + $any(image).name" (error)="onImgError($event, propertydemo?.property_info_IDPK)" alt="newListingCardImage">
+                            }
+                    </a>
+                    }
+                    }
+
+                    <!-- No Image -->
+                    <div>
+                        @if (propertydemo.images.length == 0 || imageErrorMap[propertydemo?.property_info_IDPK]) {
+                        <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                            target="_blank">
+                            <img class="newListingCardImage" loading="eager" fetchpriority="high" decoding="async"
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/priceOnRequestListing-new.svg"
+                                alt="newListingCardImage">
+                            <button class="noImageRequestButton">
+                                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/requestImageButton.svg"
+                                    alt="noImageRequestButton">Request Image
+                            </button>
+                        </a>
+                        }
+                    </div>
+
+                    <!-- propertyInitialImages for Initial Load -->
+                    @for (image of propertydemo.images; track $index) {
+                    @if (Mousemovement == false && propertydemo.images.length == 1 && !imageErrorMap[propertydemo?.property_info_IDPK]) {
+                    <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                        target="_blank">
+                        @if (pagePropertyCount <= 5) { <img class="newListingCardImage" loading="eager"
+                            fetchpriority="high" decoding="async"
+                            [src]="propertyInitialImages + $any(image).name + '?width=250&height=201'" (error)="onImgError($event, propertydemo?.property_info_IDPK)"
+                            alt="newListingCardImage">
+                            }
+                            @if (pagePropertyCount > 5) {
+                            <img class="newListingCardImage" loading="eager" fetchpriority="high" decoding="async"
+                                [src]="propertyInitialImages + $any(image).name" (error)="onImgError($event, propertydemo?.property_info_IDPK)" alt="newListingCardImage">
+                            }
+                    </a>
+                    }
+                    }
+
+                    @if (Mousemovement == false && propertydemo.images.length > 1 && !imageErrorMap[propertydemo?.property_info_IDPK]) {
+                    @for (image of propertydemo.images | slice:0:1; track $index; let j = $index) {
+                    <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                        target="_blank">
+                        <img class="newListingCardImage" loading="eager" fetchpriority="high" decoding="async"
+                            [src]="propertyInitialImages + $any(image).name + '?width=250&height=201'" (error)="onImgError($event, propertydemo?.property_info_IDPK)"
+                            alt="newListingCardImage">
+                    </a>
+                    }
+                    }
+
+                    <div class="imgBottomInfo d-flex justify-content-between">
+                        <div class="d-flex">
+                            @if (propertydemo.propertyType !== 'Plots') {
+                            <span class="imgBottomContent borderRightRed">
+                                {{propertydemo.BHK | replaceLineBreaksany | unique2 | orderBy2}} BHK
+                                {{propertydemo.propertyType}}
+                            </span>
+                            }
+                            @if (propertydemo.propertyType == 'Plots') {
+                            <span class="imgBottomContent borderRightRed">{{propertydemo.propertyType}}</span>
+                            }
+
+                            @if (propertydemo.area_max == '0') {
+                            <span class="imgBottomContent">{{propertydemo.dimension}} Acres</span>
+                            }
+                            @if (propertydemo.area_max != '0') {
+                            <span class="imgBottomContent">{{propertydemo.area_min}} - {{propertydemo.area_max}}
+                                sq.ft</span>
+                            }
+                        </div>
+                        <div class="cardPhotoCountDiv">
+                            <span class="cardPhotoCount m-0 pr-1">
+                                {{ Mousemovement ? (activeIndexMap[i] || 1) : 1 }} / {{ propertydemo.images.length >= 5
+                                ? 5 : propertydemo.images.length }}
+                            </span>
+                            <img class="cardPhotoIcon"
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/imgCountNew.svg"
+                                alt="cardPhotoIcon">
+                        </div>
+                    </div>
+                    <div class="imgBottomInfo1"></div>
+                </div>
+
+                <div class="ListingCardbottom">
+                    <div class="text-truncate">
+                        <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                            target="_blank" class="cardPropertyName m-0">{{propertydemo.propertyName}}</a>
+                    </div>
+                    <div class="cardPropertyLocation text-truncate"> {{propertydemo.locality_name}},
+                        {{propertydemo.city_name}}</div>
+
+                    @if (propertydemo.price_max !== '0 ') {
+                    <div class="cardPropPricing mt-1"> ₹ {{propertydemo.price_min}} - {{propertydemo.price_max}}</div>
+                    }
+
+                    @if (propertydemo.price_max == '0 ') {
+                    <div class="cardPropPricingOnRequest mt-1" propertydemo-toggle="modal"
+                        propertydemo-target="#myModal_city" propertydemo-backdrop="static" propertydemo-keyboard="false"
+                        (click)="propertyNameClick(propertydemo.propertyName,propertydemo.RegionID,propertydemo.localityid,propertydemo.property_info_IDPK)">
+                        Unlock Price Info
+                        <img width="18px" height="18px"
+                            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg"
+                            alt="padlock">
+                    </div>
+                    }
+
+                    <div class="newCardStatus d-flex my-2">
+                        <span class="propStatus">{{ propertydemo.Status }}</span>
+                        @if (propertydemo.Status != 'Ready to Move') {
+                        <span class="propStatus ml-2">Completion in {{ propertydemo.PossessionDate | date :
+                            "MMM-yyyy"}}</span>
+                        }
+                        @if (propertydemo.Status == 'Ready to Move') {
+                        <span class="propStatus ml-2">Since {{ propertydemo.PossessionDate | date : "MMM-yyyy"}}</span>
+                        }
+                    </div>
+
+                    <div class="d-flex justify-content-between cardBottomContainer">
+                        <div class="d-flex propertyBuilderContainer">
+                            @if (pagePropertyCount <= 5) { <img class="propertyBuilder mr-1" loading="eager"
+                                fetchpriority="high" decoding="async"
+                                src="https://img-mb.homes247.in/images/builder/{{propertydemo.builder_logo}}?width=34&height=38"
+                                alt="propertyBuilder">
+                                }
+                                @if (pagePropertyCount > 5) {
+                                <img class="propertyBuilder mr-1" loading="eager" fetchpriority="high" decoding="async"
+                                    src="https://img-mb.homes247.in/images/builder/{{propertydemo.builder_logo}}?width=34&height=38"
+                                    alt="propertyBuilder">
+                                }
+                                <div class="propertyBuilderName text-truncate">{{propertydemo.BuilderName}}</div>
+                        </div>
+                        <div class="pr-2">
+                            <img class="cardContactIcons" data-toggle="modal" data-target="#myModal_city"
+                                data-backdrop="static" data-keyboard="false"
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/newCallIcon1.svg"
+                                alt="cardContactIcons"
+                                (click)="propertyNameClick(propertydemo.propertyName,propertydemo.RegionID,propertydemo.localityid,propertydemo.property_info_IDPK)">
+                            <img (click)="whatsupshare(propertydemo)" class="cardContactIconsWhatsApp ml-1"
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/newWhatsAppIcon1.svg"
+                                alt="cardContactIconsWhatsApp">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            @if (i == 10) {
+            @if (HideAffordableProp) {
+            <div class="topProjectsSectionMobileView topProjectsBg">
+                <p class="topFetPropText">Affordable Projects in {{cityname | titlecase}}</p>
+                <div class="scrollmenu1">
+                    @for (property of affordablePropList; track $index) {
+                    <span class="card">
+                        @for (image of property.images | slice:0:1; track $index) {
+                        <a target="_blank"
+                            [href]="'https://www.homes247.in/property/' + (property.city_name | cleanUrl) + '/' + (property.locality_name | cleanUrl) + '/' + (property.propertyName | cleanUrl) + '-' + property.property_info_IDPK">
+                            <img [src]="propertyimage + $any(image).name" [alt]="property?.propertyName"
+                                class="propclass topProjectsSectionMobileImages" />
+                        </a>
+                        }
+                        @if (property.images.length === 0) {
+                        <a class="pi_main">
+                            <img src="'assets/images/notfound.png'" alt="not-found">
+                        </a>
+                        }
+                        <div class="top_project_info">
+                            <div class="pi_left">
+                                <h3 class="propclass">
+                                    {{property.propertyName}}<small>{{property.locality_name}},{{property.city_name}}</small>
+                                </h3>
+                                <p class="top_prjct_status"><small>{{property.Status}}</small></p>
+                            </div>
+                            <div class="pi_right">
+                                <p class="price_tag"><i class="fa fa-inr" aria-hidden="true"></i>
+                                    {{property.price_min}}<br>
+                                    Onwards</p>
+                                <div class="clearfix"></div>
+                                <ul>
+                                    <li><a class="suggestionsContact mt-1"
+                                            [href]="'https://www.homes247.in/property/' + (property.city_name | cleanUrl) + '/' + (property.locality_name | cleanUrl) + '/' + (property.propertyName | cleanUrl) + '-' + property.property_info_IDPK"
+                                            target="_blank">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </span>
+                    }
+                </div>
+                @if (affordableproploader) {
+                <div class="col-12">
+                    <div class="item"><ngx-skeleton-loader
+                            [theme]="{ 'border-radius': '9', height: '220px' }"></ngx-skeleton-loader><ngx-skeleton-loader
+                            [theme]="{ width: '170px','border-radius': '9',height: '15px'}"></ngx-skeleton-loader><ngx-skeleton-loader
+                            [theme]="{ 'border-radius': '9',height: '15px'}"></ngx-skeleton-loader></div>
+                </div>
+                }
+            </div>
+            }
+            }
+
+            @if (i == 20) {
+            @if (HideLuxuryProp) {
+            <div class="topProjectsSectionMobileView topProjectsBg">
+                <p class="topFetPropText">Luxury Projects in {{cityname | titlecase}}</p>
+                <div class="scrollmenu1">
+                    @for (property of luxuryPropList; track $index) {
+                    <span class="card">
+                        @for (image of property.images | slice:0:1; track $index) {
+                        <a target="_blank"
+                            [href]="'https://www.homes247.in/property/' + (property.city_name | cleanUrl) + '/' + (property.locality_name | cleanUrl) + '/' + (property.propertyName | cleanUrl) + '-' + property.property_info_IDPK">
+                            <img [src]="propertyimage + $any(image).name" alt="{{property.propertyName}}"
+                                class="propclass topProjectsSectionMobileImages" />
+                        </a>
+                        }
+                        @if (property.images.length === 0) {
+                                        <a class="pi_main" aria-label="No Property Found" title="no property found"><img src="'assets/images/notfound.png'" alt="No Property Found"></a>
+
+                        }
+                        <div class="top_project_info">
+                            <div class="pi_left">
+                                <h3 class="propclass">
+                                    {{property.propertyName}}<small>{{property.locality_name}},{{property.city_name}}</small>
+                                </h3>
+                                <p class="top_prjct_status"><small>{{property.Status}}</small></p>
+                            </div>
+                            <div class="pi_right">
+                                <p class="price_tag"><i class="fa fa-inr" aria-hidden="true"></i>
+                                    {{property.price_min}}<br>
+                                    Onwards</p>
+                                <div class="clearfix"></div>
+                                <ul>
+                                    <li class="float-right"><a class="suggestionsContact mt-1"
+                                            [href]="'https://www.homes247.in/property/' + (property.city_name | cleanUrl) + '/' + (property.locality_name | cleanUrl) + '/' + (property.propertyName | cleanUrl) + '-' + property.property_info_IDPK"
+                                            target="_blank">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </span>
+                    }
+                </div>
+                @if (luxuryproploader) {
+                <div class="col-12">
+                    <div class="item"><ngx-skeleton-loader
+                            [theme]="{ 'border-radius': '9', height: '220px' }"></ngx-skeleton-loader><ngx-skeleton-loader
+                            [theme]="{ width: '170px','border-radius': '9',height: '15px'}"></ngx-skeleton-loader><ngx-skeleton-loader
+                            [theme]="{ 'border-radius': '9',height: '15px'}"></ngx-skeleton-loader></div>
+                </div>
+                }
+            </div>
+            }
+            }
+
+            @if (i == 30) {
+            @if (HideReadyToMoveProp) {
+            <div class="topProjectsSectionMobileView topProjectsBg">
+                <p class="topFetPropText">Ready to Move Projects in {{cityname | titlecase}}</p>
+                <div class="scrollmenu1">
+                    @for (property of readyToMovePropList; track $index) {
+                    <span class="card">
+                        @for (image of property.images | slice:0:1; track $index) {
+                        <a target="_blank"
+                            [href]="'https://www.homes247.in/property/' + (property.city_name | cleanUrl) + '/' + (property.locality_name | cleanUrl) + '/' + (property.propertyName | cleanUrl) + '-' + property.property_info_IDPK">
+                            <img [src]="propertyimage + $any(image).name" alt="{{property.propertyName}}"
+                                class="propclass topProjectsSectionMobileImages" />
+                        </a>
+                        }
+                        @if (property.images.length === 0) {
+                        <a class="pi_main" aria-label="No Property Found" title="no property found"><img src="'assets/images/notfound.png'" alt="No Property Found"></a>
+                        }
+                        <div class="top_project_info">
+                            <div class="pi_left">
+                                <h3 class="propclass">
+                                    {{property.propertyName}}<small>{{property.locality_name}},{{property.city_name}}</small>
+                                </h3>
+                                <p class="top_prjct_status"><small>{{property.Status}}</small></p>
+                            </div>
+                            <div class="pi_right">
+                                <p class="price_tag"><i class="fa fa-inr" aria-hidden="true"></i>
+                                    {{property.price_min}}<br>
+                                    Onwards</p>
+                                <div class="clearfix"></div>
+                                <ul>
+                                    <li class="float-right"><a class="suggestionsContact mt-1"
+                                            [href]="'https://www.homes247.in/property/' + (property.city_name | cleanUrl) + '/' + (property.locality_name | cleanUrl) + '/' + (property.propertyName | cleanUrl) + '-' + property.property_info_IDPK"
+                                            target="_blank">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </span>
+                    }
+                </div>
+                @if (readyToMoveproploader) {
+                <div class="col-12">
+                    <div class="item"><ngx-skeleton-loader
+                            [theme]="{ 'border-radius': '9', height: '220px' }"></ngx-skeleton-loader><ngx-skeleton-loader
+                            [theme]="{ width: '170px','border-radius': '9',height: '15px'}"></ngx-skeleton-loader><ngx-skeleton-loader
+                            [theme]="{ 'border-radius': '9',height: '15px'}"></ngx-skeleton-loader></div>
+                </div>
+                }
+            </div>
+            }
+            }
+
+            @if (i == 40) {
+            @if (HideTopPropSection) {
+            <div class="topProjectsSectionMobileView topProjectsBg">
+                <p class="topFetPropText">Top Projects in {{cityname | titlecase}}</p>
+                <div class="scrollmenu1">
+                    @for (property of topProperties; track $index) {
+                    <span class="card">
+                        @for (image of property.images | slice:0:1; track $index) {
+                        <a target="_blank"
+                            [href]="'https://www.homes247.in/property/' + (property.city_name | cleanUrl) + '/' + (property.locality_name | cleanUrl) + '/' + (property.propertyName | cleanUrl) + '-' + property.property_info_IDPK">
+                            <img [src]="propertyimage + $any(image).name" alt="{{property.propertyName}}"
+                                class="propclass topProjectsSectionMobileImages" />
+                        </a>
+                        }
+                        @if (property.images.length === 0) {
+                        <a class="pi_main" aria-label="No Property Found" title="no property found"><img src="'assets/images/notfound.png'" alt="No Property Found"></a>
+                        }
+                        <div class="top_project_info">
+                            <div class="pi_left">
+                                <h3 class="propclass">
+                                    {{property.propertyName}}<small>{{property.locality_name}},{{property.city_name}}</small>
+                                </h3>
+                                <p class="top_prjct_status"><small>{{property.Status}}</small></p>
+                            </div>
+                            <div class="pi_right">
+                                <p class="price_tag"><i class="fa fa-inr" aria-hidden="true"></i>
+                                    {{property.price_min}}<br>
+                                    Onwards</p>
+                                <div class="clearfix"></div>
+                                <ul>
+                                    <li class="float-right"><a class="suggestionsContact mt-1"
+                                            [href]="'https://www.homes247.in/property/' + (property.city_name | cleanUrl) + '/' + (property.locality_name | cleanUrl) + '/' + (property.propertyName | cleanUrl) + '-' + property.property_info_IDPK"
+                                            target="_blank">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </span>
+                    }
+                </div>
+                @if (topprojectsloader) {
+                <div class="col-12">
+                    <div class="item"><ngx-skeleton-loader
+                            [theme]="{ 'border-radius': '9', height: '220px' }"></ngx-skeleton-loader><ngx-skeleton-loader
+                            [theme]="{ width: '170px','border-radius': '9',height: '15px'}"></ngx-skeleton-loader><ngx-skeleton-loader
+                            [theme]="{ 'border-radius': '9',height: '15px'}"></ngx-skeleton-loader></div>
+                </div>
+                }
+            </div>
+            }
+            }
+            }
+        </div>
+
+        <div id="scroll-anchor" #scrollAnchor></div>
+
+        @if (showLoader) {
+        <!-- @for (item of [1,2,3,4]; track item) { -->
+
+        <div class="px-2">
+
+            <!-- Top Image Section -->
+            <div class="listingCardTop">
+
+                <!-- Tags Top -->
+                <div class="cardTagsTop d-flex justify-content-between">
+
+                    <div class="d-flex">
+                        <ngx-skeleton-loader
+                            [theme]="{ width: '60px', height: '20px', 'border-radius': '15px', background: '#80808030' }">
+                        </ngx-skeleton-loader>
+
+                        <ngx-skeleton-loader class="ml-2"
+                            [theme]="{ width: '45px', height: '20px', 'border-radius': '15px', background: '#80808030' }">
+                        </ngx-skeleton-loader>
+                    </div>
+
+                    <div class="d-flex flex-column">
+                        <ngx-skeleton-loader
+                            [theme]="{ width: '25px', height: '25px', 'border-radius': '50%', background: '#80808030' }">
+                        </ngx-skeleton-loader>
+
+                        <ngx-skeleton-loader class="mt-2"
+                            [theme]="{ width: '25px', height: '25px', 'border-radius': '50%', background: '#80808030' }">
+                        </ngx-skeleton-loader>
+                    </div>
+                </div>
+
+                <!-- Main Image -->
+                <ngx-skeleton-loader [theme]="{ height: '220px', 'border-radius': '12px', background: '#80808030' }">
+                </ngx-skeleton-loader>
+
+                <!-- Bottom Image Info -->
+                <!-- <div class="imgBottomInfo d-flex justify-content-between mt-2">
+                    <ngx-skeleton-loader
+                        [theme]="{ width: '140px', height: '18px', 'border-radius': '6px', background: '#80808030' }">
+                    </ngx-skeleton-loader>
+
+                    <ngx-skeleton-loader
+                        [theme]="{ width: '60px', height: '18px', 'border-radius': '6px', background: '#80808030' }">
+                    </ngx-skeleton-loader>
+                </div> -->
+
+            </div>
+
+            <!-- Bottom Content -->
+            <div class="ListingCardbottomskeleton mt-3">
+
+                <!-- Property Name -->
+                <ngx-skeleton-loader
+                    [theme]="{ width: '75%', height: '20px', 'border-radius': '6px', background: '#80808030' }">
+                </ngx-skeleton-loader>
+
+                <!-- Location -->
+                <!-- <ngx-skeleton-loader class="mt-2"
+                    [theme]="{ width: '55%', height: '16px', 'border-radius': '6px', background: '#80808030' }">
+                </ngx-skeleton-loader> -->
+
+                <!-- Price -->
+                <ngx-skeleton-loader class="mt-3"
+                    [theme]="{ width: '45%', height: '20px', 'border-radius': '6px', background: '#80808030' }">
+                </ngx-skeleton-loader>
+
+                <!-- Status -->
+                <div class="d-flex mt-3">
+                    <ngx-skeleton-loader
+                        [theme]="{ width: '100px', height: '25px', 'border-radius': '20px', background: '#80808030' }">
+                    </ngx-skeleton-loader>
+
+                    <ngx-skeleton-loader class="ml-2"
+                        [theme]="{ width: '120px', height: '25px', 'border-radius': '20px', background: '#80808030' }">
+                    </ngx-skeleton-loader>
+                </div>
+
+                <!-- Bottom Row -->
+                <div class="d-flex justify-content-between mt-3">
+
+                    <div class="d-flex align-items-center">
+                        <ngx-skeleton-loader
+                            [theme]="{ width: '35px', height: '38px', 'border-radius': '6px', background: '#80808030' }">
+                        </ngx-skeleton-loader>
+
+                        <ngx-skeleton-loader class="ml-2"
+                            [theme]="{ width: '100px', height: '16px', 'border-radius': '6px', background: '#80808030' }">
+                        </ngx-skeleton-loader>
+                    </div>
+
+                    <div class="d-flex">
+                        <ngx-skeleton-loader
+                            [theme]="{ width: '35px', height: '35px', 'border-radius': '50%', background: '#80808030' }">
+                        </ngx-skeleton-loader>
+
+                        <ngx-skeleton-loader class="ml-2"
+                            [theme]="{ width: '35px', height: '35px', 'border-radius': '50%', background: '#80808030' }">
+                        </ngx-skeleton-loader>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- } -->
+        }
+
+    </div>
+</div>
+
+<ng-container *ngComponentOutlet="enquiryFormComponent"></ng-container>
+
+@if (sortShowHide) {
+<div id="sortmain_div">
+    <br>
+    <div class="custom-control custom-radio radiodiv1"><label for="customRadio1"
+            class="sort_radio">Relevance</label><input type="radio" id="customRadio1" name="customRadio"></div>
+    <div class="custom-control custom-radio radiodiv"><label for="customRadio2" class="sort_radio">Low to
+            High</label><input type="radio" id="customRadio2" name="customRadio"></div>
+    <div class="custom-control custom-radio radiodiv"><label for="customRadio3" class="sort_radio">High to
+            Low</label><input type="radio" id="customRadio3" name="customRadio"></div>
+    <div class="custom-control custom-radio radiodiv2"><label for="customRadio4" class="sort_radio">Recent</label><input
+            type="radio" id="customRadio4" name="customRadio"></div>
+</div>
+}
+
+@if (otploader) {
+<div class="loaderbody">
+    <div class="box">
+        <div class="loader-20"></div>
+    </div>
+</div>
+}
+<div style="height: 90px;"></div>
+
+@defer(hydrate on idle){
+<nav class="mobile-bottom-nav1">
+    <div class="bottom-nav-item mobile-bottom-nav__item col-2">
+        <div class="mobile-bottom-nav__item-content" (click)="ShowHideSort()">
+            <div class="footer_img_1"></div>
+            <p class="navBorder">Sort</p>
+        </div>
+    </div>
+
+    <div class="bottom-nav-item mobile-bottom-nav__item col-2">
+        <div class="mobile-bottom-nav__item-content" (click)="ShowHideFilter()" data-toggle="modal"
+            data-target="#filterModal">
+            <div class="footer_img_3"></div>
+            <p class="navBorder">Filter</p>
+        </div>
+    </div>
+
+    <div class="bottom-nav-item mobile-bottom-nav__item col-4">
+        <a class="mobile-bottom-nav__item-content" href="https://www.homes247.in/postproperty">
+            <div class="footer_img_22"></div>
+            <p id="navBorderPost">Post Property</p>
+        </a>
+    </div>
+    @if (loginidNew == 1) {
+    <div class="bottom-nav-item mobile-bottom-nav__item col-2">
+        <a aria-label="user Wishlist" class="mobile-bottom-nav__item-content"
+            href="https://www.homes247.in/userauth/wishlist/{{UserId}}">
+            <div class="footer_img_4"></div>
+            <p class="navBorder">Wishlist</p>
+        </a>
+    </div>
+
+    <div class="bottom-nav-item mobile-bottom-nav__item col-2">
+        <a aria-label="user Account" class="mobile-bottom-nav__item-content"
+            href="https://www.homes247.in/userauth/profile/{{UserId}}">
+            <div class="footer_img_5"></div>
+            <p class="navBorder">Account</p>
+        </a>
+    </div>
+    } @else {
+
+    <div class="bottom-nav-item mobile-bottom-nav__item col-2">
+        <a aria-label="user Wishlist" class="mobile-bottom-nav__item-content"
+            href="https://www.homes247.in/login?id=Profile">
+            <div class="footer_img_4"></div>
+            <p class="navBorder">Wishlist</p>
+        </a>
+    </div>
+
+    <div class="bottom-nav-item mobile-bottom-nav__item col-2">
+        <a aria-label="user Account" class="mobile-bottom-nav__item-content"
+            href="https://www.homes247.in/seenprojects">
+            <div class="footer_img_5"></div>
+            <p class="navBorder">Account</p>
+        </a>
+    </div>
+
+    }
+</nav>
+}
+
+<div class="innerheader_position"><app-inner-headder-with-sidenav></app-inner-headder-with-sidenav></div>

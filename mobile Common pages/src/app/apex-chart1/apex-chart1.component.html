@@ -1,0 +1,416 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 pageBackground">
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumbs mb-0">
+          <li class="breadcrumb-item"><a href="https://www.homes247.in/"
+              title="India's Favourite Property Portal !">Home</a></li>
+          <li class="breadcrumb-item" aria-current="page">
+            <a rel="bookmark" class="relatedSearchButton" title="All Locality Reviews in India | Homes247.in"
+              href="/all-locality-reviews-in-india">All Locality Reviews in India</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            <a target="_parent" class="breadcrumbs__element"
+              href="/lcr/locality-reviews-in-{{currentPropCity | cleanUrl}}"
+              title="Locality Reviews {{currentPropCity}} | Homes247.in">
+              Locality Reviews in {{currentPropCity}}
+            </a>
+          </li>
+          <!-- <li class="breadcrumb-item active" aria-current="page">
+            <a target="_blank" class="breadcrumbs__element"
+            href="https://www.homes247.in/pclr/project-reviews-in-{{currentLocalityName | cleanUrl}}-{{currentPropCity | cleanUrl}}-{{currentLocalityName}}"
+              title="Project Reviews in {{currentLocalityName}} {{currentPropCity}} | Homes247.in">
+              Project Reviews in {{currentLocalityName}} {{currentPropCity}}
+            </a>
+          </li> -->
+          <li class="breadcrumb-item active" aria-current="page">
+            <a target="_blank" class="breadcrumbs__element">
+            {{currentLocalityName}}
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="col-md-12 headingBox" #scrollapiloader>
+        <h1 id="ratingTxtBox"> <a><i (click)="location.back()" class="fa fa-long-arrow-left left-icon topheadbackbtn" aria-hidden="true"></i>&nbsp;&nbsp;</a>About {{currentLocalityName}}, {{currentPropCity}}</h1>
+          <div class="col-12 px-0">
+        <h2 class="faqSeeFont1">{{currentLocalityName}} Reviews & Ratings</h2>
+
+            <!-- <h1 class="faqSeeFont1">About {{currentLocalityName}}, {{currentPropCity}}</h1> -->
+              <div class="row">
+                <div class="col-11 px-0">
+                  <div class=" col-md-12 p-0 ratingLeftSection text-center">
+                      <span *ngIf="!numbernan" class="avRating">{{averagerating}}/5</span>
+                      <p *ngIf="!numbernan" class="reviewTxt">Based On {{reviwcount}} Reviews</p>
+                      <span *ngIf="numbernan" class="ratingText">No Ratings</span>
+                      <p class="my-2" *ngIf="!numbernan">
+                        <i [ngClass]="{'starColour': averagerating >= 1}" class="fa fa-star"></i>&nbsp;&nbsp;&nbsp;
+                        <i [ngClass]="{'starColour': averagerating >= 2}" class="fa fa-star"></i>&nbsp;&nbsp;&nbsp;
+                        <i [ngClass]="{'starColour': averagerating >= 3}" class="fa fa-star"></i>&nbsp;&nbsp;&nbsp;
+                        <i [ngClass]="{'starColour': averagerating >= 4}" class="fa fa-star"></i>&nbsp;&nbsp;&nbsp;
+                        <i [ngClass]="{'starColour': averagerating >= 5}" class="fa fa-star "></i>&nbsp;&nbsp;&nbsp;
+                      </p>
+                    </div>
+                    <div class="col-md-12 px-0 ratingRightSection">
+                      <ul class="col-12" *ngIf="!numbernan">
+                        <li class="row mb-3">
+                          <div class="col-2 pr-0 ratingValue">5 <i class="starColour1 fa fa-star"></i>
+                          </div>
+                          <div class="col-10 p-0 align-self-center">
+                            <div class="progress" style="height: 5px;">
+                              <mat-progress-bar mode="determinate" [value]="fivestarcounts"
+                                class="Matprogress "></mat-progress-bar>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="row mb-3">
+                          <div class="col-2 pr-0 ratingValue">4 <i class="starColour1 fa fa-star"></i></div>
+                          <div class="col-10 p-0 align-self-center">
+                            <div class="progress" style="height: 5px;">
+                              <mat-progress-bar mode="determinate" [value]="fourstarcounts"></mat-progress-bar>
+                            </div>
+                          </div>
+                          
+                        </li>
+                        <li class="row mb-3">
+                          <div class="col-2 pr-0 ratingValue">3 <i class="starColour1 fa fa-star"></i></div>
+                          <div class="col-10 p-0 align-self-center">
+                            <div class="progress" style="height: 5px;">
+                              <mat-progress-bar mode="determinate" [value]="threestarcounts"></mat-progress-bar>
+                            </div>
+                          </div>
+                          
+                        </li>
+                        <li class="row mb-3">
+                          <div class="col-2 pr-0 ratingValue">2 <i class="starColour1 fa fa-star"></i></div>
+                          <div class="col-10 p-0 align-self-center">
+                            <div class="progress" style="height: 5px;">
+                              <mat-progress-bar mode="determinate" [value]="twostarcounts"></mat-progress-bar>
+                            </div>
+                          </div>
+                          
+                        </li>
+                        <li class="row mb-3">
+                          <div class="col-2 pr-0 ratingValue">1 <i class="starColour1 fa fa-star"></i></div>
+                          <div class="col-10 p-0 align-self-center">
+                            <div class="progress" style="height: 5px;">
+                              <mat-progress-bar mode="determinate" [value]="onestarcounts"></mat-progress-bar>
+                            </div>
+                          </div>
+                        </li>
+
+                      </ul>
+                    </div>
+              </div>
+              <div class="dividerLocality text-right col-1 p-0"></div>
+              </div>
+              </div>
+
+          <div class="col-12 px-0 mt-5">
+              <h3 class="faqSeeFont1">Neighborhood Insight</h3>
+              <div class="d-flex col-12" style="margin-left: -39px;" *ngIf="!numbernan">
+                  <div id="card col-4">
+                      <div id="chart" (click)="radialChart1()">
+                        <apx-chart
+                        *ngIf="chartOptions1"
+                          [series]="chartOptions1.series"
+                          [chart]="chartOptions1.chart"
+                          [plotOptions]="chartOptions1.plotOptions"
+                          [labels]="chartOptions1.labels"
+                          [stroke]="chartOptions1.stroke"
+                          [fill]="chartOptions1.fill"
+                        ></apx-chart>
+                      </div>
+                      <h3 class="faqSeeFont2 mt-0 text-center">Safety</h3>
+                    </div>
+                  <div id="card col-4">
+                      <div id="chart" (click)="radialChart2()">
+                        <apx-chart
+                        *ngIf="chartOptions2"
+                          [series]="chartOptions2.series"
+                          [chart]="chartOptions2.chart"
+                          [plotOptions]="chartOptions2.plotOptions"
+                          [labels]="chartOptions2.labels"
+                          [stroke]="chartOptions2.stroke"
+                          [fill]="chartOptions2.fill"
+                        ></apx-chart>
+                      </div>
+                      <h3 class="faqSeeFont2 mt-0 text-center">Lifestyle</h3>
+                    </div>
+                  <div id="card col-4">
+                      <div id="chart" (click)="radialChart3()">
+                        <apx-chart
+                        *ngIf="chartOptions3"
+                          [series]="chartOptions3.series"
+                          [chart]="chartOptions3.chart"
+                          [plotOptions]="chartOptions3.plotOptions"
+                          [labels]="chartOptions3.labels"
+                          [stroke]="chartOptions3.stroke"
+                          [fill]="chartOptions3.fill"
+                        ></apx-chart>
+                      </div>
+                      <h3 class="faqSeeFont2 mt-0 text-center">Community</h3>
+                    </div>
+              </div>
+              <div *ngIf="numbernan" class="noRatingTxt">
+                <h3>No Rating and Reviews for this Locality</h3>
+              </div>
+              <div class="col-12 mt-4 px-0" *ngIf="!numbernan">
+                  <ul class="locConclude">
+                      <li>Positive (90%): Residents feel secure and mention a strong sense of safety. Low crime rates and friendly neighbors contribute to the positive safety perception.</li>
+                      <li>Negative (10%): A few residents have expressed minor concerns about occasional noise during late hours.</li>
+                  </ul>
+              </div>
+          </div>
+      <div class="col-12 px-0">
+        <button data-toggle="modal" data-target="#exampleModal" class="postReviewBtn">Write Your Review</button>
+      </div>
+    </div>
+
+    <div class="modal fade mediaModal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl" style="height: 98%;">
+        <div class="modal-content" style="height: 100%;">
+          <div class="modal-header">
+            <h5 class="modal-title modalTitle" id="exampleModalLabel">
+              Write a Review
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body col-12">
+              <div class="col-12 px-0 dropDownLocality">
+                <label for="">Choose Locality</label><br>
+                <!-- <select name="" id="">
+                  <option value="" disabled>Enter Locality</option>
+                  <option value="{{loc.locality_IDPK}}" *ngFor="let loc of localityList">
+                    {{loc.locality_name}}</option>
+                </select> -->
+                <select class="pr-2" (change)="onLocalityChange($event)">
+                  <option *ngIf="!localityValue" value="" disabled>Enter Locality</option>
+                  <option *ngIf="localityValue" value="">{{localityValue | titlecase}}</option>
+                  <option value="{{loc.locality_IDPK}}" *ngFor="let loc of localityList">
+                    {{loc.locality_name}}</option>
+                </select>
+              </div>
+              <div class="col-12 mt-3 px-0">
+                <label for="">Review as a</label><br>
+
+                <button type="button" class="btn btn-secondary propTypeButtons" (click)="Owner()" [ngStyle]="{opacity: owner ? '1' : '0.75', border: owner ? '1px solid #d9d9d9': '1px solid #D9D9D9;', 'background-color': owner ? '#971b47' : 'white',  color: owner ? '#fff' : '#971b47', 'font-weight': owner ? '400' : '300'}"> Owner </button>
+
+                <button type="button" class="btn btn-secondary propTypeButtons" (click)="Tenant()" [ngStyle]="{opacity: tanent ? '1' : '0.75',border: tanent ? '1px solid #d9d9d9' : '1px solid #D9D9D9;','background-color': tanent ? '#971b47' : 'white', color: tanent ? '#fff' : '#971b47','font-weight': tanent ? '400' : '300'}">Tenant</button>
+
+                <button type="button" class="btn btn-secondary propTypeButtons" (click)="Broker()" [ngStyle]="{opacity: broker ? '1' : '0.75',border: broker ? '1px solid #d9d9d9' : '1px solid #D9D9D9;','background-color': broker ? '#971b47' : 'white', color: broker ? '#fff' : '#971b47','font-weight': broker ? '400' : '300'}">Broker</button>
+
+                <button type="button" class="btn btn-secondary propTypeButtons" (click)="LivedBefore()" [ngStyle]="{opacity: livedBefore ? '1' : '0.75', border: livedBefore ? '1px solid #d9d9d9': '1px solid #D9D9D9;','background-color': livedBefore ? '#971b47' : 'white', color: livedBefore ? '#fff' : '#971b47','font-weight': livedBefore ? '400' : '300'}">Lived Before</button>
+
+                <button type="button" class="btn btn-secondary propTypeButtons" (click)="onOther()" [ngStyle]="{opacity: other ? '1' : '0.75',border: other ? '1px solid #d9d9d9' : '1px solid #D9D9D9;','background-color': other ? '#971b47' : 'white', color: other ? '#fff' : '#971b47', 'font-weight': other ? '400' : '300'}">Other</button>
+              </div>
+            <div class="row">
+              <div class="container mt-3">
+                <!-- <div class="wrapper d-flex pl-0 ml-0">-->
+                  <div class="form-group-row therating">
+                    <label class="starlabel" for="inputtime">Rate Safety</label>
+                    <div class="rating " id="safety">
+                      <input id="timing5" name="timing" type="radio" value="5" class="radio-btn hide" />
+                      <label for="timing5">☆</label>
+                      <input id="timing4" name="timing" type="radio" value="4" class="radio-btn hide" />
+                      <label for="timing4">☆</label>
+                      <input id="timing3" name="timing" type="radio" value="3" class="radio-btn hide" />
+                      <label for="timing3">☆</label>
+                      <input id="timing2" name="timing" type="radio" value="2" class="radio-btn hide" />
+                      <label for="timing2">☆</label>
+                      <input id="timing1" name="timing" type="radio" value="1" class="radio-btn hide" />
+                      <label for="timing1">☆</label>
+                      <div class="clear"></div>
+                    </div>
+                  
+                  </div>
+                  <div class="form-group-row therating">
+                    <label class=" starlabel" for="inputmatch">Rate Lifestyle</label>
+                    <div class="rating " id="lifestyle">
+                      <input id="starmatch5" name="match" type="radio" value="5" class="radio-btn hide" />
+                      <label for="starmatch5">☆</label>
+                      <input id="starmatch4" name="match" type="radio" value="4" class="radio-btn hide" />
+                      <label for="starmatch4">☆</label>
+                      <input id="starmatch3" name="match" type="radio" value="3" class="radio-btn hide" />
+                      <label for="starmatch3">☆</label>
+                      <input id="starmatch2" name="match" type="radio" value="2" class="radio-btn hide" />
+                      <label for="starmatch2">☆</label>
+                      <input id="star1match" name="match" type="radio" value="1" class="radio-btn hide" />
+                      <label for="star1match">☆</label>
+                      <div class="clear"></div>
+                    </div>
+                  </div>
+                  <div class="form-group-row therating">
+                    <label class="starlabel" for="inputoverall">Rate Community</label>
+                    <div class="rating " id="community">
+                      <input id="overall5" name="overall" type="radio" value="5" class="radio-btn hide" />
+                      <label for="overall5">☆</label>
+                      <input id="overall4" name="overall" type="radio" value="4" class="radio-btn hide" />
+                      <label for="overall4">☆</label>
+                      <input id="overall3" name="overall" type="radio" value="3" class="radio-btn hide" />
+                      <label for="overall3">☆</label>
+                      <input id="overall2" name="overall" type="radio" value="2" class="radio-btn hide" />
+                      <label for="overall2">☆</label>
+                      <input id="overall1" name="overall" type="radio" value="1" class="radio-btn hide" />
+                      <label for="overall1">☆</label>
+                      <div class="clear"></div>
+                    </div>
+                  </div>
+                <!-- </div> -->
+                <div class="form-group">
+                  <label for="inputtext">Write a Review</label>
+                  <textarea class="input form-control comment" type="textarea" id="inputcomments" name="comments" rows="3" cols="20" wrap="hard"  [(ngModel)]="reviewLocality" placeholder="We care about your opinion. Please share your thoughts here."></textarea>
+                </div>
+                <div class="d-flex cancelUpdateBtn">
+                  <!-- <button type="button" data-dismiss="modal" class="btn cancelProfileBtn btn-lg btn-block">
+                    Reset
+                  </button> -->
+                  <button (click)="cancelSubmitReview()"  type="submit" class="btn cancelProfileBtn btn-lg btn-block">
+                    Reset
+                  </button>
+                  <button (click)="submitReview()"  type="submit" class="btn updateProfileBtn btn-lg btn-block">
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+       </div>
+       <div *ngIf="Visiblebrochure">
+        <ng-container *ngComponentOutlet="otpValidationComponent"></ng-container>
+      </div>
+      
+    </div>
+
+   
+   
+
+
+      <div  class="col-md-12 p-0 d-flex clientReviewTitle">
+        <p *ngIf="reviews"> {{currentLocalityName}} Customer Reviews</p>
+        <!-- <p> <a href="">See all</a></p> -->
+      </div>
+
+      <div class="col-12 text-center" *ngIf="reviews">
+        <span class="ratingText">No Reviews Written.</span>
+      </div>
+
+      <div class="col-md-12 p-0">
+        <div class="detailedReviews" *ngFor="let reviewer of  reviews ">
+          <div class="d-flex nameRating">
+            <p>{{reviewer.name}}</p>
+            
+            <p>
+              <i [ngClass]="{'starColour': reviewer.avgrating >= 1}" class="fa fa-star"></i>&nbsp;&nbsp;&nbsp;
+              <i [ngClass]="{'starColour': reviewer.avgrating >= 2}" class="fa fa-star"></i>&nbsp;&nbsp;&nbsp;
+              <i [ngClass]="{'starColour': reviewer.avgrating >= 3}" class="fa fa-star"></i>&nbsp;&nbsp;&nbsp;
+              <i [ngClass]="{'starColour': reviewer.avgrating >= 4}" class="fa fa-star"></i>&nbsp;&nbsp;&nbsp;
+              <i [ngClass]="{'starColour': reviewer.avgrating >= 5}" class="fa fa-star "></i>&nbsp;&nbsp;&nbsp;
+            </p>
+          </div>
+          <p id="ownership">Date: {{reviewer.review_date}} </p>
+          <div class="detailReviewText">
+            <p>{{reviewer.review_content}}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="text-center mt-2 showAll">
+        <p><a href="">Show all reviews <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/rentalDetails/open-in-new.svg" alt="open-in-new"></a></p>
+      </div> -->
+
+      <div *ngIf="localityListTrends">
+        <div class="d-flex">
+          <div class="col-6 px-0 dropDownLocality1">
+            <select class="pr-2" (change)="onLocalityChange1($event)">
+              <option *ngIf="!localityValue" value="" disabled>Enter Locality</option>
+              <option *ngIf="localityValue" value="">{{localityValue | titlecase}}</option>
+              <option value="{{loc.locality_IDFK}}" *ngFor="let loc of localityListTrends">
+                {{loc.locality_name}}</option>
+            </select>
+          </div>
+          <div class="col-6 px-0 dropDownYear">
+            <select class="pr-2" (change)="onYearChange($event)">
+              <option *ngIf="!localityValue" value="" disabled>Select Year</option>
+              <option *ngIf="localityValue" value="">{{localityValue | titlecase}}</option>
+              <option value="{{loc.year}}" *ngFor="let loc of yearTrends">
+                {{loc.year}}</option>
+  
+            </select>
+          </div>
+        </div>
+  
+        <div class="priceTrendsChartDiv col-12 px-0 mt-4">
+          <div class="priceTrendsChart pl-0 col-12" *ngIf="showChart">
+            <apx-chart
+              [series]="chartOptions4.series"
+              [chart]="chartOptions4.chart"
+              [xaxis]="chartOptions4.xaxis"
+              [yaxis]="chartOptions4.yaxis"
+              [dataLabels]="chartOptions4.dataLabels"
+              [grid]="chartOptions4.grid"
+              [stroke]="chartOptions4.stroke"
+              [title]="chartOptions4.title"
+            ></apx-chart>
+          </div>
+          <div  *ngIf="!showChart">
+            <h5 class="text-center mb-0 noDataFoundDiv">No Data Found.</h5>
+          </div>
+        </div>
+  
+        <div class="col-12 px-0 my-2">
+          <div class="propCatDivMain text-center">
+            <div (click)="Apartment()" class="propCatDiv1 d-flex">
+              <div class="spotColor1"></div>
+              <div class="propCatTxt">
+                <p>Apartment</p>
+              </div>
+            </div>
+            
+            <div (click)="Independent()" class="propCatDiv2 d-flex">
+              <div class="spotColor2"></div>
+              <div class="propCatTxt">
+                <p>Independent House</p>
+              </div>
+            </div>
+            <div (click)="Villa()" class="propCatDiv3 d-flex">
+              <div class="spotColor3"></div>
+              <div class="propCatTxt">
+                <p>Villa</p>
+              </div>
+            </div>
+            <div (click)="Plot()" class="propCatDiv4 d-flex">
+              <div class="spotColor4"></div>
+              <div class="propCatTxt">
+                <p>Plot</p>
+              </div>
+            </div>
+  
+            <div class="pricePropCount text-center d-flex mt-2">
+              <div class="priceSqftDiv text-center">
+                <p *ngIf="!showChart" id="updatePriceTxt">No Price Available</p>
+                <p *ngIf="showChart" id="updatePriceTxt">Updated Price / sq ft</p>
+                <p *ngIf="showChart" id="updatePriceVal"><i class="fa fa-inr" aria-hidden="true"></i>&nbsp;{{updatedPrice}}</p>
+  
+                <p id="priceChangeTxtHigh" *ngIf="dataPriceChange > '0%'"><i class="fa fa-sort-asc" aria-hidden="true"></i>&nbsp; + {{dataPriceChange}}
+                </p>
+                <p id="priceChangeTxtLow" *ngIf="dataPriceChange < '0%'"><i class="fa fa-sort-desc" aria-hidden="true"></i>&nbsp; {{dataPriceChange}}
+                </p>
+              </div>
+              <div class="priceSqftDiv">
+                <p id="updatePriceTxt">Total Properties</p>
+                <p id="updatePriceVal">{{localityPropcount}}</p>
+                <p id="ownership">Properties</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+

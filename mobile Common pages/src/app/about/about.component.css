@@ -1,0 +1,324 @@
+
+  .mainDivAboutUs{
+    background-size: cover;
+    background-image:url('https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/blogs/new/Aboutus.svg');
+    margin-top: 114px;
+    height: 85px;
+    padding: 5px 0px 0px 20px;
+  }
+  .allAbutHomesText{
+    color: black;
+    font-family: 'Poppins';
+    font-weight: bolder;
+    font-size: 20px;
+    margin-bottom: -28px;
+  }
+  .challangeimgsize{
+    height: 150px;
+    width: 100%;
+  }
+  .serviceimg{
+    width: 100%;
+    height: 115px;
+  }
+  .service-head{
+    font-size: 18px;
+    color: black;
+    font-weight: 600;
+    font-family: 'Poppins';;
+    white-space: break-spaces;
+  }
+  .service-text{
+    font-size: 12px;
+    color: black;
+    font-weight: 500;
+    font-family: 'Poppins';;
+    white-space: break-spaces;
+  }
+  .innovationimg{
+    width: 100%;
+    height: 115px;
+    margin: 15px 0;
+  }
+  .service-card-height{
+    height: 293px;
+    width: 255px;
+}
+  .allAbutHomes{
+    color: black;
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 14px;
+  }
+  .subheadingTitles{
+    font-weight: 500;
+    font-family: 'Poppins';
+    font-size: 14px;
+  }
+  .logoImage{
+    height: 72px;
+    background-color: antiquewhite;
+    margin-bottom: 27px;
+    padding: 10px 10px;
+  }
+  .titleHeading{
+    font-size: 25px;
+    color: black;
+   font-family: 'Poppins';
+    font-weight: bolder;
+  }
+  .subTitleText{
+    font-size: 20px;
+    color: black;
+    font-family: 'Poppins';
+    font-weight: bolder;
+  }
+  .descpText{
+    font-size: 15px;
+    font-family: 'Poppins';
+    color: black;
+    text-align: justify;
+  }
+  .descpMainText{
+    font-size: 17px;
+    font-family: 'Poppins';
+    color: black;
+    text-align: justify;
+    font-weight: 500;
+  }
+  .section2MainDiv{
+    margin-top: 25px;
+  }
+  .boldColors{
+    color: rgba(151,27,71,.8117647058823529);
+  }
+  .underline:after {
+    position: absolute;
+    content: '';
+    height: 3px;
+    bottom: -7px;
+    margin: 0 auto;
+    left: 0px!important;
+    width: 115px;
+    right: auto;
+    background: rgba(151,27,71,.8117647058823529);
+    border-radius: 10px;
+  }
+  .parallax {
+    /* The image used */
+        background-image: url("https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/aboutus/college.jpg");
+    min-height: 300px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 60%;
+  }
+  .underline1:after {
+    position: absolute;
+    content: '';
+    height: 3px;
+    top: 63px;
+     margin: 0 auto;
+    left: 16px!important;
+    width: 115px;
+    right: auto;
+    background: rgba(151,27,71,.8117647058823529);
+    border-radius: 10px;
+  }
+  .card_newsheight{
+    display: block;
+    /* margin: 17px 15px 20px; */
+    border: 0px !important;
+    border-radius: .25rem !important;
+  }
+
+  .card_newsheight img{
+    width: 290px;
+    height: 175px;
+    border-radius: 9px;
+  }
+  .sirImg{
+    height: 85%;
+    width: 100%;
+  }
+  .parallax1 {
+    /* The image used */
+     background-image: url("https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/aboutus/college2.jpg");
+    min-height: 300px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 60%;
+  }
+  .awardsBorder{
+    padding: 20px 25px 0px 20px;
+    margin: 10px 0px 25px 12px;
+    text-align: center;
+    flex: 0 0 32.333333%;
+    -webkit-filter: drop-shadow(0px 1px 4px gray);
+    filter: drop-shadow(0px 1px 4px gray);
+    background: white;
+    height: 180px;
+    width: 283px;
+    border-radius: 10px;
+  }
+  .awardsBorder img{
+    height: 130px;
+  }
+  .awardName{
+    color: black;
+    font-size: 17px;
+    font-family: 'Poppins';
+    font-weight: bold;
+    white-space:break-spaces;
+    padding-bottom: 5px;
+    /* border-bottom: 2px solid black; */
+  }
+  .awardSubText{
+    color: black;
+    white-space:break-spaces;
+    font-size: 16px;
+    font-family: 'Poppins';
+  }
+  .visionBackGroungColour{
+    background-color: #FFE1D4;
+    padding: 50px 0px;
+    margin: 30px 0px 0px;
+  }
+  .ourVissionTest{
+    color: black;
+    font-family: 'Poppins';
+    font-weight: bolder;
+    font-size: 30px;
+    /*text-align: center;*/
+    margin-bottom: 0px;
+  }
+  .parallexdescpText{
+    font-size: 15px;
+    font-family: 'Poppins';
+    color: black;
+    background-color: white;
+    text-align: justify;
+    padding: 10px 29px;
+  }
+  .parallax-padding{
+    padding: 29px 15px;
+  }
+  .conatctbuttonhide{
+    display: none;
+  }
+
+  /* gallery css */
+  .Pg_underline:after{
+    position: absolute;
+    content: '';
+    height: 3px;
+    top: 32px;
+    margin: 0 auto;
+    left: 16px!important;
+    width: 115px;
+    right: auto;
+    background: rgba(151,27,71,.8117647058823529);
+    border-radius: 10px;
+  }
+ .custom_list{
+  display: flex;
+  margin: 30px 0;
+  flex-direction: row !important;
+ }
+ .gallerybtn{
+  padding: 4px 9px;
+  margin: 0 15px 0 0px;
+  border-radius: 20px;
+  border: 1px solid rgba(151,27,71,.8117647058823529);
+  background: white;
+  color: #051033;
+  font-size: 14px;
+  font-weight: 600;
+ }
+
+ .gallerybtn:hover{
+  background:  rgba(151,27,71,.8117647058823529);
+  color: white;
+ }
+    /* gallery css */
+    @media (max-width: 411px){
+      .mainDivAboutUs{
+      height: 96px !important;
+      }
+      .photogallery1 img{
+        width: 120px !important;
+        height: 115px !important;
+      }
+
+    }
+    @media (max-width: 375px){
+      .mainDivAboutUs{
+      height: 87px !important;
+      }
+      .photogallery1 img{
+        width: 105px !important;
+        height: 100px !important;
+      }
+      .gallerybtn{
+        padding: 4px 4px !important;
+       }
+    }
+    @media (max-width: 360px){
+      .mainDivAboutUs{
+      height: 84px !important;
+      }
+      .photogallery1 img{
+        width: 105px !important;
+        height: 100px !important;
+      }
+    }
+    @media (min-width: 412px) and (max-width: 479px){
+      .mainDivAboutUs{
+        height: 96px !important;
+        }
+        .photogallery1 img{
+          width: 121px !important;
+          height: 111px !important;
+        }
+    }
+    @media (min-width: 768px) and (max-width: 992px){
+      .allAbutHomes{
+       font-size: 24px;
+      }
+      .mainDivAboutUs{
+        height: 179px;
+      }
+      .parallax{
+        background-attachment: unset !important;
+        background-position: center top !important;
+      }
+      .parallax1{
+        background-attachment: unset !important;
+        background-position: center top !important;
+    }
+    .parallax-padding{
+      padding: 104px 15px;
+    }
+    }
+    @media (min-width: 993px) and (max-width: 1080px){
+      .allAbutHomes{
+        font-size: 24px;
+       }
+      .mainDivAboutUs{
+        height: 238px;
+      }
+      .parallax{
+        background-attachment: unset !important;
+        background-position: center top !important;
+      }
+      .parallax1{
+        background-attachment: unset !important;
+        background-position: center top !important;
+    }
+    .parallax-padding{
+      padding: 104px 15px;
+    }
+    }

@@ -1,0 +1,139 @@
+<div class="initialsections">
+    <div class="blogsection">
+        <a itemprop="url" href="https://www.homes247.in/blogs">
+            <div class="news_head underline">
+                <h2>Home <b class="newHeadingTitleBold">Guide</b></h2>
+                <p class="newHeadingSubTitle">Read real estate blogs all about homes</p>
+            </div>
+        </a>
+
+        <div class="bloglists">
+            <div *ngFor="let blog of blogs | slice:0:6">
+                <p>Date : {{blog.date}}</p>
+                <a href="https://www.homes247.in/blogs/{{blog.urlstruture | cleanUrl }}-{{blog.id | cleanUrl}}"
+                    title="{{blog.title}}">
+                    <h3 itemprop="headline">{{blog.title}}</h3>
+                </a>
+            </div>
+        </div>
+
+        <div class="blogsection">
+            <h2>Awards & <b>Recognition</b></h2>
+        </div>
+        <div class="blogsection">
+            <h2>News <b>Coverages</b></h2>
+        </div>
+
+        <div class="awardsection" *ngFor="let testimonial of testimonialListing | slice:0:6">
+            <h2>Client <b>Testimonials</b></h2>
+            <a href="https://www.homes247.in/{{testimonial.testimonial_link}}"></a>
+            <p title=" Reviewed by : {{testimonial.testimonial_name}}"> {{testimonial.testimonial_description}} View</p>
+            <p> Reviewed by : {{testimonial.testimonial_name}} </p>
+        </div>
+    </div>
+    <div class="footertext">
+        <p>Quick Links</p>
+        <a href="https://www.homes247.in/blogs">Real Estate Blogs</a><br>
+        <a href="https://www.homes247.in/all-cities-in-india">All Cities in India</a><br>
+        <a href="/contactus">Contact Us</a><br>
+        <a href="/policy">Privacy Policy</a><br>
+        <a href="https://www.homes247.in/all-localities-by-city">All Localities by city</a><br>
+        <a href="https://www.homes247.in/all-builders-by-city">All Builders by city</a>
+    </div>
+    <div class="footertext">
+        <h3> Top Indian Cities</h3>
+        <div *ngFor="let cityname of citiess | slice:0:5; let i = index">
+            <h3>
+                <a href="https://www.homes247.in/{{cityname.city | cleanUrl}}/property-sale">Properties for sale in
+                    {{cityname.city}}</a>
+            </h3>
+            <div>
+                <h3>Property Types In {{cityname.city}}</h3>
+                <!-- <a target="_blank" href="https://www.homes247.in/home-for-sale-in-{{cityname.city | cleanUrl}}">House For Sale in {{cityname.city}}</a> -->
+                <a target="_blank"
+                    href="https://www.homes247.in/home-for-sale-in-{{cityname.city | cleanUrl}}">House / Home For
+                    Sale in {{cityname.city}}</a><br>
+                    
+                <!-- <a target="_blank" href="https://www.homes247.in/residential-flats-in-{{cityname.city | cleanUrl}}-for-sale">Apartments For Sale in {{cityname.city}}</a><br> -->
+                <a target="_blank"
+                    href="https://www.homes247.in/villas-for-sale-in-{{cityname.city | cleanUrl}}">Villas For Sale
+                    in {{cityname.city}}</a><br>
+                <a target="_blank" href="https://www.homes247.in/plots-in-{{cityname.city | cleanUrl}}">Plots For
+                    Sale in {{cityname.city}}</a><br>
+                <a target="_blank"
+                    href="https://www.homes247.in/residential-flats-in-{{cityname.city | cleanUrl}}-for-sale">Apartments
+                    / Flats For Sale in {{cityname.city}}</a><br>
+                    
+                <!-- <a target="_blank" href="https://www.homes247.in/residential-flats-in-{{cityname.city | cleanUrl}}-for-sale">Apartments In {{cityname.city}}</a><br> -->
+                <!-- <a target="_blank" href="https://www.homes247.in/villas-for-sale-in-{{cityname.city | cleanUrl}}">Villas In {{cityname.city}}</a><br> -->
+                <!-- <a target="_blank" href="https://www.homes247.in/plots-in-{{cityname.city | cleanUrl}}">Plots In {{cityname.city}}</a><br> -->
+                <!-- <a target="_blank" href="https://www.homes247.in/residential-flats-in-{{cityname.city | cleanUrl}}-for-sale">Flats In {{cityname.city}}</a><br> -->
+            </div>
+        </div>
+    </div>
+    <div *ngFor="let recent of uploads; let i = index" class="footertext">
+        <h3> Recent Projects in {{recent.city}}</h3>
+        <p *ngFor="let property of recent.properties">
+            <a href="https://www.homes247.in/property/{{property.city | cleanUrl}}/{{property.localityname | cleanUrl}}/{{property.propertyname | cleanUrl}}-{{property.id | cleanUrl}}"
+                rel="bookmark"
+                title="{{property.propertyname}}, {{property.localityname}}, {{property.city}} | Reviews | Price">{{property.propertyname}}</a>
+        </p>
+    </div>
+
+    <!-- <div class="footertext">
+        <div *ngFor="let cityname of majorcities | slice:0:5; let i = index">
+                <a href="https://www.homes247.in/real-estate-in-{{cityname.city | cleanUrl}}">Real Estate in {{cityname.city}}</a> <a role="button" data-toggle="collapse" href="#citycollapse-{{i}}" aria-expanded="true" class="rightWipeArrow"></a>
+            <div>
+                <div *ngFor="let trend of trending">
+                    <div *ngIf="trend.city == cityname.city">
+                        <div *ngIf="trend.properties.length">                          
+                            <h3 >Trending Projects in {{cityname.city}}</h3>
+                                <p *ngFor="let trendprop of trend.properties">
+                                    <a href="https://www.homes247.in/property/{{trendprop.city | cleanUrl}}/{{trendprop.localityname | cleanUrl}}/{{trendprop.name | cleanUrl}}-{{trendprop.id}}" rel="bookmark" title="{{trendprop.name}}, {{trendprop.localityname}}, {{trendprop.city}} | Reviews | Price">{{trendprop.name}} in {{trendprop.localityname}}, {{trendprop.city}} | Reviews | Price</a>
+                                </p>  
+                        </div>
+                    </div>
+
+                    <div *ngFor="let priority of handpicked | slice:0:5">
+                        <div *ngIf="priority.city == cityname.city">
+                            <div *ngIf="priority.properties.length">
+                                <h3 >Handpicked Projects in {{cityname.city}}</h3>
+                                    <p *ngFor="let pickedprop of priority.properties">
+                                        <a href="https://www.homes247.in/property/{{pickedprop.city | cleanUrl}}/{{pickedprop.localityname | cleanUrl}}/{{pickedprop.name | cleanUrl}}-{{pickedprop.id}}" rel="bookmark" title="{{pickedprop.name}}, {{pickedprop.localityname}}, {{pickedprop.city}} | Reviews | Price">{{pickedprop.name}} in {{pickedprop.localityname}}, {{pickedprop.city}} | Reviews | Price</a>
+                                    </p>                                                       
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div *ngFor="let newlaunch of launched | slice:0:5">
+                        <div *ngIf="newlaunch.city == cityname.city">
+                            <div *ngIf="newlaunch.properties.length">                  
+                                <h3 ><a href="https://www.homes247.in/new-launch-projects/new-projects-in-{{cityname.city |lowercase}}">New Launched Projects in {{cityname.city}}</a></h3>
+                                    <p *ngFor="let launchprop of newlaunch.properties">
+                                        <a href="https://www.homes247.in/property/{{launchprop.city | cleanUrl}}/{{launchprop.localityname | cleanUrl}}/{{launchprop.name | cleanUrl}}-{{launchprop.id}}" rel="bookmark" title="{{launchprop.name}}, {{launchprop.localityname}}, {{launchprop.city}} | Reviews | Price">{{launchprop.name}} in {{launchprop.localityname}}, {{launchprop.city}} | Reviews | Price</a>
+                                    </p>                   
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div>
+                        <h3 >Frequently Searched</h3>
+                        <a href="https://www.homes247.in/ready-to-move-apartments/ready-to-move-flats-in-{{cityname.city | cleanUrl}}">Ready To Move Flats in {{cityname.city}}</a>                
+                                               
+                        <a href="https://www.homes247.in/fbc/flats-for-30-lakhs-in-{{cityname.city | cleanUrl}}">Flats Under 30 Lakhs in {{cityname.city}}</a>               
+                    </div>
+    
+                    <div>   
+                      
+                        <h3 >Popular Searches for Availability</h3>
+                        <a href="https://www.homes247.in/btc/1-bhk-flats-in-{{cityname.city | cleanUrl}}">1 BHK Flats in {{cityname.city}}</a>
+                        <a href="https://www.homes247.in/btc/2-bhk-flats-in-{{cityname.city | cleanUrl}}">2 BHK Flats in {{cityname.city}}</a>
+                        <a href="https://www.homes247.in/btc/3-bhk-flats-in-{{cityname.city | cleanUrl}}">3 BHK Flats in {{cityname.city}}</a>
+                        <a href="https://www.homes247.in/btc/4-bhk-flats-in-{{cityname.city | cleanUrl}}">4 BHK Flats in {{cityname.city}}</a>
+                        <a href="https://www.homes247.in/new-launch-projects/new-projects-in-{{cityname.city | cleanUrl}}">New Launch Projects in {{cityname.city}}</a> 
+                    </div>
+             </div>
+        </div>
+    </div>
+</div> -->
+</div>

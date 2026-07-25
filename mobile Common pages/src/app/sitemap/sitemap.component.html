@@ -1,0 +1,152 @@
+<div class="main_div">
+    <div class="container-fluid">
+        <!-- <div class="col-md-12 logomaindiv">
+            <a class="sitemap_logo" href="https://www.homes247.in/">
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/logo/Homes247_NewBlack_Logo.png" alt="Homes247_logo" />
+            </a>
+        </div> -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <p class="OurwritesText mb-1">All Cities in India</p>
+            </div>
+            <div class="col-md-12 mb-3">
+                <nav class="AlphabetNav">
+                    <a routerLink="/all-cities-in-india">All</a>
+                    <a routerLink="/all-cities-in-india/a">A</a>
+                    <a routerLink="/all-cities-in-india/b">B</a>
+                    <a routerLink="/all-cities-in-india/c">C</a>
+                    <a routerLink="/all-cities-in-india/d">D</a>
+                    <a routerLink="/all-cities-in-india/e">E</a>
+                    <a routerLink="/all-cities-in-india/f">F</a>
+                    <a routerLink="/all-cities-in-india/g">G</a>
+                    <a routerLink="/all-cities-in-india/h">H</a>
+                    <a routerLink="/all-cities-in-india/i">I</a>
+                    <a routerLink="/all-cities-in-india/j">J</a>
+                    <a routerLink="/all-cities-in-india/k">K</a>
+                    <a routerLink="/all-cities-in-india/l">L</a>
+                    <a routerLink="/all-cities-in-india/m">M</a>
+                    <a routerLink="/all-cities-in-india/n">N</a>
+                    <a routerLink="/all-cities-in-india/o">O</a>
+                    <a routerLink="/all-cities-in-india/p">P</a>
+                    <a routerLink="/all-cities-in-india/q">Q</a>
+                    <a routerLink="/all-cities-in-india/r">R</a>
+                    <a routerLink="/all-cities-in-india/s">S</a>
+                    <a routerLink="/all-cities-in-india/t">T</a>
+                    <a routerLink="/all-cities-in-india/u">U</a>
+                    <a routerLink="/all-cities-in-india/v">V</a>
+                    <a routerLink="/all-cities-in-india/w">W</a>
+                    <a routerLink="/all-cities-in-india/x">X</a>
+                    <a routerLink="/all-cities-in-india/y">Y</a>
+                    <a routerLink="/all-cities-in-india/z">Z</a>
+                </nav>
+            </div>
+            <div class="col-md-4" *ngFor="let cityname of citiess | startsWithLettercity : activeLetter">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName"
+                        href="https://www.homes247.in/{{cityname.city | cleanUrl}}/property-sale"
+                        title="Properties in {{cityname.city}} | Properties for sale in {{cityname.city}}"
+                        target="_blank">
+                        <!-- <a routerLink="/all-localities-by-city/{{cityname.city | cleanUrl}}/{{cityname.id}}" title="All Localities by {{cityname.city}}" target="_blank" ><i class="fa fa-external-link" aria-hidden="true"></i></a> -->
+                        &nbsp;&nbsp;Properties in {{cityname.city}}&nbsp;&nbsp;
+                        <a routerLink="/city-overview/{{cityname.city | cleanUrl}}-overview"
+                            title="An Overview of {{cityname.city}}" target="_blank"><i class="fa fa-external-link"
+                                aria-hidden="true"></i></a>
+                    </a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a class="avgRatSqft"
+                                href="https://www.homes247.in/residential-flats-in-{{cityname.city | cleanUrl}}-for-sale"
+                                title="Flats for sale in {{cityname.city}} | Flats in {{cityname.city}}">Flats for Sale
+                                in {{cityname.city}}</a>
+                        </div>
+                        <div class="col-md-6">
+                            <a class="avgRatSqft"
+                                href="https://www.homes247.in/new-launch-projects/new-projects-in-{{cityname.city | cleanUrl}}"
+                                title="Upcoming projects in {{cityname.city}} | New projects in {{cityname.city}}">Upcoming
+                                Projects in {{cityname.city}}</a>
+                        </div>
+                        <div class="col-md-6">
+                            <a class="avgRatSqft"
+                                href="https://www.homes247.in/villas-for-sale-in-{{cityname.city | cleanUrl}}"
+                                title="Villas for sale in {{cityname.city}} | Villas in {{cityname.city}}">Villas for
+                                sale in {{cityname.city}}</a>
+                        </div>
+                        <div class="col-md-6">
+                            <a class="avgRatSqft"
+                                href="https://www.homes247.in/plots-in-{{cityname.city | cleanUrl}}"
+                                title="Plots in {{cityname.city}} | Plots for sale in {{cityname.city}}">Plots in
+                                {{cityname.city}}</a>
+                        </div>
+                        <div class="col-md-6">
+                            <a class="avgRatSqft"
+                                href="https://www.homes247.in/home-for-sale-in-{{cityname.city | cleanUrl}}"
+                                title="Home for sale in {{cityname.city}} | House for sale in {{cityname.city}}">Home
+                                for sale in {{cityname.city}}</a>
+                        </div>
+                        <div class="col-md-6">
+                            <a class="avgRatSqft"
+                                href="https://www.homes247.in/ready-to-move-apartments/ready-to-move-flats-in-{{cityname.city | cleanUrl}}"
+                                title="Ready to move flats in {{cityname.city}} | Ready to move apartments in {{cityname.city}}">Ready
+                                to move Flats in {{cityname.city}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-12">
+            <div class="priority_page">
+                <h2>Common Links</h2>
+                <div class="citylist row">
+                    <p class="col-md-4">
+                        <a routerLink="/aboutus">About us</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/careers">Careers</a>
+                    </p>
+                    <!-- <p class="col-md-4">
+                        <a routerLink="/calculator">Emi Calculator</a>
+                    </p> -->
+                    <p class="col-md-4">
+                        <a routerLink="/policy">Privacy Policy</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a routerLink="/faq">Faq</a>
+                    </p>
+                    <!-- <p class="col-md-4">
+                        <a routerLink="/homeloan">Home Loan</a>
+                    </p> -->
+                    <!-- <p class="col-md-4">
+                        <a routerLink="/vaastu">Vastu Tips</a>
+                    </p> -->
+                    <!-- <p class="col-md-4">
+                        <a routerLink="/interior">Interiors</a>
+                    </p> -->
+                    <p class="col-md-4">
+                        <a routerLink="/contactus">Contact Us</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a routerLink="/blogsitemap">Real Estate Blogs</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a routerLink="/rentalsitemap">Rental Sitemap</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a routerLink="/commercialsitemap">Commercial Sitemap</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a routerLink="/pgsitemap">PG Sitemap</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer2></app-footer2>
+
+<div class="innerheader_position">
+    <app-innerheader></app-innerheader>
+</div>

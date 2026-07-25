@@ -1,0 +1,2057 @@
+<div class="search-results">
+    @for (propertydemo of propertylists1; track propertydemo; let i = $index) {
+    <div class="newListingCard px-2">
+        <div class="listingCardTop">
+            <div class="cardTagsTop d-flex justify-content-between">
+
+                <div class="d-flex">
+                    <div class="d-flex reraIconDiv">
+
+                        <svg width="15" height="15" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_6905_2596)">
+                                <path
+                                    d="M10.1875 5C10.1875 5.4 9.69609 5.72969 9.59766 6.09844C9.49609 6.47969 9.75313 7.01094 9.56016 7.34453C9.36406 7.68359 8.77422 7.72422 8.49922 7.99922C8.22422 8.27422 8.18359 8.86406 7.84453 9.06016C7.51094 9.25313 6.97969 8.99609 6.59844 9.09766C6.22969 9.19609 5.9 9.6875 5.5 9.6875C5.1 9.6875 4.77031 9.19609 4.40156 9.09766C4.02031 8.99609 3.48906 9.25313 3.15547 9.06016C2.81641 8.86406 2.77578 8.27422 2.50078 7.99922C2.22578 7.72422 1.63594 7.68359 1.43984 7.34453C1.24687 7.01094 1.50391 6.47969 1.40234 6.09844C1.30391 5.72969 0.8125 5.4 0.8125 5C0.8125 4.6 1.30391 4.27031 1.40234 3.90156C1.50391 3.52031 1.24687 2.98906 1.43984 2.65547C1.63594 2.31641 2.22578 2.27578 2.50078 2.00078C2.77578 1.72578 2.81641 1.13594 3.15547 0.939844C3.48906 0.746875 4.02031 1.00391 4.40156 0.902344C4.77031 0.803906 5.1 0.3125 5.5 0.3125C5.9 0.3125 6.22969 0.803906 6.59844 0.902344C6.97969 1.00391 7.51094 0.746875 7.84453 0.939844C8.18359 1.13594 8.22422 1.72578 8.49922 2.00078C8.77422 2.27578 9.36406 2.31641 9.56016 2.65547C9.75313 2.98906 9.49609 3.52031 9.59766 3.90156C9.69609 4.27031 10.1875 4.6 10.1875 5Z"
+                                    fill="white" />
+                                <path
+                                    d="M6.8547 3.6031L5.07032 5.38748L4.14532 4.46326C3.94454 4.26248 3.61876 4.26248 3.41798 4.46326C3.2172 4.66404 3.2172 4.98982 3.41798 5.1906L4.71564 6.48826C4.91095 6.68357 5.22814 6.68357 5.42345 6.48826L7.58126 4.33044C7.78204 4.12966 7.78204 3.80388 7.58126 3.6031C7.38048 3.40232 7.05548 3.40232 6.8547 3.6031Z"
+                                    fill="#148922" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_6905_2596">
+                                    <rect width="12" height="12" fill="white" transform="translate(0.5)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <span class="renaText">RERA</span>
+                    </div> &nbsp;
+                    <div class="d-flex">
+
+                        @if (propertydemo.Averagerating != null) {
+                        <div>
+                            @if (propertydemo.Averagerating >= 4) {
+                            <span class="overallRateingNew green">
+                                <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo.Averagerating |
+                                number :
+                                '1.1-1'}}
+                            </span>
+                            }
+                            @if (propertydemo.Averagerating >= 3 && propertydemo.Averagerating < 4) { <span
+                                class="overallRateingNew yellow">
+                                <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo.Averagerating |
+                                number :
+                                '1.1-1'}}
+                                </span>
+                                }
+                                @if (propertydemo.Averagerating < 3) { <span class="overallRateingNew red">
+                                    <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo.Averagerating |
+                                    number :
+                                    '1.1-1'}}
+                                    </span>
+                                    }
+                        </div>
+                        }
+
+                    </div>
+                </div>
+
+                <div>
+                    <div class="newCardHeart mb-2">
+                        <div [ngClass]="{'Rental_icons_Heart_Active_New': isInWishlist(propertydemo.property_info_IDPK), 'New_wistlist_Heart': !isInWishlist(propertydemo.property_info_IDPK)}"
+                            class="Rental_icons_Heart_New mb-2"
+                            (click)="Heart_Transtion(propertydemo.property_info_IDPK)">
+                        </div>
+                    </div>
+                    <div class="newCardHeart">
+                        <div class="Rental_icons_Share_new" (click)="shareContent(propertydemo)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <!-- propertyInitialImages -->
+
+            @if ((propertydemo?.images?.length ?? 0) > 1 && !imageErrorMap[propertydemo?.property_info_IDPK]) {
+
+            <owl-carousel-o [options]="customOptionsGallery" class="owlCarouselODiv"
+                (changed)="activeIndexMap[i] = $event.startPosition + 1">
+
+                @for (image of (propertydemo.images | slice:0:5); track image) {
+
+                <ng-template carouselSlide>
+                    <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                        target="_blank">
+
+                        <img class="newListingCardImage"
+                            [src]="propertyimage + $any(image).name + '?width=250&height=201'" (error)="onImgError($event, propertydemo?.property_info_IDPK)" loading="eager"
+                            fetchpriority="high" decoding="async" alt="newListingCardImage">
+
+                    </a>
+                </ng-template>
+
+                }
+
+            </owl-carousel-o>
+
+            }
+
+            @else if ((propertydemo?.images?.length ?? 0) === 1 && !imageErrorMap[propertydemo?.property_info_IDPK]) {
+
+            <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                target="_blank">
+
+                <img class="newListingCardImage"
+                    [src]="propertyimage + propertydemo.images[0].name + '?width=250&height=201'" (error)="onImgError($event, propertydemo?.property_info_IDPK)" loading="eager"
+                    fetchpriority="high" decoding="async" alt="newListingCardImage">
+
+            </a>
+
+            }
+
+            @else {
+
+            <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                target="_blank">
+
+                <img class="newListingCardImage"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/priceOnRequestListing-new.svg"
+                    loading="eager" fetchpriority="high" decoding="async" alt="newListingCardImage">
+
+                <button class="noImageRequestButton">
+                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/requestImageButton.svg"
+                        alt="noImageRequestButton">
+                    Request Image
+                </button>
+
+            </a>
+
+            }
+
+
+
+
+            <div class="imgBottomInfo d-flex  justify-content-between">
+                <div class="d-flex">
+                    @if (propertydemo.propertyType !== 'Plots') {
+                    <span class="imgBottomContent borderRightRed">{{propertydemo.BHK |
+                        replaceLineBreaksany
+                        | unique2 | orderBy2}} BHK {{propertydemo.propertyType}}</span>
+                    }
+
+                    @if (propertydemo.propertyType == 'Plots') {
+                    <span class="imgBottomContent borderRightRed">{{propertydemo.propertyType}}</span>
+                    }
+
+                    @if (propertydemo.area_max == '0') {
+                    <span class="imgBottomContent">{{propertydemo.dimension}}
+                        Acres</span>
+                    }
+                    @if (propertydemo.area_max != '0') {
+                    <span class="imgBottomContent">{{propertydemo.area_min}} -
+                        {{propertydemo.area_max}}
+                        sq.ft </span>
+                    }
+                </div>
+                <div class="cardPhotoCountDiv">
+                    <span class="cardPhotoCount m-0 pr-1">
+                        {{ Mousemovement ? (activeIndexMap[i] || 1) : 1 }} / {{ propertydemo.images.length >= 5
+                        ?
+                        5 : propertydemo.images.length }}
+                    </span>
+                    <img class="cardPhotoIcon"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/imgCountNew.svg"
+                        alt="cardPhotoIcon">
+                </div>
+            </div>
+            <div class="imgBottomInfo1"></div>
+
+        </div>
+
+
+
+
+        <div class="ListingCardbottom">
+            <div class="text-truncate">
+                <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                    target="_blank" class="cardPropertyName m-0">{{propertydemo.propertyName}}</a>
+            </div>
+            <div class="cardPropertyLocation  text-truncate"> {{propertydemo.locality_name}},
+                {{propertydemo.city_name}}</div>
+            @if (propertydemo.price_max !== '0 ') {
+            <div class="cardPropPricing mt-1"> ₹
+                {{propertydemo.price_min}}
+                - {{propertydemo.price_max}}</div>
+            }
+
+
+            @if (propertydemo.price_max == '0 ') {
+            <div class="cardPropPricingOnRequest mt-1" propertydemo-toggle="modal" propertydemo-target="#myModal_city"
+                propertydemo-backdrop="static" propertydemo-keyboard="false"
+                (click)="propertyNameClick(propertydemo.propertyName,propertydemo.RegionID,propertydemo.localityid,propertydemo.property_info_IDPK)">
+                Unlock Price Info
+                <img width="18px" height="18px"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg"
+                    alt="padlock">
+            </div>
+            }
+            <div class="newCardStatus d-flex my-2">
+                <span class="propStatus">{{ propertydemo.Status }}</span>
+                @if (propertydemo.Status != 'Ready to Move' ) {
+                <span class="propStatus ml-2">Completion in {{
+                    propertydemo.PossessionDate | date :
+                    "MMM-yyyy"}}</span>
+                }
+
+                @if (propertydemo.Status == 'Ready to Move' ) {
+                <span class="propStatus ml-2">Since {{
+                    propertydemo.PossessionDate | date :
+                    "MMM-yyyy"}}</span>
+                }
+
+            </div>
+            <div class="d-flex justify-content-between cardBottomContainer">
+                <div class="d-flex propertyBuilderContainer">
+                    <img class="propertyBuilder mr-1"
+                        src="https://img.homes247.in/images/builder/{{propertydemo.builder_logo}}?width=34&height=38"
+                        alt="propertyBuilder">
+
+
+                    <div class="propertyBuilderName text-truncate">{{propertydemo.BuilderName}}</div>
+                </div>
+                <div class="pr-2">
+                    <img (click)="propertyNameClick(propertydemo.propertyName,propertydemo.RegionID,propertydemo.localityid,propertydemo.property_info_IDPK)"
+                        class="cardContactIcons" data-toggle="modal" data-target="#myModal_city" data-backdrop="static"
+                        data-keyboard="false"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/newCallIcon1.svg"
+                        alt="cardContactIcons">
+                    <img (click)="whatsupshare(propertydemo)" class="cardContactIconsWhatsApp ml-1"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/newWhatsAppIcon1.svg"
+                        alt="cardContactIconsWhatsApp">
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+
+    <!-- New Launches Section -->
+    @if (Hidenewlaunches) {
+    <div>
+        @if (sectionFirstResponce) {
+        <div class="topProjectsSectionMobileView topProjectsBg">
+            <h3 class="topFetPropText">New Launch Projects by {{builder}} </h3>
+            @if (newlaunchesloader == false) {
+            <div class="scrollmenu1">
+                @for (property of newProperties; track property) {
+                <span class="card">
+                    @for (image of (property.images | slice:0:1); track image) {
+                    <a target="_blank" itemprop="url"
+                        href="https://www.homes247.in/property/{{property.city_name | cleanUrl}}/{{property.locality_name | cleanUrl}}/{{property.propertyName | cleanUrl}}-{{property.property_info_IDPK}}">
+                        <img [src]="propertyimage + $any(image).name" alt="{{property.propertyName}}"
+                            class="propclass topProjectsSectionMobileImages" />
+                    </a>
+                    }
+                    <span hidden itemprop="name">{{property.propertyName}}</span>
+                    @if (property.images.length === 0) {
+                    <a class="pi_main" ng-click="getPropertyID(property.property_info_IDPK);">
+                        <img [src]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/notfound.png'"
+                            alt="not-found">
+                    </a>
+                    }
+                    <div class="top_project_info">
+                        <div class="pi_left">
+                            <h3 class="propclass">{{property.propertyName}} <small>{{property.locality_name}}
+                                    ,{{property.city_name}}</small></h3>
+                            <p class="top_prjct_status"><small>{{property.Status}}</small></p>
+                        </div>
+                        <div class="pi_right">
+                            <p class="price_tag"><i class="fa fa-inr" aria-hidden="true"></i>
+                                {{property.price_min}} <br> Onwards
+                            </p>
+                            <div class="clearfix"></div>
+                            <ul>
+                                <li class="float-right">
+                                    <a class="floatRightViewDetails"
+                                        href="https://www.homes247.in/property/{{property.city_name | cleanUrl}}/{{property.locality_name | cleanUrl}}/{{property.propertyName | cleanUrl}}-{{property.property_info_IDPK}}"
+                                        target="_blank">View Details</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </span>
+                }
+            </div>
+            }
+
+            @if (newlaunchesloader) {
+            <div class="col-12">
+                <div class="item">
+                    <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }">
+                    </ngx-skeleton-loader>
+                    <ngx-skeleton-loader [theme]="{ width: '170px','border-radius': '9',height: '15px'}">
+                    </ngx-skeleton-loader>
+                    <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                    </ngx-skeleton-loader>
+                </div>
+            </div>
+            }
+        </div>
+        }
+    </div>
+    }
+
+    @for (propertydemo of propertylists2; track propertydemo; let i = $index) {
+    <div class="newListingCard px-2">
+        <div class="listingCardTop">
+            <div class="cardTagsTop d-flex justify-content-between">
+
+                <div class="d-flex">
+                    <div class="d-flex reraIconDiv">
+
+                        <svg width="15" height="15" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_6905_2596)">
+                                <path
+                                    d="M10.1875 5C10.1875 5.4 9.69609 5.72969 9.59766 6.09844C9.49609 6.47969 9.75313 7.01094 9.56016 7.34453C9.36406 7.68359 8.77422 7.72422 8.49922 7.99922C8.22422 8.27422 8.18359 8.86406 7.84453 9.06016C7.51094 9.25313 6.97969 8.99609 6.59844 9.09766C6.22969 9.19609 5.9 9.6875 5.5 9.6875C5.1 9.6875 4.77031 9.19609 4.40156 9.09766C4.02031 8.99609 3.48906 9.25313 3.15547 9.06016C2.81641 8.86406 2.77578 8.27422 2.50078 7.99922C2.22578 7.72422 1.63594 7.68359 1.43984 7.34453C1.24687 7.01094 1.50391 6.47969 1.40234 6.09844C1.30391 5.72969 0.8125 5.4 0.8125 5C0.8125 4.6 1.30391 4.27031 1.40234 3.90156C1.50391 3.52031 1.24687 2.98906 1.43984 2.65547C1.63594 2.31641 2.22578 2.27578 2.50078 2.00078C2.77578 1.72578 2.81641 1.13594 3.15547 0.939844C3.48906 0.746875 4.02031 1.00391 4.40156 0.902344C4.77031 0.803906 5.1 0.3125 5.5 0.3125C5.9 0.3125 6.22969 0.803906 6.59844 0.902344C6.97969 1.00391 7.51094 0.746875 7.84453 0.939844C8.18359 1.13594 8.22422 1.72578 8.49922 2.00078C8.77422 2.27578 9.36406 2.31641 9.56016 2.65547C9.75313 2.98906 9.49609 3.52031 9.59766 3.90156C9.69609 4.27031 10.1875 4.6 10.1875 5Z"
+                                    fill="white" />
+                                <path
+                                    d="M6.8547 3.6031L5.07032 5.38748L4.14532 4.46326C3.94454 4.26248 3.61876 4.26248 3.41798 4.46326C3.2172 4.66404 3.2172 4.98982 3.41798 5.1906L4.71564 6.48826C4.91095 6.68357 5.22814 6.68357 5.42345 6.48826L7.58126 4.33044C7.78204 4.12966 7.78204 3.80388 7.58126 3.6031C7.38048 3.40232 7.05548 3.40232 6.8547 3.6031Z"
+                                    fill="#148922" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_6905_2596">
+                                    <rect width="12" height="12" fill="white" transform="translate(0.5)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <span class="renaText">RERA</span>
+                    </div> &nbsp;
+                    <div class="d-flex">
+
+                        @if (propertydemo.Averagerating != null) {
+                        <div>
+                            @if (propertydemo.Averagerating >= 4) {
+                            <span class="overallRateingNew green">
+                                <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo.Averagerating |
+                                number :
+                                '1.1-1'}}
+                            </span>
+                            }
+                            @if (propertydemo.Averagerating >= 3 && propertydemo.Averagerating < 4) { <span
+                                class="overallRateingNew yellow">
+                                <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo.Averagerating |
+                                number :
+                                '1.1-1'}}
+                                </span>
+                                }
+                                @if (propertydemo.Averagerating < 3) { <span class="overallRateingNew red">
+                                    <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo.Averagerating |
+                                    number :
+                                    '1.1-1'}}
+                                    </span>
+                                    }
+                        </div>
+                        }
+
+                    </div>
+                </div>
+
+                <div>
+                    <div class="newCardHeart mb-2">
+                        <div [ngClass]="{'Rental_icons_Heart_Active_New': isInWishlist(propertydemo.property_info_IDPK), 'New_wistlist_Heart': !isInWishlist(propertydemo.property_info_IDPK)}"
+                            class="Rental_icons_Heart_New mb-2"
+                            (click)="Heart_Transtion(propertydemo.property_info_IDPK)">
+                        </div>
+                    </div>
+                    <div class="newCardHeart">
+                        <div class="Rental_icons_Share_new" (click)="shareContent(propertydemo)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <!-- propertyInitialImages -->
+
+            @if ((propertydemo?.images?.length ?? 0) > 1 && !imageErrorMap[propertydemo?.property_info_IDPK]) {
+
+            <owl-carousel-o [options]="customOptionsGallery" class="owlCarouselODiv"
+                (changed)="activeIndexMap[i] = $event.startPosition + 1">
+
+                @for (image of (propertydemo.images | slice:0:5); track image) {
+
+                <ng-template carouselSlide>
+                    <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                        target="_blank">
+
+                        <img class="newListingCardImage"
+                            [src]="propertyimage + $any(image).name + '?width=250&height=201'" (error)="onImgError($event, propertydemo?.property_info_IDPK)" loading="eager"
+                            fetchpriority="high" decoding="async" alt="newListingCardImage">
+
+                    </a>
+                </ng-template>
+
+                }
+
+            </owl-carousel-o>
+
+            }
+
+            @else if ((propertydemo?.images?.length ?? 0) === 1 && !imageErrorMap[propertydemo?.property_info_IDPK]) {
+
+            <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                target="_blank">
+
+                <img class="newListingCardImage"
+                    [src]="propertyimage + propertydemo.images[0].name + '?width=250&height=201'" (error)="onImgError($event, propertydemo?.property_info_IDPK)" loading="eager"
+                    fetchpriority="high" decoding="async" alt="newListingCardImage">
+
+            </a>
+
+            }
+
+            @else {
+
+            <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                target="_blank">
+
+                <img class="newListingCardImage"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/priceOnRequestListing-new.svg"
+                    loading="eager" fetchpriority="high" decoding="async" alt="newListingCardImage">
+
+                <button class="noImageRequestButton">
+                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/requestImageButton.svg"
+                        alt="noImageRequestButton">
+                    Request Image
+                </button>
+
+            </a>
+
+            }
+
+
+
+
+            <div class="imgBottomInfo d-flex  justify-content-between">
+                <div class="d-flex">
+                    @if (propertydemo.propertyType !== 'Plots') {
+                    <span class="imgBottomContent borderRightRed">{{propertydemo.BHK |
+                        replaceLineBreaksany
+                        | unique2 | orderBy2}} BHK {{propertydemo.propertyType}}</span>
+                    }
+
+                    @if (propertydemo.propertyType == 'Plots') {
+                    <span class="imgBottomContent borderRightRed">{{propertydemo.propertyType}}</span>
+                    }
+
+                    @if (propertydemo.area_max == '0') {
+                    <span class="imgBottomContent">{{propertydemo.dimension}}
+                        Acres</span>
+                    }
+                    @if (propertydemo.area_max != '0') {
+                    <span class="imgBottomContent">{{propertydemo.area_min}} -
+                        {{propertydemo.area_max}}
+                        sq.ft </span>
+                    }
+                </div>
+                <div class="cardPhotoCountDiv">
+                    <span class="cardPhotoCount m-0 pr-1">
+                        {{ Mousemovement ? (activeIndexMap[i] || 1) : 1 }} / {{ propertydemo.images.length >= 5
+                        ?
+                        5 : propertydemo.images.length }}
+                    </span>
+                    <img class="cardPhotoIcon"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/imgCountNew.svg"
+                        alt="cardPhotoIcon">
+                </div>
+            </div>
+            <div class="imgBottomInfo1"></div>
+
+        </div>
+
+
+
+
+        <div class="ListingCardbottom">
+            <div class="text-truncate">
+                <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                    target="_blank" class="cardPropertyName m-0">{{propertydemo.propertyName}}</a>
+            </div>
+            <div class="cardPropertyLocation  text-truncate"> {{propertydemo.locality_name}},
+                {{propertydemo.city_name}}</div>
+            @if (propertydemo.price_max !== '0 ') {
+            <div class="cardPropPricing mt-1"> ₹
+                {{propertydemo.price_min}}
+                - {{propertydemo.price_max}}</div>
+            }
+
+
+            @if (propertydemo.price_max == '0 ') {
+            <div class="cardPropPricingOnRequest mt-1" propertydemo-toggle="modal" propertydemo-target="#myModal_city"
+                propertydemo-backdrop="static" propertydemo-keyboard="false"
+                (click)="propertyNameClick(propertydemo.propertyName,propertydemo.RegionID,propertydemo.localityid,propertydemo.property_info_IDPK)">
+                Unlock Price Info
+                <img width="18px" height="18px"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg"
+                    alt="padlock">
+            </div>
+            }
+            <div class="newCardStatus d-flex my-2">
+                <span class="propStatus">{{ propertydemo.Status }}</span>
+                @if (propertydemo.Status != 'Ready to Move' ) {
+                <span class="propStatus ml-2">Completion in {{
+                    propertydemo.PossessionDate | date :
+                    "MMM-yyyy"}}</span>
+                }
+
+                @if (propertydemo.Status == 'Ready to Move' ) {
+                <span class="propStatus ml-2">Since {{
+                    propertydemo.PossessionDate | date :
+                    "MMM-yyyy"}}</span>
+                }
+
+            </div>
+            <div class="d-flex justify-content-between cardBottomContainer">
+                <div class="d-flex propertyBuilderContainer">
+                    <img class="propertyBuilder mr-1"
+                        src="https://img.homes247.in/images/builder/{{propertydemo.builder_logo}}?width=34&height=38"
+                        alt="propertyBuilder">
+
+
+                    <div class="propertyBuilderName text-truncate">{{propertydemo.BuilderName}}</div>
+                </div>
+                <div class="pr-2">
+                    <img (click)="propertyNameClick(propertydemo.propertyName,propertydemo.RegionID,propertydemo.localityid,propertydemo.property_info_IDPK)"
+                        class="cardContactIcons" data-toggle="modal" data-target="#myModal_city" data-backdrop="static"
+                        data-keyboard="false"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/newCallIcon1.svg"
+                        alt="cardContactIcons">
+                    <img (click)="whatsupshare(propertydemo)" class="cardContactIconsWhatsApp ml-1"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/newWhatsAppIcon1.svg"
+                        alt="cardContactIconsWhatsApp">
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+    <!-- Luxury Projects Section -->
+    @if (sectionFirstResponce && HideLuxuryProp) {
+    <div class="topProjectsSectionMobileView topProjectsBg mt-4">
+        <h3 class="topFetPropText">Luxury Projects by {{builder}} </h3>
+        @if (luxuryproploader == false) {
+        <div class="scrollmenu1">
+            @for (property of luxuryPropList; track property) {
+            <span class="card">
+                @for (image of (property.images | slice:0:1); track image) {
+                <a target="_blank" itemprop="url"
+                    href="https://www.homes247.in/property/{{property.city_name | cleanUrl}}/{{property.locality_name | cleanUrl}}/{{property.propertyName | cleanUrl}}-{{property.property_info_IDPK}}">
+                    <img [src]="propertyimage + $any(image).name" alt="{{property.propertyName}}"
+                        class="propclass topProjectsSectionMobileImages" />
+                </a>
+                }
+                <span hidden itemprop="name">{{property.propertyName}}</span>
+                @if (property.images.length === 0) {
+                <a class="pi_main" ng-click="getPropertyID(property.property_info_IDPK);">
+                    <img [src]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/notfound.png'"
+                        alt="not-found">
+                </a>
+                }
+                <div class="top_project_info">
+                    <div class="pi_left">
+                        <h3 class="propclass">{{property.propertyName}} <small>{{property.locality_name}}
+                                ,{{property.city_name}}</small></h3>
+                        <p class="top_prjct_status"><small>{{property.Status}}</small></p>
+                    </div>
+                    <div class="pi_right">
+                        <p class="price_tag"><i class="fa fa-inr" aria-hidden="true"></i>
+                            {{property.price_min}} <br> Onwards
+                        </p>
+                        <div class="clearfix"></div>
+                        <ul>
+                            <li class="float-right">
+                                <a class="floatRightViewDetails"
+                                    href="https://www.homes247.in/property/{{property.city_name | cleanUrl}}/{{property.locality_name | cleanUrl}}/{{property.propertyName | cleanUrl}}-{{property.property_info_IDPK}}"
+                                    target="_blank">View Details</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </span>
+            }
+        </div>
+        }
+
+        @if (luxuryproploader) {
+        <div class="col-12">
+            <div class="item">
+                <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }">
+                </ngx-skeleton-loader>
+                <ngx-skeleton-loader [theme]="{ width: '170px','border-radius': '9',height: '10px'}">
+                </ngx-skeleton-loader>
+                <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                </ngx-skeleton-loader>
+            </div>
+        </div>
+        }
+    </div>
+    }
+
+
+    @for (propertydemo of propertylists3; track propertydemo; let i = $index) {
+    <div class="newListingCard px-2">
+        <div class="listingCardTop">
+            <div class="cardTagsTop d-flex justify-content-between">
+
+                <div class="d-flex">
+                    <div class="d-flex reraIconDiv">
+
+                        <svg width="15" height="15" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_6905_2596)">
+                                <path
+                                    d="M10.1875 5C10.1875 5.4 9.69609 5.72969 9.59766 6.09844C9.49609 6.47969 9.75313 7.01094 9.56016 7.34453C9.36406 7.68359 8.77422 7.72422 8.49922 7.99922C8.22422 8.27422 8.18359 8.86406 7.84453 9.06016C7.51094 9.25313 6.97969 8.99609 6.59844 9.09766C6.22969 9.19609 5.9 9.6875 5.5 9.6875C5.1 9.6875 4.77031 9.19609 4.40156 9.09766C4.02031 8.99609 3.48906 9.25313 3.15547 9.06016C2.81641 8.86406 2.77578 8.27422 2.50078 7.99922C2.22578 7.72422 1.63594 7.68359 1.43984 7.34453C1.24687 7.01094 1.50391 6.47969 1.40234 6.09844C1.30391 5.72969 0.8125 5.4 0.8125 5C0.8125 4.6 1.30391 4.27031 1.40234 3.90156C1.50391 3.52031 1.24687 2.98906 1.43984 2.65547C1.63594 2.31641 2.22578 2.27578 2.50078 2.00078C2.77578 1.72578 2.81641 1.13594 3.15547 0.939844C3.48906 0.746875 4.02031 1.00391 4.40156 0.902344C4.77031 0.803906 5.1 0.3125 5.5 0.3125C5.9 0.3125 6.22969 0.803906 6.59844 0.902344C6.97969 1.00391 7.51094 0.746875 7.84453 0.939844C8.18359 1.13594 8.22422 1.72578 8.49922 2.00078C8.77422 2.27578 9.36406 2.31641 9.56016 2.65547C9.75313 2.98906 9.49609 3.52031 9.59766 3.90156C9.69609 4.27031 10.1875 4.6 10.1875 5Z"
+                                    fill="white" />
+                                <path
+                                    d="M6.8547 3.6031L5.07032 5.38748L4.14532 4.46326C3.94454 4.26248 3.61876 4.26248 3.41798 4.46326C3.2172 4.66404 3.2172 4.98982 3.41798 5.1906L4.71564 6.48826C4.91095 6.68357 5.22814 6.68357 5.42345 6.48826L7.58126 4.33044C7.78204 4.12966 7.78204 3.80388 7.58126 3.6031C7.38048 3.40232 7.05548 3.40232 6.8547 3.6031Z"
+                                    fill="#148922" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_6905_2596">
+                                    <rect width="12" height="12" fill="white" transform="translate(0.5)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <span class="renaText">RERA</span>
+                    </div> &nbsp;
+                    <div class="d-flex">
+
+                        @if (propertydemo.Averagerating != null) {
+                        <div>
+                            @if (propertydemo.Averagerating >= 4) {
+                            <span class="overallRateingNew green">
+                                <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo.Averagerating |
+                                number :
+                                '1.1-1'}}
+                            </span>
+                            }
+                            @if (propertydemo.Averagerating >= 3 && propertydemo.Averagerating < 4) { <span
+                                class="overallRateingNew yellow">
+                                <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo.Averagerating |
+                                number :
+                                '1.1-1'}}
+                                </span>
+                                }
+                                @if (propertydemo.Averagerating < 3) { <span class="overallRateingNew red">
+                                    <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo.Averagerating |
+                                    number :
+                                    '1.1-1'}}
+                                    </span>
+                                    }
+                        </div>
+                        }
+
+                    </div>
+                </div>
+
+                <div>
+                    <div class="newCardHeart mb-2">
+                        <div [ngClass]="{'Rental_icons_Heart_Active_New': isInWishlist(propertydemo.property_info_IDPK), 'New_wistlist_Heart': !isInWishlist(propertydemo.property_info_IDPK)}"
+                            class="Rental_icons_Heart_New mb-2"
+                            (click)="Heart_Transtion(propertydemo.property_info_IDPK)">
+                        </div>
+                    </div>
+                    <div class="newCardHeart">
+                        <div class="Rental_icons_Share_new" (click)="shareContent(propertydemo)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <!-- propertyInitialImages -->
+
+            @if ((propertydemo?.images?.length ?? 0) > 1 && !imageErrorMap[propertydemo?.property_info_IDPK]) {
+
+            <owl-carousel-o [options]="customOptionsGallery" class="owlCarouselODiv"
+                (changed)="activeIndexMap[i] = $event.startPosition + 1">
+
+                @for (image of (propertydemo.images | slice:0:5); track image) {
+
+                <ng-template carouselSlide>
+                    <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                        target="_blank">
+
+                        <img class="newListingCardImage"
+                            [src]="propertyimage + $any(image).name + '?width=250&height=201'" (error)="onImgError($event, propertydemo?.property_info_IDPK)" loading="eager"
+                            fetchpriority="high" decoding="async" alt="newListingCardImage">
+
+                    </a>
+                </ng-template>
+
+                }
+
+            </owl-carousel-o>
+
+            }
+
+            @else if ((propertydemo?.images?.length ?? 0) === 1 && !imageErrorMap[propertydemo?.property_info_IDPK]) {
+
+            <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                target="_blank">
+
+                <img class="newListingCardImage"
+                    [src]="propertyimage + propertydemo.images[0].name + '?width=250&height=201'" (error)="onImgError($event, propertydemo?.property_info_IDPK)" loading="eager"
+                    fetchpriority="high" decoding="async" alt="newListingCardImage">
+
+            </a>
+
+            }
+
+            @else {
+
+            <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                target="_blank">
+
+                <img class="newListingCardImage"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/priceOnRequestListing-new.svg"
+                    loading="eager" fetchpriority="high" decoding="async" alt="newListingCardImage">
+
+                <button class="noImageRequestButton">
+                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/requestImageButton.svg"
+                        alt="noImageRequestButton">
+                    Request Image
+                </button>
+
+            </a>
+
+            }
+
+
+
+
+            <div class="imgBottomInfo d-flex  justify-content-between">
+                <div class="d-flex">
+                    @if (propertydemo.propertyType !== 'Plots') {
+                    <span class="imgBottomContent borderRightRed">{{propertydemo.BHK |
+                        replaceLineBreaksany
+                        | unique2 | orderBy2}} BHK {{propertydemo.propertyType}}</span>
+                    }
+
+                    @if (propertydemo.propertyType == 'Plots') {
+                    <span class="imgBottomContent borderRightRed">{{propertydemo.propertyType}}</span>
+                    }
+
+                    @if (propertydemo.area_max == '0') {
+                    <span class="imgBottomContent">{{propertydemo.dimension}}
+                        Acres</span>
+                    }
+                    @if (propertydemo.area_max != '0') {
+                    <span class="imgBottomContent">{{propertydemo.area_min}} -
+                        {{propertydemo.area_max}}
+                        sq.ft </span>
+                    }
+                </div>
+                <div class="cardPhotoCountDiv">
+                    <span class="cardPhotoCount m-0 pr-1">
+                        {{ Mousemovement ? (activeIndexMap[i] || 1) : 1 }} / {{ propertydemo.images.length >= 5
+                        ?
+                        5 : propertydemo.images.length }}
+                    </span>
+                    <img class="cardPhotoIcon"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/imgCountNew.svg"
+                        alt="cardPhotoIcon">
+                </div>
+            </div>
+            <div class="imgBottomInfo1"></div>
+
+        </div>
+
+
+
+
+        <div class="ListingCardbottom">
+            <div class="text-truncate">
+                <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                    target="_blank" class="cardPropertyName m-0">{{propertydemo.propertyName}}</a>
+            </div>
+            <div class="cardPropertyLocation  text-truncate"> {{propertydemo.locality_name}},
+                {{propertydemo.city_name}}</div>
+            @if (propertydemo.price_max !== '0 ') {
+            <div class="cardPropPricing mt-1"> ₹
+                {{propertydemo.price_min}}
+                - {{propertydemo.price_max}}</div>
+            }
+
+
+            @if (propertydemo.price_max == '0 ') {
+            <div class="cardPropPricingOnRequest mt-1" propertydemo-toggle="modal" propertydemo-target="#myModal_city"
+                propertydemo-backdrop="static" propertydemo-keyboard="false"
+                (click)="propertyNameClick(propertydemo.propertyName,propertydemo.RegionID,propertydemo.localityid,propertydemo.property_info_IDPK)">
+                Unlock Price Info
+                <img width="18px" height="18px"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg"
+                    alt="padlock">
+            </div>
+            }
+            <div class="newCardStatus d-flex my-2">
+                <span class="propStatus">{{ propertydemo.Status }}</span>
+                @if (propertydemo.Status != 'Ready to Move' ) {
+                <span class="propStatus ml-2">Completion in {{
+                    propertydemo.PossessionDate | date :
+                    "MMM-yyyy"}}</span>
+                }
+
+                @if (propertydemo.Status == 'Ready to Move' ) {
+                <span class="propStatus ml-2">Since {{
+                    propertydemo.PossessionDate | date :
+                    "MMM-yyyy"}}</span>
+                }
+
+            </div>
+            <div class="d-flex justify-content-between cardBottomContainer">
+                <div class="d-flex propertyBuilderContainer">
+                    <img class="propertyBuilder mr-1"
+                        src="https://img.homes247.in/images/builder/{{propertydemo.builder_logo}}?width=34&height=38"
+                        alt="propertyBuilder">
+
+
+                    <div class="propertyBuilderName text-truncate">{{propertydemo.BuilderName}}</div>
+                </div>
+                <div class="pr-2">
+                    <img (click)="propertyNameClick(propertydemo.propertyName,propertydemo.RegionID,propertydemo.localityid,propertydemo.property_info_IDPK)"
+                        class="cardContactIcons" data-toggle="modal" data-target="#myModal_city" data-backdrop="static"
+                        data-keyboard="false"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/newCallIcon1.svg"
+                        alt="cardContactIcons">
+                    <img (click)="whatsupshare(propertydemo)" class="cardContactIconsWhatsApp ml-1"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/newWhatsAppIcon1.svg"
+                        alt="cardContactIconsWhatsApp">
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+
+
+
+    @for (propertydemo of propertylists4; track propertydemo; let i = $index) {
+    <div class="newListingCard px-2">
+        <div class="listingCardTop">
+            <div class="cardTagsTop d-flex justify-content-between">
+
+                <div class="d-flex">
+                    <div class="d-flex reraIconDiv">
+
+                        <svg width="15" height="15" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_6905_2596)">
+                                <path
+                                    d="M10.1875 5C10.1875 5.4 9.69609 5.72969 9.59766 6.09844C9.49609 6.47969 9.75313 7.01094 9.56016 7.34453C9.36406 7.68359 8.77422 7.72422 8.49922 7.99922C8.22422 8.27422 8.18359 8.86406 7.84453 9.06016C7.51094 9.25313 6.97969 8.99609 6.59844 9.09766C6.22969 9.19609 5.9 9.6875 5.5 9.6875C5.1 9.6875 4.77031 9.19609 4.40156 9.09766C4.02031 8.99609 3.48906 9.25313 3.15547 9.06016C2.81641 8.86406 2.77578 8.27422 2.50078 7.99922C2.22578 7.72422 1.63594 7.68359 1.43984 7.34453C1.24687 7.01094 1.50391 6.47969 1.40234 6.09844C1.30391 5.72969 0.8125 5.4 0.8125 5C0.8125 4.6 1.30391 4.27031 1.40234 3.90156C1.50391 3.52031 1.24687 2.98906 1.43984 2.65547C1.63594 2.31641 2.22578 2.27578 2.50078 2.00078C2.77578 1.72578 2.81641 1.13594 3.15547 0.939844C3.48906 0.746875 4.02031 1.00391 4.40156 0.902344C4.77031 0.803906 5.1 0.3125 5.5 0.3125C5.9 0.3125 6.22969 0.803906 6.59844 0.902344C6.97969 1.00391 7.51094 0.746875 7.84453 0.939844C8.18359 1.13594 8.22422 1.72578 8.49922 2.00078C8.77422 2.27578 9.36406 2.31641 9.56016 2.65547C9.75313 2.98906 9.49609 3.52031 9.59766 3.90156C9.69609 4.27031 10.1875 4.6 10.1875 5Z"
+                                    fill="white" />
+                                <path
+                                    d="M6.8547 3.6031L5.07032 5.38748L4.14532 4.46326C3.94454 4.26248 3.61876 4.26248 3.41798 4.46326C3.2172 4.66404 3.2172 4.98982 3.41798 5.1906L4.71564 6.48826C4.91095 6.68357 5.22814 6.68357 5.42345 6.48826L7.58126 4.33044C7.78204 4.12966 7.78204 3.80388 7.58126 3.6031C7.38048 3.40232 7.05548 3.40232 6.8547 3.6031Z"
+                                    fill="#148922" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_6905_2596">
+                                    <rect width="12" height="12" fill="white" transform="translate(0.5)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <span class="renaText">RERA</span>
+                    </div> &nbsp;
+                    <div class="d-flex">
+
+                        @if (propertydemo.Averagerating != null) {
+                        <div>
+                            @if (propertydemo.Averagerating >= 4) {
+                            <span class="overallRateingNew green">
+                                <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo.Averagerating |
+                                number :
+                                '1.1-1'}}
+                            </span>
+                            }
+                            @if (propertydemo.Averagerating >= 3 && propertydemo.Averagerating < 4) { <span
+                                class="overallRateingNew yellow">
+                                <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo.Averagerating |
+                                number :
+                                '1.1-1'}}
+                                </span>
+                                }
+                                @if (propertydemo.Averagerating < 3) { <span class="overallRateingNew red">
+                                    <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo.Averagerating |
+                                    number :
+                                    '1.1-1'}}
+                                    </span>
+                                    }
+                        </div>
+                        }
+
+                    </div>
+                </div>
+
+                <div>
+                    <div class="newCardHeart mb-2">
+                        <div [ngClass]="{'Rental_icons_Heart_Active_New': isInWishlist(propertydemo.property_info_IDPK), 'New_wistlist_Heart': !isInWishlist(propertydemo.property_info_IDPK)}"
+                            class="Rental_icons_Heart_New mb-2"
+                            (click)="Heart_Transtion(propertydemo.property_info_IDPK)">
+                        </div>
+                    </div>
+                    <div class="newCardHeart">
+                        <div class="Rental_icons_Share_new" (click)="shareContent(propertydemo)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <!-- propertyInitialImages -->
+
+            @if ((propertydemo?.images?.length ?? 0) > 1 && !imageErrorMap[propertydemo?.property_info_IDPK]) {
+
+            <owl-carousel-o [options]="customOptionsGallery" class="owlCarouselODiv"
+                (changed)="activeIndexMap[i] = $event.startPosition + 1">
+
+                @for (image of (propertydemo.images | slice:0:5); track image) {
+
+                <ng-template carouselSlide>
+                    <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                        target="_blank">
+
+                        <img class="newListingCardImage"
+                            [src]="propertyimage + $any(image).name + '?width=250&height=201'" (error)="onImgError($event, propertydemo?.property_info_IDPK)" loading="eager"
+                            fetchpriority="high" decoding="async" alt="newListingCardImage">
+
+                    </a>
+                </ng-template>
+
+                }
+
+            </owl-carousel-o>
+
+            }
+
+            @else if ((propertydemo?.images?.length ?? 0) === 1 && !imageErrorMap[propertydemo?.property_info_IDPK]) {
+
+            <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                target="_blank">
+
+                <img class="newListingCardImage"
+                    [src]="propertyimage + propertydemo.images[0].name + '?width=250&height=201'" (error)="onImgError($event, propertydemo?.property_info_IDPK)" loading="eager"
+                    fetchpriority="high" decoding="async" alt="newListingCardImage">
+
+            </a>
+
+            }
+
+            @else {
+
+            <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                target="_blank">
+
+                <img class="newListingCardImage"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/priceOnRequestListing-new.svg"
+                    loading="eager" fetchpriority="high" decoding="async" alt="newListingCardImage">
+
+                <button class="noImageRequestButton">
+                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/requestImageButton.svg"
+                        alt="noImageRequestButton">
+                    Request Image
+                </button>
+
+            </a>
+
+            }
+
+
+
+
+            <div class="imgBottomInfo d-flex  justify-content-between">
+                <div class="d-flex">
+                    @if (propertydemo.propertyType !== 'Plots') {
+                    <span class="imgBottomContent borderRightRed">{{propertydemo.BHK |
+                        replaceLineBreaksany
+                        | unique2 | orderBy2}} BHK {{propertydemo.propertyType}}</span>
+                    }
+
+                    @if (propertydemo.propertyType == 'Plots') {
+                    <span class="imgBottomContent borderRightRed">{{propertydemo.propertyType}}</span>
+                    }
+
+                    @if (propertydemo.area_max == '0') {
+                    <span class="imgBottomContent">{{propertydemo.dimension}}
+                        Acres</span>
+                    }
+                    @if (propertydemo.area_max != '0') {
+                    <span class="imgBottomContent">{{propertydemo.area_min}} -
+                        {{propertydemo.area_max}}
+                        sq.ft </span>
+                    }
+                </div>
+                <div class="cardPhotoCountDiv">
+                    <span class="cardPhotoCount m-0 pr-1">
+                        {{ Mousemovement ? (activeIndexMap[i] || 1) : 1 }} / {{ propertydemo.images.length >= 5
+                        ?
+                        5 : propertydemo.images.length }}
+                    </span>
+                    <img class="cardPhotoIcon"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/imgCountNew.svg"
+                        alt="cardPhotoIcon">
+                </div>
+            </div>
+            <div class="imgBottomInfo1"></div>
+
+        </div>
+
+
+
+
+        <div class="ListingCardbottom">
+            <div class="text-truncate">
+                <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                    target="_blank" class="cardPropertyName m-0">{{propertydemo.propertyName}}</a>
+            </div>
+            <div class="cardPropertyLocation  text-truncate"> {{propertydemo.locality_name}},
+                {{propertydemo.city_name}}</div>
+            @if (propertydemo.price_max !== '0 ') {
+            <div class="cardPropPricing mt-1"> ₹
+                {{propertydemo.price_min}}
+                - {{propertydemo.price_max}}</div>
+            }
+
+
+            @if (propertydemo.price_max == '0 ') {
+            <div class="cardPropPricingOnRequest mt-1" propertydemo-toggle="modal" propertydemo-target="#myModal_city"
+                propertydemo-backdrop="static" propertydemo-keyboard="false"
+                (click)="propertyNameClick(propertydemo.propertyName,propertydemo.RegionID,propertydemo.localityid,propertydemo.property_info_IDPK)">
+                Unlock Price Info
+                <img width="18px" height="18px"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg"
+                    alt="padlock">
+            </div>
+            }
+            <div class="newCardStatus d-flex my-2">
+                <span class="propStatus">{{ propertydemo.Status }}</span>
+                @if (propertydemo.Status != 'Ready to Move' ) {
+                <span class="propStatus ml-2">Completion in {{
+                    propertydemo.PossessionDate | date :
+                    "MMM-yyyy"}}</span>
+                }
+
+                @if (propertydemo.Status == 'Ready to Move' ) {
+                <span class="propStatus ml-2">Since {{
+                    propertydemo.PossessionDate | date :
+                    "MMM-yyyy"}}</span>
+                }
+
+            </div>
+            <div class="d-flex justify-content-between cardBottomContainer">
+                <div class="d-flex propertyBuilderContainer">
+                    <img class="propertyBuilder mr-1"
+                        src="https://img.homes247.in/images/builder/{{propertydemo.builder_logo}}?width=34&height=38"
+                        alt="propertyBuilder">
+
+
+                    <div class="propertyBuilderName text-truncate">{{propertydemo.BuilderName}}</div>
+                </div>
+                <div class="pr-2">
+                    <img (click)="propertyNameClick(propertydemo.propertyName,propertydemo.RegionID,propertydemo.localityid,propertydemo.property_info_IDPK)"
+                        class="cardContactIcons" data-toggle="modal" data-target="#myModal_city" data-backdrop="static"
+                        data-keyboard="false"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/newCallIcon1.svg"
+                        alt="cardContactIcons">
+                    <img (click)="whatsupshare(propertydemo)" class="cardContactIconsWhatsApp ml-1"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/newWhatsAppIcon1.svg"
+                        alt="cardContactIconsWhatsApp">
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+    <!-- Affordable Projects Section -->
+    @if (HideAffordableProp) {
+    <div>
+        @if (sectionFirstResponce) {
+        <div class="topProjectsSectionMobileView topProjectsBg">
+            <h3 class="topFetPropText">Affordable Projects by {{builder}} </h3>
+            @if (affordableproploader == false) {
+            <div class="scrollmenu1">
+                @for (property of affordablePropList; track property) {
+                <span class="card">
+                    @for (image of (property.images | slice:0:1); track image) {
+                    <a target="_blank" itemprop="url"
+                        href="https://www.homes247.in/property/{{property.city_name | cleanUrl}}/{{property.locality_name | cleanUrl}}/{{property.propertyName | cleanUrl}}-{{property.property_info_IDPK}}">
+                        <img [src]="propertyimage + $any(image).name" alt="{{property.propertyName}}"
+                            class="propclass topProjectsSectionMobileImages" />
+                    </a>
+                    }
+                    <span hidden itemprop="name">{{property.propertyName}}</span>
+                    @if (property.images.length === 0) {
+                    <a class="pi_main" ng-click="getPropertyID(property.property_info_IDPK);">
+                        <img [src]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/notfound.png'"
+                            alt="not-found">
+                    </a>
+                    }
+                    <div class="top_project_info">
+                        <div class="pi_left">
+                            <h3 class="propclass">{{property.propertyName}} <small>{{property.locality_name}}
+                                    ,{{property.city_name}}</small></h3>
+                            <p class="top_prjct_status"><small>{{property.Status}}</small></p>
+                        </div>
+                        <div class="pi_right">
+                            <p class="price_tag"><i class="fa fa-inr" aria-hidden="true"></i>
+                                {{property.price_min}} <br> Onwards
+                            </p>
+                            <div class="clearfix"></div>
+                            <ul>
+                                <li class="float-right">
+                                    <a class="floatRightViewDetails"
+                                        href="https://www.homes247.in/property/{{property.city_name | cleanUrl}}/{{property.locality_name | cleanUrl}}/{{property.propertyName | cleanUrl}}-{{property.property_info_IDPK}}"
+                                        target="_blank">View Details</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </span>
+                }
+            </div>
+            }
+
+            @if (affordableproploader) {
+            <div class="col-12">
+                <div class="item">
+                    <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }">
+                    </ngx-skeleton-loader>
+                    <ngx-skeleton-loader [theme]="{ width: '170px','border-radius': '9',height: '15px'}">
+                    </ngx-skeleton-loader>
+                    <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                    </ngx-skeleton-loader>
+                </div>
+            </div>
+            }
+        </div>
+        }
+    </div>
+    }
+
+    @for (propertydemo of propertylists5; track propertydemo; let i = $index) {
+    <div class="newListingCard px-2">
+        <div class="listingCardTop">
+            <div class="cardTagsTop d-flex justify-content-between">
+
+                <div class="d-flex">
+                    <div class="d-flex reraIconDiv">
+
+                        <svg width="15" height="15" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_6905_2596)">
+                                <path
+                                    d="M10.1875 5C10.1875 5.4 9.69609 5.72969 9.59766 6.09844C9.49609 6.47969 9.75313 7.01094 9.56016 7.34453C9.36406 7.68359 8.77422 7.72422 8.49922 7.99922C8.22422 8.27422 8.18359 8.86406 7.84453 9.06016C7.51094 9.25313 6.97969 8.99609 6.59844 9.09766C6.22969 9.19609 5.9 9.6875 5.5 9.6875C5.1 9.6875 4.77031 9.19609 4.40156 9.09766C4.02031 8.99609 3.48906 9.25313 3.15547 9.06016C2.81641 8.86406 2.77578 8.27422 2.50078 7.99922C2.22578 7.72422 1.63594 7.68359 1.43984 7.34453C1.24687 7.01094 1.50391 6.47969 1.40234 6.09844C1.30391 5.72969 0.8125 5.4 0.8125 5C0.8125 4.6 1.30391 4.27031 1.40234 3.90156C1.50391 3.52031 1.24687 2.98906 1.43984 2.65547C1.63594 2.31641 2.22578 2.27578 2.50078 2.00078C2.77578 1.72578 2.81641 1.13594 3.15547 0.939844C3.48906 0.746875 4.02031 1.00391 4.40156 0.902344C4.77031 0.803906 5.1 0.3125 5.5 0.3125C5.9 0.3125 6.22969 0.803906 6.59844 0.902344C6.97969 1.00391 7.51094 0.746875 7.84453 0.939844C8.18359 1.13594 8.22422 1.72578 8.49922 2.00078C8.77422 2.27578 9.36406 2.31641 9.56016 2.65547C9.75313 2.98906 9.49609 3.52031 9.59766 3.90156C9.69609 4.27031 10.1875 4.6 10.1875 5Z"
+                                    fill="white" />
+                                <path
+                                    d="M6.8547 3.6031L5.07032 5.38748L4.14532 4.46326C3.94454 4.26248 3.61876 4.26248 3.41798 4.46326C3.2172 4.66404 3.2172 4.98982 3.41798 5.1906L4.71564 6.48826C4.91095 6.68357 5.22814 6.68357 5.42345 6.48826L7.58126 4.33044C7.78204 4.12966 7.78204 3.80388 7.58126 3.6031C7.38048 3.40232 7.05548 3.40232 6.8547 3.6031Z"
+                                    fill="#148922" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_6905_2596">
+                                    <rect width="12" height="12" fill="white" transform="translate(0.5)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <span class="renaText">RERA</span>
+                    </div> &nbsp;
+                    <div class="d-flex">
+
+                        @if (propertydemo.Averagerating != null) {
+                        <div>
+                            @if (propertydemo.Averagerating >= 4) {
+                            <span class="overallRateingNew green">
+                                <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo.Averagerating |
+                                number :
+                                '1.1-1'}}
+                            </span>
+                            }
+                            @if (propertydemo.Averagerating >= 3 && propertydemo.Averagerating < 4) { <span
+                                class="overallRateingNew yellow">
+                                <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo.Averagerating |
+                                number :
+                                '1.1-1'}}
+                                </span>
+                                }
+                                @if (propertydemo.Averagerating < 3) { <span class="overallRateingNew red">
+                                    <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo.Averagerating |
+                                    number :
+                                    '1.1-1'}}
+                                    </span>
+                                    }
+                        </div>
+                        }
+
+                    </div>
+                </div>
+
+                <div>
+                    <div class="newCardHeart mb-2">
+                        <div [ngClass]="{'Rental_icons_Heart_Active_New': isInWishlist(propertydemo.property_info_IDPK), 'New_wistlist_Heart': !isInWishlist(propertydemo.property_info_IDPK)}"
+                            class="Rental_icons_Heart_New mb-2"
+                            (click)="Heart_Transtion(propertydemo.property_info_IDPK)">
+                        </div>
+                    </div>
+                    <div class="newCardHeart">
+                        <div class="Rental_icons_Share_new" (click)="shareContent(propertydemo)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <!-- propertyInitialImages -->
+
+            @if ((propertydemo?.images?.length ?? 0) > 1 && !imageErrorMap[propertydemo?.property_info_IDPK]) {
+
+            <owl-carousel-o [options]="customOptionsGallery" class="owlCarouselODiv"
+                (changed)="activeIndexMap[i] = $event.startPosition + 1">
+
+                @for (image of (propertydemo.images | slice:0:5); track image) {
+
+                <ng-template carouselSlide>
+                    <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                        target="_blank">
+
+                        <img class="newListingCardImage"
+                            [src]="propertyimage + $any(image).name + '?width=250&height=201'" (error)="onImgError($event, propertydemo?.property_info_IDPK)" loading="eager"
+                            fetchpriority="high" decoding="async" alt="newListingCardImage">
+
+                    </a>
+                </ng-template>
+
+                }
+
+            </owl-carousel-o>
+
+            }
+
+            @else if ((propertydemo?.images?.length ?? 0) === 1 && !imageErrorMap[propertydemo?.property_info_IDPK]) {
+
+            <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                target="_blank">
+
+                <img class="newListingCardImage"
+                    [src]="propertyimage + propertydemo.images[0].name + '?width=250&height=201'" (error)="onImgError($event, propertydemo?.property_info_IDPK)" loading="eager"
+                    fetchpriority="high" decoding="async" alt="newListingCardImage">
+
+            </a>
+
+            }
+
+            @else {
+
+            <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                target="_blank">
+
+                <img class="newListingCardImage"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/priceOnRequestListing-new.svg"
+                    loading="eager" fetchpriority="high" decoding="async" alt="newListingCardImage">
+
+                <button class="noImageRequestButton">
+                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/requestImageButton.svg"
+                        alt="noImageRequestButton">
+                    Request Image
+                </button>
+
+            </a>
+
+            }
+
+
+
+
+            <div class="imgBottomInfo d-flex  justify-content-between">
+                <div class="d-flex">
+                    @if (propertydemo.propertyType !== 'Plots') {
+                    <span class="imgBottomContent borderRightRed">{{propertydemo.BHK |
+                        replaceLineBreaksany
+                        | unique2 | orderBy2}} BHK {{propertydemo.propertyType}}</span>
+                    }
+
+                    @if (propertydemo.propertyType == 'Plots') {
+                    <span class="imgBottomContent borderRightRed">{{propertydemo.propertyType}}</span>
+                    }
+
+                    @if (propertydemo.area_max == '0') {
+                    <span class="imgBottomContent">{{propertydemo.dimension}}
+                        Acres</span>
+                    }
+                    @if (propertydemo.area_max != '0') {
+                    <span class="imgBottomContent">{{propertydemo.area_min}} -
+                        {{propertydemo.area_max}}
+                        sq.ft </span>
+                    }
+                </div>
+                <div class="cardPhotoCountDiv">
+                    <span class="cardPhotoCount m-0 pr-1">
+                        {{ Mousemovement ? (activeIndexMap[i] || 1) : 1 }} / {{ propertydemo.images.length >= 5
+                        ?
+                        5 : propertydemo.images.length }}
+                    </span>
+                    <img class="cardPhotoIcon"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/imgCountNew.svg"
+                        alt="cardPhotoIcon">
+                </div>
+            </div>
+            <div class="imgBottomInfo1"></div>
+
+        </div>
+
+
+
+
+        <div class="ListingCardbottom">
+            <div class="text-truncate">
+                <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                    target="_blank" class="cardPropertyName m-0">{{propertydemo.propertyName}}</a>
+            </div>
+            <div class="cardPropertyLocation  text-truncate"> {{propertydemo.locality_name}},
+                {{propertydemo.city_name}}</div>
+            @if (propertydemo.price_max !== '0 ') {
+            <div class="cardPropPricing mt-1"> ₹
+                {{propertydemo.price_min}}
+                - {{propertydemo.price_max}}</div>
+            }
+
+
+            @if (propertydemo.price_max == '0 ') {
+            <div class="cardPropPricingOnRequest mt-1" propertydemo-toggle="modal" propertydemo-target="#myModal_city"
+                propertydemo-backdrop="static" propertydemo-keyboard="false"
+                (click)="propertyNameClick(propertydemo.propertyName,propertydemo.RegionID,propertydemo.localityid,propertydemo.property_info_IDPK)">
+                Unlock Price Info
+                <img width="18px" height="18px"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg"
+                    alt="padlock">
+            </div>
+            }
+            <div class="newCardStatus d-flex my-2">
+                <span class="propStatus">{{ propertydemo.Status }}</span>
+                @if (propertydemo.Status != 'Ready to Move' ) {
+                <span class="propStatus ml-2">Completion in {{
+                    propertydemo.PossessionDate | date :
+                    "MMM-yyyy"}}</span>
+                }
+
+                @if (propertydemo.Status == 'Ready to Move' ) {
+                <span class="propStatus ml-2">Since {{
+                    propertydemo.PossessionDate | date :
+                    "MMM-yyyy"}}</span>
+                }
+
+            </div>
+            <div class="d-flex justify-content-between cardBottomContainer">
+                <div class="d-flex propertyBuilderContainer">
+                    <img class="propertyBuilder mr-1"
+                        src="https://img.homes247.in/images/builder/{{propertydemo.builder_logo}}?width=34&height=38"
+                        alt="propertyBuilder">
+
+
+                    <div class="propertyBuilderName text-truncate">{{propertydemo.BuilderName}}</div>
+                </div>
+                <div class="pr-2">
+                    <img (click)="propertyNameClick(propertydemo.propertyName,propertydemo.RegionID,propertydemo.localityid,propertydemo.property_info_IDPK)"
+                        class="cardContactIcons" data-toggle="modal" data-target="#myModal_city" data-backdrop="static"
+                        data-keyboard="false"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/newCallIcon1.svg"
+                        alt="cardContactIcons">
+                    <img (click)="whatsupshare(propertydemo)" class="cardContactIconsWhatsApp ml-1"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/newWhatsAppIcon1.svg"
+                        alt="cardContactIconsWhatsApp">
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+
+    <!-- Ready To Move Projects Section -->
+    @if (HideReadyToMoveProp) {
+    <div>
+        @if (sectionFirstResponce) {
+        <div class="topProjectsSectionMobileView topProjectsBg">
+            <h3 class="topFetPropText">Ready to Move Projects by {{builder}} </h3>
+            @if (readyToMoveproploader == false) {
+            <div class="scrollmenu1">
+                @for (property of readyToMovePropList; track property) {
+                <span class="card">
+                    @for (image of (property.images | slice:0:1); track image) {
+                    <a target="_blank" itemprop="url"
+                        href="https://www.homes247.in/property/{{property.city_name | cleanUrl}}/{{property.locality_name | cleanUrl}}/{{property.propertyName | cleanUrl}}-{{property.property_info_IDPK}}">
+                        <img [src]="propertyimage + $any(image).name" alt="{{property.propertyName}}"
+                            class="propclass topProjectsSectionMobileImages" />
+                    </a>
+                    }
+                    <span hidden itemprop="name">{{property.propertyName}}</span>
+                    @if (property.images.length === 0) {
+                    <a class="pi_main" ng-click="getPropertyID(property.property_info_IDPK);">
+                        <img [src]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/notfound.png'"
+                            alt="not-found">
+                    </a>
+                    }
+                    <div class="top_project_info">
+                        <div class="pi_left">
+                            <h3 class="propclass">{{property.propertyName}} <small>{{property.locality_name}}
+                                    ,{{property.city_name}}</small></h3>
+                            <p class="top_prjct_status"><small>{{property.Status}}</small></p>
+                        </div>
+                        <div class="pi_right">
+                            <p class="price_tag"><i class="fa fa-inr" aria-hidden="true"></i>
+                                {{property.price_min}} <br> Onwards
+                            </p>
+                            <div class="clearfix"></div>
+                            <ul>
+                                <li class="float-right">
+                                    <a class="floatRightViewDetails"
+                                        href="https://www.homes247.in/property/{{property.city_name | cleanUrl}}/{{property.locality_name | cleanUrl}}/{{property.propertyName | cleanUrl}}-{{property.property_info_IDPK}}"
+                                        target="_blank">View Details</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </span>
+                }
+            </div>
+            }
+
+            @if (readyToMoveproploader) {
+            <div class="col-12">
+                <div class="item">
+                    <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }">
+                    </ngx-skeleton-loader>
+                    <ngx-skeleton-loader [theme]="{ width: '170px','border-radius': '9',height: '15px'}">
+                    </ngx-skeleton-loader>
+                    <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                    </ngx-skeleton-loader>
+                </div>
+            </div>
+            }
+        </div>
+        }
+    </div>
+    }
+    @for (propertydemo of propertylists6; track propertydemo; let i = $index) {
+    <div class="newListingCard px-2">
+        <div class="listingCardTop">
+            <div class="cardTagsTop d-flex justify-content-between">
+
+                <div class="d-flex">
+                    <div class="d-flex reraIconDiv">
+
+                        <svg width="15" height="15" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_6905_2596)">
+                                <path
+                                    d="M10.1875 5C10.1875 5.4 9.69609 5.72969 9.59766 6.09844C9.49609 6.47969 9.75313 7.01094 9.56016 7.34453C9.36406 7.68359 8.77422 7.72422 8.49922 7.99922C8.22422 8.27422 8.18359 8.86406 7.84453 9.06016C7.51094 9.25313 6.97969 8.99609 6.59844 9.09766C6.22969 9.19609 5.9 9.6875 5.5 9.6875C5.1 9.6875 4.77031 9.19609 4.40156 9.09766C4.02031 8.99609 3.48906 9.25313 3.15547 9.06016C2.81641 8.86406 2.77578 8.27422 2.50078 7.99922C2.22578 7.72422 1.63594 7.68359 1.43984 7.34453C1.24687 7.01094 1.50391 6.47969 1.40234 6.09844C1.30391 5.72969 0.8125 5.4 0.8125 5C0.8125 4.6 1.30391 4.27031 1.40234 3.90156C1.50391 3.52031 1.24687 2.98906 1.43984 2.65547C1.63594 2.31641 2.22578 2.27578 2.50078 2.00078C2.77578 1.72578 2.81641 1.13594 3.15547 0.939844C3.48906 0.746875 4.02031 1.00391 4.40156 0.902344C4.77031 0.803906 5.1 0.3125 5.5 0.3125C5.9 0.3125 6.22969 0.803906 6.59844 0.902344C6.97969 1.00391 7.51094 0.746875 7.84453 0.939844C8.18359 1.13594 8.22422 1.72578 8.49922 2.00078C8.77422 2.27578 9.36406 2.31641 9.56016 2.65547C9.75313 2.98906 9.49609 3.52031 9.59766 3.90156C9.69609 4.27031 10.1875 4.6 10.1875 5Z"
+                                    fill="white" />
+                                <path
+                                    d="M6.8547 3.6031L5.07032 5.38748L4.14532 4.46326C3.94454 4.26248 3.61876 4.26248 3.41798 4.46326C3.2172 4.66404 3.2172 4.98982 3.41798 5.1906L4.71564 6.48826C4.91095 6.68357 5.22814 6.68357 5.42345 6.48826L7.58126 4.33044C7.78204 4.12966 7.78204 3.80388 7.58126 3.6031C7.38048 3.40232 7.05548 3.40232 6.8547 3.6031Z"
+                                    fill="#148922" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_6905_2596">
+                                    <rect width="12" height="12" fill="white" transform="translate(0.5)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <span class="renaText">RERA</span>
+                    </div> &nbsp;
+                    <div class="d-flex">
+
+                        @if (propertydemo.Averagerating != null) {
+                        <div>
+                            @if (propertydemo.Averagerating >= 4) {
+                            <span class="overallRateingNew green">
+                                <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo.Averagerating |
+                                number :
+                                '1.1-1'}}
+                            </span>
+                            }
+                            @if (propertydemo.Averagerating >= 3 && propertydemo.Averagerating < 4) { <span
+                                class="overallRateingNew yellow">
+                                <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo.Averagerating |
+                                number :
+                                '1.1-1'}}
+                                </span>
+                                }
+                                @if (propertydemo.Averagerating < 3) { <span class="overallRateingNew red">
+                                    <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo.Averagerating |
+                                    number :
+                                    '1.1-1'}}
+                                    </span>
+                                    }
+                        </div>
+                        }
+
+                    </div>
+                </div>
+
+                <div>
+                    <div class="newCardHeart mb-2">
+                        <div [ngClass]="{'Rental_icons_Heart_Active_New': isInWishlist(propertydemo.property_info_IDPK), 'New_wistlist_Heart': !isInWishlist(propertydemo.property_info_IDPK)}"
+                            class="Rental_icons_Heart_New mb-2"
+                            (click)="Heart_Transtion(propertydemo.property_info_IDPK)">
+                        </div>
+                    </div>
+                    <div class="newCardHeart">
+                        <div class="Rental_icons_Share_new" (click)="shareContent(propertydemo)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <!-- propertyInitialImages -->
+
+            @if ((propertydemo?.images?.length ?? 0) > 1 && !imageErrorMap[propertydemo?.property_info_IDPK]) {
+
+            <owl-carousel-o [options]="customOptionsGallery" class="owlCarouselODiv"
+                (changed)="activeIndexMap[i] = $event.startPosition + 1">
+
+                @for (image of (propertydemo.images | slice:0:5); track image) {
+
+                <ng-template carouselSlide>
+                    <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                        target="_blank">
+
+                        <img class="newListingCardImage"
+                            [src]="propertyimage + $any(image).name + '?width=250&height=201'" (error)="onImgError($event, propertydemo?.property_info_IDPK)" loading="eager"
+                            fetchpriority="high" decoding="async" alt="newListingCardImage">
+
+                    </a>
+                </ng-template>
+
+                }
+
+            </owl-carousel-o>
+
+            }
+
+            @else if ((propertydemo?.images?.length ?? 0) === 1 && !imageErrorMap[propertydemo?.property_info_IDPK]) {
+
+            <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                target="_blank">
+
+                <img class="newListingCardImage"
+                    [src]="propertyimage + propertydemo.images[0].name + '?width=250&height=201'" (error)="onImgError($event, propertydemo?.property_info_IDPK)" loading="eager"
+                    fetchpriority="high" decoding="async" alt="newListingCardImage">
+
+            </a>
+
+            }
+
+            @else {
+
+            <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                target="_blank">
+
+                <img class="newListingCardImage"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/priceOnRequestListing-new.svg"
+                    loading="eager" fetchpriority="high" decoding="async" alt="newListingCardImage">
+
+                <button class="noImageRequestButton">
+                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/requestImageButton.svg"
+                        alt="noImageRequestButton">
+                    Request Image
+                </button>
+
+            </a>
+
+            }
+
+
+
+
+            <div class="imgBottomInfo d-flex  justify-content-between">
+                <div class="d-flex">
+                    @if (propertydemo.propertyType !== 'Plots') {
+                    <span class="imgBottomContent borderRightRed">{{propertydemo.BHK |
+                        replaceLineBreaksany
+                        | unique2 | orderBy2}} BHK {{propertydemo.propertyType}}</span>
+                    }
+
+                    @if (propertydemo.propertyType == 'Plots') {
+                    <span class="imgBottomContent borderRightRed">{{propertydemo.propertyType}}</span>
+                    }
+
+                    @if (propertydemo.area_max == '0') {
+                    <span class="imgBottomContent">{{propertydemo.dimension}}
+                        Acres</span>
+                    }
+                    @if (propertydemo.area_max != '0') {
+                    <span class="imgBottomContent">{{propertydemo.area_min}} -
+                        {{propertydemo.area_max}}
+                        sq.ft </span>
+                    }
+                </div>
+                <div class="cardPhotoCountDiv">
+                    <span class="cardPhotoCount m-0 pr-1">
+                        {{ Mousemovement ? (activeIndexMap[i] || 1) : 1 }} / {{ propertydemo.images.length >= 5
+                        ?
+                        5 : propertydemo.images.length }}
+                    </span>
+                    <img class="cardPhotoIcon"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/imgCountNew.svg"
+                        alt="cardPhotoIcon">
+                </div>
+            </div>
+            <div class="imgBottomInfo1"></div>
+
+        </div>
+
+
+
+
+        <div class="ListingCardbottom">
+            <div class="text-truncate">
+                <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                    target="_blank" class="cardPropertyName m-0">{{propertydemo.propertyName}}</a>
+            </div>
+            <div class="cardPropertyLocation  text-truncate"> {{propertydemo.locality_name}},
+                {{propertydemo.city_name}}</div>
+            @if (propertydemo.price_max !== '0 ') {
+            <div class="cardPropPricing mt-1"> ₹
+                {{propertydemo.price_min}}
+                - {{propertydemo.price_max}}</div>
+            }
+
+
+            @if (propertydemo.price_max == '0 ') {
+            <div class="cardPropPricingOnRequest mt-1" propertydemo-toggle="modal" propertydemo-target="#myModal_city"
+                propertydemo-backdrop="static" propertydemo-keyboard="false"
+                (click)="propertyNameClick(propertydemo.propertyName,propertydemo.RegionID,propertydemo.localityid,propertydemo.property_info_IDPK)">
+                Unlock Price Info
+                <img width="18px" height="18px"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg"
+                    alt="padlock">
+            </div>
+            }
+            <div class="newCardStatus d-flex my-2">
+                <span class="propStatus">{{ propertydemo.Status }}</span>
+                @if (propertydemo.Status != 'Ready to Move' ) {
+                <span class="propStatus ml-2">Completion in {{
+                    propertydemo.PossessionDate | date :
+                    "MMM-yyyy"}}</span>
+                }
+
+                @if (propertydemo.Status == 'Ready to Move' ) {
+                <span class="propStatus ml-2">Since {{
+                    propertydemo.PossessionDate | date :
+                    "MMM-yyyy"}}</span>
+                }
+
+            </div>
+            <div class="d-flex justify-content-between cardBottomContainer">
+                <div class="d-flex propertyBuilderContainer">
+                    <img class="propertyBuilder mr-1"
+                        src="https://img.homes247.in/images/builder/{{propertydemo.builder_logo}}?width=34&height=38"
+                        alt="propertyBuilder">
+
+
+                    <div class="propertyBuilderName text-truncate">{{propertydemo.BuilderName}}</div>
+                </div>
+                <div class="pr-2">
+                    <img (click)="propertyNameClick(propertydemo.propertyName,propertydemo.RegionID,propertydemo.localityid,propertydemo.property_info_IDPK)"
+                        class="cardContactIcons" data-toggle="modal" data-target="#myModal_city" data-backdrop="static"
+                        data-keyboard="false"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/newCallIcon1.svg"
+                        alt="cardContactIcons">
+                    <img (click)="whatsupshare(propertydemo)" class="cardContactIconsWhatsApp ml-1"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/newWhatsAppIcon1.svg"
+                        alt="cardContactIconsWhatsApp">
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+
+
+
+    @for (propertydemo of propertylists; track propertydemo; let i = $index) {
+    <div class="newListingCard px-2">
+        <div class="listingCardTop">
+            <div class="cardTagsTop d-flex justify-content-between">
+
+                <div class="d-flex">
+                    <div class="d-flex reraIconDiv">
+
+                        <svg width="15" height="15" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_6905_2596)">
+                                <path
+                                    d="M10.1875 5C10.1875 5.4 9.69609 5.72969 9.59766 6.09844C9.49609 6.47969 9.75313 7.01094 9.56016 7.34453C9.36406 7.68359 8.77422 7.72422 8.49922 7.99922C8.22422 8.27422 8.18359 8.86406 7.84453 9.06016C7.51094 9.25313 6.97969 8.99609 6.59844 9.09766C6.22969 9.19609 5.9 9.6875 5.5 9.6875C5.1 9.6875 4.77031 9.19609 4.40156 9.09766C4.02031 8.99609 3.48906 9.25313 3.15547 9.06016C2.81641 8.86406 2.77578 8.27422 2.50078 7.99922C2.22578 7.72422 1.63594 7.68359 1.43984 7.34453C1.24687 7.01094 1.50391 6.47969 1.40234 6.09844C1.30391 5.72969 0.8125 5.4 0.8125 5C0.8125 4.6 1.30391 4.27031 1.40234 3.90156C1.50391 3.52031 1.24687 2.98906 1.43984 2.65547C1.63594 2.31641 2.22578 2.27578 2.50078 2.00078C2.77578 1.72578 2.81641 1.13594 3.15547 0.939844C3.48906 0.746875 4.02031 1.00391 4.40156 0.902344C4.77031 0.803906 5.1 0.3125 5.5 0.3125C5.9 0.3125 6.22969 0.803906 6.59844 0.902344C6.97969 1.00391 7.51094 0.746875 7.84453 0.939844C8.18359 1.13594 8.22422 1.72578 8.49922 2.00078C8.77422 2.27578 9.36406 2.31641 9.56016 2.65547C9.75313 2.98906 9.49609 3.52031 9.59766 3.90156C9.69609 4.27031 10.1875 4.6 10.1875 5Z"
+                                    fill="white" />
+                                <path
+                                    d="M6.8547 3.6031L5.07032 5.38748L4.14532 4.46326C3.94454 4.26248 3.61876 4.26248 3.41798 4.46326C3.2172 4.66404 3.2172 4.98982 3.41798 5.1906L4.71564 6.48826C4.91095 6.68357 5.22814 6.68357 5.42345 6.48826L7.58126 4.33044C7.78204 4.12966 7.78204 3.80388 7.58126 3.6031C7.38048 3.40232 7.05548 3.40232 6.8547 3.6031Z"
+                                    fill="#148922" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_6905_2596">
+                                    <rect width="12" height="12" fill="white" transform="translate(0.5)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <span class="renaText">RERA</span>
+                    </div> &nbsp;
+                    <div class="d-flex">
+
+                        @if (propertydemo.Averagerating != null) {
+                        <div>
+                            @if (propertydemo.Averagerating >= 4) {
+                            <span class="overallRateingNew green">
+                                <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo.Averagerating |
+                                number :
+                                '1.1-1'}}
+                            </span>
+                            }
+                            @if (propertydemo.Averagerating >= 3 && propertydemo.Averagerating < 4) { <span
+                                class="overallRateingNew yellow">
+                                <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo.Averagerating |
+                                number :
+                                '1.1-1'}}
+                                </span>
+                                }
+                                @if (propertydemo.Averagerating < 3) { <span class="overallRateingNew red">
+                                    <i class="fa fa-star starColour2"></i>&nbsp;{{propertydemo.Averagerating |
+                                    number :
+                                    '1.1-1'}}
+                                    </span>
+                                    }
+                        </div>
+                        }
+
+                    </div>
+                </div>
+
+                <div>
+                    <div class="newCardHeart mb-2">
+                        <div [ngClass]="{'Rental_icons_Heart_Active_New': isInWishlist(propertydemo.property_info_IDPK), 'New_wistlist_Heart': !isInWishlist(propertydemo.property_info_IDPK)}"
+                            class="Rental_icons_Heart_New mb-2"
+                            (click)="Heart_Transtion(propertydemo.property_info_IDPK)">
+                        </div>
+                    </div>
+                    <div class="newCardHeart">
+                        <div class="Rental_icons_Share_new" (click)="shareContent(propertydemo)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <!-- propertyInitialImages -->
+
+            @if ((propertydemo?.images?.length ?? 0) > 1 && !imageErrorMap[propertydemo?.property_info_IDPK]) {
+
+            <owl-carousel-o [options]="customOptionsGallery" class="owlCarouselODiv"
+                (changed)="activeIndexMap[i] = $event.startPosition + 1">
+
+                @for (image of (propertydemo.images | slice:0:5); track image) {
+
+                <ng-template carouselSlide>
+                    <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                        target="_blank">
+
+                        <img class="newListingCardImage"
+                            [src]="propertyimage + $any(image).name + '?width=250&height=201'" (error)="onImgError($event, propertydemo?.property_info_IDPK)" loading="eager"
+                            fetchpriority="high" decoding="async" alt="newListingCardImage">
+
+                    </a>
+                </ng-template>
+
+                }
+
+            </owl-carousel-o>
+
+            }
+
+            @else if ((propertydemo?.images?.length ?? 0) === 1 && !imageErrorMap[propertydemo?.property_info_IDPK]) {
+
+            <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                target="_blank">
+
+                <img class="newListingCardImage"
+                    [src]="propertyimage + propertydemo.images[0].name + '?width=250&height=201'" (error)="onImgError($event, propertydemo?.property_info_IDPK)" loading="eager"
+                    fetchpriority="high" decoding="async" alt="newListingCardImage">
+
+            </a>
+
+            }
+
+            @else {
+
+            <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                target="_blank">
+
+                <img class="newListingCardImage"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/priceOnRequestListing-new.svg"
+                    loading="eager" fetchpriority="high" decoding="async" alt="newListingCardImage">
+
+                <button class="noImageRequestButton">
+                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/requestImageButton.svg"
+                        alt="noImageRequestButton">
+                    Request Image
+                </button>
+
+            </a>
+
+            }
+
+
+
+
+            <div class="imgBottomInfo d-flex  justify-content-between">
+                <div class="d-flex">
+                    @if (propertydemo.propertyType !== 'Plots') {
+                    <span class="imgBottomContent borderRightRed">{{propertydemo.BHK |
+                        replaceLineBreaksany
+                        | unique2 | orderBy2}} BHK {{propertydemo.propertyType}}</span>
+                    }
+
+                    @if (propertydemo.propertyType == 'Plots') {
+                    <span class="imgBottomContent borderRightRed">{{propertydemo.propertyType}}</span>
+                    }
+
+                    @if (propertydemo.area_max == '0') {
+                    <span class="imgBottomContent">{{propertydemo.dimension}}
+                        Acres</span>
+                    }
+                    @if (propertydemo.area_max != '0') {
+                    <span class="imgBottomContent">{{propertydemo.area_min}} -
+                        {{propertydemo.area_max}}
+                        sq.ft </span>
+                    }
+                </div>
+                <div class="cardPhotoCountDiv">
+                    <span class="cardPhotoCount m-0 pr-1">
+                        {{ Mousemovement ? (activeIndexMap[i] || 1) : 1 }} / {{ propertydemo.images.length >= 5
+                        ?
+                        5 : propertydemo.images.length }}
+                    </span>
+                    <img class="cardPhotoIcon"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/imgCountNew.svg"
+                        alt="cardPhotoIcon">
+                </div>
+            </div>
+            <div class="imgBottomInfo1"></div>
+
+        </div>
+
+
+
+
+        <div class="ListingCardbottom">
+            <div class="text-truncate">
+                <a href="https://www.homes247.in/property/{{propertydemo.city_name | cleanUrl}}/{{propertydemo.locality_name | cleanUrl}}/{{propertydemo.propertyName | cleanUrl}}-{{propertydemo.property_info_IDPK}}"
+                    target="_blank" class="cardPropertyName m-0">{{propertydemo.propertyName}}</a>
+            </div>
+            <div class="cardPropertyLocation  text-truncate"> {{propertydemo.locality_name}},
+                {{propertydemo.city_name}}</div>
+            @if (propertydemo.price_max !== '0 ') {
+            <div class="cardPropPricing mt-1"> ₹
+                {{propertydemo.price_min}}
+                - {{propertydemo.price_max}}</div>
+            }
+
+
+            @if (propertydemo.price_max == '0 ') {
+            <div class="cardPropPricingOnRequest mt-1" propertydemo-toggle="modal" propertydemo-target="#myModal_city"
+                propertydemo-backdrop="static" propertydemo-keyboard="false"
+                (click)="propertyNameClick(propertydemo.propertyName,propertydemo.RegionID,propertydemo.localityid,propertydemo.property_info_IDPK)">
+                Unlock Price Info
+                <img width="18px" height="18px"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg"
+                    alt="padlock">
+            </div>
+            }
+            <div class="newCardStatus d-flex my-2">
+                <span class="propStatus">{{ propertydemo.Status }}</span>
+                @if (propertydemo.Status != 'Ready to Move' ) {
+                <span class="propStatus ml-2">Completion in {{
+                    propertydemo.PossessionDate | date :
+                    "MMM-yyyy"}}</span>
+                }
+
+                @if (propertydemo.Status == 'Ready to Move' ) {
+                <span class="propStatus ml-2">Since {{
+                    propertydemo.PossessionDate | date :
+                    "MMM-yyyy"}}</span>
+                }
+
+            </div>
+            <div class="d-flex justify-content-between cardBottomContainer">
+                <div class="d-flex propertyBuilderContainer">
+                    <img class="propertyBuilder mr-1"
+                        src="https://img.homes247.in/images/builder/{{propertydemo.builder_logo}}?width=34&height=38"
+                        alt="propertyBuilder">
+
+
+                    <div class="propertyBuilderName text-truncate">{{propertydemo.BuilderName}}</div>
+                </div>
+                <div class="pr-2">
+                    <img (click)="propertyNameClick(propertydemo.propertyName,propertydemo.RegionID,propertydemo.localityid,propertydemo.property_info_IDPK)"
+                        class="cardContactIcons" data-toggle="modal" data-target="#myModal_city" data-backdrop="static"
+                        data-keyboard="false"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/newCallIcon1.svg"
+                        alt="cardContactIcons">
+                    <img (click)="whatsupshare(propertydemo)" class="cardContactIconsWhatsApp ml-1"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newPropListing/newWhatsAppIcon1.svg"
+                        alt="cardContactIconsWhatsApp">
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+    <!-- Zero Projects -->
+    @if (zeroprojects || projectcount == 0) {
+    <div>
+        <p class="noprojects">Sorry, No Projects Found<span>.</span><span>.</span><span>.</span></p>
+    </div>
+    }
+
+    <div id="scroll-anchor" #scrollAnchor></div>
+
+    @if (showLoader) {
+        <!-- @for (item of [1,2,3,4]; track item) { -->
+
+        <div class="px-2 search-results">
+
+            <!-- Top Image Section -->
+            <div class="listingCardTop">
+
+                <!-- Tags Top -->
+                <div class="cardTagsTop d-flex justify-content-between">
+
+                    <div class="d-flex">
+                        <ngx-skeleton-loader
+                            [theme]="{ width: '60px', height: '20px', 'border-radius': '15px', background: '#80808030' }">
+                        </ngx-skeleton-loader>
+
+                        <ngx-skeleton-loader class="ml-2"
+                            [theme]="{ width: '45px', height: '20px', 'border-radius': '15px', background: '#80808030' }">
+                        </ngx-skeleton-loader>
+                    </div>
+
+                    <div class="d-flex flex-column">
+                        <ngx-skeleton-loader
+                            [theme]="{ width: '25px', height: '25px', 'border-radius': '50%', background: '#80808030' }">
+                        </ngx-skeleton-loader>
+
+                        <ngx-skeleton-loader class="mt-2"
+                            [theme]="{ width: '25px', height: '25px', 'border-radius': '50%', background: '#80808030' }">
+                        </ngx-skeleton-loader>
+                    </div>
+                </div>
+
+                <!-- Main Image -->
+                <ngx-skeleton-loader [theme]="{ height: '220px', 'border-radius': '12px', background: '#80808030' }">
+                </ngx-skeleton-loader>
+
+                <!-- Bottom Image Info -->
+                <!-- <div class="imgBottomInfo d-flex justify-content-between mt-2">
+                    <ngx-skeleton-loader
+                        [theme]="{ width: '140px', height: '18px', 'border-radius': '6px', background: '#80808030' }">
+                    </ngx-skeleton-loader>
+
+                    <ngx-skeleton-loader
+                        [theme]="{ width: '60px', height: '18px', 'border-radius': '6px', background: '#80808030' }">
+                    </ngx-skeleton-loader>
+                </div> -->
+
+            </div>
+
+            <!-- Bottom Content -->
+            <div class="ListingCardbottomskeleton mt-3">
+
+                <!-- Property Name -->
+                <ngx-skeleton-loader
+                    [theme]="{ width: '75%', height: '20px', 'border-radius': '6px', background: '#80808030' }">
+                </ngx-skeleton-loader>
+
+                <!-- Location -->
+                <!-- <ngx-skeleton-loader class="mt-2"
+                    [theme]="{ width: '55%', height: '16px', 'border-radius': '6px', background: '#80808030' }">
+                </ngx-skeleton-loader> -->
+
+                <!-- Price -->
+                <ngx-skeleton-loader class="mt-3"
+                    [theme]="{ width: '45%', height: '20px', 'border-radius': '6px', background: '#80808030' }">
+                </ngx-skeleton-loader>
+
+                <!-- Status -->
+                <div class="d-flex mt-3">
+                    <ngx-skeleton-loader
+                        [theme]="{ width: '100px', height: '25px', 'border-radius': '20px', background: '#80808030' }">
+                    </ngx-skeleton-loader>
+
+                    <ngx-skeleton-loader class="ml-2"
+                        [theme]="{ width: '120px', height: '25px', 'border-radius': '20px', background: '#80808030' }">
+                    </ngx-skeleton-loader>
+                </div>
+
+                <!-- Bottom Row -->
+                <div class="d-flex justify-content-between mt-3">
+
+                    <div class="d-flex align-items-center">
+                        <ngx-skeleton-loader
+                            [theme]="{ width: '35px', height: '38px', 'border-radius': '6px', background: '#80808030' }">
+                        </ngx-skeleton-loader>
+
+                        <ngx-skeleton-loader class="ml-2"
+                            [theme]="{ width: '100px', height: '16px', 'border-radius': '6px', background: '#80808030' }">
+                        </ngx-skeleton-loader>
+                    </div>
+
+                    <div class="d-flex">
+                        <ngx-skeleton-loader
+                            [theme]="{ width: '35px', height: '35px', 'border-radius': '50%', background: '#80808030' }">
+                        </ngx-skeleton-loader>
+
+                        <ngx-skeleton-loader class="ml-2"
+                            [theme]="{ width: '35px', height: '35px', 'border-radius': '50%', background: '#80808030' }">
+                        </ngx-skeleton-loader>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- } -->
+        }
+
+
+
+</div>

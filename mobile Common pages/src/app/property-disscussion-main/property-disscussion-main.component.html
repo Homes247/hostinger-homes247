@@ -1,0 +1,288 @@
+<!-- <app-innerheader class="navHide"></app-innerheader> -->
+
+<div class="outerDivBg" *ngFor="let data of propertiesDetailsnew; let i = index">
+  <div class="col-12">
+    <div class="col-12 borderBottomOverview pl-0 mb-4">
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumbs mb-0">
+          <li class="breadcrumb-item"><a href="https://www.homes247.in/"
+              title="India's Favourite Property Portal !">Home</a></li>
+          <li class="breadcrumb-item" aria-current="page">
+            <a rel="bookmark" class="relatedSearchButton" title="All Project Reviews in India | Homes247.in"
+              href="https://www.homes247.in/property/{{data.city_name|cleanUrl}}/{{data.locality_name|cleanUrl}}/{{data.propertyName|cleanUrl}}-{{propID | cleanUrl}}">{{data.propertyName}}</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            <a target="_blank" class="breadcrumbs__element" title="Locality Reviews {{data.city_name}} | Homes247.in">
+              {{data.propertyName}} Discussion Forum
+            </a>
+          </li>
+          <!-- <li class="breadcrumb-item active" aria-current="page">
+            <a target="_blank" class="breadcrumbs__element">
+            {{data.locality_name}}
+            </a>
+          </li> -->
+        </ul>
+      </nav>
+      <div class="row">
+        <div class="col-sm-12 d-flex">
+          <!-- <a><img (click)="location.back()" style="cursor: pointer;" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/propImage/Vector.png" alt="..Vector.png" >&nbsp;&nbsp;</a> -->
+          <a><i (click)="location.back()" class="fa fa-long-arrow-left left-icon topheadbackbtn"
+              aria-hidden="true"></i>&nbsp;&nbsp;</a>
+
+          <h1 class="overViewColour">
+            {{data.propertyName}} Discussion Forum
+          </h1>
+          <div class="col-sm-12 mb-4" *ngIf="zeroanswer">
+            <h3>
+              Any queries about this project? Ask away, we'll answer right away!
+            </h3>
+          </div>
+        </div>
+      </div>
+      <div class="questionCategory col-12 mt-3 pl-0">
+        <div class="forumInside col-12 mb-4">
+          <div class="row">
+            <div class="propertyIssue">
+              <button>All</button>
+              <button>Configuration</button>
+              <button>Status</button>
+              <button>Price</button>
+              <button>Location</button>
+              <!-- <button>+ 4 More</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="accordion" id="accordionExample">
+      <div class="mb-3" *ngFor="let question of question; let i = index">
+        <div class="card-header p-0" [id]="'heading' + i">
+          <h2 class="mb-0">
+            <button class="px-3 pt-3 pb-0 btn-block headerBtn text-left col-12" type="button" data-toggle="collapse"
+              (click)="toggleCollapse(i)" [attr.aria-expanded]="isCollapsed[i] ? 'true' : 'false'"
+              [attr.aria-controls]="'collapse' + i">
+              <div class="row">
+                <div class="col-11">
+                  <p class="questionsText">{{ question.user_question }}</p>
+                </div>
+                <div class="col-1 px-0 questionCol">
+                  <i class="fa" [ngClass]="{
+                      'fa-angle-up': isCollapsed[i],
+                      'fa-angle-down': !isCollapsed[i]
+                    }"></i>
+                </div>
+              </div>
+            </button>
+          </h2>
+        </div>
+
+        <div [id]="'collapse' + i" class="collapse" aria-labelledby="headingOne" [ngClass]="{ show: isCollapsed[i] }"
+          data-parent="#accordionExample">
+          <div class="card-body pt-0 pl-3">
+            <div class="" *ngFor="let answers of question.Answer_Deatils | slice : 0 : 3">
+              <div class="d-flex">
+                <div>
+                  <p class="questionUserTitle">
+                    About {{ question.question_category }}/
+                  </p>
+                </div>
+                <div>
+                  <p class="questionUserTitle">by {{ answers.userName }}</p>
+                </div>
+              </div>
+              <div class="" *ngIf="question.Answer_Deatils !== []">
+                <p class="answertext">{{ answers.user_answer }}</p>
+              </div>
+              <div class="" *ngIf="question.Answer_Deatils === []">
+                <p class="answertext">Be The first person to answer.</p>
+              </div>
+            </div>
+            <div class="col-sm-12 p-0 seeAllWrite">
+              <a
+                href="/dfd/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-disscussion-forum-details-{{question.discussion_question_IDPK}}-{{propID | cleanUrl}}">
+                <span class="writeAnswerText" onclick="document.getElementById('id03').style.display='block'">See all
+                  Answers &nbsp;|&nbsp;</span>
+              </a>
+              <a class="writeAnswerText" data-toggle="collapse" href="#multiCollapseExample{{
+                  question.discussion_question_IDPK
+                }}" role="button" aria-expanded="false">Write Your Answer</a>
+
+              <div class="collapse multi-collapse" id="multiCollapseExample{{ question.discussion_question_IDPK }}">
+                <form [formGroup]="RegistrationForm">
+                  <textarea formControlName="answerData" class="col-sm-12 mt-3 p-1" id="exampleFormControlTextarea1"
+                    rows="2" required></textarea>
+                  <div class="col-sm-12 p-0 text-right">
+                    <button class="btnAnswerSubmit" (click)="onAnswer(question.discussion_question_IDPK)">
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+  </div>
+
+  <div class="showLoginView loginPostionPage" *ngIf="LoginView">
+    <!-- <div class="modal-header"> -->
+      <div class="col-sm-12 text-center" style="padding: 1rem;">
+        <img class="loginModelImg" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/logo/Homes247_NewBlack_Logo.png" alt="Homes247_NewBlack_Logo.png">
+        <!-- <p class="loginModelText">Best Innovative Realestate Website of the year and most trusted brand.</p> -->
+        <button (click)="close()" #cancelreviewmodel type="button" class="close" data-bs-dismiss="modal">
+          &times;
+        </button>
+      </div>
+    <!-- </div> -->
+    <div class="modal-body">
+      <div class="container log">
+        <div class="">
+    
+          <h5 class="underline-1">Verify Your Number</h5>
+        </div>
+        <div class="maindiv">
+          <form>
+            <div class="input-cont">
+              <input autocomplete="off" type="number" id="loginmobile" name="mobile" placeholder="Mobile Number"
+                [(ngModel)]="user.number" maxlength="10">
+              <div class="border1"></div>
+            </div>
+            <div class="clear"></div>
+            <button id="one" (click)="loginotpsend()">Send OTP</button>
+            <button #cancel hidden type="button" data-bs-dismiss="modal" style="display: none;"></button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="modal-container">
+      <div class="modal-background">
+        <div class="modal">
+          <form name="otpForm" novalidate>
+            <div class="col-sm-12 text-center">
+              <img class="loginModelImg" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/logo/Homes247_NewBlack_Logo.png" alt="Homes247_NewBlack_Logo.png">
+              <p class="loginModelText">Best Innovative Realestate Website of the year and most trusted brand.</p>
+          </div>
+            <h5 class="loginModelText1 mb-4">Enter the 4 digit Verification Code sent on {{user.number}}<a style="color: blue;" (click)="goback4()"> -
+              Edit</a></h5>
+              <div class="col-12 countdown_maindiv">
+                <countdown #cd1 [config]="countdownconfig" (event)="handleEvent($event)"></countdown>
+              </div>
+            <input hidden autocomplete="off" type="text" placeholder="OTP" name="otp" id="otp"
+                   [(ngModel)]="user.otp" required/>
+            <ng-otp-input class="otpinput mt-3" #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config">
+            </ng-otp-input>
+            <button (click)="otpvalidatelogin()" class="btn btn-dark mobileLogButton">Validate OTP</button>
+            <p class="otpexpireclass" *ngIf="otpexpired">OTP Expired - <a C (click)="loginotpsend()">Resend</a></p>
+            <button type="reset" id="btn_reset" style="display: none;"></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="issuePropDiv col-12 px-0">
+    <div class="mb-2">
+      <div class="col-sm-12">
+        <h2 class="overViewColour2">{{ propName }} Quick Links</h2>
+      </div>
+    </div>
+    <div class="quickLinksDiv col-12">
+      <ul class="pl-0">
+        <a
+          href="/property-brochure-floorplans/{{
+            data.propertyName | cleanUrl
+          }}-{{ data.city_name | cleanUrl }}-{{ propID }}"
+        >
+          <li>
+            {{ data.propertyName }} Brochure&nbsp;<i
+              class="fa fa-external-link"
+              aria-hidden="true"
+            ></i>
+          </li>
+        </a>
+
+        <a href=""
+          ><li>
+            {{ data.propertyName }} Location Map&nbsp;
+            <i class="fa fa-external-link" aria-hidden="true"></i></li
+        ></a>
+
+        <a href=""
+          ><li>
+            {{ data.propertyName }} Photos & Videos&nbsp;
+            <i class="fa fa-external-link" aria-hidden="true"></i></li
+        ></a>
+
+        <a
+          href="/dfl/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-disscussion-forum-list-{{propID | cleanUrl}}"
+          ><li>
+            {{ data.propertyName }} Questions Answers&nbsp;
+            <i class="fa fa-external-link" aria-hidden="true"></i></li
+        ></a>
+
+        <a
+          href="/prd/rating-and-reviews-of-{{
+            data.propertyName | cleanUrl
+          }}-{{ propID }}"
+          ><li>
+            {{ data.propertyName }} Reviews&nbsp;
+            <i class="fa fa-external-link" aria-hidden="true"></i></li
+        ></a>
+
+        <a
+          href="/fpl/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-floorplans-{{propID | cleanUrl}}"
+          ><li>
+            {{ data.propertyName }} Floor Plans&nbsp;
+            <i class="fa fa-external-link" aria-hidden="true"></i></li
+        ></a>
+      </ul>
+    </div>
+  </div> -->
+  <div class="postQuestionBtn">
+    <a
+      href="/dfq/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-disscussion-forum-question-{{propID | cleanUrl}}">
+      <button class="writeAnswerBtn">Have a Question? Ask Here</button>
+    </a>
+  </div>
+
+
+  <div *ngIf="Visiblebrochure">
+    <ng-container *ngComponentOutlet="otpValidationComponent"></ng-container>
+  </div>
+
+
+  <div class="issuePropDiv col-12 px-0">
+    <div class="mb-2">
+        <div class="col-sm-12">
+            <h2 class="overViewColour2">{{propName}} Quick Links</h2>
+        </div>
+    </div>
+    <div class="quickLinksDiv col-12" >
+      <ul class="pl-0">
+        <a href="/pbd/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-brochure-download-{{propID | cleanUrl}}"><li>{{data.propertyName}} Brochure&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a>
+        <a href="/plm/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-location-map-{{propID | cleanUrl}}"><li>{{data.propertyName}} Location Map&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a>
+        <a href="/pas/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-amenities-{{propID | cleanUrl}}"><li>{{data.propertyName}} Amenities&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a>
+        <a href="/pgv/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-photo-gallery-{{propID | cleanUrl}}"><li>{{data.propertyName}} Photos & Videos&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a>
+        <!-- <a href="/dfl/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-disscussion-forum-list-{{propID | cleanUrl}}"><li>{{data.propertyName}} Questions Answers&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a> -->
+        <a href="/prd/rating-and-reviews-of-{{data.propertyName | cleanUrl}}-{{propID | cleanUrl}}"><li>{{data.propertyName}} Reviews&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a>
+        <a href="/fpl/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-floorplans-{{propID | cleanUrl}}"><li>{{data.propertyName}} Floor Plans & Prices&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a> 
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- CSS-Loader -->
+<div *ngIf="otploader" class="loaderbody">
+  <div class="box">
+    <div class="loader-20"></div>
+  </div>
+</div>
+<!-- CSS-Loader -->
+<div class="innerheader_position">
+  <app-innerheader></app-innerheader>
+</div>

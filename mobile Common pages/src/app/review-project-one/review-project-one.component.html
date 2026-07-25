@@ -1,0 +1,176 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-12 pageBackground">
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumbs mb-0">
+          <li class="breadcrumb-item"><a href="https://www.homes247.in/" aria-label="India's Favourite Property Portal !"
+              title="India's Favourite Property Portal !">Home</a></li>
+          <!-- <li class="breadcrumb-item" aria-current="page">
+            <a target="_blank"
+              href="https://www.homes247.in/new-launch-projects/new-projects-in-{{currentPropCity | cleanUrl}}"
+              class="breadcrumbs__element"
+              title="New projects in {{currentPropCity}} | Upcoming Projects in {{currentPropCity}} | Homes247.in">
+              New Projects in {{currentPropCity}}
+            </a>
+          </li> -->
+          <li class="breadcrumb-item" aria-current="page">
+            <a rel="bookmark" class="relatedSearchButton" title="All Project Reviews in India | Homes247.in"
+              href="https://www.homes247.in/all-project-reviews-in-india" aria-label="All Project Reviews in India">
+              All Project Reviews in India
+            </a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            <a target="_blank" class="breadcrumbs__element"
+              href="https://www.homes247.in/pcr/project-reviews-in-{{currentPropCity | cleanUrl}}"
+              title="Project Reviews {{currentPropCity}} | Homes247.in" [attr.aria-label]="'Project Reviews in ' + currentPropCity">
+              Project Reviews in {{currentPropCity}}
+            </a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            <a target="_blank" class="breadcrumbs__element"
+              href="https://www.homes247.in/pclr/project-reviews-in-{{currentLocalityName | cleanUrl}}-{{currentPropCity | cleanUrl}}-{{currentLocalityId}}"
+              title="Project Reviews in {{currentLocalityName}} {{currentPropCity}} | Homes247.in" [attr.aria-label]="'Project Reviews in ' + currentLocalityName + ' ' + currentPropCity">
+              Project Reviews in {{currentLocalityName}} {{currentPropCity}}
+            </a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            <a target="_blank" class="breadcrumbs__element" [attr.aria-label]="'Reviews for ' + currentPropName + ' | Homes247.in'">
+              {{currentPropName}}
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="col-md-12 d-flex p-0">
+        <h1 class="headingtag">
+          <a class="localityback"
+          href="https://www.homes247.in/property/{{currentPropCity| cleanUrl}}/{{currentLocalityName| cleanUrl}}/{{currentPropName| cleanUrl}}-{{currentPropId}}" [attr.aria-label]="'Back to ' + currentPropName + ' details page'" title="Back to {{currentPropName}} details page">
+          <i class="fa fa-long-arrow-left left-icon topheadbackbtn" aria-hidden="true"></i>
+      </a>
+          <span class="pageTitle">Reviews and Ratings of {{currentPropName}}</span>
+        </h1>
+      </div>
+      <div class="col-md-12 reviewProp">
+
+        <div class="d-flex leftSectionProp">
+          <div class="propImg1">
+            <a class=""
+              href="https://www.homes247.in/property/{{currentPropCity| cleanUrl}}/{{currentLocalityName| cleanUrl}}/{{currentPropName| cleanUrl}}-{{currentPropId}}"
+              target="_blank" rel="bookmark" [attr.aria-label]="'Back to ' + currentPropName + ' in ' + currentLocalityName + ', ' + currentPropCity" title="{{currentPropName}} in {{currentLocalityName}}, {{currentPropCity}} | Reviews | Price">
+              <img class="" src="{{propertyimage}}{{Property_Image}}" alt="Property_Alt_Tag" />
+            </a>
+          </div>
+          <div class="propDetail pl-2">
+            <h2 id="prop1text"><a
+                href="https://www.homes247.in/property/{{currentPropCity| cleanUrl}}/{{currentLocalityName| cleanUrl}}/{{currentPropName| cleanUrl}}-{{currentPropId}}"
+                rel="bookmark" [attr.aria-label]="'Back to ' + currentPropName + ' in ' + currentLocalityName + ', ' + currentPropCity" title="{{currentPropName}} in {{currentLocalityName}}, {{currentPropCity}} | Reviews | Price">
+                {{currentPropName}}
+              </a>
+            </h2>
+            <div class="reviewtop" (click)="showReviewModel();WriteRatingAndReview()">Write a Review</div>
+
+            <p id="prop1Loc" class="mt-3">
+              <a href="https://www.homes247.in/upcoming-new-launch-properties/new-projects-in-{{currentLocalityName| cleanUrl}}-{{currentPropCity| cleanUrl}}-{{currentLocalityId}}"
+              rel="bookmark" [attr.aria-label]="'New Projects in ' + currentLocalityName + ', ' + currentPropCity"
+              title="New Projects in {{currentLocalityName}}, {{currentPropCity}} | Upcoming Projects in Sale in {{currentLocalityName}}, {{currentPropCity}} | Homes247.in">New
+              Projects in {{currentLocalityName}}</a> &nbsp;&nbsp;
+
+            <a class="external"
+              href="https://www.homes247.in/{{currentPropCity | cleanUrl}}/property-sale-in-{{currentLocalityName | cleanUrl}}-{{currentLocalityId}}"
+              [attr.aria-label]="'Properties for sale in ' + currentLocalityName + ', ' + currentPropCity" rel="bookmark"
+              title="Properties for sale in {{currentLocalityName}}"> <i class="fa fa-external-link"
+                aria-hidden="true"></i> </a>
+            </p>
+
+            <p id="prop1Loc" class="mt-3">
+               <a href="https://www.homes247.in/new-launch-projects/new-projects-in-{{currentPropCity | cleanUrl}}"
+                  title="Upcoming projects in {{currentPropCity}} | New projects in {{currentPropCity}}" [attr.aria-label]="'Upcoming projects in ' + currentPropCity">Upcoming
+                  Projects in {{currentPropCity}}</a>&nbsp;&nbsp;
+
+                <a class="external"
+                  href="https://www.homes247.in/{{currentPropCity | cleanUrl}}/property-sale"
+                  title="Properties for Sale in {{currentPropCity}} | Buy Property in {{currentPropCity}}"
+                  rel="bookmark" [attr.aria-label]="'Properties for Sale in ' + currentPropCity">
+                  <i class="fa fa-external-link" aria-hidden="true"></i>
+                </a>
+            </p>
+
+            <p id="starsRating">
+              <i [ngClass]="{'starColour': averagerating >= 1}" class="fa fa-star"></i>
+              <i [ngClass]="{'starColour': averagerating >= 2}" class="fa fa-star"></i>
+              <i [ngClass]="{'starColour': averagerating >= 3}" class="fa fa-star"></i>
+              <i [ngClass]="{'starColour': averagerating >= 4}" class="fa fa-star"></i>
+              <i [ngClass]="{'starColour': averagerating >= 5}" class="fa fa-star "></i>
+              ({{totaluserratings}})
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12 p-0 d-flex clientReviewTitle">
+        <h2>{{currentPropName}} Customer Reviews</h2>
+        <!-- <p> <a href="">See all</a></p> -->
+      </div>
+
+      <div class="col-md-12 p-0">
+        <div class="detailedReviews" *ngFor="let textReview of displayedReviews">
+          <div class="d-flex nameRating">
+            <p>{{textReview.User}} {{textReview.lastname}}</p>
+            <p>
+              <i [ngClass]="{'starColour': textReview.Rating >= 1}" class="fa fa-star"></i>&nbsp;
+              <i [ngClass]="{'starColour': textReview.Rating >= 2}" class="fa fa-star"></i>&nbsp;
+              <i [ngClass]="{'starColour': textReview.Rating >= 3}" class="fa fa-star"></i>&nbsp;
+              <i [ngClass]="{'starColour': textReview.Rating >= 4}" class="fa fa-star"></i>&nbsp;
+              <i [ngClass]="{'starColour': textReview.Rating >= 5}" class="fa fa-star"></i>&nbsp;
+            </p>
+          </div>
+          <div class="nameRating1">
+            <span>Date : {{textReview.Revieweddate | date:'dd-MMMM-yyyy'}} </span>
+          </div>
+
+          <div class="detailReviewText">
+            <p>{{textReview.Review}}</p>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="reviews.length > displayedReviews.length" style="text-align: center;">
+        <button class="load-more-button mt-4" (click)="loadMoreReviews()">Load More</button>
+      </div>
+      <br><br>
+      <div class="issuePropDiv col-12 px-0">
+        <div class="mb-2">
+            <div class="col-sm-12">
+                <h2 class="overViewColour2">{{currentPropName}} Quick Links</h2>
+            </div>
+        </div>
+        <div class="quickLinksDiv col-12" *ngFor="let data of propDetails">
+          <ul class="pl-0">
+            <a href="/pbd/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-brochure-download-{{currentPropId}}" [attr.aria-label]="data.propertyName + 'Brochure'"><li>{{data.propertyName}} Brochure&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a>
+            <a href="/plm/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-location-map-{{currentPropId}}" [attr.aria-label]="data.propertyName + 'Location Map'"><li>{{data.propertyName}} Location Map&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a>
+            <a href="/pas/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-amenities-{{currentPropId}}" [attr.aria-label]="data.propertyName + 'Amenities'"><li>{{data.propertyName}} Amenities&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a>
+            <a href="/pgv/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-photo-gallery-{{currentPropId}}" [attr.aria-label]="data.propertyName + 'Photos & Videos'"><li>{{data.propertyName}} Photos & Videos&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a>
+            <a href="/dfl/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-disscussion-forum-list-{{currentPropId}}" [attr.aria-label]="data.propertyName + 'Questions Answers'"><li>{{data.propertyName}} Questions Answers&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a>
+            <!-- <a href="/prd/rating-and-reviews-of-{{data.propertyName | cleanUrl}}-{{currentPropId}}" [attr.aria-label]="{{data.propertyName}} Reviews"><li>{{data.propertyName}} Reviews&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a> -->
+            <a href="/fpl/{{data.propertyName|cleanUrl}}-in-{{data.locality_name|cleanUrl}}-{{data.city_name|cleanUrl}}-floorplans-{{currentPropId}}" [attr.aria-label]="data.propertyName + 'Floor Plans & Prices'"><li>{{data.propertyName}} Floor Plans & Prices&nbsp; <i class="fa fa-external-link" aria-hidden="true"></i></li></a> 
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="mt-4 mb-3 text-center col-sm-12">
+  <pagination-controls (pageChange)="p = $event" (click)="scrollTop()"></pagination-controls>
+</div> -->
+<app-footer2></app-footer2>
+
+<div class="innerheader_position">
+  <app-innerheader></app-innerheader>
+</div>
+<!-- Write a review Modal -->
+
+<div *ngIf="ReviewPageView" >
+  <ng-container *ngComponentOutlet="PropertywritereviewComponent"></ng-container>
+</div>
+
+<!-- Write a review Modal -->

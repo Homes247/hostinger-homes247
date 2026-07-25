@@ -1,0 +1,714 @@
+
+
+<div class="col-md-12 topbarcolor">
+  <div class="container">
+    <div class="row">
+      <h2 class="Heading_Tag col-sm-12 col-lg-12 col-md-12  mt-2 p-0">Find Pin Code Numbers in India, {{StateName |
+        titlecase}}, {{CityName | titlecase}}, {{TalukName | titlecase}}</h2>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-lg-12 col-md-12">
+
+      <div class="mt-2 mb-3 pinstatetxt">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="https://www.homes247.in/">Home</a></li>
+            <li class="breadcrumb-item"><a href="https://www.homes247.in/find-pincode">Pin Code</a></li>
+
+            <li class="breadcrumb-item"><a
+                href="https://www.homes247.in/find-all-pincodes/{{StateName| cleanUrl}}">{{StateName | titlecase}}</a></li>
+
+            <li class="breadcrumb-item"><a
+                href="https://www.homes247.in/find-all-pincodes/{{StateName| cleanUrl}}/{{CityName| cleanUrl}}">{{CityName
+                | titlecase}}</a></li>
+
+            <li class="breadcrumb-item"><a>{{TalukName | titlecase}}</a></li>
+
+          </ol>
+        </nav>
+      </div>
+
+      <div class="Pagetitle">
+        <h1 style="font-size: 20px;"><b>Choose Your Branch</b></h1>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box">
+            <div class="col-md-12 mt-2 selectState">
+              <p>Select State</p>
+              <div class=" choosebox">
+                <app-search-dropdown [items]="State_Name" [size]="'small'" [label]="'state'" [uid]="'state'"
+                  [(ngModel)]="selectedState" (click)="GetStateName()">
+                </app-search-dropdown>
+                <input type="hidden" id="State_Name" [(ngModel)]="selectedState">
+              </div>
+            </div>
+            <div class=" mt-3 chooseboxmain">
+              <div class=" col-md-12 selectState">
+                <p>Select District</p>
+                <div class=" choosebox">
+                  <app-search-dropdown-pin-city [items]="Api_District_Name" [size]="'small'" [label]="'district'"
+                    [uid]="'district'" [(ngModel)]="selectedCity" (click)="GetCityName()">
+                  </app-search-dropdown-pin-city>
+                  <input type="hidden" id="City_Name" [(ngModel)]="selectedCity">
+                </div>
+              </div>
+              <div class=" mt-3 col-md-12  selectState">
+                <p>Select Taluka</p>
+                <div class=" choosebox">
+                  <app-search-dropdown-taluk [items]="ApiTalukName" [size]="'small'" [label]="'taluk'" [uid]="'taluk'"
+                    [(ngModel)]="selectedTaluk" (click)="GetTalukName()">
+                  </app-search-dropdown-taluk>
+                  <input type="hidden" id="Taluk_Name" [(ngModel)]="selectedTaluk">
+                </div>
+              </div>
+              <div class=" mt-3 col-md-12 selectState">
+                <p><b>Select Branch</b></p>
+                <div class=" choosebox">
+                  <app-search-dropdown-pin-branch [items]="ApiBranchName" [size]="'small'" [label]="'branch'"
+                    [uid]="'id'" [(ngModel)]="selectedBranch" (click)="GetBranchName()">
+                  </app-search-dropdown-pin-branch>
+                  <input type="hidden" id="Branch_Name" [(ngModel)]="selectedBranch">
+                </div>
+              </div>
+            </div>
+            <div class=" col-md-12 mt-3">
+              <div class="localitypincodelist">
+                <div class="col-md-6 pr-0">
+                  <table class="text-start table">
+                    <thead class="thead-light" style="position: sticky; top:0px">
+                      <tr>
+                        <th scope="col">Branch</th>
+                        <th scope="col">Pincode</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let taluk of CityList | slice: 0:this.testingtaluk2 ">
+                        <td><a id="taluktd1"
+                            href="https://www.homes247.in/pincode/{{taluk.state| cleanUrl}}/{{taluk.district | cleanUrl}}/{{taluk.taluk | cleanUrl}}/{{taluk.branch | cleanUrl}}/{{taluk.id}}">{{taluk.branch}}</a>
+                        </td>
+                        <td id="pincodetd">{{taluk.pincode}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-md-6 pl-0">
+                  <table class="text-start table">
+                    <thead class="thead-light" style="position: sticky; top:0px">
+                      <tr>
+                        <th scope="col">Branch</th>
+                        <th scope="col">Pincode</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let taluk2 of CityList |slice: this.testingtaluk2: this.testingtaluk1">
+                        <td><a id="taluktd1"
+                            href="https://www.homes247.in/pincode/{{taluk2.state| cleanUrl}}/{{taluk2.district | cleanUrl}}/{{taluk2.taluk | cleanUrl}}/{{taluk2.branch | cleanUrl}}/{{taluk2.id}}">{{taluk2.branch}}</a>
+                        </td>
+                        <td id="pincodetd">{{taluk2.pincode}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-12 mt-4 showmore">
+                <div class="arrow bounce down_arrow" (click)="tableshowmore()">
+                  <span class="d-flex">Show More &nbsp; <i class="fa fa-angle-down mt-1" aria-hidden="true"></i></span>
+                </div>
+                <div class="arrow bounce up_arrow" (click)="tableshowless()">
+                  <span>Show Less <i class="fa fa-angle-up" aria-hidden="true"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class=" mt-3 pinCodeTxtFrame">
+            <p class=" pl-3 pt-2 pincodetxt"><b>What is a Pin Code ?</b></p>
+            <div class=" pl-3 pr-3 pinCodeInsidetxt">
+              <p>A Postal Index Code or Pin code in general is the 6 digit Indian postal numbering system that
+                identifies the
+                zone, district and state. <br><br> Introduced back in 15th August 1972 for the ease of identifying the
+                regions
+                and bringing down the number of errors in delivering the posts. The 6 digits of of Pin code signifies
+                the
+                zone, the subzone, sorting district and postal office. There are a total of nine postal zones in India,
+                where
+                the first eight are geographical ones and the last is solely for the Army. This means that multiple
+                areas can
+                come under the same pin codes if they come under the same post office. Pin code thus becomes a very
+                important
+                part of the address of your home, permanent or temporary. Even as the country's postal department is
+                facing a
+                decline, the pin code system is still used by the government and private institutions as identifiers in
+                general for address proofs and the delivery of couriers. India has over 1,55,000 postal branches across.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class=" mt-3 faq">
+            <h3>Most Frequently <b>asked questions?</b> </h3>
+            <!-- <hr class="ml-0 faqhr"> <br>
+           <p>Lorem ipsum dolor sit amet consectetur. Turpis turpis ultricies in amet in.</p> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="accordiancollapse">
+            <div id="accordionExample">
+              <div class="card faq mb-4" type="button" data-toggle="collapse" data-target="#collapse-1"
+                aria-expanded="true" aria-controls="collapse-1" href="#collapse-1">
+                <a class="card-header2" id="heading-1">
+                  <h5 class="mb-0 faq_After">
+                    <a class="text_colour">
+                      <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Group 108.png" alt="..Group 108.png" >What is the full form of PIN Code?
+                    </a>
+                  </h5>
+                </a>
+                <div id="collapse-1" class="collapse" aria-labelledby="heading-1" data-parent="#accordionExample">
+                  <div class="card-body">
+                    <hr>
+                    <br>
+
+                    <p class="contentColor mb-0">
+                      Postal Index Number is the expanded form of the PIN code.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="card faq mb-4" type="button" data-toggle="collapse" href="#collapse-2"
+                data-target="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
+                <a class="card-header2" id="heading-2">
+                  <h5 class="mb-0 faq_After">
+                    <a class="collapsed text_colour">
+                      <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Group 108.png" alt="..Group 108.png" >How to identify the CITY in an PIN code?
+                    </a>
+                  </h5>
+                </a>
+                <div id="collapse-2" class="collapse" aria-labelledby="heading-2" data-parent="#accordionExample">
+                  <div class="card-body">
+                    <hr>
+                    <br>
+                    <p class="contentColor mb-0"><strong>We can identify the CITY from the characters of the PIN
+                        code.
+                      </strong></p>
+                  </div>
+                </div>
+              </div>
+              <div class="card faq mb-4" type="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false"
+                aria-controls="collapse-4">
+                <div class="card-header2" id="heading-4">
+                  <h5 class="mb-0 faq_After">
+                    <a class="collapsed text_colour">
+                      <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Group 108.png" alt="..Group 108.png" >What type of characters are there in an PIN
+                      code?
+                    </a>
+                  </h5>
+                </div>
+                <div id="collapse-4" class="collapse" data-parent="#accordionExample" aria-labelledby="heading-4">
+                  <div class="card-body">
+                    <hr>
+                    <br>
+                    <p class="contentColor mb-0"><strong>An PIN code contains numeric characters.</strong></p>
+                  </div>
+                </div>
+              </div>
+              <div class="card faq mb-4" type="button" data-toggle="collapse" href="#collapse-3" aria-expanded="false"
+                aria-controls="collapse-3">
+                <div class="card-header2" id="heading-3">
+                  <h5 class="mb-0 faq_After">
+                    <a class="collapsed text_colour">
+                      <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Group 108.png" alt="..Group 108.png" >How many characters are there in the PIN code?
+                    </a>
+                  </h5>
+                </div>
+                <div id="collapse-3" class="collapse" data-parent="#accordionExample" aria-labelledby="heading-3">
+                  <div class="card-body">
+                    <hr>
+                    <br>
+                    <p class="contentColor mb-0"><strong>An PIN code contains numeric characters.</strong></p>
+                  </div>
+                </div>
+              </div>
+              <div class="card faq mb-4" type="button" data-toggle="collapse" href="#collapse-5" aria-expanded="false"
+                aria-controls="collapse-5">
+                <div class="card-header2" id="heading-5">
+                  <h5 class="mb-0 faq_After">
+                    <a class="collapsed text_colour">
+                      <img loading="lazy" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/Group 108.png" alt="..Group 108.png" >What are the major components signed in an PIN
+                      code?
+                    </a>
+                  </h5>
+                </div>
+                <div id="collapse-5" class="collapse" data-parent="#accordionExample" aria-labelledby="heading-5">
+                  <div class="card-body">
+                    <hr>
+                    <br>
+                    <p class="contentColor mb-0"><strong>The major parts of the IFSC code are the City code.</strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="box-right mt-5">
+        <div class="mx-auto">
+          <div class="searchbank4">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
+                <label for="bank" class="col-12 mb-0 mt-3 title">Popular Cities in India</label>
+                <label for="bank" class="col-12 title2">Properties for sale</label>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <section id="slider" class="pt-0">
+                  <div class="">
+                    <div class="sliders">
+                      <owl-carousel-o [options]="TestingOwl">
+                        <ng-container *ngFor="let city of citiess | slice: 0:5; let i=index">
+                          <ng-template carouselSlide>
+                            <div class="slider-card">
+                              <p class="mb-0 text-center"><b>{{city.city}}</b></p>
+                              <p class=""></p>
+                            </div>
+                            <p class="owlrectangle"></p>
+                            <div class="searchbank5">
+                              <div class="row">
+                                <div class="d-flex">
+                                  <div class="ml-4 mr-2" style="text-align: center;">
+                                    <a href="https://www.homes247.in/btc/1-bhk-flats-in-{{city.city | cleanUrl}}"
+                                      title="1 BHK Flats in {{city.city}}" rel="bookmark">
+                                      <h3 for="bank" class="col-12 mb-0 mt-3 title3">1 BHK Flats in {{city.city}}</h3>
+                                    </a>
+                                    <a href="https://www.homes247.in/btc/2-bhk-flats-in-{{city.city | cleanUrl}}"
+                                      title="2 BHK Flats in {{city.city}}" rel="bookmark">
+                                      <h3 for="bank" class="col-12 mb-0 mt-3 title3">2 BHK Flats in {{city.city}}</h3>
+                                    </a>
+                                    <a href="https://www.homes247.in/btc/3-bhk-flats-in-{{city.city | cleanUrl}}"
+                                      title="3 BHK Flats in {{city.city}}" rel="bookmark">
+                                      <h3 for="bank" class="col-12 mb-0 mt-3 title3">3 BHK Flats in {{city.city}}</h3>
+                                    </a>
+                                    <a href="https://www.homes247.in/btc/4-bhk-flats-in-{{city.city | cleanUrl}}"
+                                      title="4 BHK Flats in {{city.city}}" rel="bookmark">
+                                      <h3 for="bank" class="col-12 mb-0 mt-3 title3">4 BHK Flats in {{city.city}}</h3>
+                                    </a>
+                                    <a href="https://www.homes247.in/btc/5-bhk-flats-in-{{city.city | cleanUrl}}"
+                                      title="5 BHK Flats in {{city.city}}" rel="bookmark">
+                                      <h3 for="bank" class="col-12 mb-0 mt-3 title3">5 BHK Flats in {{city.city}}</h3>
+                                    </a>
+                                  </div>
+                                  <div class="" style="text-align: center; margin-left: 11px;">
+                                    <a href="https://www.homes247.in/bstc/1-bhk-ready-to-move-flats-apartments-in-{{city.city | cleanUrl}}"
+                                      title="1 BHK Ready to Move Flats in {{city.city}}" rel="bookmark">
+                                      <h3 for="bank" class="col-12 mb-0 mt-3 title3">1 BHK Ready to Move Flats in
+                                        {{city.city}}</h3>
+                                    </a>
+                                    <a href="https://www.homes247.in/bstc/2-bhk-ready-to-move-flats-apartments-in-{{city.city | cleanUrl}}"
+                                      title="2 BHK Ready to Move Flats in {{city.city}}" rel="bookmark">
+                                      <h3 for="bank" class="col-12 mb-0 mt-3 title3">2 BHK Ready to Move Flats in
+                                        {{city.city}}</h3>
+                                    </a>
+                                    <a href="https://www.homes247.in/bstc/3-bhk-ready-to-move-flats-apartments-in-{{city.city | cleanUrl}}"
+                                      title="3 BHK Ready to Move Flats in {{city.city}}" rel="bookmark">
+                                      <h3 for="bank" class="col-12 mb-0 mt-3 title3">3 BHK Ready to Move Flats in
+                                        {{city.city}}</h3>
+                                    </a>
+                                    <a href="https://www.homes247.in/bstc/4-bhk-ready-to-move-flats-apartments-in-{{city.city | cleanUrl}}"
+                                      title="4 BHK Ready to Move Flats in {{city.city}}" rel="bookmark">
+                                      <h3 for="bank" class="col-12 mb-0 mt-3 title3">4 BHK Ready to Move Flats in
+                                        {{city.city}}</h3>
+                                    </a>
+                                    <a href="https://www.homes247.in/bstc/5-bhk-ready-to-move-flats-apartments-in-{{city.city | cleanUrl}}"
+                                      title="5 BHK Ready to Move Flats in {{city.city}}" rel="bookmark">
+                                      <h3 for="bank" class="col-12 mb-0 mt-3 title3">5 BHK Ready to Move Flats in
+                                        {{city.city}}</h3>
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </ng-template>
+                        </ng-container>
+                      </owl-carousel-o>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="box-right mt-4">
+        <div class="mx-auto">
+          <div class="searchbank6">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
+                <label for="bank" class="col-12 mb-0 mt-3 title">Popular Cities in India</label>
+                <label for="bank" class="col-12 title2">Properties for sale</label>
+              </div>
+            </div>
+            <div class="sliders2">
+              <owl-carousel-o [options]="TestingOw2">
+                <ng-container *ngFor="let city of citiess | slice: 0:5; let i=index">
+                  <ng-template carouselSlide>
+                    <div class="searchbank12">
+                      <div class="row ml-1">
+                        <div class="col-md-12">
+                          <h6 class="rgt_card_title my-0">{{city.city}}</h6>
+                          <div class="row m-0 mb-4 Box_color">
+                            <div class="col-sm-6 col-md-6 col-lg-6 mt-0" style="text-align: center;">
+                              <h3 for="bank" class="col-12 mb-0 mt-3 p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/residential-flats-in-{{city.city | cleanUrl}}-for-sale"
+                                  title="Flats for sale in {{city.city}} | Flats in {{city.city}}">Flats For Sale in
+                                  {{city.city}}</a></h3>
+                              <h3 for="bank" class="col-12 mb-0 mt-3 p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/new-launch-projects/new-projects-in-{{city.city | cleanUrl}}"
+                                  title="Upcoming projects in {{city.city}} | New projects in {{city.city}}">Upcoming
+                                  Projects in {{city.city}}</a>
+                              </h3>
+                              <h3 for="bank" class="col-12 mb-0 mt-3  p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/villas-for-sale-in-{{city.city | cleanUrl}}"
+                                  title="Villas for sale in {{city.city}} | Villas in {{city.city}}">Villas for
+                                  sale in {{city.city}}</a>
+                              </h3>
+                              <h3 for="bank" class="col-12 mb-0 mt-3  p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/plots-in-{{city.city | cleanUrl}}"
+                                  title="Plots in {{city.city}} | Plots for sale in {{city.city}}">Plots in
+                                  {{city.city}}</a>
+                              </h3>
+
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6 mt-0" style="text-align: center;">
+                              <h3 for="bank" class="col-12 mb-0 mt-3 p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/home-for-sale-in-{{city.city | cleanUrl}}"
+                                  title="Home for sale in {{city.city}} | House for sale in {{city.city}}">Home
+                                  for sale in {{city.city}}</a>
+                              </h3>
+                              <h3 for="bank" class="col-12 mb-0 mt-3  p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/ready-to-move-apartments/ready-to-move-flats-in-{{city.city | cleanUrl}}"
+                                  title="Ready to move flats in {{city.city}} | Ready to move apartments in {{city.city}}">Ready
+                                  to move Flats in {{city.city}}</a>
+                              </h3>
+                              <h3 for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a rel="bookmark"
+                                  title="Properties for Sale in {{city.city}} | Buy Property in {{city.city}}"
+                                  href="https://www.homes247.in/{{city.city | cleanUrl}}/property-sale"
+                                  class="avgRatSqft">Properties For Sale in {{city.city}}</a>
+                              </h3>
+                              <h3 for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/agricultural-land-for-sale-in-{{city.city | cleanUrl}}"
+                                  title="Agricultural Land for Sale in {{city.city}} | Farm Land for sale in {{city.city}} | Homes247.in"
+                                  rel="bookmark">Agricultural land For Sale in {{city.city}}</a>
+                              </h3>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ng-container>
+              </owl-carousel-o>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="box-right mt-4">
+        <div class="mx-auto">
+          <div class="searchbank66">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12 pt-3 pb-3" style="text-align: center;">
+                <section id="slider" class="pt-0">
+                  <div class="">
+                    <div class="sliders">
+                      <owl-carousel-o [options]="TestingOwl3">
+                        <ng-container *ngFor="let cityname of citiess | slice: 0:5; let i=index">
+                          <ng-template carouselSlide>
+                            <div class="slider-card">
+                              <h5 class="mb-0 text-center"><b>{{cityname.city}}</b></h5>
+                            </div>
+                            <div class="">
+                              <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12 px-4" style="text-align: center;">
+                                  <a href="https://www.homes247.in/fbc/flats-for-30-lakhs-in-{{cityname.city | cleanUrl}}"
+                                    title="Flats Under 30 Lakhs in {{cityname.city}}" rel="bookmark" class="newcard">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 title5">Flats Under 30
+                                      Lakhs in {{cityname.city}}</h3>
+                                  </a>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-12 px-4" style="text-align: center;">
+                                  <a href="https://www.homes247.in/fbc/flats-in-{{cityname.city | cleanUrl}}-for-sale-30-lakhs-to-40-lakhs"
+                                    title="Flats in {{cityname.city}} for sale 30 Lakhs to 40 Lakhs" rel="bookmark"
+                                    class="newcard">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 title5">Flats in
+                                      {{cityname.city}} for sale 30 Lakhs to 40 Lakhs</h3>
+                                  </a>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-12 px-4" style="text-align: center;">
+                                  <a href="https://www.homes247.in/fbc/flats-in-{{cityname.city | cleanUrl}}-for-sale-40-lakhs-to-50-lakhs"
+                                    title="Flats in {{cityname.city}} for sale 40 Lakhs to 50 Lakhs" rel="bookmark"
+                                    class="newcard">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 title5">Flats in
+                                      {{cityname.city}} for sale 40 Lakhs to 50 Lakhs</h3>
+                                  </a>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-12 px-4" style="text-align: center;">
+                                  <a href="https://www.homes247.in/fbc/flats-in-{{cityname.city | cleanUrl}}-for-sale-50-lakhs-to-60-lakhs"
+                                    title="Flats in {{cityname.city}} for sale 50 Lakhs to 60 Lakhs" rel="bookmark"
+                                    class="newcard">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 title5">Flats in
+                                      {{cityname.city}} for sale 50 Lakhs to 60 Lakhs</h3>
+                                  </a>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-12 px-4" style="text-align: center;">
+                                  <a href="https://www.homes247.in/fbc/flats-in-{{cityname.city | cleanUrl}}-for-sale-60-lakhs-to-70-lakhs"
+                                    title="Flats in {{cityname.city}} for sale 60 Lakhs to 70 Lakhs" rel="bookmark"
+                                    class="newcard">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 title5">Flats in
+                                      {{cityname.city}} for sale 60 Lakhs to 70 Lakhs</h3>
+                                  </a>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-12 px-4" style="text-align: center;">
+                                  <a href="https://www.homes247.in/fbc/flats-in-{{cityname.city | cleanUrl}}-for-sale-70-lakhs-to-80-lakhs"
+                                    title="Flats in {{cityname.city}} for sale 70 Lakhs to 80 Lakhs" rel="bookmark"
+                                    class="newcard">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 title5">Flats in
+                                      {{cityname.city}} for sale 70 Lakhs to 80 Lakhs</h3>
+                                  </a>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-12 px-4" style="text-align: center;">
+                                  <a href="https://www.homes247.in/fbc/flats-in-{{cityname.city | cleanUrl}}-for-sale-80-lakhs-to-90-lakhs"
+                                    title="Flats in {{cityname.city}} for sale 80 Lakhs to 90 Lakhs" rel="bookmark"
+                                    class="newcard">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 title5">Flats in
+                                      {{cityname.city}} for sale 80 Lakhs to 90 Lakhs</h3>
+                                  </a>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-12 px-4" style="text-align: center;">
+                                  <a href="https://www.homes247.in/fbc/flats-in-{{cityname.city | cleanUrl}}-for-sale-90-lakhs-to-1-crore"
+                                    title="Flats in {{cityname.city}} for sale 90 Lakhs to 1 Crore" rel="bookmark"
+                                    class="newcard">
+                                    <h3 for="bank" class="col-12 mb-0 mt-3 mb-2 title5">Flats in
+                                      {{cityname.city}} for sale 90 Lakhs to 1 Crore</h3>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </ng-template>
+                        </ng-container>
+                      </owl-carousel-o>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="box-right mt-4">
+        <div class="mx-auto">
+          <div class="searchbank61">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
+                <label for="bank" class="col-12 mb-0 mt-3 title">Top Blogs Categories</label>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-12 pt-3 pb-3" style="text-align: center;">
+                <section id="slider" class="pt-0 px-2" *ngFor="let city of citiess | slice: 0:1; let i=index">
+                  <div id="accordion">
+                    <div class="card curve mb-2">
+                      <P class="card_down_underline"></P>
+                      <div id="collapse-{{i}}" class="collapse show" data-parent="#accordion"
+                        aria-labelledby="heading-1">
+                        <div class="row">
+                          <div class="col-12  d-flex m-0 Box_color1">
+                            <div class="col-6 col-6 col-6 mt-0" style="text-align: center;">
+                              <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/blogs"
+                                  title="Best Real Estate Blogs in India-Latest News & Updates | Homes247.in">Real
+                                  Estate Blogs</a></label>
+
+                              <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/articles/our-latest-updates-2"
+                                  title="Latest Blogs on Real Estate,Vastu,Health,Tech | Homes247.in">Our Latest
+                                  Blogs</a> </label>
+
+                              <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/articles/interior-design-ideas-5"
+                                  title="Must Read Interior Design Blogs | Homes247.in">Interior Design Ideas</a>
+                              </label>
+
+                              <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/articles/healthy-lifestyle-blogs-9"
+                                  title="Best Lifestyle Blogs to follow in 2020 | Homes247.in">Healthy Lifestyle
+                                  Blogs</a> </label>
+
+                              <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/articles/diy-decor-ideas-12"
+                                  title="Best DIY Craft Blogs to follow for Decor | Homes247.in">DIY Decor Ideas</a>
+                              </label>
+
+                              <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/blogs/best-entertainment-blogs-18"
+                                  title="Best Entertainment blogs 2023 available with Homes247.in">Entertainment
+                                  Blogs</a> </label>
+
+                              <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/articles/popular-indian-festivals-15"
+                                  title="Popular Indian Festivals & Festival Blog |Homes247.in">Indian Festivals</a>
+                              </label>
+
+                            </div>
+                            <div class="col-6 col-6 col-6 mt-0" style="text-align: center;">
+
+                              <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/articles/technology-blogs-6"
+                                  title="Top Technology Blogs to follow|Best Tech Blogs|Homes247.in">Latest Technology
+                                  News</a> </label>
+
+                              <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/articles/indian-realestate-articles-17"
+                                  title="Best Indian Real Estate & Property Investment Blogs|Homes247.in">Indian Real
+                                  Estate Blogs</a> </label>
+
+                              <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/articles/health-fitness-blogs-11"
+                                  title="Amazing Healthy Living & Fitness Blogs | Homes247.in">Health & Fitness
+                                  Blogs</a> </label>
+
+                              <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/articles/finance-loan-taxes-13"
+                                  title="Finance ,Home Loan & Taxes Blogs | Homes247.in">Finance, Loan & Taxes</a>
+                              </label>
+
+                              <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/articles/most-popular-news-14"
+                                  title="Latest News | Popular News Blogs | Homes247.in">Most Popular News</a> </label>
+
+                              <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/articles/tips-for-buying-a-house-4"
+                                  title="Best Home Buying Blogs You Should Read | Homes247.in">Tips for Buying a
+                                  House</a> </label>
+
+                              <label for="bank" class="col-12 mb-0 mt-3 mb-3 p-0 title4"><a class="avgRatSqft"
+                                  href="https://www.homes247.in/articles/modern-construction-techniques-10"
+                                  title="Modern construction Blogs for Builders | Homes247.in">Construction Blogs</a>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="box-right mt-4">
+        <div class="mx-auto">
+          <div class="searchbank9">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
+                <label for="bank" class="col-12 mb-0 mt-3 title">Blogs Categories</label>
+              </div>
+            </div>
+            <div class="searchbank10">
+              <div class="container" id="infotable">
+                <div class="row">
+                  <div class="col-6" style="text-align: center;">
+                    <div class="blogs_card">
+                      <a class="col-12 mb-0 mt-3 pl-0 card2 blogs_images1" href="https://www.homes247.in/articles/our-trending-blogs-1"
+                        title="Best Trending Blog Topics | Popular Blogs | Homes247.in">
+                        <span class="ml-5">Trending Topics</span>
+
+                      </a>
+                    </div>
+                  </div>
+                  <div class="col-6" style="text-align: center;">
+                    <div class="blogs_card">
+                      <a class="col-12 mb-0 mt-3 pl-0 card2 blogs_images3" href="https://www.homes247.in/articles/top-real-estate-news-7"
+                        title="Latest Real Estate News & Updates | Homes247.in">
+                        <span class=" ml-5">Real Estate News</span>
+
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6" style="text-align: center;">
+                    <div class="blogs_card">
+                      <a class="col-12 mb-0 mt-3 pl-0 card2 blogs_images2 " href="https://www.homes247.in/articles/vastu-shastra-tips-8"
+                        title="Best Vastu Shastra Tips | Vastu Articles | Homes247.in">
+                        <span class=" ml-5">Vastu</span>
+
+                      </a>
+                    </div>
+                  </div>
+                  <a class="col-6" style="text-align: center;" href="https://www.homes247.in/articles/healthy-lifestyle-blogs-9">
+                    <div class="blogs_card">
+                      <a class="col-12 mb-0 mt-3 pl-0 card2 blogs_images4" href="https://www.homes247.in/articles/healthy-lifestyle-blogs-9"
+                        title="Best Lifestyle Blogs to follow in 2020 | Homes247.in">
+                        <span class=" ml-5">Lifestyle</span>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="homeGuideMobileView mt-3 mb-4">
+        <h3><b>Blogs</b></h3>
+        <div class="scrollmenu">
+          <a *ngFor="let blog of blogs | slice:0:10">
+            <a href="https://www.homes247.in/blogs/{{blog.urlstruture | cleanUrl }}-{{blog.id | cleanUrl}}">
+              <div class="homeGuideMobileView-border">
+                <img style="height: 135px;" class="homeGuideMobileViewImage"
+                  
+                  loading="lazy" src="{{blogimagePath}}{{blog.imgPath}}" alt="blog.alttag" />
+                <h3 itemprop="headline">{{blog.title}}</h3>
+                <div class="row">
+                  <div class="col-6">
+                    <p>Date : {{blog.date}}</p>
+                  </div>
+                  <div class="col-6">
+                    <p>Read: 5min</p>
+                  </div>
+                  <div class="col-6"> </div>
+                </div>
+              </div>
+            </a>
+            
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<app-footer2></app-footer2>
+<div class="innerheader_position">
+  <app-innerheader></app-innerheader>
+</div>

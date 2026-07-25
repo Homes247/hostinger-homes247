@@ -1,0 +1,624 @@
+
+
+<div class="main_div">
+    <div class="container">
+        <!-- <div class="col-md-12 logomaindiv">
+            <a class="sitemap_logo" href="https://www.homes247.in/">
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/logo/Homes247_NewBlack_Logo.png" alt="Homes247_logo" />
+            </a>
+        </div> -->
+        <div class="col-md-12 h1maindiv">
+            <h1>All Localities in {{cityname}}</h1>
+        </div>
+        <div class="col-md-12">
+            <nav class="AlphabetNav">
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/{{cityid | cleanUrl}}">All</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/a/{{cityid | cleanUrl}}">A</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/b/{{cityid | cleanUrl}}">B</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/c/{{cityid | cleanUrl}}">C</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/d/{{cityid | cleanUrl}}">D</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/e/{{cityid | cleanUrl}}">E</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/f/{{cityid | cleanUrl}}">F</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/g/{{cityid | cleanUrl}}">G</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/h/{{cityid | cleanUrl}}">H</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/i/{{cityid | cleanUrl}}">I</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/j/{{cityid | cleanUrl}}">J</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/k/{{cityid | cleanUrl}}">K</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/l/{{cityid | cleanUrl}}">L</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/m/{{cityid | cleanUrl}}">M</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/n/{{cityid | cleanUrl}}">N</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/o/{{cityid | cleanUrl}}">O</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/p/{{cityid | cleanUrl}}">P</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/q/{{cityid | cleanUrl}}">Q</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/r/{{cityid | cleanUrl}}">R</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/s/{{cityid | cleanUrl}}">S</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/t/{{cityid | cleanUrl}}">T</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/u/{{cityid | cleanUrl}}">U</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/v/{{cityid | cleanUrl}}">V</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/w/{{cityid | cleanUrl}}">W</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/x/{{cityid | cleanUrl}}">X</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/y/{{cityid | cleanUrl}}">Y</a>
+                <a routerLink="/all-localities-by-city/{{cityname | cleanUrl}}/z/{{cityid | cleanUrl}}">Z</a>
+            </nav>
+
+
+
+            <div class="row mt-5">
+                <div class="col-md-3" *ngFor="let data of completedata | myfilter: 'type' : 'locality_name' | startsWithLetterlocality : activeLetter | slice: 0:150">
+                    <div class="col-md-12 sectionTwo">
+                        <a class="localityName" routerLink="/{{cityname | cleanUrl}}/property-sale-in-{{data.name | cleanUrl}}-{{data.id | cleanUrl}}"
+                         title="Properties in {{data.name}} | Properties for sale in {{data.name}}" target="_blank">{{data.name}}&nbsp;&nbsp;
+                         <a routerLink="/locality-overview/{{data.name | cleanUrl}}-in-{{cityname | cleanUrl}}-overview-{{data.id | cleanUrl}}-{{cityid | cleanUrl}}" title="An Overview of {{data.name}}" target="_blank">
+                            <i class="fa fa-external-link" aria-hidden="true"></i></a></a>
+                         <div class="row">
+                            <div class="col-md-12">
+                                <a class="avgRatSqft" href="https://www.homes247.in/upcoming-new-launch-properties/new-projects-in-{{data.name | cleanUrl}}-{{cityname | cleanUrl}}-{{data.id | cleanUrl}}"
+                                title="Upcoming Projects in {{data.name}} | New Projects in {{data.name}}">Upcoming Projects in {{data.name}}</a>
+                             </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row mt-5" *ngIf="bangalore == true">
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/apartments-in-whitefield-bangalore" title="Apartments in Whitefield | Apartments for sale in Whitefield">Apartments in Whitefield &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/apartments-in-sarjapur-road-bangalore" title="Apartments in Sarjapur Road | Apartments for sale in Sarjapur Road">Apartments in Sarjapur Road &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/apartments-in-yeshwanthpur-bangalore" title="Apartments in Yeshwanthpur | Apartments for sale in Yeshwanthpur">Apartments in Yeshwanthpur Bangalore &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/apartments-in-mysore-road-bangalore" title="Apartments in Mysore Road | Apartments for sale in Mysore Road">Apartments in Mysore Road &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/apartments-in-kanakapura-road-bangalore" title="Apartments in Kanakapura Road | Apartments for sale in Kanakapura Road">Apartments in Kanakapura Road &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/apartments-in-old-madras-road-bangalore" title="Apartments in Old Madras Road | Apartments for sale in Old Madras Road">Apartments in Old Madras Road Bangalore &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/apartments-in-yelahanka-bangalore" title="Apartments in Yelahanka | Apartments for sale in Yelahanka">Apartments in Yelahanka &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/apartments-in-electronic-city-phase-2-bangalore" title="Apartments in Electronic City Phase 2 | Apartments for sale in Electronic City Phase 2">Apartments in Electronic City Phase 2 &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/apartments-in-electronic-city-phase-1-bangalore" title="Apartments in Electronic City Phase 1 | Apartments for sale in Electronic City Phase 1">Apartments in Electronic City Phase 1 &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/apartments-in-hennur-road-bangalore" title="Apartments in Hennur Road | Apartments for sale in Hennur Road">Apartments in Hennur Road Bangalore &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/apartments-in-haralur-road-bangalore" title="Apartments in haralur Road | Apartments for sale in haralur Road">Apartments in haralur Road &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/apartments-in-k-r-puram-bangalore" title="Apartments in KR Puram | Apartments for sale in KR Puram">Apartments in KR Puram Bangalore &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/apartments-in-bellandur-bangalore" title="Apartments in Bellandur | Apartments for sale in Bellandur">Apartments in Bellandur &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/apartments-in-varthur-bangalore" title="Apartments in Varthur | Apartments for sale in Varthur">Apartments in Varthur &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/apartments-in-koramangala-bangalore" title="Apartments in Koramangala | Apartments for sale in Koramangala">Apartments in Koramangala &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/apartments-in-mahadevapura-bangalore" title="Apartments in Mahadevapura | Apartments for sale in Mahadevapura">Apartments in Mahadevapura Bangalore &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/apartments-in-thanisandra-bangalore" title="Apartments in Thanisandra | Apartments for sale in Thanisandra">Apartments in Thanisandra &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/apartments-in-marathahalli-bangalore" title="Apartments in Marathahalli | Apartments for sale in Marathahalli">Apartments in Marathahalli Bangalore &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/apartments-in-electronic-city-bangalore" title="Apartments in Electronic City | Apartments for sale in Electronic City">Apartments in Electronic City &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/apartments-in-bannerghatta-road-bangalore" title="Apartments in Bannerghatta Road | Apartments for sale in Bannerghatta Road">Apartments in Bannerghatta Road &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/villas-in-whitefield-bangalore" title="Villas in Whitefield | Villas for sale in Whitefield">Villas in Whitefield Bangalore &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/villas-in-sarjapur-road-bangalore" title="Villas in Sarjapur Road | Villas for sale in Sarjapur Road">Villas in Sarjapur Road Bangalore &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/villas-in-marathahalli-bangalore" title="Villas in Marathahalli | Villas for sale in Marathahalli">Villas in Marathahalli Bangalore &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/villas-in-kanakapura-road-bangalore" title="Villas in Kanakapura Road | Villas for sale in Kanakapura Road">Villas in Kanakapura Road Bangalore &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/villas-in-chandapura-bangalore" title="Villas in Chandapura | Villas for sale in Chandapura">Villas in Chandapura Bangalore &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/villas-in-yelahanka-bangalore" title="Villas in Yelahanka | Villas for sale in Yelahanka">Villas in Yelahanka Bangalore &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/villas-in-budigere-cross-bangalore" title="Villas in Budigere Cross | Villas for sale in Budigere Cross">Villas in Budigere Cross Bangalore &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/villas-in-varthur-bangalore" title="Villas in Varthur | Villas for sale in Varthur">Villas in Varthur Bangalore &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/villas-in-sarjapur-bangalore" title="Villas in Sarjapur | Villas for sale in Sarjapur">Villas in Sarjapur Bangalore &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/villas-in-electronic-city-bangalore" title="Villas in Electronic City | Villas for sale in Electronic City">Villas in Electronic City Bangalore &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/villas-in-bannerghatta-road-bangalore" title="Villas in Bannerghatta Road | Villas for sale in Bannerghatta Road">Villas in Bannerghatta Road Bangalore &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/villas-in-bannerghatta-road-bangalore" title="Villas in Bannerghatta Road | Villas for sale in Bannerghatta Road">Villas in Bannerghatta Road Bangalore &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/plots-in-sarjapur-road-bangalore" title="Plots in Sarjapur Road | Plots for sale in Sarjapur Road">Plots in Sarjapur Road &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/plots-in-electronic-city-bangalore" title="Plots in Electronic City | Plots for sale in Electronic City">Plots in Electronic City Bangalore &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" href="https://www.homes247.in/plots-in-kanakapura-road-bangalore" title="Plots in Kanakapura Road | Plots for sale in Kanakapura Road">Plots in Kanakapura Road &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" routerLink="/plots-for-sale-in-yelahanka-bangalore" title="Plots in Yelahanka | Plots for sale in Yelahanka">Plots in Yelahanka Bangalore &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" routerLink="/plots-for-sale-in-whitefield-bangalore" title="Plots in Whitefield | Plots for sale in Whitefield">Plots in Whitefield &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12 sectionTwo">
+                    <a class="localityName" routerLink="/plots-for-sale-in-varthur-bangalore" title="Plots in Varthur | Plots for sale in Varthur">Plots in Varthur Bangalore &nbsp;&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- <div class="col-md-12">
+
+            <div class="city_div">
+                <div class="citylist row">
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/{{cityname | lowercase}}/property-sale">Property for sale in {{cityname}}</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/new-launch-projects/new-projects-in-{{cityname | lowercase}}">New Projects/Upcoming Projects in {{cityname}}</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/ready-to-move-apartments/ready-to-move-flats-in-{{cityname | lowercase}}">Ready to Move Flats/Apartments in {{cityname}}</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/btc/1-bhk-flats-in-{{cityname | lowercase}}"> 1 BHK Flats/Apartments in {{cityname}}</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/btc/2-bhk-flats-in-{{cityname | lowercase}}"> 2 BHK Flats/Apartments in {{cityname}}</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/btc/3-bhk-flats-in-{{cityname | lowercase}}"> 3 BHK Flats/Apartments in {{cityname}}</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/btc/4-bhk-flats-in-{{cityname | lowercase}}"> 4 BHK Flats/Apartments in {{cityname}}</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/btc/5-bhk-flats-in-{{cityname | lowercase}}"> 5 BHK Flats/Apartments in {{cityname}}</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/bstc/1-bhk-ready-to-move-flats-apartments-in-{{cityname | lowercase}}"> 1 BHK Ready to move flats in {{cityname}}</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/bstc/2-bhk-ready-to-move-flats-apartments-in-{{cityname | lowercase}}"> 2 BHK Ready to move flats in {{cityname}}</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/bstc/3-bhk-ready-to-move-flats-apartments-in-{{cityname | lowercase}}"> 3 BHK Ready to move flats in {{cityname}}</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/bstc/4-bhk-ready-to-move-flats-apartments-in-{{cityname | lowercase}}"> 4 BHK Ready to move flats in {{cityname}}</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/bstc/5-bhk-ready-to-move-flats-apartments-in-{{cityname | lowercase}}"> 5 BHK Ready to move flats in {{cityname}}</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/fbc/flats-for-30-lakhs-in-{{cityname | lowercase}}">Flats Under 30 Lakhs in {{cityname}}</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/fbc/flats-in-{{cityname | lowercase}}-for-sale-30-lakhs-to-40-lakhs">Flats in {{cityname}} Between 30 lakhs to 40 lakhs</a>
+                        
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/fbc/flats-in-{{cityname | lowercase}}-for-sale-40-lakhs-to-50-lakhs">Flats in {{cityname}} Between 40 lakhs to 50 lakhs</a>
+                        
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/fbc/flats-in-{{cityname | lowercase}}-for-sale-50-lakhs-to-60-lakhs">Flats in {{cityname}} Between 50 lakhs to 60 lakhs</a>
+                        
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/fbc/flats-in-{{cityname | lowercase}}-for-sale-60-lakhs-to-70-lakhs">Flats in {{cityname}} Between 60 lakhs to 70 lakhs</a>
+                        
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/fbc/flats-in-{{cityname | lowercase}}-for-sale-70-lakhs-to-80-lakhs">Flats in {{cityname}} Between 70 lakhs to 80 lakhs</a>
+                        
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/fbc/flats-in-{{cityname | lowercase}}-for-sale-80-lakhs-to-90-lakhs">Flats in {{cityname}} Between 80 lakhs to 90 lakhs</a>
+                        
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/fbc/flats-in-{{cityname | lowercase}}-for-sale-90-lakhs-to-1-crore">Flats in {{cityname}} Between 90 lakhs to 1 crore</a>
+                    </p>
+                    <p class="col-md-4" *ngFor="let autodata of completedata | myfilter: 'type' : 'regions'">
+                        <a routerLink="/{{cityname | lowercase}}/zone/{{autodata.name | cleanUrl}}-{{autodata.id | cleanUrl}}">{{autodata.name}}</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="priority_page">
+                <h2>{{cityname}} Properties</h2>
+                <div class="citylist row">
+                    <p class="col-md-4" *ngFor="let autodata of completedata | myfilter: 'type' : 'property_name'">
+                        <a href="https://www.homes247.in/property/{{cityname | lowercase}}/{{autodata.locality | cleanUrl}}/{{autodata.name | cleanUrl}}-{{autodata.id | cleanUrl}}">{{autodata.name}}</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="priority_page">
+                <h2>{{cityname}} Properties BHK Listings</h2>
+                <div class="citylist row">
+                    <p class="col-md-4" *ngFor="let autodata of completedata | myfilter: 'type' : 'property_name'">
+                        <a routerLink="/project/{{autodata.name | cleanUrl}}-for-sale-in-{{cityname | lowercase}}-{{autodata.id | cleanUrl}}">{{autodata.name}} for sale in {{cityname}}</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="priority_page">
+                <h2>{{cityname}} Localities</h2>
+                <div class="citylist row">
+                    <p class="col-md-4" *ngFor="let autodata of completedata | myfilter: 'type' : 'locality_name'">
+                        <a routerLink="/{{cityname | lowercase}}/property-sale-in-{{autodata.name | cleanUrl}}-{{autodata.id | cleanUrl}}">Properties in {{autodata.name}}</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="priority_page">
+                <h2>Localities with BHK Apartments</h2>
+                <div class="citylist row">
+                    <p class="col-md-4" *ngFor="let autodata of completedata | myfilter: 'type' : 'locality_name'">
+                        <a href="https://www.homes247.in/btlc/1-bhk-flats-apartments-in-{{autodata.name | cleanUrl}}-{{cityname | lowercase}}-{{autodata.id | cleanUrl}}">1 bhk Flats/Apartments for sale in {{autodata.name}}</a>
+                    </p>
+                    <p class="col-md-4" *ngFor="let autodata of completedata | myfilter: 'type' : 'locality_name'">
+                        <a href="https://www.homes247.in/btlc/2-bhk-flats-apartments-in-{{autodata.name | cleanUrl}}-{{cityname | lowercase}}-{{autodata.id | cleanUrl}}">2 bhk Flats/Apartments for sale in {{autodata.name}}</a>
+                    </p>
+                    <p class="col-md-4" *ngFor="let autodata of completedata | myfilter: 'type' : 'locality_name'">
+                        <a href="https://www.homes247.in/btlc/3-bhk-flats-apartments-in-{{autodata.name | cleanUrl}}-{{cityname | lowercase}}-{{autodata.id | cleanUrl}}">3 bhk Flats/Apartments for sale in {{autodata.name}}</a>
+                    </p>
+                    <p class="col-md-4" *ngFor="let autodata of completedata | myfilter: 'type' : 'locality_name'">
+                        <a href="https://www.homes247.in/btlc/4-bhk-flats-apartments-in-{{autodata.name | cleanUrl}}-{{cityname | lowercase}}-{{autodata.id | cleanUrl}}">4 bhk Flats/Apartments for sale in {{autodata.name}}</a>
+                    </p>
+                    <p class="col-md-4" *ngFor="let autodata of completedata | myfilter: 'type' : 'locality_name'">
+                        <a href="https://www.homes247.in/btlc/5-bhk-flats-apartments-in-{{autodata.name | cleanUrl}}-{{cityname | lowercase}}-{{autodata.id | cleanUrl}}">5 bhk Flats/Apartments for sale in {{autodata.name}}</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="priority_page">
+                <h2>Localities with BHK Villas</h2>
+                <div class="citylist row">
+                    <p class="col-md-4" *ngFor="let autodata of completedata | myfilter: 'type' : 'locality_name'">
+                        <a href="https://www.homes247.in/btlc/3-bhk-villas-in-{{autodata.name | cleanUrl}}-{{cityname | lowercase}}-{{autodata.id | cleanUrl}}">3 bhk villas for sale in {{autodata.name}}</a>
+                    </p>
+                    <p class="col-md-4" *ngFor="let autodata of completedata | myfilter: 'type' : 'locality_name'">
+                        <a href="https://www.homes247.in/btlc/4-bhk-villas-in-{{autodata.name | cleanUrl}}-{{cityname | lowercase}}-{{autodata.id | cleanUrl}}">4 bhk villas for sale in {{autodata.name}}</a>
+                    </p>
+                    <p class="col-md-4" *ngFor="let autodata of completedata | myfilter: 'type' : 'locality_name'">
+                        <a href="https://www.homes247.in/btlc/5-bhk-villas-in-{{autodata.name | cleanUrl}}-{{cityname | lowercase}}-{{autodata.id | cleanUrl}}">5 bhk villas for sale in {{autodata.name}}</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="priority_page">
+                <h2>New Projects Localities</h2>
+                <div class="citylist row">
+                    <p class="col-md-4" *ngFor="let autodata of completedata | myfilter: 'type' : 'locality_name'">
+                        <a href="https://www.homes247.in/upcoming-new-launch-properties/new-projects-in-{{autodata.name | cleanUrl}}-{{cityname | lowercase}}-{{autodata.id | cleanUrl}}">New Projects in {{autodata.name}}</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="priority_page">
+                <h2>Ready to move Apartments in Localities with BHK</h2>
+                <div class="citylist row">
+                    <p class="col-md-4" *ngFor="let autodata of completedata | myfilter: 'type' : 'locality_name'">
+                        <a href="https://www.homes247.in/bstlc/1-bhk-ready-to-move-flats-apartments-in-{{autodata.name | cleanUrl}}-{{cityname | lowercase}}-{{autodata.id | cleanUrl}}"> 1 BHK Ready to move Flats/Apartments in {{autodata.name}}</a>
+                    </p>
+                    <p class="col-md-4" *ngFor="let autodata of completedata | myfilter: 'type' : 'locality_name'">
+                        <a href="https://www.homes247.in/bstlc/2-bhk-ready-to-move-flats-apartments-in-{{autodata.name | cleanUrl}}-{{cityname | lowercase}}-{{autodata.id | cleanUrl}}"> 2 BHK Ready to move Flats/Apartments in {{autodata.name}}</a>
+                    </p>
+                    <p class="col-md-4" *ngFor="let autodata of completedata | myfilter: 'type' : 'locality_name'">
+                        <a href="https://www.homes247.in/bstlc/3-bhk-ready-to-move-flats-apartments-in-{{autodata.name | cleanUrl}}-{{cityname | lowercase}}-{{autodata.id | cleanUrl}}"> 3 BHK Ready to move Flats/Apartments in {{autodata.name}}</a>
+                    </p>
+                    <p class="col-md-4" *ngFor="let autodata of completedata | myfilter: 'type' : 'locality_name'">
+                        <a href="https://www.homes247.in/bstlc/4-bhk-ready-to-move-flats-apartments-in-{{autodata.name | cleanUrl}}-{{cityname | lowercase}}-{{autodata.id | cleanUrl}}"> 4 BHK Ready to move Flats/Apartments in {{autodata.name}}</a>
+                    </p>
+                    <p class="col-md-4" *ngFor="let autodata of completedata | myfilter: 'type' : 'locality_name'">
+                        <a href="https://www.homes247.in/bstlc/5-bhk-ready-to-move-flats-apartments-in-{{autodata.name | cleanUrl}}-{{cityname | lowercase}}-{{autodata.id | cleanUrl}}"> 5 BHK Ready to move Flats/Apartments in {{autodata.name}}</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="priority_page">
+                <h2>Ready to move Apartments in Localities</h2>
+                <div class="citylist row">
+                    <p class="col-md-4" *ngFor="let autodata of completedata | myfilter: 'type' : 'locality_name'">
+                        <a href="https://www.homes247.in/stlc/ready-to-move-flats-apartments-in-{{autodata.name | cleanUrl}}-{{cityname | lowercase}}-{{autodata.id | cleanUrl}}">Ready to move Flats/Apartments in {{autodata.name}}</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="priority_page">
+                <h2>{{cityname}} Builders</h2>
+                <div class="citylist row">
+                    <p class="col-md-4" *ngFor="let autodata of completedata | myfilter: 'type' : 'builder_name'">
+                        <a routerLink="/{{cityname | lowercase}}/builder/{{autodata.name | cleanUrl}}-{{autodata.id | cleanUrl}}">Projects by {{autodata.name}}</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="priority_page">
+                <h2>{{cityname}} Property Types</h2>
+                <div class="citylist row">
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/residential-flats-in-{{cityname | lowercase}}-for-sale">Flats in {{cityname}} for sale</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/villas-for-sale-in-{{cityname | lowercase}}">Villas for sale in {{cityname}}</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/plots-in-{{cityname | lowercase}}">Plots in {{cityname}}</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/agricultural-land-for-sale-in-{{cityname | lowercase}}">Agricultural Land for sale in {{cityname}}</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/home-for-sale-in-{{cityname | lowercase}}">House for sale in {{cityname}}</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="priority_page">
+                <h2>{{cityname}} Property Status</h2>
+                <div class="citylist row">
+                    <p class="col-md-4" *ngFor="let autodata of completedata | myfilter: 'type' : 'status'">
+                        <a routerLink="/{{cityname | lowercase}}/status/{{autodata.name | cleanUrl}}-{{autodata.id | cleanUrl}}">{{autodata.name}}</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="priority_page">
+                <h2>Apartments With Locality Bangalore </h2>
+                <div class="citylist row"  *ngIf="bangalore == true">
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/apartments-in-yeshwanthpur-bangalore">Apartments in Yeshwanthpur Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/apartments-in-mysore-road-bangalore">Apartments in Mysore Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/apartments-in-kanakapura-road-bangalore">Apartments in Kanakapura Road
+                            Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/apartments-in-old-madras-road-bangalore">Apartments in Old Madras Road
+                            Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/apartments-in-yelahanka-bangalore">Apartments in Yelahanka Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/apartments-in-electronic-city-phase-2-bangalore">Apartments in Electronic City
+                            Phase 2 Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/apartments-in-electronic-city-phase-1-bangalore">Apartments in Electronic City
+                            Phase 1 Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/apartments-in-hennur-road-bangalore">Apartments in Hennur Road Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/apartments-in-haralur-road-bangalore">Apartments in haralur Road Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/apartments-in-k-r-puram-bangalore">Apartments in k R Puram Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/apartments-in-bellandur-bangalore">Apartments in Bellandur Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/apartments-in-varthur-bangalore">Apartments in Varthur Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/apartments-in-koramangala-bangalore">Apartments in Koramangala Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/apartments-in-mahadevapura-bangalore">Apartments in Mahadevapura Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/apartments-in-thanisandra-bangalore">Apartments in Thanisandra Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/apartments-in-marathahalli-bangalore">Apartments in Marathahalli Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/apartments-in-electronic-city-bangalore">Apartments in Electronic City
+                            Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/apartments-in-whitefield-bangalore">Apartments in Whitefield Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/apartments-in-sarjapur-road-bangalore">Apartments in Sarjapur Road Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/apartments-in-bannerghatta-road-bangalore">Apartments in Bannerghatta Road
+                            Bangalore</a>
+                    </p>
+
+                </div>
+            </div>
+
+            <div class="priority_page">
+                <h2>Villas With Locality Bangalore </h2>
+                <div class="citylist row" *ngIf="bangalore == true">
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/villas-in-kanakapura-road-bangalore">Villas in Kanakapura Road Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/villas-in-chandapura-bangalore">Villas in Chandapura Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/villas-in-yelahanka-bangalore">Villas in Yelahanka Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/villas-in-budigere-cross-bangalore">Villas in Budigere Cross Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/villas-in-varthur-bangalore">Villas in Varthur Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/villas-in-sarjapur-bangalore">Villas in Sarjapur Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/villas-in-electronic-city-bangalore">Villas in Electronic City Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/villas-in-whitefield-bangalore">Villas in Whitefield Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/villas-in-sarjapur-road-bangalore">Villas in Sarjapur Road Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/villas-in-marathahalli-bangalore">Villas in Marathahalli Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/villas-in-bannerghatta-road-bangalore">Villas in Bannerghatta Road Bangalore</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="priority_page">
+                <h2>Plots With Locality Bangalore </h2>
+                <div class="citylist row" *ngIf="bangalore == true">
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/plots-in-sarjapur-road-bangalore">Plots in Sarjapur Road Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/plots-in-electronic-city-bangalore">Plots in Electronic City Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a href="https://www.homes247.in/plots-in-kanakapura-road-bangalore">Plots in Kanakapura Road Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a routerLink="/plots-for-sale-in-yelahanka-bangalore">Plots in Yelahanka Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a routerLink="/plots-for-sale-in-whitefield-bangalore">Plots in Whitefield Bangalore</a>
+                    </p>
+                    <p class="col-md-4">
+                        <a routerLink="/plots-for-sale-in-varthur-bangalore">Plots in Varthur Bangalore</a>
+                    </p>
+                </div>
+            </div>
+
+        </div> -->
+    </div>
+</div>
+<app-footer2></app-footer2>
+<div class="innerheader_position">
+    <app-innerheader></app-innerheader>
+</div>

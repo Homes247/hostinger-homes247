@@ -1,0 +1,85 @@
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import {
+  AmountToWordPipe, Convertnumber,
+  countFormatterPipe, customPriceFormatPipe,
+  EllipsisPipe,
+  MyBHKPipe,
+  MyFilterunique,
+  MyFilterunique2,
+  OrderByPipe,
+  OrderByPipe2,
+  OrderByPipes,
+  PriceFormatterPipe,
+  RandomOrderPipe,
+  ReplaceEightWithSixPipe,
+  ReplaceLineBreaks,
+  ReplaceLineBreaksany,
+  ReplaceSpecialCharactersPipe,
+  SanitizeHtmlPipe,
+  SortNumbersPipe,
+  startsWithLetterPipebank,
+  startsWithLetterPipecity,
+  startsWithLetterPipelocality,
+  TruncatePipe,
+  cleanUrlPipe
+} from '../mainpipe.pipe';
+
+@NgModule({
+  declarations: [
+    TruncatePipe,
+    EllipsisPipe,
+    MyFilterunique,
+    SanitizeHtmlPipe,
+    ReplaceLineBreaks,
+    MyBHKPipe,
+    OrderByPipe,
+    OrderByPipes,
+    AmountToWordPipe,
+    Convertnumber,
+    RandomOrderPipe,
+    startsWithLetterPipelocality,
+    startsWithLetterPipecity,
+    OrderByPipe2,
+    MyFilterunique2,
+    ReplaceEightWithSixPipe,
+    startsWithLetterPipebank,
+    ReplaceLineBreaksany,
+    PriceFormatterPipe,
+    ReplaceSpecialCharactersPipe,
+    countFormatterPipe,
+    SortNumbersPipe,
+    customPriceFormatPipe,
+    cleanUrlPipe
+  ],
+  imports: [
+    CommonModule
+  ],
+  exports: [
+    TruncatePipe,
+    EllipsisPipe,
+    MyFilterunique,
+    SanitizeHtmlPipe,
+    ReplaceLineBreaks,
+    MyBHKPipe,
+    OrderByPipe,
+    OrderByPipes,
+    AmountToWordPipe,
+    Convertnumber,
+    RandomOrderPipe,
+    startsWithLetterPipelocality,
+    startsWithLetterPipecity,
+    OrderByPipe2,
+    MyFilterunique2,
+    ReplaceEightWithSixPipe,
+    startsWithLetterPipebank,
+    ReplaceLineBreaksany,
+    PriceFormatterPipe,
+    ReplaceSpecialCharactersPipe,
+    countFormatterPipe,
+    SortNumbersPipe,
+    customPriceFormatPipe,
+    cleanUrlPipe
+  ]
+})
+export class PipeModule { }

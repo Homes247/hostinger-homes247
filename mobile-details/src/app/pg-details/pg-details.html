@@ -1,0 +1,1299 @@
+<div class="innerheader_position">
+  <!-- <app-innerheader></app-innerheader> -->
+  <app-inner-header></app-inner-header>
+</div>
+
+@for (data of propdetails; track data) {
+<div class="topMarginBreadCrumb"></div>
+
+<div class="breadcrumbsections">
+  <ul class="breadcrumb mb-0">
+    <li><a href="https://www.homes247.in">Home</a></li>
+    <li>
+      <a href="https://www.homes247.in/pgcl/pg-for-rent-in-{{ data.city | cleanUrl }}">PG Properties in {{ currentCity
+        }}</a>
+    </li>
+    <li>
+      <a href="javascript:void(0)">PG for {{ data.Available_Type }} in {{ data.Locality_name }}, {{ data.city }}</a>
+    </li>
+  </ul>
+</div>
+}
+
+@for (data of propdetails | slice: 0 : 1; track data; let i = $index) {
+
+@defer (on viewport) {
+<div id="Headerrentel" class="main_banner_div col-12 p-0">
+  <div class="favAndShare d-flex pr-1">
+    <div class="favShare text-center">
+      <div [ngClass]="{
+            Rental_icons_Heart_Active: isInWishlist(data.propartyID),
+            Rental_icons_Heart: !isInWishlist(data.propartyID),
+          }" class="Rental_icons_Heart mb-2" (click)="Heart_Transtion(data.propartyID)"></div>
+      <div class="Rental_icons_Share mb-2" (click)="shareContent()"></div>
+      <div class="Rental_icons_Report" data-toggle="modal" data-target="#propReportModal" data-backdrop="static"
+        data-keyboard="false"></div>
+    </div>
+  </div>
+
+  @if (data.images.length !== 0) {
+  <div class="btnImgDiv" (click)="gallerySection()">
+    <div class="imgDiv" style="cursor: pointer">
+      <span>
+        <img loading="lazy"
+          src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/rentalImagesIcon.png"
+          height="16px" width="16px" alt="rentalImagesIcon.png" />
+        {{ data.images.length }} Photos
+      </span>
+    </div>
+  </div>
+  }
+
+  @if (data.images.length == 0 && data.Cover_images !== null) {
+  <img class="main_banner" fetchpriority="high" loading="eager"
+    src="{{ coverimage }}{{ data.Cover_images }}?width=257&height=153" alt="data.Cover_images" />
+  }
+  @if (data.images.length !== 0 && data.Cover_images !== null) {
+  <img fetchpriority="high" loading="eager" class="main_banner" (click)="gallerySection()"
+    src="{{ coverimage }}{{ data.Cover_images }}?width=257&height=153" alt="data.Cover_images" />
+  }
+  @if (data.Cover_images === null) {
+  <img class="main_banner2" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/rentalImages/noImgRentals.jpg"
+    alt="data.Cover_images" />
+  }
+
+  <div class="sqrt-details">
+    <h1 hidden>
+      {{ data.pgName }} PG in {{ data.Locality_name }}, {{ data.city }} | Rent ₹{{ rentamount }}
+    </h1>
+    <h2 class="sqrt-maintitle">PG for {{ data.Available_Type }} in {{ data.Locality_name }}</h2>
+    <p class="sqrt-loctext mb-2 text-truncate">
+      Near {{ data.Nearby_locality }} &nbsp;&nbsp;<b></b>
+    </p>
+    <h5 class="listsqrt-text_Price">
+      <span class="price_style">{{ data.min_pric.amount | customPriceFormat
+        }}<span class="month_txt">/month onwards</span></span>
+    </h5>
+    <div [ngClass]="{ agreementPopup: i === selectedIndex }">
+      @if (i === selectedIndex) {
+      <div class="col-12 p-3">
+        <div class="d-flex" style="gap: 42px">
+          <div class="">
+            @if (data.min_pric.amount) {
+            <p class="popupHeading">Monthly Rent</p>
+            <p class="popupSubHeading mb-2">
+              {{ data.data.min_pric.amount | customPriceFormat }}
+            </p>
+            }
+          </div>
+          <div class=""></div>
+        </div>
+      </div>
+      }
+      @if (i === selectedIndex) {
+      <div class="closePopup" (click)="closePopup(i)">&times;</div>
+      }
+    </div>
+    <div class="row ml-1">
+      <h2 class="sqrt-loctext">
+        <img
+          src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/rentalDetailsLocationPin.png"
+          alt="rentalDetailsLocationPin.png" class="sqrt-loctextimg mb-1" width="13" height="16" />
+        {{ data.Locality_name }}, {{ data.city }}
+        <span id="exploreNearbyTxt">
+          <a href="https://www.homes247.in/locality-overview/{{
+                data.Locality_name | cleanUrl
+              }}-in-{{ data.city | cleanUrl }}-overview-{{ data.locality_IDFK }}-{{ data.cityid }}"
+            target="_blank">Explore nearby</a>
+        </span>
+      </h2>
+    </div>
+  </div>
+
+  <div class="">
+    <div class="row">
+      <div class="col-12 sticky-stuff">
+        <div id="sticky-anchor1"></div>
+        <div class="property_details_menu single-page-nav" id="sublinks_sticky">
+          <ul class="nav nav-tabs">
+            <li [ngClass]="{ actives: section === 'section1' }" class="subMenu">
+              <span (click)="scrollTo('section1')">Overview</span>
+            </li>
+            @if (data.Descriptions) {
+            <li [ngClass]="{ actives: section === 'section2' }" class="subMenu">
+              <span id="Property_Nav_Gallery" (click)="scrollTo('section2')">Description</span>
+            </li>
+            }
+            <li [ngClass]="{ actives: section === 'section3' }" class="subMenu scrollDivHide sublinks_sticky_item">
+              <span id="Property_Nav_Location_Map" (click)="scrollTo('section3')">Room Details</span>
+            </li>
+            @if (FacilitiesHide) {
+            <li [ngClass]="{ actives: section === 'section4' }" class="subMenu">
+              <span id="Property_Nav_Masterplan" (click)="scrollTo('section4')">PG Rules</span>
+            </li>
+            }
+            @if (data.services_details && data.services_details.length > 0) {
+            <li [ngClass]="{ actives: section === 'section5' }" class="subMenu">
+              <span (click)="scrollTo('section5')">PG Services</span>
+            </li>
+            }
+            @if (amenitiesHide) {
+            <li [ngClass]="{ actives: section === 'section6' }" class="subMenu">
+              <span id="Property_Nav_Price_&_Floorplans" (click)="scrollTo('section6')">Common Area Amenities</span>
+            </li>
+            }
+            @if (About_Description) {
+            <li [ngClass]="{ actives: section === 'section7' }" class="subMenu">
+              <span id="Property_Nav_Amenities" (click)="scrollTo('section7')">About Locality</span>
+            </li>
+            }
+            @if (nearByLocalityLen) {
+            <li [ngClass]="{ actives: section === 'section9' }" class="subMenu scrollDivHide sublinks_sticky_item1">
+              <span id="Property_Nav_Reviews" (click)="scrollTo('section9')">Nearby Localities</span>
+            </li>
+            }
+            @if (showSimilarProp) {
+            <li [ngClass]="{ actives: section === 'section8' }" class="subMenu scrollDivHide sublinks_sticky_item">
+              <span id="Property_Nav_Location_Map" (click)="scrollTo('section8')">Similar Properties</span>
+            </li>
+            }
+
+            <li [ngClass]="{ actives: section === 'section10' }" class="subMenu scrollDivHide sublinks_sticky_item">
+              <span id="Property_Nav_Location_Map" (click)="scrollTo('section10')">Trending Blogs</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ScrollSpy [spiedTags]="['DIV']" (sectionChange)="onSectionChange($event)">
+    <div>
+      <div id="section1"></div>
+      <div class="col-12">
+        <div style="
+              background: rgba(255, 255, 255, 1);
+              padding: 1px 0px 0px 10px;
+              margin: 16px 0px 0px 0px;
+              border-radius: 4px;
+              box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.06);
+            ">
+          <h2 class="sqrt-titletext">Overview</h2>
+          <div class="row">
+            <div class="col-6">
+              <h5 class="sqrt-renthead">Available For</h5>
+              <p class="sqrt-renttext">{{ data.Available_Type ? data.Available_Type : 'NA' }}</p>
+            </div>
+            <div class="col-6">
+              <h5 class="sqrt-renthead">Suited For</h5>
+              <p class="sqrt-renttext">{{ data.Best_suited ? data.Best_suited : 'NA' }}</p>
+            </div>
+            <div class="col-6">
+              <h5 class="sqrt-renthead">Operating Since</h5>
+              <p class="sqrt-renttext">
+                {{ data.Operating_Since ? data.Operating_Since : 'NA' }}
+              </p>
+            </div>
+            <div class="col-6">
+              <h5 class="sqrt-renthead">Notice Period</h5>
+              <p class="sqrt-renttext">{{ data.Notice_Period ? data.Notice_Period : 'NA' }}</p>
+            </div>
+            <div class="col-6">
+              <h5 class="sqrt-renthead">Gate Closing Time</h5>
+              <p class="sqrt-renttext">
+                {{ data.closing_timeings ? data.closing_timeings : 'NA' }}
+              </p>
+            </div>
+            <div class="col-6">
+              <h5 class="sqrt-renthead">Parking</h5>
+              <p class="sqrt-renttext">{{ data.parking ? data.parking : 'No' }}</p>
+            </div>
+            @if (data.Food_Availability == '1') {
+            <div class="col-6">
+              <h5 class="sqrt-renthead">Food Availability</h5>
+              <p class="sqrt-renttext">Yes</p>
+            </div>
+            }
+            @if (data.Food_Availability == '2') {
+            <div class="col-6">
+              <h5 class="sqrt-renthead">Food Availability</h5>
+              <p class="sqrt-renttext">No</p>
+            </div>
+            }
+            @if (data.vegornon_veg == '1' && data.Food_Availability == '1') {
+            <div class="col-6">
+              <h5 class="sqrt-renthead">Veg/Non Veg</h5>
+              <p class="sqrt-renttext">Only Veg</p>
+            </div>
+            }
+            @if (data.vegornon_veg == '2' && data.Food_Availability == '1') {
+            <div class="col-6">
+              <h5 class="sqrt-renthead">Veg/Non Veg</h5>
+              <p class="sqrt-renttext">Both</p>
+            </div>
+            }
+            @if (data.Food_Charges == '1' && data.Food_Availability == '1') {
+            <div class="col-6">
+              <h5 class="sqrt-renthead">Food Charges</h5>
+              <p class="sqrt-renttext">Included in rent</p>
+            </div>
+            }
+            @if (data.Food_Charges == '2' && data.Food_Availability == '1') {
+            <div class="col-6">
+              <h5 class="sqrt-renthead">Food Charges</h5>
+              <p class="sqrt-renttext">Per Meal Basis</p>
+            </div>
+            }
+            @if (data.Food_Availability == '1') {
+            <div class="col-6">
+              <h5 class="sqrt-renthead">Meals Included</h5>
+              <p class="sqrt-renttext">
+                {{ data.Meals_included ? data.Meals_included.split(',').join(', ') : 'NA' }}
+              </p>
+            </div>
+            }
+            <div class="col-12">
+              <h5 class="sqrt-renthead">Landmark</h5>
+              <p class="sqrt-renttext" style="height: auto">
+                {{ data.landmarks ? data.landmarks : 'NA' }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      @if (data.Descriptions) {
+      <div id="section2"></div>
+      <div class="col-12">
+        <div style="
+                background: rgba(255, 255, 255, 1);
+                padding: 1px 10px 1px 10px;
+                margin: 16px 0px 16px 0px;
+                border-radius: 4px;
+                box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.06);
+              ">
+          <h2 class="sqrt-titletext">Description</h2>
+          <div class="propDesc1" id="scrollable1">
+            <p class="sqrt-desctext" [innerHTML]="data.Descriptions | sanitizeHtml"></p>
+          </div>
+          @if (data.Descriptions.length >= 200) {
+          <div class="arrow1 bounce down_arrow2 pb-4" (click)="readmore1()">
+            <span class="showMoreLessTxt2" id="Property_Locality_Readmore_Mobile">Show More</span>
+          </div>
+          }
+          <div class="arrow1 bounce up_arrow2 pb-4" (click)="readless1()">
+            <span class="showMoreLessTxt2">Show Less</span>
+          </div>
+        </div>
+      </div>
+      }
+      @defer (on idle) {
+      @if (data.ROOM_cat && data.ROOM_cat.length > 0) {
+      <div id="section3"></div>
+      <div class="col-12">
+        @if(mousemovement){
+        <div style="
+                  background: rgba(255, 255, 255, 1);
+                  padding: 1px 10px 1px 10px;
+                  margin: 16px 0px 16px 0px;
+                  border-radius: 4px;
+                  box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.06);
+                ">
+          <h2 class="sqrt-titletext">Room Details</h2>
+          <div class="row scrolldiv">
+            <div class="scroll-container2">
+              @for (Room of data.ROOM_cat; track Room) {
+              <div class="property-card3">
+                <owl-carousel-o [options]="customOptionsRoomcategory">
+                  @for (roomimages of Room.images; track roomimages) {
+                  <ng-template carouselSlide>
+                    <div class="propImg3 text-right px-0">
+                      <p class="pi_main">
+                        @if (Room.images?.length > 0) {
+                        <img [src]="ImageUrl + roomimages.image_name" class="roomimg" loading="lazy"
+                          style="cursor: pointer" alt="roomimg" height="112px" width="100%" />
+                        }
+                      </p>
+                    </div>
+                  </ng-template>
+                  }
+                </owl-carousel-o>
+
+                @if (!Room.images || Room.images.length == 0) {
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image_New.jpg"
+                  alt="noimg" height="112px" width="100%" />
+                }
+
+                <div class="top_project_info2 col-12 pt-0">
+                  <div class="pi_left col-12 pl-0">
+                    <div class="row">
+                      <div class="col-12 pr-0">
+                        <h3 class="propclass">{{ Room.sharing_name }}</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="container row" style="margin-top: 9px">
+                  <div class="col-10">
+                    <p class="Locality_Name">No . Of Rooms</p>
+                  </div>
+                  @if (Room.room_categories_num_room) {
+                  <div class="col-2">
+                    <p class="Price_value">{{ Room.room_categories_num_room }}</p>
+                  </div>
+                  }
+                  @if (!Room.room_categories_num_room) {
+                  <div class="col-2">
+                    <p class="Price_value">--</p>
+                  </div>
+                  }
+                </div>
+
+                <div class="container row" style="margin-top: 3px">
+                  <div class="col-10">
+                    <p class="Locality_Name">Security Deposit</p>
+                  </div>
+                  <div class="col-2">
+                    <p class="Price_value">
+                      ₹{{ Room.room_categories_security_deposit | priceFormatter }}
+                    </p>
+                  </div>
+                </div>
+
+                <div class="container row" style="margin-top: 3px">
+                  <div class="col-10">
+                    <p class="Locality_Name">Rent Per Month</p>
+                  </div>
+                  <div class="col-2">
+                    <p class="Price_value">
+                      ₹{{ Room.room_categories_rent_amount | priceFormatter }}
+                    </p>
+                  </div>
+                </div>
+
+                <div class="container row" style="margin-top: 10px">
+                  <div class="col-12">
+                    @if (Room.facilites_details?.length > 0) {
+                    <p class="hed">Room Facilities</p>
+                    }
+                  </div>
+                </div>
+
+                @if (Room.facilites_details?.length > 0) {
+                <div class="container" style="margin-top: 4px">
+                  <div class="static-tag-container">
+                    @for (room of Room.facilites_details; track room) {
+                    <div class="static-tag">
+                      <span><img
+                          src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/PG-details/Tick-icon.svg"
+                          alt="Tick-icon.svg" /></span>
+                      {{ room.facility_name }}
+                    </div>
+                    }
+                  </div>
+                </div>
+                }
+
+                <div class="contact">
+                  <button type="button" class="btn contactButton" data-toggle="modal" data-target="#myModal_city"
+                    data-backdrop="static" data-keyboard="false" (click)="ShowHideEnquery2()">
+                    Contact Now
+                  </button>
+                </div>
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+
+        }
+
+      </div>
+      }
+
+      @if (data.PGrules && data.PGrules.length > 0) {
+      <div id="section4"></div>
+      <div>
+        <div class="col-12">
+          <div style="
+                    background: rgba(255, 255, 255, 1);
+                    padding: 1px 0px 10px 10px;
+                    margin: 16px 0px 16px 0px;
+                    border-radius: 4px;
+                    box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.06);
+                  ">
+            <h2 class="sqrt-titletext">PG Rules</h2>
+            <div class="row scrolldiv">
+              @for (amen of data.PGrules; track amen) {
+              <div class="col-sm-4 textAligncss pl-0">
+                <img loading="lazy" src="{{ imagepath }}{{ amen.value }}" class="amenitiesIcon" alt="amen.label"
+                  height="44 " width="45" />
+                <p class="Facilities_icon">{{ amen.label }}</p>
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+
+      @if (data.services_details && data.services_details.length > 0) {
+      <div id="section5"></div>
+      <div class="col-12">
+        <div style="
+                  background: rgba(255, 255, 255, 1);
+                  padding: 1px 0px 10px 10px;
+                  margin: 16px 0px 16px 0px;
+                  border-radius: 4px;
+                  box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.06);
+                ">
+          <h2 class="sqrt-titletext">PG Services</h2>
+          <div class="row scrolldiv">
+            @for (amen of data.services_details; track amen) {
+            <div class="col-sm-4 textAligncss pl-0">
+              <img loading="lazy" src="{{ pgServices }}{{ amen.activeicons }}" class="amenitiesIcon" alt="amen.value"
+                width="32" height="33" />
+              <p class="Facilities_icon">{{ amen.value }}</p>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+      }
+
+      @if (data.ammunites && data.ammunites.length > 0) {
+      <div id="section6"></div>
+      <div>
+        <div class="col-12">
+          <div style="
+                    background: rgba(255, 255, 255, 1);
+                    padding: 1px 0px 10px 10px;
+                    margin: 16px 0px 16px 0px;
+                    border-radius: 4px;
+                    box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.06);
+                  ">
+            <h2 class="sqrt-titletext">Common Area Amenities</h2>
+            <div class="row scrolldiv">
+              @for (amen of data.ammunites; track amen) {
+              <div class="col-sm-4 textAligncss pl-0">
+                <img loading="lazy" src="{{ imagepath }}{{ amen.activeIcon }}" class="amenitiesIcon" alt="amen.value"
+                  width="32" height="33" />
+                <p class="Facilities_icon">{{ amen.value }}</p>
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+
+      @if (About_Description) {
+      <div id="section7"></div>
+      <div class="col-12">
+        <div style="
+                  background: rgba(255, 255, 255, 1);
+                  padding: 1px 10px 1px 10px;
+                  margin: 16px 0px 16px 0px;
+                  border-radius: 4px;
+                  box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.06);
+                ">
+          <h2 class="sqrt-titletext">About {{ data.Locality_name }}, {{ data.city }}</h2>
+          <div class="propDesc2" id="scrollable2">
+            <p class="sqrt-desctext" [innerHTML]="aboutdiscription | sanitizeHtml"></p>
+          </div>
+          @if (aboutdiscription.length >= 200) {
+          <div class="arrow1 bounce down_arrow pb-4" (click)="readmore()">
+            <span class="showMoreLessTxt2" id="Property_Locality_Readmore_Mobile">Show More</span>
+          </div>
+          }
+          <div class="arrow1 bounce up_arrow pb-4" (click)="readless()">
+            <span class="showMoreLessTxt2">Show Less</span>
+          </div>
+        </div>
+      </div>
+      }
+
+      @if (mousemovement) {
+      <div>
+        <ng-container *ngComponentOutlet="Apex"></ng-container>
+      </div>
+      }
+
+
+      @if(mousemovement){
+
+      @if (nearByLocalityLen) {
+      <div id="section9"></div>
+      <div>
+        <div class="col-12">
+          <div style="
+                    background: rgba(255, 255, 255, 1);
+                    padding: 1px 0px 1px 10px;
+                    margin: 16px 0px 16px 0px;
+                    border-radius: 4px;
+                    box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.06);
+                  ">
+            <h2 class="sqrt-titletext">Nearby localities of {{ data.Locality_name }}</h2>
+            <div class="row scrolldiv1">
+              @for (loclity of newNearByLocalityArry; track loclity) {
+              <a class="col-sm-4 textAligncss1 pl-0" href="https://www.homes247.in/pgll/pg-for-rent-in-{{
+                          loclity.locality_name | cleanUrl
+                        }}-{{ data.city | cleanUrl }}-{{ loclity.locality_ID }}" target="_blank">
+                <div class="bgDivLoc">
+                  <img loading="lazy" width="100%" height="100%"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/locBackGroungImg.png"
+                    alt="locBackGroungImg.png" />
+                </div>
+                <div class="locOverlay"></div>
+                <div class="borderLocality">
+                  <h4 class="localitySecName">{{ loclity.locality_name }}</h4>
+                  <p class="localityListCount">Total Projects - {{ loclity.pg_count }}</p>
+                </div>
+              </a>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+      }
+
+      @if (showSimilarProp) {
+      <div id="section8"></div>
+      @if(mousemovement){
+
+
+
+      <div class="container mt-4">
+        <h4 class="sqrt-titletext">Similar PG's</h4>
+        <div class="scroll-container">
+          @for (locProp of similarRentalProp | slice: 0 : 20; track locProp) {
+          <div class="property-card">
+            <a routerLink="/pgd/pg-for-rent-in-{{ locProp.city_name | cleanUrl }}-{{
+                        locProp.prope_ID
+                      }}" target="_blank">
+              @if (locProp.coverimage) {
+              <img src="{{ propertyimage }}{{ locProp.coverimage }}" alt="Property Image" class="card-img-top" />
+              }
+              @if (!locProp.coverimage) {
+              <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/rentalImages/noImgRentals.jpg"
+                alt="Property Image" class="card-img-top" />
+              }
+            </a>
+            <div class="card-body">
+              <p class="property-price mb-0">
+                ₹ {{ locProp.price }} <span class="propClassMonth">/Month</span>
+              </p>
+              <p class="property-description mb-2 text-truncate">
+                {{ locProp.PG_Name }} near
+                {{ locProp.nearby }}
+              </p>
+              <p class="property-location m-0">
+                <img
+                  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/rentalDetailsLocationPin.png"
+                  alt="rentalDetailsLocationPin.png" width="18" height="22" />
+                {{ locProp.locality_name }}
+              </p>
+            </div>
+            <div class="card-footer text-center card-footer-icons">
+              <button class="btn btn-view-details btn-block mr-2">
+                <a routerLink="/pgd/pg-for-rent-in-{{ locProp.city_name | cleanUrl }}-{{
+                            locProp.prope_ID
+                          }}" target="_blank">
+                  View Details
+                  <img
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Rental _External_link.png"
+                    alt="Rental _External_link.png" />
+                </a>
+              </button>
+              <div [ngClass]="{
+                          Rental_icons_Heart3_Active: isInWishlist(locProp.prope_ID),
+                          'Rental_icons_Heart3 mr-2': !isInWishlist(locProp.prope_ID),
+                        }" (click)="Heart_Transtion(locProp.prope_ID)"></div>
+              <img
+                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Rental_share.png"
+                alt="Rental_share.png" class="sharecss" (click)="onclickshareSimilarprop(locProp)" />
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+
+      }
+      }
+
+      @if (showNearbyLocProp) {
+      <div id="section8"></div>
+
+      @if(mousemovement){
+
+
+      <div class="container mt-4">
+        <h4 class="sqrt-titletext">Nearby PG's</h4>
+        <div class="scroll-container">
+          @for (locProp of nearbyLocProp | slice: 0 : 20; track locProp) {
+          <div class="property-card">
+            <a routerLink="/pgd/pg-for-rent-in-{{ locProp.city_name | cleanUrl }}-{{
+                        locProp.prope_ID
+                      }}" target="_blank">
+              @if (locProp.coverimage) {
+              <img src="{{ propertyimage }}{{ locProp.coverimage }}" alt="Property Image" class="card-img-top" />
+              }
+              @if (!locProp.coverimage) {
+              <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/rentalImages/noImgRentals.jpg"
+                alt="Property Image" class="card-img-top" />
+              }
+            </a>
+            <div class="card-body">
+              <p class="property-price mb-0">
+                ₹ {{ locProp.price }} <span class="propClassMonth">/Month</span>
+              </p>
+              <p class="property-description mb-2 text-truncate">
+                {{ locProp.PG_Name }} near
+                {{ locProp.nearby }}
+              </p>
+              <p class="property-location m-0">
+                <img
+                  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/rentalDetailsLocationPin.png"
+                  alt="rentalDetailsLocationPin.png" width="18" height="22" />
+                {{ locProp.locality_name }}
+              </p>
+            </div>
+            <div class="card-footer text-center card-footer-icons">
+              <button class="btn btn-view-details btn-block mr-2">
+                <a routerLink="/pgd/pg-for-rent-in-{{ locProp.city_name | cleanUrl }}-{{
+                            locProp.prope_ID
+                          }}" target="_blank">
+                  View Details
+                  <img
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Rental _External_link.png"
+                    alt="Rental _External_link.png" />
+                </a>
+              </button>
+              <div [ngClass]="{
+                          Rental_icons_Heart3_Active: isInWishlist(locProp.prope_ID),
+                          'Rental_icons_Heart3 mr-2': !isInWishlist(locProp.prope_ID),
+                        }" (click)="Heart_Transtion(locProp.prope_ID)"></div>
+              <img
+                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Rental_share.png"
+                alt="Rental_share.png" class="sharecss" (click)="onclickshareNearBy(locProp)" />
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+
+      }
+      }
+
+      <div>
+        <div id="section10"></div>
+        @if(mousemovement){
+
+
+
+        <div class="col-12 pr-0">
+          <div style="padding: 1px 0px 1px 10px; margin: 16px 0px 16px 0px; border-radius: 4px">
+            <h2 class="sqrt-titletext">Trending Blogs</h2>
+            <div class="row scrolldiv2">
+              <div class="blogsSection">
+                @for (blog of trendingBlogs | slice: 0 : 6; track blog) {
+                <a>
+                  <div class="card sqrtcard-size">
+                    <a href="https://www.homes247.in/blogs/{{ blog.urlstruture | cleanUrl }}-{{
+                              blog.id
+                            }}" style="text-decoration: none">
+                      <img src="{{ blogimagePath }}{{ blog.imgPath }}" class="blogImageSize" alt="blog.alttag"
+                        height="96px" width="100%" />
+                      <div class="card-body custom-card-body">
+                        <button class="btn lock_button d-flex align-items-center">
+                          Trending Blogs
+                        </button>
+                        <h5 class="sqrt-text sqrt-blog">{{ blog.title }}</h5>
+                        <div class="col-12">
+                          <div class="row sqrt2">
+                            <div class="col-6 px-0 sqrt1-text">
+                              <p class="mb-0">By {{ blog.addedby }}</p>
+                            </div>
+                            <div class="col-5 text-right sqrt2-text">
+                              <p class="mb-0">{{ blog.date | date: 'MMM dd, yyyy' }}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </a>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+
+        }
+      </div>
+      }
+    </div>
+
+    @if (IsVisibleEnquery) {
+    <div class="container">
+      <div id="" class="modal-login">
+        <div class="modal-content-login-modal">
+          <div class="enqiery">
+            <div class="imgcontainer">
+              <span class="close-login" (click)="CloseModal()" title="Close Modal">&times;</span>
+            </div>
+            <div class="col-sm-12 text-center">
+              <img class="loginModelImg"
+                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Homes247_NewBlack_Logo.png"
+                alt="Homes247_NewBlack_Logo.png" />
+              <p class="loginModelText">India's Favourite Property Portal</p>
+              @if (resquestCall) {
+              <img id="loginModelImg1"
+                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/rental_contact.png"
+                alt="rental_contact.png" />
+              }
+              @if (resquestImages) {
+              <img id="loginModelImg1"
+                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Image_contact.png"
+                alt="Image_contact.png" />
+              }
+            </div>
+            @if (resquestImages) {
+            <div class="pageDetailsDiv">
+              <p class="contact_heading mb-0">Looking for Property Photos?</p>
+              <p class="contact_heading2">
+                Fill out this form, We'll request the photos for you!
+              </p>
+            </div>
+            }
+            @if (resquestCall) {
+            <div class="pageDetailsDiv">
+              <p class="contact_heading mb-0">Find Your Ideal Rental Home!</p>
+              <p class="contact_heading2">Receive the owner's details via email.</p>
+            </div>
+            }
+            <div class="container mt-3">
+              <label for="newUserName" class="label_field">Name</label>
+              <input class="input-loginModel" type="text" [(ngModel)]="enquiry.name" name="name" id="uname" required />
+              <label for="emobileLogin" class="label_field">Number</label>
+              <input type="text" class="input-loginModel emobileLogin" id="unumber" maxlength="10" minlength="10"
+                [(ngModel)]="enquiry.number" name="number" />
+              <label for="emobileLogin" class="label_field">Email (Optional)</label>
+              <input class="input-loginModel emobileLogin" [(ngModel)]="enquiry.mail" type="email" name="email"
+                id="uemail" required />
+              @if (resquestCall) {
+              <button type="button" class="btn col-sm-12 mt-3 mobileLogButton" (click)="otpsend()">
+                Get Contact Details
+              </button>
+              }
+              @if (resquestImages) {
+              <button type="button" class="btn col-sm-12 mt-3 mobileLogButton" (click)="otpsend()">
+                Request Images
+              </button>
+              }
+              @if (resquestImages) {
+              <p class="user_content mt-2">
+                We'll notify you once the owner shares the images.
+              </p>
+              }
+              @if (resquestCall) {
+              <p class="user_content mt-2">All the request are handled in just 5 minutes</p>
+              }
+            </div>
+          </div>
+          <div class="OtpDiv">
+            <form name="otpForm" novalidate>
+              <div class="imgcontainer">
+                <span class="close-login" (click)="goBackFromEnq()" title="Close Modal">&times;</span>
+              </div>
+              <div class="col-sm-12 text-center mb-4">
+                <img class="loginModelImg"
+                  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Homes247_NewBlack_Logo.png"
+                  alt="Homes247_NewBlack_Logo.png" />
+                <p class="loginModelText">India's Favourite Property Portal</p>
+              </div>
+              <div class="col-sm-12 mt-0 mb-4 text-center">
+                @if (otpValidating) {
+                <img class="loginModelImg1" height="100%" width="80%"
+                  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/otpsection/otpauth.svg"
+                  alt="otpauth.svg" />
+                }
+                <h3 id="otpVerificationTxt">Enter Verification Code</h3>
+                <p id="enterOtp">
+                  We've sent a code to your WhatsApp<br />
+                  <b> +91 {{ enquiry.number }}</b>
+                  <a id="editNum" (click)="goback1()"> - Edit</a>
+                </p>
+              </div>
+              <input hidden autocomplete="off" type="text" placeholder="OTP" name="otp" id="otp"
+                [(ngModel)]="enquiry.otp" required />
+              <ng-otp-input class="otpinput text-center" #ngOtpInput (onInputChange)="onOtpChange($event)"
+                [config]="config"></ng-otp-input>
+              <div class="col-12 text-center countdown_maindiv mt-3 mb-3">
+                <span>Resend the OTP in
+                  <countdown #cd4 [config]="countdownconfig" (event)="handleEvent($event)"></countdown>
+                  Seconds
+                </span>
+              </div>
+              <p class="otpexpireclass text-center mt-3">
+                OTP Expired - <a id="editNum" (click)="otpBasedLogin1()">Resend</a>
+              </p>
+              <div class="col-sm-12 text-center mb-3">
+                <button (click)="otpvalidate4()" class="btn mt-2 mobileLogButton1">
+                  Verify
+                </button>
+              </div>
+              <button type="reset" id="btn_reset" style="display: none"></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+
+
+
+    @if(verificationDetailStatus != 2) {
+
+    <div class="bottomContactFooter pb-3">
+      <div class="container">
+        <p class="footerBtnTxt">
+          @if (mousemovement) {
+          <img
+            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/Eye_Animation.gif"
+            alt="Eye_Animation.gif" height="20px" width="20px" />
+          }
+          <span style="color: #971b47">{{ numberOfViewers }} People</span> Currently Viewing This
+          Property
+        </p>
+        <div class="footerBtns container">
+          <div class="row">
+            <div class="col-2">
+              @for (data of propdetails; track data; let i = $index) {
+              <div class="footerWhatsAppBtn text-center">
+                <a href="https://api.whatsapp.com/send?phone=919008029014&text=%20https://www.homes247.in{{
+                        currenturl
+                      }}%0A%0AI'm%20interested%20in%20renting%20at%20{{ data.PGName }}%20in%20{{
+                        data.Locality_name
+                      }},%20{{
+                        data.city
+                      }}.%20Could%20you%20please%20provide%20me%20with%20more%20information%20regarding%20the%20available%20units,%20rental%20rates,%20and%20amenities?"
+                  aria-label="Whatsapp Chat" target="_blank">
+                  <i class="fa fa-brands fa-whatsapp"></i>
+                </a>
+              </div>
+              }
+            </div>
+            @for (data of propdetails; track data) {
+            <div class="col-2 p-0">
+              <div class="wishLishtDiv1 footerFavBtn">
+                <div [ngClass]="{
+                        Rental_icons_Heart_Active: isInWishlist(data.propartyID),
+                        Rental_icons_Heart: !isInWishlist(data.propartyID),
+                      }" class="Rental_icons_Heart mb-2" (click)="Heart_Transtion(data.propartyID)"></div>
+              </div>
+            </div>
+            }
+
+            @if(!login){
+            <a class="col-8 text-center pr-0" routerLink="/login" style="
+    justify-items: right;
+">
+              <button class="footerContactBtn">
+                <i class="fa fa-phone-square phoneButton"></i>&nbsp;&nbsp;&nbsp;Contact Owner
+              </button>
+            </a>
+            }
+
+
+            @if(login){
+            <div class="col-8 text-center pr-0" (click)="elitePlanView(data.propartyID)" style="
+    justify-items: right;
+">
+              <button class="footerContactBtn">
+                <i class="fa fa-phone-square phoneButton"></i>&nbsp;&nbsp;&nbsp;Contact Owner
+              </button>
+            </div>
+            }
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+
+
+
+    <!-- subscription -->
+    @if(verificationDetailStatus == 2) {
+    <div id="customModalBackdropSubscription" class="homiSheetBackdrop"></div>
+
+    <div id="homiSheet" class="subscriptionMainSheet bottomContactFooter pb-3">
+      <div id="subscriptionMainSheet" class="homiFooterSheet">
+
+        <!-- <div id="subscriptionDetailHeader" class="homiHeadderSheet" (click)="toggleSubscriptionSheet()">
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/HomiAi/homiTimmerIconMobile.svg"
+                    alt="..homiTimmerIconMobile.svg">
+                <p>Verification In Progress...</p>
+            </div> -->
+
+
+        <div id="subscriptionDetailHeader" class="bottomContactFooter pb-3">
+          <div class="container">
+            <p class="footerBtnTxt">
+              @if (mousemovement) {
+              <img
+                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/Eye_Animation.gif"
+                alt="Eye_Animation.gif" height="20px" width="20px" />
+              }
+              <span style="color: #971b47">{{ numberOfViewers }} People</span> Currently Viewing This
+              Property
+            </p>
+            <div class="footerBtns container">
+              <div class="row">
+                <div class="col-2">
+                  @for (data of propdetails; track data; let i = $index) {
+                  <div class="footerWhatsAppBtn text-center">
+                    <a href="https://api.whatsapp.com/send?phone=919008029014&text=%20https://www.homes247.in{{
+                        currenturl
+                      }}%0A%0AI'm%20interested%20in%20renting%20at%20{{ data.PGName }}%20in%20{{
+                        data.Locality_name
+                      }},%20{{
+                        data.city
+                      }}.%20Could%20you%20please%20provide%20me%20with%20more%20information%20regarding%20the%20available%20units,%20rental%20rates,%20and%20amenities?"
+                      aria-label="Whatsapp Chat" target="_blank">
+                      <i class="fa fa-brands fa-whatsapp"></i>
+                    </a>
+                  </div>
+                  }
+                </div>
+                @for (data of propdetails; track data) {
+                <div class="col-2 p-0">
+                  <div class="wishLishtDiv1 footerFavBtn">
+                    <div [ngClass]="{
+                        Rental_icons_Heart_Active: isInWishlist(data.propartyID),
+                        Rental_icons_Heart: !isInWishlist(data.propartyID),
+                      }" class="Rental_icons_Heart mb-2" (click)="Heart_Transtion(data.propartyID)"></div>
+                  </div>
+                </div>
+                }
+                <div class="col-8 text-center pr-0" style="justify-items: right;" (click)="toggleSubscriptionSheet()">
+                  <button class="footerSubscriptionContactBtn">View Contact Details
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div id="subscriptionDetailsBody" class="subscriptionMainSheetContent">
+          <div class="modal-content unlock_content">
+
+            <div class="unlockheader" data-dismiss="modal" (click)="closeSubscriptionSheet()">
+              <p class="unlock_close"></p>
+              <p class="text-center Main_unlockheader mt-3">Contact Details</p>
+            </div>
+
+            <div class="container sub_Unlockheader">
+
+              <div class="mt-2">
+                <p class="sub_header">Owner Name<br><span class="sub_value">{{contactData.owner_name}}</span></p>
+              </div>
+
+              <div class="mt-3 text-truncate">
+                <p class="sub_header">Email ID<br><span class="sub_value"
+                    title="Gowshik@gmail.com">{{contactData.owner_email || 'NA'}}</span></p>
+              </div>
+
+              <div class="mt-3">
+                <p class="sub_header">Mobile Number<br><span class="sub_value">{{contactData.owner_number ||
+                    'NA'}}</span></p>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    }
+    <!-- subscription -->
+
+    <div class="modal fade" id="propReportModal" role="dialog">
+      <div class="modal-dialog modal-dialog-centered justify-content-center">
+        <div class="modal-content modal_enqury_cntnt" style="width: 297px">
+          <div class="modal-body prop_modal">
+            <div class="col-12 p-0">
+              <div class="d-flex" style="justify-content: space-between; align-items: baseline">
+                <div class="mb-3">
+                  <p class="reportHeadTxt">Report this property</p>
+                  <p class="reportHeadSubTxt mb-0">Please provide the reason for report</p>
+                </div>
+                <button type="button" class="close modal_close" data-dismiss="modal">
+                  <i class="fa fa-times-circle-o" style="color: rgb(114, 114, 114)"></i>
+                </button>
+              </div>
+              <form (ngSubmit)="submitFormReport()">
+                @for (option of propAllIssue; track option) {
+                <div class="radioStyle mb-2">
+                  <input type="radio" name="myRadioGroup" class="mr-2" [value]="option" [(ngModel)]="selectedOption"
+                    required (change)="onSelectionChange()" id="radioColor" />
+                  {{ option.report_types }}
+                </div>
+                }
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-12 px-0">
+                      <button type="submit" class="btn btn_style1" [disabled]="!selectedOption">
+                        Submit Report
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    @if (Visiblebrochure) {
+    <div>
+      <ng-container *ngComponentOutlet="otpValidationComponent"></ng-container>
+    </div>
+    }
+
+    @if (gallerySection1) {
+    <div class="background_modal modal-fullscreen-xl" id="modal-fullscreen-xl3" tabindex="-1" role="dialog"
+      aria-hidden="true">
+      @for (data of propdetails; track data) {
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header rating_top_head d-flex">
+            <div>
+              <img (click)="backPageIcon()" class="mt-1"
+                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/arrow_back_ios (1).png"
+                alt="arrow_back_ios (1).png" />
+              <p class="propName">PG for {{ data.Available_Type }}</p>
+              <br />
+              <p class="propPrice22">
+                &nbsp;&nbsp; &nbsp; &#8377; {{ data.min_pric.amount }}
+              </p>
+            </div>
+          </div>
+          <div class="showss">
+            <div [ngClass]="{ actives: section === 'section1' }" class="showCenter ml-2" (click)="scrollTo('section1')">
+              PG Photos
+            </div>
+          </div>
+          @for (data of propdetails; track data) {
+          <div class="modal-body answer-custom-body">
+            <div class="fixTopGalerry">
+              <div class="gallery">
+                <!-- sam -->
+                <div class="gallery" [photoGalleryGroup] ScrollSpy (sectionChange)="onSectionChange($event)">
+                  <div id="section1">
+                    @for (imgs of data.images; track imgs; let i = $index) {
+                    <div class="card Property" #masterPlanSection>
+                      <p class="card__captionProperty">PG Photos</p>
+                      <div photoGallery="{{ ImageUrl }}{{ imgs.Images_name }}" class="imageTumb">
+                        <img class="card__image" loading="lazy" src="{{ ImageUrl }}{{ imgs.Images_name }}"
+                          alt="imgs.alttag" />
+                      </div>
+                    </div>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+      }
+
+      <!-- @if( false) {
+      <div class="bottomContactFooter pb-3">
+        <div class="container">
+          <p class="footerBtnTxt">
+            @if (mousemovement) {
+            <img
+              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/Eye_Animation.gif"
+              alt="Eye_Animation.gif" height="20px" width="20px" />}
+            <span style="color: #971b47">{{ numberOfViewers }} People</span> Currently Viewing
+            This Property
+          </p>
+          <div class="footerBtns container">
+            <div class="row">
+              <div class="col-2">
+                @for (data of propdetails; track data; let i = $index) {
+                <div class="footerWhatsAppBtn text-center">
+                  <a href="https://api.whatsapp.com/send?phone=919008029014&text=%20https://www.homes247.in{{
+                            currenturl
+                          }}%0A%0AI'm%20interested%20in%20renting%20at%20{{ data.PGName }}%20in%20{{
+                            data.Locality_name
+                          }},%20{{
+                            data.city
+                          }}.%20Could%20you%20please%20provide%20me%20with%20more%20information%20regarding%20the%20available%20units,%20rental%20rates,%20and%20amenities?"
+                    aria-label="Whatsapp Chat" target="_blank">
+                    <i class="fa fa-brands fa-whatsapp"></i>
+                  </a>
+                </div>
+                }
+              </div>
+              @for (data of propdetails; track data) {
+              <div class="col-2 p-0">
+                <div class="wishLishtDiv1 footerFavBtn">
+                  <div [ngClass]="{
+                            Rental_icons_Heart_Active: isInWishlist(data.propartyID),
+                            Rental_icons_Heart: !isInWishlist(data.propartyID),
+                          }" class="Rental_icons_Heart mb-2" (click)="Heart_Transtion(data.propartyID)"></div>
+                </div>
+              </div>
+              }
+              <div class="col-8 text-center" (click)="ShowHideEnquery2()">
+                <button class="footerContactBtn">
+                  <i class="fa fa-phone-square phoneButton"></i>&nbsp;&nbsp;&nbsp;Contact Owner
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    } -->
+
+    </div>
+    }
+    <!--  -->
+    <div class="footerDiv">
+      <ng-container *ngComponentOutlet="FooterComponent"></ng-container>
+    </div>
+    <div style="height: 90px"></div>
+
+    @if (otploader) {
+    <div class="loaderbody">
+      <div class="box">
+        <div class="loader-20"></div>
+      </div>
+    </div>
+    }
+
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=info" />
+  </div>
+</div>
+}@placeholder {
+<div class="loaderbody">
+  <div class="box">
+    <div class="loader-20"></div>
+  </div>
+</div>
+}
+
+}
+
+
+
+<!-- Subcription code  -->
+<div class="modal fade" id="elitePlanModal" tabindex="-1" aria-labelledby="elitePlanModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+
+      <div class="d-flex justify-content-end mt-3 me-3">
+        <img class="elitePlanLogo mr-3" id="elitePlanClose" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/closeIcon.svg"
+          alt="Close" data-dismiss="modal" style="cursor:pointer;">
+      </div>
+
+
+      <div class="modal-body text-center">
+
+        <div class="d-flex justify-content-center align-items-center mt-3">
+          <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/metarIcon.svg" alt="">
+        </div>
+
+        <div class="text-center YourFree mt-3">
+          <h6>Your free contact limit is over</h6>
+          <p>Upgrade your plan to keep connecting with property owners.</p>
+        </div>
+
+        <div class="afterSuccessPayment mt-4">
+          <div class="d-flex justify-content-center align-items-center mb-2">
+            <a class="btn UnlockMoreBtn" (click)="elitePlanRouter()">
+              Unlock More Contacts
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+@if(isVisible){
+<div class="visibility-popup__backdrop" (click)="onBackdropClick()"></div>
+
+<div class="visibility-popup" role="dialog" aria-modal="true" aria-label="Your property visibility">
+    <button type="button" class="visibility-popup__close" (click)="closeVsibilityPopup()" aria-label="Close">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/notificationClose.svg"
+            alt="" class="visibility-popup__close-icon" />
+    </button>
+
+    <div class="visibility-popup__top">
+        <div class="visibility-popup__top-text">
+            <h2 class="visibility-popup__heading">Your Property Visibility</h2>
+            <p class="visibility-popup__level"> Low </p>
+        </div>
+
+        <div class="visibility-popup__eye">
+            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/lowVisibilityEye.svg"
+                alt="Visibility indicator" class="visibility-popup__eye-icon" />
+        </div>
+    </div>
+
+    <p class="visibility-popup__description">
+        Boost your listing to improve ranking and reach more interested buyers.
+    </p>
+
+    <div class="visibility-popup__timeline">
+        @for (step of steps; track step.label; let isLast = $last) {
+        <div class="visibility-popup__step visibility-popup__step--{{ step.state }}">
+            <div class="visibility-popup__step-icon">
+                <img [src]="step.icon" [alt]="step.label" class="visibility-popup__step-icon-img" />
+            </div>
+            <span class="visibility-popup__step-label">{{ step.label }}</span>
+            @if (step.subLabel) {
+            <span class="visibility-popup__step-sublabel">{{ step.subLabel }}</span>
+            }
+        </div>
+
+        @if (!isLast) {
+        <div class="visibility-popup__connector"></div>
+        }
+        }
+    </div>
+
+    <div class="visibility-popup__info">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/boostListingIcon.svg"
+            alt="" class="visibility-popup__info-icon" />
+        <p class="visibility-popup__info-text">
+            Boosted Listings get up to
+            <span class="visibility-popup__info-highlight">3x more</span>
+            views &amp; enquiries.
+        </p>
+    </div>
+
+    <button type="button" class="visibility-popup__cta" (click)="increaseVisibility()">
+        <span class="visibility-popup__cta-text">Increase Visibility</span>
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/visibilityEyeIcon.svg"
+            alt="" class="visibility-popup__cta-icon" />
+    </button>
+</div>
+}

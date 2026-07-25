@@ -1,0 +1,101 @@
+.main_div{
+  /* margin-top: 126px; */
+}
+
+.main_div h1{
+  font-size: 15px;
+}
+
+.city_div{
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 1px 0 3px 0 #ccc;
+  padding: 15px;
+  margin-top: 30px;
+}
+
+.city_div h2{
+  font-size: 17px;
+}
+
+.priority_page{
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 1px 0 3px 0 #ccc;
+  padding: 15px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.priority_page h2{
+  font-size: 20px;
+  color: #666;
+  font-weight: 500;
+}
+
+.citylist{
+  height: 500px;
+  overflow-y: scroll;
+}
+
+.AlphabetNav {
+  width: 100%;
+  display: flex;
+  padding: .5rem;
+  background: ghostwhite;
+  overflow: scroll;
+}
+
+.AlphabetNav a {
+  display: flex;
+  justify-content: center;
+  padding: .5em;
+  border-radius: 8px;
+  font-size: 1.2em;
+  line-height: 1;
+  font-weight: 500;
+  text-decoration: none;
+  color: darkgray;
+}
+
+.AlphabetNav a:hover {
+  background: #ddd;
+  color: #444;
+}
+
+.AlphabetNav .active {
+  background: #f46353;
+  color: white;
+}
+
+.sitemap_logo img{
+  width: 50%;
+}
+.logomaindiv{
+  text-align: center;
+}
+
+.sectionTwo {
+  border: 1px solid #E5E5E5;
+  text-align: center;
+  padding: 30px 0px;
+  margin: 0 0 15px 0;
+}
+
+.localityName {
+  font-size: 13px;
+  font-family: 'Poppins';
+  font-weight: bold;
+  color: #080808;
+  display: block;
+  margin: -10px 0 20px 0;
+}
+
+.avgRatSqft {
+  font-size: 11px;
+  color: #8f8f8f;
+  font-family: 'Poppins';
+  /* text-align: left;
+  padding: 0 0 0 15px; */
+  display: block;
+}

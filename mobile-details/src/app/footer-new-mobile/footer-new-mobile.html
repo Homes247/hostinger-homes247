@@ -1,0 +1,671 @@
+<footer id="global-footer" class="footer">
+
+  <div class="p-3">
+    <div class="footer-container">
+      <div class="footer-title">
+        <div class="purpleDot">&nbsp;&nbsp;</div>
+        Discover Place To Live
+      </div>
+
+      <div class="footerNavList">
+        <div class="footNavItem pl-0" [class.footNavActive]="footNavId == 1" (click)="footNavId = 1">
+          Buy Property
+        </div>
+        <div class="footNavItem NavItemgap"></div>
+        <div class="footNavItem" [class.footNavActive]="footNavId == 2" (click)="footNavId = 2">
+          Rent Home
+        </div>
+        <div class="footNavItem NavItemgap"></div>
+        <div class="footNavItem" [class.footNavActive]="footNavId == 3" (click)="footNavId = 3">
+          New Project
+        </div>
+        <div class="footNavItem NavItemgap"></div>
+        <div class="footNavItem" [class.footNavActive]="footNavId == 4" (click)="footNavId = 4">
+          Property Cities
+        </div>
+        <div class="footNavItem NavItemgap"></div>
+        <div class="footNavItem" [class.footNavActive]="footNavId == 5" (click)="footNavId = 5">
+          Latest Blogs
+        </div>
+        <!-- <div class="footNavItem NavItemgap " ></div> -->
+      </div>
+      <!-- For Buy Property -->
+      <div class="footerContContainer" [hidden]="footNavId != 1">
+        <div class="footerContent">
+          <div class="footerText">
+            <a title="Properties in Bangalore | Properties for sale in Bangalore"
+              href="https://www.homes247.in/bangalore/property-sale">
+              Properties in Bangalore
+            </a>
+          </div>
+          <div class="footerText">
+            <a title="Properties in Hyderabad | Properties for sale in Hyderabad"
+              href="https://www.homes247.in/hyderabad/property-sale">
+              Properties in Hyderabad
+            </a>
+          </div>
+          <div class="footerText">
+            <a title="Properties in Chennai | Properties for sale in Chennai"
+              href="https://www.homes247.in/chennai/property-sale">
+              Properties in Chennai
+            </a>
+          </div>
+          <div class="footerText">
+            <a title="Properties in Kochi | Properties for sale in Kochi"
+              href="https://www.homes247.in/kochi/property-sale">
+              Properties in Kochi
+            </a>
+          </div>
+          <div class="footerText">
+            <a title="Properties in Pune | Properties for sale in Pune"
+              href="https://www.homes247.in/pune/property-sale">
+              Properties in Pune
+            </a>
+          </div>
+        </div>
+
+        <div class="footerContent">
+          <div class="footerText">
+            <a title="Properties in Delhi | Properties for sale in Delhi"
+              href="https://www.homes247.in/delhi/property-sale">
+              Properties in Delhi
+            </a>
+          </div>
+          <div class="footerText">
+            <a title="Properties in Kolkata | Properties for sale in Kolkata"
+              href="https://www.homes247.in/kolkata/property-sale">
+              Properties in Kolkata
+            </a>
+          </div>
+          <div class="footerText">
+            <a title="Properties in Mumbai | Properties for sale in Mumbai"
+              href="https://www.homes247.in/mumbai/property-sale">
+              Properties in Mumbai
+            </a>
+          </div>
+          <div class="footerText">
+            <a title="Properties in Goa | Properties for sale in Goa" href="https://www.homes247.in/goa/property-sale">
+              Properties in Goa
+            </a>
+          </div>
+          <div class="footerText">
+            <a title="Properties in Gurgaon | Properties for sale in Gurgaon"
+              href="https://www.homes247.in/gurgaon/property-sale">
+              Properties in Gurgaon
+            </a>
+          </div>
+        </div>
+
+        <div class="footerContent">
+          <div class="footerText">
+            <a title="Properties in Mysore | Properties for sale in Mysore"
+              href="https://www.homes247.in/mysore/property-sale">
+              Properties in Mysore
+            </a>
+          </div>
+          <div class="footerText">
+            <a title="Properties in Coimbatore | Properties for sale in Coimbatore"
+              href="https://www.homes247.in/coimbatore/property-sale">
+              Properties in Coimbatore
+            </a>
+          </div>
+          <div class="footerText">
+            <a title="Properties in Ahmedabad | Properties for sale in Ahmedabad"
+              href="https://www.homes247.in/ahmedabad/property-sale">
+              Properties in Ahmedabad
+            </a>
+          </div>
+          <div class="footerText">
+            <a title="Properties in Trivandrum | Properties for sale in Trivandrum"
+              href="https://www.homes247.in/trivandrum/property-sale">
+              Properties in Trivandrum
+            </a>
+          </div>
+          <div class="footerText">
+            <a title="Properties in Navi Mumbai | Properties for sale in Navi Mumbai"
+              href="https://www.homes247.in/navi mumbai/property-sale">
+              Properties in Navi Mumbai
+            </a>
+          </div>
+        </div>
+
+        <div class="footerContent">
+          <div class="footerText">
+            <a title="Properties in Noida | Properties for sale in Noida"
+              href="https://www.homes247.in/noida/property-sale">
+              Properties in Noida
+            </a>
+          </div>
+          <div class="footerText">
+            <a title="Properties in Greater Noida| Properties for sale in Greater" Noida
+              href="https://www.homes247.in/greater Noida/property-sale">
+              Properties in Greater Noida
+            </a>
+          </div>
+          <div class="footerText">
+            <a title="Properties in Bhubhaneswar | Properties for sale in Bhubhaneswar"
+              href="https://www.homes247.in/bhubaneshwar/property-sale">
+              Properties in Bhubhaneswar
+            </a>
+          </div>
+          <div class="footerText">
+            <a title="Properties in Vijayawada | Properties for sale in Vijayawada"
+              href="https://www.homes247.in/vijayawada/property-sale">
+              Properties in Vijayawada
+            </a>
+          </div>
+          <div class="footerText">
+            <a title="Properties in Bhopal | Properties for sale in Bhopal"
+              href="https://www.homes247.in/bhopal/property-sale">
+              Properties in Bhopal
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- For Rent Home -->
+      <div class="footerContContainer" [hidden]="footNavId != 2">
+        <div class="footerContent">
+          <div class="footerText">
+            <a href="https://www.homes247.in/rent/house-for-rent-in-{{
+              selectedCity | cleanUrl
+            }}" title="Properties for Rent in {{
+              selectedCity
+            }} | Rent a House in {{ selectedCity }}" rel="bookmark">
+              Properties for Rent in {{ selectedCity }}
+            </a>
+          </div>
+          <div class="footerText">
+            <a href="https://www.homes247.in/rent/flats-for-rent-in-{{
+              selectedCity | cleanUrl
+            }}" title="Flats for Rent in {{
+              selectedCity
+            }} | Apartments for Rent in {{ selectedCity }} | Homes247.in" rel="bookmark">
+              Flats for Rent in {{ selectedCity }}
+            </a>
+          </div>
+          <div class="footerText">
+            <a href="https://www.homes247.in/rent/villas-for-rent-in-{{
+              selectedCity | cleanUrl
+            }}" title="Villas for Rent in {{ selectedCity }} | Luxury Villas in {{
+              selectedCity
+            }} | Homes247.in" rel="bookmark">
+              Villas for Rent in {{ selectedCity }}
+            </a>
+          </div>
+          <div class="footerText">
+            <a href="https://www.homes247.in/rent/land-for-rent-in-{{
+              selectedCity | cleanUrl
+            }}" title="Land for Rent in {{
+              selectedCity
+            }} | Commercial Plots & Agricultural Land | Homes247.in" rel="bookmark">
+              Land for Rent in {{ selectedCity }}
+            </a>
+          </div>
+          <div class="footerText">
+            <a href="https://www.homes247.in/rent/flats-for-rent-in-{{
+              selectedCity | cleanUrl
+            }}-price-under-10000" title="Flats for Rent Under ₹10,000 in {{ selectedCity }}" rel="bookmark">
+              Flats for Rent Under ₹10,000 in {{ selectedCity }}
+            </a>
+          </div>
+        </div>
+
+        <div class="footerContent">
+          <div class="footerText">
+            <a href="https://www.homes247.in/rent/flats-for-rent-in-{{
+              selectedCity | cleanUrl
+            }}-price-10000-to-20000" title="Flats for Rent in {{
+              selectedCity
+            }} Between ₹10,000 - ₹20,000" rel="bookmark">
+              Flats for Rent ₹10,000 - ₹20,000 in {{ selectedCity }}
+            </a>
+          </div>
+          <div class="footerText">
+            <a href="https://www.homes247.in/rent/flats-for-rent-in-{{
+              selectedCity | cleanUrl
+            }}-price-20000-to-30000" title="Flats for Rent in {{
+              selectedCity
+            }} Between ₹20,000 - ₹30,000" rel="bookmark">
+              Flats for Rent ₹20,000 - ₹30,000 in {{ selectedCity }}
+            </a>
+          </div>
+          <div class="footerText">
+            <a href="https://www.homes247.in/rent/flats-for-rent-in-{{
+              selectedCity | cleanUrl
+            }}-price-30000-to-40000" title="Flats for Rent in {{
+              selectedCity
+            }} Between ₹30,000 - ₹40,000" rel="bookmark">
+              Flats for Rent ₹30,000 - ₹40,000 in {{ selectedCity }}
+            </a>
+          </div>
+          <div class="footerText">
+            <a href="https://www.homes247.in/rent/flats-for-rent-in-{{
+              selectedCity | cleanUrl
+            }}-price-40000-to-50000" title="Flats for Rent in {{
+              selectedCity
+            }} Between ₹40,000 - ₹50,000" rel="bookmark">
+              Flats for Rent ₹40,000 - ₹50,000 in {{ selectedCity }}
+            </a>
+          </div>
+          <div class="footerText">
+            <a href="https://www.homes247.in/rent/flats-for-rent-in-{{
+              selectedCity | cleanUrl
+            }}-price-above-50000" title="Flats for Rent in {{ selectedCity }} Above ₹50,000" rel="bookmark">
+              Flats for Rent Above ₹50,000 in {{ selectedCity }}
+            </a>
+          </div>
+        </div>
+
+        <div class="footerContent">
+          <div class="footerText">
+            <a href="https://www.homes247.in/rent/villas-for-rent-in-{{
+              selectedCity | cleanUrl
+            }}-price-under-10000" title="Villas for Rent Under ₹10,000 in {{ selectedCity }}" rel="bookmark">
+              Villas for Rent Under ₹10,000 in {{ selectedCity }}
+            </a>
+          </div>
+          <div class="footerText">
+            <a href="https://www.homes247.in/rent/villas-for-rent-in-{{
+              selectedCity | cleanUrl
+            }}-price-10000-to-20000" title="Villas for Rent in {{
+              selectedCity
+            }} Between ₹10,000 - ₹20,000" rel="bookmark">
+              Villas for Rent ₹10,000 - ₹20,000 in {{ selectedCity }}
+            </a>
+          </div>
+          <div class="footerText">
+            <a href="https://www.homes247.in/rent/villas-for-rent-in-{{
+              selectedCity | cleanUrl
+            }}-price-20000-to-30000" title="Villas for Rent in {{
+              selectedCity
+            }} Between ₹20,000 - ₹30,000" rel="bookmark">
+              Villas for Rent ₹20,000 - ₹30,000 in {{ selectedCity }}
+            </a>
+          </div>
+          <div class="footerText">
+            <a href="https://www.homes247.in/rent/villas-for-rent-in-{{
+              selectedCity | cleanUrl
+            }}-price-30000-to-40000" title="Villas for Rent in {{
+              selectedCity
+            }} Between ₹30,000 - ₹40,000" rel="bookmark">
+              Villas for Rent ₹30,000 - ₹40,000 in {{ selectedCity }}
+            </a>
+          </div>
+          <div class="footerText">
+            <a href="https://www.homes247.in/rent/villas-for-rent-in-{{
+              selectedCity | cleanUrl
+            }}-price-40000-to-50000" title="Villas for Rent in {{
+              selectedCity
+            }} Between ₹40,000 - ₹50,000" rel="bookmark">
+              Villas for Rent ₹40,000 - ₹50,000 in {{ selectedCity }}
+            </a>
+          </div>
+        </div>
+
+        <div class="footerContent">
+          <div class="footerText">
+            <a href="https://www.homes247.in/rent/villas-for-rent-in-{{
+              selectedCity | cleanUrl
+            }}-price-above-50000" title="Villas for Rent in {{ selectedCity }} Above ₹50,000" rel="bookmark">
+              Villas for Rent Above ₹50,000 in {{ selectedCity }}
+            </a>
+          </div>
+          <div class="footerText">
+            <a href="https://www.homes247.in/rent/independent-house-for-rent-in-{{
+              selectedCity | cleanUrl
+            }}" title="Independent Houses for Rent in {{ selectedCity }}" rel="bookmark">
+              Independent Houses for Rent in {{ selectedCity }}
+            </a>
+          </div>
+          <div class="footerText">
+            <a href="https://www.homes247.in/rent/independent-house-for-rent-in-{{
+              selectedCity | cleanUrl
+            }}-price-under-10000" title="Independent Houses for Rent Under ₹10,000 in {{
+              selectedCity
+            }}" rel="bookmark">
+              Independent Houses for Rent Under ₹10,000 in {{ selectedCity }}
+            </a>
+          </div>
+          <div class="footerText">
+            <a href="https://www.homes247.in/rent/independent-house-for-rent-in-{{
+              selectedCity | cleanUrl
+            }}-price-10000-to-20000" title="Independent Houses for Rent ₹10,000 - ₹20,000 in {{
+              selectedCity
+            }}" rel="bookmark">
+              Independent Houses for Rent ₹10,000 - ₹20,000 in {{ selectedCity }}
+            </a>
+          </div>
+          <div class="footerText">
+            <a href="https://www.homes247.in/rent/independent-house-for-rent-in-{{
+              selectedCity | cleanUrl
+            }}-price-20000-to-30000" title="Independent Houses for Rent ₹20,000 - ₹30,000 in {{
+              selectedCity
+            }}" rel="bookmark">
+              Independent Houses for Rent ₹20,000 - ₹30,000 in {{ selectedCity }}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- For New Project  -->
+      <div class="footerContContainer" [hidden]="footNavId != 3">
+        <div class="footerContent">
+
+          @for (property of properties | slice:1:7; track property.id) {
+          <div class="footerText">
+            <a href="https://www.homes247.in/property/{{property.city | cleanUrl}}/{{property.localityname | cleanUrl}}/{{property.propertyname | cleanUrl}}-{{property.id | cleanUrl}}"
+              rel="bookmark" title="{{property.propertyname}} in {{property.localityname}}, {{property.city}}">
+              {{property.propertyname}} in {{property.localityname}}, {{property.city}} |
+              Reviews
+            </a>
+          </div>
+          }
+
+        </div>
+
+        <div class="footerContent">
+
+          @for (property of properties | slice:8:14; track property.id) {
+          <div class="footerText">
+            <a href="https://www.homes247.in/property/{{property.city | cleanUrl}}/{{property.localityname | cleanUrl}}/{{property.propertyname | cleanUrl}}-{{property.id | cleanUrl}}"
+              rel="bookmark" title="{{property.propertyname}} in {{property.localityname}}, {{property.city}}">
+              {{property.propertyname}} in {{property.localityname}}, {{property.city}} |
+              Reviews
+            </a>
+          </div>
+          }
+
+        </div>
+
+        <div class="footerContent">
+
+          @for (property of properties | slice:15:21; track property.id) {
+          <div class="footerText">
+            <a href="https://www.homes247.in/property/{{property.city | cleanUrl}}/{{property.localityname | cleanUrl}}/{{property.propertyname | cleanUrl}}-{{property.id | cleanUrl}}"
+              rel="bookmark" title="{{property.propertyname}} in {{property.localityname}}, {{property.city}}">
+              {{property.propertyname}} in {{property.localityname}}, {{property.city}} |
+              Reviews
+            </a>
+          </div>
+          }
+
+        </div>
+
+        <div class="footerContent">
+
+          @for (property of properties | slice:22; track property.id) {
+          <div class="footerText">
+            <a href="https://www.homes247.in/property/{{property.city | cleanUrl}}/{{property.localityname | cleanUrl}}/{{property.propertyname | cleanUrl}}-{{property.id | cleanUrl}}"
+              rel="bookmark" title="{{property.propertyname}} in {{property.localityname}}, {{property.city}}">
+              {{property.propertyname}} in {{property.localityname}}, {{property.city}} |
+              Reviews
+            </a>
+          </div>
+          }
+
+        </div>
+
+
+      </div>
+
+      <!-- For Property Cities -->
+      <div class="footerContContainer" [hidden]="footNavId != 4">
+        <div class="footerContent">
+          <div class="footerText"><a href="https://www.homes247.in/residential-flats-in-banglore-for-sale">Flats
+              for sale in {{selectedCity}}</a></div>
+          <div class="footerText"><a
+              href="https://www.homes247.in/ready-to-move-apartments/ready-to-move-flats-in-{{selectedCity | cleanUrl}}">Ready
+              to move flats in {{selectedCity}}</a></div>
+          <div class="footerText"><a href="https://www.homes247.in/{{selectedCity | cleanUrl}}/property-sale">Properties
+              in
+              {{selectedCity}}</a></div>
+          <div class="footerText"><a
+              href="https://www.homes247.in/villas-for-sale-in-{{selectedCity | cleanUrl}}">Villas
+              for
+              sale in {{selectedCity}}</a></div>
+          <div class="footerText"><a href="https://www.homes247.in/plots-in-{{selectedCity | cleanUrl}}">Plots in
+              {{selectedCity}}</a></div>
+        </div>
+
+
+
+        <div class="footerContent">
+          <div class="footerText"><a href="https://www.homes247.in/home-for-sale-in-{{selectedCity | cleanUrl}}">Home
+              for
+              sale
+              in {{selectedCity}}</a></div>
+          <div class="footerText"><a
+              href="https://www.homes247.in/agricultural-land-for-sale-in-{{selectedCity | cleanUrl}}">Agricultural
+              land for sale in {{selectedCity}}</a></div>
+
+          <div class="footerText"><a href="/bstc/1-bhk-ready-to-move-flats-apartments-in-{{selectedCity | cleanUrl}}"
+              title="1 BHK Ready to Move Flats">1 BHK Ready to Move Flats in {{selectedCity}}</a></div>
+          <div class="footerText"><a href="/bstc/2-bhk-ready-to-move-flats-apartments-in-{{selectedCity | cleanUrl}}"
+              title="2 BHK Ready to Move Flats">2 BHK Ready to Move Flats in {{selectedCity}}</a></div>
+          <div class="footerText"><a href="/bstc/3-bhk-ready-to-move-flats-apartments-in-{{selectedCity | cleanUrl}}"
+              title="3 BHK Ready to Move Flats">3 BHK Ready to Move Flats in {{selectedCity}}</a></div>
+        </div>
+        <div class="footerContent">
+          <div class="footerText"><a href="/bstc/4-bhk-ready-to-move-flats-apartments-in-{{selectedCity | cleanUrl}}"
+              title="4 BHK Ready to Move Flats">4 BHK Ready to Move Flats in {{selectedCity}}</a></div>
+          <div class="footerText"><a href="/btc/1-bhk-flats-in-{{selectedCity | cleanUrl}}" title="1 BHK Flats">1 BHK
+              Flats in
+              {{selectedCity}}</a></div>
+          <div class="footerText"><a href="/btc/2-bhk-flats-in-{{selectedCity | cleanUrl}}" title="2 BHK Flats">2 BHK
+              Flats in
+              {{selectedCity}}</a></div>
+          <div class="footerText"><a href="/btc/3-bhk-flats-in-{{selectedCity | cleanUrl}}" title="3 BHK Flats">3 BHK
+              Flats in
+              {{selectedCity}}</a></div>
+          <div class="footerText"><a href="/btc/4-bhk-flats-in-{{selectedCity | cleanUrl}}" title="4 BHK Flats">4 BHK
+              Flats in
+              {{selectedCity}}</a></div>
+         
+        </div>
+
+      </div>
+
+      <!-- For Latest Blogs -->
+      <div class="footerContContainer" [hidden]="footNavId != 5">
+        <div class="footerContent">
+          @for (blog of VastuBlogs; track blog) {
+          <div class="footerText">
+            <a rel="bookmark" href="https://www.homes247.in/blogs/{{ blog.urlstruture | cleanUrl }}-{{
+              blog.id | cleanUrl
+            }}">
+              {{ blog.title }}
+            </a>
+          </div>
+          }
+          <!-- <div class="footerText">
+                        Independent homes for sale </div>
+                    <div class="footerText">
+                        Residential land listings </div>
+                    <div class="footerText">
+                        Newly constructed houses </div>
+                    <div class="footerText">
+                        Immediate possession homes</div> -->
+        </div>
+
+        <div class="footerContent">
+          @for (blog of trendingBlogs; track blog) {
+          <div class="footerText">
+            <a rel="bookmark" href="https://www.homes247.in/blogs/{{ blog.urlstruture | cleanUrl }}-{{
+              blog.id | cleanUrl
+            }}">
+              {{ blog.title }}
+            </a>
+          </div>
+          }
+        </div>
+
+        <div class="footerContent">
+          @for (blog of InteriorsBlogs; track blog) {
+          <div class="footerText">
+            <a rel="bookmark" href="https://www.homes247.in/blogs/{{ blog.urlstruture | cleanUrl }}-{{
+              blog.id | cleanUrl
+            }}">
+              {{ blog.title }}
+            </a>
+          </div>
+          }
+        </div>
+
+        <div class="footerContent">
+          @for (blog of LifestyleBlogs; track blog) {
+          <div class="footerText">
+            <a rel="bookmark" href="https://www.homes247.in/blogs/{{ blog.urlstruture | cleanUrl }}-{{
+              blog.id | cleanUrl
+            }}">
+              {{ blog.title }}
+            </a>
+          </div>
+          }
+        </div>
+
+        <div class="footerContent">
+          @for (blog of ConstructionBlogs; track blog) {
+          <div class="footerText">
+            <a rel="bookmark" href="https://www.homes247.in/blogs/{{ blog.urlstruture | cleanUrl }}-{{
+              blog.id | cleanUrl
+            }}">
+              {{ blog.title }}
+            </a>
+          </div>
+          }
+        </div>
+
+        <div class="footerContent">
+          @for (blog of HomeBuyingBlogs; track blog) {
+          <div class="footerText">
+            <a rel="bookmark" href="https://www.homes247.in/blogs/{{ blog.urlstruture | cleanUrl }}-{{
+              blog.id | cleanUrl
+            }}">
+              {{ blog.title }}
+            </a>
+          </div>
+          }
+        </div>
+        <div class="footerContent">
+          @for (blog of IndianRealestateBlogs; track blog) {
+          <div class="footerText">
+            <a rel="bookmark" href="https://www.homes247.in/blogs/{{ blog.urlstruture | cleanUrl }}-{{
+              blog.id | cleanUrl
+            }}">
+              {{ blog.title }}
+            </a>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Second Section -->
+    <div class="footer-container">
+      <div class="footerContainerItems">
+        <div class="footSecondContainer">
+          <div class="secondNavFooterTitle">
+            <div class="purpleDot">&nbsp;&nbsp;</div>
+            Company
+          </div>
+          <div class="secondContent"  ><a href="https://www.homes247.in" class="secondContent">Home</a></div>
+          <div class="secondContent" >
+            <a href="https://www.homes247.in/aboutus" class="secondContent">About Us </a>
+          </div>
+          <div class="secondContent">
+            <a class="secondContent" href="https://www.homes247.in/careers">Careers</a></div>
+          <div class="secondContent" >
+            <a class="secondContent" href="https://www.homes247.in/expertservices">Services</a></div>
+          <div class="secondContent"   >
+            <a  class="secondContent"  href="https://www.homes247.in/all-project-reviews-in-india">Review</a>
+            </div>
+          <div class="secondContent" >
+            <a class="secondContent" href="https://www.homes247.in/contactus">Contact</a></div>
+        </div>
+
+        <div class="footSecondContainer">
+          <div class="secondNavFooterTitle mt-2">
+            <div class="purpleDot">&nbsp;&nbsp;</div>
+            Download Our App on Mobile
+          </div>
+          <div class="secondContent download">
+            <div class="search-contact">Search and contact Effectively</div>
+
+            <div class="">
+              <div class="sub-content download-img-group d-flex flex-column ">
+                <span class="download-subText">Your Search and activities are better managed with App</span>
+                <div class="app-banner">
+                  <div class="d-flex flex-column">
+                    <a class="download-img-banner" href="https://apps.apple.com/au/app/homes247/id1611544989"
+                      target="_blank">
+                      <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/footer-new/ios-download-banner.svg" width="94" height="25"
+                        href="Download_Ios" />
+                    </a>
+                    <a class="download-img-banner"
+                      href="https://play.google.com/store/apps/details?id=vsnap.homes247.in" target="_blank">
+                      <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/footer-new/playStore-download-banner.svg" width="94" height="25"
+                        href="Download_Android" />
+
+
+                    </a>
+                  </div>
+                  <img height="78" width="80" class="MobileGroupIcon" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/footer-new/Download_MobileGroupIcon.svg"
+                    href="MobileGroupIcon" />
+                </div>
+
+
+
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="footSecondContainer stay_connected">
+          <div class="secondNavFooterTitle">
+            <div class="purpleDot">&nbsp;&nbsp;</div>
+            Stay Connected
+          </div>
+          <div class="secondContent d-flex social-icons">
+            <a href="https://www.facebook.com/Homes247.in/" target="_blank">
+              <i class="fa fa-brands fa-facebook-f"></i>
+            </a>
+
+            <a href="https://www.instagram.com/homes247.in" target="_blank">
+              <i class="fa fa-brands fa-instagram"></i>
+            </a>
+
+            <a href="https://x.com/homes247_in" target="_blank">
+              <i class="fa fa-brands  fa-x-twitter"></i>
+            </a>
+
+            <a href="https://www.linkedin.com/company/homes247/" target="_blank">
+              <i class="fa fa-brands fa fa-linkedin-in"></i>
+            </a>
+
+            <a href="https://in.pinterest.com/Homestwofourseven/" target="_blank">
+              <i class="fa fa-brands fa-pinterest"></i>
+            </a>
+
+            <a href="https://www.youtube.com/channel/UCv6oEM925HtkqUi3yRNDOBQ/" target="_blank">
+              <i class="fa fa-brands fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="position-relative d-flex justify-content-center">
+    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/footer-new/Homes 247.in.svg" alt="Homes 247.in" width="100%" height="40px" />
+    <div class="copyRight position-absolute">
+      <a class="copyRight" href="https://vsnaptechnology.com/" target="_blank">
+
+        ©Copyright © 2026 VSNAP Technology Solutions Pvt Ltd. All Rights Reserved.
+      </a>
+    </div>
+  </div>
+</footer>

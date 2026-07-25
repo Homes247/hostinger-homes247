@@ -1,0 +1,156 @@
+<div class="pageBackground">
+  <div class="container">
+    <div class="row p-0 m-0">
+      <nav aria-label="breadcrumb">
+        <ul class="breadcrumbs mb-0">
+          <li class="breadcrumb-item"><a href="https://www.homes247.in/"
+              aria-label="India's Favourite Property Portal !" title="India's Favourite Property Portal !">Home</a></li>
+          <li class="breadcrumb-item" aria-current="page" *ngIf="Main_heading">
+            <a target="_blank" class="breadcrumbs__element" title="All Project Reviews in India">
+              All Project Reviews in India
+            </a>
+          </li>
+          <li class="breadcrumb-item" aria-current="page" *ngIf="Main_heading_city">
+            <a target="_blank"
+              href="https://www.homes247.in/new-launch-projects/new-projects-in-{{currentCity | cleanUrl}}"
+              aria-label="New projects in {{currentCity}}" class="breadcrumbs__element"
+              title="New projects in {{currentCity}} | Upcoming Projects in {{currentCity}} | Homes247.in">
+              New Projects in {{currentCity}}
+            </a>
+          </li>
+          <li class="breadcrumb-item" aria-current="page" *ngIf="Main_heading_city">
+            <a target="_blank" class="breadcrumbs__element" title="Project Reviews {{currentCity}} | Homes247.in">
+              Project Reviews in {{currentCity}}
+            </a>
+          </li>
+          <li class="breadcrumb-item" aria-current="page" *ngIf="Main_heading_locality">
+            <a rel="bookmark" class="relatedSearchButton" title="All Project Reviews in India | Homes247.in"
+              href="https://www.homes247.in/all-project-reviews-in-india" aria-label="All Project Reviews in India">
+              All Project Reviews in India</a>
+          </li>
+
+          <li class="breadcrumb-item" aria-current="page" *ngIf="Main_heading_locality">
+            <a target="_blank" class="breadcrumbs__element"
+              href="https://www.homes247.in/pcr/project-reviews-in-{{currentCity | cleanUrl}}"
+              title="Project Reviews {{currentCity}} | Homes247.in" aria-label="Project Reviews in {{currentCity}}">
+              Project Reviews in {{currentCity}}
+            </a>
+          </li>
+          <li class="breadcrumb-item" aria-current="page" *ngIf="Main_heading_locality">
+            <a target="_blank" class="breadcrumbs__element"
+              title="Project Reviews in {{LocalityName}} {{currentCity}} | Homes247.in"
+              aria-label="Project Reviews in {{LocalityName}} {{currentCity}}">
+              Project Reviews in {{LocalityName | titlecase}} {{currentCity}}
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="col-md-12 pl-0 headingBox">
+        <h2 class="heading_tag mt-3" *ngIf="Main_heading">All Project Reviews in India</h2>
+        <h2 class="heading_tag mt-3" *ngIf="Main_heading_city">Project Reviews in {{currentCity | titlecase}}</h2>
+        <h2 class="heading_tag mt-3" *ngIf="Main_heading_locality">Project Reviews in {{LocalityName | titlecase}}
+          {{currentCity | titlecase}}</h2>
+
+        <h1 hidden>Project Reviews in {{LocalityName | titlecase}}, {{currentCity | titlecase}}</h1>
+
+
+
+        <div class="col-md-8 mt-3 pl-0 headingBoxPanel ">
+          <div class="d-flex ml-3 searchInput">
+            <div class="searchLogo ml-1 pr-2"></div>
+            <ejs-autocomplete class="ml-2" id='atcelement' [dataSource]='autoCompleteData' [fields]='fields'
+              [placeholder]='text' [minLength]='minLength' [highlight]='highlight' (select)='selectEvent($event)'>
+            </ejs-autocomplete>
+          </div>
+          <div class="d-flex mt-3">
+            <div class="d-flex select_option">
+              <div class="locationLogo ml-1"></div>
+              <select (change)="getcityname($event)">
+                <option *ngIf="!currentCity" disabled>Select City</option>
+                <option *ngIf="currentCity">{{currentCity | titlecase}}</option>
+                <option *ngFor="let cityname of citiess" value="{{cityname.city}}">
+                  &nbsp;&nbsp;&nbsp;&nbsp;{{cityname.city}}
+                </option>
+              </select>
+            </div>
+
+            <div class="searchBtn">
+              <button>Search</button>
+            </div>
+          </div>
+        </div>
+        <div class="reviewBoxImg"></div>
+      </div>
+
+      <div class="d-flex mt-3 projectsLocalitiesHeader">
+        <p>Filter Based Locality</p>
+      </div>
+
+      <div class="col-md-12 p-0 d-flex locationClearAll">
+        <div class="mb-3 selectDropdown">
+          <select class="pr-2" (change)="onLocalityChange($event)">
+            <option *ngIf="!localityValue" value="" disabled>Enter Locality</option>
+            <option *ngIf="localityValue" value="">{{localityValue | titlecase}}</option>
+            <option value="{{loc.locality_IDPK}}" *ngFor="let loc of localityList">
+              {{loc.locality_name}}</option>
+          </select>
+        </div>
+      </div>
+
+
+      <div class="col-md-12 errorMsgTxt" *ngIf="errorMsg">
+        <h5>No Properties app-reviewpage-projectshaving any reviews in {{LocalityName | titlecase}} - {{currentCity |
+          titlecase}} </h5>
+      </div>
+
+
+      <div class="col-md-12 mt-0 mb-3 p-2 d-flex  reviewProp"
+        *ngFor="let propName of propertyName| paginate: { itemsPerPage: 10, currentPage: p }">
+        <div class="propImg1">
+          <a *ngFor="let image of propName.images" class="image city_list_imgs"
+            href="https://www.homes247.in/property/{{propName.city| cleanUrl}}/{{propName.locality| cleanUrl}}/{{propName.property| cleanUrl}}-{{propName.propertyid}}" aria-label="{{propName.property}} in {{propName.locality}}, {{propName.city}}"
+            rel="bookmark" title="{{propName.property}} in {{propName.locality}}, {{propName.city}} | Reviews | Price"
+            target="_blank">
+            <img class="propListImages" src="{{propertyimage}}{{image.name}}" alt="image.alttag" />
+          </a>
+        </div>
+        <div class="propDetail pl-2">
+          <h2 id="prop1text"
+            style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden; max-width: 226px; margin-top: -10px;">
+            <a href="https://www.homes247.in/property/{{propName.city| cleanUrl}}/{{propName.locality| cleanUrl}}/{{propName.property| cleanUrl}}-{{propName.propertyid}}"
+              aria-label="{{propName.property}} in {{propName.locality}}, {{propName.city}}" rel="bookmark"
+              title="{{propName.property}} in {{propName.locality}}, {{propName.city}} | Reviews | Price"
+              target="_blank">{{propName.property}} in {{propName.locality}},
+              {{propName.city}}</a>
+          </h2>
+          <h2 id="prop1Loc" class="m-0"><a
+              href="https://www.homes247.in/upcoming-new-launch-properties/new-projects-in-{{propName.locality| cleanUrl}}-{{propName.city| cleanUrl}}-{{propName.localityid}}"
+              aria-label="New Projects in {{propName.locality}}, {{propName.city}}" rel="bookmark"
+              title="New Projects in {{propName.locality}}, {{propName.city}} | Upcoming Projects in Sale in {{propName.locality}}, {{propName.city}} | Homes247.in">New
+              Projects in {{propName.locality}}</a>
+          </h2>
+          <p class="mb-0">
+            <i [ngClass]="{'starColour': propName.rating >= 1}" class="fa fa-star"></i>&nbsp;
+            <i [ngClass]="{'starColour': propName.rating >= 2}" class="fa fa-star"></i>&nbsp;
+            <i [ngClass]="{'starColour': propName.rating >= 3}" class="fa fa-star"></i>&nbsp;
+            <i [ngClass]="{'starColour': propName.rating >= 4}" class="fa fa-star"></i>&nbsp;
+            <i [ngClass]="{'starColour': propName.rating >= 5}" class="fa fa-star "></i>&nbsp;
+          </p>
+          <h2 class="mb-0 ratingText"><a
+              routerLink="/prd/rating-and-reviews-of-{{propName.property| cleanUrl}}-{{propName.propertyid}}" aria-label="{{propName.totalratings}} reviews for {{propName.property}}">
+              {{propName.totalratings}} reviews for {{propName.property}}</a>
+          </h2>
+        </div>
+      </div>
+      <div class="mt-4 mb-3 text-center col-sm-12">
+        <pagination-controls (pageChange)="p = $event" (click)="scrollTop()"></pagination-controls>
+      </div>
+    </div>
+  </div>
+  <br><br><br>
+</div>
+<app-footer2></app-footer2>
+
+<div class="innerheader_position">
+  <app-innerheader></app-innerheader>
+</div>

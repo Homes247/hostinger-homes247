@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+/* Mobile Layout Wrapper (320px - 480px) */
+.mobile-about-wrapper {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  overflow-x: hidden;
+  background-color: #ffffff;
+}
+
+/* Section 1: Mobile Hero Banner */
+.m-hero-banner {
+  width: 100%;
+  min-height: 396px;
+  background-color: #faf9f9;
+  background-image: url('https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newAboutUS/aboutHomesHeroBannerMobile.svg');
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: contain;
+  position: relative;
+}
+
+.m-hero-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 44px;
+  line-height: 48px;
+  letter-spacing: -2px;
+  margin: 0;
+}
+
+.m-hero-title .m-about-text {
+  background: linear-gradient(180deg, #343434 0%, #222222 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+.m-hero-title .m-homes-text {
+  background: linear-gradient(180deg, #971B47 0%, #C51755 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+.m-hero-img {
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Section 2: Mobile Our Story Begins Here */
+.m-our-story-section {
+  width: 100%;
+}
+
+.m-our-story-card {
+  background: linear-gradient(180deg, #FFF6F6 0%, #FFE4EE 100%);
+  border-radius: 12px;
+}
+
+.m-story-title {
+  font-family: 'Be Vietnam Pro';
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 36px;
+  letter-spacing: -1px;
+  background: linear-gradient(180deg, #971B47 0%, #C51755 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.m-story-para {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0px;
+  color: #383838;
+  margin-bottom: 10px;
+}
+
+.m-story-img-nine {
+  width: 100%;
+  height: 281px;
+  border-radius: 8px;
+  object-fit: fill;
+  display: block;
+}
+
+.m-story-img-progress {
+  width: 100%;
+  height: 215px;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Section 3: Mobile Founder & CEO */
+.m-founder-section {
+  width: 100%;
+}
+
+.m-founder-card {
+  border-radius: 6px;
+  background: linear-gradient(180deg, #343434 0%, #222222 100%);
+  padding-bottom: 81px !important;
+}
+
+.m-founder-name {
+  font-family: 'Cal Sans' !important;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 38px;
+  letter-spacing: 0px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #E3E3E3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  justify-self: center;
+}
+
+.m-founder-designation {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  justify-self: center;
+}
+
+.m-founder-para {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 19px;
+  letter-spacing: 0px;
+  color: #BDBDBD;
+  margin-bottom: 10px;
+}
+
+.m-founder-img {
+  width: 233px;
+  height: 284px;
+  border-radius: 6px;
+  object-fit: contain;
+}
+
+/* Mobile Torn Quote Card */
+.m-quote-card-wrapper {
+  position: absolute;
+  bottom: 20px;
+  place-self: anchor-center;
+  margin: 8px;
+}
+
+.stars-box {
+  position: absolute;
+  justify-self: center;
+  bottom: 0;
+}
+
+.m-quote-card-bg {
+  background-image: url('https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/newAboutUS/tornAboutUsQuoteBg1.svg');
+  background-size: 158% 129%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  padding: 20px 9px 24px 15px;
+  border-radius: 6px;
+}
+
+.m-quote-icon {
+  width: 27px;
+  height: 27px;
+  object-fit: contain;
+}
+
+.m-quote-text {
+  font-family: 'Cal Sans' !important;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0px;
+  background: linear-gradient(180deg, #383838 0%, #2F2F2F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: #383838;
+}
+
+/* Section 4: Mobile Our Hall of Excellence */
+.m-hall-excellence-section {
+  width: 100%;
+}
+
+.m-hall-title {
+  font-family: 'Be Vietnam Pro' !important;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 36px;
+  letter-spacing: -1px;
+  background: linear-gradient(180deg, #971B47 0%, #C51755 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.m-hall-subheading {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0px;
+  background: linear-gradient(180deg, #343434 0%, #222222 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.m-hall-card {
+  width: 100%;
+  height: 312px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #323232 0%, #0E0909 100%);
+  border: 1px solid #D0AA45;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.m-hall-card-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 30px;
+  letter-spacing: -1px;
+  background: linear-gradient(180deg, #DBAF54 0%, #FFE1A4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.m-leaf-icon {
+  width: 34px;
+  height: 80.6px;
+  object-fit: contain;
+}
+
+.m-leaf-icon-right {
+  transform: scaleX(-1);
+}
+
+.m-stars-icon {
+  width: 36px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Mobile Award & Media Boxes */
+.m-award-box {
+  width: 119px;
+  height: 140px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.m-award-trophy-img {
+  width: 60px;
+  height: 120px;
+  object-fit: contain;
+}
+
+.m-media-box {
+  width: 211px;
+  height: 132px;
+  border-radius: 14px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.m-media-article-img {
+  width: 191px;
+  height: 112px;
+  border-radius: 4px;
+  object-fit: cover;
+  display: block;
+}

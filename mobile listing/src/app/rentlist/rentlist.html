@@ -1,0 +1,833 @@
+<!-- <app-rentinnerheader></app-rentinnerheader> -->
+<div class="topMarginBreadCrumbs"></div>
+
+<div class="city_search_filters ">
+    <div class="container">
+
+        <div class="pl-3 mb-2 head_stick" #scrollapiloader>
+            <div class="row justify-content-between scroll_part">
+
+                @if (!projectcount_city) {
+                <button type="button" class="btn btn-Properties">Projects (XXXX)</button>
+                }
+                @if (projectcount_city) {
+                <button type="button" class="btn btn-Properties"
+                    routerLink="/{{city | cleanUrl}}/property-sale">Projects
+                    ({{projectcount_city}})</button>
+                }
+
+                @if (!propertiescount) {
+                <button type="button" class="btn btn-Properties">By Individuals (XXX)</button>
+                }
+                @if (propertiescount) {
+                <a type="button" class="btn btn-Properties" routerLink="/projects-in-{{city | cleanUrl}}">
+                    By Individuals ({{propertiescount}})
+                </a>
+                }
+
+                @if (!projectcount) {
+                <button type="button" class="btn btn-Project">Rental (XXX)</button>
+                }
+                @if (projectcount) {
+                <a type="button" class="btn btn-Project">
+                    Rental ({{projectcount}})
+                </a>
+                }
+
+                @if (!projectcommercialcount) {
+                <button type="button" class="btn btn-Properties">Commercial (XXX)</button>
+                }
+                @if (projectcommercialcount) {
+                <a type="button" class="btn btn-Properties"
+                    routerLink="/cll/commercial-properties-in-{{city | cleanUrl}}">
+                    Commercial ({{projectcommercialcount}})
+                </a>
+                }
+
+                @if (!PGprojectcount) {
+                <button type="button" class="btn btn-Properties mr-3">PG (XXX)</button>
+                }
+                @if (PGprojectcount) {
+                <a type="button" class="btn btn-Properties mr-3" routerLink="/pgcl/pg-for-rent-in-{{city | cleanUrl}}">
+                    PG ({{PGprojectcount}})
+                </a>
+                }
+
+            </div>
+        </div>
+
+
+        <ng-container *ngComponentOutlet="Matautocomplete"></ng-container>
+
+
+
+
+
+        <hr class="row hr_bottom">
+        <nav class="breadcrumb">
+            <span class="breadcrumb-item"><a routerLink="/" title="India's Favourite Property Portal !"
+                    rel="bookmark">Home</a></span>
+            <span class="breadcrumb-item"><a routerLink="/{{city  | cleanUrl}}/property-sale">Properties in {{ city |
+                    titlecase}}</a></span>
+
+            <span class="breadcrumb-item active" aria-current="page"><span>Rentals projects in {{ city |
+                    titlecase}}</span></span>
+        </nav>
+
+
+
+
+
+
+        <div class="col-12 main-head pl-0">
+            <h1 class="sqrt-title text-truncate">{{projectcount}} {{ h1Text }}.</h1>
+        </div>
+
+
+
+
+        <div class="search-results">
+            @defer (on viewport) {
+            @for (data of propertylists; track data.PropertyID; let i = $index) {
+                <div class="col-12 mt-2 p-2 " [ngClass]="{
+    'boostedCard': data.addBoosted != 0,
+    'EarlyAccessCard': data.earlyAccess != 0,
+    'listsqrt-card': data.addBoosted == 0 && data.earlyAccess == 0
+  }">
+
+                     @if (data.addBoosted == 1){
+                <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/elite/featuredBatchElite.svg"
+                    class="featuredBatchElite" width="40" alt="featuredBatchElite">
+                }
+ @if (data.earlyAccess == 1){
+                <div class="earliAccessBadge">
+                    <p class="earlyAccess">EARLY ACCESS</p> <img
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/elite/yellow_vector.svg" alt=""
+                        height="12" width="12">
+                </div>
+                }
+
+
+                <div class="col-12 p-0">
+                    @if (data.images) {
+                    <div class=" d-flex" [class]="data.addBoosted == 0 ? 'overall_rating1':'overall_rating1_boosted'">
+                        @if (data.images.length != 0) {
+                        <a class="imageCountDiv d-flex">
+                            <div class="imgCount">
+                                <img width="12" height="12"
+                                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/imgCountLogo.svg"
+                                    alt="..imgCountLogo.svg">
+                            </div>&nbsp;
+                            <div class="imgCountNum">
+                                <p class="p-0 m-0">{{data.images.length}}</p>
+                            </div>
+                        </a>&nbsp;&nbsp;
+                        }
+                    </div>
+                    }
+                    <div class="favAndShare d-flex pr-1">
+                        <div class="favShare text-center">
+                            <div [ngClass]="{'Rental_icons_Heart_Active': isInWishlist(data.PropertyID), 'Rental_icons_Heart': !isInWishlist(data.PropertyID)}"
+                                class="Rental_icons_Heart mb-2" (click)="Heart_Transtion(data.PropertyID)">
+                            </div>
+                            <div class="Rental_icons_Share" (click)="shareContent(data)"></div>
+                        </div>
+                    </div>
+
+                    @if (data.Coverimage === null) {
+                    <button class="btn requestImageBtn" data-toggle="modal" data-target="#myModal"
+                        (click)="ShowHideEnquery(data.BHK,data.PropertyType,data.PropertyName,data.userIDFK,data.Localityid)">
+                        <i class="fa fa-picture-o" aria-hidden="true"></i>&nbsp;Request Images
+                    </button>
+                    }
+                    <div class="card-img-wrapper">
+                        @if (data.PropertyType != 'Plot' && data.PropertyName == '') {
+                        <a target="_blank"
+                            href="https://www.homes247.in/rentals/{{data.BHK | cleanUrl}}-{{data.PropertyType | cleanUrl}}-for-rent-in-{{data.Locality | cleanUrl}}-{{data.City | lowercase}}-{{data.PropertyID | cleanUrl}}">
+                            @if (data.Coverimage !== null) {
+                            <img class="listsqrt-img" [src]="coverimage + data.Coverimage + '?width=272&height=160'"
+                                [attr.fetchpriority]="i <= 4 ? 'high' : 'auto'"
+                                [attr.loading]="i <= 4 ? 'eager' : 'lazy'" alt="data.Coverimage">
+                            }
+                            @if (data.Coverimage === null) {
+                            <img class="listsqrt-img"
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image_New.jpg"
+                                fetchpriority="high" alt="..Updated_No_Image.jpg">
+                            }
+                        </a>
+                        }
+
+                        @if (data.PropertyType != 'Plot' && data.PropertyName != '') {
+                        <a target="_blank"
+                            href="https://www.homes247.in/rentals/{{data.BHK | cleanUrl}}-{{data.PropertyType | cleanUrl}}-for-rent-in-{{data.Locality | cleanUrl}}-{{data.City | lowercase}}-at-{{data.PropertyName | cleanUrl}}-{{data.PropertyID | cleanUrl}}">
+                            @if (data.Coverimage !== null) {
+                            <img class="listsqrt-img" [src]="coverimage + data.Coverimage + '?width=272&height=160'"
+                                [attr.fetchpriority]="i <= 4 ? 'high' : 'auto'"
+                                [attr.loading]="i <= 4 ? 'eager' : 'lazy'" alt="data.Coverimage">
+                            }
+                            @if (data.Coverimage === null) {
+                            <img class="listsqrt-img"
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image_New.jpg"
+                                fetchpriority="high" alt="..Updated_No_Image.jpg">
+                            }
+                        </a>
+                        }
+
+                        @if (data.PropertyType == 'Plot' && data.PropertyName == '') {
+                        <a target="_blank"
+                            href="https://www.homes247.in/rentals/{{data.PropertyArea}}acres-{{data.PropertyType | cleanUrl}}-for-rent-in-{{data.Locality | cleanUrl}}-{{data.City | lowercase}}-{{data.PropertyID | cleanUrl}}">
+                            @if (data.Coverimage !== null) {
+                            <img class="listsqrt-img" [src]="coverimage + data.Coverimage + '?width=272&height=160'"
+                                [attr.fetchpriority]="i <= 4 ? 'high' : 'auto'"
+                                [attr.loading]="i <= 4 ? 'eager' : 'lazy'" alt="data.Coverimage">
+                            }
+                            @if (data.Coverimage === null) {
+                            <img class="listsqrt-img"
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image_New.jpg"
+                                fetchpriority="high" alt="..Updated_No_Image.jpg">
+                            }
+                        </a>
+                        }
+
+                        @if (data.PropertyType == 'Plot' && data.PropertyName != '') {
+                        <a target="_blank"
+                            href="https://www.homes247.in/rentals/{{data.PropertyArea}}acres-{{data.PropertyType | cleanUrl}}-for-rent-in-{{data.Locality | cleanUrl}}-{{data.City | lowercase}}-at-{{data.PropertyName | cleanUrl}}-{{data.PropertyID | cleanUrl}}">
+                            @if (data.Coverimage !== null) {
+                            <img class="listsqrt-img" [src]="coverimage + data.Coverimage + '?width=272&height=160'"
+                                [attr.fetchpriority]="i <= 4 ? 'high' : 'auto'"
+                                [attr.loading]="i <= 4 ? 'eager' : 'lazy'" alt="data.Coverimage">
+                            }
+                            @if (data.Coverimage === null) {
+                            <img class="listsqrt-img"
+                                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image_New.jpg"
+                                fetchpriority="high" alt="..Updated_No_Image.jpg">
+                            }
+                        </a>
+                        }
+                    </div>
+
+
+
+                </div>
+                <div class="col-12 mt-2 p-0" style="
+                height: 55px;
+            ">
+                    <div class="row">
+                        <div class="col-6">
+                            @if (data.PropertyType != 'Plot') {
+                            <p class="title-text">
+                                @if (data.PropertyName == '') {
+                                <a target="_blank"
+                                    href="https://www.homes247.in/rentals/{{data.BHK | cleanUrl}}-{{data.PropertyType | cleanUrl}}-for-rent-in-{{data.Locality | cleanUrl}}-{{data.City | lowercase}}-{{data.PropertyID | cleanUrl}}">
+                                    {{data.BHK}} {{data.PropertyType}} For Rent in {{data.Locality}}, {{data.City}}
+                                </a>
+                                }
+                                @if (data.PropertyName != '') {
+                                <a target="_blank"
+                                    href="https://www.homes247.in/rentals/{{data.BHK | cleanUrl}}-{{data.PropertyType | cleanUrl}}-for-rent-in-{{data.Locality | cleanUrl}}-{{data.City | lowercase}}-at-{{data.PropertyName | cleanUrl}}-{{data.PropertyID | cleanUrl}}">
+                                    {{data.BHK}} {{data.PropertyType}} For Rent in {{data.Locality}}, {{data.City}}
+                                </a>
+                                }
+                            </p>
+                            }
+                            @if (data.PropertyType == 'Plot') {
+                            <p class="title-text">
+                                @if (data.PropertyName == '') {
+                                <a target="_blank"
+                                    href="https://www.homes247.in/rentals/{{data.PropertyArea}}acres-{{data.PropertyType | cleanUrl}}-for-rent-in-{{data.Locality | cleanUrl}}-{{data.City | lowercase}}-{{data.PropertyID | cleanUrl}}">
+                                    {{data.PropertyArea}} {{data.Areatype}} {{data.PropertyType}} For Rent in
+                                    {{data.Locality}}, {{data.City}}
+                                </a>
+                                }
+                                @if (data.PropertyName != '') {
+                                <a target="_blank"
+                                    href="https://www.homes247.in/rentals/{{data.PropertyArea}}acres-{{data.PropertyType | cleanUrl}}-for-rent-in-{{data.Locality | cleanUrl}}-{{data.City | lowercase}}-at-{{data.PropertyName | cleanUrl}}-{{data.PropertyID | cleanUrl}}">
+                                    {{data.PropertyArea}} {{data.Areatype}} {{data.PropertyType}} For Rent in
+                                    {{data.Locality}}, {{data.City}}
+                                </a>
+                                }
+                            </p>
+                            }
+                        </div>
+                        <div class="col-6 text-right">
+                            @if (data.Purpose == '2' || data.Purpose == null) {
+                            <h5 class="listsqrt-text_Price">
+                                <span class="material-symbols-outlined" (click)="showPopup(i)"> info </span>&nbsp;
+                                <span class="price_style">{{data.Rent | customPriceFormat }}</span>
+                            </h5>
+                            }
+                            @if (data.Purpose == '3') {
+                            <h5 class="listsqrt-text_Price">
+                                <span class="material-symbols-outlined" (click)="showPopup(i)"> info </span>&nbsp;
+                                <span class="price_style1"> Only For Lease</span>
+                            </h5>
+                            }
+
+                            <div [ngClass]="{ agreementPopup: i === selectedIndex }">
+                                @if (i === selectedIndex) {
+                                <div class="col-12 p-3">
+                                    <div class="d-flex" style="gap: 42px;">
+                                        <div class="">
+                                            @if (data.Purpose === null || data.Purpose == 2) {
+                                            <div>
+                                                <p class="popupHeading">Monthly Rent</p>
+                                                <p class="popupSubHeading mb-2">₹ {{ data.Rent }}</p>
+                                            </div>
+                                            }
+                                            @if (data.Purpose == 3) {
+                                            <div>
+                                                <p class="popupHeading">Lease Amount</p>
+                                                <p class="popupSubHeading mb-2">₹ {{ data.Rent }}</p>
+                                            </div>
+                                            }
+                                            @if (data.Purpose === null || data.Purpose == 2) {
+                                            <div>
+                                                <p class="popupHeading">Maintenance</p>
+                                                @if (data.property_maintanence_charges) {
+                                                <p class="popupSubHeading">₹ {{ data.property_maintanence_charges }}
+                                                </p>
+                                                }
+                                                @if (!data.property_maintanence_charges) {
+                                                <p class="popupSubHeading">NA</p>
+                                                }
+                                            </div>
+                                            }
+                                        </div>
+                                        <div class="">
+                                            @if (data.Purpose === null || data.Purpose == 2) {
+                                            <div>
+                                                <p class="popupHeading">Security Deposit</p>
+                                                @if (data.Propdeposit) {
+                                                <p class="popupSubHeading mb-2">₹ {{ data.Propdeposit }}</p>
+                                                }
+                                                @if (!data.Propdeposit) {
+                                                <p class="popupSubHeading mb-2">NA</p>
+                                                }
+                                            </div>
+                                            }
+                                            @if (data.Purpose == 3) {
+                                            <div>
+                                                <p class="popupHeading">Maintenance</p>
+                                                @if (data.property_maintanence_charges) {
+                                                <p class="popupSubHeading mb-2">₹ {{
+                                                    data.property_maintanence_charges }}</p>
+                                                }
+                                                @if (!data.property_maintanence_charges) {
+                                                <p class="popupSubHeading mb-2">NA</p>
+                                                }
+                                            </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="closePopup" (click)="closePopup(i)">&times;</div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row mb-2" style="column-gap: 9px;">
+                        <div class="col p-0 outer_layer d-flex">
+                            <div class="d-flex" style="align-items: center;">
+                                @if (data.PropertyType != 'Plot') {
+                                <p class="Rental_icons_Furnish m-0"></p>
+                                }
+                                @if (data.PropertyType == 'Plot') {
+                                <p class="Rental_icons_PropertyType m-0"></p>
+                                }
+                            </div>
+                            @if (data.PropertyType != 'Plot') {
+                            <div style="align-content: center;">
+                                <p class="detail-title m-0">FURNISHING</p>
+                                <p class="detail-value m-0">{{data.Furnish}}</p>
+                            </div>
+                            }
+                            @if (data.PropertyType == 'Plot') {
+                            <div style="align-content: center;">
+                                <p class="detail-title m-0">PROPERTY TYPE</p>
+                                <p class="detail-value m-0">{{data.PropertyType}}</p>
+                            </div>
+                            }
+                        </div>
+                        <div class="col p-0 outer_layer d-flex">
+                            <div class="d-flex" style="align-items: center;">
+                                <p class="Rental_icons_PropertyArea m-0"></p>
+                            </div>
+                            <div style="align-content: center;">
+                                <p class="detail-title m-0">AREA</p>
+                                <p class="detail-value m-0">{{data.PropertyArea}} {{data.Areatype}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="column-gap: 9px; row-gap: 9px;">
+                        <div class="col p-0 outer_layer d-flex">
+                            <div class="d-flex" style="align-items: center;">
+                                @if (data.PropertyType != 'Plot') {
+                                <p class="Rental_icons_Tenants m-0"></p>
+                                }
+                                @if (data.PropertyType == 'Plot') {
+                                <p class="Rental_icons_Tenants2 m-0"></p>
+                                }
+                            </div>
+                            @if (data.PropertyType != 'Plot') {
+                            <div style="align-content: center;">
+                                <p class="detail-title m-0">{{Tenant}}</p>
+                                <p class="detail-value m-0">{{data.Tenants}}</p>
+                            </div>
+                            }
+                            @if (data.PropertyType == 'Plot') {
+                            <div style="align-content: center;">
+                                <p class="detail-title m-0">ROAD FACING</p>
+                                @if (data.doorface) {
+                                <p class="detail-value m-0">{{data.doorface}}</p>
+                                }
+                                @if (!data.doorface) {
+                                <p class="detail-value m-0">NA</p>
+                                }
+                            </div>
+                            }
+                        </div>
+                        <div class="col p-0 outer_layer d-flex">
+                            <div class="d-flex" style="align-items: center;">
+                                <p class="Rental_icons_Availabledate m-0"></p>
+                            </div>
+
+                            <div style="align-content: center;">
+                                <p class="detail-title m-0">{{availability_text}}</p>
+                                <p class="detail-value m-0">{{data.Availabledate | date:'dd-MMM-yyyy'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right p-0 mt-2 d-flex align-items-center">
+                            <span class="posted-by">
+                                Posted By <span class="owner">{{data.Ownership}}</span>
+                            </span>
+
+                            @if(login == false && !elitePropertyId?.includes(data.PropertyID)) {
+                            <a type="button" class="btn contactButton" href="https://hostinger.homes247.in/login">Contact
+                            </a>
+                            }
+                            @if (login == true && !elitePropertyId?.includes(data.PropertyID) && !contactingPropertyId?.includes(data.PropertyID)) {
+                            <button type="button" class="btn contactButton" (click)="elitePlanView(data.PropertyID)">
+                                Contact
+                            </button>
+                            }
+                            @if (login == true && !elitePropertyId?.includes(data.PropertyID) && contactingPropertyId?.includes(data.PropertyID)) {
+                            <button type="button" class="btn contactButton" disabled>
+                                Contacting...
+                            </button>
+                            }
+                            @if (login == true && elitePropertyId?.includes(data.PropertyID)) {
+                            <button type="button" class="btn contactedButton">
+                                Unlocked   <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscriptions/homeselite/listingUnlocked.svg"
+                                        alt="listingUnlocked.svg" height="20" />
+                            </button>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subcription code  -->
+
+                @if(elitePropertyId?.includes(data.PropertyID)) {
+                <div class="container px-0 mt-2 eliteView">
+                    <!-- <div class="col-sm-12 text-right p-0 mt-2 d-flex align-items-center"> -->
+                    <div class="container">
+                        <div class="d-flex">
+
+                            <div class="col-4 p-0">
+                                <!-- <p class="ownershipLine"></p> -->
+                                <hr class="ownershipLine">
+                            </div>
+                            <div class="col-4 p-0 text-center">
+                                <p class="ownershipDetails">{{data.Ownership}} Details</p>
+                            </div>
+                            <div class="col-4 p-0">
+                                <!-- <p class="ownershipLine"></p> -->
+                                <hr class="ownershipLine">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">   
+                            <div class="postedName col-6 pr-0">
+                                <P> {{ contactData[data.PropertyID]?.owner_name }}</P>
+                            </div>
+                            <div class="postedName col-6 text-right">
+                                <p> {{ contactData[data.PropertyID]?.owner_number }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="postedEmail col-4 pr-0">
+                                <p>By: Owner</p>
+                            </div>
+                            <div class="postedEmail col-8 text-right">
+                                <P> {{ contactData[data.PropertyID]?.owner_email }}</P>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                </div>
+                }
+
+            </div>
+
+               @if (i > 0 && i % 4 === 0) {
+            <app-ad-cards></app-ad-cards>
+            }
+
+            }
+            }@placeholder {
+
+            <!-- <div>   
+                    <img width="100%" height="100%" fetchpriority="high" rel="preload" loading="eager" decoding="async"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/noProperty.png"
+                        alt="noProperty.png">
+                    <div class="noPropTxt text-center">
+                        <p id="activityTxtHead">Sorry No Property Found</p>
+                    </div>
+                </div> -->
+
+
+            <div class="skeleton-list">
+                @for (i of [1,2,3,4,5]; track i) {
+                <div class="skeleton-card"></div>
+                }
+            </div>
+            }
+
+        </div>
+
+
+        @if (propertylists.length == 0 && Mousemovement) {
+        <div class="emptyListdiv">
+            <div>
+                <img width="100%" height="100%" fetchpriority="high" loading="eager" decoding="async"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/noProperty.png"
+                    alt="noProperty.png">
+                <div class="noPropTxt text-center">
+                    <p id="activityTxtHead">Sorry No Property Found</p>
+                </div>
+            </div>
+        </div>
+        }
+
+        <div id="scroll-anchor" #scrollAnchor></div>
+
+        @if (showloader && Mousemovement) {
+        <div class="load">
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="item">
+                        <ngx-skeleton-loader [theme]="{'border-radius': '9px' , height: '160px' , width: '100%' }">
+                        </ngx-skeleton-loader>
+                    </div>
+                </div>
+
+                <div class="col-8 mt-2">
+                    <ngx-skeleton-loader [theme]="{'border-radius': '4px', height: '20px', width: '180px' }">
+                    </ngx-skeleton-loader>
+                </div>
+                <div class="col-4 mt-2 text-right">
+                    <ngx-skeleton-loader [theme]="{'border-radius': '4px', height: '20px', width: '68px' }">
+                    </ngx-skeleton-loader>
+                </div>
+
+            </div>
+        </div>
+        }
+
+    </div>
+</div>
+
+
+<div [hidden]="!IsVisibleEnquery" class="container">
+    <div id="otpValidate" class="modal-login">
+
+        <div class="modal-content-login-modal">
+            <div class="enqiery">
+
+                <div class="imgcontainer">
+                    <span class="close-login" (click)="goBackFromEnq()" title="Close Modal">&times;</span>
+                </div>
+                <div class="col-sm-12 text-center">
+                    @if(Homes247NewBlackLogo){
+                    <img class="loginModelImg"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Homes247_NewBlack_Logo.png"
+                        alt="Homes247_NewBlack_Logo.png" />
+                    }
+                    <p class="loginModelText">
+                        India's Favourite Property Portal
+                    </p>
+                    @if (resquestCall) {
+                    <img id="loginModelImg1"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/rental_contact.png"
+                        alt="rental_contact.png">
+                    }
+                    @if (resquestImages) {
+                    <img id="loginModelImg1"
+                        src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Image_contact.png"
+                        alt="Image_contact.png">
+                    }
+                </div>
+
+                @if (resquestImages) {
+                <div class="pageDetailsDiv">
+                    <p class="contact_heading mb-0">
+                        Looking for Property Photos?
+                    </p>
+                    <p class="contact_heading2">
+                        Fill out this form, We’ll request the photos for you!
+                    </p>
+                </div>
+                }
+
+                @if (resquestCall) {
+                <div class="pageDetailsDiv">
+                    <p class="contact_heading mb-0">
+                        Find Your Ideal Rental Home!
+                    </p>
+                    <p class="contact_heading2">
+                        Receive the owner's details via email.
+                    </p>
+                </div>
+                }
+
+                <div class="container mt-3">
+                    <label for="newUserName" class="label_field">Name</label>
+                    <input class="input-loginModel" type="text" [(ngModel)]="enquiry.name" name="name" id="uname"
+                        required />
+
+                    <label for="emobileLogin" class="label_field">Number</label>
+                    <input type="text" class="input-loginModel emobileLogin" id="unumber" maxlength="10" minlength="10"
+                        [(ngModel)]="enquiry.number" name="number" />
+
+                    <label for="emobileLogin" class="label_field">Email (Optional)</label>
+                    <input class="input-loginModel emobileLogin" [(ngModel)]="enquiry.mail" type="email" name="email"
+                        id="uemail" required />
+
+                    @if (resquestCall) {
+                    <button type="button" class="btn col-sm-12 mt-1 mobileLogButton" (click)="otpsend()">Get Contact
+                        Details</button>
+                    }
+                    @if (resquestImages) {
+                    <button type="button" class="btn col-sm-12 mt-1 mobileLogButton" (click)="otpsend()">Request
+                        Images</button>
+                    }
+
+                    @if (resquestImages) {
+                    <p class="user_content mt-2">
+                        We’ll notify you once the owner shares the images.
+                    </p>
+                    }
+                    @if (resquestCall) {
+                    <p class="user_content mt-2">
+                        All the request are handled in just 5 minutes
+                    </p>
+                    }
+                </div>
+            </div>
+
+            <div class="OtpDiv">
+                <form name="otpForm" novalidate>
+                    <div class="imgcontainer">
+                        <span class="close-login" (click)="goBackFromEnq()" title="Close Modal">&times;</span>
+                    </div>
+                    <div class="col-sm-12 text-center mb-4">
+                        @if(Homes247NewBlackLogo){
+                        <img class="loginModelImg"
+                            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Homes247_NewBlack_Logo.png"
+                            alt="Homes247_NewBlack_Logo.png" />
+                        }
+                        <p class="loginModelText">
+                            India's Favourite Property Portal
+                        </p>
+
+                    </div>
+                    <div class="col-sm-12 mt-0 mb-4 text-center">
+                        @if (otpValidating) {
+                        <img class="loginModelImg1" height="100%" width="80%"
+                            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/otpsection/otpauth.svg"
+                            alt="otpauth.svg">
+                        }
+                        <h3 id="otpVerificationTxt">Enter Verification Code</h3>
+                        <p id="enterOtp">We've sent a code to your WhatsApp<br> <b> +91 {{enquiry.number}}</b>
+                            <a id="editNum" (click)="goback1()"> - Edit</a>
+                        </p>
+                    </div>
+
+
+                    <input hidden autocomplete="off" type="text" placeholder="OTP" name="otp" id="otp"
+                        [(ngModel)]="enquiry.otp" required />
+                    <ng-otp-input class="otpinput text-center" #ngOtpInput (onInputChange)="onOtpChange($event)"
+                        [config]="config">
+                    </ng-otp-input>
+                    <div class="col-12 text-center countdown_maindiv mt-3 mb-3">
+                        <span>Resend the OTP in <countdown #cd4 [config]="countdownconfig"
+                                (event)="handleEvent($event)"></countdown> Seconds</span>
+                    </div>
+                    <p class="otpexpireclass text-center mt-3">
+                        OTP Expired - <a id="editNum" (click)="otpBasedLogin1()">Resend</a>
+                    </p>
+                    <div class="col-sm-12 text-center mb-3">
+                        <button (click)="otpvalidate4()" class="btn mt-2 mobileLogButton1">Verify</button>
+                    </div>
+
+                    <button type="reset" id="btn_reset" style="display: none"></button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+@if (otploader) {
+<div class="loaderbody">
+    <div class="box">
+        <div class="loader-20"></div>
+    </div>
+</div>
+}
+
+<div style="height: 90px;"></div>
+
+<nav class="mobile-bottom-nav1">
+    <img class="barIconLcp" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/icons/bar.svg"
+        alt="bar.svg" fetchpriority="high" loading="eager" decoding="async">
+
+    <div class="bottom-nav-item mobile-bottom-nav__item col-2">
+        <div class="mobile-bottom-nav__item-content" (click)="ShowHideSort()">
+            <div class="footer_img_1"></div>
+            <p class="navBorder">Sort</p>
+        </div>
+    </div>
+
+    <div class="bottom-nav-item mobile-bottom-nav__item col-2">
+        <div class="mobile-bottom-nav__item-content" (click)="ShowHideFilter()" data-toggle="modal"
+            data-target="#filterModal">
+            <div class="footer_img_3"></div>
+            <p class="navBorder">Filter</p>
+        </div>
+    </div>
+
+    <div class="bottom-nav-item mobile-bottom-nav__item col-4">
+        <a class="mobile-bottom-nav__item-content" href="https://www.homes247.in/postproperty">
+            <div class="footer_img_22"></div>
+            <p id="navBorderPost">Post Property</p>
+        </a>
+    </div>
+    @if (loginidNew == 1) {
+    <div class="bottom-nav-item mobile-bottom-nav__item col-2">
+        <a aria-label="user Wishlist" class="mobile-bottom-nav__item-content"
+            href="https://www.homes247.in/userauth/wishlist/{{UserId}}">
+            <div class="footer_img_4"></div>
+            <p class="navBorder">Wishlist</p>
+        </a>
+    </div>
+
+    <div class="bottom-nav-item mobile-bottom-nav__item col-2">
+        <a aria-label="user Account" class="mobile-bottom-nav__item-content"
+            href="https://www.homes247.in/userauth/profile/{{UserId}}">
+            <div class="footer_img_5"></div>
+            <p class="navBorder">Account</p>
+        </a>
+    </div>
+    } @else {
+
+    <div class="bottom-nav-item mobile-bottom-nav__item col-2">
+        <a aria-label="user Wishlist" class="mobile-bottom-nav__item-content"
+            href="https://www.homes247.in/login?id=Profile">
+            <div class="footer_img_4"></div>
+            <p class="navBorder">Wishlist</p>
+        </a>
+    </div>
+
+    <div class="bottom-nav-item mobile-bottom-nav__item col-2">
+        <a aria-label="user Account" class="mobile-bottom-nav__item-content"
+            href="https://www.homes247.in/seenprojects">
+            <div class="footer_img_5"></div>
+            <p class="navBorder">Account</p>
+        </a>
+    </div>
+
+    }
+</nav>
+
+
+
+@if (sortShowHide) {
+<div id="sortmain_div">
+    <br>
+    <div class="custom-control custom-radio radiodiv1">
+        <label for="customRadio1" class="sort_radio">Rent (Low to High)</label>
+        <input [checked]="selectedSortValue === 1" (change)="onSortChange($event)" type="radio" value="1"
+            id="customRadio1" name="customRadio">
+    </div>
+    <div class="custom-control custom-radio radiodiv">
+        <label for="customRadio2" class="sort_radio">Rent (High to Low)</label>
+        <input [checked]="selectedSortValue === 2" (change)="onSortChange($event)" type="radio" value="2"
+            id="customRadio2" name="customRadio">
+    </div>
+    <div class="custom-control custom-radio radiodiv">
+        <label for="customRadio3" class="sort_radio">Available From (Earliest First)</label>
+        <input [checked]="selectedSortValue === 3" (change)="onSortChange($event)" type="radio" value="3"
+            id="customRadio3" name="customRadio">
+    </div>
+    <div class="custom-control custom-radio radiodiv2">
+        <label for="customRadio4" class="sort_radio">Available From (Oldest First)</label>
+        <input [checked]="selectedSortValue === 4" (change)="onSortChange($event)" type="radio" value="4"
+            id="customRadio4" name="customRadio">
+    </div>
+</div>
+}
+<div class="innerheader_position"><app-inner-headder-with-sidenav></app-inner-headder-with-sidenav></div>
+
+<!-- Subcription code  -->
+<div class="modal fade" id="elitePlanModal" tabindex="-1" aria-labelledby="elitePlanModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+
+            <div class="d-flex justify-content-end mt-3 me-3 elitePlanLogoDiv">
+                <img class="elitePlanLogo mr-3" id="elitePlanClose"
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/closeIcon.svg" alt="Close" data-dismiss="modal"
+                    style="cursor:pointer;">
+            </div>
+
+
+            <div class="modal-body text-center">
+
+                <div class="d-flex justify-content-center align-items-center mt-3">
+                    <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/metarIcon.svg" alt="">
+                </div>
+
+                <div class="text-center YourFree mt-3">
+                    <h6>Your free contact limit is over</h6>
+                    <p>Upgrade your plan to keep connecting with property owners.</p>
+                </div>
+
+                <div class="afterSuccessPayment mt-4">
+                    <div class="d-flex justify-content-center align-items-center mb-2">
+                        <a class="btn UnlockMoreBtn" (click)="elitePlanRouter()">
+                            Unlock More Contacts
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

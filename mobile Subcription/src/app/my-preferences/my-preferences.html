@@ -1,0 +1,149 @@
+<!-- ===================== SCREEN 1: EMPTY STATE ===================== -->
+@if (view === 'empty') {
+<div class="mpHeader">
+  <img class="mpHeaderBack"
+    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/myPreferenceBackBtn.svg"
+    alt="back" (click)="goBack()" />
+  <span class="mpHeaderTitle">My Preferences</span>
+</div>
+
+<div class="mpEmpty">
+  <div class="mpEmptyBannerWrap">
+    <img class="mpEmptyBanner"
+      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/myPreferenceBanner.svg"
+      alt="banner" />
+  </div>
+  <div class="mpEmptyHeading">Still Searching Without Direction?</div>
+  <div class="mpEmptyDesc">
+    Set your preferences to get property matches that suit your lifestyle, budget and location.
+  </div>
+  <button class="mpBtnCreate" (click)="openCreateFirst()">
+    <img
+      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/myPreferenceNewAddBtn.svg"
+      alt="add" />
+    Create My First Preference
+  </button>
+</div>
+}
+
+<!-- ===================== SCREEN 2: PREFERENCES SETUP ===================== -->
+@if (view === 'setup') {
+<div class="mpSetupHeader">
+  <img class="mpSetupHeaderBack"
+    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/myPreferenceBackBtn.svg"
+    alt="back" (click)="cancelSetup()" />
+  <span>Preferences Setup</span>
+</div>
+
+<div class="mpSetupBody">
+  <div class="mpSetupLead">
+    Add What You're Looking For,<br />
+    <span class="mpSetupLeadGrad">We'll Handle The Rest.</span>
+  </div>
+
+  <textarea class="mpTextarea" placeholder="Tell us what kind of property you want..." [(ngModel)]="textareaValue"
+    name="prefTextarea"></textarea>
+
+  <div class="mpSuggestedCard">
+    <div class="mpSuggestedCardTitle">Suggested</div>
+    <div class="mpSuggestedCardUnderline"></div>
+
+    @for (suggestion of suggestions; track $index) {
+    <div class="mpSuggestionItem" (click)="applySuggestion(suggestion)">
+      {{ suggestion }}
+    </div>
+    }
+  </div>
+
+  <!-- <div class="mpNotifyTitle">Get Notified Via</div> -->
+  <!-- <div class="mpNotifyRow">
+      <div
+        class="mpNotifyPill mpNotifyPillWhatsapp"
+        [class.mpNotifyPillActive]="notifyWhatsapp"
+        (click)="toggleWhatsapp()"
+      >
+        <span class="mpNotifyPillDot">{{ notifyWhatsapp ? '✓' : '' }}</span>
+        Whatsapp
+      </div>
+      <div
+        class="mpNotifyPill mpNotifyPillCall"
+        [class.mpNotifyPillActive]="notifyCall"
+        (click)="toggleCall()"
+      >
+        <span class="mpNotifyPillDot">{{ notifyCall ? '✓' : '' }}</span>
+        Call
+      </div>
+    </div> -->
+</div>
+
+<div class="mpBottomBar">
+  <button class="mpBtnCancel" (click)="cancelSetup()">Cancel</button>
+  <button class="mpBtnSave" [class.mpBtnSaveEnabled]="isSaveEnabled" [disabled]="!isSaveEnabled || saving"
+    (click)="savePreference()">
+    {{ saving ? 'Saving...' : 'Save' }}
+  </button>
+</div>
+}
+
+<!-- ===================== SCREEN 3: LIST STATE ===================== -->
+@if (view === 'list') {
+<div class="mpHeader">
+  <img class="mpHeaderBack"
+    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/myPreferenceBackBtn.svg"
+    alt="back" (click)="goBack()" />
+  <span class="mpHeaderTitle">My Preferences</span>
+</div>
+
+<div class="mpListBody">
+  <div class="mpAddReqBar" (click)="openAddNew()">
+    <span>Add New Property Requirement</span>
+    <img class="mpAddReqBarIcon"
+      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/myPreferenceAddBtn.svg"
+      alt="add" />
+  </div>
+
+  @for (pref of preferences; track pref.id; let i = $index) {
+  <div class="mpPrefCard">
+    <div class="mpPrefCardHeader">
+      <span class="mpPrefCardTitle">Preference - {{ (i + 1).toString().padStart(2, '0') }}</span>
+      <div class="mpPrefCardIcons">
+        <img
+          src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/myPreferenceEdit.svg"
+          alt="edit" (click)="editPreference(pref)" />
+        <img
+          src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/myPreferenceCancle.svg"
+          alt="delete" (click)="deletePreference(pref)" />
+      </div>
+    </div>
+
+    <div class="mpPrefCardContent ">
+      <div class="row px-3">
+        @for (row of pref.displayRows; track row.key) {
+        <div class="mpPrefCell" [class.col-12]="row.isLong" [class.col-6]="!row.isLong">
+          <img class="mpPrefCellIcon"
+            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/subscription%20management/myPreferenceCalender.svg"
+            alt="cal" />
+          {{ row.text }}
+        </div>
+        }
+      </div>
+    </div>
+
+    <!-- <div class="mpCardNotifyRow">
+            <div class="mpCardNotifyCell mpCardNotifyCellWhatsapp">Whatsapp</div>
+            <div class="mpCardNotifyCell mpCardNotifyCellCall">Call</div>
+          </div> -->
+    @if(pref.matchCount == 0){
+    <a class="mpMatchStrip">
+      Sorry, We Found 0 Properties Match
+    </a>
+    }@else{
+    <a class="mpMatchStrip" [href]="pref.redirectUrl">
+      We Found {{ pref.matchCount }} Properties Match
+    </a>
+    }
+
+  </div>
+  }
+</div>
+}

@@ -1,0 +1,674 @@
+<app-home-sidenavbar [class.stickyHeader]="headerOnScroll"></app-home-sidenavbar>
+
+
+<!-- Navbar -->
+<div class="properties_india_main1 ">
+
+
+  @if (false) {
+  <nav class="navbar navbar-custom d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center ">
+      <div class="resp_logo1 ">
+        <img loading="eager"
+          src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/menu.png"
+          alt="Homes247" (click)="clickNavopen()">
+      </div>
+      <div class=" resp_citydrop1">
+        <div class="inner_search mobileViewSelectDropDown d-flex" tabindex="0" (click)="ShowHidecontact()">
+          <div class="enquiryBtns">Select City</div>
+          <img height="5" width="9"
+            src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/homePageDropDownIcon.png"
+            alt="..homePageDropDownIcon.png">
+        </div>
+      </div>
+    </div>
+    <a href="https://www.homes247.in/postproperty"><button class="post-property-btn">Post a Property</button></a>
+  </nav>
+
+
+  <!-- Side Nav Start-->
+  <div id="mySidenavsss" class="sidenav" style="width: 0px;">
+    <div class="nav_logo">
+      <a class="logo_nav" routerLink="/">
+        <img
+          src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Homes247_NewBlack_Logo.png"
+          alt="Homes247">
+      </a>
+      <span class="closebtn" (click)="clickNavclose()">
+        <svg id="fi_6583137" enable-background="new 0 0 48 48" height="40" viewBox="0 0 48 48" width="40"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="m32.5 33c.4.4.4 1 0 1.4-.2.2-.5.3-.7.3s-.5-.1-.7-.3l-8.4-8.4-8.4 8.4c-.2.2-.5.3-.7.3s-.5-.1-.7-.3c-.4-.4-.4-1 0-1.4l8.4-8.4-8.4-8.4c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l8.4 8.4 8.4-8.4c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-8.4 8.4z">
+          </path>
+        </svg>
+      </span>
+    </div>
+
+    <div data-page="1" class="wipe open" id="red">
+      <p class="pl-2 navTextWipe"><a href="https://www.homes247.in/">Home</a></p>
+      @if (loginshow) {
+      <p class="pl-2 navTextWipe"><a routerLink="/login">Login</a></p>
+      }
+      <p class="pl-2 navTextWipe"><a href="https://www.homes247.in/aboutus">About Us</a></p>
+      <p class="pl-2 navTextWipe"><a href="https://www.homes247.in/careers">Careers</a></p>
+      <p class="pl-2 navTextWipe"><a href="https://www.homes247.in/blogs">Home Guide<span
+            class="blogmark">Blogs</span></a></p>
+      <ul class="nav_links pl-2 navTextWipe m-0" (click)="ShowHide_More()">
+        <li class=""><span data-toggle="" href="">More <span class="caret"></span></span>
+          @if (IsVisiblee) { 
+          <ul class="drop_style p-0 m-0">
+            <li><a href="https://www.homes247.in/find-ifsc-code">Find IFSC Codes</a></li>
+            <li><a href="https://www.homes247.in/find-pincode">Find Pincode Codes</a></li>
+            <li><a href="https://www.homes247.in/all-project-reviews-in-india">All Property Reviews</a></li>
+            <li><a href="https://www.homes247.in/all-project-walkthrough-videos-in-india">All Property Walkthrough
+                Videos</a></li>
+            <li><a href="https://www.homes247.in/expertservices">Expert Services</a></li>
+            <li><a href="https://www.homes247.in/price-trends">Price Trends</a></li>
+            <li><a href="https://www.homes247.in/homeloan">Home Loan</a></li>
+            <li><a href="https://www.homes247.in/vaastu">Vaastu Tips</a></li>
+            <li><a href="https://www.homes247.in/interior">Interiors</a></li>
+            <li><a href="https://www.homes247.in/faq">FAQ</a></li>
+            <li><a href="https://www.homes247.in/policy">Privacy Policy</a></li>
+          </ul>
+          }
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- Side Nav End-->
+
+  }
+
+
+
+
+  <div class="col-12 p-0 slider_section_main">
+    <div class="slider_search_main">
+      <div class="homes247Logo text-center mt-3 pt-2">
+        <img
+          src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Homes247_NewBlack_Logo.png"
+          style="width: 140px;margin-top: 32px;" alt="homes247logo">
+      </div>
+      <h1 hidden>Commercial Properties for Rent & Sale in India</h1>
+
+      <h2 class="search_label">
+        Unlock Your Business's<br />Perfect Space
+      </h2>
+
+      <div class="tab-search-container mx-3">
+        <div class="custom-tabs-fade">
+          <div class="custom-tabs" #activeTab>
+            <div class="custom-tab" routerLink="/" routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }">Buy</div>
+            <div class="custom-tab" routerLink="/property-for-rent-in-bangalore" routerLinkActive="active">Rent</div>
+            <div class="custom-tab active" routerLink="/commercial" routerLinkActive="active">Commercial</div>
+            <div class="custom-tab" routerLink="/pg-home" routerLinkActive="active">PG/Hostel</div>
+            <div class="custom-tab" data-toggle="modal" data-target="#exampleModalCenter">Sell</div>
+          </div>
+        </div>
+        <div class="search-bar search_c p-0">
+          <div class="nosubmit"><img
+              src="data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.5 9.5C7.70914 9.5 9.5 7.70914 9.5 5.5C9.5 3.29086 7.70914 1.5 5.5 1.5C3.29086 1.5 1.5 3.29086 1.5 5.5C1.5 7.70914 3.29086 9.5 5.5 9.5Z' stroke='%237E7E7E' stroke-width='0.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M10.5 10.5L8.34998 8.34998' stroke='%237E7E7E' stroke-width='0.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"
+              alt="..svg%3E" height="12px" width="12px"></div>
+          <input (click)="ShowHidecontact()" type="text" placeholder="Search Location" />
+          <div style="position: absolute;right: 20px;">
+            <button class="search-bar_test" (click)="getProjectsmain(currentCity)">Search</button>
+          </div>
+        </div>
+
+
+         <!-- <div class="search-bar search_c p-0">
+          <div class="nosubmit"><img
+              src="data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.5 9.5C7.70914 9.5 9.5 7.70914 9.5 5.5C9.5 3.29086 7.70914 1.5 5.5 1.5C3.29086 1.5 1.5 3.29086 1.5 5.5C1.5 7.70914 3.29086 9.5 5.5 9.5Z' stroke='%237E7E7E' stroke-width='0.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M10.5 10.5L8.34998 8.34998' stroke='%237E7E7E' stroke-width='0.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"
+              alt="..svg%3E" height="12px" width="12px"></div>
+          <input (click)="ShowHidecontact()" type="text" placeholder="Search Location" />
+          <div style="position: absolute;right: 20px;">
+            <a routerLink="/smart-property-finder" class="askbutton btn btn-secondary ai_button">&nbsp;<img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/ai/ask_ai1.svg" alt=""> Ask AI&nbsp;&nbsp;</a>
+        
+          </div>
+        </div> -->
+
+
+
+      </div>
+
+      <div class="tab-search-container1">
+        <div class="search_section1 allindiaNewBg second_searchbar">
+          <div class=" tagDropContainer">
+            <div class="radio-group d-flex me-2">
+              <label>
+                <input (click)="typefetch('Buy')" type="radio" [(ngModel)]="selectedPurpose" value="Buy" />
+                <span [class.selected]="selectedPurpose === 'Buy'">Buy</span>
+              </label>
+              <label class="lease">
+                <input (click)="typefetch('Lease')" type="radio" [(ngModel)]="selectedPurpose" value="Lease" />
+                <span [class.selected]="selectedPurpose === 'Lease'">Lease</span>
+              </label>
+            </div>
+
+            <div class="tag-dropdown" (click)="toggleTagDropdown()" [class.open]="tagDropdownOpen">
+              <div class="dropdown-header">
+                {{ getSelectedTags() || 'Select Property Type' }}
+                <span class="arrow"><img
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/commercial page/dropdown arrow.svg"
+                    alt="..dropdown arrow.svg"></span>
+              </div>
+              @if (tagDropdownOpen) {
+              <div class="tag-dropdown-list" (click)="$event.stopPropagation()">
+                @for (item of tagOptions; track item) {
+                <div class="tag-option" [class.selected]="item.selected"
+                  (click)="toggleTag(item);selectPropertyType(item.key)">
+                  {{ item.label }}
+                </div>
+                }
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ------------------- content section--------------- -->
+
+  <div class="properties_india_main pb-0">
+    <div class="container con1">
+      <div class="col-12 px-0">
+        <div class="col-lg-12 col-md-12 col-sm-12 px-0">
+          <div class="news_head ">
+            <h2>Discover All Commercial Properties Here</h2>
+            <p class="newHeadingSubTitle">Curated & Handpicked Properties</p>
+          </div>
+          <div class="spotLightPropDiv1 d-flex">
+            @for (property of allCommercialProperties; track property) {
+            <a [routerLink]="['/cll/commercial-properties-for-'+ sale_rent_value +'-in-' + currentCity2]"
+              [queryParams]="{ Propertype: property.id }" class="propBox2 px-0">
+              <div>
+                <img class="propImg2" loading="lazy" width="183px" height="160px"
+                  src="{{allCommercialpropertyimage}}{{property.img_url}}" alt="property.img_url">
+              </div>
+              <div class="featureCollectTxt">
+                <p id="txtTop">{{property.Commerical_types}}</p>
+              </div>
+              <div class="featureCollectOverlay"></div>
+            </a>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ---------------- Next Section----------------- -->
+
+    <div class="container con pt-4">
+      <div class="news_head ">
+        <h2>Newly Added Commercial Properties for <span id="burgundyTitle">Sale</span></h2>
+        <p class="newHeadingSubTitle">Curated & Handpicked Properties</p>
+      </div>
+
+      @if (!commercial_sale && commercialPropertiesSale.length === 0) {
+      <div class="pr-0 noPropDivRental">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/noRentalPropFoundMob.png"
+          alt="..noRentalPropFoundMob.png" width="100%">
+        <div class="noPropTxt1">
+          <p class="mb-0">Sorry, we couldn't find any properties</p>
+        </div>
+      </div>
+      }
+
+      <div class="scroll-container">
+        @for (property of commercialPropertiesSale; track property) {
+        <div class="property-card">
+          <div class="propImg2 col-5 text-right px-0">
+            <a class="pi_main" target="_blank"
+              href="https://www.homes247.in/cld/commercial-properties-for-sale-in-{{property.city_name | cleanUrl}}-{{property.commercial_type}}-{{property.property_IDFK}}"
+              target="_blank">
+              @if (property.pg_coverimage == null) {
+              <img height="133px" width="232" class="propertynoimg" alt="pi_main"
+                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image_New.jpg" />
+              }
+              @if (property.pg_coverimage !== null) {
+              <img height="133px" width="232" class="propertyimg" alt="pi_main"
+                src="{{ coverimage }}{{ property.pg_coverimage }}" />
+              }
+            </a>
+          </div>
+
+          <div class="top_project_info col-12 pt-0">
+            <div class="pi_left col-12 px-0">
+              <div class="row">
+                <div class="col-6 pr-0 mt-7">
+                  <a target="_blank"
+                    href="https://www.homes247.in/cld/commercial-properties-for-sale-in-{{property.city_name | cleanUrl}}-{{property.commercial_type}}-{{property.property_IDFK}}">
+                    @if (property.proparty_type != 'Others') {
+                    <h3 class="propclass">{{ property.proparty_type }}</h3>
+                    }
+                    @if (property.proparty_type == 'Others') {
+                    <h3 class="propclass">Commercial Property</h3>
+                    }
+                  </a>
+                </div>
+
+                @if (property.sale_amount !== null && property.sale_amount !== '0' && property.sale_amount) {
+                <div class="col-4 text-right px-0" id="priceCommercial">
+                  {{ property.sale_amount | customPriceFormat}}
+                </div>
+                }
+
+                @if (property.sale_amount == null || property.sale_amount === '0') {
+                <div
+                  routerLink="/cld/commercial-properties-for-sale-in-{{property.city_name | cleanUrl}}-{{property.commercial_type}}-{{property.property_IDFK}}"
+                  id="priceCommercialUnlock" target="_blank" class="col-5 text-right">
+                  Unlock Price Info <img
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg"
+                    alt="..padlock (1) 1.svg">
+                </div>
+                }
+              </div>
+
+              <div class="col-12 mb-2 pl-0">
+                <p class="postedBy">By {{property.first_name}}</p>
+              </div>
+
+              <div class="areaLoc col-12 commercialAreaImg">
+                <div class="row mt-7">
+                  @if (property.proparty_type !== 'Plot') {
+                  <div class="col-6 px-0 d-flex">
+                    <img loading="lazy" width="20" height="20"
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/commercial page/sqft.svg"
+                      alt="..sqft.svg">
+                    <p class="top_project_info1">{{ property.carpet_area }} {{ property.carpet_area_type }}</p>
+                  </div>
+                  }
+                  @if (property.proparty_type == 'Plot') {
+                  <div class="col-6 px-0 d-flex">
+                    <img loading="lazy" width="20" height="20"
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/commercial page/sqft.svg"
+                      alt="..sqft.svg">
+                    <p class="top_project_info1">{{ property.dimension }} {{ property.dimensiontype }}</p>
+                  </div>
+                  }
+                  <div class="col-6 px-0 d-flex">
+                    <img loading="lazy" width="20" height="20"
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/commercial page/map-pin.svg"
+                      alt="..map-pin.svg">
+                    <p class="top_project_info1">{{ property.locality_name }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center card-footer-icons">
+            <button class="btn btn-view-details btn-block mr-2">
+              <a href="https://www.homes247.in/cld/commercial-properties-for-sale-in-{{property.city_name | cleanUrl}}-{{property.commercial_type}}-{{property.property_IDFK}}"
+                target="_blank">View Details
+                <img
+                  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/commercial page/arrow_icon.svg"
+                  alt="..arrow_icon.svg">
+              </a>
+            </button>
+            <div
+              [ngClass]="{'Rental_icons_Heart3_Active': isInWishlist1(property.property_IDFK), 'Rental_icons_Heart3 mr-2': !isInWishlist1(property.property_IDFK)}"
+              (click)="Heart_Transtion1(property.property_IDFK,property.commercial_type)"></div>
+            <img
+              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Rental_share.png"
+              alt="..Rental_share.png" class="sharecss" (click)="shareContent(property,'sale')">
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+
+    @if (commercial_sale) {
+    <div class="row container">
+      <div class="col-4">
+        <div class="item">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ width: '100px', 'border-radius': '9', height: '15px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '15px' }"></ngx-skeleton-loader>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="item">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ width: '100px', 'border-radius': '9', height: '15px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '15px' }"></ngx-skeleton-loader>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="item">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ width: '100px', 'border-radius': '9', height: '15px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '15px' }"></ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+    }
+
+    <div class="container con2 pt-4 pr-0">
+      <div class="news_head ">
+        <h2>Newly Added Commercial Properties for <span id="burgundyTitle">Rent</span></h2>
+        <p class="newHeadingSubTitle">Curated & Handpicked Properties</p>
+      </div>
+
+      @if (!commercial_rent && commercialPropertiesRent.length === 0) {
+      <div class="pr-0 noPropDivRental">
+        <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/noRentalPropFoundMob.png"
+          alt="..noRentalPropFoundMob.png" width="100%">
+        <div class="noPropTxt1">
+          <p class="mb-0">Sorry, we couldn't find any properties</p>
+        </div>
+      </div>
+      }
+
+      <div class="scroll-container">
+        @for (property of commercialPropertiesRent; track property) {
+        <div class="property-card">
+          <div class="propImg2 col-5 text-right px-0">
+            <a class="pi_main" target="_blank"
+              href="https://www.homes247.in/cld/commercial-properties-for-rent-in-{{property.city_name | cleanUrl}}-{{property.commercial_type}}-{{property.property_IDFK}}"
+              target="_blank">
+              @if (property.pg_coverimage == null) {
+              <img height="133px" width="232" class="propertynoimg" alt="pi_main"
+                src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/noimage/Updated_No_Image_New.jpg" />
+              }
+              @if (property.pg_coverimage !== null) {
+              <img height="133px" width="232" class="propertyimg" alt="pi_main"
+                src="{{ coverimage }}{{ property.pg_coverimage }}" />
+              }
+            </a>
+          </div>
+
+          <div class="top_project_info col-12 pt-0">
+            <div class="pi_left col-12 px-0">
+              <div class="row">
+                <div class="col-6 pr-0 mt-7">
+                  <a target="_blank"
+                    href="https://www.homes247.in/cld/commercial-properties-for-rent-in-{{property.city_name | cleanUrl}}-{{property.commercial_type}}-{{property.property_IDFK}}">
+                    @if (property.proparty_type != 'Others') {
+                    <h3 class="propclass">{{ property.proparty_type }}</h3>
+                    }
+                    @if (property.proparty_type == 'Others') {
+                    <h3 class="propclass">Commercial Property</h3>
+                    }
+                  </a>
+                </div>
+
+                @if (property.Rent_Per_Month_Shop != null) {
+                <div class="col-4 text-right px-0" id="priceCommercial">
+                  {{ property.Rent_Per_Month_Shop | customPriceFormat}}
+                </div>
+                }
+
+                @if (property.Rent_Per_Month_Shop == null && property.Total_amount != 0 && property.Total_amount !=
+                null) {
+                <div class="col-4 text-right px-0" id="priceCommercial">
+                  {{ property.Total_amount | customPriceFormat}}
+                </div>
+                }
+
+                @if (property.sale_amount == null || property.sale_amount === '0') {
+                <div
+                  routerLink="/cld/commercial-properties-for-rent-in-{{property.city_name | cleanUrl}}-{{property.commercial_type}}-{{property.property_IDFK}}"
+                  id="priceCommercialUnlock" target="_blank" class="col-5 text-right">
+                  Unlock Price Info <img
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/icons/padlock (1) 1.svg"
+                    alt="..padlock (1) 1.svg">
+                </div>
+                }
+              </div>
+
+              <div class="col-12 mb-2 pl-0">
+                <p class="postedBy">By {{property.first_name}}</p>
+              </div>
+
+              <div class="areaLoc col-12 commercialAreaImg">
+                <div class="row mt-7">
+                  @if (property.proparty_type !== 'Plot') {
+                  <div class="col-6 px-0 d-flex">
+                    <img loading="lazy" width="20" height="20"
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/commercial page/sqft.svg"
+                      alt="..sqft.svg">
+                    <p class="top_project_info1">{{ property.carpet_area }} {{ property.carpet_area_type }}</p>
+                  </div>
+                  }
+                  @if (property.proparty_type == 'Plot') {
+                  <div class="col-6 px-0 d-flex">
+                    <img loading="lazy" width="20" height="20"
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/commercial page/sqft.svg"
+                      alt="..sqft.svg">
+                    <p class="top_project_info1">{{ property.dimension }} {{ property.dimensiontype }}</p>
+                  </div>
+                  }
+                  <div class="col-6 px-0 d-flex">
+                    <img loading="lazy" width="20" height="20"
+                      src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/commercial page/map-pin.svg"
+                      alt="..map-pin.svg">
+                    <p class="top_project_info1">{{ property.locality_name }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center card-footer-icons">
+            <button class="btn btn-view-details btn-block mr-2">
+              <a href="https://www.homes247.in/cld/commercial-properties-for-rent-in-{{property.city_name | cleanUrl}}-{{property.commercial_type}}-{{property.property_IDFK}}"
+                target="_blank">View Details
+                <img
+                  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/commercial page/arrow_icon.svg"
+                  alt="..arrow_icon.svg">
+              </a>
+            </button>
+            <div
+              [ngClass]="{'Rental_icons_Heart3_Active': isInWishlist1(property.property_IDFK), 'Rental_icons_Heart3 mr-2': !isInWishlist1(property.property_IDFK)}"
+              (click)="Heart_Transtion1(property.property_IDFK,property.commercial_type)"></div>
+            <img
+              src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/Rental_share.png"
+              alt="..Rental_share.png" class="sharecss" (click)="shareContent(property,'rent')">
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+
+    @if (commercial_rent) {
+    <div class="row container">
+      <div class="col-4">
+        <div class="item">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ width: '100px', 'border-radius': '9', height: '15px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '15px' }"></ngx-skeleton-loader>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="item">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ width: '100px', 'border-radius': '9', height: '15px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '15px' }"></ngx-skeleton-loader>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="item">
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ width: '100px', 'border-radius': '9', height: '15px' }"></ngx-skeleton-loader>
+          <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '15px' }"></ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+    }
+
+    <div class="container con2 pt-4 pr-0">
+      <div class="col-12 px-0">
+        <div class="col-lg-12 col-md-12 col-sm-12 px-0">
+          <div class="news_head ">
+            <h2>Perfect Shops for Your Business</h2>
+            <p class="newHeadingSubTitle">Curated & Handpicked Properties</p>
+          </div>
+          <div class="spotLightPropDiv1 d-flex">
+            <a [routerLink]="['/cll/commercial-properties-for-' + sale_rent_value + '-in-'+currentCity2]"
+              [queryParams]="{ Propertype: 1 }" class="propBox2 px-0">
+              <div><img class="propImg2" loading="lazy" width="183px" height="160px"
+                  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/allIndia/restaurant.jpeg"
+                  alt="..restaurant.jpeg"></div>
+              <div class="featureCollectTxt">
+                <p id="txtTop">Restaurant</p>
+              </div>
+              <div class="featureCollectOverlay"></div>
+            </a>
+            <a [routerLink]="['/cll/commercial-properties-for-' + sale_rent_value + '-in-'+currentCity2]"
+              [queryParams]="{ Propertype: 2 }" class="propBox2 px-0">
+              <div><img class="propImg2" loading="lazy" width="183px" height="160px"
+                  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/allIndia/groceryStore.jpeg"
+                  alt="..groceryStore.jpeg"></div>
+              <div class="featureCollectTxt">
+                <p id="txtTop">Grocery Store</p>
+              </div>
+              <div class="featureCollectOverlay"></div>
+            </a>
+            <a [routerLink]="['/cll/commercial-properties-for-' + sale_rent_value + '-in-'+currentCity2]"
+              [queryParams]="{ Propertype: 7 }" class="propBox2 px-0">
+              <div><img class="propImg2" loading="lazy" width="183px" height="160px"
+                  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/allIndia/cafe.jpeg" alt="..cafe.jpeg">
+              </div>
+              <div class="featureCollectTxt">
+                <p id="txtTop">Cafe</p>
+              </div>
+              <div class="featureCollectOverlay"></div>
+            </a>
+            <a [routerLink]="['/cll/commercial-properties-for-' + sale_rent_value + '-in-'+currentCity2]"
+              [queryParams]="{ Propertype: 3 }" class="propBox2 px-0">
+              <div><img class="propImg2" loading="lazy" width="183px" height="160px"
+                  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/allIndia/gym.jpeg" alt="..gym.jpeg"></div>
+              <div class="featureCollectTxt">
+                <p id="txtTop">GYM</p>
+              </div>
+              <div class="featureCollectOverlay"></div>
+            </a>
+            <a [routerLink]="['/cll/commercial-properties-for-' + sale_rent_value + '-in-'+currentCity2]"
+              [queryParams]="{ Propertype: 4 }" class="propBox2 px-0">
+              <div><img class="propImg2" loading="lazy" width="183px" height="160px"
+                  src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/allIndia/fashionStore.jpeg"
+                  alt="..fashionStore.jpeg"></div>
+              <div class="featureCollectTxt">
+                <p id="txtTop">Fashion Store</p>
+              </div>
+              <div class="featureCollectOverlay"></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container con pt-4">
+      <div class="col-12 px-0">
+        <div class="col-lg-12 col-md-12 col-sm-12 px-0">
+          <div class="news_head ">
+            <h2>Featured Commercial Builders</h2>
+            <p class="newHeadingSubTitle">The most reputed builders in India</p>
+          </div>
+          <div class="builders-scroll-container">
+            @for (builder of allBuilders; track builder) {
+            <div class="builder-item">
+              <div class="card buildersCard text-center">
+                <div class="builderImg">
+                  <img alt="builder.builder_altag" class="developerIcon" src="{{builderLogo}}{{builder.builder_logo}}"
+                    height="45px" />
+                </div>
+                <p class="primeBuildersText">{{builder.builderInfo_name}}</p>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container con2 pt-4 pr-0">
+      <div class="col-12 px-0">
+        <div class="col-lg-12 col-md-12 col-sm-12 px-0">
+          <div class="news_head ">
+            <h2>Our Services</h2>
+            <p class="newHeadingSubTitle">Guiding You to the Right Pathway with Our Expert Services</p>
+          </div>
+          <div class="spotLightPropDiv1 d-flex">
+            <div class="col-9 px-0">
+              <div class="row our_service">
+                <a class="col-4 p-0 expert" href="https://www.homes247.in/expertservices/property-manage-experts-6">
+                  <img
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/commercial page/realestate.svg"
+                    alt="..realestate.svg" class="our_sercice1">
+                </a>
+                <a class="col-4 p-0 expert" href="https://www.homes247.in/expertservices/legal-services-4">
+                  <img
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/commercial page/legal.svg"
+                    alt="..legal.svg" class="our_sercice2">
+                </a>
+                <a class="col-4 p-0 expert" href="https://www.homes247.in/expertservices/interior-services-7">
+                  <img
+                    src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_3/assets/images/commercial page/interior.svg"
+                    alt="..interior.svg" class="our_sercice3">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container con commercial_blogs">
+      <div class="col-12 px-0">
+        <div class="col-lg-12 col-md-12 col-sm-12 px-0">
+          <div class="news_head ">
+            <h2>Commercial Blogs</h2>
+            <p class="newHeadingSubTitle">Read real estate blogs all about homes</p>
+          </div>
+          <div class="col-12 p-0">
+            <div class="blogsSection">
+              @for (blog of trendingBlogs | slice:0:6; track blog.id) {
+              <div>
+                <div class="card sqrtcard-size">
+                  <a href="https://www.homes247.in/blogs/{{ blog.urlstruture | cleanUrl }}-{{ blog.id }}"
+                    style="text-decoration: none;">
+                    <img src="{{ blogimagePath }}{{ blog.imgPath }}" class="blogImageSize" alt="blog.alttag"
+                      height="96px" width="100%" />
+                    <div class="card-body custom-card-body">
+                      <!-- <button class="btn lock_button d-flex align-items-center">
+                        {{ blog.storytype }}
+                      </button> -->
+                      <h5 class="sqrt-text sqrt-blog">{{ blog.title }}</h5>
+                      <div class="col-12">
+                        <div class="row sqrt2">
+                          <div class="col-6 px-0 sqrt1-text">
+                            <p class="mb-0">By {{blog.addedby}}</p>
+                          </div>
+                          <div class="col-5 text-right sqrt2-text">
+                            <p class="mb-0">{{blog.date | date:'MMM dd, yyyy'}}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="matAuto">
+      <ng-container *ngComponentOutlet="Matautocomplete"></ng-container>
+    </div>
+    <div class="footerDiv">
+      <div>
+        <ng-container *ngComponentOutlet="FooterComponent"></ng-container>
+      </div>
+    </div>
+  </div>

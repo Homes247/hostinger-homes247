@@ -1,0 +1,106 @@
+<div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="tile">
+          <div id="loader">
+            <div id="circuleExtern">
+              <div id="circuleMedium">
+                <div id="circuleCenter"></div>
+              </div>
+            </div>
+          </div>
+          <div class="float menu-share">
+            <!-- <i class="fa fa-comments-o my-float"></i> -->
+            <img class="animate__heartBeat" (click)="onImageClick()"
+             src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/icons/Call-icon.svg" alt="call-icon">
+            </div>
+            <div class="soc">
+            <span href="#" class="facebook">
+            <i class="fa fa-facebook"></i>
+            </span>
+            <span href="https://api.whatsapp.com/send?phone=919008029014" target="_blank" class="google-plus">
+              <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/whatsapp.png" alt="whatsapp">
+            </span>
+            <span href="" class="twitter" data-toggle="modal" data-target="#myModal_dash">
+            <i class="fa fa-phone"></i>
+            </span>
+            </div>
+          </div><!-- tile -->
+      </div><!-- col-4-->
+    </div><!-- row -->
+  </div><!-- container -->
+
+ <!--START-MODAL-->
+<div class="modal fade" id="myModal_dash" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content modal_enqury_cntnt">
+
+      <button type="button" class="close modal_close"   data-dismiss="modal">&times;</button>
+      <div class="modal-body prop_modal">
+
+        <div class="call_back_section">
+          <div class="container">
+            <div class="row">
+      
+              <div class="col-lg-7 col-md-7 col-sm-7">
+                <div class="col-lg-12 col-md-12 col-sm-12 floatconatctDiv">
+                  <h4 class="call_back_head underline-1">Call Back</h4>
+                </div>
+                <div class="call_back_form">
+                  <form name="aboutForm" method="POST">
+                    <input type="hidden" name="origin">
+                    <input autocomplete="off" type="text" placeholder="Name" class="dash_enqr_name" name="name"
+                           id="name2" [(ngModel)]="user.name" required/>
+                    <input autocomplete="off" type="text" placeholder="Mobile Number" class="abt_enqr_number"
+                           name="number" id="mobile2" [(ngModel)]="user.number" required/>
+                    <input autocomplete="off" type="text" placeholder="Email" class="abt_enqr_number"
+                           name="number" id="email2" [(ngModel)]="user.email" required/>
+                    <div class="clearfix"></div>
+                     <button #cancel hidden type="button" data-dismiss="modal" style="display: none;"></button> 
+                    <button id="flotone" (click)="otpsend1()" class="btn_style">Get a Callback</button>
+                  </form>
+                  <p>
+                    All the request are handled in just 5 minutes.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+          <!--OTP-MODAL-->
+          <!-- <div id="flot-modal-container">
+            <div class="modal-background">
+              <div class="modal">
+                <h2>Please Verify your Number</h2>
+                <p>Enter the 4 digit Verification Code sent on {{user.number}}<a (click)="goback()">(Edit)</a></p>
+                <div class="col-12 countdown_maindiv">
+                  <countdown #cdflot [config]="countdownconfigflot" (event)="handleEvent($event)"></countdown>
+                </div>
+                <input hidden autocomplete="off" type="text" placeholder="OTP"
+                       name="otp" id="flototp" [(ngModel)]="user.otp" required/>
+                <ng-otp-input class="otpinput" #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config"></ng-otp-input>
+                <button (click)="otpvalidate()">Validate OTP</button>
+                <p class="otpexpireclass" *ngIf="otpexpired">OTP Expired - <a (click)="otpsend1()">Resend</a></p>
+                <button type="reset" id="btn_reset" style="display: none;"></button>
+              </div>
+            </div>
+          </div> -->
+          <!--OTP-MODAL-->
+<!--END-MODAL-->
+<!-- <button (click)="loadLazy()">
+  click to load
+</button> -->
+<!-- CSS-Loader -->
+<div *ngIf="otploader" class="loaderbody">
+  <div class="box">
+    <div class="loader-20"></div>
+  </div>
+</div>
+
+

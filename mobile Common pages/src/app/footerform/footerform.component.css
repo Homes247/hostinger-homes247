@@ -1,0 +1,274 @@
+.clarify_query_section {
+    background: #3c3c3c;
+    padding: 30px 0 40px;
+    margin: 40px 0 0
+  }
+
+  .clarify_query_section h4 {
+    font-size: 20px;
+    font-weight: 400;
+    color: #fff;
+    margin: 0 0 20px;
+    text-align: center
+  }
+
+  .clarify_query_section .input_div {
+    margin: 0 0 25px;
+    width: 100%;
+    float: left
+  }
+
+  .clarify_query_form .input_div input {
+    border: 0;
+    border-bottom: 1px solid #fff;
+    padding: 10px 0;
+    background: 0 0;
+    margin: 4px 0 0;
+    float: left;
+    color: #fff;
+    width: 100%;
+    outline: 0
+  }
+
+  .clarify_query_form .input_div textarea {
+    border: 0;
+    border: 1px solid #fff;
+    padding: 10px;
+    background: 0 0;
+    margin: 15px 0 0 2%;
+    float: left;
+    color: #fff;
+    height: 100px;
+    width: 98%;
+    outline: 0
+  }
+
+  .input_div p {
+    float: left;
+    font-size: 13px;
+    font-weight: 400;
+    color: #d5d4d4;
+    margin-left: 2%
+  }
+
+  .input_div button {
+    background: rgba(151,27,71,.8117647058823529);
+    border: 1px solid rgba(151,27,71,.8117647058823529);
+    font-size: 24px;
+    color: #fff;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 10px 80px;
+    margin: 10px 0 0 2%;
+    float: right
+  }
+
+  /* OTP-DESIGN */
+#modal-container2 {
+    position: fixed;
+    display: table;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transform: scale(0);
+    z-index: 1;
+  }
+  #modal-container2.one {
+    transform: scaleY(0.01) scaleX(0);
+    animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  }
+  #modal-container2.one .modal-background .modal {
+    transform: scale(0);
+    animation: zoomIn 0.5s 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  }
+  #modal-container2.one.out {
+    transform: scale(1);
+    animation: unfoldOut 1s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  }
+  #modal-container2.one.out .modal-background .modal {
+    animation: zoomOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  }
+
+  #modal-container2 .modal-background {
+    display: table-cell;
+    background: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    vertical-align: middle;
+  }
+  #modal-container2 .modal-background .modal {
+    background: white;
+    padding: 15px;
+    display: inline-block;
+    border-radius: 3px;
+    font-weight: 400;
+    position: relative;
+    width: 95%;
+    height: 340px;
+  }
+  #modal-container2 .modal-background .modal button{
+    background: rgba(151,27,71,.8117647058823529);
+    color: #fff;
+    border: 0;
+    padding: 12px;
+    margin: 30px 0 0 0;
+    width: 140px;
+    border-radius: 5px;
+  }
+  #modal-container2 .modal-background .modal .modal-svg {
+    position:absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    border-radius:3px;
+  }
+  #modal-container2 .modal-background .modal .modal-svg rect {
+    stroke: #fff;
+    stroke-width: 2px;
+    stroke-dasharray: 778;
+    stroke-dashoffset: 778;
+  }
+  #modal-container2 .modal-background .modal h2 {
+    font-size:25px;
+    line-height:25px;
+    margin-bottom:15px;
+  }
+  #modal-container2 .modal-background .modal p {
+    font-size:18px;
+    line-height:50px;
+  }
+  @keyframes unfoldIn {
+    0% {
+      transform: scaleY(0.005) scaleX(0);
+    }
+    50% {
+      transform: scaleY(0.005) scaleX(1);
+    }
+    100% {
+      transform: scaleY(1) scaleX(1);
+    }
+  }
+  @keyframes unfoldOut {
+    0% {
+      transform: scaleY(1) scaleX(1);
+    }
+    50% {
+      transform: scaleY(0.005) scaleX(1);
+    }
+    100% {
+      transform: scaleY(0.005) scaleX(0);
+    }
+  }
+  @keyframes zoomIn {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes zoomOut {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+
+
+  /* OTP-DESIGN */
+
+  /* CSS-LOADER-DESIGN */
+  .loaderbody{
+    backdrop-filter: blur(5px);
+    text-align: center;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+    position: fixed;
+    width: 100%;
+    min-height: 4500px;
+    z-index: 999999;
+    top: 0;
+  }
+  .box {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    border-radius: 3px;
+    font-size: 32px;
+    padding: 1em;
+    position: relative;
+    margin: 70% auto;
+    vertical-align: top;
+    -webkit-transition: .3s color, .3s border, .3s transform, .3s opacity;
+    transition: .3s color, .3s border, .3s transform, .3s opacity;
+  }
+  [class*="loader-"] {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    color: rgba(255, 255, 255, 0.8);
+    vertical-align: middle;
+    pointer-events: none;
+  }
+  .loader-20 {
+    background-color: rgba(151,27,71,.8117647058823529);
+    box-shadow: inset 0px 0px 0px .1em currentcolor;
+    border-radius: 50%;
+    position: relative;
+  }
+  .loader-20:after, .loader-20:before {
+    position: absolute;
+    content: "";
+    background-color: currentcolor;
+    top: .5em;
+    left: .5em;
+    height: .1em;
+    -webkit-transform-origin: left center;
+            transform-origin: left center;
+  }
+  .loader-20:after {
+    width: .4em;
+    -webkit-animation: loader-20 2s linear infinite;
+            animation: loader-20 2s linear infinite;
+  }
+  .loader-20:before {
+    width: .3em;
+    -webkit-animation: loader-20 8s linear infinite;
+            animation: loader-20 8s linear infinite;
+  }
+
+  @-webkit-keyframes loader-20 {
+    0% {
+      -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+    }
+  }
+
+  @keyframes loader-20 {
+    0% {
+      -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+    }
+  }
+   /* CSS-LOADER-DESIGN */
+
+   /* Count_Down_design */
+   .countdown_maindiv{
+    margin: 4px auto 15px auto;
+   }
+   #modal-container2 .modal-background .modal .otpexpireclass{
+       margin: -4px;
+       font-size: 13px;
+   }
+   /* Count_Down_design */

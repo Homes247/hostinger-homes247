@@ -1,0 +1,350 @@
+<app-innerheader></app-innerheader>
+<!-- <ng-container *ngComponentOutlet="innerheader"></ng-container> -->
+<div>
+
+    <img class="bgImg" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/background.png" alt="background.png">
+    <h3 class="bgCityName">{{currentCity}}</h3>
+</div>
+<div class="col-12">
+    <div class="desc_div">
+        <p class="banner_description" style="height: 50px!important;" id="scrollable" [innerHTML]="cityDescp | sanitizeHtml ">
+        </p>
+        <div class="arrow bounce down_arrow" (click)="readmore()">
+            <a>Read More</a>
+        </div>
+        <div class="arrow bounce up_arrow" (click)="readless()">
+            <a>Read Less</a>
+        </div>
+    </div>
+</div>
+<div class="col-12">
+
+    <div class="top_projects_section">
+        <div class="col-12 p-0">
+
+            <div class="topProjectsSectionMobileView">
+                <div class="scrollmenu">
+
+                    <a>
+                        <div [routerLink]="['/' + city + '/property-sale']" [queryParams]="{ statusId: '50307'}">
+                            <div class="card subCards">
+                                <p class="subcardCount">{{readyToMoveDetails}}</p>
+                                <p class="subcardTitle">Ready To Move In</p>
+                            </div>
+                            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/ready-To-Move-In.png" alt="ready-To-Move-In.png">
+                        </div>
+                    </a>
+                    <a>
+                        <div [routerLink]="['/' + city + '/property-sale']" [queryParams]="{ statusId: '50309'}">
+                            <div class="card subCards">
+                                <p class="subcardCount">{{underConstructionDetails}}</p>
+                                <p class="subcardTitle">Under Construction</p>
+                            </div>
+                            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/under-Construction.png" alt="under-Construction.png">
+                        </div>
+                    </a>
+                    <a>
+                        <div [routerLink]="['/' + city + '/property-sale']" [queryParams]="{ statusId: '50310'}">
+                            <div class="card subCards">
+                                <p class="subcardCount">{{allNewProperties}}</p>
+                                <p class="subcardTitle">New Launches</p>
+                            </div>
+                            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/new-Launches.png" alt="new-Launches.png">
+                        </div>
+                    </a>
+                    <a>
+                        <div [routerLink]="['/' + city + '/property-sale']" [queryParams]="{ statusId: '50309'}">
+                            <div class="card subCards">
+                                <p class="subcardCount">{{underConstructionDetails}}</p>
+                                <p class="subcardTitle">Ongoing projects</p>
+                            </div>
+                            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/on-going.png" alt="on-going.png">
+                        </div>
+                    </a>
+                    <a>
+                        <!-- <div routerLink="/offers">
+                            <div class="card subCards">
+                                <p class="subcardCount">{{bestOffersCount}}</p>
+                                <p class="subcardTitle">Projects on offers</p>
+                            </div>
+                            <img src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/offers-projects.png" alt="offers-projects.png">
+                        </div> -->
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="top_projects_section mt-4">
+        <div class="col-12 p-0">
+
+            <div class="topProjectsSectionMobileView">
+                <div class="scrollmenu">
+
+                    <a>
+                        <div class="col-12 p-0" [routerLink]="['/' + city + '/property-sale']" [queryParams]="{ min: '13', max: '24'}">
+
+                            <img class="galleryTwoImages" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/leuxery.png" alt="leuxery.png">
+                            <div>
+                                <p class="galleryTwoText">Luxury ({{luxuryPropCountDetails}})</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a>
+                        <div class="col-12 p-0" [routerLink]="['/' + city + '/property-sale']" [queryParams]="{ min: '6', max: '9'}">
+                            <img class="galleryTwoImages" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/offerdeable.png" alt="offerdeable.png">
+                            <div>
+                                <p class="galleryTwoText">Affordable homes ({{affordablePropCountDetails}})</p>
+                            </div>
+
+                        </div>
+                    </a>
+                    <a>
+                        <div class="col-12 p-0" [routerLink]="['/' + city + '/property-sale']" [queryParams]="{ min: '1', max: '5'}">
+                            <img class="galleryTwoImages" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/greenHome.png" alt="greenHome.png">
+                            <div>
+                                <p class="galleryTwoText">Low Budget ({{lowbudgetPropCountDetails}})</p>
+                            </div>
+
+                        </div>
+                    </a>
+                    <a>
+                        <div class="col-12 p-0" [routerLink]="['/' + city + '/property-sale']" [queryParams]="{ possession: '1'}">
+                            <img class="galleryTwoImages" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/urbunProp.png" alt="urbunProp.png">
+                            <div>
+                                <p class="galleryTwoText">Immediate Availability ({{readyToMoveDetails}})</p>
+                            </div>
+
+                        </div>
+                    </a>
+                    <a href="https://www.homes247.in/rent/house-for-rent-in-{{city}}">
+                        <div  class="col-12 p-0">
+                            <img class="galleryTwoImages" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/underConstruction.png" alt="underConstruction.png">
+                            <div>
+                                <p class="galleryTwoText">Rental Projects ({{rentalsProjectCount}})</p>
+                            </div>
+
+                        </div>
+                    </a>
+                    <a href="https://www.homes247.in/projects-in-{{city}}">
+                        <div  class="col-12 p-0">
+                            <img class="galleryTwoImages" src="https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile/images/cityHome/bestInvestments.png" alt="bestInvestments.png">
+                            <div>
+                                <p class="galleryTwoText">Individual Projects ({{IndividualPropertiesCount}})</p>
+                            </div>
+
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="topProjectsSectionMobileView mt-4">
+        <h4 class="listTitle">Top Projects</h4>
+        <div class="scrollmenu">
+            <a *ngFor="let property of topProperties">
+
+                <div *ngFor="let image of property.images" target="_blank" itemprop="url" routerLink="/property/{{property.city_name | cleanUrl}}/{{property.locality_name | cleanUrl}}/{{property.propertyName | cleanUrl}}-{{property.property_info_IDPK}}">
+                    <img src="{{propertyimage}}{{image.name }}" alt="property.propertyName" class="propclass topProjectsSectionMobileImages" />
+                </div>
+                <span hidden itemprop="name">{{property.propertyName}}</span>
+                <a *ngIf="property.images.length === 0" class="pi_main" ng-click="getPropertyID(property.property_info_IDPK);">
+                    <img [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/notfound.png'" alt="not-found">
+                </a>
+                <div class="top_project_info">
+                    <div class="pi_left">
+                        <h3 class="propclass">{{property.propertyName}} </h3>
+                        <small>{{property.locality_name}}
+                            ,{{property.city_name}}</small>
+                        <p class="top_prjct_status"><small>{{property.Status}}</small></p>
+                    </div>
+                    <div class="pi_right">
+                        <p class="price_tag"><i class="fa fa-inr" aria-hidden="true"></i> {{property.price_min}} Onwards
+                        </p>
+                    </div>
+                    <div class="float-right">
+                        <button class="btn btn-primary" routerLink="/property/{{property.city_name | cleanUrl}}/{{property.locality_name | cleanUrl}}/{{property.propertyName | cleanUrl}}-{{property.property_info_IDPK}}"
+                            target="_blank">
+                            View Details</button>
+                    </div>
+                </div>
+
+            </a>
+        </div>
+        <div *ngIf="topprojectsloader" class="row">
+            <div class="col-12">
+                <div class="item">
+                    <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }">
+                    </ngx-skeleton-loader>
+                    <ngx-skeleton-loader [theme]="{ width: '170px','border-radius': '9',height: '15px'}">
+                    </ngx-skeleton-loader>
+                    <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                    </ngx-skeleton-loader>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="topProjectsSectionMobileView mt-4">
+        <h4 class="listTitle">Best Selling Projects</h4>
+        <div class="scrollmenu">
+            <a *ngFor="let property of alloffersList">
+
+                <div *ngFor="let image of property.images" target="_blank" itemprop="url" routerLink="/property/{{property.city_name | cleanUrl}}/{{property.locality_name | cleanUrl}}/{{property.propertyName | cleanUrl}}-{{property.property_info_IDPK}}">
+                    <img src="{{propertyimage}}{{image.name }}" alt="property.propertyName" class="propclass topProjectsSectionMobileImages" />
+                </div>
+                <span hidden itemprop="name">{{property.propertyName}}</span>
+                <a *ngIf="property.images.length === 0" class="pi_main" ng-click="getPropertyID(property.property_info_IDPK);">
+                    <img [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/notfound.png'" alt="not-found">
+                </a>
+                <div class="top_project_info">
+                    <div class="pi_left">
+                        <h3 class="propclass">{{property.propertyName}} </h3>
+                        <small>{{property.locality_name}}
+                            ,{{property.city_name}}</small>
+                        <p class="top_prjct_status"><small>{{property.Status}}</small></p>
+                    </div>
+                    <div class="pi_right">
+                        <p class="price_tag"><i class="fa fa-inr" aria-hidden="true"></i> {{property.price_min}} Onwards
+                        </p>
+                    </div>
+                    <div class="float-right">
+                        <button class="btn btn-primary" routerLink="/property/{{property.city_name | cleanUrl}}/{{property.locality_name | cleanUrl}}/{{property.propertyName | cleanUrl}}-{{property.property_info_IDPK}}"
+                            target="_blank">
+                            View Details</button>
+                    </div>
+                </div>
+
+            </a>
+        </div>
+        <div *ngIf="offershowLoader" class="row">
+            <div class="col-12">
+                <div class="item">
+                    <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }">
+                    </ngx-skeleton-loader>
+                    <ngx-skeleton-loader [theme]="{ width: '170px','border-radius': '9',height: '15px'}">
+                    </ngx-skeleton-loader>
+                    <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                    </ngx-skeleton-loader>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="topProjectsSectionMobileView mt-4">
+        <h4 class="listTitle">Trending Projects</h4>
+        <div class="scrollmenu">
+            <a *ngFor="let property of newProperties">
+
+                <div *ngFor="let image of property.images" target="_blank" itemprop="url" routerLink="/property/{{property.city_name | cleanUrl}}/{{property.locality_name | cleanUrl}}/{{property.propertyName | cleanUrl}}-{{property.property_info_IDPK}}">
+                    <img src="{{propertyimage}}{{image.name }}" alt="property.propertyName" class="propclass topProjectsSectionMobileImages" />
+                </div>
+                <span hidden itemprop="name">{{property.propertyName}}</span>
+                <a *ngIf="property.images.length === 0" class="pi_main" ng-click="getPropertyID(property.property_info_IDPK);">
+                    <img [lazyLoad]="'https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/notfound.png'" alt="not-found">
+                </a>
+                <div class="top_project_info">
+                    <div class="pi_left">
+                        <h3 class="propclass">{{property.propertyName}} </h3>
+                        <small>{{property.locality_name}}
+                            ,{{property.city_name}}</small>
+                        <p class="top_prjct_status"><small>{{property.Status}}</small></p>
+                    </div>
+                    <div class="pi_right">
+                        <p class="price_tag"><i class="fa fa-inr" aria-hidden="true"></i> {{property.price_min}} Onwards
+                        </p>
+                    </div>
+                    <div class="float-right">
+                        <button class="btn btn-primary" routerLink="/property/{{property.city_name | cleanUrl}}/{{property.locality_name | cleanUrl}}/{{property.propertyName | cleanUrl}}-{{property.property_info_IDPK}}"
+                            target="_blank">
+                            View Details</button>
+                    </div>
+                </div>
+
+            </a>
+        </div>
+        <div *ngIf="newlaunchesloader" class="row">
+            <div class="col-12">
+                <div class="item">
+                    <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }">
+                    </ngx-skeleton-loader>
+                    <ngx-skeleton-loader [theme]="{ width: '170px','border-radius': '9',height: '15px'}">
+                    </ngx-skeleton-loader>
+                    <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                    </ngx-skeleton-loader>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 mt-4 card">
+        <p class="OurwritesText pt-3">Search properties in {{city}}</p>
+        <div class="col-sm-12 pb-4 pl-0">
+            <button class="btn btn-dark RentAndBuyBtn" [ngStyle]="{'color': buyShow ? '#109D1E' : '#0B3544', 'border': buyShow ? '1px solid #109D1E' : '1px solid #0a3544'}" (click)="buyClick()">Buy</button>&nbsp;&nbsp;
+            <button class="btn btn-dark RentAndBuyBtn" [ngStyle]="{'color': rentShow ? '#109D1E' : '#0B3544', 'border': rentShow ? '1px solid #109D1E' : '1px solid #0a3544'}" (click)="rentClick()">Rent</button>
+        </div>
+
+        <div class="row pb-4 pl-0">
+            <div class="col-12">
+                <p>Configuration</p>
+                <button class="btn btn-dark filterBtn" [ngStyle]="{'color': onebhk ? '#109D1E' : '#0B3544', 'border': onebhk ? '1px solid #109D1E' : '1px solid #0a3544'}" (click)="onebhkClick()">1 BHK</button>&nbsp;
+                <button class="btn btn-dark filterBtn" [ngStyle]="{'color': twobhk ? '#109D1E' : '#0B3544', 'border': twobhk ? '1px solid #109D1E' : '1px solid #0a3544'}" (click)="twobhkClick()">2 BHK</button>&nbsp;
+                <button class="btn btn-dark filterBtn" [ngStyle]="{'color': threebhk ? '#109D1E' : '#0B3544', 'border': threebhk ? '1px solid #109D1E' : '1px solid #0a3544'}" (click)="threebhkClick()">3 BHK</button>&nbsp;
+                <button class="btn btn-dark filterBtn" [ngStyle]="{'color': fourbhk ? '#109D1E' : '#0B3544', 'border': fourbhk ? '1px solid #109D1E' : '1px solid #0a3544'}" (click)="fourbhkClick()">4 BHK</button>&nbsp;
+            </div>
+            <div class="col-12 mt-3" *ngIf="buyShow">
+                <p>Budget</p>
+                <button class="btn btn-dark filterBtn" (click)="lessBudget()" [ngStyle]="{'color': lessThnThirty ? '#109D1E' : '#0B3544', 'border': lessThnThirty ? '1px solid #109D1E' : '1px solid #0a3544'}">
+                    < 30L </button>&nbsp;
+                <button class="btn btn-dark filterBtn" (click)="fourtyToFiftyLac()" [ngStyle]="{'color': fourtyToFifty ? '#109D1E' : '#0B3544', 'border': fourtyToFifty ? '1px solid #109D1E' : '1px solid #0a3544'}">40-60L</button>&nbsp;
+                <button class="btn btn-dark filterBtn" (click)="sixtyToSeventLac()" [ngStyle]="{'color': sixtyToSevent ? '#109D1E' : '#0B3544', 'border': sixtyToSevent ? '1px solid #109D1E' : '1px solid #0a3544'}">60-70L</button>&nbsp;
+                <button class="btn btn-dark filterBtn" (click)="eightyToNintyLac()" [ngStyle]="{'color': eightyToNinty ? '#109D1E' : '#0B3544', 'border': eightyToNinty ? '1px solid #109D1E' : '1px solid #0a3544'}">80-90L</button>&nbsp;
+                <button class="btn btn-dark filterBtn mt-2" (click)="oneToTwoCr()" [ngStyle]="{'color': oneToTwo ? '#109D1E' : '#0B3544', 'border': oneToTwo ? '1px solid #109D1E' : '1px solid #0a3544'}">1-2Cr</button>&nbsp;
+                <button class="btn btn-dark filterBtn mt-2" (click)="twoCrPlus()" [ngStyle]="{'color': twoCr ? '#109D1E' : '#0B3544', 'border': twoCr ? '1px solid #109D1E' : '1px solid #0a3544'}">2
+                            +Cr</button>&nbsp;
+            </div>
+            <div class="col-sm-3 text-right">
+                <button class="btn btn-outline-dark submiteSearch" *ngIf="buyShow" [routerLink]="['/' + city + '/property-sale']" [queryParams]="{bed: noOfBedrooms,min: minPrice,max: maxPrice }">Search Properties</button>
+                <button class="btn btn-outline-dark submiteSearch" *ngIf="rentShow" [routerLink]="['/rent/house-for-rent-in-' + city]" [queryParams]="{bed: noOfBedrooms,min: minPrice,max: maxPrice }">Search Properties</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 mt-4">
+        <div class="homeGuideMobileView">
+            <div class="scrollmenu">
+                <a *ngFor="let blog of allBlogs | slice:0:6">
+                    <div class="homeGuideMobileView-border">
+                        <img class="homeGuideMobileViewImage" href="https://www.homes247.in/blogs/{{blog.urlstruture | cleanUrl }}-{{blog.id | cleanUrl}}" src="{{blogimagePath}}{{blog.imgPath}}" alt="blog.alttag" />
+                        <h3 itemprop="headline">{{blog.title}}</h3>
+                        <div class="row">
+                            <div class="col-6">
+                                <p>Date : {{blog.date}}</p>
+                            </div>
+                            <div class="col-6">
+                                <p>Read: 5min</p>
+                            </div>
+                            <div class="col-6"></div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <button href="https://www.homes247.in/blogs/{{blog.urlstruture | cleanUrl }}-{{blog.id | cleanUrl}}" class="btn btn-light blogsViewButton">View More
+                  </button>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div *ngIf="blogsloader" class="row">
+            <div class="col-12">
+                <div class="item">
+                    <ngx-skeleton-loader [theme]="{ 'border-radius': '9', height: '220px' }">
+                    </ngx-skeleton-loader>
+                    <ngx-skeleton-loader [theme]="{ width: '170px','border-radius': '9',height: '15px'}">
+                    </ngx-skeleton-loader>
+                    <ngx-skeleton-loader [theme]="{ 'border-radius': '9',height: '15px'}">
+                    </ngx-skeleton-loader>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

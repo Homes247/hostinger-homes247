@@ -1,0 +1,84 @@
+
+
+	  <!-- <nav class="mobile-bottom-nav" id="footer">
+		<div href="https://www.homes247.in/" class="bottom-nav-item mobile-bottom-nav__item">
+			<div  class="mobile-bottom-nav__item-content">
+				<i class="fa fa-home iconColor" [ngStyle]="{'color': homeactive? '#000' : 'grey'}"></i>
+		       Home
+			</div>	
+		</div>
+		<div routerLink="/offers" class="bottom-nav-item mobile-bottom-nav__item">
+			<div  class="mobile-bottom-nav__item-content">
+				<i class="fa fa-percent iconColor" [ngStyle]="{'color': videoactive? '#000' : 'grey'}"></i>
+			 Best Offers
+			</div>	
+		</div>
+		<div routerLink="/compare-properties" class="bottom-nav-item mobile-bottom-nav__item">
+			<div  class="mobile-bottom-nav__item-content">
+				<i class="fa fa-long-arrow-right iconColor" [ngStyle]="{'color': searchactive? '#000' : 'grey'}"></i>
+				<i class="fa fa-long-arrow-left iconColor iconleft" [ngStyle]="{'color': searchactive? '#000' : 'grey'}"></i>
+			 Compare
+			</div>	
+		</div>
+		<div class="bottom-nav-item mobile-bottom-nav__item">
+			<div  class="mobile-bottom-nav__item-content" (click)="showhide()">
+				<i class="fa fa-ellipsis-h iconColor" [ngStyle]="{'color': moreactive? '#000' : 'grey'}"></i>
+			More
+			</div>	
+		</div>
+	  </nav> -->
+	  <nav class="mobile-bottom-nav col-12" id="">
+		<div  class="bottom-nav-item mobile-bottom-nav__item col-4">
+			<div class="mobile-bottom-nav__item-content">
+			   <a  href="https://www.homes247.in/" class="footer_img_1">
+			   </a>
+			</div>
+		</div>
+		<div class="bottom-nav-item mobile-bottom-nav__item col-4">
+			<div class="mobile-bottom-nav__item-content">
+				<a routerLink="/compare-properties" class="footer_img_2">
+				</a>
+			</div>
+		</div>
+		<div class="bottom-nav-item mobile-bottom-nav__item col-4">
+			<div class="mobile-bottom-nav__item-content">
+				<a *ngIf="!userID" routerLink="/login" class="footer_img_3">
+				</a>
+
+			    <a *ngIf="userID" href="https://www.homes247.in/userauth/profile/{{userID}}" class="footer_img_3">
+				</a>
+			</div>
+		</div>
+	</nav>
+
+
+<!-- accordion menu -->
+<!-- <div  id="fixed-accordion">
+	<ul id="accordion" class="accordion">
+	  <li>
+		<div class="link">Top Builders<i class="fa fa-chevron-down"></i></div>
+		<ul class="submenu">
+		  <li><a routerLink="/bangalore/builder/sobha-limited-2">Sobha Limited</a></li>
+		  <li><a routerLink="/bangalore/builder/prestige-group-1">Prestige Group</a></li>
+		  <li><a routerLink="/bangalore/builder/brigade-group-9">Brigade Group</a></li>
+		  <li><a routerLink="/bangalore/builder/puravankara-limited-29">Puravankara Limited</a></li>
+		  <li><a routerLink="/bangalore/builder/godrej-properties-21">Godrej Properties</a></li>
+		</ul>
+	  </li>
+	  <li>
+		<div class="link">Top cities<i class="fa fa-chevron-down"></i></div>
+		<ul class="submenu">
+		  <li><a routerLink="/bangalore/property-sale">Bangalore</a></li>
+		  <li><a routerLink="/hyderabad/property-sale">Hyderabad</a></li>
+		  <li><a routerLink="/chennai/property-sale">Chennai</a></li>
+		  <li><a routerLink="/mumbai/property-sale">Mumbai</a></li>
+		  <li><a routerLink="/delhi/property-sale">Delhi</a></li>
+		  <li><a routerLink="/kolkata/property-sale" >kolkata</a></li>
+		</ul>
+	  </li>
+	</ul>
+</div> -->
+ 
+<!-- accordion menu -->
+
+

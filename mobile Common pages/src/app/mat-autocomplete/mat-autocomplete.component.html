@@ -1,0 +1,79 @@
+<div class=" resp_citydrop matAuto">
+    <div class="inner_search mobileViewSelectDropDown" tabindex="0">
+        <div class="row">
+            <div class="get_call_back">
+                <div class="row head">
+                    <div class="backicon col-2" (click)="ShowHidecontact();">
+                        <i class="fa fa-arrow-left" aria-hidden="true" style="color: #ffffff"></i>
+                    </div>
+                    <div class="col-10 pl-0 mt-3">
+                        <h6 class="mb-0 headpart">Select City</h6>
+                    </div>
+                </div>
+                <div class="container" tabindex="0">
+                    <form class="nosubmit" floatLabel='never'>
+                        <select class="nosubmit" [(value)]="selectedLocation" placeholder="Select City"
+                            (change)="selectionChange($event)">
+                            <option *ngIf="!cardvalue">Select City</option>
+                            <option *ngIf="cardvalue">{{cardvalue}}</option>
+                            <option [value]="cityname.city" *ngFor="let cityname of citiesss"><input
+                                    type="text">{{cityname.city }}</option>
+                        </select>
+                    </form>
+                </div>
+                <div>
+                    <div *ngIf="recenthide">
+                        <span class="recents">Recent Searched Cities</span><br>
+                        <div class="scrollmenuu" >
+                            <a class="loc_mat_card_b col-10" *ngFor="let item of RecentCityStorage">
+                                <div class="card loc_mat_card_ test">
+                                    <a class="localities" (click)="Selection(item)"><span>{{item}}</span>   </a>
+                                    <i class="fa fa-close " id="arrows" aria-hidden="true" (click)="removeCity(item)"></i>
+                                </div>
+                                
+                            </a>
+                        </div>
+                    </div>
+
+                    <span class=" recents">Top Cities</span>
+                    <div class="grid-container">
+                        <div *ngFor="let item of topCitiesMy" (click)="Selection(item.item)">
+                            <div  class="cards" >
+                                <div class="card_img">
+                                    <img src='{{ "https://d1zt14hr2k4poi.cloudfront.net/version9.0/images/assets_mobile_2/images/cityHome/" + item.item + ".png" }}'  alt="item.item" >
+                                </div>
+                                <div class="card_info">
+                                    <span>{{item.item}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="recents">Popular Cities</span>
+                    <div class="col-md-12 popularcity">
+
+                        <div class="col-md-6 col-sm-4"
+                            *ngFor="let cityname of Allcities | slice: 0: 14 | orderByy:'city'"
+                            (click)="Selection(cityname.city)">
+                            <span class="flex-containers" id="scrollable">
+                                <span>{{cityname.city }}</span>
+                            </span>
+                        </div>
+
+                        <div [ngClass]="{'limitTextHeight': isReadMore}">
+                            <div class="col-md-6 col-sm-4"
+                                *ngFor="let cityname of Allcities | slice: 15: Allcities.length | orderByy:''" (click)="Selection(cityname.city)">
+                                <span class="flex-containers" id="scrollable">
+                                    <span>{{cityname.city }}</span>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div (click)="showText()" class="Viewmorebtn text-center">
+                        {{ isReadMore ? 'View More': 'View Less' }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

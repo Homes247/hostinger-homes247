@@ -1,0 +1,1159 @@
+<div *ngIf="showmaindiv">
+  <div class="compare_main_div">
+    <div class="container">
+      <div class="row">
+        <div class="col-2" (click)="gotoback()">
+          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        </div>
+        <div class="col-8 compare_header">
+          <span class="compare_text">Compare Properties</span>
+        </div>
+        <div class="col-2">
+          <!-- <i class="fa fa-plus" aria-hidden="true"></i> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="compare_mainlisting" id="compare_mainlisting">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <!-- janother function -->
+          <div class="hideImage" *ngIf="imagesellCompare1">
+            <i class="fa fa-times-circle-o closeprop" (click)="closeprop1(compare1)" aria-hidden="true"></i>
+            <!-- project compare 1 start -->
+            <a
+              href="https://www.homes247.in/property/{{cityname1 | lowercase}}/{{locname1 | cleanUrl}}/{{propname1 | cleanUrl}}-{{propid1}}">
+              <img src="{{propertyimage}}{{propimag1}}" alt="propimag1" class="propimage"></a>
+            <h2 class="prop_name">{{propname1}}</h2>
+            <span *ngIf="averagerating1 >= 1" class="overall_rating">{{averagerating1}}&nbsp;<i
+                class="fa fa-star starColour"></i></span>
+            <span *ngIf="numbernan1" class="ratingText1">No Ratings Yet</span>
+            <p class="reviewcount" (click)="showratingreview1()">{{this.reviewcount1}}&nbsp;Ratings & Reviews</p>
+            <div class="min_max_price"><i class="fa fa-inr" aria-hidden="true"></i> {{price_min1}}
+              -{{price_max1}}</div>
+            <!-- project compare 1 end -->
+
+          </div>
+
+          <div class="col" *ngIf="compareloader1">
+            <div class="item">
+              <ngx-skeleton-loader [theme]="{'border-radius': '5', height: '90px' }">
+              </ngx-skeleton-loader>
+            </div>
+            <div class="item">
+              <ngx-skeleton-loader [theme]="{'border-radius': '5', height: '10px' }">
+              </ngx-skeleton-loader>
+            </div>
+            <div class="item">
+              <p class="addproduct_btn" (click)="addcompareproduct1()">Add property</p>
+            </div>
+          </div>
+          <!-- property c 1 start -->
+          <div class="hideImage" *ngIf="imagespropertycomp1">
+            <i class="fa fa-times-circle-o closeprop" (click)="closeprop13(reSale1)" aria-hidden="true"></i>
+            <a
+              href="https://www.homes247.in/listings/{{propbhk1 | cleanUrl}}-{{proptype1 | cleanUrl}}-for-sale-in-{{locname1| cleanUrl}}-at-{{propname1 | cleanUrl}}-{{cityname1 | cleanUrl}}-{{reSale1}}">
+
+              <img src="{{propertyimage}}{{propimag12}}" alt="propimag12" class="propimage">
+
+            </a>
+            <h2 class="prop_name">{{propname1}}</h2>
+
+            <div class="min_max_price"><i class="fa fa-inr" aria-hidden="true"></i> {{price_min1 | priceFormatter}}
+            </div>
+            <!-- property c 1 end -->
+          </div>
+          <div class="col" *ngIf="loaderProperty1">
+            <div class="item">
+              <ngx-skeleton-loader [theme]="{'border-radius': '5', height: '90px' }">
+              </ngx-skeleton-loader>
+            </div>
+            <div class="item">
+              <ngx-skeleton-loader [theme]="{'border-radius': '5', height: '10px' }">
+              </ngx-skeleton-loader>
+            </div>
+            <div class="item">
+              <p class="addproduct_btn" (click)="addResaleProduct1()">Add property</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col">
+          <!-- j another function -->
+          <div class="hideImage" *ngIf="imagesellCompare2">
+            <i class="fa fa-times-circle-o closeprop" (click)="closeprop2(compare2)" aria-hidden="true"></i>
+            <!-- project compare 2  start-->
+            <a
+              href="https://www.homes247.in/property/{{cityname2 | lowercase}}/{{locname2 | cleanUrl}}/{{propname2 | cleanUrl}}-{{propid2}}">
+              <img src="{{propertyimage}}{{propimag2}}" alt="propimag2"class="propimage"></a>
+            <h2 class="prop_name">{{propname2}}</h2>
+            <span *ngIf="averagerating2 >= 1" class="overall_rating">{{averagerating2}}&nbsp;<i
+                class="fa fa-star starColour"></i></span>
+            <span *ngIf="numbernan2" class="ratingText1">No Ratings Yet</span>
+            <p class="reviewcount" (click)="showratingreview2()">{{this.reviewcount2}}&nbsp;Ratings & Reviews</p>
+            <div class="min_max_price"><i class="fa fa-inr" aria-hidden="true"></i> {{price_min2 }}
+              -{{price_min2}}</div>
+            <!-- project compare 2 end -->
+          </div>
+          <div class="col" *ngIf="compareloader2">
+            <div class="item">
+              <ngx-skeleton-loader [theme]="{'border-radius': '5', height: '90px' }">
+              </ngx-skeleton-loader>
+            </div>
+            <div class="item">
+              <ngx-skeleton-loader [theme]="{'border-radius': '5', height: '10px' }">
+              </ngx-skeleton-loader>
+            </div>
+            <div class="item">
+              <p class="addproduct_btn" (click)="addcompareproduct2()">Add property</p>
+            </div>
+          </div>
+
+          <!-- property c 2  start -->
+          <div class="hideImage" *ngIf="imagespropertycomp2">
+            <i class="fa fa-times-circle-o closeprop" (click)="propcom2(reSale2)" aria-hidden="true"></i>
+            <a
+              href="https://www.homes247.in/listings/{{propbhk1 | cleanUrl}}-{{proptype2 | cleanUrl}}-for-sale-in-{{locname2| cleanUrl}}-at-{{propname2 | cleanUrl}}-{{cityname2 | cleanUrl}}-{{reSale2}}">
+
+              <img src="{{propertyimage}}{{propertyimag123}}" alt="propimag123"class="propimage"></a>
+
+
+            <h2 class="prop_name">{{propname2}}</h2>
+            <span *ngIf="averagerating2 >= 1" class="overall_rating">{{averagerating2}}&nbsp;<i
+                class="fa fa-star starColour"></i></span>
+            <div class="min_max_price"><i class="fa fa-inr" aria-hidden="true"></i> {{price_min2 | priceFormatter }}
+            </div>
+          </div>
+          <div class="col" *ngIf="compareproperty2">
+            <div class="item">
+              <ngx-skeleton-loader [theme]="{'border-radius': '5', height: '90px' }">
+              </ngx-skeleton-loader>
+            </div>
+            <div class="item">
+              <ngx-skeleton-loader [theme]="{'border-radius': '5', height: '10px' }">
+              </ngx-skeleton-loader>
+            </div>
+            <div class="item">
+              <p class="addproduct_btn" (click)="addResaleProduct2()">Add property</p>
+
+            </div>
+          </div>
+
+
+
+        </div>
+
+        <!-- another property c 2 end -->
+        <!-- <div class="col" *ngIf="compareprop3">
+        <i class="fa fa-times-circle-o closeprop" (click)="closeprop3(compropid3)" aria-hidden="true"></i>
+        <img src="{{propertyimage}}{{propimag3}}" class="propimage">
+        <h2 class="prop_name">{{propname3}}</h2>
+        <span *ngIf="averagerating3 >= 1" class="overall_rating">{{averagerating3}}&nbsp;<i class="fa fa-star starColour"></i></span>
+        <span *ngIf="numbernan3" class="ratingText1">No Ratings Yet</span>
+        <div class="min_max_price"><i class="fa fa-inr" aria-hidden="true"></i> {{price_min3}}
+            -{{price_min3}}</div>
+        </div> -->
+        <!-- <div class="col" *ngIf="compareloader3">
+            <div class="item">
+              <ngx-skeleton-loader
+                [theme]="{'border-radius': '5', height: '90px' }">
+              </ngx-skeleton-loader>
+            </div>
+            <div class="item">
+              <ngx-skeleton-loader
+                [theme]="{'border-radius': '5', height: '10px' }">
+              </ngx-skeleton-loader>
+            </div>
+            <div class="item">
+               <p class="addproduct_btn" (click)="addcompareproduct3()">Add product</p>
+            </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="compare_listing">
+    <div>
+      <h4 class="listing_head">City,Location,Region</h4>
+      <div class="col-12">
+        <div class="row">
+          <div class="col" *ngIf="imagesellCompare1">
+            <p *ngIf="compareprop1" class="listing_text">{{cityname1}}</p>
+            <p *ngIf="compareprop1"
+              routerLink="/{{cityname1 | lowercase}}/property-sale-in-{{locname1 | cleanUrl}}-{{locationid1}}"
+              class="listing_text">{{locname1}}</p>
+            <p *ngIf="compareprop1"
+              href="https://www.homes247.in/{{cityname1 | lowercase}}/zone/{{region1 | cleanUrl}}-{{regionid1}}"
+              class="listing_text">{{region1}}</p>
+          </div>
+          <div class="col" *ngIf="imagesellCompare2">
+            <p *ngIf="compareprop2" class="listing_text">{{cityname2}}</p>
+            <p *ngIf="compareprop2"
+              routerLink="/{{cityname1 | lowercase}}/property-sale-in-{{locname2 | cleanUrl}}-{{locationid2}}"
+              class="listing_text">{{locname2}}</p>
+            <p *ngIf="compareprop2"
+              href="https://www.homes247.in/{{cityname1 | lowercase}}/zone/{{region2 | cleanUrl}}-{{regionid2}}"
+              class="listing_text">{{region2}}</p>
+          </div>
+          <!-- <div class="col" *ngIf="compareprop3">
+        <p class="listing_text">{{cityname3}}</p>
+        <p class="listing_text">{{locname3}}</p>
+        <p class="listing_text">{{region3}}</p>
+           </div> -->
+        </div>
+      </div>
+
+    </div>
+    <!-- <div> -->
+    <div *ngIf="buildername1 || buildername2">
+      <h4 class="listing_head">Builder</h4>
+
+      <div class="col-12" *ngIf="imagesellCompare1">
+        <div class="row">
+          <div class="col-6"
+            routerLink="/{{cityname1 | lowercase}}/builder/{{buildername1 | cleanUrl}}-{{builderid1}}">
+
+            <p *ngIf="compareprop1" class="listing_text">{{buildername1}}</p>
+          </div>
+          <div class="col-6"
+            routerLink="/{{cityname2 | lowercase}}/builder/{{buildername2 | cleanUrl}}-{{builderid2}}">
+            <p *ngIf="compareprop2" class="listing_text">{{buildername2}}</p>
+          </div>
+          <!-- <div class="col" *ngIf="compareprop3">
+        <p class="listing_text">{{buildername3}}</p>
+        </div> -->
+        </div>
+      </div>
+    </div>
+    <div *ngIf="propstatus1 ||propstatus2 ">
+      <h4 class="listing_head">Status</h4>
+      <div class="col-12">
+        <div class="row">
+          <div class="col"
+            href="https://www.homes247.in/{{cityname1 | lowercase}}/status/{{propstatus1 | cleanUrl}}-{{propstatusid1}}" *ngIf="imagesellCompare1">
+            <p *ngIf="compareprop1" class="listing_text">{{propstatus1}}</p>
+          </div>
+          <div class="col"
+            href="https://www.homes247.in/{{cityname1 | lowercase}}/status/{{propstatus2 | cleanUrl}}-{{propstatusid2}}" *ngIf="imagesellCompare2">
+            <p *ngIf="compareprop2" class="listing_text">{{propstatus2}}</p>
+          </div>
+          <!-- <div class="col" *ngIf="compareprop3">
+        <p class="listing_text">{{propstatus3}}</p>
+        </div> -->
+        </div>
+      </div>
+    </div>
+    <div *ngIf="propbhk1 || propbhk2">
+      <h4 class="listing_head">Configuration</h4>
+      <div class="col-12">
+        <div class="row">
+          <div class="col" *ngIf="imagesellCompare1">
+            <p *ngIf="compareprop1" class="listing_text">{{propbhk1}}</p>
+          </div>
+          <div class="col" *ngIf="imagesellCompare2">
+            <p *ngIf="compareprop2" class="listing_text">{{propbhk2}}</p>
+          </div>
+          <!-- <div class="col" *ngIf="compareprop3">
+        <p class="listing_text">{{propbhk3}}</p>
+        </div> -->
+        </div>
+      </div>
+    </div>
+    <h4 class="listing_head">Property Type</h4>
+    <div class="col-12">
+      <div class="row">
+        <div class="col" *ngIf="imagesellCompare1">
+          <p *ngIf="compareprop1" class="listing_text">{{proptype1}}</p>
+        </div>
+        <div class="col" *ngIf="imagesellCompare2">
+          <p *ngIf="compareprop2" class="listing_text">{{proptype2}}</p>
+        </div>
+        <!-- <div class="col" *ngIf="compareprop3">
+        <p class="listing_text">{{proptype3}}</p>
+        </div> -->
+      </div>
+    </div>
+    <div *ngIf="units1 || units2 ">
+      <h4 class="listing_head">Total Units</h4>
+      <div class="col-12">
+        <div class="row">
+          <div class="col" *ngIf="imagesellCompare1">
+            <p *ngIf="compareprop1" class="listing_text">{{units1}}</p>
+          </div>
+          <div class="col" *ngIf="imagesellCompare2">
+            <p *ngIf="compareprop2" class="listing_text">{{units2}}</p>
+          </div>
+          <!-- <div class="col" *ngIf="compareprop3">
+        <p class="listing_text">{{units3}}</p>
+        </div> -->
+        </div>
+      </div>
+    </div>
+    <h4 class="listing_head">Total Area</h4>
+    <div class="col-12">
+      <div class="row">
+        <div class="col" *ngIf="imagesellCompare1">
+          <p *ngIf="compareprop1" class="listing_text">{{propdimension1 }} Acres</p>
+        </div>
+        <div class="col" *ngIf="imagesellCompare2">
+          <p *ngIf="compareprop2" class="listing_text">{{propdimension2}} Acres</p>
+        </div>
+        <!-- <div class="col" *ngIf="compareprop3">
+        <p class="listing_text">{{propdimension3}}Acres</p>
+        </div> -->
+      </div>
+    </div>
+    <div *ngIf="possissiondate1 || possissiondate2">
+      <h4 class="listing_head">Possession</h4>
+      <div class="col-12">
+        <div class="row">
+          <div class="col" *ngIf="imagesellCompare1">
+            <p *ngIf="compareprop1" class="listing_text">{{possissiondate1}}</p>
+          </div>
+          <div class="col" *ngIf="imagesellCompare2">
+            <p *ngIf="compareprop2" class="listing_text">{{possissiondate2}}</p>
+          </div>
+          <!-- <div class="col" *ngIf="compareprop3">
+        <p class="listing_text">{{possissiondate3}}</p>
+        </div> -->
+        </div>
+      </div>
+    </div>
+    <div *ngIf="reraid1 ||reraid2">
+      <h4 class="listing_head">RERA ID</h4>
+      <div class="col-12">
+        <div class="row">
+          <div class="col" *ngIf="imagesellCompare1">
+            <p *ngIf="compareprop1 && reraid1" class="rera_text">{{reraid1}}</p>
+            <p *ngIf="!reraid1" class="rera_text">Nil</p>
+          </div>
+          <div class="col" *ngIf="imagesellCompare2">
+            <p *ngIf="compareprop2 && reraid2" class="rera_text">{{reraid2}}</p>
+            <p *ngIf="!reraid2" class="rera_text">Nil</p>
+          </div>
+          <!-- <div class="col" *ngIf="compareprop3">
+        <p class="listing_text">{{reraid3}}</p>
+        </div> -->
+        </div>
+      </div>
+    </div>
+    <!-- </div> -->
+
+    <div *ngIf="floorplanedetails1">
+      <h4 class="listing_head">Floor Plan</h4>
+      <div class="col-12 floorplane-height">
+        <div class="row">
+          <div class="col" *ngIf="imagesellCompare1">
+            <table *ngIf="compareprop1" class="floor_tble_main">
+              <thead>
+                <tr class="floorPlanHeading">
+                  <th class="floorplane_head">Floor</th>
+                  <th class="floorplane_head">Dimensions&nbsp;</th>
+                  <th class="floorplane_head">Price</th>
+                  <th></th>
+                </tr>
+
+              </thead>
+              <tbody class="floor_tble_body"
+                *ngFor="let bhk of floorplanedetails1 | myfilter: 'BHK' : '1 BHK' | slice:start:endone;let i = index" >
+                <tr>
+                  <td>
+                    <P class="listing_text">{{bhk.BHK}} &nbsp;</P>
+                  </td>
+                  <td class="paddingAreaFloorPlan">
+                    <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="listing_text">
+                      <!-- <span>{{bhk.BHK}}</span><br/> -->
+                      <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                        sq ft</span><br>
+                    </p>
+                    <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="listing_text">
+                      <!-- <span>{{bhk.BHK}}</span><br/> -->
+                      <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft</span><br>
+                    </p>
+                  </td>
+                  <td>
+                    <P class="listing_text Pricevalue"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}} </P>
+                  </td>
+                </tr>
+              </tbody>
+              <tbody class="floor_tble_body"
+                *ngFor="let bhk of floorplanedetails1 | myfilter: 'BHK' : '2 BHK' | slice:start:endone;let i = index">
+                <tr>
+                  <td>
+                    <P class="listing_text">{{bhk.BHK}}&nbsp;</P>
+                  </td>
+                  <td class="paddingAreaFloorPlan">
+                    <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="listing_text">
+                      <!-- <span>{{bhk.BHK}}</span><br/> -->
+                      <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                        sq ft</span><br>
+                    </p>
+                    <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="listing_text">
+                      <!-- <span>{{bhk.BHK}}</span><br/> -->
+                      <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft</span><br>
+                    </p>
+                  </td>
+                  <td>
+                    <P class="listing_text Pricevalue"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}} </P>
+                  </td>
+                </tr>
+              </tbody>
+              <tbody class="floor_tble_body"
+                *ngFor="let bhk of floorplanedetails1 | myfilter: 'BHK' : '3 BHK' | slice:start:endone;let i = index">
+                <tr>
+                  <td>
+                    <P class="listing_text">{{bhk.BHK}}&nbsp;</P>
+                  </td>
+                  <td class="paddingAreaFloorPlan">
+                    <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="listing_text">
+                      <!-- <span>{{bhk.BHK}}</span><br/> -->
+                      <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                        sq ft</span><br>
+                    </p>
+                    <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="listing_text">
+                      <!-- <span>{{bhk.BHK}}</span><br/> -->
+                      <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft</span><br>
+                    </p>
+                  </td>
+                  <td>
+                    <P class="listing_text Pricevalue"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}} </P>
+                  </td>
+                </tr>
+              </tbody>
+              <tbody class="floor_tble_body"
+                *ngFor="let bhk of floorplanedetails1 | myfilter: 'BHK' : '4 BHK' | slice:start:endone;let i = index">
+                <tr>
+                  <td>
+                    <P class="listing_text">{{bhk.BHK}}&nbsp;</P>
+                  </td>
+                  <td class="paddingAreaFloorPlan">
+                    <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="listing_text">
+                      <!-- <span>{{bhk.BHK}}</span><br/> -->
+                      <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                        sq ft</span><br>
+                    </p>
+                    <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="listing_text">
+                      <!-- <span>{{bhk.BHK}}</span><br/> -->
+                      <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft</span><br>
+                    </p>
+                  </td>
+                  <td>
+                    <P class="listing_text Pricevalue"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}} </P>
+                  </td>
+                </tr>
+              </tbody>
+              <tbody class="floor_tble_body"
+                *ngFor="let bhk of floorplanedetails1 | myfilter: 'BHK' : '5 BHK' | slice:start:endone;let i = index">
+                <tr>
+                  <td>
+                    <P class="listing_text">{{bhk.BHK}}&nbsp;</P>
+                  </td>
+                  <td class="paddingAreaFloorPlan">
+                    <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="listing_text">
+                      <!-- <span>{{bhk.BHK}}</span><br/> -->
+                      <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                        sq ft</span><br>
+                    </p>
+                    <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="listing_text">
+                      <!-- <span>{{bhk.BHK}}</span><br/> -->
+                      <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft</span><br>
+                    </p>
+                  </td>
+                  <td>
+                    <P class="listing_text Pricevalue"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}} </P>
+                  </td>
+                </tr>
+              </tbody>
+              <tbody class="floor_tble_body"
+                *ngFor="let bhk of floorplanedetails1 | myfilter: 'BHK' : 'PLOTS' | slice:start:endone;let i = index">
+                <tr>
+                  <td>
+                    <P class="listing_text">PLOT</P>
+                  </td>
+                  <td class="paddingAreaFloorPlan">
+                    <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="listing_text">
+                      <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                        sq ft</span><br>
+                    </p>
+                    <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="listing_text">
+                      <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft</span><br>
+                    </p>
+                  </td>
+                  <td>
+                    <P class="listing_text Pricevalue"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}} </P>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col" *ngIf="imagesellCompare2">
+            <table *ngIf="compareprop2" class="floor_tble_main1">
+              <thead>
+                <tr class="floorPlanHeading">
+                  <th class="floorplane_head">Floor</th>
+                  <th class="floorplane_head">Dimensions &nbsp;</th>
+                  <th class="floorplane_head">Price</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody class="floor_tble_body"
+                *ngFor="let bhk of floorplanedetails2 | myfilter: 'BHK' : '1 BHK' | slice:start:endone;let i = index">
+                <tr>
+                  <td>
+                    <P class="listing_text">{{bhk.BHK}} &nbsp;</P>
+                  </td>
+                  <td class="paddingAreaFloorPlan">
+                    <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="listing_text">
+                      <!-- <span>{{bhk.BHK}}</span><br/> -->
+                      <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                        sq ft</span><br>
+                    </p>
+                    <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="listing_text">
+                      <!-- <span>{{bhk.BHK}}</span><br/> -->
+                      <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft</span><br>
+                    </p>
+                  </td>
+                  <td>
+                    <P class="listing_text Pricevalue"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}} </P>
+                  </td>
+                </tr>
+              </tbody>
+              <tbody class="floor_tble_body"
+                *ngFor="let bhk of floorplanedetails2 | myfilter: 'BHK' : '2 BHK' | slice:start:endone;let i = index">
+                <tr>
+                  <td>
+                    <P class="listing_text">{{bhk.BHK}} &nbsp;</P>
+                  </td>
+                  <td class="paddingAreaFloorPlan">
+                    <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="listing_text">
+                      <!-- <span>{{bhk.BHK}}</span><br/> -->
+                      <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                        sq ft</span><br>
+                    </p>
+                    <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="listing_text">
+                      <!-- <span>{{bhk.BHK}}</span><br/> -->
+                      <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft</span><br>
+                    </p>
+                  </td>
+                  <td>
+                    <P class="listing_text Pricevalue"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}} </P>
+                  </td>
+                </tr>
+              </tbody>
+              <tbody class="floor_tble_body"
+                *ngFor="let bhk of floorplanedetails2 | myfilter: 'BHK' : '3 BHK' | slice:start:endone;let i = index">
+                <tr>
+                  <td>
+                    <P class="listing_text">{{bhk.BHK}}&nbsp;</P>
+                  </td>
+                  <td class="paddingAreaFloorPlan">
+                    <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="listing_text">
+                      <!-- <span>{{bhk.BHK}}</span><br/> -->
+                      <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                        sq ft</span><br>
+                    </p>
+                    <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="listing_text">
+                      <!-- <span>{{bhk.BHK}}</span><br/> -->
+                      <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft</span><br>
+                    </p>
+                  </td>
+                  <td>
+                    <P class="listing_text Pricevalue"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}} </P>
+                  </td>
+                </tr>
+              </tbody>
+              <tbody class="floor_tble_body"
+                *ngFor="let bhk of floorplanedetails2 | myfilter: 'BHK' : '4 BHK' | slice:start:endone;let i = index">
+                <tr>
+                  <td>
+                    <P class="listing_text">{{bhk.BHK}}&nbsp;</P>
+                  </td>
+                  <td class="paddingAreaFloorPlan">
+                    <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="listing_text">
+                      <!-- <span>{{bhk.BHK}}</span><br/> -->
+                      <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                        sq ft</span><br>
+                    </p>
+                    <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="listing_text">
+                      <!-- <span>{{bhk.BHK}}</span><br/> -->
+                      <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft</span><br>
+                    </p>
+                  </td>
+                  <td>
+                    <P class="listing_text Pricevalue"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}} </P>
+                  </td>
+                </tr>
+              </tbody>
+              <tbody class="floor_tble_body"
+                *ngFor="let bhk of floorplanedetails2 | myfilter: 'BHK' : '5 BHK' | slice:start:endone;let i = index">
+                <tr>
+                  <td>
+                    <P class="listing_text">{{bhk.BHK}}</P>
+                  </td>
+                  <td class="paddingAreaFloorPlan">
+                    <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="listing_text">
+                      <!-- <span>{{bhk.BHK}}</span><br/> -->
+                      <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                        sq ft</span><br>
+                    </p>
+                    <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="listing_text">
+                      <!-- <span>{{bhk.BHK}}</span><br/> -->
+                      <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft</span><br>
+                    </p>
+                  </td>
+                  <td>
+                    <P class="listing_text Pricevalue"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}} </P>
+                  </td>
+                </tr>
+              </tbody>
+              <tbody class="floor_tble_body"
+                *ngFor="let bhk of floorplanedetails2 | myfilter: 'BHK' : 'PLOTS' | slice:start:endone;let i = index">
+                <tr>
+                  <td>
+                    <P class="listing_text">PLOT</P>
+                  </td>
+                  <td class="paddingAreaFloorPlan">
+                    <p *ngIf="bhk.Area.indexOf('-Carpet_Area') > -1" class="listing_text">
+                      <span class="sqrNumText">{{bhk.Area.replace('-Carpet_Area', '')}}
+                        sq ft</span><br>
+                    </p>
+                    <p *ngIf="bhk.Area.indexOf('-Area') > -1" class="listing_text">
+                      <span class="sqrNumText">{{bhk.Area.replace('-Area', '')}} sq ft</span><br>
+                    </p>
+                  </td>
+                  <td>
+                    <P class="listing_text Pricevalue"><i class="fa fa-inr" aria-hidden="true"></i>{{bhk.Price}} </P>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+
+    <div *ngIf="amenities1.length>0">
+      <div *ngIf="AmenitiesProject">
+        <h4 class="listing_head">Amenities</h4>
+        <div class="col-12">
+          <div class="row">
+            <div class="col" *ngIf="imagesellCompare1">
+              <div *ngFor="let amenitieslist1 of amenities1">
+                <p *ngIf="compareprop1" class="listing_text">{{amenitieslist1.Name}}</p>
+              </div>
+            </div>
+            <div class="col" *ngIf="imagesellCompare2">
+              <div *ngFor="let amenitieslist2 of amenities2">
+                <p *ngIf="compareprop2" class="listing_text">{{amenitieslist2.Name}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="AmenitiesProperty">
+
+        <h4 class="listing_head">Amenities</h4>
+
+        <div class="col-12">
+          <div class="row">
+            <div class="col" *ngIf="imagesellCompare1">
+              <div *ngFor="let amenitieslist1 of amenities1">
+                <p *ngIf="compareprop1" class="listing_text">{{amenitieslist1.amenities}}</p>
+              </div>
+            </div>
+            <div class="col" *ngIf="imagesellCompare2">
+              <div *ngFor="let amenitieslist2 of amenities2">
+                <p *ngIf="compareprop2" class="listing_text">{{amenitieslist2.amenities}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 mt-4" style="padding-bottom: 50px;">
+      <div class="row">
+        <div class="col">
+          <!-- <p *ngIf="compareprop1" class="contact_btn" (click)="propertyNameClick(propertiesDetails1)">Contact Seller</p> -->
+          <button *ngIf="compareprop1" type="button" class="btn contact_btn" propertydemo-toggle="modal" propertydemo-target="#myModal_city"
+            propertydemo-backdrop="static" propertydemo-keyboard="false"
+            (click)="propertyNameClick(propertiesDetails1)">
+            Contact Seller
+          </button>
+
+        </div>
+        <div class="col">
+          <!-- <p *ngIf="compareprop2" class="contact_btn" (click)="propertyNameClick(propertiesDetails2)">Contact Seller</p> -->
+          <button *ngIf="compareprop2" type="button" class="btn contact_btn" propertydemo-toggle="modal" propertydemo-target="#myModal_city"
+            propertydemo-backdrop="static" propertydemo-keyboard="false"
+            (click)="propertyNameClick(propertiesDetails2)">
+            Contact Seller
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="showcomparediv1">
+  <div class="compare_main_div">
+    <div class="container">
+      <div class="row">
+        <div class="col-2" (click)="goback()">
+          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        </div>
+        <div class="col-8">
+          <span>Compare Properties</span>
+        </div>
+        <div class="col-2">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="compareprop_select container">
+    <div class="row">
+      <div class="col-6">
+        <div class="resp_citydrops">
+          <div class="inner_search mobileViewSelectDropDown" tabindex="0">
+            <form *ngIf="cityselect">
+              <select class="form-control city_dropdown" (change)="getcityname($event)">
+                <option value="select city" selected>Select City</option>
+                <option *ngFor="let cityname of citiess" value="{{cityname.city}}">
+                  {{cityname.city}}
+                </option>
+              </select>
+            </form>
+            <form *ngIf="defaltcityselect">
+              <select class="form-control city_dropdown" (change)="getcityname($event)">
+                <option value="select city" selected>{{selectedcity}}</option>
+              </select>
+            </form>
+            <form *ngIf="defaltcityselectlist">
+              <select class="form-control city_dropdown" (change)="getcityname($event)">
+                <option value="select city" selected>{{selectedcity}}</option>
+              </select>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+
+      <div class="ml-1 mt-5 compare_input" style="border: 1px solid;height: 40px;">
+        <mat-form-field style="padding: 0px 0px 0px 0px;position: absolute;">
+          <input type="text" matInput placeholder="Enter the Property Name" [formControl]="myControl" required
+            [matAutocomplete]="autoGroup" [(ngModel)]="searchstring">
+          <mat-autocomplete #autoGroup="matAutocomplete" (optionSelected)='onItemSelect($event.option.value)'
+            [displayWith]="displayname">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showcomparediv2">
+  <div class="compare_main_div">
+    <div class="container">
+      <div class="row">
+        <div class="col-2" (click)="goback()">
+          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        </div>
+        <div class="col-8">
+          <span>Compare Properties</span>
+        </div>
+        <div class="col-2">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="compareprop_select container">
+    <div class="row">
+      <div class="col-6">
+        <div class="resp_citydrops">
+          <div class="inner_search mobileViewSelectDropDown" tabindex="0">
+            <form *ngIf="cityselect">
+              <select class="form-control city_dropdown" (change)="getcityname($event)">
+                <option value="select city" selected>Select City</option>
+                <option *ngFor="let cityname of citiess" value="{{cityname.city}}">
+                  {{cityname.city}}
+                </option>
+              </select>
+            </form>
+            <form *ngIf="defaltcityselect">
+              <select class="form-control city_dropdown" (change)="getcityname($event)">
+                <option value="select city" selected>{{selectedcity}}</option>
+              </select>
+            </form>
+            <form *ngIf="defaltcityselectlist">
+              <select class="form-control city_dropdown" (change)="getcityname($event)">
+                <option value="select city" selected>{{selectedcity}}</option>
+              </select>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+
+      <div class="ml-1 mt-5 compare_input" style="border: 1px solid;height: 40px;">
+        <mat-form-field style="padding: 0px 0px 0px 0px;position: absolute;">
+          <input type="text" matInput placeholder="Enter the Property Name" [formControl]="myControl" required
+            [matAutocomplete]="autoGroup" [(ngModel)]="searchstring">
+          <mat-autocomplete #autoGroup="matAutocomplete" (optionSelected)='onItemSelect2($event.option.value)'
+            [displayWith]="displayname">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div *ngIf="showcomparediv2">
+  <div class="compare_main_div">
+    <div class="container">
+      <div class="row">
+        <div class="col-2" (click)="goback()">
+          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        </div>
+        <div class="col-8">
+          <span>Compare Properties</span>
+        </div>
+        <div class="col-2">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="compareprop_select container">
+    <div class="resp_citydrops">
+      <div class="inner_search mobileViewSelectDropDown" tabindex="0">
+        <form *ngIf="cityselect">
+          <select class="form-control" (change)="getcityname($event)">
+            <option value="select city" selected>Select City</option>
+            <option *ngFor="let cityname of citiess" value="{{cityname.city}}">
+              {{cityname.city}}
+            </option>
+          </select>
+        </form>
+        <form *ngIf="defaltcityselect">
+          <select class="form-control" (change)="getcityname($event)">
+            <option value="select city" selected>{{selectedcity}}</option>
+          </select>
+        </form>
+        <form *ngIf="defaltcityselectlist">
+          <select class="form-control" (change)="getcityname($event)">
+            <option value="select city" selected>{{selectedcity}}</option>
+          </select>
+        </form>
+      </div>
+    </div>
+    <div class="mt-5 compare_input" style="border: 1px solid;height: 40px;">
+      <mat-form-field style="padding: 0px 0px 0px 0px;position: absolute;">
+        <input type="text" matInput placeholder="Enter the Property Name" [formControl]="myControl" required
+          [matAutocomplete]="autoGroup" [(ngModel)]="searchstring">
+        <mat-autocomplete #autoGroup="matAutocomplete" (optionSelected)='onItemSelect2($event.option.value)'
+          [displayWith]="displayname">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+  </div>
+</div> -->
+
+<!-- property compare 1 -->
+
+<div *ngIf="showCompareproperty1">
+  <div class="compare_main_div">
+    <div class="container">
+      <div class="row">
+        <div class="col-2" (click)="goback()">
+          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        </div>
+        <div class="col-8">
+          <span>Compare Properties</span>
+        </div>
+        <div class="col-2">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="compareprop_select container">
+    <div class="row">
+      <div class="col-6">
+        <div class="resp_citydrops">
+          <div class="inner_search mobileViewSelectDropDown" tabindex="0">
+            <form *ngIf="cityselect">
+              <select class="form-control city_dropdown" (change)="getcityname1($event)">
+                <option value="select city" selected>Select City</option>
+                <option *ngFor="let cityname of citiess" value="{{cityname.city}}">
+                  {{cityname.city}}
+                </option>
+              </select>
+            </form>
+            <form *ngIf="defaltcityselect">
+              <select class="form-control city_dropdown" (change)="getcityname1($event)">
+                <option value="select city" selected>{{selectedcity}}</option>
+              </select>
+            </form>
+            <form *ngIf="defaltcityselectlist">
+              <select class="form-control city_dropdown" (change)="getcityname1($event)">
+                <option value="select city" selected>{{selectedcity}}</option>
+              </select>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+
+        <div class="ml-1" style="border: 1px solid;height: 40px;">
+          <mat-form-field style="padding: 0px 0px 0px 0px;position: absolute;">
+            <input type="text" matInput placeholder="Enter the Property Name" [formControl]="myControl" required
+              [matAutocomplete]="autoGroup" [(ngModel)]="searchstring">
+            <mat-autocomplete #autoGroup="matAutocomplete" (optionSelected)='onItemSelect3($event.option.value)'
+              [displayWith]="displayname">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option.name}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- compare property 2 -->
+<div *ngIf="showCompareproperty2">
+  <div class="compare_main_div">
+    <div class="container">
+      <div class="row">
+        <div class="col-2" (click)="goback()">
+          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        </div>
+        <div class="col-8">
+          <span>Compare Properties</span>
+        </div>
+        <div class="col-2">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="compareprop_select container">
+    <div class="row">
+      <div class="col-6">
+        <div class="resp_citydrops">
+          <div class="inner_search mobileViewSelectDropDown" tabindex="0">
+            <form *ngIf="cityselect">
+              <select class="form-control city_dropdown" (change)="getcityname1($event)">
+                <option value="select city" selected>Select City</option>
+                <option *ngFor="let cityname of citiess" value="{{cityname.city}}">
+                  {{cityname.city}}
+                </option>
+              </select>
+            </form>
+            <form *ngIf="defaltcityselect">
+              <select class="form-control city_dropdown" (change)="getcityname1($event)">
+                <option value="select city" selected>{{selectedcity}}</option>
+              </select>
+            </form>
+            <form *ngIf="defaltcityselectlist">
+              <select class="form-control city_dropdown" (change)="getcityname1($event)">
+                <option value="select city" selected>{{selectedcity}}</option>
+              </select>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+
+        <div class="ml-1" style="border: 1px solid;height: 40px;">
+          <mat-form-field style="padding: 0px 0px 0px 0px;position: absolute;">
+            <input type="text" matInput placeholder="Enter the Property Name" [formControl]="myControl" required
+              [matAutocomplete]="autoGroup" [(ngModel)]="searchstring">
+            <mat-autocomplete #autoGroup="matAutocomplete" (optionSelected)='onItemSelect4($event.option.value)'
+              [displayWith]="displayname">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option.name}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- login modal -->
+<div class="modal fade" id="contactseller" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content modal_enqury_cntnt">
+      <div class="modal-header">
+        <button #cancel type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body prop_modal">
+        <div class="backgrountContactForm">
+          <div class="contactFormHeading">
+            <h3 class="marginBottomForm">Request a Callback</h3>
+          </div>
+          <div class="contactFormMargine">
+            <p class="iamIntrestText">I'm Interested In {{this.enquiryPropName}}</p>
+            <form>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <input type="text" id="name" name="name" class="form-control floor_nameinput" placeholder="First Name"
+                    [(ngModel)]="user.name">
+                </div>
+                <div class="form-group col-sm-12">
+                  <input type="text" id="email" name="email" class="form-control floor_nameinput" placeholder="Email"
+                    [(ngModel)]="user.mail">
+                </div>
+                <div class="form-group col-sm-12">
+                  <input type="text" id="mobile" name="mobile" maxlength="10" minlength="10"
+                    class="floor_numinput form-control inputPadding" placeholder="+91" [(ngModel)]="user.number">
+                </div>
+                <div class="form-group col-sm-12 text-center">
+                  <button type="submit" class="btn contactButton" id="one" (click)="otpsend()">CONTACT SELLER</button>
+                  <button #cancel hidden type="button" data-dismiss="modal" style="display: none;"></button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--OTP-MODAL-->
+<!-- <div id="modal-container">
+  <div class="modal-background">
+    <div class="modal">
+      <form name="otpForm3" novalidate>
+        <p class="verify_num">Please Verify your Number</p>
+        <p>Enter the 4 digit Verification Code sent on {{user.number}}<a (click)="gobacktoEdit()">(Edit)</a></p>
+        <div class="col-12 countdown_maindiv">
+          <countdown #cd [config]="countdownconfig" (event)="handleEvent($event)"></countdown>
+        </div>
+        <input hidden autocomplete="off" type="text" placeholder="OTP" name="otp" id="otp"
+               [(ngModel)]="user.otp" required/>
+        <ng-otp-input class="otpinput" #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config">
+        </ng-otp-input>
+        <button (click)="otpvalidate()">Validate OTP</button>
+        <p class="otpexpireclass" *ngIf="otpexpired">OTP Expired - <a (click)="otpsend()">Resend</a></p>
+        <button type="reset" id="btn_reset" style="display: none;"></button>
+      </form>
+    </div>
+  </div>
+</div> -->
+<!--OTP-MODAL-->
+<!-- CSS-Loader -->
+<div *ngIf="otploader" class="loaderbody">
+  <div class="box">
+    <div class="loader-20"></div>
+  </div>
+</div>
+<!-- CSS-Loader -->
+
+<!-- rating and review div-->
+<div *ngIf="showratingandreview">
+  <div class="rating_top_head" (click)="ShowMainpage()">
+    <i class="fa fa-long-arrow-left" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;All Ratings and Reviews
+  </div>
+  <div class="ratingreviewSection">
+    <div class="col-12">
+      <h5 class="rating_prop_name">{{this.propname1}}</h5>
+      <div *ngIf="averagerating1 >= 1" class="ratingText">
+        <span class="overall_rating">{{averagerating1}}&nbsp;<i class="fa fa-star starColour"></i></span>
+        <span class="reviewcount">&nbsp;{{this.reviewcount1}}&nbsp;Ratings & Reviews</span>
+      </div>
+    </div>
+    <!-- <button  class="btn WriteReviewBtn1" data-toggle="modal" (click)="ratingreviewmodal()">Write a Review</button> -->
+    <!-- <button *ngIf="loginbutton" class="btn WriteReviewBtn1" data-toggle="modal" data-target="#loginwithotpModel">Write a Review</button> -->
+
+    <div class="col-12 reviewBorder" *ngFor="let review of reviews1">
+      <div class="user_text">
+        <div class="text-center">
+          <i class="fa fa-user-o userIcon" aria-hidden="true"></i>
+          <span class="reviewerNAme">{{review.User}}&nbsp;{{review.lastname}} </span>
+        </div>
+        <div class="reviewDate">
+          <p>{{review.Revieweddate}}</p>
+        </div>
+      </div>
+      <div class="text-left">
+        <p class="mt-4"><span class="ratingText">{{review.Rating}}.0</span>&nbsp;&nbsp;
+          <i [ngClass]="{'starColour1': review.Rating >= 1}" class="fa fa-star"></i>&nbsp;&nbsp;
+          <i [ngClass]="{'starColour1': review.Rating >= 2}" class="fa fa-star"></i>&nbsp;&nbsp;
+          <i [ngClass]="{'starColour1': review.Rating >= 3}" class="fa fa-star"></i>&nbsp;&nbsp;
+          <i [ngClass]="{'starColour1': review.Rating >= 4}" class="fa fa-star"></i>&nbsp;&nbsp;
+          <i [ngClass]="{'starColour1': review.Rating >= 5}" class="fa fa-star"></i>&nbsp;&nbsp;
+        </p>
+        <p class="reviewDescp">{{review.Review}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showratingandreview1">
+  <div class="rating_top_head" (click)="ShowMainpage()">
+    <i class="fa fa-long-arrow-left" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;All Ratings and Reviews
+  </div>
+  <div class="ratingreviewSection">
+    <div class="col-12">
+      <h5 class="rating_prop_name">{{this.propname2}}</h5>
+      <div *ngIf="averagerating2 >= 1" class="ratingText">
+        <span class="overall_rating">{{averagerating2}}&nbsp;<i class="fa fa-star starColour"></i></span>
+        <span class="reviewcount">&nbsp;{{this.reviewcount2}}&nbsp;Ratings & Reviews</span>
+      </div>
+    </div>
+    <!-- <button  class="btn WriteReviewBtn1" data-toggle="modal" (click)="ratingreviewmodal()">Write a Review</button> -->
+    <!-- <button *ngIf="loginbutton" class="btn WriteReviewBtn1" data-toggle="modal" data-target="#loginwithotpModel">Write a Review</button> -->
+
+    <div class="col-12 reviewBorder" *ngFor="let review of reviews2">
+      <div class="user_text">
+        <div class="text-center">
+          <i class="fa fa-user-o userIcon" aria-hidden="true"></i>
+          <span class="reviewerNAme">{{review.User}}&nbsp;{{review.lastname}} </span>
+        </div>
+        <div class="reviewDate">
+          <p>{{review.Revieweddate}}</p>
+        </div>
+      </div>
+      <div class="text-left">
+        <p class="mt-4"><span class="ratingText">{{review.Rating}}.0</span>&nbsp;&nbsp;
+          <i [ngClass]="{'starColour1': review.Rating >= 1}" class="fa fa-star"></i>&nbsp;&nbsp;
+          <i [ngClass]="{'starColour1': review.Rating >= 2}" class="fa fa-star"></i>&nbsp;&nbsp;
+          <i [ngClass]="{'starColour1': review.Rating >= 3}" class="fa fa-star"></i>&nbsp;&nbsp;
+          <i [ngClass]="{'starColour1': review.Rating >= 4}" class="fa fa-star"></i>&nbsp;&nbsp;
+          <i [ngClass]="{'starColour1': review.Rating >= 5}" class="fa fa-star"></i>&nbsp;&nbsp;
+        </p>
+        <p class="reviewDescp">{{review.Review}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-container *ngComponentOutlet="enquiryFormComponent"></ng-container>
+<!-- <app-fixedfooter></app-fixedfooter>  -->
+<ng-container *ngComponentOutlet="Fixedfooter"></ng-container>
